@@ -1,15 +1,16 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class ConjuntoAgente {
+public class ConjuntoAgentes {
 		private int numAgentes = 0;
-		private Agente[] ConjAgentes;
-
+		private Agente[] ConjAgentes = new Agente[numAgentes];
+		
+		public ConjuntoAgentes(int numAg){
+			numAgentes = numAg;	
+		}
+		
 		public void añadirAgente(String id, String ciudad_ini, String ciudad_obj){ //ANADIR AGENTE
-			Agente a = new Agente();
-			a.setNombre(id);
-			a.setCiudad_inicial(ciudad_ini);
-			a.setCiudad_objetivo(ciudad_obj);
+			Agente a = new Agente(id, ciudad_ini, ciudad_obj);
 			//ConjAgentes.add(a);
 			ConjAgentes[numAgentes] = a;
 			++numAgentes;
@@ -20,14 +21,16 @@ public class ConjuntoAgente {
 		}
 		
 		public Agente consultarAgente(String nom){	//CONSULTAR AGENTE
-			Agente a = new Agente();
+			Agente a = null;
 			boolean b = false;
 			for (int i = 0; i < numAgentes; ++i){
 				
 				if (ConjAgentes[i].getNombre() == nom) {
-					a.setNombre(ConjAgentes[i].getNombre());
-					a.setCiudad_inicial(ConjAgentes[i].getCiudad_inicial());
-					a.setCiudad_objetivo(ConjAgentes[i].getCiudad_objetivo());
+					a = new Agente(
+							ConjAgentes[i].getNombre(),
+								ConjAgentes[i].getCiudad_inicial(),
+									ConjAgentes[i].getCiudad_objetivo());
+							
 					b = true;					
 					}
 				
@@ -37,6 +40,16 @@ public class ConjuntoAgente {
 			return a;
 			} //FIN CONSULTAR
 			
+		public void borrarAgente(String nom){ //BORRAR AGENTE
+			for (int i = 0; i < numAgentes; ++i){
+				if (ConjAgentes[i].getNombre() == nom){
+					ConjAgentes[i] = ConjAgentes[numAgentes-1];
+					ConjAgentes[numAgentes-1] = null;
+					--numAgentes;		
+				}
+			}		//Estrategia: SWAP + eliminar el último elemento del vector
+		}			//y decrementar el numAgentes HABRIA QUE MEJORAR EN CASO DE CAMBIO DE TIPO DE ESTRUCTURA				
+		
 		public String consultar_ciudad_inicial(String nom){ //CONSULTAR CIUDAD INICIAL
 			boolean b = false;
 			String initial_city = "NoExisteAgenteConDichoNombre";
@@ -49,6 +62,7 @@ public class ConjuntoAgente {
 				
 				if (b) break;				
 				}
+			
 			return initial_city;
 			} //FIN CONSULTAR INIT CITY
 			
@@ -64,6 +78,7 @@ public class ConjuntoAgente {
 				
 				if (b) break;				
 				}
+			
 			return final_city;
 			}//FIN FINAL CITY
 		
@@ -81,11 +96,5 @@ public class ConjuntoAgente {
 			return l;
 			}
 		
-		}
-
-
-
-
-		//public list consultar_agentes_con_ciudad_inicial
-		//public list consultar_agentes_con_ciudad_objetivo
+}
 

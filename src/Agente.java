@@ -3,6 +3,12 @@ public class Agente {
 	private String ciudad_inicial;
 	private String ciudad_objetivo;
 	
+	public Agente (String nom, String ciuIni, String ciuObj){
+		nombre = nom;
+		ciudad_objetivo = ciuObj;
+		ciudad_inicial = ciuIni;
+	}
+	
 	public String getNombre() { //getter for nombre
 		return nombre;
 	}
