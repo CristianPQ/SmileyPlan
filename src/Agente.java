@@ -2,7 +2,7 @@ public class Agente {
 	private String nombre;
 	private String ciudad_inicial;
 	private String ciudad_objetivo;
-	 
+	
 	public String getNombre() { //getter for nombre
 		return nombre;
 	}
