@@ -4,24 +4,27 @@ public class itinerario {
 	//Datos
 	private static final int numCaminosPorDefecto = 60; 
 	private String nombre; 
-	private Camino[] caminos = new Camino[numCaminosPorDefecto]; 
+	private camino[] caminos = new camino[numCaminosPorDefecto]; 
 	
 	//Constructora de itinerario vacio
-	public setItinerario(String nombrei) {
+	public void setItinerario(String nombrei) {
 		nombre = nombrei; 
 		//caminos = Camino
 		//caminos??
 	}
 	
-	public int getLength(){
+	//getter que devuelve el numero de caminos en el itinerario
+	public int numeroCaminos(){
 		return caminos.length(); 
 	}
 	
+	//getter que devuelve el nombre del itinerario
 	public String getNombre() {
 		return nombre; 
 	}
 	
-	public Camino getCamino(int pos){
+	//getter que devuelve el camino de la posicion que pasa por parametro
+	public camino getCamino(int pos){
 		return caminos[pos]; 
 	}
 	
@@ -30,7 +33,7 @@ public class itinerario {
 	}*/
 	
 	//Informar al vector de una posicion concreta 
-	public void setCamino(int pos, Camino valor){
+	public void setCamino(int pos, camino valor){
 		caminos[pos] = valor; 
 	}
 	
