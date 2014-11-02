@@ -13,7 +13,10 @@ public class Ciudad {
 		setCoord(coord);
 	}
 
-	//Getter nombre
+	/*
+	 * Getter nombre
+	 * Consultar nombre de Ciudad
+	 */
 	public String getNombre() {
 		return nombre;
 	}
@@ -23,15 +26,50 @@ public class Ciudad {
 		this.nombre = nombre;
 	}
 
-	//Getter coordenadas
+	/*
+	 * Getter coordenadas
+	 * Consultar Coordenadas de Ciudad
+	 */
 	public Coordenadas getCoord() {
 		return coord;
 	}
 
-	//Setter coord
+	/*
+	 * Setter coord
+	 * Mover ciudad con nuevas coordenadas
+	 */
 	public void setCoord(Coordenadas coord) {
 		this.coord = coord;
 	}
 	
+	/*
+	 * Mover Ciudad un espacio
+	 * Mover ciudad a partir de una distancia de movimiento.
+	 */
+	public void mover(int x, int y) {
+		x = x + this.coord.getX();
+		y = y + this.coord.getY();
+		this.coord = new Coordenadas(x, y);
+	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,8 +11,7 @@ public class ConjuntoCiudades {
 	/*
 	 * Devuelve un Set con todas las keys de ciudades, en nuestro caso los nombres de las ciudades
 	 */
-	public Set<String> getCiudades()
-	{
+	public Set<String> getCiudades() {
 		return ciudades.keySet();
 	}
 	
@@ -29,13 +28,17 @@ public class ConjuntoCiudades {
 	}
 	
 	//Consultar coordenadas de una ciudad
-	public Coordenadas getCoordenadasCiudadPorNombre(String nombreCiudad) {
+	public Coordenadas getCoordenadasCiudad(String nombreCiudad) {
 		Coordenadas coord;
 		Ciudad c = buscarCiudadPorNombre(nombreCiudad);
 		coord = c.getCoord();
 		return coord;
 	}
 	
+	//Borrar ciudad
+	public void borrarCiudad(String nombreCiudad) {
+		ciudades.remove(nombreCiudad);
+	}
 	
 
 }

@@ -12,7 +12,8 @@ public class Coordenadas {
 	
 	//Constructor Coordenadas
 	public Coordenadas(int x, int y){
-		setCoordenadas(x, y);
+		this.setX(x);
+		this.setY(y);
 	}
 	
 	//GetterX
@@ -35,9 +36,4 @@ public class Coordenadas {
 		this.y = y;
 	}
 	
-	//Setter de Coordenadas con X e Y
-	public void setCoordenadas(int x, int y){
-		this.setX(x);
-		this.setY(y);
-	}
 }
