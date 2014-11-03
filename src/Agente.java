@@ -1,12 +1,12 @@
 public class Agente {
 	private String nombre;
-	private String ciudad_inicial;
-	private String ciudad_objetivo;
+	private String ciudadInicial;
+	private String ciudadObjetivo;
 	
 	public Agente (String nom, String ciuIni, String ciuObj){
 		nombre = nom;
-		ciudad_objetivo = ciuObj;
-		ciudad_inicial = ciuIni;
+		ciudadObjetivo = ciuObj;
+		ciudadInicial = ciuIni;
 	}
 	
 	public String getNombre() { //getter for nombre
@@ -15,16 +15,16 @@ public class Agente {
 	public void setNombre(String nombre) { //setter for nombre
 		this.nombre = nombre;
 	}
-	public String getCiudad_inicial() { //getter for ciudad_ini
-		return ciudad_inicial;
+	public String getCiudadInicial() { //getter for ciudad_ini
+		return ciudadInicial;
 	}
-	public void setCiudad_inicial(String ciudad_inicial) {//setter for ciudad_ini
-		this.ciudad_inicial = ciudad_inicial;
+	public void setCiudadInicial(String ciudadInicial) {//setter for ciudad_ini
+		this.ciudadInicial = ciudadInicial;
 	}
-	public String getCiudad_objetivo() {//getter for ciudad_obj
-		return ciudad_objetivo;
+	public String getCiudadObjetivo() {//getter for ciudad_obj
+		return ciudadObjetivo;
 	}
-	public void setCiudad_objetivo(String ciudad_objetivo) {//setter for ciudad_obj
-		this.ciudad_objetivo = ciudad_objetivo;
+	public void setCiudadObjetivo(String ciudadObjetivo) {//setter for ciudad_obj
+		this.ciudadObjetivo = ciudadObjetivo;
 	}
 }
