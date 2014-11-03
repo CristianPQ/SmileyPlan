@@ -1,13 +1,13 @@
 
-public class itinerario {
+public class Itinerario {
 
 	//Datos
 	private static final int numCaminosPorDefecto = 60; 
 	private String nombre; 
-	private camino[] caminos = new camino[numCaminosPorDefecto]; 
+	private Camino[] caminos = new Camino[numCaminosPorDefecto]; 
 	
 	//Constructora de itinerario vacio
-	public void setItinerario(String nombrei) {
+	public void Itinerario(String nombrei) {
 		nombre = nombrei; 
 		//caminos = Camino
 		//caminos??

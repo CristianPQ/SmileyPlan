@@ -5,7 +5,7 @@
 public class Ciudad {
 	
 	private String nombre; 		//Identificador
-	private Coordenadas coord;	//Señala la ubicacion
+	private Coordenadas coord;	//Senala la ubicacion
 	
 	//Constructor Ciudad
 	public Ciudad(String nombre, Coordenadas coord){

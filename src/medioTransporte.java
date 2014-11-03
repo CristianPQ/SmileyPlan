@@ -1,28 +1,34 @@
+public class MedioTransporte {
 
-public class medioTransporte {
-	
-	medioTransporte(){
-		
+	private static String nombre;
+	private int precioDistancia;
+
+	MedioTransporte() {}
+
+	// Creadora con parametros
+	public MedioTransporte (String nombreTransporte, int precio){
+		this.nombre = nombreTransporte;
+		this.precioDistancia = precio;
 	}
 
-	//Datos
-	private String nombre; 
-	private int precioDistancia; 
-	
-	//Creadora con parametros 
-	public void transporte (String nombreTransporte, int precio) {
-		nombre = nombreTransporte;
-		precioDistancia = precio; 
+	// getter que devuelve el nombre del medio de transporte
+	public static String getNombre() {
+		return nombre;
+	}
+
+	// getter que devuelve el precio por distancia del medio de transporte
+	public int getPrecio() {
+		return precioDistancia;
+	}
+
+	public void setNombre(String nombreTransporte) {
+		this.nombre = nombreTransporte;
+	}
+
+	public void setPrecio(int precio) {
+		this.precioDistancia = precio;
 	}
 	
-	//getter que devuelve el nombre del medio de transporte
-	public String getNombre() {
-		return nombre; 
-	}
 	
-	//getter que devuelve el precio por distancia del medio de transporte
-	public int getPrecio(){
-		return precioDistancia; 
-	}
-		
+
 }
