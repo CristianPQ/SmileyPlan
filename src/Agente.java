@@ -3,10 +3,10 @@ public class Agente {
 	private String ciudadInicial;
 	private String ciudadObjetivo;
 	
-	public Agente (String nom, String ciuIni, String ciuObj){
-		nombre = nom;
-		ciudadObjetivo = ciuObj;
-		ciudadInicial = ciuIni;
+	public Agente (String nombre, String ciudadInicial, String ciudadObjetivo){
+		this.nombre = nombre;
+		this.ciudadObjetivo = ciudadObjetivo;
+        this.ciudadInicial = ciudadInicial;
 	}
 	
 	public String getNombre() { //getter for nombre
