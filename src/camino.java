@@ -29,23 +29,23 @@ public class Camino {
 		this.transporte = transporte;
 	}
 
-    public String consultarTransporte(){
+    public String getTransporte(){
     	return transporte;
     }
-    public String consultarOrigen(){
+    public String getOrigen(){
     	return ciudadOrigen;
     }
-    public String consultarDestino(){
+    public String getDestino(){
     	return ciudadDestino;
     }
-    public int consultarCapacidad(){
+    public int getCapacidad(){
     	return capacidad;
     }
 
-    public void modificarTransporte(String transporte){
+    public void setTransporte(String transporte){
     	this.transporte = transporte;
     }
-    public void modificarCapacidad(int capacidad){
+    public void setCapacidad(int capacidad){
     	this.capacidad = capacidad;
     }
 

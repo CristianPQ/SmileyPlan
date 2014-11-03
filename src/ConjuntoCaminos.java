@@ -2,143 +2,114 @@ import java.util.*;
 
 public class ConjuntoCaminos {
 
-	private Map<String, ArrayList<camino>> Caminos = new HashMap<String, ArrayList<camino>>();
+	private Map<String, ArrayList<Camino>> Caminos = new HashMap<String, ArrayList<Camino>>();
 	
-	//crear un camino con capacidad
-	public void crearCaminoCapacidad(String ciudadOrigen, String ciudadDestino, int capacidad, medioTransporte transporte){
-		ArrayList<camino> listAux = new ArrayList<camino>();  //creo una lista auxiliar para insertarle el camino 
-		boolean existe = false; // booleno para comprovar si ya existe el camino
+	//crear un Camino con capacidad
+	public void agregarCaminoCapacidad(String ciudadOrigen, String ciudadDestino, int capacidad, String transporte) throws Exception{
+		ArrayList<Camino> listAux = new ArrayList<Camino>();  //creo una lista auxiliar para insertarle el Camino 
+		Camino auxCamino = new Camino(ciudadOrigen,ciudadDestino, capacidad, transporte); //Camino auxiliar
 		if (Caminos.containsKey(ciudadOrigen)) { //primer miro si hi ha algun cami amb ciutatorigen
-			camino auxCamino = new camino(ciudadOrigen,ciudadDestino, capacidad, transporte); 
-			if (Camninos.get(ciudadOrigen).contains(auxCamino)){
+			if (Caminos.get(ciudadOrigen).contains(auxCamino)){ //miro si existe ese camino en concreto
 				throw new Exception("El Camino ya existe");   
 			}
-			
-			
-			
-			
-			
-			listAux = Caminos.get(ciudadOrigen);  //arraylist existente
-			Iterator<camino> it = listAux.iterator();
-			while (it.hasNext() && !existe){ //recorro els caminos per mira si ja existeix
-				camino aux2Camino = it.next();
-				if(aux2Camino.consultarDestino() == ciudadDestino && aux2Camino.consultarTransporte() == transporte){ 
-					existe = true;
-				}
+			else {
+				listAux = Caminos.get(ciudadOrigen); //mira si es pot fer sense treure la llista
+				listAux.add(auxCamino);
+				Caminos.put(ciudadOrigen, listAux);
 			}
-			if (!existe){
-				camino auxCamino = new camino(ciudadOrigen,ciudadDestino, capacidad, transporte); //camino auxiliar
-				listAux.add(auxCamino); //anado el camino creado en el auxiliar
-				Caminos.put(ciudadOrigen, listAux); // subtituyo el array por el auxiliar que ya contiene el nuevo camino
-			}
-			
-		}
-		else{ //sino ja el puc crear
-			camino auxCamino = new camino(ciudadOrigen,ciudadDestino, capacidad,transporte); //camino auxiliar
-			listAux.add(auxCamino); //anado el camino creado en el auxiliar
-			Caminos.put(ciudadOrigen, listAux); // subtituyo el array por el auxiliar que ya contiene el nuevo camino
+		}	
+		else { 
+			listAux = Caminos.get(ciudadOrigen);
+			listAux.add(auxCamino);
+			Caminos.put(ciudadOrigen, listAux);
 		}
 	}
-	
-	//crear un camino sin capcidad, 1 por defecto
-	public void crearCamino(String ciudadOrigen, String ciudadDestino, medioTransporte transporte){
-		ArrayList<camino> listAux = new ArrayList<camino>();  //creo una lista auxiliar para insertarle el camino 
-		boolean existe = false; // booleno para comprovar si ya existe el camino
+			
+
+	//crear un Camino sin capcidad, 1 por defecto
+	public void agregarCamino(String ciudadOrigen, String ciudadDestino, String transporte) throws Exception{
+		ArrayList<Camino> listAux = new ArrayList<Camino>();  //creo una lista auxiliar para insertarle el Camino 
+		Camino auxCamino = new Camino(ciudadOrigen,ciudadDestino, transporte); //Camino auxiliar
 		if (Caminos.containsKey(ciudadOrigen)) { //primer miro si hi ha algun cami amb ciutatorigen
-			listAux = Caminos.get(ciudadOrigen);  //arraylist existente
-			Iterator<camino> it = listAux.iterator();
-			while (it.hasNext() && !existe){ //recorro els caminos per mira si ja existeix
-				camino aux2Camino = it.next();
-				if(aux2Camino.consultarDestino() == ciudadDestino && aux2Camino.consultarTransporte() == transporte){ 
-					existe = true;
-				}
+			if (Caminos.get(ciudadOrigen).contains(auxCamino)){ //miro si existe ese camino en concreto
+				throw new Exception("El Camino ya existe");   
 			}
-			if (!existe){
-				camino auxCamino = new camino(ciudadOrigen,ciudadDestino,transporte); //camino auxiliar
-				listAux.add(auxCamino); //anado el camino creado en el auxiliar
-				Caminos.put(ciudadOrigen, listAux); // subtituyo el array por el auxiliar que ya contiene el nuevo camino
+			else {
+				listAux = Caminos.get(ciudadOrigen); //mira si es pot fer sense treure la llista
+				listAux.add(auxCamino);
+				Caminos.put(ciudadOrigen, listAux);
 			}
-			
+		}	
+		else { 
+			listAux = Caminos.get(ciudadOrigen);
+			listAux.add(auxCamino);
+			Caminos.put(ciudadOrigen, listAux);
 		}
-		else{ //sino ja el puc crear
-			camino auxCamino = new camino(ciudadOrigen,ciudadDestino,transporte); //camino auxiliar
-			listAux.add(auxCamino); //anado el camino creado en el auxiliar
-			Caminos.put(ciudadOrigen, listAux); // subtituyo el array por el auxiliar que ya contiene el nuevo camino
-		}
-	}
-	
-	//post:devuelve -1 en caso de que no exista el camino
-	public int consultarCapacidad (String ciudadOrigen, String ciudadDestino, medioTransporte transporte){
-		ArrayList<camino> listAux;  //creo una lista auxiliar para insertarle el camino 
-		boolean existe = false; // booleno para comprovar que pare una vez encuentre el camino pare
-		if (Caminos.containsKey(ciudadOrigen) && !existe) {
-			listAux = Caminos.get(ciudadOrigen);  //arraylist existente
-			Iterator<camino> it = listAux.iterator();
-			while (it.hasNext()){
-				camino auxCamino = it.next();
-				if(auxCamino.consultarDestino() == ciudadDestino && auxCamino.consultarTransporte() == transporte){
-					existe = true;
-					return auxCamino.consultarCapacidad();
-				}
-			}
-		}
-		if (!existe) { ; }// ex:camino no existente
-		return -1;
 	}
 		
-	public int consultarNumCamnimos(){
+	public int getCapacidad (String ciudadOrigen, String ciudadDestino, String transporte) throws Exception{
+		Camino auxCamino = new Camino(ciudadOrigen,ciudadDestino, transporte); //Camino auxiliar
+		if (Caminos.containsKey(ciudadOrigen)) { //primer miro si hi ha algun cami amb ciutatorigen
+			if (Caminos.get(ciudadOrigen).contains(auxCamino)){ //miro si existe ese camino en concreto
+				int pos = Caminos.get(ciudadOrigen).indexOf(auxCamino); //posicion donde esta el elemento
+				return Caminos.get(ciudadOrigen).get(pos).getCapacidad(); //del mapa trec el vector, del array trec el cami, del cami consultu la capacitat
+			}
+			else {
+				throw new Exception("El Camino NO existe");   
+			}
+		}	
+		else { 
+			throw new Exception("El Camino NO existe");   
+		}
+	}
+		
+		
+		
+	public int getNumCamnimos(){
 			return Caminos.size();
 	}
 	
-	public void borrarCamino (String ciudadOrigen, String ciudadDestino, medioTransporte transporte){
-		ArrayList<camino> listAux;  //creo una lista auxiliar para insertarle el camino 
-		boolean existe = false; 
-		if (Caminos.containsKey(ciudadOrigen)) { //mirar si existe algun camino con ciudad origen
-			listAux = Caminos.get(ciudadOrigen);  //arraylist existente
-			Iterator<camino> it = listAux.iterator();
-			while (it.hasNext()){
-				camino auxCamino = it.next();
-				if(auxCamino.consultarDestino() == ciudadDestino && auxCamino.consultarTransporte() == transporte){ //recorro hasta encontrarlo
-					existe = true; //ya puede puede parar de recorrer
-					listAux.remove(auxCamino); //lo borro de auxliar
-					Caminos.put(ciudadOrigen, listAux); // subtituyo el array por el auxiliar que ya contiene el nuevo camino
-				}
+	public void borrarCamino (String ciudadOrigen, String ciudadDestino, String transporte) throws Exception{
+		ArrayList<Camino> listAux = new ArrayList<Camino>();  //creo una lista auxiliar para borrar el Camino 
+		Camino auxCamino = new Camino(ciudadOrigen,ciudadDestino, transporte); //Camino auxiliar
+		if (Caminos.containsKey(ciudadOrigen)) { //primer miro si hi ha algun cami amb ciutatorigen
+			if (Caminos.get(ciudadOrigen).contains(auxCamino)){ //miro si existe ese camino en concreto
+				listAux = Caminos.get(ciudadOrigen); //mira si es pot fer sense treure la llista
+				listAux.remove(auxCamino); //borro
+				Caminos.put(ciudadOrigen, listAux); //inserto la nova llista axtualitzada
 			}
+			else {
+				throw new Exception("El Camino NO existe");   
+			}
+		}	
+		else { 
+			throw new Exception("El Camino NO existe");   
 		}
-		if (!existe) { ; }// ex:camino no existente
-	}
-	
-	public ArrayList<camino> consultarCiudadOrigen (String ciudadOrigen){
+	}	
+	//devuelve todos los caminos existentes con que tengan ciudad origen, ciudadOrigen, en caso de no existir devuelve null
+	public ArrayList<Camino> getCiudadOrigen (String ciudadOrigen){
 		if (Caminos.containsKey(ciudadOrigen)) {
 			return Caminos.get(ciudadOrigen);
 		}
-		else return null; //ex: no hay ningun camino con ciudadOrigen
+		else return null; 
 	}
 
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	
-
-	consultar_caminos_con_ciudad_origen(string ciudad_origen)
-	consultar_caminos_con_ciudad_destino(string ciudad_destino) //comentar grup
-	modificar_medio(string ciudad_origen, string ciudad_destino, string medio) // comentar amb el grup
-
-
-	*/
-	
-	
-	
+    public void setCapacidad(String ciudadOrigen, String ciudadDestino, String transporte, int capacidad) throws Exception{
+		Camino auxCamino = new Camino(ciudadOrigen,ciudadDestino, transporte); //Camino auxiliar
+		if (Caminos.containsKey(ciudadOrigen)) { //primer miro si hi ha algun cami amb ciutatorigen
+			if (Caminos.get(ciudadOrigen).contains(auxCamino)){ //miro si existe ese camino en concreto
+				int pos = Caminos.get(ciudadOrigen).indexOf(auxCamino); //posicion donde esta el elemento
+				Caminos.get(ciudadOrigen).get(pos).setCapacidad(capacidad); //del mapa trec el vector, del array trec el cami, del cami consultu la capacitat
+			}
+			else {
+				throw new Exception("El Camino NO existe");   
+			}
+		}	
+		else { 
+			throw new Exception("El Camino NO existe");   
+		}
+	}
+		
+    
 	
 }
