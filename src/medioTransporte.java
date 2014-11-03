@@ -1,5 +1,9 @@
 
 public class medioTransporte {
+	
+	medioTransporte(){
+		
+	}
 
 	//Datos
 	private String nombre; 

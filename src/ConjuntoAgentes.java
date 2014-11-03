@@ -9,7 +9,7 @@ public class ConjuntoAgentes {
 			numAgentes = numAg;	
 		}
 		
-		public void añadirAgente(String id, String ciudad_ini, String ciudad_obj){ //ANADIR AGENTE
+		public void anadirAgente(String id, String ciudad_ini, String ciudad_obj){ //ANADIR AGENTE
 			Agente a = new Agente(id, ciudad_ini, ciudad_obj);
 			//ConjAgentes.add(a);
 			ConjAgentes[numAgentes] = a;
@@ -47,7 +47,7 @@ public class ConjuntoAgentes {
 					ConjAgentes[numAgentes-1] = null;
 					--numAgentes;		
 				}
-			}		//Estrategia: SWAP + eliminar el último elemento del vector
+			}		//Estrategia: SWAP + eliminar el ultimo elemento del vector
 		}			//y decrementar el numAgentes HABRIA QUE MEJORAR EN CASO DE CAMBIO DE TIPO DE ESTRUCTURA				
 		
 		public String consultar_ciudad_inicial(String nom){ //CONSULTAR CIUDAD INICIAL

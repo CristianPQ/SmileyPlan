@@ -15,7 +15,7 @@ public class itinerario {
 	
 	//getter que devuelve el numero de caminos en el itinerario
 	public int numeroCaminos(){
-		return caminos.length(); 
+		return caminos.length; 
 	}
 	
 	//getter que devuelve el nombre del itinerario
