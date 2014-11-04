@@ -4,9 +4,9 @@ public class Agente {
 	private String ciudadObjetivo;
 	
 	public Agente (String nombre, String ciudadInicial, String ciudadObjetivo){
-		this.nombre = nombre;
-		this.ciudadObjetivo = ciudadObjetivo;
-        this.ciudadInicial = ciudadInicial;
+		setNombre(nombre);
+		setCiudadObjetivo(ciudadObjetivo);
+        setCiudadInicial(ciudadInicial);
 	}
 	
 	public String getNombre() { //getter for nombre

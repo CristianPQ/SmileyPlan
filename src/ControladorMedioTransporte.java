@@ -6,8 +6,8 @@ public class ControladorMedioTransporte {
 	
 	//per tots els controladors que tinguin relacio amb aquest
 	//si te un conjunt de relacions: private ConcurrentSkipListSet<NOMCLASSE>nom; 
-	private static ControladorAlgoritmo cntrlAl; //ara fa error pq encara no hi ha els altres controladors creats 
-	private static ControladorMapa cntrlMap; 
+	/*private static ControladorAlgoritmo cntrlAl; //ara fa error pq encara no hi ha els altres controladors creats 
+	private static ControladorMapa cntrlMap;*/ 
 	private static Map <String, MedioTransporte> medios =  new HashMap<String,MedioTransporte>(); 
 	
 	
@@ -16,10 +16,10 @@ public class ControladorMedioTransporte {
 	private static Exception NoExiste = new Exception ("El nombre no existe");
 	
 	//creadora de controlador 
-	ControladorMedioTransporte(ControladorAlgoritmo al,ControladorMapa map){
+	/*ControladorMedioTransporte(ControladorAlgoritmo al,ControladorMapa map){
 		cntrlAl = al; 
 		cntrlMap = map; 	
-	}
+	}*/
 	
 	//borrar todo el map
 	public void eliminarMap(){
@@ -44,8 +44,8 @@ public class ControladorMedioTransporte {
 		else medios.remove(nombre); 
 	}
 	
-	public void modificarNombre(String nombre, MedioTransporte m) {
-		String n = MedioTransporte.getNombre();
+	/*public void modificarNombre(String nombre, MedioTransporte m) {
+		String n = m.getNombre();
 		if (!medios.containsKey(n)) throw NoExiste;
 		else if (medios.containsKey(nombre)) throw NombreYaExiste; 
 		else {
@@ -53,7 +53,7 @@ public class ControladorMedioTransporte {
 			
 		}
 		
-	}
+	}*/
 	
 	//devuelve el num de transportes que hay en el map 
 	public int getCantidadTransportes(){

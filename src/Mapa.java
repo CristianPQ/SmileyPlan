@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Set;
 
 
@@ -9,11 +10,17 @@ public class Mapa {
 	private ConjuntoCaminos caminos;
 	private Coordenadas[] continente;
 	
+	
+	/*
+	 * Constructor Ciudad
+	 */
 	public Mapa(Coordenadas[] continente, int anchuraX, int alturaY) {
-		this.continente = continente;
-		this.anchuraX = anchuraX;
-		this.alturaY = alturaY;
+		this.setContinente(continente);
+		this.setAnchuraX(anchuraX);
+		this.setAlturaY(alturaY);
 	}
+	
+	
 	
 	/*
 	 * Getter Set de nombres de ciudades
@@ -34,7 +41,7 @@ public class Mapa {
 	 *Consultar el numero de ciudades que tiene el ConjuntoCiudades 
 	 */
 	public int numeroCiudades() {
-		this.numeroCiudades();
+		return this.ciudades.numeroCiudades();
 	}
 	
 	/*
@@ -57,5 +64,55 @@ public class Mapa {
 	//Borrar ciudad
 	public void borrarCiudad(String nombreCiudad) {
 		this.ciudades.borrarCiudad(nombreCiudad);
+	}
+
+
+
+	public int getAnchuraX() {
+		return anchuraX;
+	}
+
+
+
+	public void setAnchuraX(int anchuraX) {
+		this.anchuraX = anchuraX;
+	}
+
+
+
+	public int getAlturaY() {
+		return alturaY;
+	}
+
+
+
+	public void setAlturaY(int alturaY) {
+		this.alturaY = alturaY;
+	}
+
+
+
+	public Coordenadas[] getContinente() {
+		return continente;
+	}
+
+
+
+	public void setContinente(Coordenadas[] continente) {
+		this.continente = continente;
+	}
+	
+	/*
+	 * Consultar caminos existentes desde una ciudad
+	 */
+	public ArrayList<Camino> conCiudadOrigen(String ciudadOrigen){
+		return this.caminos.getCiudadOrigen(ciudadOrigen);
+	}
+	
+	/*
+	 * Agregar camino en ConjuntoCaminos caminos
+	 */
+	public void agregarCamino(Camino c) {
+		this.caminos.agregarCamino(c);
 	}
 }

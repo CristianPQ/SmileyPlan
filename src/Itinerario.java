@@ -7,10 +7,14 @@ public class Itinerario {
 	private Camino[] caminos = new Camino[numCaminosPorDefecto]; 
 	
 	//Constructora de itinerario vacio
-	public void Itinerario(String nombrei) {
-		nombre = nombrei; 
+	public Itinerario(String nombre) {
+		setNombre(nombre);
 		//caminos = Camino
 		//caminos??
+	}
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
 	}
 	
 	//getter que devuelve el numero de caminos en el itinerario

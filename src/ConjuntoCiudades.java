@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 public class ConjuntoCiudades {
@@ -54,20 +52,7 @@ public class ConjuntoCiudades {
 	public int numeroCiudades() {
 		return this.ciudades.size();
 	}
-	
-	/*
-	 * Consultar caminos existentes desde una ciudad
-	 */
-	public ArrayList<Camino> conCiudadOrigen(String ciudadOrigen){
-		return this.caminos.getCiudadOrigen(ciudadOrigen);
-	}
-	
-	/*
-	 * Agregar camino en ConjuntoCaminos caminos
-	 */
-	public void agregarCamino(Camino c) {
-		this.caminos.agregarCamino(c);
-	}
+
 	
 
 }
