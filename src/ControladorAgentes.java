@@ -26,7 +26,7 @@ public class ControladorAgentes {
 		public void eliminarAgente(String nombre) throws Exception{
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
-				while (it.hasNext() && !fin){ 
+				while (it.hasNext() && !fin){ 	//acaba al encontrar el agente que quiere eliminar
 					if ((it.next().getNombre()) == nombre) {
 						Agentes.remove(it.next());
 						fin = true;
@@ -34,10 +34,10 @@ public class ControladorAgentes {
 				}if (!fin) throw NoExiste;		//si llega al final y no se encuentra, es que no existe
 			}
 		
-		public void modificarNombre(String nombreAntiguo, String nombreNuevo)throws Exception{
+		public void modificarNombreAgente(String nombreAntiguo, String nombreNuevo)throws Exception{
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
-				while (it.hasNext() && !fin){
+				while (it.hasNext() && !fin){ //acaba al encontrar el agente que quiere editar
 					if ((it.next().getNombre()) == nombreAntiguo) {
 						it.next().setNombre(nombreNuevo);
 						fin = true;
@@ -45,11 +45,11 @@ public class ControladorAgentes {
 				}if (!fin) throw NoExiste;	//si llega al final y no se encuentra, es que no existe
 			}
 		
-		public void modificarCiudadInicial(String nombre, String ciudadInicial)
+		public void modificarCiudadInicialAgente(String nombre, String ciudadInicial)
 			throws Exception{
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
-				while (it.hasNext() && !fin){
+				while (it.hasNext() && !fin){ //acaba al encontrar el agente que quiere editar
 					if ((it.next().getNombre()) == nombre) {
 						it.next().setCiudadInicial(ciudadInicial);
 						fin = true;
@@ -57,12 +57,11 @@ public class ControladorAgentes {
 				}if (!fin) throw NoExiste;	//si llega al final y no se encuentra, es que no existe				
 			}
 		
-		public void modificarCiudadObjetivo(String nombre, String ciudadObjetivo)
-
+		public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)
 			throws Exception{
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
-				while (it.hasNext() && !fin){ 
+				while (it.hasNext() && !fin){  //acaba al encontrar el agente que se quiere editar
 					if ((it.next().getNombre()) == nombre) {
 						it.next().setCiudadObjetivo(ciudadObjetivo);
 						fin = true; 
@@ -81,7 +80,7 @@ public class ControladorAgentes {
 			return l;
 			}
 		
-		public List<Agente> listarAgentesCiudadObjetivo(String ciudadObjetivo)
+		public List<Agente> consultarAgentesCiudadObjetivo(String ciudadObjetivo)
 			throws Exception { //Listar agentes con CiObj concreta
 			List<Agente> l = new ArrayList<Agente>();	//lista de retorno
 			Iterator<Agente> it = Agentes.iterator();	//creacion iterador
@@ -104,7 +103,7 @@ public class ControladorAgentes {
 			return l;
 			}
 		
-		int numeroDeAgentes(){
+		int getNumeroDeAgentes(){
 			return Agentes.size();
 		}
 		
