@@ -27,12 +27,11 @@ public class ConjuntoCaminos {
 		}
 	}
 		
-	public int getCapacidad (String ciudadOrigen, String ciudadDestino, String transporte) throws Exception{
-		Camino auxCamino = new Camino(ciudadOrigen,ciudadDestino, transporte); //Camino auxiliar
-		if (Caminos.containsKey(ciudadOrigen)) { //primer miro si hi ha algun cami amb ciutatorigen
-			if (Caminos.get(ciudadOrigen).contains(auxCamino)){ //miro si existe ese camino en concreto
-				int pos = Caminos.get(ciudadOrigen).indexOf(auxCamino); //posicion donde esta el elemento
-				return Caminos.get(ciudadOrigen).get(pos).getCapacidad(); //del mapa trec el vector, del array trec el cami, del cami consultu la capacitat
+	public int getCapacidad (Camino camino) throws Exception{
+		if (Caminos.containsKey(camino.getOrigen())) { //primer miro si hi ha algun cami amb ciutatorigen
+			if (Caminos.get(camino.getOrigen()).contains(camino)){ //miro si existe ese camino en concreto
+				int pos = Caminos.get(camino.getOrigen()).indexOf(camino); //posicion donde esta el elemento
+				return Caminos.get(camino.getOrigen()).get(pos).getCapacidad(); //del mapa trec el vector, del array trec el cami, del cami consultu la capacitat
 			}
 			else {
 				throw new Exception("El Camino NO existe");   
