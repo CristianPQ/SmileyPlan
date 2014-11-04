@@ -9,7 +9,6 @@ public class Coche extends MedioTransporte {
 	//Datos
 	private String nombre; 
 	private int precioDistancia; 
-	
 	static private int limitePrecio = 5; 
 	
 	static private Exception ErrorPrecio = new Exception("Este precio no es posible para un coche");
