@@ -4,7 +4,7 @@ public class Itinerario {
 	//Datos
 	private static final int numCaminosPorDefecto = 60; 
 	private String nombre; 
-	//private Camino[] caminos = new Camino[numCaminosPorDefecto]; 
+	private Camino[] caminos = new Camino[numCaminosPorDefecto]; 
 	
 	//Constructora de itinerario vacio
 	public void Itinerario(String nombrei) {
