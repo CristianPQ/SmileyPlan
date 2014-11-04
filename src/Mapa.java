@@ -106,13 +106,13 @@ public class Mapa {
 	 * Consultar caminos existentes desde una ciudad
 	 */
 	public ArrayList<Camino> conCiudadOrigen(String ciudadOrigen){
-		return this.caminos.getCiudadOrigen(ciudadOrigen);
+		return this.caminos.getCaminosConCiudadOrigen(ciudadOrigen);
 	}
 	
 	/*
 	 * Agregar camino en ConjuntoCaminos caminos
 	 */
-	public void agregarCamino(Camino c) {
+	public void agregarCamino(Camino c) throws Exception {
 		this.caminos.agregarCamino(c);
 	}
 }
