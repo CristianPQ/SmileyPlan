@@ -4,6 +4,7 @@ public class ConjuntoCaminos {
 
 	private Map<String, ArrayList<Camino>> Caminos = new HashMap<String, ArrayList<Camino>>();
 	
+	
 	//crear un Camino con capacidad
 	public void agregarCaminoCapacidad(String ciudadOrigen, String ciudadDestino, int capacidad, String transporte) throws Exception{
 		ArrayList<Camino> listAux = new ArrayList<Camino>();  //creo una lista auxiliar para insertarle el Camino 
@@ -65,7 +66,7 @@ public class ConjuntoCaminos {
 		
 		
 		
-	public int getNumCamnimos(){
+	public int getNumCaminos(){
 			return Caminos.size();
 	}
 	

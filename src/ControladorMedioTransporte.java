@@ -13,6 +13,7 @@ public class ControladorMedioTransporte {
 	
 	//control errors 
 	private static Exception NombreYaExiste = new Exception ("El nombre ya existe");
+	private static Exception NoExiste = new Exception ("El nombre no existe");
 	
 	//creadora de controlador 
 	ControladorMedioTransporte(ControladorAlgoritmo al,ControladorMapa map){
@@ -29,15 +30,29 @@ public class ControladorMedioTransporte {
 	
 	
 	//agregar medio en el map 
-	public void agregarMedioTransporte(MedioTransporte med) throws Exception{
-		String n = MedioTransporte.getNombre(); 
-		if (medios.containsKey(n)) throw NombreYaExiste; 
-		else medios.put(n, med);
+	public void agregarMedioTransporte(String nombre, int coste) throws Exception{
+		if (medios.containsKey(nombre)) throw NombreYaExiste; 
+		else{
+			MedioTransporte m = new MedioTransporte(nombre,coste); 
+			medios.put(nombre,m);
+		}
 	}
 	
 	//borrar un medio de transporte por nombre 
-	public void borrarMedioTransporte(String nombre){
-		medios.remove(nombre); 
+	public void borrarMedioTransporte(String nombre) throws Exception{
+		if (!medios.containsKey(nombre)) throw NoExiste;
+		else medios.remove(nombre); 
+	}
+	
+	public void modificarNombre(String nombre, MedioTransporte m) {
+		String n = MedioTransporte.getNombre();
+		if (!medios.containsKey(n)) throw NoExiste;
+		else if (medios.containsKey(nombre)) throw NombreYaExiste; 
+		else {
+			//medios.get(n)
+			
+		}
+		
 	}
 	
 	//devuelve el num de transportes que hay en el map 
@@ -48,20 +63,7 @@ public class ControladorMedioTransporte {
 	
 	
 	/* 
-	 * 
-	03	 
-	04	public class HashMapExample {
-	05	     
-	06	    public static void main(String[] args) {
-	07	        Map vehicles = new HashMap();
-	08	         
-	09	        // Add some vehicles.
-	10	        vehicles.put("BMW", 5);
-	11	        vehicles.put("Mercedes", 3);
-	12	        vehicles.put("Audi", 4);
-	13	        vehicles.put("Ford", 10);
-	14	         
-	15	        System.out.println("Total vehicles: " + vehicles.size());
+
 	16	         
 	17	        // Iterate over all vehicles, using the keySet method.
 	18	        for(String key: vehicles.keySet())
