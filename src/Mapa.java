@@ -20,7 +20,7 @@ public class Mapa {
 		this.setAlturaY(alturaY);
 	}
 	
-	
+	public Mapa(){}
 	
 	/*
 	 * Getter Set de nombres de ciudades

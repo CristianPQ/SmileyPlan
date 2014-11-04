@@ -5,7 +5,7 @@ public class ConjuntoCaminos {
 	private Map<String, ArrayList<Camino>> Caminos = new HashMap<String, ArrayList<Camino>>();
 	
 	
-	
+	public ConjuntoCaminos () {}
 
 	//crear un Camino sin capcidad, 1 por defecto
 	public void agregarCamino(Camino camino) throws Exception{
