@@ -23,15 +23,19 @@ public class ConjuntoCaminos {
 			}
 		}	
 		else { 
-			listAux = caminos.get(camino.getOrigen()); //mira si es pot fer sense treure la llista
+			if (caminos.containsKey(camino.getOrigen()))
+				listAux = caminos.get(camino.getOrigen()); //mira si es pot fer sense treure la llista
 			listAux.add(camino);
 			caminos.put(camino.getOrigen(), listAux);
 		}
 	}
-		
+		//mirar error contains array list
 	public int getCapacidad(Camino camino) throws Exception{
 		if (caminos.containsKey(camino.getOrigen())) { //primer miro si hi ha algun cami amb ciutatorigen
-			if (caminos.get(camino.getOrigen()).contains(camino)){ //miro si existe ese camino en concreto
+			ArrayList<Camino> listAux = new ArrayList<Camino>();
+			listAux = caminos.get(camino.getOrigen());
+			if (listAux.contains(camino)){ 
+			//if (caminos.get(camino.getOrigen()).contains(camino)){ //miro si existe ese camino en concreto
 				int pos = caminos.get(camino.getOrigen()).indexOf(camino); //posicion donde esta el elemento
 				return caminos.get(camino.getOrigen()).get(pos).getCapacidad(); //del mapa trec el vector, del array trec el cami, del cami consultu la capacitat
 			}
