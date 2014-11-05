@@ -6,11 +6,12 @@ public class Itinerario {
 	private String nombre; 
 	private Camino[] caminos = new Camino[numCaminosPorDefecto]; 
 	
+
 	//Constructora de itinerario vacio
-	public Itinerario(String nombre) {
-		setNombre(nombre);
-		//caminos = Camino
-		//caminos??
+	public Itinerario(Agente ag) {
+		String nombre = ag.getNombre(); 
+		setNombre(nombre); 
+		caminos = null; //--> vector o TST? 
 	}
 	
 	public void setNombre(String nombre){
@@ -18,7 +19,7 @@ public class Itinerario {
 	}
 	
 	//getter que devuelve el numero de caminos en el itinerario
-	public int numeroCaminos(){
+	public int getNumeroCaminos(){
 		return caminos.length; 
 	}
 	
@@ -32,11 +33,7 @@ public class Itinerario {
 		return caminos[pos]; 
 	}
 	
-	/*public void setVectorVacio(int){
-		
-	}*/
-	
-	//Informar al vector de una posicion concreta 
+	//Agregar al vector de una posicion concreta 
 	public void agregarCamino(int pos, Camino c){
 		caminos[pos] = c; 
 	}

@@ -21,10 +21,12 @@ public class MedioTransporte {
 		return precioDistancia;
 	}
 
+	//seter nombre
 	public void setNombre(String nombreTransporte) {
 		this.nombre = nombreTransporte;
 	}
-
+	
+	//seter precio
 	public void setPrecio(int precio) {
 		this.precioDistancia = precio;
 	}
