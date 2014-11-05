@@ -10,6 +10,8 @@ public class ControladorAgentes {
 		private static Exception NoExiste = new Exception ("El agente no existe");
 		private static Exception ListaVacia = new Exception ("No existen elementos que se ajusten a su solicitud");
 	
+		public ControladorAgentes(){}
+		//constructora agente
 		
 		public void eliminarTodo(){
 			Agentes.clear();
