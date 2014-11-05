@@ -6,13 +6,11 @@ public class ControladorMedioTransporte {
 	
 	//WORK IN PROGRESS --> s'ha de canviar casi tot per TST
 
-	
-	//per tots els controladors que tinguin relacio amb aquest
-	//si te un conjunt de relacions: private ConcurrentSkipListSet<NOMCLASSE>nom; 
-	/*private static ControladorAlgoritmo cntrlAl; //ara fa error pq encara no hi ha els altres controladors creats 
+
+	/*private static ControladorAlgoritmo cntrlAl; 
 	private static ControladorMapa cntrlMap; */
-	private static Map <String, MedioTransporte> medios =  new HashMap<String,MedioTransporte>(); 
-	
+	//private static Map <String, MedioTransporte> medios =  new HashMap<String,MedioTransporte>(); 
+	private TST<MedioTransporte> medios = new TST<MedioTransporte>(); 
 	
 	//control errors 
 	private static Exception NombreYaExiste = new Exception ("El nombre ya existe");
@@ -27,33 +25,27 @@ public class ControladorMedioTransporte {
 		cntrlMap = map; 	
 	}*/
 	
-	/*//borrar todo el map
-	public void eliminarMap(){
-		medios.clear(); 
-	}*/ 
-	
-	//agregar medio en el map 
+	//agregar medio de transporte
 	public void agregarMedioTransporte(String nombre, int coste) throws Exception{
-		if (medios.containsKey(nombre)) throw NombreYaExiste; 
+		if (medios.contains(nombre)) throw NombreYaExiste; 
 		else{
 			MedioTransporte m = new MedioTransporte(nombre,coste); 
-			//no hauria de posar directament un MT ??
 			medios.put(nombre,m);
 		}
 	}
 	
-	//borrar un medio de transporte por nombre 
+	//borrar un medio de transporte por nombre
 	public void borrarMedioTransporte(String nombre) throws Exception{
-		if (!medios.containsKey(nombre)) throw NoExiste;
-		else medios.remove(nombre); 
+		if (!medios.contains(nombre)) throw NoExiste;
+		//else medios.delete(nombre); 
 		//mirar si s'ha de moure tota l'estructura
 	}
 	
 	//modifica el nombre del medio
 	public void modificarNombre(String nNuevo, MedioTransporte m) throws Exception {
 		String n = m.getNombre();
-		if (!medios.containsKey(n)) throw NoExiste;
-		else if (medios.containsKey(nNuevo)) throw NombreYaExiste; 
+		if (!medios.contains(n)) throw NoExiste;
+		else if (medios.contains(nNuevo)) throw NombreYaExiste; 
 		else {
 			int c = m.getPrecio();
 			borrarMedioTransporte(n);
@@ -64,7 +56,7 @@ public class ControladorMedioTransporte {
 	//modifica el precio del medio
 		public void modificarPrecio(int pNuevo, MedioTransporte m) throws Exception {
 			String n = m.getNombre();
-			if (!medios.containsKey(n)) throw NoExiste;
+			if (!medios.contains(n)) throw NoExiste;
 			else {
 				borrarMedioTransporte(n);
 				agregarMedioTransporte(n,pNuevo);

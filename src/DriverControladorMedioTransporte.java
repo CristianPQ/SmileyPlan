@@ -65,7 +65,7 @@ public class DriverControladorMedioTransporte {
 	                System.exit(0);
 	            }
 	            default: {
-	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 17 o 0 para salir\n");
+	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 6 o 0 para salir\n");
 	                break;
 	            }       
 	        }

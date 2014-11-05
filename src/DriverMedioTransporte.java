@@ -11,8 +11,8 @@ public class DriverMedioTransporte {
                 + "\n 4.setNombre(String nombreTransporte)"
                 + "\n 5.setPrecio(int precio)"
                 //casos para ver si funciona con tren y coche vv ?
-                + "\n 1.crear Tren(String nombreTransporte, int precio)"
-                + "\n 1.crear Coche(String nombreTransporte, int precio)"
+                + "\n 6.crear Tren(String nombreTransporte, int precio)"
+                + "\n 7.crear Coche(String nombreTransporte, int precio)"
         		+"\n");
     }
 	
@@ -65,7 +65,7 @@ public class DriverMedioTransporte {
 	                System.exit(0);
 	            }
 	            default: {
-	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 17 o 0 para salir\n");
+	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 7 o 0 para salir\n");
 	                break;
 	            }       
 	        }

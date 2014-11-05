@@ -2,16 +2,17 @@
 public class Itinerario {
 
 	//Datos
-	private static final int numCaminosPorDefecto = 60; 
+	//private static final int numCaminosPorDefecto = 60; 
 	private String nombre; 
-	private Camino[] caminos = new Camino[numCaminosPorDefecto]; 
+	private TST<Camino> caminos; 
+	//private Camino[] caminos = new Camino[numCaminosPorDefecto]; 
 	
 
 	//Constructora de itinerario vacio
 	public Itinerario(Agente ag) {
 		String nombre = ag.getNombre(); 
 		setNombre(nombre); 
-		caminos = null; //--> vector o TST? 
+		caminos = null; 
 	}
 	
 	public void setNombre(String nombre){
@@ -20,7 +21,7 @@ public class Itinerario {
 	
 	//getter que devuelve el numero de caminos en el itinerario
 	public int getNumeroCaminos(){
-		return caminos.length; 
+		return caminos.size(); 
 	}
 	
 	//getter que devuelve el nombre del itinerario
@@ -29,7 +30,8 @@ public class Itinerario {
 	}
 	
 	//getter que devuelve el camino de la posicion que pasa por parametro
-	public Camino getCamino(int pos){
+	/*public Camino getCamino(int pos){
+		get()
 		return caminos[pos]; 
 	}
 	
@@ -38,7 +40,7 @@ public class Itinerario {
 		caminos[pos] = c; 
 	}
 	
-
+*/
 
 
 }

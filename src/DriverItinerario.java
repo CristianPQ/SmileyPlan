@@ -28,9 +28,10 @@ public class DriverItinerario {
 	            	String nombre = lsplited[1]; 
 	            	String CO = lsplited[2]; 
 	            	String CD = lsplited[3]; 
-	            	aux.setNombre(nombre);
+	            	aux = new Agente(nombre,CO,CD); 
+	            	/*aux.setNombre(nombre);
 	            	aux.setCiudadInicial(CO);
-	            	aux.setCiudadObjetivo(CD);
+	            	aux.setCiudadObjetivo(CD);*/ 
 	                it = new Itinerario(aux);
 	                break;
 	            }
@@ -49,27 +50,27 @@ public class DriverItinerario {
 	                break;
 	            }
 	            case 5:{
-	            	int pos = Integer.parseInt(lsplited[1]);
+	            	/*int pos = Integer.parseInt(lsplited[1]);
 	            	Camino aux = it.getCamino(pos);
 	            	System.out.print(aux.getOrigen() +"\n");
 	            	System.out.print(aux.getDestino()+ "\n");
-	                break;
+	                break;*/
 	            }
 	            case 6: {
-	            	int pos = Integer.parseInt(lsplited[1]);
+	            	/*int pos = Integer.parseInt(lsplited[1]);
 	            	String CO = lsplited[2];
 	            	String CD = lsplited[3];
 	            	int cap = Integer.parseInt(lsplited[4]);
 	            	String tra = lsplited[5]; 
 	            	Camino aux = new Camino(CO,CD,cap,tra); 
 	            	it.agregarCamino(pos,aux); 
-	                break;
+	                break;*/
 	            }
 	            case 0: {
 	                System.exit(0);
 	            }
 	            default: {
-	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 17 o 0 para salir\n");
+	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 6 o 0 para salir\n");
 	                break;
 	            }       
 	        }

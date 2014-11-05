@@ -8,6 +8,7 @@ public class TST<Value> {
         private char c;                 // character
         private Node left, mid, right;  // left, middle, and right subtries
         private Value val;              // value associated with string
+        boolean isEnd; 
     }
  
     // return number of key-value pairs
@@ -130,7 +131,41 @@ public class TST<Value> {
         }
         if (c == '.' || c > x.c) collect(x.right, prefix, i, pat, q);
     }
+}
  
+   
+    /**************************************************************
+     * Delete
+     **************************************************************/
+    
+    /** function to delete a word **/
+/*
+    public void delete(String word) {
+        delete(root, word.toCharArray(), 0);
+    }
+/*
+ * 
+ */
+    
+    /** function to delete a word **/
+    /*
+    private void delete(Node r, char[] word, int ptr){
+        if (r == null)
+            return;
+        if (word[ptr] < r.data)
+            delete(r.left, word, ptr);
+        else if (word[ptr] > r.data)
+            delete(r.right, word, ptr);
+        else {
+            //to delete a word just make isEnd false 
+            if (r.isEnd && ptr == word.length - 1)
+                r.isEnd = false;
+            else if (ptr + 1 < word.length)
+                delete(r.mid, word, ptr + 1);
+        }        
+
+    }/*
+    
  
 }
   /*  // test client
@@ -148,5 +183,5 @@ public class TST<Value> {
             StdOut.println(key + " " + st.get(key));
         }
     }
-}
+
 */
