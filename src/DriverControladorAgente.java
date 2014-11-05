@@ -29,6 +29,7 @@ private static void main(String [] args) throws Exception {
 	    				case 1: {//INIT
 	    					conjAgentes = new ControladorAgentes();
 	    					//System.out.println("Ya se inicializa por defecto");
+	    					break;
 	    				}
 	    				
 	    				case 2: {//CREAR/ANADIR
@@ -36,28 +37,33 @@ private static void main(String [] args) throws Exception {
 	    					String ciudadInicial = lsplited[2];
 	    					String ciudadObjetivo = lsplited[3];	    					
 	    					conjAgentes.anadirAgente(nombre, ciudadInicial, ciudadObjetivo);
+	    					break;
 	    				}
 	    				
 	    				case 3: {//ELIMINAR
 	    					String nombre = lsplited[1];
 	    					conjAgentes.eliminarAgente(nombre);
+	    					break;
 	    				}
 	    				
 	    				case 4: {//modificarNombre
 	    					String nombreAntiguo = lsplited[1];
 	    					String nombreNuevo = lsplited[2];
 	    					conjAgentes.modificarNombreAgente(nombreAntiguo, nombreNuevo);
+	    					break;
 	    				}
 	    				
 	    				case 5: {//modificarCiudadInicial
 	    					String nombre = lsplited[1];
 	    					String ciudadInicial = lsplited[2];
 	    					conjAgentes.modificarCiudadInicialAgente(nombre, ciudadInicial);
+	    					break;
 	    				}
 	    				
 	    				case 6: {//modificarCiudadObjetivo
 	    					String nombre = lsplited[1];
 	    					String ciudadObjetivo = lsplited[2];
+	    					break;
 	    				}
 	    				
 	    				case 7: {//consultarAgentes
