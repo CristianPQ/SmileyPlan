@@ -11,7 +11,7 @@ public class ControladorAgentes {
 		private static Exception ListaVacia = new Exception ("No existen elementos que se ajusten a su solicitud");
 	
 		public ControladorAgentes(){}
-		//constructora agente
+		//constructor Agente
 		
 		public void eliminarTodo(){
 			Agentes.clear();

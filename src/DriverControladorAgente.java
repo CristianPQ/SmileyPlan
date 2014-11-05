@@ -18,12 +18,54 @@ private static void menu() {
 
 private static void main(String [] args) throws Exception {
 	    	menu();
+	    	ControladorAgentes conjAgentes = null;
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
 	    	
-	    	while(sc.hasNextLine()){
-	    	
-	    }
+	    	while(sc.hasNextLine()){ 
+	    		try{
+	    			lsplited = sc.nextLine().split(" ");
+	    			switch(Integer.parseInt(lsplited[0])){
+	    				case 1: {//INIT
+	    					conjAgentes = new ControladorAgentes();
+	    					//System.out.println("Ya se inicializa por defecto");
+	    				}
+	    				
+	    				case 2: {//CREAR/ANADIR
+	    					String nombre = lsplited[1];
+	    					String ciudadInicial = lsplited[2];
+	    					String ciudadObjetivo = lsplited[3];	    					
+	    					conjAgentes.anadirAgente(nombre, ciudadInicial, ciudadObjetivo);
+	    				}
+	    				
+	    				case 3: {//ELIMINAR
+	    					String nombre = lsplited[1];
+	    					conjAgentes.eliminarAgente(nombre);
+	    				}
+	    				
+	    				case 4: {//modificarNombre
+	    					String nombreAntiguo = lsplited[1];
+	    					String nombreNuevo = lsplited[2];
+	    					conjAgentes.modificarNombreAgente(nombreAntiguo, nombreNuevo);
+	    				}
+	    				
+	    				case 5: {//modificarCiudadInicial
+	    					String nombre = lsplited[1];
+	    					String ciudadInicial = lsplited[2];
+	    					conjAgentes.modificarCiudadInicialAgente(nombre, ciudadInicial);
+	    				}
+	    				
+	    				case 6: {//modificarCiudadObjetivo
+	    					String nombre = lsplited[1];
+	    					String ciudadObjetivo = lsplited[2];
+	    				}
+	    				
+	    				case 7: {//consultarAgentes
+	    					
+	    				}
+	    			}
+	    		}
+	    	}
 }
 
 }
