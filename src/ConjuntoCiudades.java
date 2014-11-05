@@ -3,7 +3,7 @@ import java.util.*;
 
 public class ConjuntoCiudades {
 	
-	private Map<String, Ciudad> ciudades = new HashMap<String, Ciudad>();
+	private Map<String, Ciudad> ciudades;
 
 	//Consultar todas los nombres de las ciudades que componen ciudades
 	/*
@@ -16,9 +16,18 @@ public class ConjuntoCiudades {
 	/*
 	 * Anadir ciudad al Map ciudades
 	 */
+	
+	public ConjuntoCiudades() {
+		ciudades = new HashMap<String, Ciudad>();
+	}
+	
+	
 	public void agregarCiudad(Ciudad c) {
+			//System.out.println("antes de putCiudad(getNombre) en ConjuntoCiudades" + "\n");
 		String nombreCiudad = c.getNombre();
+			//System.out.println("antes de putCiudad en ConjuntoCiudades" + "\n");
 		this.ciudades.put(nombreCiudad, c);
+			//System.out.println("despues de putCiudad en ConjuntoCiudades" + "\n");
 	}
 	
 	/*

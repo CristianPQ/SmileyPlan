@@ -18,6 +18,8 @@ public class Mapa {
 		this.setContinente(continente);
 		this.setAnchuraX(anchuraX);
 		this.setAlturaY(alturaY);
+		ciudades = new ConjuntoCiudades();
+		caminos = new ConjuntoCaminos();
 	}
 	
 	public Mapa(){}
@@ -34,7 +36,9 @@ public class Mapa {
 	 * Agregar una nueva ciudad al ConjuntoCiudades ciudades
 	 */
 	public void agregarCiudad(Ciudad c) {
+			//System.out.println("antes de agregarCiudad en Mapa" + "\n");
 		this.ciudades.agregarCiudad(c);
+			//System.out.println("despues de agregarCiudad en Mapa" + "\n");
 	}
 	
 	/*

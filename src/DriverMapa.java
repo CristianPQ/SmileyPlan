@@ -9,7 +9,7 @@ public class DriverMapa {
                 + "\n 0.Salir"
                 + "\n 1.new Mapa(Coordenadas[] continente, int anchuraX, int alturaY)"
                 + "\n 2.getCiudades()"
-                + "\n 3.agregarCiudad(Ciudad c)"
+                + "\n 3.agregarCiudad(String nombreCiudad, int CoordX, int CoordY)"
                 + "\n 4.int numeroCiudades()"
                 + "\n 5.numeroCaminos()"
                 + "\n 6.Ciudad buscarCiudad(String nombreCiudad)"
@@ -54,10 +54,15 @@ public class DriverMapa {
 	            }*/
 	            case 3: {
 	                String nombre = lsplited[1];
+	                	//System.out.println(nombre + "\n");
 	                int x = Integer.parseInt(lsplited[2]);
+	                	//System.out.println(x + "\n");
 	                int y = Integer.parseInt(lsplited[3]);
+	                	//System.out.println(y + "\n");
 	                Coordenadas coord = new  Coordenadas(x,y);
+	                	//System.out.println("cordenadas creadas" + "\n");
 	                Ciudad c = new Ciudad(nombre,coord);
+	                	//System.out.println("ciudad creada" + "\n");
 	                m.agregarCiudad(c);
 	                break;
 	            }
@@ -73,7 +78,7 @@ public class DriverMapa {
 	            case 6: {
 	            	String nombre = lsplited[1];
 	            	Ciudad aux = m.buscarCiudad(nombre);
-	                System.out.print(aux.getNombre()+ ' ' + '(' + aux.getCoord().getX() +',' + aux.getCoord().getY() + "\n");
+	                System.out.print(aux.getNombre()+ ' ' + '(' + aux.getCoord().getX() +',' + aux.getCoord().getY() + ')' + "\n");
 	                break;
 	            }
 	            case 17: {
