@@ -1,4 +1,9 @@
 import java.util.*;
+
+/*
+ * @author Daniel Villanueva 
+ */
+
 public class DriverControladorAgente{
 private static void menu() {
 	        System.out.println("Driver clase ControladorAgente"
@@ -13,6 +18,7 @@ private static void menu() {
 	                + "\n 8.consultarAgentesCiudadObjetivo(String ciudadObjetivo)"
 	                + "\n 9.consultarAgentesCiudadInicialObjetivo(String ciudadInicial, String ciudadObjetivo)"
 	        		+ "\n 10.getNumeroDeAgentes()" 
+	                + "\n 11.eliminarTodo()"
 	        		+"\n");
 }
 
@@ -107,6 +113,11 @@ public static void main(String [] args) throws Exception {
 	    					
 	    					int numAg = conjAgentes.getNumeroDeAgentes();
 	    					System.out.println("Numero de agentes:" + numAg + "\n");
+	    					break;
+	    				}
+	    				
+	    				case 11:{//eliminarTodo
+	    					conjAgentes.eliminarTodo();
 	    					break;
 	    				}
 	    					

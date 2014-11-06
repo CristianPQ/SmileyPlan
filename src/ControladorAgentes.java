@@ -1,4 +1,8 @@
-import java.util.*;;
+import java.util.*;
+
+/*
+ * @author Daniel Villanueva 
+ */
 
 public class ControladorAgentes {
 		private Set<Agente> Agentes;
@@ -7,15 +11,26 @@ public class ControladorAgentes {
 		private static Exception NoExiste = new Exception ("El agente no existe");
 		private static Exception ListaVacia = new Exception ("No existen elementos que se ajusten a su solicitud");
 	
+		/*
+		 * Constructora del controlador
+		 */
+
 		public ControladorAgentes(){
 			this.Agentes = new HashSet<Agente>();
 		}
 		//constructor Agente
 		
+		/*
+		 * Vaciar todo el contenedor de agentes
+		 */
+		
 		public void eliminarTodo(){
 			Agentes.clear();
 		}
 		
+		/*
+		 * Añadir un agente
+		 */
 		
 		public void anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo)
 				throws Exception{
@@ -29,6 +44,9 @@ public class ControladorAgentes {
 			Agentes.add(a);
 			}
 		
+		/*
+		 * Eliminar un agente
+		 */
 		
 		public void eliminarAgente(String nombre) throws Exception{
 			
@@ -47,6 +65,9 @@ public class ControladorAgentes {
 			//acaba al encontrar el agente que quiere eliminar
 			//si llega al final y no se encuentra, es que no existe
 		
+		/*
+		 * Modificar el nombre de un agente
+		 */
 		
 		public void modificarNombreAgente(String nombreAntiguo, String nombreNuevo)throws Exception{
 			
@@ -66,6 +87,9 @@ public class ControladorAgentes {
 			//acaba al encontrar el agente que quiere eliminar
 			//si llega al final y no se encuentra, es que no existe
 	
+		/*
+		 * Modificar la ciudadInicial de un agente
+		 */
 		
 		public void modificarCiudadInicialAgente(String nombre, String ciudadInicial)
 			throws Exception{
@@ -86,6 +110,9 @@ public class ControladorAgentes {
 			//acaba al encontrar el agente que quiere eliminar
 			//si llega al final y no se encuentra, es que no existe
 		
+		/*
+		 * Modificar la ciudadObjetivo de un agente
+		 */
 		
 		public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)
 			throws Exception{
@@ -106,6 +133,9 @@ public class ControladorAgentes {
 			//acaba al encontrar el agente que quiere eliminar
 			//si llega al final y no se encuentra, es que no existe
 		
+		/*
+		 * Consultar agentes con una determinada ciudadInicial
+		 */
 		
 		public List<Agente> consultarAgentesCiudadInicial(String ciudadInicial)
 			throws Exception{
@@ -125,6 +155,9 @@ public class ControladorAgentes {
 			//si no se anade ningun elemento, mostrar que no hay elementos que se correspondan
 			//con nuestra busqueda
 		
+		/*
+		 * Consultar agentes con una determinada ciudadObjetivo
+		 */
 		
 		public List<Agente> consultarAgentesCiudadObjetivo(String ciudadObjetivo)
 			throws Exception {
@@ -143,6 +176,9 @@ public class ControladorAgentes {
 			//itera todo el set i si no encuentra nada devuelve que no hay elementos que se ajusten
 			//a nuestra busqueda
 		
+		/*
+		 * Consultar agentes con una determinada ciudadInicial y una determinada ciudadObjetivo
+		 */
 		
 		public List<Agente> consultarAgentesCiudadInicialObjetivo(String ciudadInicial, String ciudadObjetivo)
 			throws Exception{ 
@@ -160,6 +196,9 @@ public class ControladorAgentes {
 			//consultar agentes con una determinada ciuIni y ciuObj (que cumplan ambas) 
 			//Si la lista se devuelve vacia, senalamos que no hay elementos que se ajusten a nuestra busuqeda
 		
+		/*
+		 * Consultar el número de agentes que hay en el contenedor
+		 */
 		
 		int getNumeroDeAgentes(){
 			
