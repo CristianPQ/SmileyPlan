@@ -4,7 +4,9 @@ import java.util.*;
 
 
 public class DriverMapa {
-    private static void menu() {
+    private static Scanner sc;
+
+	private static void menu() {
         System.out.println("Driver clase Mapa"
                 + "\n 0.Salir"
                 + "\n 1.new Mapa(Coordenadas[] continente, int anchuraX, int alturaY)"
@@ -30,7 +32,7 @@ public class DriverMapa {
     public static void main(String [] args) throws Exception {
     	Mapa m = null;
         menu();
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
         String[] lsplited;
         while (sc.hasNextLine()) {
     	try {
