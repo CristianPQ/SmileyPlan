@@ -5,7 +5,7 @@ public class Camino {
 
 	private String ciudadOrigen;
 	private String ciudadDestino;
-	private int capacidad = 1;
+	private int capacidad;
 	private String transporte;
 	
 	
@@ -27,6 +27,7 @@ public class Camino {
 		this.ciudadOrigen = ciudadOrigen;
 		this.ciudadDestino = ciudadDestino;
 		this.transporte = transporte;
+		this.capacidad = 1;
 	}
 
     public String getTransporte(){

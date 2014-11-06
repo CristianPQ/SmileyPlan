@@ -117,6 +117,8 @@ public class Mapa {
 	 * Agregar camino en ConjuntoCaminos caminos
 	 */
 	public void agregarCamino(Camino c) throws Exception {
+			System.out.println("antes de agregarCamino en Mapa" + "\n");
 		this.caminos.agregarCamino(c);
+			System.out.println("despues de agregarCamino en Mapa" + "\n");
 	}
 }

@@ -25,7 +25,7 @@ public class DriverMapa {
         		+ "\n 14.setContinente(Coordenadas[] continente)"
         		+ "\n 15.setAlturaY(int alturaY)"
         		+ "\n 16.conCiudadOrigen(String ciudadOrigen)"
-        		+ "\n 17.agregarCamino(Camino c)"   
+        		+ "\n 17.agregarCamino(String ciudadOrigen, String ciudadDestino, String medioTransporte)"   
         		+"\n");
     }
 	
@@ -88,7 +88,10 @@ public class DriverMapa {
 	            	String ciudadDestino = lsplited[2];
 	            	String medioTransporte = lsplited[3];
 	            	Camino c = new Camino(ciudadOrigen,ciudadDestino,medioTransporte);
+	            		System.out.println("antes de agregar camino"+"\n");
 	            	m.agregarCamino(c);
+	            		System.out.println("despues de agregar camino"+"\n");
+            		break;
 	            }
 	            case 0: {
 	                System.exit(0);
