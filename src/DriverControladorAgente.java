@@ -11,14 +11,14 @@ private static void menu() {
 	                + "\n 6.modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)"
 	                + "\n 7.consultarAgentesCiudadInicial(String ciudadInicial)"
 	                + "\n 8.consultarAgentesCiudadObjetivo(String ciudadObjetivo)"
-	                + "\n 9.consultarAgentesCiudadInicialCiudadObjetivo(String ciudadInicial, String ciudadObjetivo)"
+	                + "\n 9.consultarAgentesCiudadInicialObjetivo(String ciudadInicial, String ciudadObjetivo)"
 	        		+ "\n 10.getNumeroDeAgentes()" 
 	        		+"\n");
 }
 
-private static void main(String [] args) throws Exception {
+public static void main(String [] args) throws Exception {
+			ControladorAgentes conjAgentes = null;
 	    	menu();
-	    	ControladorAgentes conjAgentes = null;
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
 	    	
@@ -63,12 +63,37 @@ private static void main(String [] args) throws Exception {
 	    				case 6: {//modificarCiudadObjetivo
 	    					String nombre = lsplited[1];
 	    					String ciudadObjetivo = lsplited[2];
+	    					conjAgentes.modificarCiudadObjetivoAgente(nombre, ciudadObjetivo);
 	    					break;
 	    				}
 	    				
-	    				/*case 7: {//consultarAgentes
+	    				case 7: {//consultarAgentesCiudadInicial
+	    					String ciudadInicial= lsplited[1];
+	    					conjAgentes.consultarAgentesCiudadInicial(ciudadInicial);
+	    					//faltaria imprimir la consulta
+	    					break;					
+	    				}
+	    				
+	    				case 8: {//consultarAgentesCiudadObjetivo
+	    					String ciudadObjetivo = lsplited[1];
+	    					conjAgentes.consultarAgentesCiudadObjetivo(ciudadObjetivo);
+	    					//faltaria imprimir la consulta
+	    					break;					
+	    				} 
+	    				
+	    				case 9: {//consultarAgentesCiudadInicialCiudadObjetivo
+	    					String ciudadInicial = lsplited[1];
+	    					String ciudadObjetivo = lsplited[2];
+	    					conjAgentes.consultarAgentesCiudadInicialObjetivo(ciudadInicial, ciudadObjetivo);
+	    					//faltaria imprimir la consulta
+	    					break;					
+	    				}
+	    				case 10: {//numeroAgentes
 	    					
-	    				}*/
+	    					int numAg = conjAgentes.getNumeroDeAgentes();
+	    					System.out.println("Numero de agentes:" + numAg + "\n");
+	    				}
+	    					
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }
