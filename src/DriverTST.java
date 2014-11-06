@@ -18,11 +18,12 @@ import java.util.Scanner;
 	        do    
 	        {
 	            System.out.println("\nTernary Search Tree Operations\n");
-	            System.out.println("1. insert word");
-	            System.out.println("2. search word");
-	            System.out.println("3. delete word");
+	            System.out.println("1. insert element");
+	            System.out.println("2. contains elemnt");
+	            System.out.println("3. delete key");
 	            System.out.println("4. check empty");
 	            System.out.println("5. make empty");
+	            System.out.println("6. get word");
 	 
 	            int choice = scan.nextInt();            
 	            switch (choice)
