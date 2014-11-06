@@ -3,6 +3,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.*;
 
+/*
+ * @author Olga 
+ */
+
 public class GestorDatos {
 	private File file; 
 	private String mode; 
@@ -15,9 +19,10 @@ public class GestorDatos {
 		open = false; 
 	}
 	
-	/* abre un nuevo archivo 
-	 * R = Read, W = Write 
-	 * 
+	/* 
+	 * abre un nuevo fichero 
+	 * @param String filename, nombre del fichero que abrimos 
+	 * @param String mode, modo del fichero, puede ser R = read o W = Write 
 	 */
 	public void openFile(String filename, String mode) throws Exception {        
 	        if (!mode.equals("R") && !mode.equals("W")) throw new Exception("Modo invalido en el Gestor de Datos");
@@ -33,19 +38,21 @@ public class GestorDatos {
 	}
 	
 	public void closeFile() throws Exception {
-		if (!open) throw new Exception ("No hay archivos abiertos");
+		if (!open) throw new Exception ("No hay ficheros abiertos");
 		scanner.close();
     	if (mode.equals("W")) filewriter.close();
     	open = false;
 	}
 	
 	/*
-     * Cargar lineas de informacio en un archivo
-     * Pre: tiene que haber un archivo abierto
+     * Cargar lineas de informacio en un fichero
+     * Pre: tiene que haber un afichero abierto
+     * @param int n, numero de lineas que vamos a cargar 
+     * @return lineas
      */
     public String[] cargarLineas(int n) throws Exception{ 
         
-        if (!open) throw new Exception ("No hay archivos abiertos");
+        if (!open) throw new Exception ("No hay ficheros abiertos");
         
         String[] lineas = new String[n];
         int index = 0;
@@ -66,12 +73,13 @@ public class GestorDatos {
     }
     
     /*
-     * Guardar lineas de informacio en un archivo
+     * Guardar lineas de informacio en un fichero
      * Pre: el archivo debe ser modo W
+     * @param @String[] lineas, lineas que queremos guardar 
      */
     public void guardarLineas(String[] lineas) throws Exception{   
         
-        if (!open) throw new Exception ("No hay archivos abiertos");
+        if (!open) throw new Exception ("No hay ficheros abiertos");
         if (!mode.equals("W")) throw new Exception("No se puede escribir en modo lectura");
         
         for (int i = 0; i < lineas.length; ++i) {

@@ -1,12 +1,13 @@
 import java.util.HashMap;
 import java.util.Map;
  
- 
+/*
+ * @author Olga 
+ */
+
 public class ControladorMedioTransporte {
 	
 	//WORK IN PROGRESS --> s'ha de canviar casi tot per TST
-
-
 	/*private static ControladorAlgoritmo cntrlAl; 
 	private static ControladorMapa cntrlMap; */
 	//private static Map <String, MedioTransporte> medios =  new HashMap<String,MedioTransporte>(); 
