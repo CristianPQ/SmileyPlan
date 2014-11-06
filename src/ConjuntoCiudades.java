@@ -3,22 +3,19 @@ import java.util.*;
 
 public class ConjuntoCiudades {
 	
-	private Map<String, Ciudad> ciudades;
+	private TST<Ciudad> ciudades;
 
 	//Consultar todas los nombres de las ciudades que componen ciudades
 	/*
 	 * Devuelve un Set con todas las keys de ciudades, en nuestro caso los nombres de las ciudades
 	 */
-	public Set<String> getCiudades() {
-		return this.ciudades.keySet();
-	}
 	
 	/*
 	 * Anadir ciudad al Map ciudades
 	 */
 	
 	public ConjuntoCiudades() {
-		ciudades = new HashMap<String, Ciudad>();
+		ciudades = new TST<Ciudad>();
 	}
 	
 	

@@ -11,7 +11,7 @@ public class DriverCiudad {
                 + "\n 2.getNombre():String"
                 + "\n 3.setNombre(String nombre)"
                 + "\n 4.getCoord():Coordenadas"
-                + "\n 5.setCoord(Coordenadas coord)"
+                + "\n 5.setCoord(int coordX, int coorY)"
                 + "\n 6.mover(int x, int y)" 
         		+"\n");
     }
