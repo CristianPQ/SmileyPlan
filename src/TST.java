@@ -1,187 +1,176 @@
+/**
+ ** Java Program to Implement Ternary Search Tree
+ **/
+ 
+import java.util.ArrayList;
 import java.util.*;
  
-public class TST<Value> {
-    private int N;       // size
-    private Node root;   // root of TST
+/** class TSTNode **/
+
+/** class TernarySearchTree **/
+class TST<E>
+{
+	class TSTNode
+	{
+		E val;              // value associated with string
+	    char data;
+	    boolean isEnd;
+	    TSTNode left, middle, right;
+	 
+	    /** Constructor **/
+	    public TSTNode(char data,E e)
+	    {
+	        this.data = data;
+	        this.isEnd = false;
+	        this.left = null;
+	        this.middle = null;
+	        this.right = null;
+	        this.val = e;
+	    }        
+	}
+	 
+    private TSTNode root;
+    private ArrayList<String> al;
  
-    private class Node {
-        private char c;                 // character
-        private Node left, mid, right;  // left, middle, and right subtries
-        private Value val;              // value associated with string
-        boolean isEnd; 
+    /** Constructor **/
+    public TST()
+    {
+        root = null;
     }
- 
-    // return number of key-value pairs
-    public int size() {
-        return N;
+    /** function to check if empty **/
+    public boolean isEmpty()
+    {
+        return root == null;
     }
- 
-   /**************************************************************
-    * Is string key in the symbol table?
-    **************************************************************/
-    public boolean contains(String key) {
-        return get(key) != null;
+    /** function to clear **/
+    public void makeEmpty()
+    {
+        root = null;
     }
- 
-    public Value get(String key) {
-        if (key == null) throw new NullPointerException();
-        if (key.length() == 0) throw new IllegalArgumentException("key must have length >= 1");
-        Node x = get(root, key, 0);
-        if (x == null) return null;
-        return x.val;
+    /** function to insert for a word **/
+    public void insert(String word, E e)
+    {
+        root = insert(root, word.toCharArray(), 0, e);
     }
+    /** function to insert for a word **/
+    public TSTNode insert(TSTNode r, char[] word, int ptr, E e)
+    {
+        if (r == null)
+            r = new TSTNode(word[ptr], e);
  
-    // return subtrie corresponding to given key
-    private Node get(Node x, String key, int d) {
-        if (key == null) throw new NullPointerException();
-        if (key.length() == 0) throw new IllegalArgumentException("key must have length >= 1");
-        if (x == null) return null;
-        char c = key.charAt(d);
-        if      (c < x.c)              return get(x.left,  key, d);
-        else if (c > x.c)              return get(x.right, key, d);
-        else if (d < key.length() - 1) return get(x.mid,   key, d+1);
-        else                           return x;
-    }
- 
- 
-   /**************************************************************
-    * Insert string s into the symbol table.
-    **************************************************************/
-    public void put(String s, Value val) {
-        if (!contains(s)) N++;
-        root = put(root, s, val, 0);
-    }
- 
-    private Node put(Node x, String s, Value val, int d) {
-        char c = s.charAt(d);
-        if (x == null) {
-            x = new Node();
-            x.c = c;
+        if (word[ptr] < r.data)
+            r.left = insert(r.left, word, ptr, e);
+        else if (word[ptr] > r.data)
+            r.right = insert(r.right, word, ptr, e);
+        else
+        {
+            if (ptr + 1 < word.length)
+                r.middle = insert(r.middle, word, ptr + 1, e);
+            else
+                r.isEnd = true;
         }
-        if      (c < x.c)             x.left  = put(x.left,  s, val, d);
-        else if (c > x.c)             x.right = put(x.right, s, val, d);
-        else if (d < s.length() - 1)  x.mid   = put(x.mid,   s, val, d+1);
-        else                          x.val   = val;
-        return x;
+        return r;
     }
  
- 
-   /**************************************************************
-    * Find and return longest prefix of s in TST
-    **************************************************************/
-    public String longestPrefixOf(String s) {
-        if (s == null || s.length() == 0) return null;
-        int length = 0;
-        Node x = root;
-        int i = 0;
-        while (x != null && i < s.length()) {
-            char c = s.charAt(i);
-            if      (c < x.c) x = x.left;
-            else if (c > x.c) x = x.right;
-            else {
-                i++;
-                if (x.val != null) length = i;
-                x = x.mid;
-            }
-        }
-        return s.substring(0, length);
-    }
- 
-    // all keys in symbol table
-    public Iterable<String> keys() {
-        Queue<String> queue = new LinkedList<String>();
-        collect(root, "", queue);
-        return queue;
-    }
- 
-    // all keys starting with given prefix
-    public Iterable<String> prefixMatch(String prefix) {
-        Queue<String> queue = new LinkedList<String>();
-        Node x = get(root, prefix, 0);
-        if (x == null) return queue;
-        if (x.val != null) queue.add(prefix);
-        collect(x.mid, prefix, queue);
-        return queue;
-    }
- 
-    // all keys in subtrie rooted at x with given prefix
-    private void collect(Node x, String prefix, Queue<String> queue) {
-        if (x == null) return;
-        collect(x.left,  prefix,       queue);
-        if (x.val != null) queue.add(prefix + x.c);
-        collect(x.mid,   prefix + x.c, queue);
-        collect(x.right, prefix,       queue);
-    }
- 
- 
-    // return all keys matching given wildcard pattern
-    public Iterable<String> wildcardMatch(String pat) {
-        Queue<String> queue = new LinkedList<String>();
-        collect(root, "", 0, pat, queue);
-        return queue;
-    }
- 
-    private void collect(Node x, String prefix, int i, String pat, Queue<String> q) {
-        if (x == null) return;
-        char c = pat.charAt(i);
-        if (c == '.' || c < x.c) collect(x.left, prefix, i, pat, q);
-        if (c == '.' || c == x.c) {
-            if (i == pat.length() - 1 && x.val != null) q.add(prefix + x.c);
-            if (i < pat.length() - 1) collect(x.mid, prefix + x.c, i+1, pat, q);
-        }
-        if (c == '.' || c > x.c) collect(x.right, prefix, i, pat, q);
-    }
-}
- 
-   
-    /**************************************************************
-     * Delete
-     **************************************************************/
-    
     /** function to delete a word **/
-/*
-    public void delete(String word) {
+    public void delete(String word)
+    {
         delete(root, word.toCharArray(), 0);
     }
-/*
- * 
- */
-    
     /** function to delete a word **/
-    /*
-    private void delete(Node r, char[] word, int ptr){
+    private void delete(TSTNode r, char[] word, int ptr)
+    {
         if (r == null)
             return;
+ 
         if (word[ptr] < r.data)
             delete(r.left, word, ptr);
         else if (word[ptr] > r.data)
             delete(r.right, word, ptr);
-        else {
-            //to delete a word just make isEnd false 
+        else
+        {
+            /** to delete a word just make isEnd false **/
             if (r.isEnd && ptr == word.length - 1)
                 r.isEnd = false;
+ 
             else if (ptr + 1 < word.length)
-                delete(r.mid, word, ptr + 1);
+                delete(r.middle, word, ptr + 1);
         }        
-
-    }/*
+    }
+ 
+    /** function to search for a word **/
+    public boolean search(String word)
+    {
+        return contains(root, word.toCharArray(), 0);
+    }
+    public E get(String word){
+    	return buscar(root, word.toCharArray(), 0);
+    }
+    /** function to search for a word **/ //retorna null si no esta
+    public E buscar (TSTNode r, char[] word, int ptr)
+    {
+        if (r == null)
+            return null;
+ 
+        if (word[ptr] < r.data)
+            return buscar(r.left, word, ptr);
+        else if (word[ptr] > r.data)
+            return buscar(r.right, word, ptr);
+        else
+        {
+            if (r.isEnd && ptr == word.length - 1)
+                return  r.val;
+            else if (ptr == word.length - 1)
+                return null;
+            else
+                return buscar(r.middle, word, ptr + 1);
+        }        
+    }
     
+    
+    
+    private boolean contains(TSTNode r, char[] word, int ptr)
+    {
+        if (r == null)
+            return false;
  
-}
-  /*  // test client
-    public static void main(String[] args) {
-        // build symbol table from standard input
-        TST<Integer> st = new TST<Integer>();
-        for (int i = 0; !StdIn.isEmpty(); i++) {
-            String key = StdIn.readString();
-            st.put(key, i);
-        }
+        if (word[ptr] < r.data)
+            return contains(r.left, word, ptr);
+        else if (word[ptr] > r.data)
+            return contains(r.right, word, ptr);
+        else
+        {
+            if (r.isEnd && ptr == word.length - 1)
+                return true;
+            else if (ptr == word.length - 1)
+                return false;
+            else
+                return contains(r.middle, word, ptr + 1);
+        }        
+    }
+    /** function to print tree **/
+    public String toString()
+    {
+        al = new ArrayList<String>();
+        traverse(root, "");
+        return "\nTernary Search Tree : "+ al;
+    }
+    /** function to traverse tree **/
+    private void traverse(TSTNode r, String str)
+    {
+        if (r != null)
+        {
+            traverse(r.left, str);
  
+            str = str + r.data;
+            if (r.isEnd)
+                al.add(str);
  
-        // print results
-        for (String key : st.keys()) {
-            StdOut.println(key + " " + st.get(key));
+            traverse(r.middle, str);
+            str = str.substring(0, str.length() - 1);
+ 
+            traverse(r.right, str);
         }
     }
-
-*/
+}
+ 
