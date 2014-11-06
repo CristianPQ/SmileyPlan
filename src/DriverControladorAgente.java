@@ -28,7 +28,7 @@ public static void main(String [] args) throws Exception {
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {//INIT
 	    					conjAgentes = new ControladorAgentes();
-	    					//System.out.println("Ya se inicializa por defecto");
+	    					System.out.println("Conjunto de agentes inicializado");
 	    					break;
 	    				}
 	    				
@@ -68,30 +68,46 @@ public static void main(String [] args) throws Exception {
 	    				}
 	    				
 	    				case 7: {//consultarAgentesCiudadInicial
-	    					String ciudadInicial= lsplited[1];
-	    					conjAgentes.consultarAgentesCiudadInicial(ciudadInicial);
-	    					//faltaria imprimir la consulta
-	    					break;					
+	    					String ciudadInicial = lsplited[1];
+	    					List<Agente> l = conjAgentes.consultarAgentesCiudadInicial(ciudadInicial);
+	    					Iterator<Agente> iter = l.iterator();
+	    					Agente a;
+	    					while (iter.hasNext()){
+	    						a = iter.next();
+	    						System.out.println(a.getNombre());
+	    						}
+	    					break;									
 	    				}
 	    				
 	    				case 8: {//consultarAgentesCiudadObjetivo
 	    					String ciudadObjetivo = lsplited[1];
-	    					conjAgentes.consultarAgentesCiudadObjetivo(ciudadObjetivo);
-	    					//faltaria imprimir la consulta
+	    					List<Agente> l = conjAgentes.consultarAgentesCiudadObjetivo(ciudadObjetivo);
+	    					Iterator<Agente> iter = l.iterator();
+	    					Agente a;
+	    					while (iter.hasNext()){
+	    						a = iter.next();
+	    						System.out.println(a.getNombre());
+	    						}
 	    					break;					
 	    				} 
 	    				
 	    				case 9: {//consultarAgentesCiudadInicialCiudadObjetivo
 	    					String ciudadInicial = lsplited[1];
 	    					String ciudadObjetivo = lsplited[2];
-	    					conjAgentes.consultarAgentesCiudadInicialObjetivo(ciudadInicial, ciudadObjetivo);
-	    					//faltaria imprimir la consulta
+	    					List<Agente> l = conjAgentes.consultarAgentesCiudadInicialObjetivo(ciudadInicial, ciudadObjetivo);
+	    					Iterator<Agente> iter = l.iterator();
+	    					Agente a;
+	    					while (iter.hasNext()){
+	    						a = iter.next();
+	    						System.out.println(a.getNombre());
+	    						}
 	    					break;					
-	    				}
+	    				} 
 	    				case 10: {//numeroAgentes
 	    					
 	    					int numAg = conjAgentes.getNumeroDeAgentes();
 	    					System.out.println("Numero de agentes:" + numAg + "\n");
+	    					break;
 	    				}
 	    					
 	    				case 0: {

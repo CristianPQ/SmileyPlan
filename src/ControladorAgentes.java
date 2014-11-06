@@ -1,7 +1,4 @@
-import java.util.Iterator;
-import java.util.Set;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;;
 
 public class ControladorAgentes {
 		private Set<Agente> Agentes;
@@ -10,7 +7,9 @@ public class ControladorAgentes {
 		private static Exception NoExiste = new Exception ("El agente no existe");
 		private static Exception ListaVacia = new Exception ("No existen elementos que se ajusten a su solicitud");
 	
-		public ControladorAgentes(){}
+		public ControladorAgentes(){
+			this.Agentes = new HashSet<Agente>();
+		}
 		//constructor Agente
 		
 		public void eliminarTodo(){
@@ -20,12 +19,14 @@ public class ControladorAgentes {
 		
 		public void anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo)
 				throws Exception{
-			
-			if (Agentes.contains(nombre)) throw NombreYaExiste;
-			else{
-				Agente a = new Agente(nombre, ciudadInicial, ciudadObjetivo);
-				Agentes.add(a);
-				}
+			Iterator<Agente> it = Agentes.iterator();
+			Agente b;
+			while (it.hasNext()){
+				b = it.next();
+				if (b.getNombre().equals(nombre)) throw NombreYaExiste;
+			}
+			Agente a = new Agente(nombre, ciudadInicial, ciudadObjetivo);
+			Agentes.add(a);
 			}
 		
 		
@@ -33,9 +34,12 @@ public class ControladorAgentes {
 			
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
-				while (it.hasNext() && !fin){ 
-					if ((it.next().getNombre()) == nombre) {
-						Agentes.remove(it.next());
+			Agente a;
+				while (it.hasNext() && !fin){
+					a = it.next();
+					//String buscado = it.next().getNombre();
+					if(a.getNombre().equals(nombre)){
+						it.remove();
 						fin = true;
 					}
 				}if (!fin) throw NoExiste;		
@@ -48,9 +52,13 @@ public class ControladorAgentes {
 			
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
+			Agente a;
 				while (it.hasNext() && !fin){
-					if ((it.next().getNombre()) == nombreAntiguo) {
-						it.next().setNombre(nombreNuevo);
+					a = it.next();
+					if (a.getNombre().equals(nombreAntiguo)) {
+						it.remove();
+						a.setNombre(nombreNuevo); 
+						Agentes.add(a);
 						fin = true;
 					}
 				}if (!fin) throw NoExiste;
@@ -64,12 +72,16 @@ public class ControladorAgentes {
 			
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
+			Agente a;
 				while (it.hasNext() && !fin){
-					if ((it.next().getNombre()) == nombre) {
-						it.next().setCiudadInicial(ciudadInicial);
+					a = it.next();
+					if (a.getNombre().equals(nombre)) {
+						it.remove();
+						a.setCiudadInicial(ciudadInicial); 
+						Agentes.add(a);
 						fin = true;
 					}
-				}if (!fin) throw NoExiste;				
+				}if (!fin) throw NoExiste;
 			}
 			//acaba al encontrar el agente que quiere eliminar
 			//si llega al final y no se encuentra, es que no existe
@@ -77,13 +89,17 @@ public class ControladorAgentes {
 		
 		public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)
 			throws Exception{
-			
+
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
+			Agente a;
 				while (it.hasNext() && !fin){
-					if ((it.next().getNombre()) == nombre) {
-						it.next().setCiudadObjetivo(ciudadObjetivo);
-						fin = true; 
+					a = it.next();
+					if (a.getNombre().equals(nombre)) {
+						it.remove();
+						a.setCiudadObjetivo(ciudadObjetivo); 
+						Agentes.add(a);
+						fin = true;
 					}
 				}if (!fin) throw NoExiste;
 			}
@@ -96,8 +112,10 @@ public class ControladorAgentes {
 			
 			List<Agente> l = new ArrayList<Agente>();	
 			Iterator<Agente> it = Agentes.iterator();
+			Agente a;
 				while(it.hasNext()){ 
-					if ((it.next().getCiudadInicial()) == ciudadInicial ) l.add(it.next());
+					a = it.next();
+					if (a.getCiudadInicial().equals(ciudadInicial)) l.add(a);
 				}
 				if (l.isEmpty())  throw ListaVacia;
 			return l;
@@ -113,9 +131,11 @@ public class ControladorAgentes {
 			
 			List<Agente> l = new ArrayList<Agente>();
 			Iterator<Agente> it = Agentes.iterator();
-				while(it.hasNext()){
-					if ((it.next().getCiudadObjetivo()) == ciudadObjetivo ) l.add(it.next());
-				}
+			Agente a;
+			while(it.hasNext()){ 
+				a = it.next();
+				if (a.getCiudadObjetivo().equals(ciudadObjetivo)) l.add(a);
+			}
 				if (l.isEmpty())  throw ListaVacia;
 			return l;
 			}
@@ -129,10 +149,12 @@ public class ControladorAgentes {
 			
 			List<Agente> l = new ArrayList<Agente>();
 			Iterator<Agente> it = Agentes.iterator();
-				while(it.hasNext()){
-					if ((it.next().getCiudadObjetivo()) == ciudadObjetivo &&
-							it.next().getCiudadInicial() == ciudadInicial) l.add(it.next()); 
-				}if (l.isEmpty())  throw ListaVacia;
+			Agente a;
+			while(it.hasNext()){ 
+				a = it.next();
+				if (a.getCiudadObjetivo().equals(ciudadObjetivo) &&
+						a.getCiudadInicial().equals(ciudadInicial)) l.add(a);
+			}if (l.isEmpty())  throw ListaVacia;
 				return l;
 			}
 			//consultar agentes con una determinada ciuIni y ciuObj (que cumplan ambas) 
