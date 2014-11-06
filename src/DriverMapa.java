@@ -35,79 +35,79 @@ public class DriverMapa {
         sc = new Scanner(System.in);
         String[] lsplited;
         while (sc.hasNextLine()) {
-    	try {
-	        lsplited = sc.nextLine().split(" ");
-	        switch(Integer.parseInt(lsplited[0])) {
-	            case 1: {
-	            	Coordenadas[] aux = null;
-	            	int anchuraX = Integer.parseInt(lsplited[1]);
-	                int alturaY = Integer.parseInt(lsplited[2]);
-	                 m = new Mapa(aux, anchuraX, alturaY);
-	                break;
-	            }
-	           /* case 2: {
-	            	
-	            	Set<String> aux = m.getCiudades();
-	            	String[]aux2 = new
-	            	String[]aux2 = aux.toArray(aux2);
-	            	for (int i = 0; i < aux.size(); ++i)
-	            		System.out.print(aux2[i] + "\n");
-	                break;
-	            }*/
-	            case 3: {
-	                String nombre = lsplited[1];
-	                	//System.out.println(nombre + "\n");
-	                int x = Integer.parseInt(lsplited[2]);
-	                	//System.out.println(x + "\n");
-	                int y = Integer.parseInt(lsplited[3]);
-	                	//System.out.println(y + "\n");
-	                Coordenadas coord = new  Coordenadas(x,y);
-	                	//System.out.println("cordenadas creadas" + "\n");
-	                Ciudad c = new Ciudad(nombre,coord);
-	                	//System.out.println("ciudad creada" + "\n");
-	                m.agregarCiudad(c);
-	                break;
-	            }
-
-	            case 4:{
-	            	System.out.print(m.numeroCiudades() +"\n");
-	                break;
-	            }
-	            case 5:{
-	            	System.out.print(m.numeroCaminos()+"\n");
-	                break;
-	            }
-	            case 6: {
-	            	String nombre = lsplited[1];
-	            	Ciudad aux = m.buscarCiudad(nombre);
-	                System.out.print(aux.getNombre()+ ' ' + '(' + aux.getCoord().getX() +',' + aux.getCoord().getY() + ')' + "\n");
-	                break;
-	            }
-	            case 17: {
-	            	String ciudadOrigen = lsplited[1];
-	            	String ciudadDestino = lsplited[2];
-	            	String medioTransporte = lsplited[3];
-	            	Camino c = new Camino(ciudadOrigen,ciudadDestino,medioTransporte);
-	            		System.out.println("antes de agregar camino"+"\n");
-	            	m.agregarCamino(c);
-	            		System.out.println("despues de agregar camino"+"\n");
-            		break;
-	            }
-	            case 0: {
-	                System.exit(0);
-	            }
-	            default: {
-	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 17 o 0 para salir\n");
-	                break;
-	            }       
+	    	try {
+		        lsplited = sc.nextLine().split(" ");
+		        switch(Integer.parseInt(lsplited[0])) {
+		            case 1: {
+		            	Coordenadas[] aux = null;
+		            	int anchuraX = Integer.parseInt(lsplited[1]);
+		                int alturaY = Integer.parseInt(lsplited[2]);
+		                 m = new Mapa(aux, anchuraX, alturaY);
+		                break;
+		            }
+		           /* case 2: {
+		            	
+		            	Set<String> aux = m.getCiudades();
+		            	String[]aux2 = new
+		            	String[]aux2 = aux.toArray(aux2);
+		            	for (int i = 0; i < aux.size(); ++i)
+		            		System.out.print(aux2[i] + "\n");
+		                break;
+		            }*/
+		            case 3: {
+		                String nombre = lsplited[1];
+		                	//System.out.println(nombre + "\n");
+		                int x = Integer.parseInt(lsplited[2]);
+		                	//System.out.println(x + "\n");
+		                int y = Integer.parseInt(lsplited[3]);
+		                	//System.out.println(y + "\n");
+		                Coordenadas coord = new  Coordenadas(x,y);
+		                	//System.out.println("cordenadas creadas" + "\n");
+		                Ciudad c = new Ciudad(nombre,coord);
+		                	//System.out.println("ciudad creada" + "\n");
+		                m.agregarCiudad(c);
+		                break;
+		            }
+	
+		            case 4:{
+		            	System.out.print(m.numeroCiudades() +"\n");
+		                break;
+		            }
+		            case 5:{
+		            	System.out.print(m.numeroCaminos()+"\n");
+		                break;
+		            }
+		            case 6: {
+		            	String nombre = lsplited[1];
+		            	Ciudad aux = m.buscarCiudad(nombre);
+		                System.out.print(aux.getNombre()+ ' ' + '(' + aux.getCoord().getX() +',' + aux.getCoord().getY() + ')' + "\n");
+		                break;
+		            }
+		            case 17: {
+		            	String ciudadOrigen = lsplited[1];
+		            	String ciudadDestino = lsplited[2];
+		            	String medioTransporte = lsplited[3];
+		            	Camino c = new Camino(ciudadOrigen,ciudadDestino,medioTransporte);
+		            		System.out.println("antes de agregar camino"+"\n");
+		            	m.agregarCamino(c);
+		            		System.out.println("despues de agregar camino"+"\n");
+	            		break;
+		            }
+		            case 0: {
+		                System.exit(0);
+		            }
+		            default: {
+		                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 17 o 0 para salir\n");
+		                break;
+		            }       
+		        }
+		      
 	        }
-	      
-        } catch(Exception e) {
-        System.out.println("Error: " + e.getMessage() + "\n");
-  }
+	    	catch(Exception e) {
+	    		System.out.println("Error: " + e.getMessage() + "\n");
+	        }
+	    }
     }
-
-}
 }
 	
 	
