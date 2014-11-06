@@ -66,12 +66,21 @@ private static void main(String [] args) throws Exception {
 	    					break;
 	    				}
 	    				
-	    				case 7: {//consultarAgentes
+	    				/*case 7: {//consultarAgentes
 	    					
-	    				}
+	    				}*/
+	    				case 0: {
+	    	                System.exit(0);
+	    	            }
+	    				default: {
+	    	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 17 o 0 para salir\n");
+	    	                break;
+	    	            } 
 	    			}
-	    		}
+	    		} catch(Exception e) {
+	    	        System.out.println("Error: " + e.getMessage() + "\n");
 	    	}
-}
+    	}
 
-}
+} //Cierra funcion
+} //Cierra clase
