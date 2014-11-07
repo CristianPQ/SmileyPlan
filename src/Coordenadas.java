@@ -42,7 +42,7 @@ public class Coordenadas {
 	}*/
 
 	/**
-	 * Getter del elemento y
+	 * Consultor del elemento y
 	 * @return posicion sobre el eje vertical
 	 */
 	public int consultarY() {

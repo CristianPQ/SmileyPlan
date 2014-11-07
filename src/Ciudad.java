@@ -18,45 +18,37 @@ public class Ciudad {
 	private String nombre; 		//Identificador
 	private Coordenadas coord;	//Senala la ubicacion
 	
-	//Constructor Ciudad
+	/**
+	 * Constructor de Ciudad
+	 * @param nombreCiudad identificador de la categoria que se va a crear
+	 * @param coordCiudad posicion de la ciudad
+	 */
 	public Ciudad(String nombreCiudad, Coordenadas coordCiudad){
 		nombre = nombreCiudad;
 		coord = coordCiudad;
 	}
 
-	/*
-	 * Getter nombre
-	 * Consultar nombre de Ciudad
+	/**
+	 * Consultor del nombre de la ciudad
+	 * @return el nombre de la ciudad
 	 */
 	public String consultarNombre() {
 		return nombre;
 	}
 
-	/*
-	 * Getter coordenadas
-	 * Consultar Coordenadas de Ciudad
+	/**
+	 * Consultor de las coordenadas de la ciudad
+	 * @return las coordenadas de ciudad
 	 */
 	public Coordenadas consultarCoordenadas() {
 		return coord;
 	}
 
-	/*
-	 * Setter coord
-	 * Mover ciudad con nuevas coordenadas
+	/**
+	 * Modificador de las coordenadas de la ciudad
+	 * @param coordCiudad nuevas coordenadas de ciudad
 	 */
 	public void modificarCoordenadas(Coordenadas coordCiudad) {
 		coord = coordCiudad;
 	}
-	
-	/*
-	 * Mover Ciudad un espacio
-	 * Mover ciudad a partir de una distancia de movimiento.
-	 */
-	public void mover(int x, int y) {
-		x = x + coord.consultarX();
-		y = y + coord.consultarY();
-		coord = new Coordenadas(x, y);
-	}
-	
-
 }

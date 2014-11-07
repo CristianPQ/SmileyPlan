@@ -14,7 +14,7 @@ public class ControladorCiudades {
 	 * Anadir ciudad al Map ciudades
 	 */
 	
-	public ConjuntoCiudades() {
+	public ControladorCiudades() {
 		ciudades = new TST<Ciudad>();
 	}
 	
