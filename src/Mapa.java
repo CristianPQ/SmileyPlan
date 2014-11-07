@@ -1,28 +1,39 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 
 public class Mapa {
 	
-	private int anchuraX;
+	/*private int anchuraX;
 	private int alturaY;
-	private ConjuntoCiudades ciudades;
-	private ConjuntoCaminos caminos;
-	private Coordenadas[] continente;
+	private ConjuntoCiudades ciudades;*/
+	private Map<String, ArrayList<Camino/*destino*/>> caminos;
+	private String[][] mapa;
 	
 	
 	/*
 	 * Constructor Ciudad
 	 */
-	public Mapa(Coordenadas[] continente, int anchuraX, int alturaY) {
-		this.setContinente(continente);
+	public Mapa(int anchuraX, int alturaY, Coordenadas[] continente) {
+		/*this.setContinente(continente);
 		this.setAnchuraX(anchuraX);
 		this.setAlturaY(alturaY);
-		ciudades = new ConjuntoCiudades();
-		caminos = new ConjuntoCaminos();
+		ciudades = new ConjuntoCiudades();*/
+		
+		mapa = new String[alturaY][anchuraX];
+		
+		agregarContinente(continente);
+		
+		caminos = new HashMap<String, ArrayList<Camino/*destino*/>>();
 	}
 	
-	public Mapa(){}
+	private void agregarContinente(Coordenadas[] continente) {
+		/*
+		 * funcion para crear la zona inválida del mapa, el agua
+		 */
+	}
 	
 	/*
 	 * Getter Set de nombres de ciudades
