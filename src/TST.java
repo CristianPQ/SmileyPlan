@@ -8,11 +8,11 @@ import java.util.*;
 /** class TSTNode **/
 
 /** class TernarySearchTree **/
-class TST<E>
+class TST<E>  //no estava la <E>
 {
 	class TSTNode
 	{
-		E val;              // value associated with string
+		E val;              // no existia aques atribut
 	    char data;
 	    boolean isEnd;
 	    TSTNode left, middle, right;
@@ -25,7 +25,7 @@ class TST<E>
 	        this.left = null;
 	        this.middle = null;
 	        this.right = null;
-	        this.val = e;
+	        this.val = e;  //tampoc s'inicialitza
 	    }        
 	}
 	 
@@ -48,24 +48,24 @@ class TST<E>
         root = null;
     }
     /** function to insert for a word **/
-    public void insert(String word, E e)
+    public void insert(String word, E e) //++
     {
-        root = insert(root, word.toCharArray(), 0, e);
+        root = insert(root, word.toCharArray(), 0, e); //*
     }
     /** function to insert for a word **/
-    public TSTNode insert(TSTNode r, char[] word, int ptr, E e)
+    public TSTNode insert(TSTNode r, char[] word, int ptr, E e) //sense el parametre e
     {
         if (r == null)
-            r = new TSTNode(word[ptr], e);
+            r = new TSTNode(word[ptr], e); //totes les crisdes tampoc el tenien les marco amb un ++
  
         if (word[ptr] < r.data)
-            r.left = insert(r.left, word, ptr, e);
+            r.left = insert(r.left, word, ptr, e); //++
         else if (word[ptr] > r.data)
-            r.right = insert(r.right, word, ptr, e);
+            r.right = insert(r.right, word, ptr, e); // ++
         else
         {
             if (ptr + 1 < word.length)
-                r.middle = insert(r.middle, word, ptr + 1, e);
+                r.middle = insert(r.middle, word, ptr + 1, e);//++
             else
                 r.isEnd = true;
         }
@@ -103,10 +103,11 @@ class TST<E>
     {
         return contains(root, word.toCharArray(), 0);
     }
-    public E get(String word){
+    public E get(String word){ //aquesta funcio no existia
     	return buscar(root, word.toCharArray(), 0);
     }
     /** function to search for a word **/ //retorna null si no esta
+    //aquesta tampoc
     public E buscar (TSTNode r, char[] word, int ptr)
     {
         if (r == null)
