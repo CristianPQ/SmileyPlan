@@ -29,11 +29,11 @@ public class ControladorAgentes {
 		}
 		
 		/*
-		 * Añadir un agente
+		 * Anadir un agente
 		 */
 		
 		public void anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo)
-				throws Exception{
+				throws Exception{ //SEGURO
 			Iterator<Agente> it = Agentes.iterator();
 			Agente b;
 			while (it.hasNext()){
@@ -48,7 +48,7 @@ public class ControladorAgentes {
 		 * Eliminar un agente
 		 */
 		
-		public void eliminarAgente(String nombre) throws Exception{
+		public void eliminarAgente(String nombre) throws Exception{ //SEGURO
 			
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
@@ -69,7 +69,7 @@ public class ControladorAgentes {
 		 * Modificar el nombre de un agente
 		 */
 		
-		public void modificarNombreAgente(String nombreAntiguo, String nombreNuevo)throws Exception{
+		public void modificarNombreAgente(String nombreAntiguo, String nombreNuevo)throws Exception{//NO CREO
 			
 			Iterator<Agente> it = Agentes.iterator();
 			boolean fin = false;
@@ -91,7 +91,7 @@ public class ControladorAgentes {
 		 * Modificar la ciudadInicial de un agente
 		 */
 		
-		public void modificarCiudadInicialAgente(String nombre, String ciudadInicial)
+		public void modificarCiudadInicialAgente(String nombre, String ciudadInicial) //PODRIA SER
 			throws Exception{
 			
 			Iterator<Agente> it = Agentes.iterator();
@@ -114,7 +114,7 @@ public class ControladorAgentes {
 		 * Modificar la ciudadObjetivo de un agente
 		 */
 		
-		public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)
+		public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo) //PODRIA SER
 			throws Exception{
 
 			Iterator<Agente> it = Agentes.iterator();
@@ -137,7 +137,7 @@ public class ControladorAgentes {
 		 * Consultar agentes con una determinada ciudadInicial
 		 */
 		
-		public List<Agente> consultarAgentesCiudadInicial(String ciudadInicial)
+		public List<Agente> consultarAgentesCiudadInicial(String ciudadInicial) //NO CREO
 			throws Exception{
 			
 			List<Agente> l = new ArrayList<Agente>();	
@@ -159,7 +159,7 @@ public class ControladorAgentes {
 		 * Consultar agentes con una determinada ciudadObjetivo
 		 */
 		
-		public List<Agente> consultarAgentesCiudadObjetivo(String ciudadObjetivo)
+		public List<Agente> consultarAgentesCiudadObjetivo(String ciudadObjetivo) //NO CREO
 			throws Exception {
 			
 			List<Agente> l = new ArrayList<Agente>();
@@ -181,7 +181,7 @@ public class ControladorAgentes {
 		 */
 		
 		public List<Agente> consultarAgentesCiudadInicialObjetivo(String ciudadInicial, String ciudadObjetivo)
-			throws Exception{ 
+			throws Exception{ //NO CREO
 			
 			List<Agente> l = new ArrayList<Agente>();
 			Iterator<Agente> it = Agentes.iterator();
@@ -200,7 +200,7 @@ public class ControladorAgentes {
 		 * Consultar el número de agentes que hay en el contenedor
 		 */
 		
-		int getNumeroDeAgentes(){
+		int getNumeroDeAgentes(){ //SEGURO
 			
 			return Agentes.size();
 		}

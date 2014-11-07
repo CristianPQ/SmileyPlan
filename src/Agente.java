@@ -11,10 +11,10 @@ public class Agente {
 	 * Constructora de agente
 	 */
 
-	public Agente (String nombre, String ciudadInicial, String ciudadObjetivo){
-		setNombre(nombre);
-		setCiudadObjetivo(ciudadObjetivo);
-        setCiudadInicial(ciudadInicial);
+	public Agente (String name, String InitialCity, String TargetCity){
+		nombre = name;
+		ciudadInicial = InitialCity;
+        ciudadObjetivo = TargetCity;
 	}
 	/*
 	 * Getter de nombre
@@ -28,8 +28,8 @@ public class Agente {
 	 * Setter de nombre
 	 */
 	
-	public void setNombre(String nombre) { //setter for nombre
-		this.nombre = nombre;
+	public void setNombre(String name) { //setter for nombre
+		nombre = name;
 	}
 	
 	/*
@@ -44,8 +44,8 @@ public class Agente {
 	 * Setter de ciudadInicial
 	*/
 	
-	public void setCiudadInicial(String ciudadInicial) {//setter for ciudad_ini
-		this.ciudadInicial = ciudadInicial;
+	public void setCiudadInicial(String InitialCity) {//setter for ciudad_ini
+		ciudadInicial = InitialCity;
 	}
 	
 	/*
@@ -60,7 +60,7 @@ public class Agente {
 	 * Setter de ciudadObjetivo
 	*/
 	
-	public void setCiudadObjetivo(String ciudadObjetivo) {//setter for ciudad_obj
-		this.ciudadObjetivo = ciudadObjetivo;
+	public void setCiudadObjetivo(String TargetCity) {//setter for ciudad_obj
+		ciudadObjetivo = TargetCity;
 	}
 }
