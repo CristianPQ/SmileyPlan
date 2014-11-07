@@ -1,5 +1,10 @@
 import java.util.*;
 public class Grafo {
-
-	private List <List<Ciudad>> grafo;
+	private class Pair{
+		Ciudad a;
+		Ciudad b;
+	};
+	
+	private List <Pair> grafo;
+	
 }
