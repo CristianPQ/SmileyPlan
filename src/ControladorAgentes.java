@@ -15,7 +15,7 @@ public class ControladorAgentes {
 		 * Constructora del controlador
 		 */
 
-		public ControladorAgentes(){
+		public ControladorAgentes(){//SEGURO
 			this.Agentes = new HashSet<Agente>();
 		}
 		//constructor Agente
@@ -24,7 +24,7 @@ public class ControladorAgentes {
 		 * Vaciar todo el contenedor de agentes
 		 */
 		
-		public void eliminarTodo(){
+		public void eliminarTodo(){ //SEGURO
 			Agentes.clear();
 		}
 		
@@ -38,7 +38,7 @@ public class ControladorAgentes {
 			Agente b;
 			while (it.hasNext()){
 				b = it.next();
-				if (b.getNombre().equals(nombre)) throw NombreYaExiste;
+				if (b.consultarNombre().equals(nombre)) throw NombreYaExiste;
 			}
 			Agente a = new Agente(nombre, ciudadInicial, ciudadObjetivo);
 			Agentes.add(a);
@@ -56,7 +56,7 @@ public class ControladorAgentes {
 				while (it.hasNext() && !fin){
 					a = it.next();
 					//String buscado = it.next().getNombre();
-					if(a.getNombre().equals(nombre)){
+					if(a.consultarNombre().equals(nombre)){
 						it.remove();
 						fin = true;
 					}
@@ -76,9 +76,9 @@ public class ControladorAgentes {
 			Agente a;
 				while (it.hasNext() && !fin){
 					a = it.next();
-					if (a.getNombre().equals(nombreAntiguo)) {
+					if (a.consultarNombre().equals(nombreAntiguo)) {
 						it.remove();
-						a.setNombre(nombreNuevo); 
+						a.modificarNombre(nombreNuevo); 
 						Agentes.add(a);
 						fin = true;
 					}
@@ -99,9 +99,9 @@ public class ControladorAgentes {
 			Agente a;
 				while (it.hasNext() && !fin){
 					a = it.next();
-					if (a.getNombre().equals(nombre)) {
+					if (a.consultarNombre().equals(nombre)) {
 						it.remove();
-						a.setCiudadInicial(ciudadInicial); 
+						a.modificarCiudadInicial(ciudadInicial); 
 						Agentes.add(a);
 						fin = true;
 					}
@@ -122,9 +122,9 @@ public class ControladorAgentes {
 			Agente a;
 				while (it.hasNext() && !fin){
 					a = it.next();
-					if (a.getNombre().equals(nombre)) {
+					if (a.consultarNombre().equals(nombre)) {
 						it.remove();
-						a.setCiudadObjetivo(ciudadObjetivo); 
+						a.modificarCiudadObjetivo(ciudadObjetivo); 
 						Agentes.add(a);
 						fin = true;
 					}
@@ -145,7 +145,7 @@ public class ControladorAgentes {
 			Agente a;
 				while(it.hasNext()){ 
 					a = it.next();
-					if (a.getCiudadInicial().equals(ciudadInicial)) l.add(a);
+					if (a.consultarCiudadInicial().equals(ciudadInicial)) l.add(a);
 				}
 				if (l.isEmpty())  throw ListaVacia;
 			return l;
@@ -167,7 +167,7 @@ public class ControladorAgentes {
 			Agente a;
 			while(it.hasNext()){ 
 				a = it.next();
-				if (a.getCiudadObjetivo().equals(ciudadObjetivo)) l.add(a);
+				if (a.consultarCiudadObjetivo().equals(ciudadObjetivo)) l.add(a);
 			}
 				if (l.isEmpty())  throw ListaVacia;
 			return l;
@@ -188,8 +188,8 @@ public class ControladorAgentes {
 			Agente a;
 			while(it.hasNext()){ 
 				a = it.next();
-				if (a.getCiudadObjetivo().equals(ciudadObjetivo) &&
-						a.getCiudadInicial().equals(ciudadInicial)) l.add(a);
+				if (a.consultarCiudadObjetivo().equals(ciudadObjetivo) &&
+						a.consultarCiudadInicial().equals(ciudadInicial)) l.add(a);
 			}if (l.isEmpty())  throw ListaVacia;
 				return l;
 			}

@@ -80,7 +80,7 @@ public static void main(String [] args) throws Exception {
 	    					Agente a;
 	    					while (iter.hasNext()){
 	    						a = iter.next();
-	    						System.out.println(a.getNombre());
+	    						System.out.println(a.consultarNombre());
 	    						}
 	    					break;									
 	    				}
@@ -92,7 +92,7 @@ public static void main(String [] args) throws Exception {
 	    					Agente a;
 	    					while (iter.hasNext()){
 	    						a = iter.next();
-	    						System.out.println(a.getNombre());
+	    						System.out.println(a.consultarNombre());
 	    						}
 	    					break;					
 	    				} 
@@ -105,7 +105,7 @@ public static void main(String [] args) throws Exception {
 	    					Agente a;
 	    					while (iter.hasNext()){
 	    						a = iter.next();
-	    						System.out.println(a.getNombre());
+	    						System.out.println(a.consultarNombre());
 	    						}
 	    					break;					
 	    				} 

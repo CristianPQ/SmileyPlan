@@ -37,41 +37,41 @@ public static void main(String [] args) throws Exception {
 	    				}
 	    				
 	    				case 2: {//getNombre
-	    					String n = a.getNombre();
+	    					String n = a.consultarNombre();
 	    					System.out.println("Nombre agente:" + n + "\n");
 	    					break;
 	    				}
 	    				
 	    				case 3: {//setNombre
 	    					String nombre = lsplited[1];
-	    					a.setNombre(nombre);
-	    					System.out.println("Nuevo nombre agente:" + a.getNombre() + "\n");
+	    					a.modificarNombre(nombre);
+	    					System.out.println("Nuevo nombre agente:" + a.consultarNombre() + "\n");
 	    					break;
 	    				}
 	    				
 	    				case 4: {//getCiudadInicial
-	    					String n = a.getCiudadInicial();
+	    					String n = a.consultarCiudadInicial();
 	    					System.out.println("Nombre ciudadInicial:" + n + "\n");
 	    					break;
 	    				}
 	    				
 	    				case 5: {//setciudadInicial
 	    					String ciudadInicial = lsplited[1];
-	    					a.setCiudadInicial(ciudadInicial);
-	    					System.out.println("Nueva ciudadInicial:" + a.getCiudadInicial() + "\n");
+	    					a.modificarCiudadInicial(ciudadInicial);
+	    					System.out.println("Nueva ciudadInicial:" + a.consultarCiudadInicial() + "\n");
 	    					break;
 	    				}
 	    				
 	    				case 6: {//getCiudadObjetivo
-	    					String n = a.getCiudadObjetivo();
+	    					String n = a.consultarCiudadObjetivo();
 	    					System.out.println("Nombre ciudadObjetivo:" + n + "\n");
 	    					break;
 	    				}
 	    				
 	    				case 7: {//setciudadObjetivo
 	    					String ciudadObjetivo = lsplited[1];
-	    					a.setCiudadObjetivo(ciudadObjetivo);
-	    					System.out.println("Nueva ciudadObjetivo:" + a.getCiudadObjetivo() + "\n");
+	    					a.modificarCiudadObjetivo(ciudadObjetivo);
+	    					System.out.println("Nueva ciudadObjetivo:" + a.consultarCiudadObjetivo() + "\n");
 	    					break;
 	    				}	
 	    				

@@ -17,50 +17,50 @@ public class Agente {
         ciudadObjetivo = TargetCity;
 	}
 	/*
-	 * Getter de nombre
+	 * Consultora de nombre
 	 */
 	
-	public String getNombre() { //getter for nombre
+	public String consultarNombre() { //getter for nombre
 		return nombre;
 	}
 	
 	/*
-	 * Setter de nombre
+	 * Modificadora de nombre
 	 */
 	
-	public void setNombre(String name) { //setter for nombre
+	public void modificarNombre(String name) { //setter for nombre
 		nombre = name;
 	}
 	
 	/*
-	 * Getter de ciudadInicial
+	 * Consultora de ciudadInicial
 	*/
 	
-	public String getCiudadInicial() { //getter for ciudad_ini
+	public String consultarCiudadInicial() { //getter for ciudad_ini
 		return ciudadInicial;
 	}
 	
 	/*
-	 * Setter de ciudadInicial
+	 * Modificadora de ciudadInicial
 	*/
 	
-	public void setCiudadInicial(String InitialCity) {//setter for ciudad_ini
+	public void modificarCiudadInicial(String InitialCity) {//setter for ciudad_ini
 		ciudadInicial = InitialCity;
 	}
 	
 	/*
-	 * Getter de ciudadObjetivo
+	 * Consultora de ciudadObjetivo
 	*/
 	
-	public String getCiudadObjetivo() {//getter for ciudad_obj
+	public String consultarCiudadObjetivo() {//getter for ciudad_obj
 		return ciudadObjetivo;
 	}
 	
 	/*
-	 * Setter de ciudadObjetivo
+	 * Modificadora de ciudadObjetivo
 	*/
 	
-	public void setCiudadObjetivo(String TargetCity) {//setter for ciudad_obj
+	public void modificarCiudadObjetivo(String TargetCity) {//setter for ciudad_obj
 		ciudadObjetivo = TargetCity;
 	}
 }
