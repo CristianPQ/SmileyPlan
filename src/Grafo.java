@@ -2,7 +2,7 @@ import java.util.*;
 public class Grafo {
 	private class Pair{
 		Ciudad a;
-		Ciudad b;
+		Ciudad[] adj;
 	};
 	
 	private List <Pair> grafo;
