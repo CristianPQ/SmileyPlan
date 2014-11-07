@@ -10,7 +10,6 @@
  *
  * @author Cristian Pinto
  */
-
 public class Coordenadas {
 	
 	private int x;	//Posicion segun el eje horizontal
@@ -18,44 +17,43 @@ public class Coordenadas {
 	
 	/**
 	 * Constructor Coordenadas
-	 * @param x referencia sobre el eje horizontal
-	 * @param y referencia sobre el eje vertical 
+	 * @param coordX referencia sobre el eje horizontal
+	 * @param coordY referencia sobre el eje vertical 
 	 */
-	public Coordenadas(int x, int y){
-		this.setX(x);
-		this.setY(y);
+	public Coordenadas(int coordX, int coordY){
+		x = coordX;
+		y = coordY;
 	}
 	
 	/**
-	 * Getter del elemento x
+	 * Consultor del elemento x
 	 * @return posicion sobre el eje horizontal
 	 */
-	public int getX() {
+	public int consultarX() {
 		return x;
 	}
 
-	/**
-	 * Setter del elemento x
-	 * @param x referencia sobre el eje horizontal
-	 */
-	public void setX(int x) {
-		this.x = x;
-	}
+	/*
+	 * Modificador del elemento x
+	 * @param coordX referencia sobre el eje horizontal
+	 *
+	public void modificarX(int coordX) {
+		x = coordX;
+	}*/
 
 	/**
 	 * Getter del elemento y
 	 * @return posicion sobre el eje vertical
 	 */
-	public int getY() {
+	public int consultarY() {
 		return y;
 	}
-
-	/**
-	 * Setter del elemento y
-	 * @param y referencia sobre el eje horizontal
-	 */
-	public void setY(int y) {
-		this.y = y;
-	}
 	
+	/*
+	 * Setter del elemento y
+	 * @param coordY referencia sobre el eje horizontal
+	 *
+	public void modificarY(int coordY) {
+		x = coordY;
+	}*/
 }

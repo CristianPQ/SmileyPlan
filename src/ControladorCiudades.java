@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-public class ConjuntoCiudades {
+public class ControladorCiudades {
 	
 	private TST<Ciudad> ciudades;
 
