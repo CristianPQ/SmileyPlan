@@ -12,7 +12,10 @@ public class DriverControladorCiudades {
                 + "\n 3.buscarCiudad(String nombreCiudad):Ciudad"
                 + "\n 4.getCoordenadas(String nombre):Coordenadas"
                 + "\n 5.borrarCiudad(String nombre)"
-                /*+ "\n 6.numeroCiudades():int"*/
+                + "\n 6.existe(String nombrCiudad):boolean"
+                + "\n 7.escribir():String"
+                + "\n 8.vaciar()"
+                + "\n 9.isEmpty():boolean"
         		+"\n");
     }
 	
@@ -56,11 +59,26 @@ public class DriverControladorCiudades {
 		            	ciudades.borrarCiudad(nombre);
 		                break;
 		            }
-		            /*case 6: {
-		            	int n = ciudades.numeroCiudades();
-		                System.out.print( n + "\n");
+		            case 6: {
+		            	String nombre = lsplited[1];
+		            	boolean e = ciudades.existe(nombre);
+		            	System.out.println(e + "|n!");
 		                break;
-		            }*/
+		            }
+		            case 7: {
+		            	String s = ciudades.escribir();
+		            	System.out.println(s + "|n!");
+		                break;
+		            }
+					case 8: {
+						ciudades.vaciar();
+		                break;
+		            }
+					case 9: {
+						boolean e = ciudades.isEmpty();
+		            	System.out.println(e + "|n!");
+					    break;
+					}
 		            case 0: {
 		                System.exit(0);
 		            }

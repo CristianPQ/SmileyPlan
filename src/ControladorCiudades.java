@@ -47,6 +47,24 @@ public class ControladorCiudades {
 		ciudades.delete(nombreCiudad);
 	}
 	
+	
+	//True si la ciudad existe
+	public boolean existe(String nombreCiudad) {
+		return ciudades.existe(nombreCiudad);
+	}
+	
+	public String escribir() {
+		return ciudades.toString();
+	}
+	
+	public void vaciar() {
+		ciudades.makeEmpty();
+	}
+	
+	public boolean isEmpty() {
+		return ciudades.isEmpty();
+	}
+	
 	/*
 	 * Consultar numero de ciudades existentes en el Map ciudades
 	 

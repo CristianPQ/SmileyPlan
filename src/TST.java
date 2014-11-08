@@ -189,7 +189,7 @@ class TST<E>  //no estava la <E>
     	TSTNodeChar rChar = (TSTNodeChar)r;
     	
     	if(ptr == word.length && rChar.data == '$')
-    		r = null;
+    		r.middle = null;
         
     	System.out.println("rChar.data: " + rChar.data + "\n" + "letra: " + letra + "\n" + "\n");
     	
@@ -307,12 +307,14 @@ class TST<E>  //no estava la <E>
         	TSTNodeChar rChar = (TSTNodeChar)r;
             if(rChar.data == '$')
             	al.add(str);
-            else str = str + rChar.data;
- 
-            traverse(r.middle, str);
-            str = str.substring(0, str.length() - 1);
- 
-            traverse(r.right, str);
+            else {
+            	str = str + rChar.data;
+            	 
+                traverse(r.middle, str);
+                str = str.substring(0, str.length() - 1);
+     
+                traverse(r.right, str);
+            }
         }
     }
 }
