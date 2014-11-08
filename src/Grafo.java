@@ -44,7 +44,25 @@ public class Grafo {
 	ArrayList<Arista> grafo = new ArrayList<Arista>();
 
 	public Grafo(){}
-
+	
+	public void vaciarGrafo(){
+		grafo.clear();
+	}
+	
+	public void anadirArista (int vertex, int targetVertex,
+			int flow, int capacity, int cost){
+		Arista a = new Arista();
+		a.modificarVerticeDestino(targetVertex);
+		a.modificarCapacidad(capacity);
+		a.modificarFlujo(flow);
+		a.modificarCoste(cost);
+		grafo.add(vertex, a);	
+	}
+	
+	public void eliminarArista(int vertex){
+		grafo.remove(vertex);
+	}
+	
 	public int consultarVerticeDestinoArista
 		(int vertex){
 			Arista a = grafo.get(vertex);
