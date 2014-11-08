@@ -3,7 +3,7 @@
  **/
  
 import java.util.ArrayList;
-import java.util.*;
+//import java.util.*;
  
 /** class TSTNode **/
 
@@ -76,10 +76,10 @@ class TST<E>  //no estava la <E>
     /** function to insert for a word **/
     public void insert(E e) //++
     {
-    	String key;
+    	String key = ((Ciudad) e).consultarKey();
     	
     	//e es una Ciudad
-    	if(e instanceof Ciudad) {
+    	/*if(e instanceof Ciudad) {
     		key = ((Ciudad) e).consultarKey();
     	}
     	
@@ -96,7 +96,7 @@ class TST<E>  //no estava la <E>
     	//e es un MedioTransporte
     	if(e instanceof MedioTransporte) {
     		key = ((MedioTransporte) e).consultarKey();
-    	}
+    	}*/
     	
         root = (TSTNodeChar) insert(root, key.toCharArray(), 0, e); //*
     }
@@ -168,15 +168,15 @@ class TST<E>  //no estava la <E>
     //ELIMINAR ELEMENTO
     public void delete(String word)
     {
-        delete(root, word.toCharArray(), 0);
+        root = (TST<E>.TSTNodeChar) delete(root, word.toCharArray(), 0);
     }
     
     
     /** function to delete a word **/
-    private void delete(TSTNode r, char[] word, int ptr)
+    private TSTNode delete(TSTNode r, char[] word, int ptr)
     {
         if (r == null)
-            return;
+            return null;
         
         char letra;
     	//Si ya se ha recorrido toda la palabra es una word[ptr], sino es $
@@ -187,17 +187,20 @@ class TST<E>  //no estava la <E>
         
     	// rChar = r(con funcion de TSTNodeChar)
     	TSTNodeChar rChar = (TSTNodeChar)r;
+    	
+    	if(ptr == word.length && rChar.data == '$')
+    		r = null;
         
+    	System.out.println("rChar.data: " + rChar.data + "\n" + "letra: " + letra + "\n" + "\n");
+    	
         if (letra < rChar.data)
-            delete(r.left, word, ptr);
+            r.left = delete(r.left, word, ptr);
         else if (letra > rChar.data)
-            delete(r.right, word, ptr);
+            r.right = delete(r.right, word, ptr);
         else
         {
         	if(ptr < word.length)
-        		delete(r.middle, word, ptr + 1);
-        	else if(rChar.data == letra)
-        		r = null;
+        		r.middle = delete(r.middle, word, ptr + 1);
 /*        	
         	
             /** to delete a word just make isEnd false **
@@ -207,7 +210,8 @@ class TST<E>  //no estava la <E>
             else if (ptr + 1 < word.length)
                 delete(r.middle, word, ptr + 1);
             */
-        }        
+        }
+        return r;
     }
  
     /** function to search for a word **/

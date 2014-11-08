@@ -1,23 +1,23 @@
 import java.util.Scanner;
 
 
-public class DriverConjuntoCiudades {
+public class DriverControladorCiudades {
     private static Scanner sc;
 
 	private static void menu() {
-        System.out.println("Driver clase Mapa"
+        System.out.println("Driver clase ControladorCiudades"
                 + "\n 0.Salir"
                 + "\n 1.new ConjuntoCiudades()"
                 + "\n 2.agregarCiudad(String nombre, int CoordX, int CoordY)"
                 + "\n 3.buscarCiudad(String nombreCiudad):Ciudad"
                 + "\n 4.getCoordenadas(String nombre):Coordenadas"
                 + "\n 5.borrarCiudad(String nombre)"
-                + "\n 6.numeroCiudades():int"
+                /*+ "\n 6.numeroCiudades():int"*/
         		+"\n");
     }
 	
     public static void main(String [] args) throws Exception {
-    	ConjuntoCiudades ciudades = null;
+    	ControladorCiudades ciudades = null;
         menu();
         sc = new Scanner(System.in);
         String[] lsplited;
@@ -26,7 +26,7 @@ public class DriverConjuntoCiudades {
 		        lsplited = sc.nextLine().split(" ");
 		        switch(Integer.parseInt(lsplited[0])) {
 		            case 1: {
-		            	ciudades = new ConjuntoCiudades();
+		            	ciudades = new ControladorCiudades();
 		                break;
 		            }
 		            case 2: {
@@ -41,14 +41,14 @@ public class DriverConjuntoCiudades {
 		            case 3: {
 		            	String nombre = lsplited[1];
 		            	Ciudad ciudad = ciudades.buscarCiudad(nombre);
-		                System.out.print(ciudad.getNombre()+ ' ' + '(' + ciudad.getCoord().getX() +',' + ciudad.getCoord().getY() + ')' + "\n");
+		                System.out.print(ciudad.consultarNombre()+ ' ' + '(' + ciudad.consultarCoordenadas().consultarX() +',' + ciudad.consultarCoordenadas().consultarY() + ')' + "\n");
 		                break;
 		            }
 	
 		            case 4:{
 		            	String nombre = lsplited[1];
 		            	Coordenadas coord = ciudades.getCoordenadasCiudad(nombre);
-		                System.out.print(coord.getX() + " " + coord.getY() + "\n");
+		                System.out.print(coord.consultarX() + " " + coord.consultarY() + "\n");
 		                break;
 		            }
 		            case 5:{
@@ -56,11 +56,11 @@ public class DriverConjuntoCiudades {
 		            	ciudades.borrarCiudad(nombre);
 		                break;
 		            }
-		            case 6: {
+		            /*case 6: {
 		            	int n = ciudades.numeroCiudades();
 		                System.out.print( n + "\n");
 		                break;
-		            }
+		            }*/
 		            case 0: {
 		                System.exit(0);
 		            }

@@ -20,19 +20,14 @@ public class ControladorCiudades {
 	
 	
 	public void agregarCiudad(Ciudad c) {
-			//System.out.println("antes de putCiudad(getNombre) en ConjuntoCiudades" + "\n");
-		String nombreCiudad = c.getNombre();
-			//System.out.println("antes de putCiudad en ConjuntoCiudades" + "\n");
-		this.ciudades.put(nombreCiudad, c);
-			//System.out.println("despues de putCiudad en ConjuntoCiudades" + "\n");
+		ciudades.insert(c);
 	}
 	
 	/*
 	 * Buscar Ciudad a partir del nombre
 	 */
 	public Ciudad buscarCiudad(String nombreCiudad) {
-		Ciudad c = this.ciudades.get(nombreCiudad);
-		return c;
+		return ciudades.consultar(nombreCiudad);
 	}
 	
 	/*
@@ -41,7 +36,7 @@ public class ControladorCiudades {
 	public Coordenadas getCoordenadasCiudad(String nombreCiudad) {
 		Coordenadas coord;
 		Ciudad c = buscarCiudad(nombreCiudad);
-		coord = c.getCoord();
+		coord = c.consultarCoordenadas();
 		return coord;
 	}
 	
@@ -49,15 +44,15 @@ public class ControladorCiudades {
 	 * Borrar ciudad
 	 */
 	public void borrarCiudad(String nombreCiudad) {
-		this.ciudades.remove(nombreCiudad);
+		ciudades.delete(nombreCiudad);
 	}
 	
 	/*
 	 * Consultar numero de ciudades existentes en el Map ciudades
-	 */
+	 
 	public int numeroCiudades() {
 		return this.ciudades.size();
-	}
+	}*/
 
 	
 
