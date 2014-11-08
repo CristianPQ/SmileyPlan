@@ -98,7 +98,7 @@ class TST<E>  //no estava la <E>
     		key = ((MedioTransporte) e).consultarKey();
     	}
     	
-        root = insert(root, key.toCharArray(), 0, e); //*
+        root = (TSTNodeChar) insert(root, key.toCharArray(), 0, e); //*
     }
     
     
