@@ -1,4 +1,4 @@
-/*
+/**
  * @author Olga
  */
 public class Coche extends MedioTransporte {
@@ -11,7 +11,7 @@ public class Coche extends MedioTransporte {
 
 	static private Exception ErrorPrecio = new Exception("Este precio no es posible para un coche");
 	
-	/*
+	/**
 	 * Constructora de Tren
 	 * @param String nombreTransporte
 	 * @param int precio 

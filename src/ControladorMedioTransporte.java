@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
  
-/*
+/**
  * @author Olga 
  */
 
@@ -11,14 +11,18 @@ public class ControladorMedioTransporte {
 	/*private static ControladorAlgoritmo cntrlAl; 
 	private static ControladorMapa cntrlMap; */
 	//private static Map <String, MedioTransporte> medios =  new HashMap<String,MedioTransporte>(); 
-	private TST<MedioTransporte> medios = new TST<MedioTransporte>(); 
+	private TST<MedioTransporte> medios;
+	medios = new TST(); 
 	
 	//control errors 
 	private static Exception NombreYaExiste = new Exception ("El nombre ya existe");
 	private static Exception NoExiste = new Exception ("El nombre no existe");
 	
 	//creadora per defecte
-	public ControladorMedioTransporte() {}
+	public ControladorMedioTransporte() 
+	{
+		medios = new TST(); 
+	}
 	
 	//creadora de controlador 
 	/* ControladorMedioTransporte(ControladorAlgoritmo al,ControladorMapa map){
@@ -28,7 +32,7 @@ public class ControladorMedioTransporte {
 	
 	//agregar medio de transporte
 	public void agregarMedioTransporte(String nombre, int coste) throws Exception{
-		if (medios.contains(nombre)) throw NombreYaExiste; 
+		if (!medios.search(nombre)) throw NombreYaExiste; 
 		else{
 			MedioTransporte m = new MedioTransporte(nombre,coste); 
 			medios.put(nombre,m);
@@ -68,6 +72,14 @@ public class ControladorMedioTransporte {
 	public int getCantidadTransportes(){
 		return medios.size(); 
 	}
+	
+	public void cargarMedios(){
+		GestorDatos gd = null; 
+		gd = new GestorDatos(); 
+		gd.openFile(newfile, 'W');
+		
+	}
+	
 	
 
 }

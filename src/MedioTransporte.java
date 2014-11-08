@@ -1,4 +1,4 @@
-/*
+/**
  * @author Olga
  */
 public class MedioTransporte {
@@ -6,12 +6,12 @@ public class MedioTransporte {
 	private String nombre;
 	private int precioDistancia;
 
-	/*
+	/**
 	 * Creadora por defecto
 	 */
 	MedioTransporte() {}
 
-	/*
+	/**
 	 * Creadora con parametros 
 	 * @param String nombreTransporte
 	 * @param int precio 
@@ -21,7 +21,7 @@ public class MedioTransporte {
 		setPrecio(precio);
 	}
 	
-	/*
+	/**
 	 * Devuelve el nombre del medio de transporte
 	 * @return String correspondiente al nombre del medio de transporte
 	 */
@@ -29,7 +29,7 @@ public class MedioTransporte {
 		return nombre;
 	}
 	
-	/*
+	/**
 	 * Devuelve el precio por distancia del medio de transporte
 	 * @return Integer correspondiente al precio por distancia del medio de transporte
 	 */
@@ -37,18 +37,20 @@ public class MedioTransporte {
 		return precioDistancia;
 	}
 
-	/*
+	/**
 	 * Asigna un nombre al medio de transporte
+	 * @param String nombreTransporte
 	 */
 	public void setNombre(String nombreTransporte) {
-		this.nombre = nombreTransporte;
+		nombre = nombreTransporte;
 	}
 	
-	/*
+	/**
 	 * Asigna un precio al medio de transporte
+	 * @param int precio
 	 */
 	public void setPrecio(int precio) {
-		this.precioDistancia = precio;
+		precioDistancia = precio;
 	}
 	
 	

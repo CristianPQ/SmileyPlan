@@ -1,4 +1,4 @@
-/* 
+/**
  * @author Olga
  */
 public class Tren extends MedioTransporte {
@@ -11,7 +11,7 @@ public class Tren extends MedioTransporte {
 	
 	static private int limitePrecio = 40; 
 	
-	/*
+	/**
 	 * Constructora de Tren
 	 * @param String nombreTransporte
 	 * @param int precio 
