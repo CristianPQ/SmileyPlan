@@ -1,6 +1,6 @@
 import java.util.*;
 
-/*
+/**
  * @author Olga 
  */
 
@@ -31,13 +31,13 @@ public class DriverControladorMedioTransporte {
 	                cm = new ControladorMedioTransporte();
 	                break;
 	            }
-	           /*case 2: {
+	           case 2: {
 	        	   Agente aux = null; 
 	        	   String nombre = lsplited[1]; 
 	        	   int p = Integer.parseInt(lsplited[2]);
 	               cm.agregarMedioTransporte(nombre,p);
 	               break;
-	            }*/
+	            }
 	            case 3: {
 	               String nombre = lsplited[1];
 	               cm.borrarMedioTransporte(nombre);
@@ -62,8 +62,8 @@ public class DriverControladorMedioTransporte {
 	                break;            	
 	            }
 	            case 6: {
-	            	System.out.print(cm.getCantidadTransportes() + "\n");
-	            	break; 
+	            	//System.out.print(cm.getCantidadTransportes() + "\n");
+	            	//break; 
 	            }
 	            case 0: {
 	                System.exit(0);
