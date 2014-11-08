@@ -3,53 +3,54 @@
 
 public class Camino {
 
-	private String ciudadOrigen;
 	private String ciudadDestino;
 	private int capacidad;
 	private String transporte;
+	private String ciudadOrigen;
 	
 	
 	/** Constructor de Camino   
 	 *  con capacidad
 	 */
-	public Camino(String ciudadOrigen, String ciudadDestino, int capacidad, String transporte){
+	public Camino(String ciudadOrigen2, String ciudadDestino2, int capacidad2, String transporte2){
 		
-		this.ciudadOrigen = ciudadOrigen;
-		this.ciudadDestino = ciudadDestino;
-		this.capacidad = capacidad;
-		this.transporte = transporte;
+		ciudadOrigen = ciudadOrigen2;
+		ciudadDestino = ciudadDestino2;
+		capacidad = capacidad2;
+		transporte = transporte2;
 	}
 	/**
 	 * Constructor de Camino sin capacidad, 1 por defecto
 	 */
-	public Camino(String ciudadOrigen, String ciudadDestino,  String transporte){
+	public Camino(String ciudadOrigen2, String ciudadDestino2,  String transporte2){
 		
-		this.ciudadOrigen = ciudadOrigen;
-		this.ciudadDestino = ciudadDestino;
-		this.transporte = transporte;
-		this.capacidad = 1;
+		ciudadOrigen = ciudadOrigen2;
+		ciudadDestino = ciudadDestino2;
+		transporte = transporte2;
+		capacidad = 1;
 	}
-
     public String getTransporte(){
     	return transporte;
     }
-    public String getOrigen(){
-    	return ciudadOrigen;
-    }
     public String getDestino(){
     	return ciudadDestino;
+    }
+    public String getOrigen(){
+    	return ciudadOrigen;
     }
     public int getCapacidad(){
     	return capacidad;
     }
 
-    public void setTransporte(String transporte){
-    	this.transporte = transporte;
+    public void setTransporte(String transporte2){
+    	transporte = transporte2;
     }
-    public void setCapacidad(int capacidad){
-    	this.capacidad = capacidad;
+    public void setCapacidad(int capacidad2){
+    	capacidad = capacidad2;
     }
-
+    public String consultarKey(){
+    	return ciudadOrigen;
+    }
  
 	
 	

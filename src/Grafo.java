@@ -41,9 +41,8 @@ public class Grafo {
 		
 	};
 
-	ArrayList<Arista> grafo = new ArrayList<Arista>();
+	private ArrayList<Arista> grafo = new ArrayList<Arista>();
 
-	public Grafo(){}
 	
 	public void vaciarGrafo(){
 		grafo.clear();
