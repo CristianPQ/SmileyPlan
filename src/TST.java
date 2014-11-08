@@ -76,13 +76,12 @@ class TST<E>  //no estava la <E>
     /** function to insert for a word **/
     public void insert(E e) //++
     {
-    	String key = ((Ciudad) e).consultarKey();
-    	
+    	String key = null;
     	//e es una Ciudad
-    	/*if(e instanceof Ciudad) {
-    		key = ((Ciudad) e).consultarKey();
+    	if(e instanceof Ciudad) {
+    		key = ((Ciudad) e).consultarNombre();
     	}
-    	
+    	/*
     	//e es un Camino
     	if(e instanceof Camino) {
     		key = ((Camino) e).consultarKey();
@@ -92,11 +91,11 @@ class TST<E>  //no estava la <E>
     	if(e instanceof Agente) {
     		key = ((Agente) e).consultarKey();
     	}
-    	
+    	*/
     	//e es un MedioTransporte
     	if(e instanceof MedioTransporte) {
-    		key = ((MedioTransporte) e).consultarKey();
-    	}*/
+    		key = ((MedioTransporte) e).getNombre();
+    	}
     	
         root = (TSTNodeChar) insert(root, key.toCharArray(), 0, e); //*
     }
