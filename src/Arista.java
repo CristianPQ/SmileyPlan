@@ -3,7 +3,11 @@ public class Arista{
 		private int flujo;
 		private int capacidad;
 		private int coste;
-
+		
+		public Arista(int targetVertex, int flow, int capacity, int cost){
+			
+		}
+		
 		public int consultarVerticeDestino(){
 			return verticeDestino;
 		}

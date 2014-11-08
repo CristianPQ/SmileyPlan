@@ -2,79 +2,76 @@ import java.util.*;
 public class Grafo {
 
 	//constructora
-	ArrayList<Arista> grafo;
+	ArrayList<ArrayList<Arista>> grafo;
 
 	public Grafo(){
-		grafo = new ArrayList<Arista>();
+		grafo = new ArrayList<ArrayList<Arista>>();
 	}
 	
 	public void vaciarGrafo(){
-		grafo.clear();
+		for (int i = 0; i < grafo.size(); i++) grafo.get(i).clear();
 	}
 	
 	public void anadirArista (int vertex, int targetVertex,
 			int flow, int capacity, int cost){
-		Arista a = new Arista();
-		a.modificarVerticeDestino(targetVertex);
-		a.modificarCapacidad(capacity);
-		a.modificarFlujo(flow);
-		a.modificarCoste(cost);
-		grafo.add(vertex, a);	
+		//ArrayList<Arista> ar = new ArrayList<Arista>();
+		//if (grafo.get(vertex) == null) grafo.add(vertex, ar);
+		Arista a = new Arista(targetVertex, flow, capacity, cost);
+		grafo.get(vertex).add(targetVertex, a);	
 	}
 	
-	public void eliminarArista(int vertex){
-		grafo.remove(vertex);
+	public void eliminarArista(int vertex, int targetVertex){
+		grafo.get(vertex).remove(targetVertex);
 	}
 	
-	public int consultarVerticeDestinoArista
+/*	public int consultarVerticeDestinoArista
 		(int vertex){
 			Arista a = grafo.get(vertex);
 			return a.consultarVerticeDestino();
 	}
 
 	public void modificarVerticeDestinoArista
-		(int vertex, int nuevoFlujo) {
+		(int vertex, int nuevoVerticeDestino) {
 			Arista a = grafo.get(vertex);
 			a.modificarVerticeDestino(nuevoFlujo);
 			grafo.add(vertex,a);
 	}
+*/
 	
-	public int consultarFlujoArista(int vertex){
-	Arista a = grafo.get(vertex);
+	public int consultarFlujoArista(int vertex, int targetVertex){
+	Arista a = grafo.get(vertex).get(targetVertex);
 	return a.consultarFlujo();
-	
 	}
 
-	public void modificarFlujoArista(int vertex, int nuevoFlujo) {
-		Arista a = grafo.get(vertex);
+	public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo) {
+		Arista a = grafo.get(vertex).get(targetVertex);
 		a.modificarFlujo(nuevoFlujo);
-		grafo.add(vertex,a);
+		grafo.get(vertex).add(targetVertex, a);	
 	}
 
-	public int consultarCapacidadArista(int vertex){
-		Arista a = grafo.get(vertex);
+	public int consultarCapacidadArista(int vertex, int targetVertex){
+		Arista a = grafo.get(vertex).get(targetVertex);
 		return a.consultarCapacidad();
-	
+			}
+
+	public void modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad) {
+		Arista a = grafo.get(vertex).get(targetVertex);
+		a.modificarFlujo(nuevaCapacidad);
+		grafo.get(vertex).add(targetVertex, a);	
 	}
 
-	public void modificarCapacidadArista(int vertex, int nuevaCapacidad) {
-		Arista a = grafo.get(vertex);
-		a.modificarCapacidad(nuevaCapacidad);
-		grafo.add(vertex,a);
-	}
-
-	public int consultarCosteArista(int vertex){
-		Arista a = grafo.get(vertex);
+	public int consultarCosteArista(int vertex, int targetVertex){
+		Arista a = grafo.get(vertex).get(targetVertex);
 		return a.consultarCoste();
-	
+
 	}
 
-	public void modificarCosteArista(int vertex, int nuevoCoste) {
-		Arista a = grafo.get(vertex);
+	public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste) {
+		Arista a = grafo.get(vertex).get(targetVertex);
 		a.modificarCoste(nuevoCoste);
-		grafo.add(vertex,a);
+		grafo.get(vertex).add(targetVertex,a);
 	}
-	//getter num vertices
+	//consulta num vertices
 	public int consultarNumVertices(){
 		return grafo.size();
 	}
