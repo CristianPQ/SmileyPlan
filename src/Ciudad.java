@@ -51,4 +51,8 @@ public class Ciudad {
 	public void modificarCoordenadas(Coordenadas coordCiudad) {
 		coord = coordCiudad;
 	}
+	
+	public String consultarKey() {
+		return nombre;
+	}
 }
