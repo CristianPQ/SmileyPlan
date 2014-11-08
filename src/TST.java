@@ -168,12 +168,12 @@ class TST<E>  //no estava la <E>
     //ELIMINAR ELEMENTO
     public void delete(String word)
     {
-        root = (TST<E>.TSTNodeChar) delete(root, word.toCharArray(), 0);
+        root = (TST<E>.TSTNodeChar) delete(null, root, word.toCharArray(), 0);
     }
     
     
     /** function to delete a word **/
-    private TSTNode delete(TSTNode r, char[] word, int ptr)
+    private TSTNode delete(TSTNode f, TSTNode r, char[] word, int ptr)
     {
         if (r == null)
             return null;
@@ -188,19 +188,25 @@ class TST<E>  //no estava la <E>
     	// rChar = r(con funcion de TSTNodeChar)
     	TSTNodeChar rChar = (TSTNodeChar)r;
     	
-    	if(ptr == word.length && rChar.data == '$')
-    		r.middle = null;
+    	if(ptr == word.length && rChar.data == '$') {
+    		
+    		
+    		r = deleteNode(r);
+    		
+    		
+    	}
+
         
     	System.out.println("rChar.data: " + rChar.data + "\n" + "letra: " + letra + "\n" + "\n");
     	
         if (letra < rChar.data)
-            r.left = delete(r.left, word, ptr);
+            r.left = delete(r, r.left, word, ptr);
         else if (letra > rChar.data)
-            r.right = delete(r.right, word, ptr);
+            r.right = delete(r, r.right, word, ptr);
         else
         {
         	if(ptr < word.length)
-        		r.middle = delete(r.middle, word, ptr + 1);
+        		r.middle = delete(r, r.middle, word, ptr + 1);
 /*        	
         	
             /** to delete a word just make isEnd false **
@@ -212,6 +218,33 @@ class TST<E>  //no estava la <E>
             */
         }
         return r;
+    }
+    
+    private TSTNode deleteNode(TSTNode r) {
+    	if(r != null) {
+    		/*if(f != null) {
+	        	if(f.right == r) {
+	        		f.right = r.right;
+	        	}
+	        	else f.left = r.right;
+    		}*/
+    		if(r.right == null) {
+    			r = r.left;
+    		}
+    		else {
+    			TSTNode aux = r;
+        		r = r.right;
+        		TSTNode aux2 = r.right;
+        		r.right = aux;
+        		aux.right = aux2;
+        		aux2 = r.left;
+        		r.left = aux.left;
+        		aux.left = aux2;
+        		
+        		r.right = deleteNode(r.right);
+    		}
+    	}
+    	return r;
     }
  
     /** function to search for a word **/
