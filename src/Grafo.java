@@ -40,9 +40,12 @@ public class Grafo {
 			}
 		
 	};
+	//constructora
+	ArrayList<Arista> grafo;
 
-	private ArrayList<Arista> grafo = new ArrayList<Arista>();
-
+	public Grafo(){
+		grafo = new ArrayList<Arista>();
+	}
 	
 	public void vaciarGrafo(){
 		grafo.clear();
@@ -109,6 +112,10 @@ public class Grafo {
 		Arista a = grafo.get(vertex);
 		a.modificarCoste(nuevoCoste);
 		grafo.add(vertex,a);
+	}
+	//getter num vertices
+	public int consultarNumVertices(){
+		return grafo.size();
 	}
 
 }
