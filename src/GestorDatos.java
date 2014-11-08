@@ -1,93 +1,154 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.*;
 
-/*
+/**
  * @author Olga 
  */
 
 public class GestorDatos {
-	private File file; 
-	private String mode; 
-	private boolean open; 
-	
-	private Scanner scanner; 
-	private FileWriter filewriter;
-	
-	public void GestorDatos() {
-		open = false; 
+	 private String nomD;
+	 private String nomF;
+	 private File f;
+	 private BufferedWriter bw; //Mantiene buffer de 8KB
+	 private BufferedReader br; //Mantiene buffer de 8KB
+	 private FileWriter fw;
+	 private FileReader fr;
+	 private boolean lectura;
+	 private boolean escritura;
+	 private final static int BUFF_SIZE = 1000;
+	    
+	    /**
+	     * Constructora
+	     * @param nomD2 nombre del directorio
+	     * @param nomF2 nombre del archivo
+	     */
+	    public GestorDatos(String nomD2, String nomF2) {
+	        br = null;
+	        bw = null;
+	        fr = null;
+	        fw = null;
+	        lectura = false;
+	        escritura = false;
+	        nomD = nomD2;
+	        nomF = nomF2;
+	        f = new File(nomD2, nomF2);
+	    }
+	    
+	    /**
+	     * creadora de un archivo con control de errores
+	     * @return true if created, otherwise false
+	     * @throws Exception File IOException
+	     */
+	    public boolean createFile() throws Exception{
+	        if (!f.exists()) {
+		    return f.createNewFile();
+		}
+		return false;
+	    }
+	    
+	    /**
+	     * Abre un archivo previamente creado
+	     * @param read true for read, false for write
+	     * @return true if opened, otherwise false
+	     * @throws Exception File, BufferedReader and BufferedWriter IOExceptions
+	     */
+	    public boolean openFile(boolean read) throws Exception {
+	        if (read && f.exists() && !lectura) {
+	            fr = new FileReader(f);
+	            br = new BufferedReader(fr); 
+	            lectura = true;
+	            return true;
+	        }
+	        if (!read && f.exists() && !escritura) {
+	            fw = new FileWriter(f);
+	            bw = new BufferedWriter(fw);
+	            escritura = true;
+	            return true;
+	        }
+	        return false;
+	    }
+	    
+	    /**
+	     * Closes file
+	     * @return true if closed, otherwise false
+	     * @throws Exception BufferedReader and BufferedWriter exceptions
+	     */
+	    public boolean closeFile() throws Exception {
+	        if (!lectura && !escritura) return false;
+	        if (lectura) {
+	            br.close();
+	            fr.close();
+	            lectura = false;
+	        } 
+	        if (escritura) {
+	            bw.close();
+	            fw.close();
+	            escritura = false;
+	        }	
+	        return true;
+	    }
+	    
+	    /**
+	     * deletes file
+	     * @return true if deleted, otherwise false
+	     * @throws Exception File exception 
+	     */
+	    public boolean deleteFile() throws Exception {
+	        closeFile();
+	        if(f.exists()) {
+	            return f.delete();
+	        }
+	        return false;
+	    }
+	    
+	    /**
+	     * 
+	     * @param buffer stream to write into file
+	     * @return true if written, otherwise false
+	     * @throws Exception BufferedWriter exception
+	     */
+	    public boolean writeBuffer(String buffer) throws Exception {
+	        if (escritura) {
+	            bw.write(buffer);
+	            //bw.newLine();
+	            return true;
+	        }
+	        return false;
+	    }
+	    
+	    /**
+	     * read stream of a file
+	     * @param numLines lines to be read
+	     * @return stream read
+	     * @throws Exception BufferedWriter exception
+	     */
+	    public String readBuffer(int numLines) throws Exception {
+	        String result = null;
+	        if (lectura) {
+	            int i = 0;
+	            result = br.readLine() + "\n";
+	            i++;
+	            while (i < numLines) {
+	                result += br.readLine() + "\n";
+			i++;
+	            }
+	        }
+	        return result;
+	    }
+	    
+	    /**
+	     * read a line of a file
+	     * @return line read
+	     * @throws Exception BufferedWrite exception 
+	     */
+	    public String readLine() throws Exception {
+	        if (lectura) {
+	            return br.readLine();
+	        }
+	        return null;
+	    }
 	}
-	
-	/* 
-	 * abre un nuevo fichero 
-	 * @param String filename, nombre del fichero que abrimos 
-	 * @param String mode, modo del fichero, puede ser R = read o W = Write 
-	 */
-	public void openFile(String filename, String mode) throws Exception {        
-	        if (!mode.equals("R") && !mode.equals("W")) throw new Exception("Modo invalido en el Gestor de Datos");
-	        file = new File(filename);
-	        this.mode = mode;
-	  
-	        if (mode.equals("W")) {
-	            if (!file.exists()) file.createNewFile();
-	            filewriter = new FileWriter(file);
-	        }	        
-	        scanner = new Scanner(new FileReader(file));
-	        open = true;
-	}
-	
-	public void closeFile() throws Exception {
-		if (!open) throw new Exception ("No hay ficheros abiertos");
-		scanner.close();
-    	if (mode.equals("W")) filewriter.close();
-    	open = false;
-	}
-	
-	/*
-     * Cargar lineas de informacio en un fichero
-     * Pre: tiene que haber un afichero abierto
-     * @param int n, numero de lineas que vamos a cargar 
-     * @return lineas
-     */
-    public String[] cargarLineas(int n) throws Exception{ 
-        
-        if (!open) throw new Exception ("No hay ficheros abiertos");
-        
-        String[] lineas = new String[n];
-        int index = 0;
-
-        while(index < n && scanner.hasNextLine()) {
-            lineas[index] = scanner.nextLine();
-            ++index;
-        }
-        
-        if (index < n){
-            String[] aux = new String[index];
-            for (int i = 0; i < index; ++i) {
-                aux[i] = lineas[i];
-            }
-            return aux;
-        }        
-        return lineas;
-    }
-    
-    /*
-     * Guardar lineas de informacio en un fichero
-     * Pre: el archivo debe ser modo W
-     * @param @String[] lineas, lineas que queremos guardar 
-     */
-    public void guardarLineas(String[] lineas) throws Exception{   
-        
-        if (!open) throw new Exception ("No hay ficheros abiertos");
-        if (!mode.equals("W")) throw new Exception("No se puede escribir en modo lectura");
-        
-        for (int i = 0; i < lineas.length; ++i) {
-            filewriter.write(lineas[i]+"\n");
-        } 
-    } 
-	
-	
-}
-	
-
