@@ -95,11 +95,11 @@ class TST<E>  //no estava la <E>
     	//e es un MedioTransporte
     	if(e instanceof MedioTransporte) {
     		key = ((MedioTransporte) e).getNombre();
-
+        }
         //e es un Agente
         if(e instanceof Agente) {
             key = ((Agente) e).consultarNombre();
-
+        }
         //e es una Arista
         if(e instanceof Arista) {
             key = ((Arista) e).consultarVerticeDestino();
