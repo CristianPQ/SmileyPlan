@@ -1,89 +1,103 @@
-import java.util.*;
 
 /*
  * @author Daniel Villanueva 
  */
 
 public class ControladorAgentes {
-		private Set<Agente> Agentes;
+		private TST<Agente> Agentes;
+		private int numAgentes;
 		
 		private static Exception NombreYaExiste = new Exception ("El agente ya existe");
 		private static Exception NoExiste = new Exception ("El agente no existe");
-		private static Exception ListaVacia = new Exception ("No existen elementos que se ajusten a su solicitud");
+//		private static Exception ListaVacia = new Exception ("No existen elementos que se ajusten a su solicitud");
 	
 		/*
 		 * Constructora del controlador
 		 */
 
 		public ControladorAgentes(){//SEGURO
-			this.Agentes = new HashSet<Agente>();
+			Agentes = new TST<Agente>();
+			numAgentes = 0;
 		}
-		//constructor Agente
+		
 		
 		/*
 		 * Vaciar todo el contenedor de agentes
 		 */
 		
 		public void eliminarTodo(){ //SEGURO
-			Agentes.clear();
+			Agentes.makeEmpty();
 		}
-		
+
+
 		/*
-		 * Anadir un agente
+		 * Consulta la existencia o no de un agente
 		 */
 		
+		public boolean existeAgente(String nombre){
+			return Agentes.existe(nombre);
+		}	
+			/*
+			 * Anadir un agente
+			 */
+			
 		public void anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo)
 				throws Exception{ //SEGURO
-			Iterator<Agente> it = Agentes.iterator();
-			Agente b;
-			while (it.hasNext()){
-				b = it.next();
-				if (b.consultarNombre().equals(nombre)) throw NombreYaExiste;
-			}
-			Agente a = new Agente(nombre, ciudadInicial, ciudadObjetivo);
-			Agentes.add(a);
-			}
+			if (!existeAgente(nombre)){
+				Agente a = new Agente(nombre, ciudadInicial, ciudadObjetivo);
+				Agentes.insert(a);
+				++numAgentes;
+			}	
+			else throw NombreYaExiste;	
+		}
 		
 		/*
 		 * Eliminar un agente
 		 */
 		
 		public void eliminarAgente(String nombre) throws Exception{ //SEGURO
-			
-			Iterator<Agente> it = Agentes.iterator();
-			boolean fin = false;
-			Agente a;
-				while (it.hasNext() && !fin){
-					a = it.next();
-					//String buscado = it.next().getNombre();
-					if(a.consultarNombre().equals(nombre)){
-						it.remove();
-						fin = true;
-					}
-				}if (!fin) throw NoExiste;		
-			}
-			//acaba al encontrar el agente que quiere eliminar
-			//si llega al final y no se encuentra, es que no existe
 		
+			if (existeAgente(nombre)){
+				Agentes.delete(nombre);
+				--numAgentes;
+			}
+			else throw NoExiste;
+
+			}
+
 		/*
 		 * Modificar el nombre de un agente
 		 */
 		
+		public String consultarCiudadInicialAgente(String nombre, String ciudadInicial) throws Exception{
+			if (existeAgente(nombre)){
+				return Agentes.consultar(nombre).consultarCiudadInicial();
+			}
+			else throw NoExiste;
+		}
+		
+		public String consultarCiudadObjetivoAgente(String nombre, String ciudadObjetivo) throws Exception{
+			if (existeAgente(nombre)){
+				return Agentes.consultar(nombre).consultarCiudadObjetivo();
+			}
+			else throw NoExiste;	
+
+		}
+		
 		public void modificarNombreAgente(String nombreAntiguo, String nombreNuevo)throws Exception{//NO CREO
 			
-			Iterator<Agente> it = Agentes.iterator();
-			boolean fin = false;
-			Agente a;
-				while (it.hasNext() && !fin){
-					a = it.next();
-					if (a.consultarNombre().equals(nombreAntiguo)) {
-						it.remove();
-						a.modificarNombre(nombreNuevo); 
-						Agentes.add(a);
-						fin = true;
-					}
-				}if (!fin) throw NoExiste;
+			if (existeAgente(nombreAntiguo)){
+				Agente a = Agentes.consultar(nombreAntiguo);
+				a.modificarNombre(nombreNuevo);
+				if (!existeAgente(nombreNuevo)) {
+					Agentes.delete(nombreAntiguo);
+					Agentes.insert(a);	
+				}
+				else throw NombreYaExiste;
 			}
+			else throw NoExiste;
+			
+		}
 			//acaba al encontrar el agente que quiere eliminar
 			//si llega al final y no se encuentra, es que no existe
 	
@@ -91,22 +105,20 @@ public class ControladorAgentes {
 		 * Modificar la ciudadInicial de un agente
 		 */
 		
-		public void modificarCiudadInicialAgente(String nombre, String ciudadInicial) //PODRIA SER
-			throws Exception{
+public void modificarCiudadInicialAgente(String nombre, String ciudadInicial)throws Exception{//NO CREO
 			
-			Iterator<Agente> it = Agentes.iterator();
-			boolean fin = false;
-			Agente a;
-				while (it.hasNext() && !fin){
-					a = it.next();
-					if (a.consultarNombre().equals(nombre)) {
-						it.remove();
-						a.modificarCiudadInicial(ciudadInicial); 
-						Agentes.add(a);
-						fin = true;
-					}
-				}if (!fin) throw NoExiste;
+			if (existeAgente(nombre)){
+				Agente a = Agentes.consultar(nombre);
+				a.modificarCiudadInicial(ciudadInicial);
+				if (!existeAgente(nombre)) {
+					Agentes.delete(nombre);
+					Agentes.insert(a);	
+				}
+				else throw NombreYaExiste;
 			}
+			else throw NoExiste;
+			
+		}
 			//acaba al encontrar el agente que quiere eliminar
 			//si llega al final y no se encuentra, es que no existe
 		
@@ -114,22 +126,19 @@ public class ControladorAgentes {
 		 * Modificar la ciudadObjetivo de un agente
 		 */
 		
-		public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo) //PODRIA SER
-			throws Exception{
-
-			Iterator<Agente> it = Agentes.iterator();
-			boolean fin = false;
-			Agente a;
-				while (it.hasNext() && !fin){
-					a = it.next();
-					if (a.consultarNombre().equals(nombre)) {
-						it.remove();
-						a.modificarCiudadObjetivo(ciudadObjetivo); 
-						Agentes.add(a);
-						fin = true;
+public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)throws Exception{//NO CREO
+	
+			if (existeAgente(nombre)){
+				Agente a = Agentes.consultar(nombre);
+				a.modificarCiudadObjetivo(ciudadObjetivo);
+				if (!existeAgente(nombre)) {
+					Agentes.delete(nombre);
+					Agentes.insert(a);	
 					}
-				}if (!fin) throw NoExiste;
+				else throw NombreYaExiste;
 			}
+			else throw NoExiste;
+		}
 			//acaba al encontrar el agente que quiere eliminar
 			//si llega al final y no se encuentra, es que no existe
 		
@@ -137,7 +146,7 @@ public class ControladorAgentes {
 		 * Consultar agentes con una determinada ciudadInicial
 		 */
 		
-		public List<Agente> consultarAgentesCiudadInicial(String ciudadInicial) //NO CREO
+/*	public List<Agente> consultarAgentesCiudadInicial(String ciudadInicial) //NO CREO
 			throws Exception{
 			
 			List<Agente> l = new ArrayList<Agente>();	
@@ -159,7 +168,7 @@ public class ControladorAgentes {
 		 * Consultar agentes con una determinada ciudadObjetivo
 		 */
 		
-		public List<Agente> consultarAgentesCiudadObjetivo(String ciudadObjetivo) //NO CREO
+/*		public List<Agente> consultarAgentesCiudadObjetivo(String ciudadObjetivo) //NO CREO
 			throws Exception {
 			
 			List<Agente> l = new ArrayList<Agente>();
@@ -179,7 +188,7 @@ public class ControladorAgentes {
 		/*
 		 * Consultar agentes con una determinada ciudadInicial y una determinada ciudadObjetivo
 		 */
-		
+/*	
 		public List<Agente> consultarAgentesCiudadInicialObjetivo(String ciudadInicial, String ciudadObjetivo)
 			throws Exception{ //NO CREO
 			
@@ -194,15 +203,14 @@ public class ControladorAgentes {
 				return l;
 			}
 			//consultar agentes con una determinada ciuIni y ciuObj (que cumplan ambas) 
-			//Si la lista se devuelve vacia, senalamos que no hay elementos que se ajusten a nuestra busuqeda
+			//Si la ista se devuelve vacia, senalamos que no hay elementos que se ajusten a nuestra busuqeda
 		
 		/*
 		 * Consultar el número de agentes que hay en el contenedor
 		 */
 		
-		int getNumeroDeAgentes(){ //SEGURO
-			
-			return Agentes.size();
+		int getNumeroDeAgentes(){ //SEGURO		
+			return numAgentes;
 		}
 		
 		
