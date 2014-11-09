@@ -14,8 +14,8 @@ public class Grafo {
 	
 	public void anadirArista (int vertex, int targetVertex,
 			int flow, int capacity, int cost){
-		//ArrayList<Arista> ar = new ArrayList<Arista>();
-		//if (grafo.get(vertex) == null) grafo.add(vertex, ar);
+		ArrayList<Arista> ar = new ArrayList<Arista>();
+		grafo.add(ar);
 		Arista a = new Arista(targetVertex, flow, capacity, cost);
 		grafo.get(vertex).add(targetVertex, a);	
 	}
@@ -74,6 +74,10 @@ public class Grafo {
 	//consulta num vertices
 	public int consultarNumVertices(){
 		return grafo.size();
+	}
+
+	public int consultarNumAristasVertice(int vertex){
+		return grafo.get(vertex).size();
 	}
 
 }
