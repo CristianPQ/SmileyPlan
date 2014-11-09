@@ -5,11 +5,19 @@ public class Arista{
 		private int coste;
 		
 		public Arista(int targetVertex, int flow, int capacity, int cost){
-			
+			verticeDestino = targetVertex;
+			flujo = flow;
+			capacidad = capacity;
+			coste = cost;
 		}
 		
 		public int consultarVerticeDestino(){
 			return verticeDestino;
+		}
+		
+		public String consultarVerticeDestinoString(){
+			
+			return Integer.toString(verticeDestino);
 		}
 
 		public void modificarVerticeDestino(int targetVertex){

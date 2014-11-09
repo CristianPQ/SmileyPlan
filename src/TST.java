@@ -102,7 +102,7 @@ class TST<E>  //no estava la <E>
         }
         //e es una Arista
         if(e instanceof Arista) {
-            key = ((Arista) e).consultarVerticeDestino();
+            key = ((Arista) e).consultarVerticeDestinoString();
 
     	}
     	
