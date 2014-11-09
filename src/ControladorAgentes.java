@@ -139,9 +139,12 @@ public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)t
 			}
 			else throw NoExiste;
 		}
-			//acaba al encontrar el agente que quiere eliminar
-			//si llega al final y no se encuentra, es que no existe
+
+public int getNumeroDeAgentes(){ //SEGURO		
+		return numAgentes;
+		}
 		
+
 		/*
 		 * Consultar agentes con una determinada ciudadInicial
 		 */
@@ -208,13 +211,5 @@ public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)t
 		/*
 		 * Consultar el número de agentes que hay en el contenedor
 		 */
-		
-		int getNumeroDeAgentes(){ //SEGURO		
-			return numAgentes;
-		}
-		
-		
-		
-		
 	
 }
