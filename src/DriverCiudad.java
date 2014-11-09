@@ -9,10 +9,8 @@ public class DriverCiudad {
                 + "\n 0.Salir"
                 + "\n 1.Ciudad(String nombre, int coordX, int coordY)"
                 + "\n 2.getNombre():String"
-                + "\n 3.setNombre(String nombre)"
-                + "\n 4.getCoord():Coordenadas"
-                + "\n 5.setCoord(int coordX, int coorY)"
-                + "\n 6.mover(int x, int y)" 
+                + "\n 3.getCoord():Coordenadas"
+                + "\n 4.setCoord(int coordX, int coorY)"
         		+"\n");
     }
 	
@@ -34,31 +32,20 @@ public class DriverCiudad {
     	        		break;
     	        	}
     	        	case 2: {
-    	        		String nombre = ciudad.getNombre();
+    	        		String nombre = ciudad.consultarNombre();
     	        		System.out.print(nombre +"\n");
     	        		break;
     	        	}
     	        	case 3: {
-    	        		String nombre = lsplited[1];
-    	            	ciudad.setNombre(nombre);
+    	        		Coordenadas coord = ciudad.consultarCoordenadas();
+    	        		System.out.print(coord.consultarX() + " " + coord.consultarY() +"\n");
     	        		break;
     	        	}
     	        	case 4: {
-    	        		Coordenadas coord = ciudad.getCoord();
-    	        		System.out.print(coord.getX() + " " + coord.getY() +"\n");
-    	        		break;
-    	        	}
-    	        	case 5: {
     	            	int coordX = Integer.parseInt(lsplited[1]);
     	                int coordY = Integer.parseInt(lsplited[2]);
     	                Coordenadas coord = new Coordenadas(coordX, coordY);
-    	                ciudad.setCoord(coord);
-    	        		break;
-    	        	}
-    	        	case 6: {
-    	        		int x = Integer.parseInt(lsplited[1]);
-    	                int y = Integer.parseInt(lsplited[2]);
-    	                ciudad.mover(x, y);
+    	                ciudad.modificarCoordenadas(coord);
     	        		break;
     	        	}
     	        	case 0: {

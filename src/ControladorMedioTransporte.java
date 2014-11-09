@@ -11,7 +11,7 @@ public class ControladorMedioTransporte {
 	//WORK IN PROGRESS --> millorar els metodes per guardar i fer size
 	
 	 
-	private TST<MedioTransporte> medios = new TST<MedioTransporte>(); 
+	private TST<MedioTransporte> medios;	//Aqui no es fa el new... es fa al metode constructor
 	private final static int BUFFER_SIZE = 1000; 
 	
 	//control errores 
@@ -23,7 +23,7 @@ public class ControladorMedioTransporte {
 	 */
 	public ControladorMedioTransporte() 
 	{
-		medios = new TST(); 
+		medios = new TST<MedioTransporte>(); 	//només aquí cal el new...
 	}
 	
 	
@@ -58,6 +58,12 @@ public class ControladorMedioTransporte {
 	 * @param m medio que queremos modificar
 	 * @throws Exception si el nombre ya existe o no existe el medio
 	 */
+	/*
+	 * no acabo de entendre perque has de pasar-li el parametre MedioTransporte
+	 * si de cas l'identificador, que seria el nom actual
+	 * les altres clases no tindran mediosTransporte, tindran si de cas el seu identificador
+	 * com es el cas del cami
+	 */
 	public void modificarNombre(String nNuevo, MedioTransporte m) throws Exception {
 		String n = m.getNombre();
 		if (!medios.existe(n)) throw NoExiste;
@@ -75,14 +81,18 @@ public class ControladorMedioTransporte {
 	 * @param m medio de transporte que queremos modificar
 	 * @throws Exception si no existe el medio de transporte
 	 */
-		public void modificarPrecio(int pNuevo, MedioTransporte m) throws Exception {
-			String n = m.getNombre();
-			if (!medios.existe(n)) throw NoExiste;
-			else {
-				borrarMedioTransporte(n);
-				agregarMedioTransporte(n,pNuevo);
-			}	
-		}
+	/*
+	 * igual que a l'anterior metodo, en lloc de medioTransporte
+	 * s'hauria de demanar el nombre
+	 */
+	public void modificarPrecio(int pNuevo, MedioTransporte m) throws Exception {
+		String n = m.getNombre();
+		if (!medios.existe(n)) throw NoExiste;
+		else {
+			borrarMedioTransporte(n);
+			agregarMedioTransporte(n,pNuevo);
+		}	
+	}
 	
 	/*devuelve el num de transportes que hay en el map 
 	public int getCantidadTransportes(){
