@@ -11,7 +11,7 @@ public class ControladorMedioTransporte {
 	//WORK IN PROGRESS --> millorar els metodes per guardar i fer size
 	
 	 
-	private TST<MedioTransporte> medios;	//Aqui no es fa el new... es fa al metode constructor
+	private TST<MedioTransporte> medios;	
 	private final static int BUFFER_SIZE = 1000; 
 	
 	//control errores 
@@ -23,7 +23,7 @@ public class ControladorMedioTransporte {
 	 */
 	public ControladorMedioTransporte() 
 	{
-		medios = new TST<MedioTransporte>(); 	//només aquí cal el new...
+		medios = new TST<MedioTransporte>(); 	 
 	}
 	
 	
@@ -58,18 +58,12 @@ public class ControladorMedioTransporte {
 	 * @param m medio que queremos modificar
 	 * @throws Exception si el nombre ya existe o no existe el medio
 	 */
-	/*
-	 * no acabo de entendre perque has de pasar-li el parametre MedioTransporte
-	 * si de cas l'identificador, que seria el nom actual
-	 * les altres clases no tindran mediosTransporte, tindran si de cas el seu identificador
-	 * com es el cas del cami
-	 */
-	public void modificarNombre(String nNuevo, MedioTransporte m) throws Exception {
-		String n = m.getNombre();
+	public void modificarNombre(String nNuevo, String n) throws Exception {
 		if (!medios.existe(n)) throw NoExiste;
 		else if (medios.existe(nNuevo)) throw NombreYaExiste; 
 		else {
-			int c = m.getPrecio();
+			MedioTransporte aux = buscarMedio(n);
+			int c = aux.getPrecio(); 
 			borrarMedioTransporte(n);
 			agregarMedioTransporte(nNuevo,c);
 		}	
@@ -81,17 +75,21 @@ public class ControladorMedioTransporte {
 	 * @param m medio de transporte que queremos modificar
 	 * @throws Exception si no existe el medio de transporte
 	 */
-	/*
-	 * igual que a l'anterior metodo, en lloc de medioTransporte
-	 * s'hauria de demanar el nombre
-	 */
-	public void modificarPrecio(int pNuevo, MedioTransporte m) throws Exception {
-		String n = m.getNombre();
-		if (!medios.existe(n)) throw NoExiste;
+	public void modificarPrecio(int pNuevo, String ident) throws Exception {
+		if (!medios.existe(ident)) throw NoExiste;
 		else {
-			borrarMedioTransporte(n);
-			agregarMedioTransporte(n,pNuevo);
+			borrarMedioTransporte(ident);
+			agregarMedioTransporte(ident,pNuevo);
 		}	
+	}
+	
+	/**
+	 * Devuelve un medio de transporte del conjunto medios a partir de su identificador
+	 * @param ident del medio que queremos obtener
+	 * @return el medio con el nombre ident
+	 */
+	public MedioTransporte buscarMedio(String ident) {
+		return medios.consultar(ident); //funcio TST que retorna lobjecte
 	}
 	
 	/*devuelve el num de transportes que hay en el map 
@@ -127,12 +125,12 @@ public class ControladorMedioTransporte {
 				buffer = null; 
 			}
 		}*/
-		if (buffer != null) {
+		/*if (buffer != null) {
 			gd.writeBuffer(buffer); 
 		}
 		
 		gd.closeFile(); 
-	}
+	}*/
 	
 	
 	/**
@@ -171,4 +169,5 @@ public class ControladorMedioTransporte {
 		}
 		gd.closeFile(); 
 	}*/
+}
 }

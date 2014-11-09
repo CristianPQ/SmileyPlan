@@ -12,9 +12,10 @@ public class DriverControladorMedioTransporte {
                 + "\n 1.crear ControladorMedioTransporte()"
                 + "\n 2.agregarMedioTransporte(String nombre, int coste)"
                 + "\n 3.borrarMedioTransporte(String nombre)"
-                + "\n 4.modificarNombre(String nNuevo, MedioTransporte m)"
-                + "\n 5.modificarPrecio(int pNuevo, MedioTransporte m)"
-                + "\n 6.getCantidadTransportes()"  
+                + "\n 4.modificarNombre(String nNuevo, String n)"
+                + "\n 5.modificarPrecio(int pNuevo, String n)"
+                + "\n 6.getCantidadTransportes()" 
+                + "\n 7 buscarMedio(String ident)" 
         		+"\n");
     }
 	
@@ -44,26 +45,26 @@ public class DriverControladorMedioTransporte {
 	               break;
 	            }
 	            case 4:{
-	            	MedioTransporte med = null; 
 	            	String nombreNuevo = lsplited[1];
 	            	String nombreViejo = lsplited[2];
-	            	int precio = Integer.parseInt(lsplited[3]);
-	            	med = new MedioTransporte(nombreViejo,precio);
-	            	cm.modificarNombre(nombreNuevo,med); 
+	            	cm.modificarNombre(nombreNuevo,nombreViejo); 
 	                break;
 	            }
 	            case 5:{
-	            	MedioTransporte med = null; 
 	            	int precioNuevo = Integer.parseInt(lsplited[1]);
-	            	String nombre = lsplited[2];
-	            	int precio = Integer.parseInt(lsplited[3]);
-	            	med = new MedioTransporte(nombre,precio);
-	            	cm.modificarPrecio(precioNuevo,med); 
+	            	String nombre = lsplited[2];	            	
+	            	cm.modificarPrecio(precioNuevo, nombre); 
 	                break;            	
 	            }
 	            case 6: {
 	            	//System.out.print(cm.getCantidadTransportes() + "\n");
 	            	//break; 
+	            }
+	            case 7: {
+	            	MedioTransporte aux = null; 
+	            	String nombre = lsplited[1];	
+	            	aux = cm.buscarMedio(nombre);
+	            	break; 
 	            }
 	            case 0: {
 	                System.exit(0);
