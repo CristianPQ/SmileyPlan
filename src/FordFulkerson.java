@@ -3,8 +3,9 @@ import java.util.*;
 
 public class FordFulkerson {
 	
-	public Grafo ejecutar(GNode g, GNode f, String destino, ArrayList<String> rec) {
+	public GNode ejecutar(GNode g, GNode f, String destino, ArrayList<String> rec) {
 		if(g != null) {
+			ArrayList<GNodePeso> gHijos = g.consultarHijos();
 			for() {
 				
 			}
