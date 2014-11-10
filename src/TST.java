@@ -205,7 +205,7 @@ class TST<E>  //no estava la <E>
     	}
 
         
-    	System.out.println("rChar.data: " + rChar.data + "\n" + "letra: " + letra + "\n" + "\n");
+    	//System.out.println("rChar.data: " + rChar.data + "\n" + "letra: " + letra + "\n" + "\n");
     	
         if (letra < rChar.data)
             r.left = delete(r, r.left, word, ptr);
