@@ -11,14 +11,14 @@ private static void menu() {
 	                + "\n 1.new Controlador()"
 	                + "\n 2.anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo)"
 	                + "\n 3.eliminarAgente(String nombre)"
-	                + "\n 4.modificarNombreAgente(String nombreAntiguo, String nombreNuevo)"
-	                + "\n 5.modificarCiudadInicialAgente(String nombre, String ciudadInicial)"
-	                + "\n 6.modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)"
-	                + "\n 7.consultarAgentesCiudadInicial(String ciudadInicial)"
-	                + "\n 8.consultarAgentesCiudadObjetivo(String ciudadObjetivo)"
-	                + "\n 9.consultarAgentesCiudadInicialObjetivo(String ciudadInicial, String ciudadObjetivo)"
-	        		+ "\n 10.getNumeroDeAgentes()" 
-	                + "\n 11.eliminarTodo()"
+	                + "\n 4.existeAgente(String nombre)"
+	                + "\n 5.consultarCiudadInicialAgente(String nombre)"
+	                + "\n 6.consultarCiudadObjetivo(String nombre)"
+	        		+ "\n 7.modificarNombreAgente(String nombreAntiguo, String nombreNuevo)" 
+	                + "\n 8.modificarCiudadInicialAgente(String nombre, String ciudadInicial)"
+	        		+ "\n 9.modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)" 
+	                + "\n 10.getNumeroDeAgentes()"
+	        		+ "\n 11.eliminarTodo()"
 	        		+"\n");
 }
 
@@ -38,7 +38,7 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    				}
 	    				
-	    				case 2: {//CREAR/ANADIR
+	    				case 2: {//ANADIR
 	    					String nombre = lsplited[1];
 	    					String ciudadInicial = lsplited[2];
 	    					String ciudadObjetivo = lsplited[3];	    					
@@ -51,64 +51,48 @@ public static void main(String [] args) throws Exception {
 	    					conjAgentes.eliminarAgente(nombre);
 	    					break;
 	    				}
+	    				case 4: {//EXISTE?
+	    					String nombre = lsplited[1];
+	    					boolean existe = conjAgentes.existeAgente(nombre);
+	    					if (existe) System.out.println("El agente "+ nombre+" existe");
+	    					else System.out.println("El agente no existe");
+	    					break;
+	    				}	    			
 	    				
-	    				case 4: {//modificarNombre
+	    				case 5: {//consultarCiudadInicial
+	    					String nombre = lsplited[1];
+	    					String ciudadInicial = conjAgentes.consultarCiudadInicialAgente(nombre);
+	    					System.out.println("El agente "+ nombre+" tiene "+ ciudadInicial+ " como ciudadInicial");
+	    					break;
+	    				}	    				
+	    				case 6: {//consultarCiudadObjetivo
+	    					String nombre = lsplited[1];
+	    					String ciudadObjetivo = conjAgentes.consultarCiudadObjetivoAgente(nombre);
+	    					System.out.println("El agente "+ nombre+" tiene "+ ciudadObjetivo+ " como ciudadObjetivo");
+	    					break;
+	    				}
+	    				
+	    				case 7: {//modificarNombre
 	    					String nombreAntiguo = lsplited[1];
 	    					String nombreNuevo = lsplited[2];
 	    					conjAgentes.modificarNombreAgente(nombreAntiguo, nombreNuevo);
 	    					break;
 	    				}
-	    				
-	    				case 5: {//modificarCiudadInicial
+
+	    				case 8: {//modificarCiudadInicial
 	    					String nombre = lsplited[1];
 	    					String ciudadInicial = lsplited[2];
 	    					conjAgentes.modificarCiudadInicialAgente(nombre, ciudadInicial);
 	    					break;
 	    				}
 	    				
-	    				case 6: {//modificarCiudadObjetivo
+	    				case 9: {//modificarCiudadObjetivo
 	    					String nombre = lsplited[1];
 	    					String ciudadObjetivo = lsplited[2];
 	    					conjAgentes.modificarCiudadObjetivoAgente(nombre, ciudadObjetivo);
 	    					break;
 	    				}
-	    				
-	    				case 7: {//consultarAgentesCiudadInicial
-	    					String ciudadInicial = lsplited[1];
-	    					List<Agente> l = conjAgentes.consultarAgentesCiudadInicial(ciudadInicial);
-	    					Iterator<Agente> iter = l.iterator();
-	    					Agente a;
-	    					while (iter.hasNext()){
-	    						a = iter.next();
-	    						System.out.println(a.consultarNombre());
-	    						}
-	    					break;									
-	    				}
-	    				
-	    				case 8: {//consultarAgentesCiudadObjetivo
-	    					String ciudadObjetivo = lsplited[1];
-	    					List<Agente> l = conjAgentes.consultarAgentesCiudadObjetivo(ciudadObjetivo);
-	    					Iterator<Agente> iter = l.iterator();
-	    					Agente a;
-	    					while (iter.hasNext()){
-	    						a = iter.next();
-	    						System.out.println(a.consultarNombre());
-	    						}
-	    					break;					
-	    				} 
-	    				
-	    				case 9: {//consultarAgentesCiudadInicialCiudadObjetivo
-	    					String ciudadInicial = lsplited[1];
-	    					String ciudadObjetivo = lsplited[2];
-	    					List<Agente> l = conjAgentes.consultarAgentesCiudadInicialObjetivo(ciudadInicial, ciudadObjetivo);
-	    					Iterator<Agente> iter = l.iterator();
-	    					Agente a;
-	    					while (iter.hasNext()){
-	    						a = iter.next();
-	    						System.out.println(a.consultarNombre());
-	    						}
-	    					break;					
-	    				} 
+
 	    				case 10: {//numeroAgentes
 	    					
 	    					int numAg = conjAgentes.getNumeroDeAgentes();

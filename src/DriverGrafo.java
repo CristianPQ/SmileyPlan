@@ -35,7 +35,8 @@ public static void main(String [] args) throws Exception {
 	    			lsplited = sc.nextLine().split(" ");
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {
-	    					g = new Grafo();
+	    					int numVertex = Integer.parseInt(lsplited[0]);
+	    					g = new Grafo(numVertex);
 	    					break;
 	    				}
 	    				case 2:{

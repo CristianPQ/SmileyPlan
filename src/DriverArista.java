@@ -79,7 +79,7 @@ public static void main(String [] args) throws Exception {
 	    				}
 	    				
 	    				case 8: {//consultarCoste
-	    					int c = a.consultarCapacidad();
+	    					int c = a.consultarCoste();
 	    					System.out.println("Capacidad:" + c + "\n");
 	    					break;
 	    				}
