@@ -29,16 +29,16 @@ public class Camino {
 		transporte = transporte2;
 		capacidad = 1;
 	}
-    public String getTransporte(){
+    public String consultarTransporte(){
     	return transporte;
     }
-    public String getDestino(){
+    public String consultarDestino(){
     	return ciudadDestino;
     }
-    public String getOrigen(){
+    public String consultarOrigen(){
     	return ciudadOrigen;
     }
-    public int getCapacidad(){
+    public int consultarCapacidad(){
     	return capacidad;
     }
 
