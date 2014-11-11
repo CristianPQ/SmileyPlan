@@ -40,7 +40,7 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    				}
 	    				case 2:{
-	    					g.vaciarGrafo();
+	 //   					g.vaciarGrafo();
 	    				}
 	    				
 	    				case 3: {//AnadirArista
@@ -55,7 +55,7 @@ public static void main(String [] args) throws Exception {
 	    				case 4:{ //eliminarArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
-	    					g.eliminarArista(vertex, targetVertex);
+	   // 					g.eliminarArista(vertex, targetVertex);
 	    				}
 	    				
 	    				case 5: {//consultarFlujoArista
@@ -114,8 +114,8 @@ public static void main(String [] args) throws Exception {
 	    				
 	    				case 12: {
 	    					int vertex = Integer.parseInt(lsplited[1]);
-	    					int num = g.consultarNumAristasVertice(vertex);
-	    					System.out.println("Aristas desde vertice "+ vertex+ ": " + num + "\n");
+	    			//		int num = g.consultarNumAristasVertice(vertex);
+	    			//		System.out.println("Aristas desde vertice "+ vertex+ ": " + num + "\n");
 	    				}
 	    		
 	    				

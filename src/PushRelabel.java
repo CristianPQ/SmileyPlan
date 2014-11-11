@@ -16,9 +16,9 @@ public class PushRelabel extends Algoritmo {
 		for (int i = 0; i < alturas.length; ++i){
 			if ( i == s) {
 				alturas[i] = g.consultarNumVertices();
-				int[] adyacencias = g.consultarAdyacencias(s);
+				Arista[] adyacencias = g.consultarAdyacentes(s);
 				for (int j = 0; i < adyacencias.length; ++j){
-					alturas[s] += g.consultarCapacidadArista(s, adyacencias[j]);
+					alturas[s] += adyacencias[j].consultarCapacidad();
 				}
 
 			}
@@ -50,16 +50,25 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception
 	 */
 	private void relabel(Grafo g, int u) throws Exception{
-		int[] adyacencias = g.consultarAdyacencias(u);
+		Arista[] adyacencias = g.consultarAdyacentes(u);
 		int capacidadResidual;
 		int nuevaAltura = alturas[u];   //empiezo comparando con su altura actual
 		for (int i = 0; i < adyacencias.length; ++i){
-			capacidadResidual = g.consultarCapacidadArista(u, adyacencias[i]) - g.consultarFlujoArista(u,  adyacencias[i]);
+			capacidadResidual = adyacencias[i].consultarCapacidad() - adyacencias[i].consultarFlujo();
 			if (capacidadResidual > 0)
-				if (nuevaAltura > alturas[adyacencias[i]]) nuevaAltura = alturas[adyacencias[i]]+1;
+				if (nuevaAltura > alturas[adyacencias[i].consultarVerticeDestino()]) nuevaAltura = alturas[adyacencias[i].consultarVerticeDestino()]+1;
 		}
 	}
-	public Grafo ejecutar ( Grafo g, int s, int t){
+	/**
+	 * anado el la salida a la cola, mientras la cola no este vacia conuslto los vertices adyacentes del primer elemnto
+	 * m la utilizo para q en caso de que no puede dar flujo aumentar la altura en ese valor
+	 * para cada vertice adyacente miro si este aun le cabe mas flujo, si es asi y ademas esta mas bajo que yo le hago push,
+	 * si no estava en la cola pasa a estarlo porque tiene un exceso, en caso de no tenga voy actualizando m
+	 * una vez visitados todos los adyacentes si aun tengo un exceso vuelvo a iterar pero con altura m + 1, si no 
+	 * lo quito de la cola y vuelvo a iterar con el siguiente vertice de la cola.
+	 * @throws Exception 
+	 */
+	public Grafo ejecutar ( Grafo g, int s, int t) throws Exception{
 		LinkedList<Integer> q = new LinkedList<Integer>();
 		inicializacion(g, s);
 		q.addLast(s);
@@ -67,14 +76,14 @@ public class PushRelabel extends Algoritmo {
 		while (q.size() > 0 ){
 			u = q.getFirst();
 			 m = -1;
-			int[] adyacencias = g.consultarAdyacencias(u);
+			Arista[] adyacencias = g.consultarAdyacentes(u);
 			for (int i = 0; exceso[u]> 0 && i < adyacencias.length; ++i){
-				v = adyacencias[i];
+				v = adyacencias[i].consultarVerticeDestino();
 				capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
 				//si la arista aun puede soportar mas flujo y si el vertize esta mas alto q el destino
 				if ( capacidadResidual > 0){
 					if (alturas[u] > alturas[v]){ 
-						push(g,u,adyacencias[i]);
+						push(g,u,adyacencias[i].consultarVerticeDestino());
 						if (!q.contains(v) && v != s && v != t) q.addLast(v); 
 					}
 					else if (m==-1) m = alturas[v];
@@ -84,7 +93,7 @@ public class PushRelabel extends Algoritmo {
 			}
 			if (exceso[u] != 0) exceso[u] = 1 + m;
 			else {
-				q.pollFirst();
+				q.removeFirst();
 			}
 
 		}
