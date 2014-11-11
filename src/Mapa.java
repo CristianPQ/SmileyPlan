@@ -9,7 +9,8 @@ public class Mapa {
 	/*private int anchuraX;
 	private int alturaY;
 	private ConjuntoCiudades ciudades;*/
-	private Map<String, ArrayList<Camino/*destino*/>> caminos;
+	private TST<TST<TST<Camino>>> caminos;
+	TST <Ciudad> ciudades;
 	private String[][] mapa;
 	
 	
@@ -26,7 +27,7 @@ public class Mapa {
 		
 		agregarContinente(continente);
 		
-		caminos = new HashMap<String, ArrayList<Camino/*destino*/>>();
+		//caminos = new HashMap<String, ArrayList<Camino/*destino*/>>();
 	}
 	
 	private void agregarContinente(Coordenadas[] continente) {
