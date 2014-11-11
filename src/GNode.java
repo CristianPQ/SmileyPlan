@@ -9,11 +9,11 @@ public class GNode {
 
 	public GNode(String nCiudad) {
 		nombreCiudad = nCiudad;
+		hijos = new ArrayList<GNodePeso>();
 	}
 	
 	public void agregarHijo(int f, int ca, int co, String nCiudad) {
 		hijos.add(new GNodePeso(f, ca, co, nCiudad));
-		hijos = new ArrayList<GNodePeso>();
 	}
 	
 	public void eliminarHijo(String nCiudad) {

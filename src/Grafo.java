@@ -4,43 +4,57 @@ public class Grafo {
 	//constructora
 //	ArrayList<ArrayList<Arista>> grafo;
 
-	TST<Arista> grafo[];
+	Arista[][] Adyacencias;
 	int numVertices;
-	int numAdyacencias[];
 	
-	private static Exception NoExiste = new Exception ("La adyacencia NO existe");
+	//private static Exception NoExiste = new Exception ("La adyacencia NO existe");
 
 
 	
 	public Grafo(int numVertex){
 		numVertices = numVertex;
-		for(int i = 0; i < numVertices; ++i){
-			grafo[i] = new TST<Arista>();
-			numAdyacencias[i] = 0;
+		Adyacencias = new Arista[numVertex][];
 		}
+	
+	public void anadirNumeroAdyacencias(int numVertex, int numAd ){
+		Adyacencias[numVertex] = new Arista[numAd];
+	}
 		
-	}
+
 	
-	public void vaciarGrafo(){
-		for (int i = 0; i < numVertices; i++) grafo[i].makeEmpty();
+	/*public void vaciarGrafo(){
+		for (int i = 0; i < Adyacencias.length; i+){
+			
+		}
+			grafo[i].makeEmpty();
 	}
+	*/
 	
-	public boolean existeAdyacencia(int vertex, int targetVertex){
-		return grafo[vertex].existe(Integer.toString(targetVertex));
+	public Arista[] consultarAdyacentes(int vertex){
+		return Adyacencias[vertex];
 	}
 	
 	public void anadirArista (int vertex, int targetVertex,
 			int flow, int capacity, int cost){
 		Arista a = new Arista(targetVertex, flow, capacity, cost);
-		grafo[vertex].insert(a);
-		numAdyacencias[vertex]++;
+		int i = 0;
+		boolean trobat = false;
+		while (i < Adyacencias[vertex].length && !trobat){
+			if (Adyacencias[vertex][i] == null) {
+				Adyacencias[vertex][i] = a;
+				trobat = true;
+			
+			}
+			++i;
+		}
+
 	}
-	
+/*	
 	public void eliminarArista(int vertex, int targetVertex){
 		grafo[vertex].delete(Integer.toString(targetVertex));
 		numAdyacencias[vertex]--;
 	}
-	
+	*/
 /*	public int consultarVerticeDestinoArista
 		(int vertex){
 			Arista a = grafo.get(vertex);
@@ -55,68 +69,82 @@ public class Grafo {
 	}
 */
 	
-	public int consultarFlujoArista(int vertex, int targetVertex) throws Exception{
-		if(existeAdyacencia(vertex,targetVertex)){
-			Arista a = grafo[vertex].consultar(Integer.toString(targetVertex));
-			return a.consultarFlujo();
+	public int consultarFlujoArista(int vertex, int targetVertex){
+		int i = 0;
+		while (i < Adyacencias[vertex].length){
+			if (Adyacencias[vertex][i].consultarVerticeDestino() == targetVertex) {
+				return Adyacencias[vertex][i].consultarFlujo();
+			}
+			++i;
 		}
-		else throw NoExiste;
+		return 0;
 	}
 
 	public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo) 
-			throws Exception{
-			
-			if (existeAdyacencia(vertex, targetVertex)){
-				Arista a = grafo[vertex].consultar(Integer.toString(targetVertex));
-				a.modificarFlujo(nuevoFlujo);
-				grafo[vertex].delete(Integer.toString(targetVertex));
-				grafo[vertex].insert(a);	
+			{
+		boolean trobat = false;
+		int i = 0;
+		while (i < Adyacencias[vertex].length && !trobat){
+			if (Adyacencias[vertex][i].consultarVerticeDestino() == targetVertex) {
+				Adyacencias[vertex][i].modificarFlujo(nuevoFlujo);
+				trobat = true;
 				}
-				else throw NoExiste;
-			}
+			++i;
+		}
+	}
 
 	
-	public int consultarCapacidadArista(int vertex, int targetVertex) throws Exception{
-		if(existeAdyacencia(vertex,targetVertex)){
-			Arista a = grafo[vertex].consultar(Integer.toString(targetVertex));
-			return a.consultarCapacidad();
+	public int consultarCapacidadArista(int vertex, int targetVertex) {
+		int i = 0;
+		while (i < Adyacencias[vertex].length){
+			if (Adyacencias[vertex][i].consultarVerticeDestino() == targetVertex) {
+				return Adyacencias[vertex][i].consultarCapacidad();
+			}
+			++i;
 		}
-		else throw NoExiste;
+		return 0;
 	}
 
 
 	public void modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad) 
-				throws Exception{
+			{
 				
-		if (existeAdyacencia(vertex, targetVertex)){
-				Arista a = grafo[vertex].consultar(Integer.toString(targetVertex));
-				a.modificarFlujo(nuevaCapacidad);
-				grafo[vertex].delete(Integer.toString(targetVertex));
-				grafo[vertex].insert(a);	
+		boolean trobat = false;
+		int i = 0;
+		while (i < Adyacencias[vertex].length && !trobat){
+			if (Adyacencias[vertex][i].consultarVerticeDestino() == targetVertex) {
+				Adyacencias[vertex][i].modificarCapacidad(nuevaCapacidad);
+				trobat = true;
 				}
-		
-		else throw NoExiste;
+			++i;
 		}
+	}
 	
 	public int consultarCosteArista(int vertex, int targetVertex)throws Exception{
-		if(existeAdyacencia(vertex,targetVertex)){
-			Arista a = grafo[vertex].consultar(Integer.toString(targetVertex));
-			return a.consultarCoste();
+		int i = 0;
+		while (i < Adyacencias[vertex].length){
+			if (Adyacencias[vertex][i].consultarVerticeDestino() == targetVertex) {
+				return Adyacencias[vertex][i].consultarCoste();
+			}
+			++i;
 		}
-		else throw NoExiste;
+		return 0;
 	}
 
 	
-	public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste) throws Exception{
-		if (existeAdyacencia(vertex, targetVertex)){
-			Arista a = grafo[vertex].consultar(Integer.toString(targetVertex));
-			a.modificarFlujo(nuevoCoste);
-			grafo[vertex].delete(Integer.toString(targetVertex));
-			grafo[vertex].insert(a);	
+	public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)
+		{
+			
+	boolean trobat = false;
+	int i = 0;
+	while (i < Adyacencias[vertex].length && !trobat){
+		if (Adyacencias[vertex][i].consultarVerticeDestino() == targetVertex) {
+			Adyacencias[vertex][i].modificarCoste(nuevoCoste);
+			trobat = true;
 			}
-	
-		else throw NoExiste;
+		++i;
 	}
+}
 	
 	
 	//consulta num vertices
@@ -124,8 +152,9 @@ public class Grafo {
 		return numVertices;
 	}
 
-	public int consultarNumAristasVertice(int vertex){
+	/*public int consultarNumAristasVertice(int vertex){
 		return numAdyacencias[vertex];
 	}
+	*/
 
 }
