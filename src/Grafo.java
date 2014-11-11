@@ -21,15 +21,7 @@ public class Grafo {
 	}
 		
 
-	
-	/*public void vaciarGrafo(){
-		for (int i = 0; i < Adyacencias.length; i+){
-			
-		}
-			grafo[i].makeEmpty();
-	}
-	*/
-	
+
 	public Arista[] consultarAdyacentes(int vertex){
 		return Adyacencias[vertex];
 	}
@@ -49,25 +41,7 @@ public class Grafo {
 		}
 
 	}
-/*	
-	public void eliminarArista(int vertex, int targetVertex){
-		grafo[vertex].delete(Integer.toString(targetVertex));
-		numAdyacencias[vertex]--;
-	}
-	*/
-/*	public int consultarVerticeDestinoArista
-		(int vertex){
-			Arista a = grafo.get(vertex);
-			return a.consultarVerticeDestino();
-	}
 
-	public void modificarVerticeDestinoArista
-		(int vertex, int nuevoVerticeDestino) {
-			Arista a = grafo.get(vertex);
-			a.modificarVerticeDestino(nuevoFlujo);
-			grafo.add(vertex,a);
-	}
-*/
 	
 	public int consultarFlujoArista(int vertex, int targetVertex){
 		int i = 0;
@@ -152,9 +126,5 @@ public class Grafo {
 		return numVertices;
 	}
 
-	/*public int consultarNumAristasVertice(int vertex){
-		return numAdyacencias[vertex];
-	}
-	*/
 
 }

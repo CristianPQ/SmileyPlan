@@ -57,7 +57,7 @@ public static void main(String [] args) throws Exception {
 	    					Iterator<GNodePeso> it = g.consultarIteradorHijos();
 	    					int coste = it.next().consultarCoste();
 	    					int capacidad = it.next().consultarCapacidad();
-	    					int flujo = it.next().consultarFlujo();
+	    					int flujo = it.get(0);
 	    					
 	    					System.out.println(coste + flujo + capacidad);
 	    					break;
