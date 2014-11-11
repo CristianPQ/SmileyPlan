@@ -6,20 +6,34 @@ public class PushRelabel extends Algoritmo {
 	
 	private int[] alturas;
 	private int[] exceso;
+	private int[] active;
+	private LinkedList<Integer> q;
 	/**
 	 * inicializa todas las alturas a 0 menos la del origen a numero de vertices, incializo
 	 * el exceso de del origen a tanto como la suma de los flujos q tiene de salida
 	 * @param g
 	 * @param s
 	 */
-	private void inicializacion(Grafo g,int s){
+	private void inicializacion(Grafo g,int s, int t){
+		int v;
 		for (int i = 0; i < alturas.length; ++i){
+			
+
 			if ( i == s) {
+		
 				alturas[i] = g.consultarNumVertices();
 				Arista[] adyacencias = g.consultarAdyacentes(s);
-				for (int j = 0; i < adyacencias.length; ++j){
-					alturas[s] += adyacencias[j].consultarCapacidad();
+		
+				for (int j = 0; j < adyacencias.length; ++j){
+					v = adyacencias[j].consultarVerticeDestino();
+					if (v != t){
+						active[v] = 1;
+						q.addLast(v);
+						exceso[v]= adyacencias[j].consultarCapacidad();
+					}
+					//System.out.println("exceso " + exceso[s]);
 				}
+	
 
 			}
 			else alturas[i] = 0; 
@@ -34,7 +48,8 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	private void push(Grafo g, int u, int v) throws Exception{
-		
+		System.out.println("entra en el push");
+
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
 		int temp = Math.min(capacidadResidual,exceso[u]);
 		int nuevoFlujo = g.consultarFlujoArista(u, v) + temp;
@@ -69,30 +84,43 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	public Grafo ejecutar ( Grafo g, int s, int t) throws Exception{
-		LinkedList<Integer> q = new LinkedList<Integer>();
-		inicializacion(g, s);
-		q.addLast(s);
+	
+		alturas = new int[g.consultarNumVertices()];
+		exceso = new int[g.consultarNumVertices()];
+		active = new int[g.consultarNumVertices()];
+		q = new LinkedList<Integer>();
+		inicializacion(g, s, t);
+	
+		//q.addLast(s);
 		int capacidadResidual,u,v,m;
+	
 		while (q.size() > 0 ){
 			u = q.getFirst();
 			 m = -1;
 			Arista[] adyacencias = g.consultarAdyacentes(u);
+			System.out.println("aqui " + exceso[u]);
 			for (int i = 0; exceso[u]> 0 && i < adyacencias.length; ++i){
+	
 				v = adyacencias[i].consultarVerticeDestino();
+				System.out.println("aqui2 " + v);
 				capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
 				//si la arista aun puede soportar mas flujo y si el vertize esta mas alto q el destino
 				if ( capacidadResidual > 0){
 					if (alturas[u] > alturas[v]){ 
-						push(g,u,adyacencias[i].consultarVerticeDestino());
-						if (!q.contains(v) && v != s && v != t) q.addLast(v); 
+						push(g,u,v);
+						if (active[v] == 0 && v != s && v != t){
+							active[i] = 1;
+							q.addLast(v); 
+						}
 					}
 					else if (m==-1) m = alturas[v];
 					else m = Math.min(m, alturas[v]);
 				}
 				
 			}
-			if (exceso[u] != 0) exceso[u] = 1 + m;
+			if (exceso[u] != 0) alturas[u] = 1 + m;
 			else {
+				active[u] = 0;
 				q.removeFirst();
 			}
 
