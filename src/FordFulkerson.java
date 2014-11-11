@@ -7,7 +7,9 @@ public class FordFulkerson {
 		if(g != null) {
 			Iterator<GNodePeso> it = g.consultarIteradorHijos();
 			while(it.hasNext()) {
-				it.next()
+				GNode n = it.next().consultarNodo();
+				n =  ejecutar(n, f, destino, rec);
+				((GNodePeso) it).modificarNodo(n);
 			}
 			
 		}

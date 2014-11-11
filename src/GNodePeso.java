@@ -27,4 +27,11 @@ public class GNodePeso {
 			return coste;
 		}
 		
+		public GNode consultarNodo() {
+			return nodo;
+		}
+		
+		public void modificarNodo(GNode nuevoNodo) {
+			nodo = nuevoNodo;
+		}
 }
