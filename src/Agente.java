@@ -1,4 +1,4 @@
-/*
+/**
  * @author Daniel Villanueva 
  */
 
@@ -7,7 +7,7 @@ public class Agente {
 	private String ciudadInicial;
 	private String ciudadObjetivo;
 	
-	/*
+	/**
 	 * Constructora de agente
 	 */
 
@@ -16,15 +16,16 @@ public class Agente {
 		ciudadInicial = InitialCity;
         ciudadObjetivo = TargetCity;
 	}
-	/*
+	
+	/**
 	 * Consultora de nombre
 	 */
 	
-	public String consultarNombre() { //getter for nombre
+	public String consultarNombre() { 
 		return nombre;
 	}
 	
-	/*
+	/**
 	 * Modificadora de nombre
 	 */
 	
@@ -32,7 +33,7 @@ public class Agente {
 		nombre = name;
 	}
 	
-	/*
+	/**
 	 * Consultora de ciudadInicial
 	*/
 	
@@ -40,7 +41,7 @@ public class Agente {
 		return ciudadInicial;
 	}
 	
-	/*
+	/**
 	 * Modificadora de ciudadInicial
 	*/
 	
@@ -48,7 +49,7 @@ public class Agente {
 		ciudadInicial = InitialCity;
 	}
 	
-	/*
+	/**
 	 * Consultora de ciudadObjetivo
 	*/
 	
@@ -56,7 +57,7 @@ public class Agente {
 		return ciudadObjetivo;
 	}
 	
-	/*
+	/**
 	 * Modificadora de ciudadObjetivo
 	*/
 	

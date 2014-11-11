@@ -1,5 +1,5 @@
 
-/*
+/**
  * @author Daniel Villanueva 
  */
 
@@ -10,7 +10,7 @@ public class ControladorAgentes {
 		private static Exception NombreYaExiste = new Exception ("El agente ya existe");
 		private static Exception NoExiste = new Exception ("El agente no existe");
 
-		/*
+		/**
 		 * Constructora del controlador
 		 */
 
@@ -20,9 +20,9 @@ public class ControladorAgentes {
 		}
 		
 		
-		/*
-		 * Vaciar todo el contenedor de agentes
-		 */
+	/**
+	 * Vaciar todo el contenedor de agentes
+	 */
 		
 		public void eliminarTodo(){ //SEGURO2
 			Agentes.makeEmpty();
@@ -30,7 +30,7 @@ public class ControladorAgentes {
 		}
 
 
-		/*
+		/**
 		 * Consulta la existencia o no de un agente
 		 */
 		
@@ -38,7 +38,7 @@ public class ControladorAgentes {
 			return Agentes.existe(nombre);
 		}
 		
-		/*
+		/**
 		 * Anadir un agente
 		 */
 			
@@ -53,7 +53,7 @@ public class ControladorAgentes {
 			else throw NombreYaExiste;	
 		}
 		
-		/*
+		/**
 		 * Eliminar un agente
 		 */
 		
@@ -67,7 +67,7 @@ public class ControladorAgentes {
 
 			}
 
-		/*
+		/**
 		 * Consultora de la ciudadInicial de un agente
 		 */
 		
@@ -79,7 +79,7 @@ public class ControladorAgentes {
 			else throw NoExiste;
 		}
 		
-		/*
+		/**
 		 * Consultora de la ciudadObjetivo de un agente
 		 */
 		
@@ -92,7 +92,7 @@ public class ControladorAgentes {
 
 		}
 		
-		/*
+		/**
 		 * Modificadora del nombre de un agente (si existe)
 		 */
 		
@@ -111,7 +111,7 @@ public class ControladorAgentes {
 			
 		}
 
-		/*
+		/**
 		 * Modificadora de la ciudadInicial de un agente (si este existe)
 		 */
 		
@@ -131,7 +131,7 @@ public class ControladorAgentes {
 		}
 
 		
-		/*
+		/**
 		 * Modificadora de la ciudadObjetivo de un agente (si este existe)
 		 */
 		
@@ -149,8 +149,8 @@ public class ControladorAgentes {
 			else throw NoExiste;
 		}
         
-		/*
-		 * Consultora del número de agentes contenidos
+		/**
+		 * Consultora del numero de agentes contenidos
 		 */
         
         public int getNumeroDeAgentes(){ 
