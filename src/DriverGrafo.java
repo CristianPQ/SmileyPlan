@@ -25,7 +25,7 @@ private static void menu() {
 }
 
 public static void main(String [] args) throws Exception {
-			Grafo g = null;
+			OtroGrafo g = null;
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
@@ -36,16 +36,16 @@ public static void main(String [] args) throws Exception {
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
-	    					g = new Grafo(numVertex);
+	    					g = new OtroGrafo(numVertex);
 	    					break;
 	    				}
-	    				case 2:{	    				
+	    				/*case 2:{	    				
 	    					int numVertex = Integer.parseInt(lsplited[1]);
 	    					int numAd = Integer.parseInt(lsplited[2]);
 	    					g.anadirNumeroAdyacencias(numVertex, numAd);
 	    					break;
 	    				}
-	    				
+	    				*/
 	    				case 3: {//AnadirArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);

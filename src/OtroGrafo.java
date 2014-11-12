@@ -4,7 +4,7 @@ public class OtroGrafo {
 	//constructora
 //	ArrayList<ArrayList<Arista>> grafo;
 
-	List <Arista> Adyacencias[];
+	List <ArrayList<Arista> > Adyacencias;
 	int numVertices;
 	
 	//private static Exception NoExiste = new Exception ("La adyacencia NO existe");
@@ -12,8 +12,9 @@ public class OtroGrafo {
 
 	
 	public OtroGrafo(int numVertex){
+		Adyacencias = new ArrayList<ArrayList<Arista>>();
 		numVertices = numVertex;
-		for (int i = 0; i < numVertex; ++i) Adyacencias[i] = new ArrayList<Arista>();
+		for (int i = 0; i < numVertex; ++i) Adyacencias.add(new ArrayList<Arista>());
 
 	}
 	/*
@@ -33,23 +34,28 @@ public class OtroGrafo {
 	*/
 
 	public List <Arista> consultarAdyacentes(int vertex){
-		return Adyacencias[vertex];
+		return Adyacencias.get(vertex);
 	}
 
 	public void anadirArista (int vertex, int targetVertex,
 			int flow, int capacity, int cost){
 		Arista a = new Arista(targetVertex, flow, capacity, cost);
-		
-		Adyacencias[vertex].add(a);
+		ArrayList<Arista> l = Adyacencias.get(vertex);
+		l.add(a);
+		Adyacencias.remove(vertex);
+		Adyacencias.add(vertex, l);		
 		}
 
 	public void eliminarArista(int vertex, int targetVertex){
 		int i;
 		boolean trobat = false;
-		for (i = 0; i < Adyacencias[vertex].size() && !trobat; ++i){
-			if( !Adyacencias[vertex].get(i).equals(null) &&
-					Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-				Adyacencias[vertex].remove(i);
+		ArrayList<Arista> l = Adyacencias.get(vertex);
+		for (i = 0; i < l.size() && !trobat; ++i){
+			if( !l.get(i).equals(null) &&
+					l.get(i).consultarVerticeDestino() == targetVertex){
+					l.remove(i);
+					Adyacencias.remove(vertex);
+					Adyacencias.add(vertex, l);
 				trobat = true;
 			}
 			
@@ -73,10 +79,11 @@ public class OtroGrafo {
 	public int consultarFlujoArista(int vertex, int targetVertex){
 		int i;
 		boolean trobat = false;
-		for (i = 0; i < Adyacencias[vertex].size() && !trobat; ++i){
-			if( !Adyacencias[vertex].get(i).equals(null) &&
-					Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-						return Adyacencias[vertex].get(i).consultarFlujo();
+		ArrayList<Arista> l = Adyacencias.get(vertex);
+		for (i = 0; i < l.size() && !trobat; ++i){
+			if( !l.get(i).equals(null) &&
+					l.get(i).consultarVerticeDestino() == targetVertex){
+						return l.get(i).consultarFlujo();
 			}			
 		}
 		return 0;
@@ -85,13 +92,16 @@ public class OtroGrafo {
 	public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo){ 
 	int i;
 	boolean trobat = false;
-	for (i = 0; i < Adyacencias[vertex].size() && !trobat; ++i){
-		if( !Adyacencias[vertex].get(i).equals(null) &&
-				Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-					Arista a = Adyacencias[vertex].get(i);
+	ArrayList<Arista> l = Adyacencias.get(vertex);
+	for (i = 0; i < l.size() && !trobat; ++i){
+		if( !l.get(i).equals(null) &&
+				l.get(i).consultarVerticeDestino() == targetVertex){
+					Arista a = l.get(i);
 					a.modificarFlujo(nuevoFlujo);
-					Adyacencias[vertex].remove(i);
-					Adyacencias[vertex].add(i,a);
+					l.remove(i);
+					l.add(i,a);
+					Adyacencias.remove(i);
+					Adyacencias.add(i, l);
 		}			
 	}
 }
@@ -100,41 +110,48 @@ public class OtroGrafo {
 	public int consultarCapacidadArista(int vertex, int targetVertex) {
 		int i;
 		boolean trobat = false;
-		for (i = 0; i < Adyacencias[vertex].size() && !trobat; ++i){
-			if( !Adyacencias[vertex].get(i).equals(null) &&
-					Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-						return Adyacencias[vertex].get(i).consultarCapacidad();
+		ArrayList<Arista> l = Adyacencias.get(vertex);
+		for (i = 0; i < l.size() && !trobat; ++i){
+			if( !l.get(i).equals(null) &&
+					l.get(i).consultarVerticeDestino() == targetVertex){
+						return l.get(i).consultarCapacidad();
 			}			
 		}
 		return 0;
 	}
 
 
+
 	public void modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad) {
-	int i;
-	boolean trobat = false;
-	for (i = 0; i < Adyacencias[vertex].size() && !trobat; ++i){
-		if( !Adyacencias[vertex].get(i).equals(null) &&
-				Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-					Arista a = Adyacencias[vertex].get(i);
-					a.modificarFlujo(nuevaCapacidad);
-					Adyacencias[vertex].remove(i);
-					Adyacencias[vertex].add(i,a);
-		}			
+		int i;
+		boolean trobat = false;
+		ArrayList<Arista> l = Adyacencias.get(vertex);
+		for (i = 0; i < l.size() && !trobat; ++i){
+			if( !l.get(i).equals(null) &&
+					l.get(i).consultarVerticeDestino() == targetVertex){
+						Arista a = l.get(i);
+						a.modificarCapacidad(nuevaCapacidad);
+						l.remove(i);
+						l.add(i,a);
+						Adyacencias.remove(i);
+						Adyacencias.add(i, l);
+			}			
+		}
 	}
-}
 	
 	public int consultarCosteArista(int vertex, int targetVertex)throws Exception{
 		int i;
 		boolean trobat = false;
-		for (i = 0; i < Adyacencias[vertex].size() && !trobat; ++i){
-			if( !Adyacencias[vertex].get(i).equals(null) &&
-					Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-						return Adyacencias[vertex].get(i).consultarCoste();
+		ArrayList<Arista> l = Adyacencias.get(vertex);
+		for (i = 0; i < l.size() && !trobat; ++i){
+			if( !l.get(i).equals(null) &&
+					l.get(i).consultarVerticeDestino() == targetVertex){
+						return l.get(i).consultarCoste();
 			}			
 		}
 		return 0;
 	}
+
 
 	
 	public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)
@@ -142,26 +159,31 @@ public class OtroGrafo {
 			
 		int i;
 		boolean trobat = false;
-		for (i = 0; i < Adyacencias[vertex].size() && !trobat; ++i){
-			if( !Adyacencias[vertex].get(i).equals(null) &&
-					Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-						Arista a = Adyacencias[vertex].get(i);
-						a.modificarFlujo(nuevoCoste);
-						Adyacencias[vertex].remove(i);
-						Adyacencias[vertex].add(i,a);
+		ArrayList<Arista> l = Adyacencias.get(vertex);
+		for (i = 0; i < l.size() && !trobat; ++i){
+			if( !l.get(i).equals(null) &&
+					l.get(i).consultarVerticeDestino() == targetVertex){
+						Arista a = l.get(i);
+						a.modificarCoste(nuevoCoste);
+						l.remove(i);
+						l.add(i,a);
+						Adyacencias.remove(i);
+						Adyacencias.add(i, l);
 			}			
 		}
 	}
 	
 	
+	
 	//consulta num vertices
 	public int consultarNumVertices(){
-		return Adyacencias.length;
+		return Adyacencias.size();
 	}
 
 	
 	public int consultarNumAristasVertice(int vertex){
-		return Adyacencias[vertex].size();
+		ArrayList<Arista> l = Adyacencias.get(vertex);
+		return l.size();
 	}
 	
 
