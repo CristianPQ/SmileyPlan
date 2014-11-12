@@ -62,7 +62,7 @@ public class GrafoAntiguo {
 						Arista a = Adyacencias[vertex].get(i);
 						a.modificarFlujo(nuevoFlujo);
 						Adyacencias[vertex].remove(i);
-						Adyacencias[vertex].add(i,a);
+						Adyacencias[vertex].add(a);
 
 			}			
 		}
@@ -92,7 +92,7 @@ public class GrafoAntiguo {
 						Arista a = Adyacencias[vertex].get(i);
 						a.modificarCapacidad(nuevaCapacidad);
 						Adyacencias[vertex].remove(i);
-						Adyacencias[vertex].add(i,a);
+						Adyacencias[vertex].add(a);
 			}			
 		}
 	}
@@ -118,7 +118,7 @@ public class GrafoAntiguo {
 						Arista a = Adyacencias[vertex].get(i);
 						a.modificarCoste(nuevoCoste);
 						Adyacencias[vertex].remove(i);
-						Adyacencias[vertex].add(i,a);
+						Adyacencias[vertex].add(a);
 
 			}			
 		}
