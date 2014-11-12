@@ -10,32 +10,40 @@ import java.util.*;
  */
 
 public class GestorDatos {
-	 private String nomD;
-	 private String nomF;
-	 private File f;
+	
+	 protected String nomD;
+	 protected String nomF;
+	 protected File f;
 	 private BufferedWriter bw; //Mantiene buffer de 8KB
 	 private BufferedReader br; //Mantiene buffer de 8KB
 	 private FileWriter fw;
 	 private FileReader fr;
 	 private boolean lectura;
 	 private boolean escritura;
-	 private final static int BUFF_SIZE = 1000;
+	 private final static int BUFF_SIZE = 1000;//mirar de posar 250
+	 
+	 /**
+	  * Constructora por defecto
+	  */
+	 public GestorDatos(){
+		 
+	 }
 	    
 	    /**
 	     * Constructora
 	     * @param nomD2 nombre del directorio
 	     * @param nomF2 nombre del archivo
 	     */
-	    public GestorDatos(String nomD2, String nomF2) {
-	        br = null;
-	        bw = null;
-	        fr = null;
-	        fw = null;
-	        lectura = false;
-	        escritura = false;
-	        nomD = nomD2;
-	        nomF = nomF2;
-	        f = new File(nomD2, nomF2);
+	  public GestorDatos(String nomD2, String nomF2) {
+	       br = null;
+	       bw = null;
+	       fr = null;
+	       fw = null;
+	       lectura = false;
+	       escritura = false;
+	       nomD = nomD2;
+	       nomF = nomF2;
+	       f = new File(nomD2, nomF2);
 	    }
 	    
 	    /**
@@ -56,14 +64,14 @@ public class GestorDatos {
 	     * @return true if opened, otherwise false
 	     * @throws Exception File, BufferedReader and BufferedWriter IOExceptions
 	     */
-	    public boolean openFile(boolean read) throws Exception {
-	        if (read && f.exists() && !lectura) {
+	    public boolean openFile(String s) throws Exception {
+	        if (s == "read" && f.exists()) {
 	            fr = new FileReader(f);
 	            br = new BufferedReader(fr); 
 	            lectura = true;
 	            return true;
 	        }
-	        if (!read && f.exists() && !escritura) {
+	        if (s == "write" && f.exists()) {
 	            fw = new FileWriter(f);
 	            bw = new BufferedWriter(fw);
 	            escritura = true;
@@ -134,7 +142,7 @@ public class GestorDatos {
 	            i++;
 	            while (i < numLines) {
 	                result += br.readLine() + "\n";
-			i++;
+	                i++;
 	            }
 	        }
 	        return result;

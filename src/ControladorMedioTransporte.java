@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.*;
  
 /**
  * @author olgacarbo 
@@ -13,6 +14,7 @@ public class ControladorMedioTransporte {
 	 
 	private TST<MedioTransporte> medios;	
 	private final static int BUFFER_SIZE = 1000; 
+	private ArrayList<MedioTransporte> mt; 
 	
 	//control errores 
 	private static Exception NombreYaExiste = new Exception ("El nombre ya existe");
@@ -27,6 +29,7 @@ public class ControladorMedioTransporte {
 	}
 	
 	
+	
 	/**
 	 * Agregar un medio de transporte
 	 * @param nombre del medio de transporte
@@ -38,7 +41,7 @@ public class ControladorMedioTransporte {
 		else{
 			//System.out.println("Nombre bueno\n");
 			MedioTransporte m = new MedioTransporte(nombre,coste); 
-			//medios.insert(m);
+			medios.insert(nombre,m);
 		}
 	}
 	
@@ -92,82 +95,34 @@ public class ControladorMedioTransporte {
 		return medios.consultar(ident); //funcio TST que retorna lobjecte
 	}
 	
-	/*devuelve el num de transportes que hay en el map 
-	public int getCantidadTransportes(){
-		return medios.size(); 
-	}*/
-	
 	/**
-	 * Guardar datos en el fichero filename ubicado en path 
-	 * @param path, donde se ubica el fichero
-	 * @param filename, nombre que queremos dar al fichero
-	 * @throws Exception
+	 * Cargar medios de transporte
+	 * @param path donde esta el archivo
+	 * @param file donde esta la informacion que queremos cargar
+	 * @throws Exception si el fichero esta vacio 
 	 */
-	public void guardar(String path, String filename) throws Exception {
+	public void Cargar(String path, String file) throws Exception{
 		
-		String fn = "CAT".concat(filename); 
-		GestorDatos gd = null; 
-		gd = new GestorDatos(path, fn); 
-		gd.createFile();
-		gd.openFile(false);
-		
-		String buffer = null; 
-		String linea; 
-		/*ArrayList<MedioTransporte> am// = //MedioTransporte.inorder();
-		//int numMeds = am.size(); 
-		//linea = Integer.toString(numMeds) + "\n"; 
-		//buffer = linea; 
-		for(MedioTransporte m: am) {
-			linea = m.getNombre() + "" + m.getPrecio();
-			buffer = buffer + linea + "\n"; 
-			if (buffer.length() > BUFFER_SIZE) {
-				gd.writeBuffer(buffer); 
-				buffer = null; 
-			}
-		}*/
-		/*if (buffer != null) {
-			gd.writeBuffer(buffer); 
-		}
-		
-		gd.closeFile(); 
-	}*/
+		GestorDatosMedioTransporte gd = new GestorDatosMedioTransporte(); 
+		 
+		mt = gd.cargarMediosTransporte(path,file); 
+		//cargar medios retorna una array amb tots els medios nous
+		 
+		 for(int i = 0; i < mt.size(); ++i ){
+			 String n = mt.get(i).getNombre(); 
+			 int p = mt.get(i).getPrecio(); 
+			 agregarMedioTransporte(n,p); 
+		 }	
+	}
 	
+	public void Guardar(String path, String file) {
+		mt = new ArrayList<MedioTransporte>();
+		MedioTransporte aux = null; 
+		
+		mt.add(aux); 
+		
+	}
 	
-	/**
-	 * Cargar Medios de transporte de un archivo
-	 * @param path
-	 * @param filename
-	 * @throws Exception
-	 */
-	/*public void cargar(String path, String filename) throws Exception {
-		newmedios = new TST<MedioTransporte>();
-		
-		GestorDatos gd = null; 
-		gd = new GestorDatos(path, filename); 
-		gd.createFile();
-		gd.openFile(false);
-		
-		int i = 0, j = 0; 
-		int numMeds = 0; 
-		String buffer; 
-		String[] params; 
-		String lineas[] = null; 
-		numMeds = Integer.parseInt(gd.readLine());
-		//ArrayList<Integer> temp = new ArrayList<Integer>(numMeds); 
-		if (buffer = gd.readBuffer(numMeds) == null) {
-			throw new Exception("nada que leer al cargar"); 
-		}
-		lineas = buffer.split("\n"); 
-		while (i < numMeds) {
-			params = lineas[i].split(" "); 
-			//agrega el nombre que es ya un string y luego el entero que es el precio
-			newmedios.agregarMedioTransporte(params[0],Integer.parseInt(params[1]));
-			i++; 
-		}
-		if ((buffer = gd.readBuffer(numMeds)) == null) {
-			return; 
-		}
-		gd.closeFile(); 
-	}*/
-}
+
+	
 }

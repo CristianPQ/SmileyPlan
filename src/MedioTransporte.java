@@ -1,10 +1,12 @@
+import java.util.*;
+
 /**
  * @author Olga
  */
 public class MedioTransporte {
 
-	private String nombre;
-	private int precioDistancia;
+	protected String nombre;
+	protected int precioDistancia;
 
 	/**
 	 * Creadora por defecto
@@ -52,9 +54,5 @@ public class MedioTransporte {
 	public void setPrecio(int precio) {
 		precioDistancia = precio;
 	}
-	
-	
-	
-	
 
 }
