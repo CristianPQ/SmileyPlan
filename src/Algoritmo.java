@@ -9,6 +9,6 @@ public class Algoritmo {
 	 * @throws Exception 
 	 */
 	
-	Grafo ejecutar ( Grafo g, int s, int t) throws Exception{
+	GrafoAntiguo ejecutar ( GrafoAntiguo g, int s, int t) throws Exception{
 		return g;}; 
 }

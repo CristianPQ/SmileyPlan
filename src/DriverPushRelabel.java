@@ -1,7 +1,5 @@
 
-
-
-import java.util.Scanner;
+import java.util.*;
 /*
  * @author Daniel Villanueva 
  */
@@ -9,45 +7,47 @@ import java.util.Scanner;
 public class DriverPushRelabel {
 
 private static void menu() {
-	        System.out.println("Driver clase Grafo"
+	        System.out.println("Driver clase GrafoAntiguoAntiguo"
 	                + "\n 0.Salir"
-	                + "\n 1.[Constructora] Grafo()"
+	                + "\n 1.[Constructora] GrafoAntiguoAntiguo()"
 	                + "\n 2.anadirNumeroAdyacencias(int numvertex, int numAd)"
 	                + "\n 3.anadirArista(int vertex, int targetVertex, int flow, int capacity, int cost)"
 	                + "\n 4.consultarFlujoArista(int vertex, int targetVertex)"
 	                + "\n 5.modificarFlujoArista(int vertex,int targetVertex, int nuevoFlujo)"
-	                + "\n 6.ejecutar"
-	             /*   + "\n 7.consultarCapacidadArista(int vertex,int targetVertex)"
+	              + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
+	                + "\n 7.consultarCapacidadArista(int vertex,int targetVertex)"
 	                + "\n 8.modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad)"
 	                + "\n 9.consultarCosteArista(int vertex,int targetVertex)"
 	                + "\n 10.modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)"
 	                + "\n 11.consultarNumVertices()"
-	                + "\n 12.consultarNumAristasVertice(int vertex)"*/
+	                + "\n 12.consultarNumAristasVertice(int vertex)"
+	                + "\n 13.CONSULTARADYACENTES(int vertex)"
 	                +"\n");
 }
 
 public static void main(String [] args) throws Exception {
-			Grafo g = null;
+			GrafoAntiguo g = null;
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
 	    	PushRelabel a = new PushRelabel();
+	    	
 	    	while(sc.hasNextLine()){ 
 	    		try{
 	    			lsplited = sc.nextLine().split(" ");
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
-	    					g = new Grafo(numVertex);
+	    					g = new GrafoAntiguo(numVertex);
 	    					break;
 	    				}
-	    				case 2:{	    				
+	    				/*case 2:{	    				
 	    					int numVertex = Integer.parseInt(lsplited[1]);
 	    					int numAd = Integer.parseInt(lsplited[2]);
 	    					g.anadirNumeroAdyacencias(numVertex, numAd);
 	    					break;
 	    				}
-	    				
+	    				*/
 	    				case 3: {//AnadirArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
@@ -60,7 +60,7 @@ public static void main(String [] args) throws Exception {
 	    				case 4:{ //eliminarArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
-	    					//g.eliminarArista(vertex, targetVertex);
+	    					g.eliminarArista(vertex, targetVertex);
 	    				}
 	    				
 	    				case 5: {//consultarFlujoArista
@@ -71,17 +71,14 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    				}
 	    				  				
-	    				case 6: {//
-	    					a.ejecutar(g, 0, 5);
-	    					int aux = g.consultarFlujoArista(4, 5);
-	    					int aux2 = g.consultarFlujoArista(3, 5);
-	    					System.out.println("final ejecucion  " + aux + "   " + aux2);
-	    					
-	    					
-	    					
+	    				case 6: {//modificarFlujoArista
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int targetVertex = Integer.parseInt(lsplited[2]);
+	    					int nuevoFlujo = Integer.parseInt(lsplited[3]);
+	    					g.modificarFlujoArista(vertex, targetVertex, nuevoFlujo);
 	    					break;
 	    				}
-	    				/*
+	    				
 	    				case 7: {//consultarCapacidadArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
@@ -117,6 +114,7 @@ public static void main(String [] args) throws Exception {
 	    				case 11: {
 	    					int num = g.consultarNumVertices();
 	    					System.out.println("Numero de vertices:" + num + "\n");
+	    					break;
 	    					
 	    				}
 	    				
@@ -124,9 +122,25 @@ public static void main(String [] args) throws Exception {
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int num = g.consultarNumAristasVertice(vertex);
 	    					System.out.println("Aristas desde vertice "+ vertex+ ": " + num + "\n");
-	    				}
-	*/    		
+	    					break;
+	    				}	
 	    				
+	    				case 13: {
+	    					int numVertex = Integer.parseInt(lsplited[1]);
+	    					ArrayList <Arista> l = g.consultarAdyacentes(numVertex);
+	    					for (int i = 0; i < l.size(); ++i){
+	    						System.out.println(l.get(i).consultarVerticeDestino()  + " ");
+	    					}
+	    					break;
+	    					
+	    				}	
+	    				case 14: {//
+	    					a.ejecutar(g, 0, 5);
+	    					int aux = g.consultarFlujoArista(4, 5);
+	    					int aux2 = g.consultarFlujoArista(3, 5);
+	    					System.out.println("final ejecucion  " + aux + "   " + aux2);
+	    				}
+	    					break;
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }
@@ -142,5 +156,5 @@ public static void main(String [] args) throws Exception {
 
 } //Cierra funcion
 } //Cierra clase
-
+		
 
