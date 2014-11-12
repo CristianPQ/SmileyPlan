@@ -126,7 +126,7 @@ public static void main(String [] args) throws Exception {
 	    				
 	    				case 13: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
-	    					List <Arista> l = g.consultarAdyacentes(numVertex);
+	    					ArrayList <Arista> l = g.consultarAdyacentes(numVertex);
 	    					for (int i = 0; i < l.size(); ++i){
 	    						System.out.println(l.get(i).consultarVerticeDestino()  + " ");
 	    					}
