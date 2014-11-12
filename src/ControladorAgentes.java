@@ -47,7 +47,7 @@ public class ControladorAgentes {
 			
 			if (!existeAgente(nombre)){//si no existe, Exception
 				Agente a = new Agente(nombre, ciudadInicial, ciudadObjetivo);
-				Agentes.insert(a);
+				Agentes.insert(nombre,a);
 				++numAgentes;
 			}	
 			else throw NombreYaExiste;	
@@ -103,7 +103,7 @@ public class ControladorAgentes {
 				a.modificarNombre(nombreNuevo);
 				if (!existeAgente(nombreNuevo)) {
 					Agentes.delete(nombreAntiguo);
-					Agentes.insert(a);	
+					Agentes.insert(nombreNuevo,a);	
 				}
 				else throw NombreYaExiste;
 			}
@@ -122,7 +122,7 @@ public class ControladorAgentes {
 				a.modificarCiudadInicial(ciudadInicial);
 				if (!existeAgente(nombre)) {
 					Agentes.delete(nombre);
-					Agentes.insert(a);	
+					Agentes.insert(nombre,a);	
 				}
 				else throw NombreYaExiste;
 			}
@@ -142,7 +142,7 @@ public class ControladorAgentes {
 				a.modificarCiudadObjetivo(ciudadObjetivo);
 				if (!existeAgente(nombre)) {
 					Agentes.delete(nombre);
-					Agentes.insert(a);	
+					Agentes.insert(nombre,a);	
 					}
 				else throw NombreYaExiste;
 			}
