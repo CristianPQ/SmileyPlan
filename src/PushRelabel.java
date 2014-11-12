@@ -22,7 +22,7 @@ public class PushRelabel extends Algoritmo {
 			adyacencias = g.consultarAdyacentes(i);
 			for (int j = 0; j < adyacencias.length; ++j){
 				v = adyacencias[j].consultarVerticeDestino();
-				g.anadirArista(i,v,0,-adyacencias[j].consultarCapacidad(),0);
+				g.anadirArista(v,i,0,adyacencias[j].consultarCapacidad(),adyacencias[j].consultarCapacidad());
 			}
 		}
 		
