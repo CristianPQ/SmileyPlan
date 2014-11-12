@@ -105,6 +105,14 @@ public static void main(String [] args) throws Exception {
 	    					conjAgentes.eliminarTodo();
 	    					break;
 	    				}
+	    				
+	    				case 12:{
+	    					ArrayList<String> l = conjAgentes.getNombresAgentes();
+	    					for (int i = 0; i < l.size(); ++i){
+	    						System.out.println(l.get(i) + " ");
+	    					}
+	    					break;
+	    				}
 	    					
 	    				case 0: {
 	    	                System.exit(0);

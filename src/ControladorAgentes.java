@@ -2,7 +2,7 @@
 /**
  * @author Daniel Villanueva 
  */
-
+import java.util.*;
 public class ControladorAgentes {
 		private TST<Agente> Agentes;
 		private int numAgentes;
@@ -156,6 +156,11 @@ public class ControladorAgentes {
         public int getNumeroDeAgentes(){ 
 		return numAgentes;
 		}
+        
+        public ArrayList<String> getNombresAgentes()
+        {
+        	return Agentes.consultar();
+        }
         
       
 		
