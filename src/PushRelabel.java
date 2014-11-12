@@ -16,25 +16,32 @@ public class PushRelabel extends Algoritmo {
 	 */
 	private void inicializacion(Grafo g,int s, int t){
 		int v;
+		Arista[] adyacencias;
+		/** creo todos las aristas inversas, con un flow de 0 **/
+		for (int i = 0; i < g.consultarNumVertices(); ++i){
+			adyacencias = g.consultarAdyacentes(i);
+			for (int j = 0; j < adyacencias.length; ++j){
+				v = adyacencias[j].consultarVerticeDestino();
+				g.anadirArista(i,v,0,-adyacencias[j].consultarCapacidad(),0);
+			}
+		}
+		
 		for (int i = 0; i < alturas.length; ++i){
-			
-
 			if ( i == s) {
-		
 				alturas[i] = g.consultarNumVertices();
-				Arista[] adyacencias = g.consultarAdyacentes(s);
-		
+				adyacencias = g.consultarAdyacentes(s);
 				for (int j = 0; j < adyacencias.length; ++j){
 					v = adyacencias[j].consultarVerticeDestino();
 					if (v != t){
 						active[v] = 1;
 						q.addLast(v);
 						exceso[v]= adyacencias[j].consultarCapacidad();
+						g.modificarFlujoArista(s,v,adyacencias[j].consultarCapacidad());
+						g.modificarFlujoArista(v,s,-adyacencias[j].consultarCapacidad());
+						
 					}
 					//System.out.println("exceso " + exceso[s]);
 				}
-	
-
 			}
 			else alturas[i] = 0; 
 		}
@@ -54,6 +61,8 @@ public class PushRelabel extends Algoritmo {
 		int temp = Math.min(capacidadResidual,exceso[u]);
 		int nuevoFlujo = g.consultarFlujoArista(u, v) + temp;
 		g.modificarFlujoArista(u, v, nuevoFlujo); 
+		nuevoFlujo =  g.consultarFlujoArista(u, v);
+		g.modificarFlujoArista(v, u, nuevoFlujo); /** arista residual **/
 		exceso[u] -= temp;
 		exceso[v] += temp;
 	}
@@ -99,7 +108,7 @@ public class PushRelabel extends Algoritmo {
 			u = q.getFirst();
 			 m = -1;
 			Arista[] adyacencias = g.consultarAdyacentes(u);
-			System.out.println(" \n" + u + " es " + u + " y tiene un exceso de " + exceso[u]);
+			System.out.println(" \n"  + "u es " + u + " y tiene un exceso de " + exceso[u]);
 			for (int i = 0; exceso[u]> 0 && i < adyacencias.length; ++i){
 	
 				v = adyacencias[i].consultarVerticeDestino();
@@ -121,11 +130,12 @@ public class PushRelabel extends Algoritmo {
 				
 			}
 			if (exceso[u] != 0){
-				alturas[u]++; // = 1 + m;
-				if(alturas[u] > g.consultarNumVertices()){
+				alturas[u] = 1 + m;
+			/*	if(alturas[u] > g.consultarNumVertices()){
 					active[u] = 0;
 					q.removeFirst();
 				} 
+				*/
 			}
 			else {
 				active[u] = 0;
