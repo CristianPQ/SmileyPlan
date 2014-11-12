@@ -10,10 +10,10 @@ private static void menu() {
 	        System.out.println("Driver clase Grafo"
 	                + "\n 0.Salir"
 	                + "\n 1.[Constructora] Grafo()"
-	                + "\n 2.anadirNumeroAdyacencias(int numvertex, int numAd)"
+	            //    + "\n 2.anadirNumeroAdyacencias(int numvertex, int numAd)"
 	                + "\n 3.anadirArista(int vertex, int targetVertex, int flow, int capacity, int cost)"
-	                + "\n 4.consultarFlujoArista(int vertex, int targetVertex)"
-	                + "\n 5.modificarFlujoArista(int vertex,int targetVertex, int nuevoFlujo)"
+	                + "\n 4.eliminarArista(int vertex, int targetVertex)"
+	                + "\n 5.consultarFlujoArista(int vertex,int targetVertex, int nuevoFlujo)"
 	              + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
 	                + "\n 7.consultarCapacidadArista(int vertex,int targetVertex)"
 	                + "\n 8.modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad)"
@@ -60,6 +60,7 @@ public static void main(String [] args) throws Exception {
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
 	    					g.eliminarArista(vertex, targetVertex);
+	    					break;
 	    				}
 	    				
 	    				case 5: {//consultarFlujoArista
@@ -133,6 +134,17 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    					
 	    				}	
+	    				
+	    				case 14:{
+	    					for (int i = 0; i < g.consultarNumVertices(); ++i){
+	                            ArrayList <Arista>adyacencias = g.consultarAdyacentes(i);
+	                            for (int j = 0; j < adyacencias.size(); ++j){
+	                                    int v = adyacencias.get(j).consultarVerticeDestino();
+	                                    g.anadirArista(v,i,adyacencias.get(j).consultarCapacidad(),adyacencias.get(j).consultarCapacidad(),0);
+	                            }
+	                    }
+	    					break;
+	    				}
 	   		
 	    				case 0: {
 	    	                System.exit(0);
