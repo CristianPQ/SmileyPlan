@@ -48,7 +48,7 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	private void push(Grafo g, int u, int v) throws Exception{
-		System.out.println("entra en el push");
+		System.out.println(u + " pushea a " + v);
 
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
 		int temp = Math.min(capacidadResidual,exceso[u]);
@@ -93,17 +93,19 @@ public class PushRelabel extends Algoritmo {
 	
 		//q.addLast(s);
 		int capacidadResidual,u,v,m;
-	
+		int cont = 0;
 		while (q.size() > 0 ){
+			++cont;
 			u = q.getFirst();
 			 m = -1;
 			Arista[] adyacencias = g.consultarAdyacentes(u);
-			System.out.println("aqui " + exceso[u]);
+			System.out.println(" \n" + u + " es " + u + " y tiene un exceso de " + exceso[u]);
 			for (int i = 0; exceso[u]> 0 && i < adyacencias.length; ++i){
 	
 				v = adyacencias[i].consultarVerticeDestino();
-				System.out.println("aqui2 " + v);
+				System.out.println("v es "  + v  + " el exceso de u es ahora " + exceso[u]);
 				capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
+				System.out.println("la capacidad residual de "+  u + " " + v + " es " + capacidadResidual);
 				//si la arista aun puede soportar mas flujo y si el vertize esta mas alto q el destino
 				if ( capacidadResidual > 0){
 					if (alturas[u] > alturas[v]){ 
@@ -118,7 +120,13 @@ public class PushRelabel extends Algoritmo {
 				}
 				
 			}
-			if (exceso[u] != 0) alturas[u] = 1 + m;
+			if (exceso[u] != 0){
+				alturas[u]++; // = 1 + m;
+				if(alturas[u] > g.consultarNumVertices()){
+					active[u] = 0;
+					q.removeFirst();
+				} 
+			}
 			else {
 				active[u] = 0;
 				q.removeFirst();
