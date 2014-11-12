@@ -102,7 +102,7 @@ public class Grafo {
 					l.remove(i);
 					l.add(i,a);
 					Adyacencias.remove(i);
-					Adyacencias.add(i, l);
+					Adyacencias.add(l);
 		}			
 	}
 }
@@ -135,7 +135,7 @@ public class Grafo {
 						l.remove(i);
 						l.add(i,a);
 						Adyacencias.remove(i);
-						Adyacencias.add(i, l);
+						Adyacencias.add(l);
 			}			
 		}
 	}
@@ -169,7 +169,7 @@ public class Grafo {
 						l.remove(i);
 						l.add(i,a);
 						Adyacencias.remove(i);
-						Adyacencias.add(i, l);
+						Adyacencias.add(l);
 			}			
 		}
 	}
