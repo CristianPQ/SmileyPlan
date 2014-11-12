@@ -20,7 +20,7 @@ public class ControladorCiudades {
 	
 	
 	public void agregarCiudad(Ciudad c) {
-		ciudades.insert(c);
+		ciudades.insert(c.consultarNombre(),c);
 	}
 	
 	/*
@@ -63,6 +63,10 @@ public class ControladorCiudades {
 	
 	public boolean isEmpty() {
 		return ciudades.isEmpty();
+	}
+	
+	public ArrayList<String> consultar() {
+		return ciudades.consultar();
 	}
 	
 	/*

@@ -6,35 +6,83 @@ import java.util.Set;
 
 public class Mapa {
 	
-	/*private int anchuraX;
-	private int alturaY;
-	private ConjuntoCiudades ciudades;*/
+	private static String marca = "$";
 	private TST<TST<TST<Camino>>> caminos;
 	TST <Ciudad> ciudades;
 	private String[][] mapa;
+	
+	private static Exception CoordInvalidas = new Exception ("Estas "
+			+ "coordenadas no son validas para este mapa");
+	private static Exception Existe = new Exception ("Este elemento ya existe");
+	private static Exception NoExiste = new Exception ("Este elemento no existe");
 	
 	
 	/*
 	 * Constructor Ciudad
 	 */
-	public Mapa(int anchuraX, int alturaY, Coordenadas[] continente) {
-		/*this.setContinente(continente);
-		this.setAnchuraX(anchuraX);
-		this.setAlturaY(alturaY);
-		ciudades = new ConjuntoCiudades();*/
-		
+	public Mapa(int anchuraX, int alturaY, Coordenadas[] continente) throws Exception {
+		ciudades = new TST<Ciudad>();
+		caminos = new TST<TST<TST<Camino>>>();
 		mapa = new String[alturaY][anchuraX];
-		
 		agregarContinente(continente);
-		
-		//caminos = new HashMap<String, ArrayList<Camino/*destino*/>>();
 	}
 	
-	private void agregarContinente(Coordenadas[] continente) {
-		/*
-		 * funcion para crear la zona inválida del mapa, el agua
-		 */
+	private void agregarContinente(Coordenadas[] noValido) throws Exception {
+		for(int i = 0; i< noValido.length; ++i) {
+			Coordenadas c = noValido[i];
+			posicionValida(c);
+			mapa[c.consultarY()][c.consultarX()] = marca;
+		}
+		
+		//Si se hace por espacio delimitado
+		/*for(int i = 0; i < mapa.length; ++i) {
+			int agua = -1;  
+			for(int j = 0; j < mapa[0].length; ++j) {
+				if(mapa[i][j] == "$" && agua >= 0) {
+					for(mapa)
+				}
+				if(mapa[i][j] == "$") agua = j;
+				
+			}
+		}*/
 	}
+	
+	/*
+	 * Comprobar si la Coord es valida para el mapa
+	 */
+	private void posicionValida(Coordenadas coord) throws Exception {
+		if(coord.consultarY()  >= mapa.length || coord.consultarX() >= mapa[0].length) {
+			throw CoordInvalidas;
+		}
+	}
+	
+	/*
+	 * Comprobar si la ciudad ya existe
+	 */
+	private boolean existeCiudad(String c) {
+		return ciudades.existe(c);
+	}
+	
+	//#########################################
+	//##########SOBRE CIUDADES
+	//#########################################
+	
+	public void agregarCiudad(Ciudad c) throws Exception {
+		posicionValida(c.consultarCoordenadas());
+		if(existeCiudad(c.consultarNombre())) throw Existe;
+		else ciudades.insert(c.consultarNombre(), c);
+	}
+	
+	public void eliminarCiudad(String c) throws Exception {
+		if(!existeCiudad(c)) throw NoExiste;
+		else ciudades.delete(c);
+	}
+	
+	public Ciudad consultarCiudad(String c) throws Exception {
+		if(!existeCiudad(c)) throw NoExiste;
+		else return ciudades.consultar(c);
+	}
+	
 	
 	/*
 	 * Getter Set de nombres de ciudades
@@ -44,14 +92,6 @@ public class Mapa {
 		return ciudades;	
 	}
 	
-	/*
-	 * Agregar una nueva ciudad al ConjuntoCiudades ciudades
-	 */
-	public void agregarCiudad(Ciudad c) {
-			//System.out.println("antes de agregarCiudad en Mapa" + "\n");
-		this.ciudades.agregarCiudad(c);
-			//System.out.println("despues de agregarCiudad en Mapa" + "\n");
-	}
 	
 	/*
 	 *Consultar el numero de ciudades que tiene el ConjuntoCiudades 

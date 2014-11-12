@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 
 public class DriverControladorCiudades {
@@ -62,12 +62,15 @@ public class DriverControladorCiudades {
 		            case 6: {
 		            	String nombre = lsplited[1];
 		            	boolean e = ciudades.existe(nombre);
-		            	System.out.println(e + "|n!");
+		            	System.out.println(e + "\n");
 		                break;
 		            }
 		            case 7: {
-		            	String s = ciudades.escribir();
-		            	System.out.println(s + "|n!");
+		            	ArrayList<String> aS = ciudades.consultar();
+		            	Iterator<String> it = aS.iterator();
+		            	while(it.hasNext()) {
+		            		System.out.println(it.next() + "\n");
+		            	}
 		                break;
 		            }
 					case 8: {

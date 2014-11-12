@@ -83,7 +83,7 @@ class TST<E>  //no estava la <E>
     
     /** function to insert for a word **/
    //AGREGAR NUEVO ELEMENTO
-    public TSTNode insert(TSTNode r, char[] word, int ptr, E e) //sense el parametre e
+    private TSTNode insert(TSTNode r, char[] word, int ptr, E e) //sense el parametre e
     {
     	char letra;
     	//Si ya se ha recorrido toda la palabra es una word[ptr], sino es $
@@ -270,7 +270,7 @@ class TST<E>  //no estava la <E>
     
     /** function to search for a word **/ //retorna null si no esta
     //aquesta tampoc
-    public E buscar (TSTNode r, char[] word, int ptr)
+    private E buscar(TSTNode r, char[] word, int ptr)
     {
     	if (r == null)
             return null;
@@ -329,5 +329,13 @@ class TST<E>  //no estava la <E>
             }
         }
     }
+    
+    public ArrayList<String> consultar() {
+    	al = new ArrayList<String>();
+    	traverse(root, "");
+    	return al;
+    }
+    
+    
 }
  
