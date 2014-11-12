@@ -106,9 +106,9 @@ public class GestorDatosMedioTransporte extends GestorDatos{
 			newmedios.add(mt); 
 			i++; 
 		}
-		
+		gd.closeFile(); 
 		return newmedios; 		
-		//gd.closeFile(); 
+
 	}
 }
 

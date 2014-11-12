@@ -9,8 +9,6 @@ import java.io.*;
 
 public class ControladorMedioTransporte {
 	
-	//WORK IN PROGRESS --> millorar els metodes per guardar i fer size
-	
 	 
 	private TST<MedioTransporte> medios;	
 	private final static int BUFFER_SIZE = 1000; 
@@ -39,7 +37,9 @@ public class ControladorMedioTransporte {
 	public void agregarMedioTransporte(String nombre, int coste) throws Exception{
 		if (medios.existe(nombre)) throw NombreYaExiste;
 		else{
-			//System.out.println("Nombre bueno\n");
+			//
+			System.out.println("Nombre bueno\n");
+			//
 			MedioTransporte m = new MedioTransporte(nombre,coste); 
 			medios.insert(nombre,m);
 		}
@@ -115,14 +115,22 @@ public class ControladorMedioTransporte {
 		 }	
 	}
 	
-	public void Guardar(String path, String file) {
+	/**
+	 * Guarda los medios de transporte
+	 * @param path donde vamos a guardar el arhivo
+	 * @param file donde vamos a guardar la informacion
+	 * @Exception al crear archivo 
+	 */
+	public void Guardar(String path, String file) throws Exception {
 		mt = new ArrayList<MedioTransporte>();
-		MedioTransporte aux = null; 
-		
-		mt.add(aux); 
-		
+		ArrayList<String> lista = new ArrayList<String>();
+		lista = medios.consultar(); //obtenim un array ordenada amb els ident de TST
+		for(int i = 0; i < lista.size(); ++i){
+			String s = lista.get(i); 
+			MedioTransporte aux = medios.consultar(s); 
+			mt.add(aux); //ho passem a l'array de medios de transporte
+		}
+		GestorDatosMedioTransporte gd = new GestorDatosMedioTransporte(); 
+		gd.guardarMediosTransporte(path,file,mt); 
 	}
-	
-
-	
 }

@@ -16,6 +16,8 @@ public class DriverControladorMedioTransporte {
                 + "\n 5.modificarPrecio(int pNuevo, String n)"
                 + "\n 6.getCantidadTransportes()" 
                 + "\n 7 buscarMedio(String ident)" 
+                + "\n 8 guardarMedio(path,file)" 
+                + "\n 9 cargarMedio(path,file)" 
         		+"\n");
     }
 	
@@ -65,6 +67,16 @@ public class DriverControladorMedioTransporte {
 	            	String nombre = lsplited[1];	
 	            	aux = cm.buscarMedio(nombre);
 	            	break; 
+	            }
+	            case 8:{
+	            	String  path = "path"; 
+	            	String file = "file"; 
+	            	cm.Cargar(path, file);
+	            }
+	            case 9:{
+	            	String  path = "path"; 
+	            	String file = "file"; 
+	            	cm.Guardar(path, file);
 	            }
 	            case 0: {
 	                System.exit(0);
