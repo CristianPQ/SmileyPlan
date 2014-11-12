@@ -7,44 +7,35 @@ import java.util.*;
 public class Itinerario {
 
 	//Datos
-	//private static final int numCaminosPorDefecto = 60; 
 	private String nombre; 
-	private Set<Camino> caminos; 
-	//private Camino[] caminos = new Camino[numCaminosPorDefecto]; 
-	private static Exception NoAgente = new Exception("el agente no existe");
-	private static Exception CaminoYaExiste = new Exception("el camino ya esta en el itinerario");
-	
+	private ArrayList<Camino> caminos; 
 
+	private static Exception CaminoYaExiste = new Exception("el camino ya esta en el itinerario");
+		
+		
 	/**
-	 * Constructora itinerario
+	 * Constructora itinerario con parametros
 	 * El nombre del itinerario tiene que coincidir con el nombre del agente
 	 * al cual esta vinculado el itinerario
 	 * @param Agente ag, para asociar el nombre del agente al nombre 
 	 * del itinerario (un itinerario por agente)
-	 * @throws Exception si no hay ningun agente con este nombre
 	 */
-	public Itinerario(String nombre) throws Exception{ 
-		Agente ag; 
-		if (!ag.existeAgente(nombre)) throw NoAgente;
-		else{
-			setNombre(nombre); 
-			caminos = null; 
-		}
-		
+	public Itinerario(String nombreAg) throws Exception{ 
+			caminos = new ArrayList<Camino>();
+			nombre = nombreAg; 
 	}
+		
 	
 	/**
 	 * Modificar nombre del itinerario
 	 * El nombre del itinerario tiene que coincidir con el nombre del agente
 	 * al cual esta vinculado el itinerario
 	 * @param String nombre 
-	 * @throws Exception si el nombre de agente no existe 
 	 */
-	public void setNombre(String nombrenuevo) throws Exception {
-		Agente ag; 
-		if (!ag.existeAgente(nombre)) throw NoAgente;
-		else nombre = nombrenuevo;
+	public void setNombre(String nombrenuevo) {
+		 nombre = nombrenuevo;
 	}
+	
 	
 	/**
 	 * Consultora de numero de caminos
@@ -61,7 +52,7 @@ public class Itinerario {
 	public String getNombreItinerario() {
 		return nombre; 
 	}
-	
+
 	
 	/**
 	 * Agregar un camino nuevo en el itinerario
@@ -70,18 +61,13 @@ public class Itinerario {
 	 * @param trans medio transporte
 	 * @throws Exception si el camino ya se encuentra en el itinerario
 	 */
-	public void agregarCamino(String co, String cd, String trans) throws Exception{
-		Iterator<Camino> it = caminos.iterator(); 
-		Camino c; 
-		while(it.hasNext()){
-			c = it.next();
-			if(c.getOrigen().equals(co) && c.getDestino().equals(cd) && c.getTransporte().equals(trans)){
-				throw CaminoYaExiste;
-			}
-		}
-		Camino aux = new Camino(co,cd,trans); 
-		caminos.add(aux); 
+	public void agregarCamino(Camino c) throws Exception{
+		//Camino aux = new Camino(co,cd,trans); 
+		if (caminos.contains(c)) throw CaminoYaExiste; 
+		else caminos.add(c); 
 	}
+		
+	
 
 }
 

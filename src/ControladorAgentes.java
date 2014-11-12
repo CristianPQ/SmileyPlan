@@ -156,6 +156,8 @@ public class ControladorAgentes {
         public int getNumeroDeAgentes(){ 
 		return numAgentes;
 		}
+        
+      
 		
 
 

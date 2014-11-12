@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
  
 /**
- * @author Olga 
+ * @author olgacarbo 
  */
 
 public class ControladorMedioTransporte {
@@ -36,9 +36,9 @@ public class ControladorMedioTransporte {
 	public void agregarMedioTransporte(String nombre, int coste) throws Exception{
 		if (medios.existe(nombre)) throw NombreYaExiste;
 		else{
-			System.out.println("Nombre bueno\n");
+			//System.out.println("Nombre bueno\n");
 			MedioTransporte m = new MedioTransporte(nombre,coste); 
-			medios.insert(m);
+			//medios.insert(m);
 		}
 	}
 	
