@@ -107,11 +107,12 @@ public static void main(String [] args) throws Exception {
 	    				}
 	    				
 	    				case 12:{
-	    					ArrayList<String> l = conjAgentes.getNombresAgentes();
-	    					for (int i = 0; i < l.size(); ++i){
-	    						System.out.println(l.get(i) + " ");
-	    					}
-	    					break;
+	    					ArrayList<String> aS = conjAgentes.getNombresAgentes();
+			            	Iterator<String> it = aS.iterator();
+			            	while(it.hasNext()) {
+			            		System.out.println(it.next() + "\n");
+			            	}
+			                break;
 	    				}
 	    					
 	    				case 0: {
