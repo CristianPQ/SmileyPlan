@@ -86,7 +86,7 @@ public class OtroGrafo {
 						return l.get(i).consultarFlujo();
 			}			
 		}
-		return 0;
+		return -1;
 	}
 
 	public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo){ 
@@ -117,7 +117,7 @@ public class OtroGrafo {
 						return l.get(i).consultarCapacidad();
 			}			
 		}
-		return 0;
+		return -1;
 	}
 
 
@@ -149,7 +149,7 @@ public class OtroGrafo {
 						return l.get(i).consultarCoste();
 			}			
 		}
-		return 0;
+		return -1;
 	}
 
 

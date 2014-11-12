@@ -1,5 +1,5 @@
 
-import java.util.Scanner;
+import java.util.*;
 /*
  * @author Daniel Villanueva 
  */
@@ -14,13 +14,14 @@ private static void menu() {
 	                + "\n 3.anadirArista(int vertex, int targetVertex, int flow, int capacity, int cost)"
 	                + "\n 4.consultarFlujoArista(int vertex, int targetVertex)"
 	                + "\n 5.modificarFlujoArista(int vertex,int targetVertex, int nuevoFlujo)"
-	             /* + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
+	              + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
 	                + "\n 7.consultarCapacidadArista(int vertex,int targetVertex)"
 	                + "\n 8.modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad)"
 	                + "\n 9.consultarCosteArista(int vertex,int targetVertex)"
 	                + "\n 10.modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)"
 	                + "\n 11.consultarNumVertices()"
-	                + "\n 12.consultarNumAristasVertice(int vertex)"*/
+	                + "\n 12.consultarNumAristasVertice(int vertex)"
+	                + "\n 13.CONSULTARADYACENTES(int vertex)"
 	                +"\n");
 }
 
@@ -58,7 +59,7 @@ public static void main(String [] args) throws Exception {
 	    				case 4:{ //eliminarArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
-	    					//g.eliminarArista(vertex, targetVertex);
+	    					g.eliminarArista(vertex, targetVertex);
 	    				}
 	    				
 	    				case 5: {//consultarFlujoArista
@@ -68,7 +69,7 @@ public static void main(String [] args) throws Exception {
 	    					System.out.println("Flujo Arista ("+ vertex + "," +  targetVertex +"): "+ flujoArista +"\n");
 	    					break;
 	    				}
-	    				/*   				
+	    				  				
 	    				case 6: {//modificarFlujoArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
@@ -112,6 +113,7 @@ public static void main(String [] args) throws Exception {
 	    				case 11: {
 	    					int num = g.consultarNumVertices();
 	    					System.out.println("Numero de vertices:" + num + "\n");
+	    					break;
 	    					
 	    				}
 	    				
@@ -119,9 +121,19 @@ public static void main(String [] args) throws Exception {
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int num = g.consultarNumAristasVertice(vertex);
 	    					System.out.println("Aristas desde vertice "+ vertex+ ": " + num + "\n");
-	    				}
-	*/    		
+	    					break;
+	    				}	
 	    				
+	    				case 13: {
+	    					int numVertex = Integer.parseInt(lsplited[1]);
+	    					List <Arista> l = g.consultarAdyacentes(numVertex);
+	    					for (int i = 0; i < l.size(); ++i){
+	    						System.out.println(l.get(i).consultarVerticeDestino()  + " ");
+	    					}
+	    					break;
+	    					
+	    				}	
+	   		
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }
