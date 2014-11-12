@@ -34,7 +34,7 @@ public class Grafo {
 
 	*/
 
-	public List <Arista> consultarAdyacentes(int vertex){
+	public ArrayList <Arista> consultarAdyacentes(int vertex){
 		return Adyacencias.get(vertex);
 	}
 
