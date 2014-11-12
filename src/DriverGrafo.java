@@ -26,7 +26,7 @@ private static void menu() {
 }
 
 public static void main(String [] args) throws Exception {
-			OtroGrafo g = null;
+			Grafo g = null;
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
@@ -37,7 +37,7 @@ public static void main(String [] args) throws Exception {
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
-	    					g = new OtroGrafo(numVertex);
+	    					g = new Grafo(numVertex);
 	    					break;
 	    				}
 	    				/*case 2:{	    				

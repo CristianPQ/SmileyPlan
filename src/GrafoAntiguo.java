@@ -1,5 +1,5 @@
 
-public class Grafo {
+public class GrafoAntiguo {
 
 	//constructora
 //	ArrayList<ArrayList<Arista>> grafo;
@@ -11,7 +11,7 @@ public class Grafo {
 
 
 	
-	public Grafo(int numVertex){
+	public GrafoAntiguo(int numVertex){
 		numVertices = numVertex;
 		Adyacencias = new Arista[numVertex][];
 		}
