@@ -1,10 +1,20 @@
 import java.util.*;
 
 
-	
 public class GNode {
+	String nombreCiudad;
+	private ArrayList<GNode> hijos;
 	
-	private ArrayList<GNodePeso> hijos;
+	public GNode(String nCiudad) {
+		nombreCiudad = nCiudad;
+		hijos = new ArrayList<GNode>();
+	}
+	
+	public ArrayList<GNode> consultarHijos() {
+		return hijos;
+	}
+	
+	/*private ArrayList<GNodePeso> hijos;
 	private String nombreCiudad;
 
 	public GNode(String nCiudad) {
@@ -22,7 +32,7 @@ public class GNode {
 	
 	public Iterator<GNodePeso> consultarIteradorHijos() {
 		return hijos.iterator();
-	}
+	}*/
 	
 	/*public void modificarNodoHijo(Iterator<GNodePeso> it, GNode n) {
 		GNodePeso np = it.;

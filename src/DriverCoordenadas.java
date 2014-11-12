@@ -9,9 +9,7 @@ public class DriverCoordenadas {
                 + "\n 0.Salir"
                 + "\n 1.Coordenadas(int coordX, int coordY)"
                 + "\n 2.getCoordX():int"
-                + "\n 3.setCoordX(int coordX)"
-                + "\n 4.getCoordY():int"
-                + "\n 5.setCoordY(int coordY)"
+                + "\n 3.getCoordY():int"
         		+"\n");
     }
 	
@@ -31,23 +29,13 @@ public class DriverCoordenadas {
     	        		break;
     	        	}
     	        	case 2: {
-    	        		int coordX = coord.getX();
+    	        		int coordX = coord.consultarX();
     	        		System.out.println(coordX + "\n");
     	        		break;
     	        	}
     	        	case 3: {
-    	        		int coordX = Integer.parseInt(lsplited[1]);
-    	        		coord.setX(coordX);
-    	        		break;
-    	        	}
-    	        	case 4: {
-    	        		int coordY = coord.getY();
+    	        		int coordY = coord.consultarY();
     	        		System.out.println(coordY + "\n");
-    	        		break;
-    	        	}
-    	        	case 5: {
-    	        		int coordY = Integer.parseInt(lsplited[1]);
-    	        		coord.setY(coordY);
     	        		break;
     	        	}
     	        	case 0: {
