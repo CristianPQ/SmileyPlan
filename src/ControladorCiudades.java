@@ -69,6 +69,10 @@ public class ControladorCiudades {
 		return ciudades.consultar();
 	}
 	
+	public int numero() {
+		return ciudades.numero();
+	}
+	
 	/*
 	 * Consultar numero de ciudades existentes en el Map ciudades
 	 

@@ -336,6 +336,25 @@ class TST<E>  //no estava la <E>
     	return al;
     }
     
+    public int numero() {
+    	return quantity(root);
+    }
+    
+    private int quantity(TSTNode t) {
+    	if(t != null) {
+    		TSTNodeChar tChar = (TSTNodeChar)t;
+    		if(tChar.data == '$') {
+    			return 1;
+    		}
+    		else {
+	    		int f1 = quantity(t.left);
+	    		int f2 = quantity(t.middle);
+	    		int f3 = quantity(t.right);
+	    		return f1+f2+f3;
+    		}
+    	}
+    	return 0;
+    }
     
 }
  

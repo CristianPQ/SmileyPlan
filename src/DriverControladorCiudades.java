@@ -16,6 +16,7 @@ public class DriverControladorCiudades {
                 + "\n 7.escribir():String"
                 + "\n 8.vaciar()"
                 + "\n 9.isEmpty():boolean"
+                + "\n 10.numero():int"
         		+"\n");
     }
 	
@@ -80,6 +81,10 @@ public class DriverControladorCiudades {
 					case 9: {
 						boolean e = ciudades.isEmpty();
 		            	System.out.println(e + "|n!");
+					    break;
+					}
+					case 10: {
+		            	System.out.println(ciudades.numero() + "\n");
 					    break;
 					}
 		            case 0: {

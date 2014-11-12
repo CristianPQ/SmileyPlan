@@ -15,6 +15,7 @@ public class Mapa {
 			+ "coordenadas no son validas para este mapa");
 	private static Exception Existe = new Exception ("Este elemento ya existe");
 	private static Exception NoExiste = new Exception ("Este elemento no existe");
+	private static Exception Vacio = new Exception ("Esta vacio");
 	
 	
 	/*
@@ -70,19 +71,41 @@ public class Mapa {
 	public void agregarCiudad(Ciudad c) throws Exception {
 		posicionValida(c.consultarCoordenadas());
 		if(existeCiudad(c.consultarNombre())) throw Existe;
-		else ciudades.insert(c.consultarNombre(), c);
+		ciudades.insert(c.consultarNombre(), c);
 	}
 	
 	public void eliminarCiudad(String c) throws Exception {
 		if(!existeCiudad(c)) throw NoExiste;
-		else ciudades.delete(c);
+		ciudades.delete(c);
 	}
 	
 	public Ciudad consultarCiudad(String c) throws Exception {
 		if(!existeCiudad(c)) throw NoExiste;
-		else return ciudades.consultar(c);
+		return ciudades.consultar(c);
 	}
 	
+	public ArrayList<String> listarCiudades() throws Exception{
+		if(ciudades.isEmpty()) throw Vacio;
+		ciudades.consultar();
+	}
+	
+	
+	//#########################################
+	//##########SOBRE CAMINOS
+	//#########################################
+	
+	public boolean existeCamino(Camino c) {
+		if(caminos.isEmpty()) return false;
+		String cOrig = c.consultarOrigen();
+		String cDest = c.consultarDestino();
+		String med = c.consultarTransporte();
+		return caminos.consultar(cOrig).consultar(cDest).existe(med);
+	}
+	
+	public void agregarCamino(Camino c) throws Exception {
+		if(existeCamino(c)) throw Existe;
+		
+	}
 	
 	/*
 	 * Getter Set de nombres de ciudades
