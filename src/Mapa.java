@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Set;
 
 
@@ -57,16 +55,17 @@ public class Mapa {
 		}
 	}
 	
+	
+	//#########################################
+	//##########SOBRE CIUDADES
+	//#########################################
+	
 	/*
 	 * Comprobar si la ciudad ya existe
 	 */
 	private boolean existeCiudad(String c) {
 		return ciudades.existe(c);
 	}
-	
-	//#########################################
-	//##########SOBRE CIUDADES
-	//#########################################
 	
 	public void agregarCiudad(Ciudad c) throws Exception {
 		posicionValida(c.consultarCoordenadas());
@@ -102,10 +101,11 @@ public class Mapa {
 		return caminos.consultar(cOrig).consultar(cDest).existe(med);
 	}
 	
-	private void agregarCamino(Camino c) throws Exception {
+	public void agregarCamino(Camino c) throws Exception {
 		if(existeCamino(c)) throw Existe;
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
+		if(!existeCiudad(cOrig) || !existeCiudad(cDest)) throw NoExiste;
 		String med = c.consultarTransporte();
 		TST<TST<Camino>> camOrig = null;
 		TST<Camino> camDest = null;
@@ -137,100 +137,59 @@ public class Mapa {
 		caminos.insert(cOrig, camOrig);
 	}
 	
-	public TST<TST<Camino>> consultarCaminoPorMedio(String cOrig, String cDest, String mTrans) {
-		return caminos.consultar(cOrig);
-	}	
+	public Camino consultarCamino(Camino c) throws Exception {
+		if(!existeCamino(c)) throw NoExiste;
+		String cOrig = c.consultarOrigen();
+		String cDest = c.consultarDestino();
+		String med = c.consultarTransporte();
+		return caminos.consultar(cOrig).consultar(cDest).consultar(med);
+	}
 	
-	
-	
-	private ArrayList<String> consultarCiudadesDestino(String cOrig) {
-		ArrayList<String> cPosibles = new ArrayList<String>();
+	public void eliminarCamino(Camino c) throws Exception {
+		if(!existeCamino(c)) throw NoExiste;
+		String cOrig = c.consultarOrigen();
+		String cDest = c.consultarDestino();
+		String med = c.consultarTransporte();
 		
+		TST<TST<Camino>> camOrig = caminos.consultar(cOrig);
+		caminos.delete(cOrig);
+		TST<Camino> camDest = camOrig.consultar(cDest);
+		camOrig.delete(cDest);
 		
+		camDest.delete(med);
+		if(!camDest.isEmpty()) camOrig.insert(cDest, camDest);
+		if(!camOrig.isEmpty()) caminos.insert(cOrig, camOrig);
+	}
+	
+	
+	public ArrayList<Camino> consultarCiudadesDestino(String cOrig) {
+		//Caminos de la misma ciudad origen
+		TST<TST<Camino>> camOrig = caminos.consultar(cOrig);
+		
+		//Lista de ciudades destino
+		ArrayList<String> nCamDest = camOrig.consultar();
+		
+		//Donde se guardaran todos los caminos de salida posibles
+		ArrayList<Camino> cPosibles = new ArrayList<Camino>();
+		
+		//Iterador para recorrer todos los destinos existentes
+		Iterator<String> it = nCamDest.iterator();
+		while(it.hasNext()) {
+			
+			//TST de las ciudades con las misma cOrig y cDest
+			TST<Camino> camDest = camOrig.consultar(it.next());
+			
+			//Lista de medios con los que hay caminos
+			ArrayList<String> nCamMed = camDest.consultar();
+			Iterator<String> itMed = nCamMed.iterator();
+			
+			//Por cada medio se añade un camino
+			while(itMed.hasNext()) {
+				cPosibles.add(camDest.consultar(itMed.next()));
+			}
+		}
+		//cPosibles tiene todos los caminos ordenadoes por la ciudad destino
+		// y de entre ellos por el medio que tienen
 		return cPosibles;
 	}
-	
-	
-	/*
-	 * Getter Set de nombres de ciudades
-	 */
-	public Set<String> getCiudades() {
-		Set<String> ciudades = this.ciudades.getCiudades();
-		return ciudades;	
-	}
-	
-	
-	/*
-	 *Consultar el numero de ciudades que tiene el ConjuntoCiudades 
-	 */
-	public int numeroCiudades() {
-		return this.ciudades.numeroCiudades();
-	}
-	
-	/*
-	 * Consultar el numero de ciudades que tiene el ConjuntoCaminos
-	 */
-	public int numeroCaminos() {
-		return this.caminos.getNumCaminos();
-	}
-	
-	//Buscar Ciudad a partir del nombre
-	public Ciudad buscarCiudad(String nombreCiudad) {
-		return this.ciudades.buscarCiudad(nombreCiudad);
-	}
-	
-	//Consultar coordenadas de una ciudad
-	public Coordenadas getCoordenadasCiudad(String nombreCiudad) {
-		return this.ciudades.getCoordenadasCiudad(nombreCiudad);
-	}
-	
-	//Borrar ciudad
-	public void borrarCiudad(String nombreCiudad) {
-		this.ciudades.borrarCiudad(nombreCiudad);
-	}
-
-
-
-	public int getAnchuraX() {
-		return anchuraX;
-	}
-
-
-
-	public void setAnchuraX(int anchuraX) {
-		this.anchuraX = anchuraX;
-	}
-
-
-
-	public int getAlturaY() {
-		return alturaY;
-	}
-
-
-
-	public void setAlturaY(int alturaY) {
-		this.alturaY = alturaY;
-	}
-
-
-
-	public Coordenadas[] getContinente() {
-		return continente;
-	}
-
-
-
-	public void setContinente(Coordenadas[] continente) {
-		this.continente = continente;
-	}
-	
-	/*
-	 * Consultar caminos existentes desde una ciudad
-	 */
-	public ArrayList<Camino> conCiudadOrigen(String ciudadOrigen){
-		return this.caminos.getCaminosConCiudadOrigen(ciudadOrigen);
-	}
-
-
 }

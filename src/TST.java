@@ -207,6 +207,9 @@ class TST<E>  //no estava la <E>
 	        	}
 	        	else f.left = r.right;
     		}*/
+    		
+    		//En pricipio el siempre se intentara subir el hijo derecho
+    		//que sera el mayor
     		if(r.right == null) {
     			r = r.left;
     		}
