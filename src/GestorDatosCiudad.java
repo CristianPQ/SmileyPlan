@@ -64,7 +64,7 @@ public class GestorDatosCiudad extends GestorDatos {
 	 * @param filename
 	 * @throws Exception
 	 */
-	public ArrayList<Ciudad> cargarAgente(String path, String filename) throws Exception {
+	public ArrayList<Ciudad> cargarCiudades(String path, String filename) throws Exception {
 		
 		ArrayList<Ciudad> newci = new ArrayList<Ciudad>(); 
 		
