@@ -42,7 +42,7 @@ public class GestorDatosCiudad extends GestorDatos {
 		buffer = linea; 
 		
 		for(Ciudad c: lista) {
-			linea = c.consultarNombre() + "" + (c.consultarCoordenadas()).consultarX() + "" + (c.consultarCoordenadas()).consultarY();
+			linea = c.consultarNombre() + " " + (c.consultarCoordenadas()).consultarX() + "" + (c.consultarCoordenadas()).consultarY();
 			buffer = buffer + linea + "\n"; 
 			
 			if (buffer.length() > BUFF_SIZE) {

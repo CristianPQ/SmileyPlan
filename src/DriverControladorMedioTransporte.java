@@ -59,24 +59,26 @@ public class DriverControladorMedioTransporte {
 	                break;            	
 	            }
 	            case 6: {
-	            	//System.out.print(cm.getCantidadTransportes() + "\n");
-	            	//break; 
+	            	int num = cm.getCantidadTransportes();
+	            	System.out.println(num + "/n");
+	            	break; 
 	            }
 	            case 7: {
 	            	MedioTransporte aux = null; 
 	            	String nombre = lsplited[1];	
 	            	aux = cm.buscarMedio(nombre);
+	            	System.out.print(aux.getNombre() + aux.getPrecio() + "/n"); 
 	            	break; 
 	            }
 	            case 8:{
-	            	String  path = "path"; 
-	            	String file = "file"; 
-	            	cm.Cargar(path, file);
+	            	String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
+	            	String file = "prova"; 
+	            	cm.Guardar(path, file);
 	            }
 	            case 9:{
-	            	String  path = "path"; 
-	            	String file = "file"; 
-	            	cm.Guardar(path, file);
+	            	String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
+	            	String file = "prova"; 
+	            	cm.Cargar(path, file);
 	            }
 	            case 0: {
 	                System.exit(0);

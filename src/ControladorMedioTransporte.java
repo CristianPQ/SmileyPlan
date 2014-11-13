@@ -12,7 +12,10 @@ public class ControladorMedioTransporte {
 	 
 	private TST<MedioTransporte> medios;	
 	private final static int BUFFER_SIZE = 1000; 
-	private ArrayList<MedioTransporte> mt; 
+	public ArrayList<MedioTransporte> mt; 
+	
+	public String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
+	public String file = "prova"; 
 	
 	//control errores 
 	private static Exception NombreYaExiste = new Exception ("El nombre ya existe");
@@ -37,9 +40,6 @@ public class ControladorMedioTransporte {
 	public void agregarMedioTransporte(String nombre, int coste) throws Exception{
 		if (medios.existe(nombre)) throw NombreYaExiste;
 		else{
-			//
-			System.out.println("Nombre bueno\n");
-			//
 			MedioTransporte m = new MedioTransporte(nombre,coste); 
 			medios.insert(nombre,m);
 		}
@@ -96,6 +96,13 @@ public class ControladorMedioTransporte {
 	}
 	
 	/**
+	 * Devuelve el numero de transportes
+	 */
+	public int getCantidadTransportes(){
+		return medios.numero(); 
+	}
+	
+	/**
 	 * Cargar medios de transporte
 	 * @param path donde esta el archivo
 	 * @param file donde esta la informacion que queremos cargar
@@ -104,7 +111,6 @@ public class ControladorMedioTransporte {
 	public void Cargar(String path, String file) throws Exception{
 		
 		GestorDatosMedioTransporte gd = new GestorDatosMedioTransporte(); 
-		 
 		mt = gd.cargarMediosTransporte(path,file); 
 		//cargar medios retorna una array amb tots els medios nous
 		 
@@ -130,7 +136,8 @@ public class ControladorMedioTransporte {
 			MedioTransporte aux = medios.consultar(s); 
 			mt.add(aux); //ho passem a l'array de medios de transporte
 		}
-		GestorDatosMedioTransporte gd = new GestorDatosMedioTransporte(); 
+		GestorDatosMedioTransporte gd = new GestorDatosMedioTransporte();
+		//System.out.println("He guardat l'array amb el que vull carregar\n");
 		gd.guardarMediosTransporte(path,file,mt); 
 	}
 }

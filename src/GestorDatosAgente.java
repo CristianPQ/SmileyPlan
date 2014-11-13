@@ -43,7 +43,7 @@ public class GestorDatosAgente extends GestorDatos {
 		buffer = linea; 
 		
 		for(Agente a: lista) {
-			linea = a.consultarNombre() + "" + a.consultarCiudadInicial() + "" + a.consultarCiudadObjetivo();
+			linea = a.consultarNombre() + " " + a.consultarCiudadInicial() + "" + a.consultarCiudadObjetivo();
 			buffer = buffer + linea + "\n"; 
 			
 			if (buffer.length() > BUFF_SIZE) {

@@ -122,7 +122,7 @@ public class GestorDatos {
 	    public boolean writeBuffer(String buffer) throws Exception {
 	        if (escritura) {
 	            bw.write(buffer);
-	            //bw.newLine();
+	            bw.newLine();
 	            return true;
 	        }
 	        return false;
