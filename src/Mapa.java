@@ -6,7 +6,7 @@ public class Mapa {
 	
 	private static String marca = "$";
 	private TST<TST<TST<Camino>>> caminos;
-	TST <Ciudad> ciudades;
+	private TST <Ciudad> ciudades;
 	private String[][] mapa;
 	
 	private static Exception CoordInvalidas = new Exception ("Estas "
