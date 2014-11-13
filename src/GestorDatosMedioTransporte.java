@@ -3,7 +3,6 @@ import java.io.*;
 
 public class GestorDatosMedioTransporte extends GestorDatos{
 	
-	private static int BUFFER_SIZE = 1000; 
 	
 	/**
 	 * Constructora por defecto
@@ -47,7 +46,7 @@ public class GestorDatosMedioTransporte extends GestorDatos{
 			linea = m.getNombre() + "" + m.getPrecio();
 			buffer = buffer + linea + "\n"; 
 			
-			if (buffer.length() > BUFFER_SIZE) {
+			if (buffer.length() > BUFF_SIZE) {
 				gd.writeBuffer(buffer); 
 				buffer = null; 
 			}

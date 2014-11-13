@@ -1,22 +1,21 @@
 import java.util.*;
 import java.io.*;
 
-public class GestorDatosAgente extends GestorDatos {
-	
+public class GestorDatosCiudad extends GestorDatos {
 
 	/**
 	 * Constructora por defecto
 	 */
-	public GestorDatosAgente() {
+	public GestorDatosCiudad() {
 		super();
 	}
 	
 	/**
-	 * Constructora del gestor de datos de los agentes
+	 * Constructora del gestor de datos de las ciudades
 	 * @param nomD2 nombre del directorio
 	 * @param nomF2 nombre del archivo
 	 */
-	public GestorDatosAgente(String nomD2, String nomF2){
+	public GestorDatosCiudad(String nomD2, String nomF2){
 		super(nomD2,nomF2); 
 	}
 	
@@ -26,12 +25,12 @@ public class GestorDatosAgente extends GestorDatos {
 	 * @param filename, nombre que queremos dar al fichero
 	 * @throws Exception
 	 */
-	public void guardarAgentes(String path, String filename, ArrayList<Agente> lista) throws Exception {
+	public void guardarCiudades(String path, String filename, ArrayList<Ciudad> lista) throws Exception {
 		
 		String fn = "CAT".concat(filename); 
-		GestorDatosAgente ga = new GestorDatosAgente(path, filename); 
-		ga.createFile();
-		ga.openFile("write");
+		GestorDatosCiudad ci = new GestorDatosCiudad(path, filename); 
+		ci.createFile();
+		ci.openFile("write");
 		
 		String buffer = null; 
 		String linea; 
@@ -42,21 +41,21 @@ public class GestorDatosAgente extends GestorDatos {
 		linea = Integer.toString(numMeds) + "\n"; 
 		buffer = linea; 
 		
-		for(Agente a: lista) {
-			linea = a.consultarNombre() + "" + a.consultarCiudadInicial() + "" + a.consultarCiudadObjetivo();
+		for(Ciudad c: lista) {
+			linea = c.consultarNombre() + "" + (c.consultarCoordenadas()).consultarX() + "" + (c.consultarCoordenadas()).consultarY();
 			buffer = buffer + linea + "\n"; 
 			
 			if (buffer.length() > BUFF_SIZE) {
-				ga.writeBuffer(buffer); 
+				ci.writeBuffer(buffer); 
 				buffer = null; 
 			}
 		}
 		
 		if (buffer != null) {
-			ga.writeBuffer(buffer); 
+			ci.writeBuffer(buffer); 
 		}
 		
-		ga.closeFile(); 
+		ci.closeFile(); 
 	}
 	
 	/**
@@ -65,25 +64,25 @@ public class GestorDatosAgente extends GestorDatos {
 	 * @param filename
 	 * @throws Exception
 	 */
-	public ArrayList<Agente> cargarAgente(String path, String filename) throws Exception {
+	public ArrayList<Ciudad> cargarAgente(String path, String filename) throws Exception {
 		
-		ArrayList<Agente> newag = new ArrayList<Agente>(); 
+		ArrayList<Ciudad> newci = new ArrayList<Ciudad>(); 
 		
 		//obrim nou gestor dades 
-		GestorDatosAgente ga = new GestorDatosAgente(path, filename); 
+		GestorDatosCiudad ci = new GestorDatosCiudad(path, filename); 
 		//creem nou fitxer dins gestor dades
-		ga.createFile();
+		ci.createFile();
 		//preparem aquest fitxer perque sigui lectura 
-		ga.openFile("read");
+		ci.openFile("read");
 		String buff; 
 				
 		int i = 0;
 		
 		//mirem el numero de caracters de la linia
-		int numMeds = Integer.parseInt(ga.readLine());
+		int numMeds = Integer.parseInt(ci.readLine());
 		
 		//si hi ha 0 caracters es que esta buit
-		if ((buff = ga.readBuffer(numMeds)) == null) {
+		if ((buff = ci.readBuffer(numMeds)) == null) {
 			throw new Exception("fichero vacio"); 
 		}
 		
@@ -94,16 +93,17 @@ public class GestorDatosAgente extends GestorDatos {
 		while (i < numMeds) {
 			//cada string entre " " es un parametre
 			String[] cortarstring = lineas[i].split(" "); 
-			Agente a = new Agente(cortarstring[0],cortarstring[1],cortarstring[2]);  
-			newag.add(a); 
+			String nombreciudad = cortarstring[0]; 
+			int X = Integer.parseInt(cortarstring[1]);
+			int Y = Integer.parseInt(cortarstring[2]);
+			Coordenadas co = new Coordenadas(X,Y);
+			Ciudad c = new Ciudad(nombreciudad, co);
+			newci.add(c); 
 			i++; 
 		}
 	
-		ga.closeFile(); 
-		return newag; 		
-	}
+		ci.closeFile(); 
+		return newci; 		
+	}	
+	
 }
-	
-	
-
-

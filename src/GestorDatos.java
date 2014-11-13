@@ -20,7 +20,7 @@ public class GestorDatos {
 	 private FileReader fr;
 	 private boolean lectura;
 	 private boolean escritura;
-	 private final static int BUFF_SIZE = 1000;//mirar de posar 250
+	 protected final static int BUFF_SIZE = 1000;//mirar de posar 250
 	 
 	 /**
 	  * Constructora por defecto
