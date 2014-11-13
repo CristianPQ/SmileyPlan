@@ -23,7 +23,7 @@ public class PushRelabel extends Algoritmo {
 			for (int j = 0; j < adyacencias.size(); ++j){
 				
 				v = adyacencias.get(j).consultarVerticeDestino();
-				if (adyacencias.get(j).consultarFlujo() == 0 )g.anadirArista(v,i,adyacencias.get(j).consultarCapacidad(),adyacencias.get(j).consultarCapacidad(),0);
+				if (adyacencias.get(j).consultarFlujo() == 0 )g.anadirArista(v,i,adyacencias.get(j).consultarCapacidad(),adyacencias.get(j).consultarCapacidad(),-1);
 			}
 		}
 		

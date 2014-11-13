@@ -31,6 +31,7 @@ public static void main(String [] args) throws Exception {
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
 	    	PushRelabel a = new PushRelabel();
+	    	FordFulkerson f = new FordFulkerson();
 	    	
 	    	while(sc.hasNextLine()){ 
 	    		try{
@@ -135,9 +136,17 @@ public static void main(String [] args) throws Exception {
 	    					
 	    				}	
 	    				case 14: {//
-	    					a.ejecutar(g, 0, 5);
+	    					a.ejecutar(g, 0, 4);
+	    					int aux = g.consultarFlujoArista(3, 4);
+	    					int aux2 = g.consultarFlujoArista(3, 5);
+	    					System.out.println("final ejecucion  " + aux + "   " + aux2);
+	    					break;
+	    				}
+	    				case 15: {//
+	    					f.ejecutar(g, 0, 5);
 	    					int aux = g.consultarFlujoArista(4, 5);
 	    					int aux2 = g.consultarFlujoArista(3, 5);
+	    					System.out.println("final ejecucion max flow es  " + f.ejecutar(g, 0, 5));
 	    					System.out.println("final ejecucion  " + aux + "   " + aux2);
 	    					break;
 	    				}
