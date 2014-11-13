@@ -16,9 +16,9 @@ public class PushRelabel extends Algoritmo {
 	 */
 	private void inicializacion(GrafoAntiguo g,int s, int t){
 		int v;
-		ArrayList <Arista> adyacencias = new ArrayList<Arista>();
+		ArrayList <Arista> adyacencias;
 		/** creo todos las aristas inversas **/
-	/*	for (int i = 0; i < g.consultarNumVertices(); ++i){
+		for (int i = 0; i < g.consultarNumVertices(); ++i){
 			adyacencias = g.consultarAdyacentes(i);
 			for (int j = 0; j < adyacencias.size(); ++j){
 				
@@ -26,21 +26,23 @@ public class PushRelabel extends Algoritmo {
 				if (adyacencias.get(j).consultarFlujo() == 0 )g.anadirArista(v,i,adyacencias.get(j).consultarCapacidad(),adyacencias.get(j).consultarCapacidad(),0);
 			}
 		}
-		*/
+		
+
 		for (int i = 0; i < alturas.length; ++i){
 			if ( i == s) {
 				alturas[i] = g.consultarNumVertices();
-				adyacencias = g.consultarAdyacentes(s);
+				adyacencias = g.consultarAdyacentes(i);
 				for (int j = 0; j < adyacencias.size(); ++j){
 					v = adyacencias.get(j).consultarVerticeDestino();
 					System.out.println(v + " es adyacente a s");
-					if (v != t){
+					if (v != t){ 
 						active[v] = 1;
 						q.addLast(v);
 						exceso[v]= adyacencias.get(j).consultarCapacidad();
 						g.modificarFlujoArista(s,v,adyacencias.get(j).consultarCapacidad());
 						g.modificarFlujoArista(v,s,0);		
 					}
+					
 				}
 			}
 			else alturas[i] = 0; 
@@ -57,14 +59,14 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	private void push(GrafoAntiguo g, int u, int v) throws Exception{
-		System.out.println(u + " pushea a " + v);
+		System.out.println(u + " PUSHEA a " + v);
 
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
 		int temp = Math.min(capacidadResidual,exceso[u]);
 		int nuevoFlujo = g.consultarFlujoArista(u, v) + temp;
 		g.modificarFlujoArista(u, v, nuevoFlujo); 
-		nuevoFlujo =  g.consultarFlujoArista(u, v);
-		g.modificarFlujoArista(v, u, nuevoFlujo); /** arista residual **/
+		nuevoFlujo =  g.consultarFlujoArista(u, v) - temp;
+		g.modificarFlujoArista(v, u, nuevoFlujo ); /** arista residual **/
 		exceso[u] -= temp;
 		exceso[v] += temp;
 	}
@@ -105,7 +107,7 @@ public class PushRelabel extends Algoritmo {
 		inicializacion(g, s, t);
 		System.out.println(exceso[2]);
 		//q.addLast(s);
-/*
+
 		int capacidadResidual,u,v,m;
 		int cont = 0;
 		ArrayList <Arista> adyacencias = new ArrayList<Arista>();
@@ -143,13 +145,13 @@ public class PushRelabel extends Algoritmo {
 					q.removeFirst();
 				} 
 				*/
-/*			}
+			}
 			else {
 				active[u] = 0;
 				q.removeFirst();
 			}
 
-		} */
+		} 
 		return g;
 		
 	}
