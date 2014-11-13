@@ -86,7 +86,7 @@ public class Mapa {
 	
 	public ArrayList<String> listarCiudades() throws Exception{
 		if(ciudades.isEmpty()) throw Vacio;
-		ciudades.consultar();
+		return ciudades.consultar();
 	}
 	
 	
@@ -94,7 +94,7 @@ public class Mapa {
 	//##########SOBRE CAMINOS
 	//#########################################
 	
-	public boolean existeCamino(Camino c) {
+	private boolean existeCamino(Camino c) {
 		if(caminos.isEmpty()) return false;
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
@@ -102,10 +102,54 @@ public class Mapa {
 		return caminos.consultar(cOrig).consultar(cDest).existe(med);
 	}
 	
-	public void agregarCamino(Camino c) throws Exception {
+	private void agregarCamino(Camino c) throws Exception {
 		if(existeCamino(c)) throw Existe;
+		String cOrig = c.consultarOrigen();
+		String cDest = c.consultarDestino();
+		String med = c.consultarTransporte();
+		TST<TST<Camino>> camOrig = null;
+		TST<Camino> camDest = null;
 		
+		if(caminos.existe(cOrig)) {
+			//camOrig tiene el TST de TST de caminos con ciudad origen cOrig
+			camOrig = caminos.consultar(cOrig);
+			caminos.delete(cOrig);
+			if(camOrig.existe(cDest)) {
+				//camDest tiene tiene el TST de ciudades con origen cOrig y destino cDest
+				camDest = camOrig.consultar(cDest);
+				camOrig.delete(cDest);
+				camDest.insert(med, c);
+			}
+			else {
+				camDest = new TST<Camino>();
+				camDest.insert(med, c);
+			}
+			camOrig.insert(cDest, camDest);
+		}
+		else {
+			//No hay ningun camino con ciudad de origen cOrig
+			camDest = new TST<Camino>();
+			camDest.insert(med, c);
+			camOrig = new TST<TST<Camino>>();
+			camOrig.insert(cDest, camDest);
+		}
+		//Se vuelve a insertar el TST de TST de caminos con origen cOrig.
+		caminos.insert(cOrig, camOrig);
 	}
+	
+	public TST<TST<Camino>> consultarCaminoPorMedio(String cOrig, String cDest, String mTrans) {
+		return caminos.consultar(cOrig);
+	}	
+	
+	
+	
+	private ArrayList<String> consultarCiudadesDestino(String cOrig) {
+		ArrayList<String> cPosibles = new ArrayList<String>();
+		
+		
+		return cPosibles;
+	}
+	
 	
 	/*
 	 * Getter Set de nombres de ciudades
@@ -187,13 +231,6 @@ public class Mapa {
 	public ArrayList<Camino> conCiudadOrigen(String ciudadOrigen){
 		return this.caminos.getCaminosConCiudadOrigen(ciudadOrigen);
 	}
-	
-	/*
-	 * Agregar camino en ConjuntoCaminos caminos
-	 */
-	public void agregarCamino(Camino c) throws Exception {
-			System.out.println("antes de agregarCamino en Mapa" + "\n");
-		this.caminos.agregarCamino(c);
-			System.out.println("despues de agregarCamino en Mapa" + "\n");
-	}
+
+
 }

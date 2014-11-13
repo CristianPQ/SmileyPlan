@@ -317,16 +317,19 @@ class TST<E>  //no estava la <E>
             
          // rChar = r(con funcion de TSTNodeChar)
         	TSTNodeChar rChar = (TSTNodeChar)r;
-            if(rChar.data == '$')
-            	al.add(str);
+            if(rChar.data == '$') {
+            	al.add(str);	
+            }
             else {
+            	
             	str = str + rChar.data;
             	 
                 traverse(r.middle, str);
                 str = str.substring(0, str.length() - 1);
      
-                traverse(r.right, str);
+                //traverse(r.right, str);
             }
+            traverse(r.right, str);
         }
     }
     
@@ -343,13 +346,19 @@ class TST<E>  //no estava la <E>
     private int quantity(TSTNode t) {
     	if(t != null) {
     		TSTNodeChar tChar = (TSTNodeChar)t;
+    			//System.out.print("letra: " + tChar.data + "\n");
     		if(tChar.data == '$') {
-    			return 1;
+    			int fl = quantity(t.left);
+    			int fr = quantity(t.right);
+    			return fl+fr+1;
     		}
     		else {
 	    		int f1 = quantity(t.left);
+	    			//System.out.print("f1: " + f1 + "\n");
 	    		int f2 = quantity(t.middle);
+	    			//System.out.print("f2: " + f2 + "\n");
 	    		int f3 = quantity(t.right);
+	    			//System.out.print("f3: " + f3 + "\n");
 	    		return f1+f2+f3;
     		}
     	}
