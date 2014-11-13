@@ -139,8 +139,9 @@ public static void main(String [] args) throws Exception {
 	    					int aux = g.consultarFlujoArista(4, 5);
 	    					int aux2 = g.consultarFlujoArista(3, 5);
 	    					System.out.println("final ejecucion  " + aux + "   " + aux2);
-	    				}
 	    					break;
+	    				}
+	    					
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }
