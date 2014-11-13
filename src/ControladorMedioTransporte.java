@@ -103,6 +103,16 @@ public class ControladorMedioTransporte {
 	}
 	
 	/**
+	 * Mira si existe un medio de transporte
+	 * @param ident
+	 * @return true si existe, false si no
+	 */
+	public boolean existe(String ident){
+		if(medios.existe(ident)) return true; 
+		return false; 
+	}
+	
+	/**
 	 * Cargar medios de transporte
 	 * @param path donde esta el archivo
 	 * @param file donde esta la informacion que queremos cargar
