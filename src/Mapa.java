@@ -92,12 +92,16 @@ public class Mapa {
 	//##########SOBRE CAMINOS
 	//#########################################
 	
-	private boolean existeCamino(Camino c) {
+	private boolean existeCamino(String cOrig, String cDest, String med) {
 		if(caminos.isEmpty()) return false;
+		return caminos.consultar(cOrig).consultar(cDest).existe(med);
+	}
+	
+	private boolean existeCamino(Camino c) {
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
 		String med = c.consultarTransporte();
-		return caminos.consultar(cOrig).consultar(cDest).existe(med);
+		return existeCamino(cOrig, cDest, med);
 	}
 	
 	public void agregarCamino(Camino c) throws Exception {
@@ -136,19 +140,13 @@ public class Mapa {
 		caminos.insert(cOrig, camOrig);
 	}
 	
-	public Camino consultarCamino(Camino c) throws Exception {
-		if(!existeCamino(c)) throw NoExiste;
-		String cOrig = c.consultarOrigen();
-		String cDest = c.consultarDestino();
-		String med = c.consultarTransporte();
+	public Camino consultarCamino(String cOrig, String cDest, String med) throws Exception {
+		if(!existeCamino(cOrig, cDest, med)) throw NoExiste;
 		return caminos.consultar(cOrig).consultar(cDest).consultar(med);
 	}
 	
-	public void eliminarCamino(Camino c) throws Exception {
-		if(!existeCamino(c)) throw NoExiste;
-		String cOrig = c.consultarOrigen();
-		String cDest = c.consultarDestino();
-		String med = c.consultarTransporte();
+	public void eliminarCamino(String cOrig, String cDest, String med) throws Exception {
+		if(!existeCamino(cOrig, cDest, med)) throw NoExiste;
 		
 		TST<TST<Camino>> camOrig = caminos.consultar(cOrig);
 		caminos.delete(cOrig);
