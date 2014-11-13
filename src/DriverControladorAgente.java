@@ -114,6 +114,19 @@ public static void main(String [] args) throws Exception {
 			            	}
 			                break;
 	    				}
+	    				
+	    	            case 13:{
+	    	            	String  path = "/Users/Dani/Desktop/SmileyPlan/src/"; 
+	    	            	String file = "provaAgente"; 
+	    	            	conjAgentes.Guardar(path, file);
+	    	            	break;
+	    	            }
+	    	            case 14:{
+	    	            	String  path = "/Users/Dani/Desktop/SmileyPlan/src/";
+	    	            	String file = "provaAgente"; 
+	    	            	conjAgentes.Cargar(path, file);
+	    	            	break;
+	    	            }
 	    					
 	    				case 0: {
 	    	                System.exit(0);

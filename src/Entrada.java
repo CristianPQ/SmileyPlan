@@ -7,12 +7,15 @@ public class Entrada {
 		TST <Integer> relacCiudades;  //nombre -> vertex
 		
 		
-		public Grafo Entrada(Mapa m, ControladorAgentes ca, ControladorMedioTransporte cm){
-			ciudades = new Ciudad[m.numeroCiudades()];
+		public Grafo Entrada(Mapa m, ControladorAgentes ca, ControladorMedioTransporte cm) throws Exception{
+			ArrayList<String> a = m.listarCiudades();
+			ciudades = new Ciudad[a.size()];
 			//iterar ciudades y meterlas en el vector
 			relacCiudades = new TST<Integer>();
-			for (int i = 0; i < ciudades.length; ++i)
+			for (int i = 0; i < ciudades.length; ++i){
+				ciudades[i] = m.consultarCiudad(a.get(i));
 				relacCiudades.insert(ciudades[i].consultarNombre(), i);
+			}
 
 			//para cada Ciudad
 			//obtener los caminos
