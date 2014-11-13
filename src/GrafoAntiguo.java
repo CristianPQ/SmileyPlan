@@ -124,6 +124,8 @@ public class GrafoAntiguo {
 		}
 	}
 	
+
+	
 	/*	public int consultarVerticeDestinoArista
 	(int vertex){
 		Arista a = grafo.get(vertex);
