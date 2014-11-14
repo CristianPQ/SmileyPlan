@@ -4,7 +4,7 @@ public class Entrada {
 		Grafo g;
 		Ciudad[] ciudades; //obtener todas las ciudades, entonces tendremos
 							//las posiciones q ocuparan en el grafo
-		TST <Integer> relacCiudades;  //nombre -> vertex
+	  //nombre -> vertex
 		
 		
 		public Grafo Entrada(Mapa m, ControladorAgentes ca, ControladorMedioTransporte cm) throws Exception{
