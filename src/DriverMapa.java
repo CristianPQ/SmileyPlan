@@ -9,7 +9,8 @@ public class DriverMapa {
 	private static void menu() {
         System.out.println("Driver clase Mapa"
                 + "\n 0.Salir"
-                + "\n 1.new Mapa(Coordenadas[] continente, int anchuraX, int alturaY)"
+                + "\n 1.new Mapa(int anchuraX, int alturaY, Coordenadas[] continente)"
+                + "\n ##########CIUDADES##########"
                 + "\n 2.getCiudades()"
                 + "\n 3.agregarCiudad(String nombreCiudad, int CoordX, int CoordY)"
                 + "\n 4.int numeroCiudades()"

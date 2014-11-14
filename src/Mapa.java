@@ -3,8 +3,9 @@ import java.util.*;
 
 public class Mapa {
 	
+	
 	private static String marca = "$";
-	private TST<TST<TST<Camino>>> caminos;
+	private TST<TST<ArrayList<Camino>>> caminos;
 	private TST <Ciudad> ciudades;
 	private String[][] mapa;
 	
@@ -19,8 +20,9 @@ public class Mapa {
 	 * Constructor Ciudad
 	 */
 	public Mapa(int anchuraX, int alturaY, Coordenadas[] continente) throws Exception {
+		//continente es cerrado siempre
 		ciudades = new TST<Ciudad>();
-		caminos = new TST<TST<TST<Camino>>>();
+		caminos = new TST<TST<ArrayList<Camino>>>();
 		mapa = new String[alturaY][anchuraX];
 		agregarContinente(continente);
 	}
@@ -92,16 +94,10 @@ public class Mapa {
 	//##########SOBRE CAMINOS
 	//#########################################
 	
-	private boolean existeCamino(String cOrig, String cDest, String med) {
-		if(caminos.isEmpty()) return false;
-		return caminos.consultar(cOrig).consultar(cDest).existe(med);
-	}
-	
 	private boolean existeCamino(Camino c) {
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
-		String med = c.consultarTransporte();
-		return existeCamino(cOrig, cDest, med);
+		return caminos.consultar(cOrig).consultar(cDest).contains(c);
 	}
 	
 	public void agregarCamino(Camino c) throws Exception {
@@ -109,9 +105,8 @@ public class Mapa {
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
 		if(!existeCiudad(cOrig) || !existeCiudad(cDest)) throw NoExiste;
-		String med = c.consultarTransporte();
-		TST<TST<Camino>> camOrig = null;
-		TST<Camino> camDest = null;
+		TST<ArrayList<Camino>> camOrig = null;
+		ArrayList<Camino> camDest = null;
 		
 		if(caminos.existe(cOrig)) {
 			//camOrig tiene el TST de TST de caminos con ciudad origen cOrig
@@ -121,41 +116,40 @@ public class Mapa {
 				//camDest tiene tiene el TST de ciudades con origen cOrig y destino cDest
 				camDest = camOrig.consultar(cDest);
 				camOrig.delete(cDest);
-				camDest.insert(med, c);
+				camDest.add(c);
 			}
 			else {
-				camDest = new TST<Camino>();
-				camDest.insert(med, c);
+				camDest = new ArrayList<Camino>();
+				camDest.add(c);
 			}
 			camOrig.insert(cDest, camDest);
 		}
 		else {
 			//No hay ningun camino con ciudad de origen cOrig
-			camDest = new TST<Camino>();
-			camDest.insert(med, c);
-			camOrig = new TST<TST<Camino>>();
+			camDest = new ArrayList<Camino>();
+			camDest.add(c);
+			camOrig = new TST<ArrayList<Camino>>();
 			camOrig.insert(cDest, camDest);
 		}
 		//Se vuelve a insertar el TST de TST de caminos con origen cOrig.
 		caminos.insert(cOrig, camOrig);
 	}
 	
-	public Camino consultarCamino(String cOrig, String cDest, String med) throws Exception {
-		if(!existeCamino(cOrig, cDest, med)) throw NoExiste;
-		return caminos.consultar(cOrig).consultar(cDest).consultar(med);
+	public ArrayList<Camino> consultarCaminos(String cOrig, String cDest) throws Exception {
+		ArrayList<Camino> listCamino =  caminos.consultar(cOrig).consultar(cDest);
+		if(listCamino == null) throw NoExiste;
+		return listCamino;		
 	}
 	
-	public void eliminarCamino(String cOrig, String cDest, String med) throws Exception {
-		if(!existeCamino(cOrig, cDest, med)) throw NoExiste;
-		
-		TST<TST<Camino>> camOrig = caminos.consultar(cOrig);
-		caminos.delete(cOrig);
-		TST<Camino> camDest = camOrig.consultar(cDest);
+	public void eliminarCamino(Camino c) throws Exception {
+		String cOrig = c.consultarOrigen();
+		String cDest = c.consultarDestino();
+		TST<ArrayList<Camino>> camOrig = caminos.consultar(cOrig);
+		ArrayList<Camino> camDest = camOrig.consultar(cDest);
 		camOrig.delete(cDest);
-		
-		camDest.delete(med);
-		if(!camDest.isEmpty()) camOrig.insert(cDest, camDest);
-		if(!camOrig.isEmpty()) caminos.insert(cOrig, camOrig);
+		camDest.remove(c);
+		if(!camDest.isEmpty()) camOrig.modificar(cDest, camDest);
+		if(!camOrig.isEmpty()) caminos.modificar(cOrig, camOrig);
 	}
 	
 	

@@ -37,7 +37,6 @@ class TST<E>  //no estava la <E>
 			super();
 			data = newData;
 		}
-		
 	}
 	
 	// NODO FINAL
@@ -47,6 +46,13 @@ class TST<E>  //no estava la <E>
 		public TSTNodeFinal(E value) {
 			super();
 			val = value;
+		}
+		
+		//%%%%%%%%%%%%%%%%%%%%%%%%%%
+		//%%%%%%MODIFICAR VALOR%%%%%
+		//%%%%%%%%%%%%%%%%%%%%%%%%%%
+		public void modificar(E e) {
+			val = e;
 		}
 	}
 	
@@ -147,7 +153,7 @@ class TST<E>  //no estava la <E>
     //ELIMINAR ELEMENTO
     public void delete(String word)
     {
-        root = (TST<E>.TSTNodeChar) delete(null, root, word.toCharArray(), 0);
+        root = (TSTNodeChar) delete(null, root, word.toCharArray(), 0);
     }
     
     
@@ -228,6 +234,68 @@ class TST<E>  //no estava la <E>
     	}
     	return r;
     }
+    
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //%%%%%%%%Modificador del elemento%%%%%%%%%%%
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    public void modificar(String word, E e)
+    {
+        root = (TSTNodeChar) modificarNodo(null, root, word.toCharArray(), 0, e);
+    }
+    
+    private TSTNode modificarNodo(TSTNode f, TSTNode r, char[] word, int ptr, E e)
+    {
+        if (r == null)
+            return null;
+        
+        char letra;
+    	//Si ya se ha recorrido toda la palabra es una word[ptr], sino es $
+    	if(ptr < word.length) {
+    		letra = word[ptr];
+    	}
+    	else letra = '$';
+        
+    	// rChar = r(con funcion de TSTNodeChar)
+    	TSTNodeChar rChar = (TSTNodeChar)r;
+    	
+    	if(ptr == word.length && rChar.data == '$') {
+    		
+    		TSTNodeFinal rFinal = (TSTNodeFinal)r.middle;
+    		rFinal.modificar(e);
+    		r.middle = rFinal;
+    		
+    		
+    	}
+
+        
+    	//System.out.println("rChar.data: " + rChar.data + "\n" + "letra: " + letra + "\n" + "\n");
+    	
+        if (letra < rChar.data)
+            r.left = delete(r, r.left, word, ptr);
+        else if (letra > rChar.data)
+            r.right = delete(r, r.right, word, ptr);
+        else
+        {
+        	if(ptr < word.length)
+        		r.middle = delete(r, r.middle, word, ptr + 1);
+/*        	
+        	
+            /** to delete a word just make isEnd false **
+            if (r.isEnd && ptr == word.length - 1)
+                r.isEnd = false;
+ 
+            else if (ptr + 1 < word.length)
+                delete(r.middle, word, ptr + 1);
+            */
+        }
+        return r;
+    }
+    
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
  
     /** function to search for a word **/
     public boolean existe(String word)
@@ -265,7 +333,7 @@ class TST<E>  //no estava la <E>
     }
     
     
-    
+    //CONSULTAR UN ELEMENTO
     public E consultar(String word){ //aquesta funcio no existia
     	return buscar(root, word.toCharArray(), 0);
     }

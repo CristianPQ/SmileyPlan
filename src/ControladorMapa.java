@@ -55,5 +55,38 @@ public class ControladorMapa {
 		return m.consultarCiudadesDestino(cOrig);
 	}
 	
+	//#########################################
+	//##########Gestion de datos
+	//#########################################
+	
+	/*
+	public void Cargar(String path, String file) throws Exception{
+		
+		GestorDatosMedioTransporte gd = new GestorDatosMedioTransporte(); 
+		mt = gd.cargarMediosTransporte(path,file); 
+		//cargar medios retorna una array amb tots els medios nous
+		 
+		 for(int i = 0; i < mt.size(); ++i ){
+			 String n = mt.get(i).getNombre(); 
+			 int p = mt.get(i).getPrecio(); 
+			 agregarMedioTransporte(n,p); 
+		 }	
+	}
+	
+	
+	public void Guardar(String path, String file) throws Exception {
+		mt = new ArrayList<MedioTransporte>();
+		ArrayList<String> lista = new ArrayList<String>();
+		lista = medios.consultar(); //obtenim un array ordenada amb els ident de TST
+		for(int i = 0; i < lista.size(); ++i){
+			String s = lista.get(i); 
+			MedioTransporte aux = medios.consultar(s); 
+			mt.add(aux); //ho passem a l'array de medios de transporte
+		}
+		GestorDatosMedioTransporte gd = new GestorDatosMedioTransporte();
+		//System.out.println("He guardat l'array amb el que vull carregar\n");
+		gd.guardarMediosTransporte(path,file,mt); 
+	}
+	*/
 	
 }
