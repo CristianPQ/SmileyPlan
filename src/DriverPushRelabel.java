@@ -22,6 +22,8 @@ private static void menu() {
 	                + "\n 11.consultarNumVertices()"
 	                + "\n 12.consultarNumAristasVertice(int vertex)"
 	                + "\n 13.CONSULTARADYACENTES(int vertex)"
+	                + "\n 14. ejecutar PushRelabel (int s, int t) --> maxflow"
+	                + "\n 15. ejecutar  (int s, int t) --> maxflow"
 	                +"\n");
 }
 
@@ -136,18 +138,29 @@ public static void main(String [] args) throws Exception {
 	    					
 	    				}	
 	    				case 14: {//
-	    					a.ejecutar(g, 0, 5);
-	    					int aux = g.consultarFlujoArista(3, 5);
-	    					int aux2 = g.consultarFlujoArista(4, 5);
-	    					System.out.println("final ejecucion  " + aux + "   " + aux2);
+	    					int s = Integer.parseInt(lsplited[1]);
+	    					int t = Integer.parseInt(lsplited[2]);
+	    					a.ejecutar(g, s, t);
+	    					int flow = 0;
+	    					ArrayList <Arista> adyacencias = g.consultarAdyacentes(t);
+	    					for (int j = 0; j < adyacencias.size(); ++j){
+	    						if (adyacencias.get(j).consultarCoste() != -1) flow += adyacencias.get(j).consultarFlujo();
+	    						System.out.println("final ejecucion el max flow es1  " + flow );
+	    					}
+	    					System.out.println("final ejecucion el max flow es  " + flow );
 	    					break;
 	    				}
 	    				case 15: {//
-	    					f.ejecutar(g, 0, 5);
-	    					int aux = g.consultarFlujoArista(4, 5);
-	    					int aux2 = g.consultarFlujoArista(3, 5);
-	    					System.out.println("final ejecucion max flow es  " + f.ejecutar(g, 0, 5));
-	    					System.out.println("final ejecucion  " + aux + "   " + aux2);
+	    					int s = Integer.parseInt(lsplited[1]);
+	    					int t = Integer.parseInt(lsplited[2]);
+	    					f.ejecutar(g, s, t);
+	    					int flow = 0;
+	    					ArrayList <Arista> adyacencias = g.consultarAdyacentes(t);
+	    					for (int j = 0; j < adyacencias.size(); ++j){
+	    						if (adyacencias.get(j).consultarCoste() != -1) flow += adyacencias.get(j).consultarFlujo();
+	    						System.out.println("final ejecucion el max flow es1  " + flow );
+	    					}
+	    					System.out.println("final ejecucion el max flow es  " + flow );
 	    					break;
 	    				}
 	    					
