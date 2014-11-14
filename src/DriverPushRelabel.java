@@ -136,9 +136,9 @@ public static void main(String [] args) throws Exception {
 	    					
 	    				}	
 	    				case 14: {//
-	    					a.ejecutar(g, 0, 4);
-	    					int aux = g.consultarFlujoArista(3, 4);
-	    					int aux2 = g.consultarFlujoArista(3, 5);
+	    					a.ejecutar(g, 0, 5);
+	    					int aux = g.consultarFlujoArista(3, 5);
+	    					int aux2 = g.consultarFlujoArista(4, 5);
 	    					System.out.println("final ejecucion  " + aux + "   " + aux2);
 	    					break;
 	    				}

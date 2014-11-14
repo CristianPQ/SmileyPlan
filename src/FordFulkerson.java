@@ -32,7 +32,7 @@ public class FordFulkerson {
 		          int nuevoFlujo = g.consultarFlujoArista(u, v) + df;
 		          System.out.println("nuevoFlujo de " + u + " a " + v + " es " + nuevoFlujo);
 		          g.modificarFlujoArista(u,v,nuevoFlujo);
-		          nuevoFlujo = g.consultarFlujoArista(u, v) - df;
+		          nuevoFlujo = g.consultarFlujoArista(v, u) - df;
 		         // cap[v][u] += df;
 		          g.modificarFlujoArista(v,u,nuevoFlujo);
 		          return df;
@@ -45,7 +45,7 @@ public class FordFulkerson {
 	 
 
 	public int ejecutar ( GrafoAntiguo g, int s, int t) throws Exception{
-		
+		inicializacion(g,s,t);
 	    for (int flow = 0;;) {
 	        int df = findPath(g, new boolean[g.consultarNumVertices()], s, t, Integer.MAX_VALUE);
 	        if (df == 0)
