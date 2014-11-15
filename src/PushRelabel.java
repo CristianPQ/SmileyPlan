@@ -13,7 +13,7 @@ public class PushRelabel extends Algoritmo {
 	
 	String path; 
 	String file;
-	String buffer = null; 
+	String buffer; 
 	
 	
 	/**

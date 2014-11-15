@@ -10,6 +10,10 @@ public class Mapa {
 	private TST <Ciudad> ciudades;
 	private String[][] mapa;
 	
+	private String buffer; 
+	private static int BUFFER_SIZE = 3250; //aprox 250 elem
+	private static int CARGA_MAX = 250; 
+	
 	private static Exception CoordInvalidas = new Exception ("Estas "
 			+ "coordenadas no son validas para este mapa");
 	private static Exception Existe = new Exception ("Este elemento ya existe");
@@ -367,6 +371,224 @@ public class Mapa {
 		}
 		return listC;
 	}
+	
+	
+	public ArrayList<Camino> consultarTodosCaminos() {
+		  ArrayList<Camino> todoCaminos = new ArrayList<Camino>();
+		  ArrayList<String> camOrig = caminos.consultar();
+		  Iterator<String> it = camOrig.iterator();
+		  while(it.hasNext()) {
+		   todoCaminos.addAll(consultarCiudadesDestino(it.next()));
+		  }
+		  return todoCaminos;
+	}
+	
+	
+	//#########################################
+	//##########Gestion de datos
+	//#########################################
+	
+	/**
+	 * Guardar ciudades
+	 * @param path
+	 * @param file
+	 * @throws Exception si file no existe
+	 */
+	public void GuardarCiudades(String path, String file) throws Exception {
+		
+		GestorDatos gd = new GestorDatos(path,file);
+		
+		gd.createFile(); 
+		gd.openFile("write"); 
+		
+		
+		ArrayList<String> lista = new ArrayList<String>();
+		lista = ciudades.consultar(); 
+		
+		String linea = Integer.toString(lista.size()) + "\n"; 
+		buffer = linea; 
+		
+				
+		for(int i = 0; i < lista.size(); ++i){
+			String s = lista.get(i); 
+			Ciudad aux = ciudades.consultar(s); 
+			int x = (aux.consultarCoordenadas()).consultarX(); 
+			int y = (aux.consultarCoordenadas()).consultarY(); 
+			linea = aux.consultarNombre() + " " + x + " " + y; 
+			buffer = buffer + linea + "\n"; 
+			
+			if(buffer.length() > BUFFER_SIZE) {
+				gd.writeBuffer(buffer); 
+				buffer = null; 
+			}
+		}
+		
+		if(buffer != null) {
+			gd.writeBuffer(buffer);
+		}
+		
+		gd.closeFile(); 
+	}
+	
+	/**
+	 * Cargar ciudades a mapa 
+	 * @param path
+	 * @param file
+	 * @throws Exception
+	 */
+	public void CargarCiudades(String path, String file) throws Exception{
+		
+		GestorDatos gd = new GestorDatos(path,file); 
+		
+		gd.createFile();
+		gd.openFile("read"); 
+		
+		int num = Integer.parseInt(gd.readLine()); 
+		
+		buffer = gd.readBuffer(num); 
+		if(buffer == null) throw new Exception("fichero vacio"); 
+		
+		String[] lineas = buffer.split("\n"); 
+		int i = 0; 
+		
+		if (num <= CARGA_MAX) {
+			while(i < num) {
+				String[] cortarstring = lineas[i].split(" "); 
+				String nombre = cortarstring[0];
+				int x = Integer.parseInt(cortarstring[1]); 
+				int y = Integer.parseInt(cortarstring[2]); 
+				agregarCiudad(nombre,x,y); 
+				/////////////per comprovar ////////////////
+				System.out.print(nombre + " "+ x + " " + y +"\n"); 
+				/////////////////////////////////////////////
+				i++; 
+			}
+		}
+		
+		else {
+			while(num >= CARGA_MAX) {
+				buffer = gd.readBuffer(CARGA_MAX); 
+				num = num - CARGA_MAX; 
+				while(i < CARGA_MAX) {
+					String[] cortarstring = lineas[i].split(" "); 
+					String nombre = cortarstring[0];
+					int x = Integer.parseInt(cortarstring[1]); 
+					int y = Integer.parseInt(cortarstring[2]); 
+					agregarCiudad(nombre,x,y); 
+					/////////////per comprovar ////////////////
+					System.out.print(nombre + " "+ x + " " + y +"\n"); 
+					/////////////////////////////////////////////
+					i++; 
+					
+				}
+			}
+		
+		gd.closeFile(); 
+	}
+	}
+	
+	
+	/**
+	 * Guardar caminos del mapa
+	 * @param path
+	 * @param file
+	 * @throws Exception
+	 */
+	public void GuardarCaminos(String path, String file) throws Exception {
+		GestorDatos gd = new GestorDatos(path,file);
+		
+		gd.createFile(); 
+		gd.openFile("write"); 
+		
+		ArrayList<Camino> lista = new ArrayList<Camino>(); 
+		lista = consultarTodosCaminos(); 
+
+		String linea = Integer.toString(lista.size()) + "\n"; 
+		buffer = linea; 
+				
+		for(int i = 0; i < lista.size(); ++i){
+
+			String co = lista.get(i).consultarOrigen(); 
+			int cap = lista.get(i).consultarCapacidad(); 
+			String transporte = lista.get(i).consultarTransporte(); 
+			String cd = lista.get(i).consultarDestino();  
+			linea = co + " " + cap + " " + transporte + " " + cd; 
+			buffer = buffer + linea + "\n"; 
+			
+			if(buffer.length() > BUFFER_SIZE) {
+				gd.writeBuffer(buffer); 
+				buffer = null; 
+			}
+		}
+		
+		if(buffer != null) {
+			gd.writeBuffer(buffer);
+		}
+		
+		gd.closeFile(); 
+	}
+	
+	/**
+	 * Cargar caminos en el mapa
+	 * @param path
+	 * @param file
+	 * @throws Exception
+	 */
+	public void CargarCaminos(String path, String file) throws Exception{
+		
+		GestorDatos gd = new GestorDatos(path,file); 
+		
+		gd.createFile();
+		gd.openFile("read"); 
+		
+		int num = Integer.parseInt(gd.readLine()); 
+		
+		buffer = gd.readBuffer(num); 
+		if(buffer == null) throw new Exception("fichero vacio"); 
+		
+		String[] lineas = buffer.split("\n"); 
+		int i = 0; 
+		
+		if (num <= CARGA_MAX) {
+			while(i < num) {
+				String[] cortarstring = lineas[i].split(" "); 
+				String co = cortarstring[0];
+				int capac = Integer.parseInt(cortarstring[1]); 
+				String trans = cortarstring[2]; 
+				String cd = cortarstring[3]; 
+				Camino c = new Camino(co,cd,capac,trans);
+				agregarCamino(c); 
+				/////////////per comprovar ////////////////
+				System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
+				/////////////////////////////////////////////
+				i++; 
+			}
+		}
+		
+		else {
+			while(num >= CARGA_MAX) {
+				buffer = gd.readBuffer(CARGA_MAX); 
+				num = num - CARGA_MAX; 
+				while(i < CARGA_MAX) {
+					String[] cortarstring = lineas[i].split(" "); 
+					String co = cortarstring[0];
+					int capac = Integer.parseInt(cortarstring[1]); 
+					String trans = cortarstring[2]; 
+					String cd = cortarstring[3]; 
+					Camino c = new Camino(co,cd,capac,trans);
+					agregarCamino(c); 
+					/////////////per comprovar ////////////////
+					System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
+					/////////////////////////////////////////////
+					i++; 
+				}
+			}
+		
+		gd.closeFile(); 
+	}
+	}
+	
+	
 	
 	//#########################################
 	//##########CONSULTORAS

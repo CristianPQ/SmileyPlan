@@ -9,7 +9,7 @@ public class ControladorAgentes {
 		
 		public ArrayList<Agente> guardaAg; 
 		
-		private final static int BUFFER_SIZE = 1000; //ARREGLAR A 250! 
+		private final static int BUFFER_SIZE = 3250; 
 		private int CARGA_MAX = 250; 
 		public String buffer = null; 
 		

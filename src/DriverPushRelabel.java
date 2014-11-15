@@ -162,8 +162,7 @@ public static void main(String [] args) throws Exception {
 	    					String path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
 	    					String file = "prova"; 
 	    					a.Guardar(path,file); 
-	    				}
-	    					
+	    				}	
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }

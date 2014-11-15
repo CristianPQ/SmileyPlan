@@ -3,7 +3,6 @@ import java.util.*;
 public class ControladorMapa {
 
 	private Mapa m;
-	private final static int BUFFER_SIZE = 1000;
 	
 	private static Exception NoExiste = new Exception ("Este elemento no existe");
 	
