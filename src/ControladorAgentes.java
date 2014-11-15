@@ -30,7 +30,7 @@ public class ControladorAgentes {
 	 * Vaciar todo el contenedor de agentes
 	 */
 		
-		public void eliminarTodo(){ //SEGURO2
+		public void eliminarTodo(){ 
 			Agentes.makeEmpty();
             numAgentes = 0;
 		}
@@ -163,7 +163,7 @@ public class ControladorAgentes {
 		return numAgentes;
 		}
         
-        public ArrayList<String> getNombresAgentes()
+        public ArrayList<String> consultarNombresAgentes()
         {
         	return Agentes.consultar();
         }

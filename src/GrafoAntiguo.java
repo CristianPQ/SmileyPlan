@@ -4,8 +4,8 @@ public class GrafoAntiguo {
 	//constructora
 //	ArrayList<ArrayList<Arista>> grafo;
 
-	ArrayList<Arista>[] Adyacencias;
-	int numVertices;
+	private ArrayList<Arista>[] Adyacencias;
+	private int numVertices;
 	
 	//private static Exception NoExiste = new Exception ("La adyacencia NO existe");
 
@@ -20,6 +20,12 @@ public class GrafoAntiguo {
 	
 	public ArrayList<Arista> consultarAdyacentes(int vertex){
 		return Adyacencias[vertex];
+	}
+
+	public boolean existeAdyacente(int vertex, int targetVertex){
+		for (int i = 0; i < Adyacencias[vertex].size();++i) 
+			if (Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex) return true;
+			return false;
 	}
 	
 	public void anadirArista (int vertex, int targetVertex,

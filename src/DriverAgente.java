@@ -8,12 +8,12 @@ private static void menu() {
 	        System.out.println("Driver clase ControladorAgente"
 	                + "\n 0.Salir"
 	                + "\n 1.new Agente(String nombre, String ciudadInicial, String ciudadObjetivo)"
-	                + "\n 2.getNombre()"
-	                + "\n 3.setNombre(String nombre)"
-	                + "\n 4.getCiudadInicial()"
-	                + "\n 5.setCiudadInicial(String ciudadInicial)"
-	                + "\n 6.getCiudadObjetivo()"
-	                + "\n 7.setCiudadObjetivo (String ciudadObjetivo)"
+	                + "\n 2.ConsultarNombre()"
+	                + "\n 3.ModificarNombre(String nombre)"
+	                + "\n 4.ConsultarCiudadInicial()"
+	                + "\n 5.ModificarCiudadInicial(String ciudadInicial)"
+	                + "\n 6.ConsultarCiudadObjetivo()"
+	                + "\n 7.ModificarCiudadObjetivo (String ciudadObjetivo)"
 	        		+"\n");
 }
 

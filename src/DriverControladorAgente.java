@@ -20,6 +20,9 @@ private static void menu() {
 	        		+ "\n 9.modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)" 
 	                + "\n 10.getNumeroDeAgentes()"
 	        		+ "\n 11.eliminarTodo()"
+	                + "\n 12.obtenerNombresAgentes()"
+	                + "\n 13.Guardar(String path, String file)"
+	                + "\n 14.Cargar(String path, String file)"
 	        		+"\n");
 }
 
@@ -106,8 +109,8 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    				}
 	    				
-	    				case 12:{
-	    					ArrayList<String> aS = conjAgentes.getNombresAgentes();
+	    				case 12:{//consultar nombre de todos los agentes
+	    					ArrayList<String> aS = conjAgentes.consultarNombresAgentes();
 			            	Iterator<String> it = aS.iterator();
 			            	while(it.hasNext()) {
 			            		System.out.println(it.next() + "\n");
@@ -115,13 +118,13 @@ public static void main(String [] args) throws Exception {
 			                break;
 	    				}
 	    				
-	    	            case 13:{
+	    	            case 13:{ //Guardado
 	    	            	String  path = "/Users/Dani/Desktop/SmileyPlan/src/"; 
 	    	            	String file = "provaAgente"; 
 	    	            	conjAgentes.Guardar(path, file);
 	    	            	break;
 	    	            }
-	    	            case 14:{
+	    	            case 14:{ //Carga
 	    	            	String  path = "/Users/Dani/Desktop/SmileyPlan/src/";
 	    	            	String file = "provaAgente"; 
 	    	            	conjAgentes.Cargar(path, file);
