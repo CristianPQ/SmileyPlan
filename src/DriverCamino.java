@@ -7,12 +7,12 @@ public class DriverCamino {
                 + "\n 0.Salir"
                 + "\n 1.crear Camino(String ciudadOrigen, String ciudadDestino, int capacidad, String transporte)"
                 + "\n 2.Camino(String ciudadOrigen, String ciudadDestino,  String transporte)"
-                + "\n 3.getTransporte() -> String"
-                + "\n 4.getOrigen() -> String"
-                + "\n 5.getDestino() -> String"
-                + "\n 6.getCapacidad() -> int"
-                + "\n 7.setTransporte(String transporte)"
-                + "\n 8.setCapacidad(int capacidad)"
+                + "\n 3.consultarTransporte() -> String"
+                + "\n 4.consultarOrigen() -> String"
+                + "\n 5.consultarDestino() -> String"
+                + "\n 6.consultarCapacidad() -> int"
+                + "\n 7.modificar Transporte(String transporte)"
+                + "\n 8.modificarCapacidad(int capacidad)"
         		+"\n");
     }
 	
@@ -41,29 +41,29 @@ public class DriverCamino {
 	                break;
 	            }
 	            case 3: {
-	               System.out.print( camino.getTransporte() + "\n");
+	               System.out.print( camino.consultarTransporte() + "\n");
 	               break;
 	            }
 	            case 4:{
-		               System.out.print( camino.getOrigen() + "\n");
+		               System.out.print( camino.consultarOrigen() + "\n");
 		               break;
 	            }
 	            case 5:{
-		               System.out.print( camino.getDestino() + "\n");
+		               System.out.print( camino.consultarDestino() + "\n");
 		               break;
 	            }
 	            case 6:{
-		               System.out.print( camino.getCapacidad() + "\n");
+		               System.out.print( camino.consultarCapacidad() + "\n");
 		               break;
 	            }
 	            case 7: {
 	            	String transporte = lsplited[1]; 
-	            	camino.setTransporte(transporte);
+	            	camino.modificarTransporte(transporte);
 	                break;
 	            }
 	            case 8: {
 	            	String capacidad = lsplited[1]; 
-	            	camino.setTransporte(capacidad);
+	            	camino.modificarCapacidad(capacidad);
 	                break;
 	            }
 	            case 0: {

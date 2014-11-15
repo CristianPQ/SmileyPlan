@@ -41,11 +41,16 @@ public class Camino {
     public int consultarCapacidad(){
     	return capacidad;
     }
-
-    public void setTransporte(String transporte2){
+    public void modificarCiudadOrigen(String ciudad){
+    	ciudadOrigen = ciudad;
+    }  
+    public void modificarCiudadDestino(String ciudad){
+    	ciudadDestino = ciudad;
+    }    
+    public void modificarTransporte(String transporte2){
     	transporte = transporte2;
     }
-    public void setCapacidad(int capacidad2){
+    public void modificarCapacidad(int capacidad2){
     	capacidad = capacidad2;
     }
     public String consultarKey(){
