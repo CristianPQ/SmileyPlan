@@ -9,6 +9,10 @@ public class ControladorAgentes {
 		
 		public ArrayList<Agente> guardaAg; 
 		
+		private final static int BUFFER_SIZE = 1000; //ARREGLAR A 250! 
+		private int CARGA_MAX = 250; 
+		public String buffer = null; 
+		
 		private static Exception NombreYaExiste = new Exception ("El agente ya existe");
 		private static Exception NoExiste = new Exception ("El agente no existe");
 
@@ -164,44 +168,105 @@ public class ControladorAgentes {
         	return Agentes.consultar();
         }
         
+        
         /**
-    	 * Cargar 
+    	 * Cargar agentes
     	 * @param path donde esta el archivo
     	 * @param file donde esta la informacion que queremos cargar
     	 * @throws Exception si el fichero esta vacio 
     	 */
     	public void Cargar(String path, String file) throws Exception{
     		
-    		GestorDatosAgente ga = new GestorDatosAgente(); 
-    		guardaAg = ga.cargarAgente(path,file); 
+    		GestorDatos gd = new GestorDatos(path,file); 
     		
-    		 for(int i = 0; i < guardaAg.size(); ++i ){
-    			 Agente aux = guardaAg.get(i); 
-    			 String n = aux.consultarNombre(); 
-    			 String ci = aux.consultarCiudadInicial();
-    			 String co = aux.consultarCiudadObjetivo();
-    			 anadirAgente(n,ci,co); 
-    		 }	
+    		gd.createFile();
+    		gd.openFile("read"); 
+    		
+    		int num = Integer.parseInt(gd.readLine()); 
+    		
+    		buffer = gd.readBuffer(num); 
+    		if(buffer == null) throw new Exception("fichero vacio"); 
+    		
+    		String[] lineas = buffer.split("\n"); 
+    		int i = 0; 
+    		
+    		if (num <= CARGA_MAX) {
+    			while(i < num) {
+    				String[] cortarstring = lineas[i].split(" "); 
+    				String nombre = cortarstring[0];
+    				String ci = cortarstring[1];
+    				String co = cortarstring[2]; 
+    				anadirAgente(nombre,ci,co); 
+    				
+    				/////////////per comprovar ////////////////
+    				System.out.print(nombre + " "+ ci + " "+ co + "\n"); 
+    				/////////////////////////////////////////////
+    				i++; 
+    			}
+    		} 
+    		else {
+    			while(num >= CARGA_MAX) {
+    				buffer = gd.readBuffer(CARGA_MAX); 
+    				num = num - CARGA_MAX; 
+    				while(i < CARGA_MAX) {
+    					String[] cortarstring = lineas[i].split(" "); 
+    					String nombre = cortarstring[0];
+        				String ci = cortarstring[1];
+        				String co = cortarstring[2]; 
+        				anadirAgente(nombre,ci,co); 
+        				
+        				/////////////per comprovar ////////////////
+        				System.out.print(nombre + " "+ ci + " "+ co + "\n"); 
+        				/////////////////////////////////////////////
+        				i++;  
+    				}
+    			}
+    		}
+    		gd.closeFile(); 
     	}
+        
+        
+        
     	
     	/**
-    	 * Guarda los agentes 
+    	 * Guardar agentes
     	 * @param path donde vamos a guardar el arhivo
     	 * @param file donde vamos a guardar la informacion
     	 * @Exception al crear archivo 
     	 */
     	public void Guardar(String path, String file) throws Exception {
-    		guardaAg = new ArrayList<Agente>();
+    		GestorDatos gd = new GestorDatos(path,file);
+    		
+    		gd.createFile(); 
+    		gd.openFile("write"); 
+    		
+    		
     		ArrayList<String> lista = new ArrayList<String>();
     		lista = Agentes.consultar(); //obtenim un array ordenada amb els ident de TST
-    		for(int i = 0; i < lista.size(); ++i){
-    			String s = lista.get(i); //obtenim el primer nom
-    			Agente aux = Agentes.consultar(s); 
-    			guardaAg.add(aux); //ho passem a l'array 
-    		}
-    		GestorDatosAgente ag = new GestorDatosAgente();
     		
-    		ag.guardarAgentes(path,file,guardaAg); 
+    		String linea = Integer.toString(lista.size()) + "\n"; 
+    		buffer = linea; 
+    		
+    		
+    		
+    		for(int i = 0; i < lista.size(); ++i){
+    			String s = lista.get(i); 
+    			Agente aux = Agentes.consultar(s); 
+    			linea = s + " " + consultarCiudadInicialAgente(s)+ " " + consultarCiudadObjetivoAgente(s); 
+    			buffer = buffer + linea + "\n"; 
+    			
+    			if(buffer.length() > BUFFER_SIZE) {
+    				gd.writeBuffer(buffer); 
+    				buffer = null; 
+    			}
+    		}
+    		
+    		if(buffer != null) {
+    			gd.writeBuffer(buffer);
+    		}
+    		
+    		gd.closeFile(); 
+
     	}
     	
     	

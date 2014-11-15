@@ -11,10 +11,9 @@ public class ControladorMedioTransporte {
 	
 	 
 	private TST<MedioTransporte> medios;	
+	
 	private final static int BUFFER_SIZE = 1000; //ARREGLAR A 250! 
 	private int CARGA_MAX = 250; 
-	//public ArrayList<MedioTransporte> mt; 
-	
 	public String buffer = null; 
 	
 	public String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
