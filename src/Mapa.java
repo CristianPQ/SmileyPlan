@@ -394,9 +394,9 @@ public class Mapa {
 	 * @param file
 	 * @throws Exception si file no existe
 	 */
-	public void GuardarCiudades(String path, String file) throws Exception {
+	public void GuardarCiudades(GestorDatos gd) throws Exception {
 		
-		GestorDatos gd = new GestorDatos(path,file);
+		//GestorDatos gd = new GestorDatos(path,file);
 		
 		gd.createFile(); 
 		gd.openFile("write"); 
@@ -436,9 +436,9 @@ public class Mapa {
 	 * @param file
 	 * @throws Exception
 	 */
-	public void CargarCiudades(String path, String file) throws Exception{
+	public void CargarCiudades(GestorDatos gd) throws Exception{
 		
-		GestorDatos gd = new GestorDatos(path,file); 
+		//GestorDatos gd = new GestorDatos(path,file); 
 		
 		gd.createFile();
 		gd.openFile("read"); 
@@ -494,8 +494,8 @@ public class Mapa {
 	 * @param file
 	 * @throws Exception
 	 */
-	public void GuardarCaminos(String path, String file) throws Exception {
-		GestorDatos gd = new GestorDatos(path,file);
+	public void GuardarCaminos(GestorDatos gd) throws Exception {
+		//GestorDatos gd = new GestorDatos(path,file);
 		
 		gd.createFile(); 
 		gd.openFile("write"); 
@@ -534,9 +534,7 @@ public class Mapa {
 	 * @param file
 	 * @throws Exception
 	 */
-	public void CargarCaminos(String path, String file) throws Exception{
-		
-		GestorDatos gd = new GestorDatos(path,file); 
+	public void CargarCaminos(GestorDatos gd) throws Exception{
 		
 		gd.createFile();
 		gd.openFile("read"); 
