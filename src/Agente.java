@@ -27,6 +27,7 @@ public class Agente {
 	
 	/**
 	 * Modificadora de nombre
+	 * * @param name es el nuevo nombre que queremos asignar al agente
 	 */
 	
 	public void modificarNombre(String name) { //setter for nombre
@@ -43,6 +44,7 @@ public class Agente {
 	
 	/**
 	 * Modificadora de ciudadInicial
+	 * @param InitialCity es la nueva ciudadInicial que queremos asignar al agente
 	*/
 	
 	public void modificarCiudadInicial(String InitialCity) {//setter for ciudad_ini
@@ -59,6 +61,7 @@ public class Agente {
 	
 	/**
 	 * Modificadora de ciudadObjetivo
+	 * @param TargetCity es la nueva ciudadObjetivo que queremos asignar al agente
 	*/
 	
 	public void modificarCiudadObjetivo(String TargetCity) {//setter for ciudad_obj

@@ -139,6 +139,9 @@ public class ControladorAgentes {
 		
 		/**
 		 * Modificadora de la ciudadObjetivo de un agente (si este existe)
+		 * @param nombre nombre del agente
+    	 * @param ciudadObjetivo nueva ciudadObjetivo
+    	 * @throws Exception si no existe el agente
 		 */
 		
         public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)throws Exception{
@@ -150,7 +153,6 @@ public class ControladorAgentes {
 					Agentes.delete(nombre);
 					Agentes.insert(nombre,a);	
 					}
-				else throw NombreYaExiste;
 			}
 			else throw NoExiste;
 		}
@@ -162,6 +164,10 @@ public class ControladorAgentes {
         public int getNumeroDeAgentes(){ 
 		return numAgentes;
 		}
+        
+		/**
+		 * Consultora de los nombres de los agentes
+		 */
         
         public ArrayList<String> consultarNombresAgentes()
         {

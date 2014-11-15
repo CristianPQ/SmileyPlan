@@ -1,6 +1,6 @@
 import java.util.*;
 public class ControladorAlgoritmo {
-	private String[] relacCiudades; //primero hay que inicializarlo con NCIUDADES*(NCIUDADES-1)
+	private String[] relacCiudades;
 	private Entrada e;
 	private Solucion s;
 	
@@ -35,5 +35,5 @@ public class ControladorAlgoritmo {
 	
 
 	
-	public void guardarSalida(String path, String filename){}
+	public void guardarSolucion(String path, String filename){}
 }

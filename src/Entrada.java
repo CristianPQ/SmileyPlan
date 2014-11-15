@@ -1,26 +1,39 @@
 import java.util.*;
 
 public class Entrada {
-		GrafoAntiguo g;
-		int s;
-		int t;
-		int numAgentes;
+		private GrafoAntiguo g;
+		private int s;
+		private int t;
+		private int numAgentes;
 		//Ciudad[] ciudades; //obtener todas las ciudades, entonces tendremos
 							//las posiciones q ocuparan en el grafo
 	  //nombre -> vertex
 		
 		
-		/*public Grafoa Entrada(Mapa m, ControladorAgentes ca, ControladorMedioTransporte cm,
-				ControladorAlgoritmo caa) throws Exception{
-			
-
-
-			//para cada Ciudad
-			//obtener los caminos
-			//para cada camino, 
-			
+		public Entrada(ControladorMapa m, ControladorAgentes ca, ControladorMedioTransporte cm,
+				ControladorAlgoritmo caa, int source, int sink, int numAgentes) throws Exception{
+		}
+		
+		public GrafoAntiguo consultarGrafo(){
 			return g;
-		}*/
+		}
+		
+		public int consultarSource(){
+			return s;
+		}
+		
+		public void modificarSource(int verticeOrigen){
+			s = verticeOrigen;
+			
+		}
+		
+		public int consultarSink(){
+			return t;
+		}
+		
+		public void modificarSink(int verticeObjetivo) {
+			t = verticeObjetivo;
+		}
 		
 		public void insertarCiudadesMapping(ControladorAlgoritmo ca, Mapa m) throws Exception{
 			int i;
@@ -32,15 +45,12 @@ public class Entrada {
 				for (int j = 0; j < m.listarCiudades().size(); ++j){ 
 					//per cada ciutat possiblement adjacent a la ciutat (i)
 					
-					if (j != i){
-						ArrayList<Camino> Caminos = m.consultarCaminos(m.listarCiudades().get(i), m.listarCiudades().get(j));
-						//consultar caminos (i,j) 
-						
-						if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();
-							
+					if (j != i){	//consultar caminos (i,j) 	
+						ArrayList<Camino> Caminos = m.consultarCaminos(m.listarCiudades().get(i), m.listarCiudades().get(j));		
+						if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();							
 					}
-
 				}
+				
 				for (int w = donde_guardo; w < (donde_guardo + necesito); ++w) mapeo.add(m.listarCiudades().get(i));
 				donde_guardo += necesito;
 			}
@@ -48,6 +58,7 @@ public class Entrada {
 			ca.inicializarRelacCiudades(mapeo.size());
 			for (int z = 0; z < mapeo.size(); ++z) ca.modificarRelacCiudad(mapeo.get(z), z);
 		}
+
 		
 		public void crearGrafo(Mapa m, ControladorAlgoritmo ca, ControladorMedioTransporte cm)throws Exception{
 			g = new GrafoAntiguo(ca.consultarNumeroVertices()); //init grafo
