@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class EdmondsKarp {
-	
+	int flow = 0;
 	private void inicializacion(GrafoAntiguo g,int s, int t){
 		int v;
 		flow = 0;

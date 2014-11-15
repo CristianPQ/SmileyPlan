@@ -13,6 +13,8 @@ public class DriverCamino {
                 + "\n 6.consultarCapacidad() -> int"
                 + "\n 7.modificar Transporte(String transporte)"
                 + "\n 8.modificarCapacidad(int capacidad)"
+                + "\n 9.modificarCiudadOrigen(string ciudadOrigen)"
+                + "\n 10.modificarCiudadDesino(string ciudadDestino)"
         		+"\n");
     }
 	
@@ -62,15 +64,25 @@ public class DriverCamino {
 	                break;
 	            }
 	            case 8: {
-	            	String capacidad = lsplited[1]; 
+	            	int capacidad = Integer.parseInt(lsplited[1]); 
 	            	camino.modificarCapacidad(capacidad);
+	                break;
+	            }	
+	            case 9: {
+	            	String ciudadOrigen = lsplited[1]; 
+	            	camino.modificarCiudadOrigen(ciudadOrigen);
+	                break;
+	            }
+	            case 10: {
+	            	String ciudadDestino = lsplited[1]; 
+	            	camino.modificarCiudadDestino(ciudadDestino);
 	                break;
 	            }
 	            case 0: {
 	                System.exit(0);
 	            }
 	            default: {
-	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 8 o 0 para salir\n");
+	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 10 o 0 para salir\n");
 	                break;
 	            }       
 	        }

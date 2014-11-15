@@ -159,7 +159,7 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    				}
 	    				case 16:{
-	    					String path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
+	    					String path = "C:\\Users\\joan\\Desktop\\uni\\2naEntrega\\SmileyPlan\\src"; 
 	    					String file = "prova"; 
 	    					a.Guardar(path,file); 
 	    				}	
