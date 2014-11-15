@@ -133,7 +133,7 @@ public class PushRelabel extends Algoritmo {
 				//si la arista aun puede soportar mas flujo y si el vertize esta mas alto q el destino
 				if ( capacidadResidual > 0){
 					if (alturas[u] > alturas[v]){ 
-						push(g,u,v,t);
+						push(g,u,v,t); 
 						if (active[v] == 0 && v != s && v != t){
 							active[i] = 1;
 							q.addLast(v); 
