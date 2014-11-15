@@ -11,8 +11,11 @@ public class ControladorMedioTransporte {
 	
 	 
 	private TST<MedioTransporte> medios;	
-	private final static int BUFFER_SIZE = 1000; 
-	public ArrayList<MedioTransporte> mt; 
+	private final static int BUFFER_SIZE = 1000; //ARREGLAR A 250! 
+	private int CARGA_MAX = 250; 
+	//public ArrayList<MedioTransporte> mt; 
+	
+	public String buffer = null; 
 	
 	public String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
 	public String file = "prova"; 
@@ -109,7 +112,51 @@ public class ControladorMedioTransporte {
 	 */
 	public boolean existe(String ident){
 		if(medios.existe(ident)) return true; 
-		return false; 
+		return false;
+	}
+	
+		
+	
+	/**
+	 * Guardar datos en el fichero filename ubicado en path 
+	 * @param path donde vamos a guardar el arhivo
+	 * @param file donde vamos a guardar la informacion
+	 * @Exception al crear archivo 
+	 */
+	public void Guardar(String path, String file) throws Exception {
+		
+		GestorDatos gd = new GestorDatos(path,file);
+		
+		gd.createFile(); 
+		gd.openFile("write"); 
+		
+		
+		ArrayList<String> lista = new ArrayList<String>();
+		lista = medios.consultar(); //obtenim un array ordenada amb els ident de TST
+		
+		String linea = Integer.toString(lista.size()) + "\n"; 
+		buffer = linea; 
+		
+		
+		
+		for(int i = 0; i < lista.size(); ++i){
+			String s = lista.get(i); 
+			MedioTransporte aux = medios.consultar(s); 
+			linea = aux.getNombre() + " " + aux.getPrecio(); 
+			buffer = buffer + linea + "\n"; 
+			
+			if(buffer.length() > BUFFER_SIZE) {
+				gd.writeBuffer(buffer); 
+				buffer = null; 
+			}
+		}
+		
+		if(buffer != null) {
+			gd.writeBuffer(buffer);
+		}
+		
+		gd.closeFile(); 
+
 	}
 	
 	/**
@@ -118,6 +165,60 @@ public class ControladorMedioTransporte {
 	 * @param file donde esta la informacion que queremos cargar
 	 * @throws Exception si el fichero esta vacio 
 	 */
+	public void Cargar(String path, String file) throws Exception{
+		
+		GestorDatos gd = new GestorDatos(path,file); 
+		
+		gd.createFile();
+		gd.openFile("read"); 
+		
+		int num = Integer.parseInt(gd.readLine()); 
+		
+		buffer = gd.readBuffer(num); 
+		if(buffer == null) throw new Exception("fichero vacio"); 
+		
+		String[] lineas = buffer.split("\n"); 
+		int i = 0; 
+		
+		if (num <= CARGA_MAX) {
+			while(i < num) {
+				String[] cortarstring = lineas[i].split(" "); 
+				String nombre = cortarstring[0];
+				int Precio = Integer.parseInt(cortarstring[1]);
+				agregarMedioTransporte(nombre,Precio); 
+				/////////////per comprovar ////////////////
+				System.out.print(nombre + " "+ Precio + "\n"); 
+				/////////////////////////////////////////////
+				i++; 
+			}
+		}
+		
+		else {
+			while(num >= CARGA_MAX) {
+				buffer = gd.readBuffer(CARGA_MAX); 
+				num = num - CARGA_MAX; 
+				while(i < CARGA_MAX) {
+					String[] cortarstring = lineas[i].split(" "); 
+					String nombre = cortarstring[0];
+					int Precio = Integer.parseInt(cortarstring[1]);
+					agregarMedioTransporte(nombre,Precio); 
+					
+					/////////////per comprovar ////////////////
+					System.out.print(nombre + " "+ Precio + "\n"); 
+					/////////////////////////////////////////////
+					i++; 
+				}
+			}
+		
+		gd.closeFile(); 
+	}
+	}
+	
+	
+	
+	/*
+	
+	
 	public void Cargar(String path, String file) throws Exception{
 		
 		GestorDatosMedioTransporte gd = new GestorDatosMedioTransporte(); 
@@ -131,12 +232,7 @@ public class ControladorMedioTransporte {
 		 }	
 	}
 	
-	/**
-	 * Guarda los medios de transporte
-	 * @param path donde vamos a guardar el arhivo
-	 * @param file donde vamos a guardar la informacion
-	 * @Exception al crear archivo 
-	 */
+
 	public void Guardar(String path, String file) throws Exception {
 		mt = new ArrayList<MedioTransporte>();
 		ArrayList<String> lista = new ArrayList<String>();
@@ -149,5 +245,5 @@ public class ControladorMedioTransporte {
 		GestorDatosMedioTransporte gd = new GestorDatosMedioTransporte();
 		//System.out.println("He guardat l'array amb el que vull carregar\n");
 		gd.guardarMediosTransporte(path,file,mt); 
-	}
+	}*/ 
 }
