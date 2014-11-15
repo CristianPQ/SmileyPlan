@@ -40,10 +40,16 @@ public class DriverMapa {
 		        lsplited = sc.nextLine().split(" ");
 		        switch(Integer.parseInt(lsplited[0])) {
 		            case 1: {
-		            	Coordenadas[] aux = null;
 		            	int anchuraX = Integer.parseInt(lsplited[1]);
 		                int alturaY = Integer.parseInt(lsplited[2]);
-		                 m = new Mapa(aux, anchuraX, alturaY);
+		                String coord;
+		                int x = 0;
+		                int y = 0;
+		                for(int i = 3;lsplited[i] != "$" && lsplited[i+i] != "$";) {
+		                	coord.concat(lsplited[i] + " " + lsplited[i+1] + " ");
+		                }
+		                coord.concat("$ $");
+		                 m = new Mapa(anchuraX, alturaY, coord);
 		                break;
 		            }
 		           /* case 2: {

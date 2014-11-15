@@ -89,7 +89,7 @@ class TST<E>  //no estava la <E>
     
     /** function to insert for a word **/
    //AGREGAR NUEVO ELEMENTO
-    private TSTNode insert(TSTNode r, char[] word, int ptr, E e) //sense el parametre e
+    private TSTNode insert(TSTNode r, char[] word, int ptr, E e) 
     {
     	char letra;
     	//Si ya se ha recorrido toda la palabra es una word[ptr], sino es $
@@ -262,17 +262,16 @@ class TST<E>  //no estava la <E>
     	TSTNodeChar rChar = (TSTNodeChar)r;
     	
     	if(ptr == word.length && rChar.data == '$') {
-    		
+    		//Se ha encontrado la palabra
     		TSTNodeFinal rFinal = (TSTNodeFinal)r.middle;
     		rFinal.modificar(e);
     		r.middle = rFinal;
     		
     		
     	}
-
-        
     	//System.out.println("rChar.data: " + rChar.data + "\n" + "letra: " + letra + "\n" + "\n");
     	
+    	//Profundizando en el arbol, siguiente letra de la palabra
         if (letra < rChar.data)
             r.left = delete(r, r.left, word, ptr);
         else if (letra > rChar.data)
@@ -280,16 +279,7 @@ class TST<E>  //no estava la <E>
         else
         {
         	if(ptr < word.length)
-        		r.middle = delete(r, r.middle, word, ptr + 1);
-/*        	
-        	
-            /** to delete a word just make isEnd false **
-            if (r.isEnd && ptr == word.length - 1)
-                r.isEnd = false;
- 
-            else if (ptr + 1 < word.length)
-                delete(r.middle, word, ptr + 1);
-            */
+        		r.middle = modificarNodo(r, r.middle, word, ptr + 1, e);
         }
         return r;
     }
