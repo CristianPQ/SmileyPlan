@@ -251,7 +251,6 @@ public class ControladorAgentes {
     		
     		for(int i = 0; i < lista.size(); ++i){
     			String s = lista.get(i); 
-    			Agente aux = Agentes.consultar(s); 
     			linea = s + " " + consultarCiudadInicialAgente(s)+ " " + consultarCiudadObjetivoAgente(s); 
     			buffer = buffer + linea + "\n"; 
     			
