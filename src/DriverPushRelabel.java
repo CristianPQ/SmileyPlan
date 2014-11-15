@@ -158,6 +158,11 @@ public static void main(String [] args) throws Exception {
 	    					System.out.println("final ejecucion el max flow es  " + flow );
 	    					break;
 	    				}
+	    				case 16:{
+	    					String path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
+	    					String file = "prova"; 
+	    					a.Guardar(path,file); 
+	    				}
 	    					
 	    				case 0: {
 	    	                System.exit(0);

@@ -9,6 +9,13 @@ public class PushRelabel extends Algoritmo {
 	private int[] active;
 	private LinkedList<Integer> q;
 	private int flow;
+	
+	
+	String path; 
+	String file;
+	String buffer = null; 
+	
+	
 	/**
 	 * inicializa todas las alturas a 0 menos la del origen a numero de vertices, incializo
 	 * el exceso de del origen a tanto como la suma de los flujos q tiene de salida
@@ -69,9 +76,15 @@ public class PushRelabel extends Algoritmo {
 		g.modificarFlujoArista(u, v, nuevoFlujo); 
 		if (v == t) {
 			flow+=temp;
+			///////// per guardar //////////////////////////
+			buffer = buffer + u + " hace push a " + v + " de flow: " + temp + "\n";
+			/////////////////////////////////
 			System.out.println( " ENTRA EN EL IF Y EL FLOW ES " + flow);
 		}
 		nuevoFlujo =  g.consultarFlujoArista(u, v) - temp;
+		//////////// per guardar /////////////////
+		buffer = buffer + "el flujo en este momento es "+ nuevoFlujo +"\n"; 
+		//////////////////////////////////
 		g.modificarFlujoArista(v, u, nuevoFlujo ); /** arista residual **/
 		exceso[u] -= temp;
 		exceso[v] += temp;
@@ -146,6 +159,10 @@ public class PushRelabel extends Algoritmo {
 			}
 			if (exceso[u] != 0){
 				alturas[u] = 1 + m;
+				/////per guardar ///////////////////
+				int aux = m+1; 
+				buffer = buffer + "la altura de " + u + " ahora es "+ aux + "\n"; 
+				///////////////////////////////////
 			/*	if(alturas[u] > g.consultarNumVertices()){
 					active[u] = 0;
 					q.removeFirst();
@@ -159,8 +176,29 @@ public class PushRelabel extends Algoritmo {
 
 		} 
 		f = flow;
+		Guardar(path,file); 
 		return g;
 		
+	}
+	
+	/**
+	 * Guardar la sequencia de pasos de algoritmo 
+	 * @param path
+	 * @param file
+	 * @param buffer
+	 * @throws Exception
+	 */
+	public void Guardar(String path,String file) throws Exception {
+		
+		GestorDatos gd = new GestorDatos(path,file); 
+		
+		gd.createFile(); 
+		gd.openFile("write"); 
+		
+		gd.writeBuffer(buffer); 
+		buffer = null; 
+		
+		gd.closeFile(); 
 	}
 	
 	
