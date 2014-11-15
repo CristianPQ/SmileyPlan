@@ -140,13 +140,8 @@ public static void main(String [] args) throws Exception {
 	    				case 14: {//
 	    					int s = Integer.parseInt(lsplited[1]);
 	    					int t = Integer.parseInt(lsplited[2]);
-	    					a.ejecutar(g, s, t);
 	    					int flow = 0;
-	    					ArrayList <Arista> adyacencias = g.consultarAdyacentes(t);
-	    					for (int j = 0; j < adyacencias.size(); ++j){
-	    						if (adyacencias.get(j).consultarCoste() != -1) flow += adyacencias.get(j).consultarFlujo();
-	    						System.out.println("final ejecucion el max flow es1  " + flow );
-	    					}
+	    					a.ejecutar(g, s, t, flow);
 	    					System.out.println("final ejecucion el max flow es  " + flow );
 	    					break;
 	    				}

@@ -8,6 +8,7 @@ public class PushRelabel extends Algoritmo {
 	private int[] exceso;
 	private int[] active;
 	private LinkedList<Integer> q;
+	private int flow;
 	/**
 	 * inicializa todas las alturas a 0 menos la del origen a numero de vertices, incializo
 	 * el exceso de del origen a tanto como la suma de los flujos q tiene de salida
@@ -16,6 +17,7 @@ public class PushRelabel extends Algoritmo {
 	 */
 	private void inicializacion(GrafoAntiguo g,int s, int t){
 		int v;
+		flow = 0;
 		ArrayList <Arista> adyacencias;
 		/** creo todos las aristas inversas **/
 		for (int i = 0; i < g.consultarNumVertices(); ++i){
@@ -58,13 +60,17 @@ public class PushRelabel extends Algoritmo {
 	 * @param v
 	 * @throws Exception 
 	 */
-	private void push(GrafoAntiguo g, int u, int v) throws Exception{
+	private void push(GrafoAntiguo g, int u, int v, int t) throws Exception{
 		System.out.println(u + " PUSHEA a " + v);
 
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
 		int temp = Math.min(capacidadResidual,exceso[u]);
 		int nuevoFlujo = g.consultarFlujoArista(u, v) + temp;
 		g.modificarFlujoArista(u, v, nuevoFlujo); 
+		if (v == t) {
+			flow+=temp;
+			System.out.println( " ENTRA EN EL IF Y EL FLOW ES " + flow);
+		}
 		nuevoFlujo =  g.consultarFlujoArista(u, v) - temp;
 		g.modificarFlujoArista(v, u, nuevoFlujo ); /** arista residual **/
 		exceso[u] -= temp;
@@ -97,7 +103,7 @@ public class PushRelabel extends Algoritmo {
 	 * lo quito de la cola y vuelvo a iterar con el siguiente vertice de la cola.
 	 * @throws Exception 
 	 */
-	public GrafoAntiguo ejecutar ( GrafoAntiguo g, int s, int t) throws Exception{
+	public GrafoAntiguo ejecutar ( GrafoAntiguo g, int s, int t, int f) throws Exception{
 	
 		alturas = new int[g.consultarNumVertices()];
 		exceso = new int[g.consultarNumVertices()];
@@ -127,7 +133,7 @@ public class PushRelabel extends Algoritmo {
 				//si la arista aun puede soportar mas flujo y si el vertize esta mas alto q el destino
 				if ( capacidadResidual > 0){
 					if (alturas[u] > alturas[v]){ 
-						push(g,u,v);
+						push(g,u,v,t);
 						if (active[v] == 0 && v != s && v != t){
 							active[i] = 1;
 							q.addLast(v); 
@@ -152,6 +158,7 @@ public class PushRelabel extends Algoritmo {
 			}
 
 		} 
+		f = flow;
 		return g;
 		
 	}
