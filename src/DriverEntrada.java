@@ -11,8 +11,9 @@ private static void menu() {
 	        System.out.println("Driver clase ControladorAgente"
 	                + "\n 0.Salir"
 	                + "\n 1.new ControladorMapa()"
-	                + "\n 2.new ControladorMedioTransporte(String nombre, String ciudadInicial, String ciudadObjetivo)"
-	                + "\n 3.eliminarAgente(String nombre)"
+	                + "\n 2.new ControladorMedioTransporte()"
+	                + "\n 3.new ControladorAlgoritmo()"
+	                + "\n 3."
 	                + "\n 4."
 	                + "\n 5."
 	                + "\n 6."
@@ -30,7 +31,10 @@ private static void menu() {
 }
 
 public static void main(String [] args) throws Exception {
-			
+			Entrada ent;
+			ControladorMapa m;
+			ControladorMedioTransporte mt;
+			ControladorAlgoritmo ca;
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
@@ -39,8 +43,10 @@ public static void main(String [] args) throws Exception {
 	    		try{
 	    			lsplited = sc.nextLine().split(" ");
 	    			switch(Integer.parseInt(lsplited[0])){
-	    				case 1: {//INIT
-	    					conjAgentes = new ControladorAgentes();
+	    				case 1: {//INIT controlador mapa
+	    					m = m.ControladorMapa(1000,1000,null);
+	    					
+	    					
 	    					System.out.println("Conjunto de agentes inicializado\n");
 	    					break;
 	    				}
