@@ -4,6 +4,7 @@ public class Solucion {
 	
 	private int tiempo;
 	private int espacio; //???
+	private boolean tieneSolucion = false;
 	
 	private ArrayList<Integer>[] itinerarios; 
 	//private ArrayList<Integer> capacidadIt; 
@@ -44,8 +45,12 @@ public class Solucion {
 	public int obtenCoste(int i){
 		return costeIt[i]; 
 	}
-	
-	
+	public boolean consultarTieneSolucion(){
+		return tieneSolucion;
+	}
+	public void modificartieneSolucion(boolean s){
+		tieneSolucion = s;
+	}
 	/**
 	 * Obtener el vertice de un cierto itinerario
 	 * @param i identificador del itinerario
