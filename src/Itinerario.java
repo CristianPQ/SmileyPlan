@@ -9,11 +9,12 @@ public class Itinerario {
 	//Datos
 	private String nombre; 
 	private ArrayList<Camino> caminos; 
-	
-	private Camino cam; 
 
 	private static Exception CaminoYaExiste = new Exception("el camino ya esta en el itinerario");
 		
+	public Itinerario() {	
+	}
+	
 	/**
 	 * Creadora de camino con transporte null
 	 * @param co
@@ -21,7 +22,7 @@ public class Itinerario {
 	 * @param trans
 	 */
 	public Camino crearCamino(String co, String cd){
-		cam = new Camino(co,cd,null); 
+		Camino cam = new Camino(co,cd,null); 
 		return cam; 
 	}
 		
