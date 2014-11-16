@@ -51,9 +51,9 @@ public class ControladorAlgoritmo {
 	
 	public void prepararEjecucion() {
 		g = obtenerGrafo(); 
-		s = obtenerCiudadSalida();  
-		t = obtenerCiudadObjetivo(); 
-		int flow = null; 
+		//s = obtenerCiudadSalida();  
+		//t = obtenerCiudadObjetivo(); 
+		//int flow = null; 
 	}
 	
 	public GrafoAntiguo obtenerGrafo(){
