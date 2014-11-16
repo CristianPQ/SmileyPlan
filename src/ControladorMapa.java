@@ -139,6 +139,10 @@ public class ControladorMapa {
 	//##########SOBRE CAMINOS
 	//#########################################
 	
+	public boolean existeCaminoDesdeA(String cOrig, String cDest) {
+		return m.existeCaminoDesdeA(cOrig, cDest);
+	}
+	
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap, ControladorMedioTransporte contMT) throws Exception {
 		
 		//Comprobar que el medioTransporte ya existe
