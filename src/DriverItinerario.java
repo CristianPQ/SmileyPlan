@@ -13,7 +13,8 @@ public class DriverItinerario {
                 + "\n 2.setNombre(String nombre)"
                 + "\n 3.getNumeroCaminos()"
                 + "\n 4.getNombreItinerario()"
-                + "\n 5.agregarCamino(String co, String cd, String trans)"  
+                + "\n 5.agregarCamino(Camino c)"
+                + "\n 6.crear Camino(co,cd)"
         		+"\n");
     }
 	
@@ -27,20 +28,13 @@ public class DriverItinerario {
 	        lsplited = sc.nextLine().split(" ");
 	        switch(Integer.parseInt(lsplited[0])) {
 	            case 1: {
-	            	Agente aux = null; 
 	            	String nombre = lsplited[1]; 
-	            	String CO = lsplited[2]; 
-	            	String CD = lsplited[3]; 
-	            	aux = new Agente(nombre,CO,CD); 
-	            	aux.modificarNombre(nombre);
-	            	aux.modificarCiudadInicial(CO);
-	            	aux.modificarCiudadObjetivo(CD);
-	                //it = new Itinerario(aux);
+	            	it = new Itinerario(nombre); 
 	                break;
 	            }
 	           case 2: {
 	            	String nom = lsplited[1];
-	            	//it.setNombre(nom); 
+	            	it.setNombre(nom); 
 	                break;
 	            }
 	            case 3: {
@@ -52,13 +46,20 @@ public class DriverItinerario {
 	            	System.out.print(it.getNombreItinerario() +"\n");
 	                break;
 	            }     
-	            case 6: {
+	            case 5: {
 	            	String CO = lsplited[1];
 	            	String CD = lsplited[2];
 	            	String tra = lsplited[3]; 
 	            	Camino c = new Camino(CO,CD, tra);
 	            	it.agregarCamino(c); 
 	                break;
+	            }
+	            case 6: {
+	            	String co = lsplited[1];
+	            	String cd = lsplited[2];
+	            	Camino c = it.crearCamino(co, cd);
+	            	//System.out.print(c.consultarOrigen()); 
+	            	break; 
 	            }
 	            case 0: {
 	                System.exit(0);
