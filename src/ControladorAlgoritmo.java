@@ -75,10 +75,38 @@ public class ControladorAlgoritmo {
 	//########## Salida ##################
 	//#########################################
 	
-	public void assignarItinerarioAAgente(){
+	/**
+	 * Asigna los itinerarios a los agentes 
+	 * @throws Exception
+	 */
+	public void assignarItinerarioAAgente() throws Exception{
+		int numAg = AgentesConSyT.size(); //numero de agentes para asignar
+		int numIt = sol.obtenNumeroItinerarios(); 
+		//cas no solucio?
 		
-		
-		
+		//cas falten o igual camins
+		if(numIt <= numAg) {
+			for(int i = 0; i < numAg; ++i) {
+				String s = AgentesConSyT.get(i); 
+				convertirItinerario(i,s); 
+			}
+		}
+		//cas que sobren camins, mirem els de menys cost
+		else if (numIt > numAg){ 
+			int min = 1000; 
+			int pos = 1000; 
+			for(int i = 0; i < numAg; ++i){
+				for(int j = 0; j < numIt; ++j){
+					if(sol.obtenCoste(j) < min) {
+						min = sol.obtenCoste(j);
+						pos = j; 
+					}
+					sol.agregarCosteAItinerario(pos, 1000);//posem marca
+					String s = AgentesConSyT.get(i); 
+					convertirItinerario(i,s); 
+				}
+			}
+		}
 	}
 	
 	

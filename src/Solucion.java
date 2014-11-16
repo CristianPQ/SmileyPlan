@@ -10,11 +10,11 @@ public class Solucion {
 	private ArrayList<Integer> costeIt; 
 	
 	
-	
 	public Solucion(){
 		itinerarios = new ArrayList<ArrayList<Integer>>();
 		costeIt = new ArrayList<Integer>();
 	}
+	
 	/**
 	 * Agregar un vertice, o ciudad, en el itinerario
 	 * @param i identificador del itinerario
@@ -34,6 +34,16 @@ public class Solucion {
 	public void agregarCosteAItinerario(int i, int c){
 		costeIt.add(i,c); 
 	}
+	
+	/**
+	 * Devuelve el coste del itinerario i
+	 * @param i identificador itinerario
+	 * @return coste
+	 */
+	public int obtenCoste(int i){
+		return costeIt.get(i); 
+	}
+	
 	
 	/**
 	 * Obtener el vertice de un cierto itinerario
