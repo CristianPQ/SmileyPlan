@@ -17,7 +17,7 @@ public class ControladorItinerarios {
 	/**
 	 * Constructora Controlador Itinerarios
 	 */
-	public void ControladorItinerario() {
+	public void ControladorItinerarios() {
 		ci = new ArrayList<Itinerario>(); 
 	}
 	
@@ -38,15 +38,13 @@ public class ControladorItinerarios {
 	 * @throws Exception si el itinerario ya existe
 	 */
 	public Itinerario agregarItinerario(String nombreAg) throws Exception {
-		System.out.println("hola he entrat \n");
 		Itinerario i = new Itinerario(nombreAg); 
-		System.out.println("hola he creat it \n");
-		System.out.println("itinerario" + i.getNombreItinerario() + "\n");
-		//if(ci.contains(i)) throw ItinerarioYaExiste; 
-		//else {
+		System.out.println("itinerario " + i.getNombreItinerario() + "\n");
+		if(ci.contains(i)) throw ItinerarioYaExiste; 
+		else {
 			System.out.println("no hi ha cap itinerari igual \n");
 			ci.add(i); 
-		//}
+		}
 		System.out.println("itinerario" + i.getNombreItinerario() + "\n");
 		return i; 
 	}
@@ -59,6 +57,9 @@ public class ControladorItinerarios {
 	 * @throws Exception si el nombre de itinerario ya existe
 	 */
 	public void agregarCaminoAlItinerario(Itinerario it, Camino c) throws Exception {
+		System.out.println("he entrat a la funcio\n");
+		System.out.println("itinerario" + it.getNombreItinerario() + "\n");
+		System.out.println("itinerario" + c.consultarOrigen() + "\n");
 		it.agregarCamino(c);
 	}
 	
