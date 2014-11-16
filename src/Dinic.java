@@ -72,6 +72,7 @@ public class Dinic extends Algoritmo {
 		  }
 
 		  public Solucion ejecutar(Entrada e) {
+			double t1 = System.currentTimeMillis();
 		    int flow = 0;
 			GrafoAntiguo g = e.consultarGrafo();
 			int src = e.consultarOrigen();
@@ -94,7 +95,8 @@ public class Dinic extends Algoritmo {
 				crearItinerarios(sol,g,0,flow-1,flow,src,dest,0);
 			}
 		//	Guardar(path,file); 
-			
+			double t2 = System.currentTimeMillis();
+			sol.modificarTiempo(t2-t1);
 			return sol;
 		  }
 		  

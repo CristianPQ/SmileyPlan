@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Solucion {
 	private GrafoAntiguo g;
-	private int tiempo;
+	private double tiempo;
 	private int espacio; //???
 	private boolean tieneSolucion = false; //falso si no la tiene true en caso contrario
 	
@@ -42,6 +42,14 @@ public class Solucion {
 	 * @param i identificador itinerario
 	 * @return coste
 	 */
+	
+	public double consultarTiempo(){
+		return tiempo;
+	}
+	public void modificarTiempo(double t){
+		tiempo = t;
+	}
+	
 	public int obtenCoste(int i){
 		return costeIt[i]; 
 	}
