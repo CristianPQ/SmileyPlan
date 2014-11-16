@@ -60,14 +60,14 @@ public class DriverControladorMedioTransporte {
 	            }
 	            case 6: {
 	            	int num = cm.getCantidadTransportes();
-	            	System.out.println(num + "/n");
+	            	System.out.println(num + "\n");
 	            	break; 
 	            }
 	            case 7: {
 	            	MedioTransporte aux = null; 
 	            	String nombre = lsplited[1];	
 	            	aux = cm.buscarMedio(nombre);
-	            	System.out.print(aux.getNombre() + aux.getPrecio() + "/n"); 
+	            	System.out.print(aux.getNombre() + " " + aux.getPrecio() + "\n"); 
 	            	break; 
 	            }
 	            case 8:{

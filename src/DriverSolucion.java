@@ -24,7 +24,8 @@ public class DriverSolucion {
 	        lsplited = sc.nextLine().split(" ");
 	        switch(Integer.parseInt(lsplited[0])) {
 	            case 1: {
-	                so = new Solucion();
+	            	int i = Integer.parseInt(lsplited[1]);
+	                so = new Solucion(i);
 	                break;
 	            }
 	           case 2: {
