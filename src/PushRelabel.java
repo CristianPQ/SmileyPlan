@@ -29,8 +29,7 @@ public class PushRelabel extends Algoritmo {
 		/** creo todos las aristas inversas **/
 		for (int i = 0; i < g.consultarNumVertices(); ++i){
 			adyacencias = g.consultarAdyacentes(i);
-			for (int j = 0; j < adyacencias.size(); ++j){
-				
+			for (int j = 0; j < adyacencias.size(); ++j){		
 				v = adyacencias.get(j).consultarVerticeDestino();
 				if (adyacencias.get(j).consultarFlujo() == 0 )g.anadirArista(v,i,adyacencias.get(j).consultarCapacidad(),adyacencias.get(j).consultarCapacidad(),-1);
 			}
@@ -43,7 +42,6 @@ public class PushRelabel extends Algoritmo {
 				adyacencias = g.consultarAdyacentes(i);
 				for (int j = 0; j < adyacencias.size(); ++j){
 					v = adyacencias.get(j).consultarVerticeDestino();
-					System.out.println(v + " es adyacente a s");
 					if (v != t){ 
 						active[v] = 1;
 						q.addLast(v);
@@ -68,7 +66,6 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	private void push(GrafoAntiguo g, int u, int v, int t) throws Exception{
-		System.out.println(u + " PUSHEA a " + v);
 
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
 		int temp = Math.min(capacidadResidual,exceso[u]);
@@ -79,7 +76,6 @@ public class PushRelabel extends Algoritmo {
 			///////// per guardar //////////////////////////
 			buffer = buffer + u + " hace push a " + v + " de flow: " + temp + "\n";
 			/////////////////////////////////
-			System.out.println( " ENTRA EN EL IF Y EL FLOW ES " + flow);
 		}
 		nuevoFlujo =  g.consultarFlujoArista(u, v) - temp;
 		//////////// per guardar /////////////////
@@ -96,6 +92,7 @@ public class PushRelabel extends Algoritmo {
 	 * @param u
 	 * @throws Exception
 	 */
+	// alfinal no usada
 	private void relabel(GrafoAntiguo g, int u) throws Exception{
 		ArrayList <Arista> adyacencias = new ArrayList<Arista>();
 		adyacencias = g.consultarAdyacentes(u);
@@ -122,27 +119,16 @@ public class PushRelabel extends Algoritmo {
 		exceso = new int[g.consultarNumVertices()];
 		active = new int[g.consultarNumVertices()];
 		q = new LinkedList<Integer>();
-		System.out.println(exceso[2]);
 		inicializacion(g, s, t);
-		System.out.println(exceso[2]);
-		//q.addLast(s);
-
 		int capacidadResidual,u,v,m;
-		int cont = 0;
 		ArrayList <Arista> adyacencias = new ArrayList<Arista>();
 		while (q.size() > 0 ){
-			++cont;
 			u = q.getFirst();
 			 m = -1;
 			adyacencias = g.consultarAdyacentes(u);
-			System.out.println(" \n"  + "u es " + u + " y tiene un exceso de " + exceso[u]);
 			for (int i = 0; exceso[u]> 0 && i < adyacencias.size(); ++i){
-	
 				v = adyacencias.get(i).consultarVerticeDestino();
-				System.out.println("v es "  + v  + " el exceso de u es ahora " + exceso[u]);
-				System.out.println("el flujo es "  + g.consultarFlujoArista(u, v) );
 				capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
-				System.out.println("la capacidad residual de "+  u + " " + v + " es " + capacidadResidual);
 				//si la arista aun puede soportar mas flujo y si el vertize esta mas alto q el destino
 				if ( capacidadResidual > 0){
 					if (alturas[u] > alturas[v]){ 
@@ -163,11 +149,6 @@ public class PushRelabel extends Algoritmo {
 				int aux = m+1; 
 				buffer = buffer + "la altura de " + u + " ahora es "+ aux + "\n"; 
 				///////////////////////////////////
-			/*	if(alturas[u] > g.consultarNumVertices()){
-					active[u] = 0;
-					q.removeFirst();
-				} 
-				*/
 			}
 			else {
 				active[u] = 0;
