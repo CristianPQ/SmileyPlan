@@ -10,7 +10,7 @@ public class PushRelabel extends Algoritmo {
 	private LinkedList<Integer> q;
 	private int flow;
 	
-	
+/*	
 	String path; 
 	String file;
 	String buffer; 
@@ -22,6 +22,32 @@ public class PushRelabel extends Algoritmo {
 	 * @param g
 	 * @param s
 	 */
+	
+	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
+		
+		
+		for (int i = indiceI; i < indiceF; ++i){
+				sol.agregarVertice(i, u);
+				if (u == t) sol.agregarCosteAItinerario(i, coste );
+		}
+		if (u != t){
+			ArrayList <Arista> adyacencias = g.consultarAdyacentes(u);
+			for (int j = 0; j < adyacencias.size(); ++j){		
+				int v = adyacencias.get(j).consultarVerticeDestino();
+				if (adyacencias.get(j).consultarCoste() != -1 ){
+					coste +=  adyacencias.get(j).consultarCoste();
+					crearItinerarios (sol,g,indiceI,indiceI+adyacencias.get(j).consultarFlujo(),flow,v,t,coste);
+					indiceI += adyacencias.get(j).consultarFlujo();
+				}
+			}
+			
+		}
+		
+	}
+		
+	
+	
+	
 	private void inicializacion(GrafoAntiguo g,int s, int t){
 		int v;
 		flow = 0;
@@ -74,12 +100,12 @@ public class PushRelabel extends Algoritmo {
 		if (v == t) {
 			flow+=temp;
 			///////// per guardar //////////////////////////
-			buffer = buffer + u + " hace push a " + v + " de flow: " + temp + "\n";
+		//	buffer = buffer + u + " hace push a " + v + " de flow: " + temp + "\n";
 			/////////////////////////////////
 		}
 		nuevoFlujo =  g.consultarFlujoArista(u, v) - temp;
 		//////////// per guardar /////////////////
-		buffer = buffer + "el flujo en este momento es "+ nuevoFlujo +"\n"; 
+		//buffer = buffer + "el flujo en este momento es "+ nuevoFlujo +"\n"; 
 		//////////////////////////////////
 		g.modificarFlujoArista(v, u, nuevoFlujo ); /** arista residual **/
 		exceso[u] -= temp;
@@ -147,7 +173,7 @@ public class PushRelabel extends Algoritmo {
 				alturas[u] = 1 + m;
 				/////per guardar ///////////////////
 				int aux = m+1; 
-				buffer = buffer + "la altura de " + u + " ahora es "+ aux + "\n"; 
+			//	buffer = buffer + "la altura de " + u + " ahora es "+ aux + "\n"; 
 				///////////////////////////////////
 			}
 			else {
@@ -157,7 +183,7 @@ public class PushRelabel extends Algoritmo {
 
 		} 
 		f = flow;
-		Guardar(path,file); 
+	//	Guardar(path,file); 
 		return g;
 		
 	}
@@ -169,7 +195,7 @@ public class PushRelabel extends Algoritmo {
 	 * @param buffer
 	 * @throws Exception
 	 */
-	public void Guardar(String path,String file) throws Exception {
+/*	public void Guardar(String path,String file) throws Exception {
 		
 		GestorDatos gd = new GestorDatos(path,file); 
 		
@@ -182,7 +208,7 @@ public class PushRelabel extends Algoritmo {
 		gd.closeFile(); 
 	}
 	
-	
+	*/
 	
 	
 }

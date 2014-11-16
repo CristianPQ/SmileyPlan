@@ -141,8 +141,17 @@ public static void main(String [] args) throws Exception {
 	    					int s = Integer.parseInt(lsplited[1]);
 	    					int t = Integer.parseInt(lsplited[2]);
 	    					int flow = 0;
+	    					Solucion sol = new Solucion();
 	    					a.ejecutar(g, s, t, flow);
+	    					a.crearItinerarios(sol, g, 0, 18, 19, 0, 5, 0);
 	    					System.out.println("final ejecucion el max flow es  " + flow );
+	    					/*for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
+	    						for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
+	    	    					System.out.println(sol.obtenVertice(i, j) + " ");
+	    						}
+	    						System.out.println();
+	    					}
+	    					*/
 	    					break;
 	    				}
 	    				case 15: {//
@@ -158,11 +167,11 @@ public static void main(String [] args) throws Exception {
 	    					System.out.println("final ejecucion el max flow es  " + flow );
 	    					break;
 	    				}
-	    				case 16:{
+	    				/*case 16:{
 	    					String path = "C:\\Users\\joan\\Desktop\\uni\\2naEntrega\\SmileyPlan\\src"; 
 	    					String file = "prova"; 
 	    					a.Guardar(path,file); 
-	    				}	
+	    				}	*/
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }

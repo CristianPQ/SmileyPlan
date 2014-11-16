@@ -14,11 +14,11 @@ public class Algoritmo {
 	GrafoAntiguo ejecutar ( GrafoAntiguo g, int s, int t) throws Exception{
 		return g;}
 		
-	private void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
+	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		for (int i = indiceI; i < indiceF; ++i){
 				sol.agregarVertice(i, u);
-				sol.agregarCosteAItinerario(i, coste);
+				sol.agregarCosteAItinerario(i, coste );
 		}
 		if (u != t){
 			ArrayList <Arista> adyacencias = g.consultarAdyacentes(u);

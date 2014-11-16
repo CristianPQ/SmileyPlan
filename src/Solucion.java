@@ -9,6 +9,12 @@ public class Solucion {
 	//private ArrayList<Integer> capacidadIt; 
 	private ArrayList<Integer> costeIt; 
 	
+	
+	
+	public Solucion(){
+		itinerarios = new ArrayList<ArrayList<Integer>>();
+		costeIt = new ArrayList<Integer>();
+	}
 	/**
 	 * Agregar un vertice, o ciudad, en el itinerario
 	 * @param i identificador del itinerario
@@ -26,7 +32,7 @@ public class Solucion {
 	 * @param c coste
 	 */
 	public void agregarCosteAItinerario(int i, int c){
-		itinerarios.get(i).add(c); 
+		costeIt.add(i,c); 
 	}
 	
 	/**
