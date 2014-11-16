@@ -27,7 +27,9 @@ public class PushRelabel extends Algoritmo {
 		
 		
 		for (int i = indiceI; i < indiceF; ++i){
+				System.out.println("aqui");
 				sol.agregarVertice(i, u);
+				System.out.println("aqui");
 				if (u == t) sol.agregarCosteAItinerario(i, coste );
 		}
 		if (u != t){
