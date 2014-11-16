@@ -24,6 +24,7 @@ private static void menu() {
 	                + "\n 13.Guardar(String path, String file)"
 	                + "\n 14.Cargar(String path, String file)"
 	                + "\n 15.ConsultarAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
+	                + "\n 16.NUmeroAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
 	        		+"\n");
 }
 
@@ -137,10 +138,15 @@ public static void main(String [] args) throws Exception {
 	    					String ciudadInicial = lsplited[1];
 	    					String ciudadObjetivo = lsplited[2];
 	    					ArrayList <String> nombres = conjAgentes.consultarAgentesOrigenObjetivo(ciudadInicial, ciudadObjetivo);
-	    					System.out.println(nombres.get(0));
 	    					for (int i = 0; i < nombres.size(); ++i)
 	    						System.out.println(nombres.get(i) +"\n");
 	    					break;
+	    	            }
+	    	            
+	    	            case 16:{
+	    					String ciudadInicial = lsplited[1];
+	    					String ciudadObjetivo = lsplited[2];
+	    					System.out.println(conjAgentes.numeroAgentesOrigenObjetivo(ciudadInicial, ciudadObjetivo));
 	    	            }
 	    					
 	    				case 0: {

@@ -187,22 +187,24 @@ public class ControladorAgentes {
         	return Agentes.consultar();
         }
         
+
         public ArrayList<String> consultarAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)
-        	throws Exception{
-        	ArrayList<String> nombres = consultarNombresAgentes();
-        	ArrayList<String> retornar = new ArrayList<String>();
-        	for (int i = 0; i < nombres.size(); ++i){
-        		System.out.println(nombres.get(i));
-        		System.out.println(consultarCiudadInicialAgente(nombres.get(i)));
-        		System.out.println(consultarCiudadObjetivoAgente(nombres.get(i)));
-        		if (consultarCiudadInicialAgente(nombres.get(i))  == ciudadInicial){
-        				if	(consultarCiudadObjetivoAgente(nombres.get(i)) == ciudadObjetivo){
-        					System.out.println(nombres.get(i));
-        					retornar.add(nombres.get(i));
-        				}
-        			}
-        		}
-        		return retornar;
+            	throws Exception{
+            	ArrayList<String> nombres = consultarNombresAgentes();
+            	for (int i = 0; i < nombres.size(); ++i){
+            		if (!consultarCiudadInicialAgente(nombres.get(i)).equals(ciudadInicial) ||
+            				!consultarCiudadObjetivoAgente(nombres.get(i)).equals(ciudadObjetivo)){
+            					nombres.remove(nombres.get(i));
+            					--i;
+            				}
+            			}
+            		return nombres;
+            }
+        
+        
+        
+        public int numeroAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo) throws Exception{
+        	return consultarAgentesOrigenObjetivo(ciudadInicial, ciudadObjetivo).size();
         }
         
    //     public ArrayList<String, String> casosDiferentes(){
