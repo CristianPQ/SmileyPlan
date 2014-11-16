@@ -7,6 +7,9 @@ public class ControladorAlgoritmo {
 	private int flow; 
 	private int s; 
 	private int t; 
+	private ArrayList<String > AgentesConSyT;
+	private int NumAgentesConSyT;
+	
 	
 	
 	public ControladorAlgoritmo(Entrada entrada) throws Exception{
@@ -16,7 +19,7 @@ public class ControladorAlgoritmo {
 	}
 	
 	public GrafoAntiguo consultarGrafo(){
-		return entrada.consultarGrafo();
+		return ent.consultarGrafo();
 	}
 	public void inicializarRelacCiudades(int size){
 		relacCiudades = new String[size];

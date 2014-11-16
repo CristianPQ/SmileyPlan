@@ -24,7 +24,7 @@ private static void menu() {
 	                + "\n 13.Guardar(String path, String file)"
 	                + "\n 14.Cargar(String path, String file)"
 	                + "\n 15.ConsultarAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
-	                + "\n 16.NUmeroAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
+	                + "\n 16.NumeroAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
 	        		+"\n");
 }
 

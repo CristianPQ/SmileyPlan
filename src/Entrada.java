@@ -2,12 +2,6 @@ import java.util.*;
 
 public class Entrada {
 		private GrafoAntiguo g;
-		private int s;
-		private int t;
-		private int numAgentes;
-		//Ciudad[] ciudades; //obtener todas las ciudades, entonces tendremos
-							//las posiciones q ocuparan en el grafo
-	  //nombre -> vertex
 		
 		
 		public Entrada(ControladorMapa m, ControladorAgentes ca, ControladorMedioTransporte cm,
@@ -16,23 +10,6 @@ public class Entrada {
 		
 		public GrafoAntiguo consultarGrafo(){
 			return g;
-		}
-		
-		public int consultarSource(){
-			return s;
-		}
-		
-		public void modificarSource(int verticeOrigen){
-			s = verticeOrigen;
-			
-		}
-		
-		public int consultarSink(){
-			return t;
-		}
-		
-		public void modificarSink(int verticeObjetivo) {
-			t = verticeObjetivo;
 		}
 		
 		public void insertarCiudadesMapping(ControladorAlgoritmo ca, Mapa m) throws Exception{
