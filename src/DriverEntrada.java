@@ -30,7 +30,7 @@ private static void menu() {
 }
 
 public static void main(String [] args) throws Exception {
-			ControladorAgentes conjAgentes = null;
+			
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;

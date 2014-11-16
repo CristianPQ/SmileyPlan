@@ -5,23 +5,25 @@ public class Solucion {
 	private int tiempo;
 	private int espacio; //???
 	
-	private ArrayList<ArrayList<Integer>> itinerarios; 
+	private ArrayList<Integer>[] itinerarios; 
 	//private ArrayList<Integer> capacidadIt; 
-	private ArrayList<Integer> costeIt; 
+	private int[] costeIt; 
 	
 	
 	
-	public Solucion(){
-		itinerarios = new ArrayList<ArrayList<Integer>>();
-		costeIt = new ArrayList<Integer>();
+	public Solucion(int numItinerarios){
+		itinerarios = new ArrayList[numItinerarios];
+		for(int i = 0; i < numItinerarios; ++i) itinerarios[i] = new ArrayList<Integer>();
+		costeIt = new int[numItinerarios];	
 	}
+	
 	/**
 	 * Agregar un vertice, o ciudad, en el itinerario
 	 * @param i identificador del itinerario
 	 * @param vertex vertice que sera una ciudad del itinerario
 	 */
 	public void agregarVertice(int i, int vertex){
-		itinerarios.get(i).add(vertex); 
+		itinerarios[i].add(vertex); 
 	}
 	//la de Relabel s'haura de llegir al reves 
 	
@@ -32,7 +34,7 @@ public class Solucion {
 	 * @param c coste
 	 */
 	public void agregarCosteAItinerario(int i, int c){
-		costeIt.add(i,c); 
+		costeIt[i] = c; 
 	}
 	
 	/**
@@ -42,7 +44,7 @@ public class Solucion {
 	 * @return entero que equivale al identificador del vertice
 	 */
 	public int obtenVertice(int i, int posv) {
-		return (itinerarios.get(i)).get(i); 
+		return itinerarios[i].get(posv); 
 	}
 	
 	/**
@@ -51,14 +53,14 @@ public class Solucion {
 	 * @return el numero de ciudades de dicho itinerario
 	 */
 	public int obtenNumCiudades(int i){
-		return itinerarios.get(i).size(); 
+		return itinerarios[i].size(); 
 	}
 	
 	/**
 	 * devuelve el numero de itinerarios de solucion 
 	 */
 	public int obtenNumeroItinerarios(){
-		return itinerarios.size(); 
+		return itinerarios.length; 
 	}
 	
 }
