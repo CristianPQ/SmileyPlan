@@ -60,7 +60,7 @@ public class Entrada {
 		}
 
 		
-		public void crearGrafo(Mapa m, ControladorAlgoritmo ca, ControladorMedioTransporte cm)throws Exception{
+		public void crearGrafo(ControladorMapa m, ControladorAlgoritmo ca, ControladorMedioTransporte cm)throws Exception{
 			g = new GrafoAntiguo(ca.consultarNumeroVertices()); //init grafo
 			ArrayList<Camino> aristando;
 			for (int i = 0; i < m.listarCiudades().size(); ++i){ //cada ciudad del mapa
@@ -88,11 +88,16 @@ public class Entrada {
 							insertado = true;
 							g.anadirArista(i,targetVertex, 0, capacity, cost);}
 						++insert_here;
-					}	
+					}
+					
+					for (int d = 0; d < insert_here; ++d) 
+						g.anadirArista(ca.devolverIndiceCiudad(m.listarCiudades().get(i)) + d, 
+								ca.devolverIndiceCiudad(m.listarCiudades().get(i)) +1, 0, 2147483647, 0);
+						
+					}
 				}
 			}
 		}
-	}
 	
 		
  //crearAristas
