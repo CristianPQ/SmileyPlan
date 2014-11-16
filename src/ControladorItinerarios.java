@@ -9,7 +9,6 @@ import java.util.*;
 public class ControladorItinerarios {
 	
 	private ArrayList<Itinerario> cjtoit; 
-	private Itinerario iti = new Itinerario(); 
 	
 	private static Exception ItinerarioYaExiste = new Exception("el itinerario ya existe");
 	
@@ -54,6 +53,7 @@ public class ControladorItinerarios {
 	 * @throws Exception
 	 */
 	public void agregarCiudadAlItinerario(Itinerario it, String name) throws Exception{
+		//System.out.println(n); 
 		it.agregarCiudad(name); 
 	}
 

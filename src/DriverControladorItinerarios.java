@@ -43,7 +43,7 @@ public class DriverControladorItinerarios {
 	            	int n = aux.consultarCiudadesIt(it); 
 	            	System.out.println( n +"\n");
 	               break;
-	            }    
+	            }   
 	            case 0: {
 	                System.exit(0);
 	            }
