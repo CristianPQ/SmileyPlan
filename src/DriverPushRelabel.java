@@ -34,7 +34,7 @@ public static void main(String [] args) throws Exception {
 	    	String[] lsplited;
 	    	PushRelabel a = new PushRelabel();
 	    	FordFulkerson f = new FordFulkerson();
-	    	
+	    	Dinic d = new Dinic();
 	    	while(sc.hasNextLine()){ 
 	    		try{
 	    			lsplited = sc.nextLine().split(" ");
@@ -141,30 +141,33 @@ public static void main(String [] args) throws Exception {
 	    					int s = Integer.parseInt(lsplited[1]);
 	    					int t = Integer.parseInt(lsplited[2]);
 	    					int flow = 0;
-	    					Solucion sol = new Solucion();
+	    					Solucion sol = new Solucion(19);
 	    					a.ejecutar(g, s, t, flow);
 	    					a.crearItinerarios(sol, g, 0, 18, 19, 0, 5, 0);
 	    					System.out.println("final ejecucion el max flow es  " + flow );
-	    					/*for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
+	    					for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
 	    						for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
 	    	    					System.out.println(sol.obtenVertice(i, j) + " ");
 	    						}
 	    						System.out.println();
 	    					}
-	    					*/
+	    				
 	    					break;
 	    				}
 	    				case 15: {//
 	    					int s = Integer.parseInt(lsplited[1]);
 	    					int t = Integer.parseInt(lsplited[2]);
-	    					f.ejecutar(g, s, t);
 	    					int flow = 0;
-	    					ArrayList <Arista> adyacencias = g.consultarAdyacentes(t);
-	    					for (int j = 0; j < adyacencias.size(); ++j){
-	    						if (adyacencias.get(j).consultarCoste() != -1) flow += adyacencias.get(j).consultarFlujo();
-	    						System.out.println("final ejecucion el max flow es1  " + flow );
-	    					}
+	    					Solucion sol = new Solucion(19);
+	    					f.ejecutar(g, s, t, flow);
+	    					f.crearItinerarios(sol, g, 0, 18, 19, 0, 5, 0);
 	    					System.out.println("final ejecucion el max flow es  " + flow );
+	    					for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
+	    						for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
+	    	    					System.out.println(sol.obtenVertice(i, j) + " ");
+	    						}
+	    						System.out.println();
+	    					}
 	    					break;
 	    				}
 	    				/*case 16:{
@@ -172,6 +175,22 @@ public static void main(String [] args) throws Exception {
 	    					String file = "prova"; 
 	    					a.Guardar(path,file); 
 	    				}	*/
+	    				case 17: {//
+	    					int s = Integer.parseInt(lsplited[1]);
+	    					int t = Integer.parseInt(lsplited[2]);
+	    					int flow = 0;
+	    					Solucion sol = new Solucion(19);
+	    					d.ejecutar(g, s, t, flow);
+	    					d.crearItinerarios(sol, g, 0, 18, 19, 0, 5, 0);
+	    					System.out.println("final ejecucion el max flow es  " + flow );
+	    					for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
+	    						for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
+	    	    					//System.out.println(sol.obtenVertice(i, j) + " ");
+	    						}
+	    						System.out.println();
+	    					}
+	    					break;
+	    				}
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }

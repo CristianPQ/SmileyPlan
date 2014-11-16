@@ -3,7 +3,35 @@ import java.util.*;
 
 public class Dinic {
 
-
+		
+	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
+		
+		System.out.println();
+		for (int i = indiceI; i <= indiceF; ++i){
+				System.out.println( " vertice " + u + " itinerario " + i + " flow " + flow);
+				sol.agregarVertice(i, u);
+				//System.out.println("aqui");
+				if (u == t) sol.agregarCosteAItinerario(i, coste );
+		}
+		if (u != t){
+			ArrayList <Arista> adyacencias = g.consultarAdyacentes(u);
+			for (int j = 0; j < adyacencias.size(); ++j){		
+				int v = adyacencias.get(j).consultarVerticeDestino();
+				if (adyacencias.get(j).consultarCoste() != -1 && adyacencias.get(j).consultarFlujo() > 0 ){
+					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; 
+					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo());
+					System.out.println("estoy en " + u + " y llamo a " + v + " flow "+ flow  + " flujo arista " + adyacencias.get(j).consultarFlujo());
+					crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste + adyacencias.get(j).consultarCoste());
+					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo());
+					g.modificarFlujoArista(u, v, nuevoFlujo);
+					indiceI = nuevoIndiceF+1;
+				}
+			}
+			
+		}
+		
+	}
+		
 		  static boolean dinicBfs(GrafoAntiguo g, int src, int dest, int[] dist) {
 		    Arrays.fill(dist, -1);
 		    dist[src] = 0;
@@ -50,7 +78,7 @@ public class Dinic {
 		    return 0;
 		  }
 
-		  public static int ejecutar(GrafoAntiguo g, int src, int dest) {
+		  public static int ejecutar(GrafoAntiguo g, int src, int dest, int f) {
 		    int flow = 0;
 		    int[] dist = new int[g.consultarNumVertices()];
 		    while (dinicBfs(g, src, dest, dist)) {

@@ -25,21 +25,26 @@ public class PushRelabel extends Algoritmo {
 	
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
-		
-		for (int i = indiceI; i < indiceF; ++i){
-				System.out.println("aqui");
+		//System.out.println();
+		for (int i = indiceI; i <= indiceF; ++i){
+				//System.out.println( " vertice " + u + " itinerario " + i + " flow " + flow);
 				sol.agregarVertice(i, u);
-				System.out.println("aqui");
+				//System.out.println("aqui");
 				if (u == t) sol.agregarCosteAItinerario(i, coste );
 		}
 		if (u != t){
 			ArrayList <Arista> adyacencias = g.consultarAdyacentes(u);
 			for (int j = 0; j < adyacencias.size(); ++j){		
 				int v = adyacencias.get(j).consultarVerticeDestino();
-				if (adyacencias.get(j).consultarCoste() != -1 ){
+				if (adyacencias.get(j).consultarCoste() != -1 && adyacencias.get(j).consultarFlujo() > 0 ){
 					coste +=  adyacencias.get(j).consultarCoste();
-					crearItinerarios (sol,g,indiceI,indiceI+adyacencias.get(j).consultarFlujo(),flow,v,t,coste);
-					indiceI += adyacencias.get(j).consultarFlujo();
+					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; 
+					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo());
+					//System.out.println("estoy en " + u + " y llamo a " + v + " flow "+ flow  + " flujo arista " + adyacencias.get(j).consultarFlujo());
+					crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste);
+					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo());
+					g.modificarFlujoArista(u, v, nuevoFlujo);
+					indiceI = nuevoIndiceF+1;
 				}
 			}
 			
@@ -94,10 +99,11 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	private void push(GrafoAntiguo g, int u, int v, int t) throws Exception{
-
+		System.out.println( g.consultarFlujoArista(0, 2));
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
 		int temp = Math.min(capacidadResidual,exceso[u]);
 		int nuevoFlujo = g.consultarFlujoArista(u, v) + temp;
+		System.out.println(u + " pushea a " + v+ " con un flow de " + temp );
 		g.modificarFlujoArista(u, v, nuevoFlujo); 
 		if (v == t) {
 			flow+=temp;
@@ -105,7 +111,7 @@ public class PushRelabel extends Algoritmo {
 		//	buffer = buffer + u + " hace push a " + v + " de flow: " + temp + "\n";
 			/////////////////////////////////
 		}
-		nuevoFlujo =  g.consultarFlujoArista(u, v) - temp;
+		nuevoFlujo =  g.consultarFlujoArista(v, u) - temp;
 		//////////// per guardar /////////////////
 		//buffer = buffer + "el flujo en este momento es "+ nuevoFlujo +"\n"; 
 		//////////////////////////////////
