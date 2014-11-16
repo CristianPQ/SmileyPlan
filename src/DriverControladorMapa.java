@@ -7,7 +7,7 @@ public class DriverControladorMapa {
 	private static void menu() {
         System.out.println("Driver clase Mapa"
                 + "\n 0.Salir"
-                + "\n 1.new Mapa(int anchuraX, int alturaY, Coordenadas[] continente)"
+                + "\n 1.new Mapa(int anchuraX, int alturaY, String continente)"
                 + "\n ##########CIUDADES##########"
                 + "\n 2.agregarCiudad(String nombre, int x, int y)"
                 + "\n 3.eliminarCiudad(String c)"
@@ -38,22 +38,12 @@ public class DriverControladorMapa {
 		            case 1: {
 		            	int anchuraX = Integer.parseInt(lsplited[1]);
 		                int alturaY = Integer.parseInt(lsplited[2]);
-		                /*String coord = new String();
+		                String coord = new String();
 		                for(int i = 3;lsplited[i] != "$" && lsplited[i+i] != "$";i += 2) {
-		                	
-		                		System.out.println("lsplited size: " + lsplited.length + "\n");
-		                		System.out.println("Coord X " + i + ": " + lsplited[i] + "\n"
-		                			+ "Coord Y " + (i+1) + ": " + lsplited[i+1] + "\n");
-		                		
-		                	coord.concat(lsplited[i] + " " + lsplited[i+1] + " ");
-		                	
-		                		System.out.println("despues del split" + "\n");
-		                	
+		                	coord = coord + lsplited[i] + " " + lsplited[i+1] + " ";
 		                }
-		                coord.concat("$ $");*/
-		                	//System.out.println("Antes de inicializar mapa" + "\n");
+		                coord = coord + "$ $";
 		                m = new Mapa(anchuraX, alturaY, null);
-		                	//System.out.println("Despues de inicializar mapa" + "\n");
 		                break;
 		            }
 		            case 2: {

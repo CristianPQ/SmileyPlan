@@ -48,6 +48,34 @@ public class ControladorMedioTransporte {
 	}
 	
 	/**
+	 * Agregar un coche
+	 * @param nombre del coche
+	 * @param coste por kilometro del coche
+	 * @throws Exception si existe un medio con dicho nombre
+	 */
+	public void agregarCoche(String nombre, int coste) throws Exception {
+		if (medios.existe(nombre)) throw NombreYaExiste;
+		else{
+			Coche m = new Coche(nombre,coste); 
+			medios.insert(nombre,m);
+		}
+	}
+	
+	/**
+	 * Agregar un tren
+	 * @param nombre del tren
+	 * @param coste por kilometro del tren
+	 * @throws Exception si existe un medio con dicho nombre
+	 */
+	public void agregarTren(String nombre, int coste) throws Exception {
+		if (medios.existe(nombre)) throw NombreYaExiste;
+		else{
+			Tren m = new Tren(nombre,coste); 
+			medios.insert(nombre,m);
+		}
+	}
+	
+	/**
 	 * Borrar un medio de transporte por nombre
 	 * @param nombre del medio que se quiere borrar
 	 * @throws Exception si no existe dicho nombre

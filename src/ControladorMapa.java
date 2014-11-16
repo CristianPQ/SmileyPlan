@@ -4,6 +4,11 @@ public class ControladorMapa {
 
 	private Mapa m;
 	
+	
+	private String buffer; 
+	private static int BUFFER_SIZE = 3250; //aprox 250 elem
+	private static int CARGA_MAX = 250; 
+	
 	private static Exception NoExiste = new Exception ("Este elemento no existe");
 	
 	public ControladorMapa(int anchuraX, int alturaY, String continente) throws Exception {
@@ -18,8 +23,8 @@ public class ControladorMapa {
 		ArrayList<Coordenadas> borde = new ArrayList<Coordenadas>();
 		String[] cArray = cont.split(" ");;
 		for(int i = 0; cArray[i] != "$" && cArray[i+1] != "$"; i += 2) {
-			int x = Integer.parseInt(cArray[1]);
-			int y = Integer.parseInt(cArray[1+1]);
+			int x = Integer.parseInt(cArray[i]);
+			int y = Integer.parseInt(cArray[i+1]);
 			borde.add(new Coordenadas(x, y));
 		}
 		if(borde.size() < 4) return null;
@@ -163,10 +168,10 @@ public class ControladorMapa {
 	
 	public String consultarMapaToString() {
 		String map = new String();
-		String[][] ma = consultarMapa();
+		String[][] ma = m.consultarMapa();
 		for(int i = 0; i < ma.length; ++i) {
 			for(int j = 0; j < ma[0].length; ++j) {
-				map = map + ma[i][j] + " ";
+				map = map + "[" + ma[i][j] + "]" + " ";
 			}
 			map = map + "\n";
 		}
@@ -174,8 +179,108 @@ public class ControladorMapa {
 	}
 	
 	//#########################################
-	//##########Gestion de datos
-	//#########################################
+		//##########Gestion de datos
+		//#########################################
+		
+		/**
+		 * Guardar ciudades
+		 * @param path
+		 * @param file
+		 * @throws Exception si file no existe
+		 */
+	public void GuardarCiudades(String path,String file) throws Exception{
+		GestorDatos gd = new GestorDatos(path,file);
+		//GestorDatos gd = new GestorDatos(path,file);
+		
+		gd.createFile(); 
+		gd.openFile("write"); 
+		
+		
+		ArrayList<String> lista = new ArrayList<String>();
+		lista = m.listarCiudades();
+		
+		String linea = Integer.toString(lista.size()) + "\n"; 
+		buffer = linea; 
+		
+				
+		for(int i = 0; i < lista.size(); ++i){
+			String s = lista.get(i); 
+			Ciudad aux = m.consultarCiudad(s); 
+			int x = (aux.consultarCoordenadas()).consultarX(); 
+			int y = (aux.consultarCoordenadas()).consultarY(); 
+			linea = aux.consultarNombre() + " " + x + " " + y; 
+			buffer = buffer + linea + "\n"; 
+			
+			if(buffer.length() > BUFFER_SIZE) {
+				gd.writeBuffer(buffer); 
+				buffer = null; 
+			}
+		}
+		
+		if(buffer != null) {
+			gd.writeBuffer(buffer);
+		}
+		
+		gd.closeFile(); 
+	}
+	
+	/**
+	 * Cargar ciudades a mapa 
+	 * @param path
+	 * @param file
+	 * @throws Exception
+	 */
+	public void CargarCiudades(String path,String file) throws Exception {
+		GestorDatos gd = new GestorDatos(path,file); 
+		//GestorDatos gd = new GestorDatos(path,file); 
+		
+		gd.createFile();
+		gd.openFile("read"); 
+		
+		int num = Integer.parseInt(gd.readLine()); 
+		
+		buffer = gd.readBuffer(num); 
+		if(buffer == null) throw new Exception("fichero vacio"); 
+		
+		String[] lineas = buffer.split("\n"); 
+		int i = 0; 
+		
+		if (num <= CARGA_MAX) {
+			while(i < num) {
+				String[] cortarstring = lineas[i].split(" "); 
+				String nombre = cortarstring[0];
+				int x = Integer.parseInt(cortarstring[1]); 
+				int y = Integer.parseInt(cortarstring[2]); 
+				agregarCiudad(nombre,x,y); 
+				/////////////per comprovar ////////////////
+				System.out.print(nombre + " "+ x + " " + y +"\n"); 
+				/////////////////////////////////////////////
+				i++; 
+			}
+		}
+		
+		else {
+			while(num >= CARGA_MAX) {
+				buffer = gd.readBuffer(CARGA_MAX); 
+				num = num - CARGA_MAX; 
+				while(i < CARGA_MAX) {
+					String[] cortarstring = lineas[i].split(" "); 
+					String nombre = cortarstring[0];
+					int x = Integer.parseInt(cortarstring[1]); 
+					int y = Integer.parseInt(cortarstring[2]); 
+					agregarCiudad(nombre,x,y); 
+					/////////////per comprovar ////////////////
+					System.out.print(nombre + " "+ x + " " + y +"\n"); 
+					/////////////////////////////////////////////
+					i++; 
+					
+				}
+			}
+		
+		gd.closeFile(); 
+	}
+	}
+	
 	
 	/**
 	 * Guardar caminos del mapa
@@ -185,41 +290,97 @@ public class ControladorMapa {
 	 */
 	public void GuardarCaminos(String path,String file) throws Exception{
 		GestorDatos gd = new GestorDatos(path,file); 
-		m.GuardarCaminos(gd);
+		
+		gd.createFile(); 
+		gd.openFile("write"); 
+		
+		ArrayList<Camino> lista = new ArrayList<Camino>(); 
+		lista = m.consultarTodosCaminos(); 
+
+		String linea = Integer.toString(lista.size()) + "\n"; 
+		buffer = linea; 
+				
+		for(int i = 0; i < lista.size(); ++i){
+
+			String co = lista.get(i).consultarOrigen(); 
+			int cap = lista.get(i).consultarCapacidad(); 
+			String transporte = lista.get(i).consultarTransporte(); 
+			String cd = lista.get(i).consultarDestino();  
+			linea = co + " " + cap + " " + transporte + " " + cd; 
+			buffer = buffer + linea + "\n"; 
+			
+			if(buffer.length() > BUFFER_SIZE) {
+				gd.writeBuffer(buffer); 
+				buffer = null; 
+			}
+		}
+		
+		if(buffer != null) {
+			gd.writeBuffer(buffer);
+		}
+		
+		gd.closeFile(); 
 	}
 	
 	/**
-	 * Guardar ciudades del mapa
-	 * @param path
-	 * @param file
-	 * @throws Exception
-	 */
-	public void GuardarCiudades(String path,String file) throws Exception{
-		GestorDatos gd = new GestorDatos(path,file); 
-		m.GuardarCiudades(gd);
-	}
-	
-	/**
-	 * Cargar ciudades del mapa
-	 * @param path
-	 * @param file
-	 * @throws Exception
-	 */
-	public void CargarCiudades(String path,String file) throws Exception {
-		GestorDatos gd = new GestorDatos(path,file); 
-		m.CargarCiudades(gd);
-	}
-	
-	/**
-	 * Cargar caminos del mapa
+	 * Cargar caminos en el mapa
 	 * @param path
 	 * @param file
 	 * @throws Exception
 	 */
 	public void CargarCaminos(String path, String file) throws Exception {
 		GestorDatos gd = new GestorDatos(path,file); 
-		m.CargarCaminos(gd); 
+		gd.createFile();
+		gd.openFile("read"); 
+		
+		int num = Integer.parseInt(gd.readLine()); 
+		
+		buffer = gd.readBuffer(num); 
+		if(buffer == null) throw new Exception("fichero vacio"); 
+		
+		String[] lineas = buffer.split("\n"); 
+		int i = 0; 
+		
+		if (num <= CARGA_MAX) {
+			while(i < num) {
+				String[] cortarstring = lineas[i].split(" "); 
+				String co = cortarstring[0];
+				int capac = Integer.parseInt(cortarstring[1]); 
+				String trans = cortarstring[2]; 
+				String cd = cortarstring[3]; 
+				Camino c = new Camino(co,cd,capac,trans);
+				m.agregarCamino(c); 
+				/////////////per comprovar ////////////////
+				System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
+				/////////////////////////////////////////////
+				i++; 
+			}
+		}
+		
+		else {
+			while(num >= CARGA_MAX) {
+				buffer = gd.readBuffer(CARGA_MAX); 
+				num = num - CARGA_MAX; 
+				while(i < CARGA_MAX) {
+					String[] cortarstring = lineas[i].split(" "); 
+					String co = cortarstring[0];
+					int capac = Integer.parseInt(cortarstring[1]); 
+					String trans = cortarstring[2]; 
+					String cd = cortarstring[3]; 
+					Camino c = new Camino(co,cd,capac,trans);
+					m.agregarCamino(c); 
+					/////////////per comprovar ////////////////
+					System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
+					/////////////////////////////////////////////
+					i++; 
+				}
+			}
+		
+		gd.closeFile(); 
+		}
 	}
+	
+
 
 	
 }

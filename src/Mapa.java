@@ -4,15 +4,9 @@ import java.util.*;
 public class Mapa {
 	
 	
-	
-	private static String marca = "$";
 	private TST<TST<ArrayList<Camino>>> caminos;
 	private TST <Ciudad> ciudades;
 	private String[][] mapa;
-	
-	private String buffer; 
-	private static int BUFFER_SIZE = 3250; //aprox 250 elem
-	private static int CARGA_MAX = 250; 
 	
 	private static Exception CoordInvalidas = new Exception ("Estas "
 			+ "coordenadas no son validas para este mapa");
@@ -21,7 +15,7 @@ public class Mapa {
 	private static Exception NoExistenCiudades = new Exception ("No existe alguna"
 			+ "de las ciudades o ambas");
 	private static Exception Vacio = new Exception ("Esta vacio");
-	private static Exception HayCaminos = new Exception ("Hay caminos que usan esta ciudad");
+	//private static Exception HayCaminos = new Exception ("Hay caminos que usan esta ciudad");
 	private static Exception NoValido = new Exception ("No valido");
 	
 	
@@ -48,11 +42,13 @@ public class Mapa {
 		Coordenadas co = noValido.get(0);
 		int xAnt = co.consultarX();
 		int yAnt = co.consultarY();
-		for(int i = 0; i < noValido.size(); ++i) {
+		mapa[yAnt][xAnt] = "$";
+		for(int i = 1; i < noValido.size(); ++i) {
 			co = noValido.get(i);
 			int x = co.consultarX();
 			int y = co.consultarY();
-			
+			if(x < 0 || x >= mapa[0].length || y < 0 || y >= mapa.length) throw CoordInvalidas;
+				//System.out.println("Comprobando validez de la limitacion x: " + x + "    y: " + y + "\n");
 			//Comprobar si con consecuentes las coordenadas
 			if((x == (xAnt + 1) && y == yAnt) ||
 					(x == (xAnt + 1) && y == (yAnt + 1)) ||
@@ -62,15 +58,21 @@ public class Mapa {
 					(x == (xAnt - 1) && y == (yAnt - 1)) ||
 					(y == (yAnt - 1) && x == xAnt) ||
 					(x == (xAnt + 1) && y == (yAnt - 1))) {
-				mapa[x][y] = "$";
+					//System.out.println("Delimitando x y: " + x + " " + y + "\n");
+				mapa[y][x] = "$";
 			}
-			else throw CoordInvalidas;
+			else {
+					//System.out.println("no conexa con siguiente" + "\n");
+				throw CoordInvalidas;
+			}
 			xAnt = x;
 			yAnt = y;
 			if(i+1 == noValido.size()) {
+					//System.out.println("ultimo elemento" + "\n");
 				co = noValido.get(0);
 				int xPrim = co.consultarX();
 				int yPrim = co.consultarY();
+					//System.out.println("ultimo elemento2" + "\n");
 				if((xPrim == (xAnt + 1) && yPrim == yAnt) ||
 						(xPrim == (xAnt + 1) && yPrim == (yAnt + 1)) ||
 						(yPrim == (yAnt + 1) && xPrim == xAnt) ||
@@ -79,9 +81,13 @@ public class Mapa {
 						(xPrim == (xAnt - 1) && yPrim == (yAnt - 1)) ||
 						(yPrim == (yAnt - 1) && xPrim == xAnt) ||
 						(xPrim == (xAnt + 1) && yPrim == (yAnt - 1))) {
+						//System.out.println("antes de return" + "\n");
 					return;
 				}
-				else throw CoordInvalidas;
+				else {
+						//System.out.println("ultima no conexa con primera" + "\n");
+					throw CoordInvalidas;
+				}
 			}
 		}
 	}
@@ -90,13 +96,16 @@ public class Mapa {
 	private void agregarContinente(ArrayList<Coordenadas> noValido) throws Exception {
 		if(noValido != null) {
 			delimitar(noValido);
+				//System.out.println("despues de delimitar" + "\n");
 			//invalidar el exterior del are util
 			for(int i = 0; i < mapa.length; ++i) {
 				for(int j = 0; j < mapa[0].length && mapa[i][j] != "$"; ++j) {
 					mapa[i][j] ="$";
+						//System.out.println("Posicionhacia -->: " + i + " " + j + "\n");
 				}
-				for(int k = mapa[0].length - 1; k >= 0 && mapa[i][k] != "$"; ++k) {
+				for(int k = mapa[0].length - 1; k >= 0 && mapa[i][k] != "$"; --k) {
 					mapa[i][k] ="$";
+						//System.out.println("Posicionhacia <--: " + i + " " + k + "\n");
 				}
 			}
 		}
@@ -134,18 +143,23 @@ public class Mapa {
 		if(existeCiudad(nombre)) throw Existe;
 		int x = coord.consultarX();
 		int y = coord.consultarY();
-		mapa[x][y] = nombre;
+		mapa[y][x] = nombre;
 		ciudades.insert(nombre, c);
 	}
 	
 	public void eliminarCiudad(String c) throws Exception {
 		if(!existeCiudad(c)) throw NoExiste;
 		//if(existenCaminosCon(c)) throw HayCaminos;
+			//System.out.println("Antes de eliminar caminos con destino" + "\n");
 		eliminarCaminosConDestino(c);
-		ciudades.delete(c);
+			//System.out.println("Antes de eliminar la ciudad" + "\n");
 		Ciudad ciu = ciudades.consultar(c);
+		ciudades.delete(c);
 		Coordenadas coord = ciu.consultarCoordenadas();
-		mapa[coord.consultarY()][coord.consultarX()] = null;
+			//System.out.println("Antes de eliminar en mapa" + "\n");
+		int x = coord.consultarX();
+		int y = coord.consultarY();
+		mapa[y][x] = null;
 	}
 	
 	//No aparece en el driver porque es llamaada por la funcion inferior
@@ -156,10 +170,11 @@ public class Mapa {
 
 	public void modificarAtributosCiudad(String nombre, int x, int y) throws Exception {
 		if(!ciudades.existe(nombre)) throw NoExiste;
+		Coordenadas coord = new Coordenadas(x,y);
+		posicionValida(coord);
 		Ciudad cAnt = ciudades.consultar(nombre);
 		Coordenadas coordAnt = cAnt.consultarCoordenadas();
 		mapa[coordAnt.consultarY()][coordAnt.consultarX()] = null;
-		Coordenadas coord = new Coordenadas(x,y);
 		Ciudad c = new Ciudad(nombre, coord);
 		ciudades.modificar(nombre, c);
 		mapa[y][x] = nombre;
@@ -340,12 +355,7 @@ public class Mapa {
 		}
 		return todoCaminos;
 	}
-	
 
-	
-	
-	
-	//No aparece en el driver porque es llamaada por la funcion inferior
 	public ArrayList<Camino> consultarCaminosDestino(String cOrig) {
 		//Caminos de la misma ciudad origen
 		TST<ArrayList<Camino>> camOrig = caminos.consultar(cOrig);
@@ -366,223 +376,6 @@ public class Mapa {
 	}
 	
 
-	
-	
-	public ArrayList<Camino> consultarTodosCaminos() {
-		  ArrayList<Camino> todoCaminos = new ArrayList<Camino>();
-		  ArrayList<String> camOrig = caminos.consultar();
-		  Iterator<String> it = camOrig.iterator();
-		  while(it.hasNext()) {
-		   todoCaminos.addAll(consultarCiudadesDestino(it.next()));
-		  }
-		  return todoCaminos;
-	}
-	
-	
-	//#########################################
-	//##########Gestion de datos
-	//#########################################
-	
-	/**
-	 * Guardar ciudades
-	 * @param path
-	 * @param file
-	 * @throws Exception si file no existe
-	 */
-	public void GuardarCiudades(GestorDatos gd) throws Exception {
-		
-		//GestorDatos gd = new GestorDatos(path,file);
-		
-		gd.createFile(); 
-		gd.openFile("write"); 
-		
-		
-		ArrayList<String> lista = new ArrayList<String>();
-		lista = ciudades.consultar(); 
-		
-		String linea = Integer.toString(lista.size()) + "\n"; 
-		buffer = linea; 
-		
-				
-		for(int i = 0; i < lista.size(); ++i){
-			String s = lista.get(i); 
-			Ciudad aux = ciudades.consultar(s); 
-			int x = (aux.consultarCoordenadas()).consultarX(); 
-			int y = (aux.consultarCoordenadas()).consultarY(); 
-			linea = aux.consultarNombre() + " " + x + " " + y; 
-			buffer = buffer + linea + "\n"; 
-			
-			if(buffer.length() > BUFFER_SIZE) {
-				gd.writeBuffer(buffer); 
-				buffer = null; 
-			}
-		}
-		
-		if(buffer != null) {
-			gd.writeBuffer(buffer);
-		}
-		
-		gd.closeFile(); 
-	}
-	
-	/**
-	 * Cargar ciudades a mapa 
-	 * @param path
-	 * @param file
-	 * @throws Exception
-	 */
-	public void CargarCiudades(GestorDatos gd) throws Exception{
-		
-		//GestorDatos gd = new GestorDatos(path,file); 
-		
-		gd.createFile();
-		gd.openFile("read"); 
-		
-		int num = Integer.parseInt(gd.readLine()); 
-		
-		buffer = gd.readBuffer(num); 
-		if(buffer == null) throw new Exception("fichero vacio"); 
-		
-		String[] lineas = buffer.split("\n"); 
-		int i = 0; 
-		
-		if (num <= CARGA_MAX) {
-			while(i < num) {
-				String[] cortarstring = lineas[i].split(" "); 
-				String nombre = cortarstring[0];
-				int x = Integer.parseInt(cortarstring[1]); 
-				int y = Integer.parseInt(cortarstring[2]); 
-				agregarCiudad(nombre,x,y); 
-				/////////////per comprovar ////////////////
-				System.out.print(nombre + " "+ x + " " + y +"\n"); 
-				/////////////////////////////////////////////
-				i++; 
-			}
-		}
-		
-		else {
-			while(num >= CARGA_MAX) {
-				buffer = gd.readBuffer(CARGA_MAX); 
-				num = num - CARGA_MAX; 
-				while(i < CARGA_MAX) {
-					String[] cortarstring = lineas[i].split(" "); 
-					String nombre = cortarstring[0];
-					int x = Integer.parseInt(cortarstring[1]); 
-					int y = Integer.parseInt(cortarstring[2]); 
-					agregarCiudad(nombre,x,y); 
-					/////////////per comprovar ////////////////
-					System.out.print(nombre + " "+ x + " " + y +"\n"); 
-					/////////////////////////////////////////////
-					i++; 
-					
-				}
-			}
-		
-		gd.closeFile(); 
-	}
-	}
-	
-	
-	/**
-	 * Guardar caminos del mapa
-	 * @param path
-	 * @param file
-	 * @throws Exception
-	 */
-	public void GuardarCaminos(GestorDatos gd) throws Exception {
-		//GestorDatos gd = new GestorDatos(path,file);
-		
-		gd.createFile(); 
-		gd.openFile("write"); 
-		
-		ArrayList<Camino> lista = new ArrayList<Camino>(); 
-		lista = consultarTodosCaminos(); 
-
-		String linea = Integer.toString(lista.size()) + "\n"; 
-		buffer = linea; 
-				
-		for(int i = 0; i < lista.size(); ++i){
-
-			String co = lista.get(i).consultarOrigen(); 
-			int cap = lista.get(i).consultarCapacidad(); 
-			String transporte = lista.get(i).consultarTransporte(); 
-			String cd = lista.get(i).consultarDestino();  
-			linea = co + " " + cap + " " + transporte + " " + cd; 
-			buffer = buffer + linea + "\n"; 
-			
-			if(buffer.length() > BUFFER_SIZE) {
-				gd.writeBuffer(buffer); 
-				buffer = null; 
-			}
-		}
-		
-		if(buffer != null) {
-			gd.writeBuffer(buffer);
-		}
-		
-		gd.closeFile(); 
-	}
-	
-	/**
-	 * Cargar caminos en el mapa
-	 * @param path
-	 * @param file
-	 * @throws Exception
-	 */
-	public void CargarCaminos(GestorDatos gd) throws Exception{
-		
-		gd.createFile();
-		gd.openFile("read"); 
-		
-		int num = Integer.parseInt(gd.readLine()); 
-		
-		buffer = gd.readBuffer(num); 
-		if(buffer == null) throw new Exception("fichero vacio"); 
-		
-		String[] lineas = buffer.split("\n"); 
-		int i = 0; 
-		
-		if (num <= CARGA_MAX) {
-			while(i < num) {
-				String[] cortarstring = lineas[i].split(" "); 
-				String co = cortarstring[0];
-				int capac = Integer.parseInt(cortarstring[1]); 
-				String trans = cortarstring[2]; 
-				String cd = cortarstring[3]; 
-				Camino c = new Camino(co,cd,capac,trans);
-				agregarCamino(c); 
-				/////////////per comprovar ////////////////
-				System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
-				/////////////////////////////////////////////
-				i++; 
-			}
-		}
-		
-		else {
-			while(num >= CARGA_MAX) {
-				buffer = gd.readBuffer(CARGA_MAX); 
-				num = num - CARGA_MAX; 
-				while(i < CARGA_MAX) {
-					String[] cortarstring = lineas[i].split(" "); 
-					String co = cortarstring[0];
-					int capac = Integer.parseInt(cortarstring[1]); 
-					String trans = cortarstring[2]; 
-					String cd = cortarstring[3]; 
-					Camino c = new Camino(co,cd,capac,trans);
-					agregarCamino(c); 
-					/////////////per comprovar ////////////////
-					System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
-					/////////////////////////////////////////////
-					i++; 
-				}
-			}
-		
-		gd.closeFile(); 
-	}
-	}
-	
-	
-	
 	//#########################################
 	//##########CONSULTORAS
 	//#########################################
