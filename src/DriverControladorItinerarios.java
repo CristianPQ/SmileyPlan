@@ -11,7 +11,6 @@ public class DriverControladorItinerarios {
                 + "\n 1.crear ControladorItinerario()"
                 + "\n 2.agregarItinerario(String nombre)"
                 + "\n 3.agregarCaminoAlItinerario(Itinerario it,camino c)"  
-        		+ "\n 4.crear camino(co,cd)"
                 +"\n");
     }
 	
@@ -38,22 +37,13 @@ public class DriverControladorItinerarios {
 	            }
 	            case 3: {
 	            	String nA = lsplited[1]; 
-	            	String co = lsplited[2];
-	            	String cd = lsplited[3];
-	            	//it = new Itinerario(nA);
-	            	Camino c = new Camino(co,cd, null); 
-	            	aux.agregarCaminoAlItinerario(nA,c);
-	            	Itinerario m = new Itinerario(nA); 
-	            	int n = aux.consultarCaminosIt(m); 
+	            	String nC = lsplited[2];
+	            	it = new Itinerario(nA);
+	            	aux.agregarCiudadAlItinerario(it,nC); 
+	            	int n = aux.consultarCiudadesIt(it); 
 	            	System.out.println( n +"\n");
 	               break;
-	            }
-	            case 4:{
-	            	String CO = lsplited[1];
-	            	String CD = lsplited[2];
-	            	Camino c = aux.crearCamino(CO,CD);
-	                break;
-	            }     
+	            }    
 	            case 0: {
 	                System.exit(0);
 	            }

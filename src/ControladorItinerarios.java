@@ -21,15 +21,15 @@ public class ControladorItinerarios {
 
 	}
 	
-	/**
+	/*/**
 	 * Devuelve el camino creado
 	 * @param co
 	 * @param cd
 	 * @return
 	 */
-	public Camino crearCamino(String co, String cd) throws Exception{
+	/*public Camino crearCamino(String co, String cd) throws Exception{
 		return iti.crearCamino(co, cd);
-	}
+	}*/
 	
 	/**
 	 * Agregar un itinerario al conjunto
@@ -39,30 +39,24 @@ public class ControladorItinerarios {
 	 */
 	public Itinerario agregarItinerario(String nombreAg) throws Exception {
 		Itinerario i = new Itinerario(nombreAg); 
-		if(cjtoit.contains(i)) throw ItinerarioYaExiste; 
-		else {
+		//if(cjtoit.contains(i)) throw ItinerarioYaExiste; 
+		//else {
 			cjtoit.add(i); 
-		}
+		//}
 		return i; 
 	}
 
 
 	/**
-	 * Agrega un camino c al itinerario it 
+	 * Agregar una ciudad al itinerario
 	 * @param it
-	 * @param c
-	 * @throws Exception si el nombre de itinerario ya existe
+	 * @param name
+	 * @throws Exception
 	 */
-	public void agregarCaminoAlItinerario(String name, Camino c) throws Exception {
-		Itinerario iti = new Itinerario(name); 
-		if(!cjtoit.contains(iti)) throw new Exception("El itinerario no existe"); 
-		else{
-			System.out.println("ja existeix");
-			iti.agregarCamino(c);
-		}
+	public void agregarCiudadAlItinerario(Itinerario it, String name) throws Exception{
+		it.agregarCiudad(name); 
 	}
-	
-	
+
 	
 	
 	/**
@@ -78,8 +72,8 @@ public class ControladorItinerarios {
 	 * @param it
 	 * @return
 	 */
-	public int consultarCaminosIt(Itinerario aux){
-		return aux.getNumeroCaminos(); 
+	public int consultarCiudadesIt(Itinerario aux){
+		return aux.getNumeroCiudades(); 
 	}
 		
 	
