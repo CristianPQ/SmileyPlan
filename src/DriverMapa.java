@@ -11,22 +11,20 @@ public class DriverMapa {
                 + "\n 0.Salir"
                 + "\n 1.new Mapa(int anchuraX, int alturaY, Coordenadas[] continente)"
                 + "\n ##########CIUDADES##########"
-                + "\n 2.getCiudades()"
-                + "\n 3.agregarCiudad(String nombreCiudad, int CoordX, int CoordY)"
-                + "\n 4.int numeroCiudades()"
-                + "\n 5.numeroCaminos()"
-                + "\n 6.Ciudad buscarCiudad(String nombreCiudad)"
-                + "\n 7.Coordenadas getCoordenadasCiudad(String nombreCiudad)"
-                + "\n 8.borrarCiudad(String nombreCiudad)"
-                + "\n 9.getAnchuraX()"
-        		+ "\n 10.setAnchuraX(int anchuraX)"
-        		+ "\n 11.getAlturaY()"
-        		+ "\n 12.setAlturaY(int alturaY)"
-        		+ "\n 13.Coordenadas[] getContinente()"
-        		+ "\n 14.setContinente(Coordenadas[] continente)"
-        		+ "\n 15.setAlturaY(int alturaY)"
-        		+ "\n 16.conCiudadOrigen(String ciudadOrigen)"
-        		+ "\n 17.agregarCamino(String ciudadOrigen, String ciudadDestino, String medioTransporte)"   
+                + "\n 2.agregarCiudad(String nombre, int x, int y)"
+                + "\n 3.eliminarCiudad(String c)"
+                + "\n 4.consultarCiudadToString(String nombre): String"
+                + "\n 5.modificarAtributosCiudad(String nombre, int x, int y)"
+                + "\n 6.listarCiudadesToString(): String"
+                + "\n ##########CAMINOS##########"
+                + "\n 7.agregarCamino(String cOrig, String cDest, String medio, int cap)"
+                + "\n 8.consultarCaminosToString(String cOrig, String cDest): String"
+                + "\n 9.eliminarCamino(String cOrig, String cDest, String medio, int cap)"
+        		+ "\n 10.modificarAtributosCamino(String cOrig, String cDest, String medio, int cap)"
+        		+ "\n 11.consultarCaminosDestinoToString(String cOrig): String"
+        		+ "\n 12.consultarMapaToString(): String"   
+        		+ "\n 13.consultarCaminoToString(String cOrig, String cDest, String medio): String"
+        		+ "\n 14.consultarTodosCaminosToString(): String"
         		+"\n");
     }
 	
@@ -42,63 +40,108 @@ public class DriverMapa {
 		            case 1: {
 		            	int anchuraX = Integer.parseInt(lsplited[1]);
 		                int alturaY = Integer.parseInt(lsplited[2]);
-		                String coord;
-		                int x = 0;
-		                int y = 0;
-		                for(int i = 3;lsplited[i] != "$" && lsplited[i+i] != "$";) {
+		                /*String coord = new String();
+		                for(int i = 3;lsplited[i] != "$" && lsplited[i+i] != "$";i += 2) {
+		                	
+		                		System.out.println("lsplited size: " + lsplited.length + "\n");
+		                		System.out.println("Coord X " + i + ": " + lsplited[i] + "\n"
+		                			+ "Coord Y " + (i+1) + ": " + lsplited[i+1] + "\n");
+		                		
 		                	coord.concat(lsplited[i] + " " + lsplited[i+1] + " ");
+		                	
+		                		System.out.println("despues del split" + "\n");
+		                	
 		                }
-		                coord.concat("$ $");
-		                 m = new Mapa(anchuraX, alturaY, coord);
+		                coord.concat("$ $");*/
+		                	//System.out.println("Antes de inicializar mapa" + "\n");
+		                m = new Mapa(anchuraX, alturaY, null);
+		                	//System.out.println("Despues de inicializar mapa" + "\n");
 		                break;
 		            }
-		           /* case 2: {
-		            	
-		            	Set<String> aux = m.getCiudades();
-		            	String[]aux2 = new
-		            	String[]aux2 = aux.toArray(aux2);
-		            	for (int i = 0; i < aux.size(); ++i)
-		            		System.out.print(aux2[i] + "\n");
+		            case 2: {
+		            	String nombre = lsplited[1];
+		            	int coordX = Integer.parseInt(lsplited[2]);
+		                int coordY = Integer.parseInt(lsplited[3]);
+		            	m.agregarCiudad(nombre, coordX, coordY);
 		                break;
-		            }*/
+		            }
 		            case 3: {
 		                String nombre = lsplited[1];
-		                	//System.out.println(nombre + "\n");
-		                int x = Integer.parseInt(lsplited[2]);
-		                	//System.out.println(x + "\n");
-		                int y = Integer.parseInt(lsplited[3]);
-		                	//System.out.println(y + "\n");
-		                Coordenadas coord = new  Coordenadas(x,y);
-		                	//System.out.println("cordenadas creadas" + "\n");
-		                Ciudad c = new Ciudad(nombre,coord);
-		                	//System.out.println("ciudad creada" + "\n");
-		                m.agregarCiudad(c);
+		                m.eliminarCiudad(nombre);
 		                break;
 		            }
 	
 		            case 4:{
-		            	System.out.print(m.numeroCiudades() +"\n");
+		            	String nombre = lsplited[1];
+		            	String ciudad = m.consultarCiudadToString(nombre);
+		            	System.out.print(ciudad +"\n");
 		                break;
 		            }
 		            case 5:{
-		            	System.out.print(m.numeroCaminos()+"\n");
+		            	String nombre = lsplited[1];
+		            	int coordX = Integer.parseInt(lsplited[2]);
+		                int coordY = Integer.parseInt(lsplited[3]);
+		            	m.modificarAtributosCiudad(nombre, coordX, coordY);
 		                break;
 		            }
 		            case 6: {
-		            	String nombre = lsplited[1];
-		            	Ciudad aux = m.buscarCiudad(nombre);
-		                System.out.print(aux.getNombre()+ ' ' + '(' + aux.getCoord().getX() +',' + aux.getCoord().getY() + ')' + "\n");
+		            	String li = m.listarCiudadesToString();
+		            	System.out.print(li +"\n");
 		                break;
 		            }
-		            case 17: {
-		            	String ciudadOrigen = lsplited[1];
-		            	String ciudadDestino = lsplited[2];
-		            	String medioTransporte = lsplited[3];
-		            	Camino c = new Camino(ciudadOrigen,ciudadDestino,medioTransporte);
-		            		System.out.println("antes de agregar camino"+"\n");
-		            	m.agregarCamino(c);
-		            		System.out.println("despues de agregar camino"+"\n");
-	            		break;
+		            case 7: {
+		            	String cOrig = lsplited[1];
+		            	String cDest = lsplited[2];
+		            	String medio = lsplited[3];
+		            	int cap = Integer.parseInt(lsplited[4]);
+		            	m.agregarCamino(cOrig, cDest, medio, cap);
+		                break;
+		            }
+		            case 8: {
+		            	String cOrig = lsplited[1];
+		            	String cDest = lsplited[2];
+		            	String cons = m.consultarCaminosToString(cOrig, cDest);
+		            	System.out.println(cons + "\n");
+		                break;
+		            }
+		            case 9: {
+		            	String cOrig = lsplited[1];
+		            	String cDest = lsplited[2];
+		            	String medio = lsplited[3];
+		            	m.eliminarCamino(cOrig, cDest, medio);
+		                break;
+		            }
+		            case 10: {
+		            	String cOrig = lsplited[1];
+		            	String cDest = lsplited[2];
+		            	String medio = lsplited[3];
+		            	int cap = Integer.parseInt(lsplited[4]);
+		            	m.modificarAtributosCamino(cOrig, cDest, medio, cap);
+		                break;
+		            }
+		            case 11: {
+		            	String cOrig = lsplited[1];
+		            	String ciu = m.consultarCaminosDestinoToString(cOrig);
+		            	System.out.println(ciu + "\n");
+		                break;
+		            }
+		            case 12: {
+		            	String map = m.consultarMapaToString();
+		            	System.out.println(map + "\n");
+		                break;
+		            }
+		            case 13: {
+		            	String cOrig = lsplited[1];
+		            	String cDest = lsplited[2];
+		            	String medio = lsplited[3];
+		            	String cam = m.consultarCaminoToString(cOrig, cDest, medio);
+		            	System.out.println(cam + "\n");
+		            	break;
+		            }
+		            case 14: {
+		            	String cam = m.consultarTodosCaminosToString();
+		            	System.out.println(cam + "\n");
+		            	break;
 		            }
 		            case 0: {
 		                System.exit(0);
@@ -116,31 +159,3 @@ public class DriverMapa {
 	    }
     }
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
