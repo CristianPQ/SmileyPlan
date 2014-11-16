@@ -43,10 +43,15 @@ public class ControladorAlgoritmo {
 			return indice;
 	}
 	
+	
+	//#########################################
+	//##########Entrada ##################
+	//#########################################
+	
 	public void prepararEjecucion() {
 		g = obtenerGrafo(); 
-		s = obtenerCiudadSalida();  //s'ha de crear una funcio per aquestes
-		t = obtenerCiudadObjetivo(); //que vagi a entrada 
+		s = obtenerCiudadSalida();  
+		t = obtenerCiudadObjetivo(); 
 		int flow = null; 
 	}
 	
@@ -64,7 +69,10 @@ public class ControladorAlgoritmo {
 		g = p.ejecutar(g, s, t, f); 
 	}
 	
-
+	
+	//#########################################
+	//########## Salida ##################
+	//#########################################
 	
 	public void guardarSolucion(String path, String filename){}
 }
