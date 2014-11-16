@@ -1,9 +1,6 @@
-//numero de itinerarios en el conjunto
-1
-2
-3
+//numero de itinerarios en el conjunto - numero de caminos itinerario
+1 6
+2 6
+3 6
 
-//numero de caminos en el itinerario
-1
-Error:ciudad ya existe
-2
+

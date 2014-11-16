@@ -9,8 +9,7 @@ public class DriverControladorItinerarios {
         System.out.println("Driver clase Controlador Itinerarios"
                 + "\n 0.Salir"
                 + "\n 1.crear ControladorItinerario()"
-                + "\n 2.agregarItinerario(String nombre)"
-                + "\n 3.agregarCaminoAlItinerario(Itinerario it,camino c)"  
+                + "\n 2.agregarItinerario(String nombre)" 
                 +"\n");
     }
 	
@@ -30,25 +29,25 @@ public class DriverControladorItinerarios {
 	            }
 	           case 2: {
 	        	  String nombre = lsplited[1];
-	        	  aux.agregarItinerario(nombre);
+	        	  ArrayList<String> ciudades = new ArrayList<String>(); 
+	        	  String n1 = lsplited[2]; ciudades.add(n1); 
+	        	  String n2 = lsplited[3]; ciudades.add(n2); 
+	        	  String n3 = lsplited[4]; ciudades.add(n3); 
+	        	  String n4 = lsplited[5]; ciudades.add(n4); 
+	        	  String n5 = lsplited[6]; ciudades.add(n5); 
+	        	  String n6 = lsplited[7]; ciudades.add(n6); 
+	        	  it = aux.agregarItinerario(nombre, ciudades);
 	        	  int n = aux.consultarSize(); 
-	        	  System.out.println( n +"\n");
+	        	  int m = aux.consultarCiudadesIt(it); 
+	        	  System.out.println( n + " " + m + "\n");
 	              break;
 	            }
-	            case 3: {
-	            	String nA = lsplited[1]; 
-	            	String nC = lsplited[2];
-	            	it = new Itinerario(nA);
-	            	aux.agregarCiudadAlItinerario(it,nC); 
-	            	int n = aux.consultarCiudadesIt(it); 
-	            	System.out.println( n +"\n");
-	               break;
-	            }   
+ 
 	            case 0: {
 	                System.exit(0);
 	            }
 	            default: {
-	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 8 o 0 para salir\n");
+	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 2 o 0 para salir\n");
 	                break;
 	            }       
 	        }

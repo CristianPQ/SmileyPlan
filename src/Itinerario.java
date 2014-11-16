@@ -39,6 +39,14 @@ public class Itinerario {
 	}	
 	
 	/**
+	 * Agregar la array de ciudades al itinerario
+	 * @param c
+	 */
+	public void agregarCiudades(ArrayList<String> c) {
+		caminos = c; 
+	}
+	
+	/**
 	 * Modificar nombre del itinerario
 	 * El nombre del itinerario tiene que coincidir con el nombre del agente
 	 * al cual esta vinculado el itinerario

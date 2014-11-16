@@ -20,15 +20,6 @@ public class ControladorItinerarios {
 
 	}
 	
-	/*/**
-	 * Devuelve el camino creado
-	 * @param co
-	 * @param cd
-	 * @return
-	 */
-	/*public Camino crearCamino(String co, String cd) throws Exception{
-		return iti.crearCamino(co, cd);
-	}*/
 	
 	/**
 	 * Agregar un itinerario al conjunto
@@ -36,27 +27,12 @@ public class ControladorItinerarios {
 	 * del agente al que esta relacionado
 	 * @throws Exception si el itinerario ya existe
 	 */
-	public Itinerario agregarItinerario(String nombreAg) throws Exception {
-		Itinerario i = new Itinerario(nombreAg); 
-		//if(cjtoit.contains(i)) throw ItinerarioYaExiste; 
-		//else {
-			cjtoit.add(i); 
-		//}
-		return i; 
+	public Itinerario agregarItinerario(String nombreAg, ArrayList<String> ciudades) throws Exception {
+		Itinerario aux = new Itinerario(nombreAg); 
+		aux.agregarCiudades(ciudades); 
+		cjtoit.add(aux); 
+		return aux; 
 	}
-
-
-	/**
-	 * Agregar una ciudad al itinerario
-	 * @param it
-	 * @param name
-	 * @throws Exception
-	 */
-	public void agregarCiudadAlItinerario(Itinerario it, String name) throws Exception{
-		//System.out.println(n); 
-		it.agregarCiudad(name); 
-	}
-
 	
 	
 	/**
