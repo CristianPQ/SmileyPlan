@@ -120,3 +120,17 @@ Error: Este elemento no existe
 bcn
 bil
 mad
+
+
+
+bcn 4 5
+bil 3 4
+mad 5 5
+bil 5 mad bmw
+mad 3 bil bmw
+bcn
+bil
+mad
+
+bil mad bmw 5
+mad bil bmw 3
