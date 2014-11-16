@@ -6,7 +6,8 @@ public class Entrada {
 		private int sink;
 		private int numeroAgentesSyT;
 		
-		public Entrada(int s, int t, int numAgentes) throws Exception{
+		public Entrada(GrafoAntiguo G, int s, int t, int numAgentes) throws Exception{
+				g = G;
 				source = s;
 				sink = t;
 				numeroAgentesSyT = numAgentes;
