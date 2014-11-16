@@ -126,7 +126,7 @@ public class ControladorAlgoritmo {
 	 */
 	public void convertirItinerario(int i, String nombreAg) throws Exception{
 		int num = sol.obtenNumCiudades(i); 
-		Itinerario it = cit.agregarItinerario(nombreAg); 
+		//Itinerario it = cit.agregarItinerario(nombreAg); 
 		for(int j = 0; j < num; ++j) {
 			int v = sol.obtenVertice(i, j); 
 			int w = sol.obtenVertice(i, j+1); 
