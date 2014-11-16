@@ -40,11 +40,11 @@ public class Solucion {
 	}
 	
 	/**
-	 * Obtener la capacidad del itinerario
+	 * Obtener el numero de ciudades del itinerario
 	 * @param i identificador del itinerario
-	 * @return la capacidad de dicho itinerario
+	 * @return el numero de ciudades de dicho itinerario
 	 */
-	public int obtenCapacidad(int i){
+	public int obtenNumCiudades(int i){
 		return itinerarios.get(i).size(); 
 	}
 	

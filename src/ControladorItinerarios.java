@@ -10,6 +10,8 @@ public class ControladorItinerarios {
 	
 	private ArrayList<Itinerario> ci; 
 	
+	Itinerario iti; 
+	
 	private static Exception ItinerarioYaExiste = new Exception("el itinerario ya existe");
 	
 	/**
@@ -20,28 +22,37 @@ public class ControladorItinerarios {
 	}
 	
 	/**
+	 * Devuelve el camino creado
+	 * @param co
+	 * @param cd
+	 * @return
+	 */
+	public Camino crearCamino(String co, String cd){
+		return iti.crearCamino(co, cd);
+	}
+	
+	/**
 	 * Agregar un itinerario al conjunto
 	 * @param nombreAg el nombre del itinerario que coincide con el 
 	 * del agente al que esta relacionado
 	 * @throws Exception si el itinerario ya existe
 	 */
-	public void agregarItinerario(String nombreAg) throws Exception {
+	public Itinerario agregarItinerario(String nombreAg) throws Exception {
 		Itinerario i = new Itinerario(nombreAg); 
 		if(ci.contains(i)) throw ItinerarioYaExiste; 
 		else ci.add(i); 
+		return i; 
 	}
 
+
 	/**
-	 * Agregar un camino a un itinerario 
-	 * @param it objeto itinerario al que queremos agregar el camino
-	 * @param co ciudad de origen del camino
-	 * @param cd ciudad destino del camino
-	 * @param trans medio de transporte del camino
-	 * @throws Exception si ya existe dicha ciudad en dicho camino
+	 * Agrega un camino c al itinerario it 
+	 * @param it
+	 * @param c
+	 * @throws Exception si el nombre de itinerario ya existe
 	 */
-	public void agregarCaminoAlItinerario(Itinerario it, String co, String cd, String trans) throws Exception {
-		Camino aux = new Camino(co,cd,trans); 
-		it.agregarCamino(aux);
+	public void agregarCaminoAlItinerario(Itinerario it, Camino c) throws Exception {
+		it.agregarCamino(c);
 	}
 	
 }

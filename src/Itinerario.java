@@ -9,9 +9,21 @@ public class Itinerario {
 	//Datos
 	private String nombre; 
 	private ArrayList<Camino> caminos; 
+	
+	private Camino cam; 
 
 	private static Exception CaminoYaExiste = new Exception("el camino ya esta en el itinerario");
 		
+	/**
+	 * Creadora de camino con transporte null
+	 * @param co
+	 * @param cd
+	 * @param trans
+	 */
+	public Camino crearCamino(String co, String cd){
+		cam = new Camino(co,cd,null); 
+		return cam; 
+	}
 		
 	/**
 	 * Constructora itinerario con parametros
@@ -23,8 +35,7 @@ public class Itinerario {
 	public Itinerario(String nombreAg) throws Exception{ 
 			caminos = new ArrayList<Camino>();
 			nombre = nombreAg; 
-	}
-		
+	}	
 	
 	/**
 	 * Modificar nombre del itinerario
@@ -62,7 +73,6 @@ public class Itinerario {
 	 * @throws Exception si el camino ya se encuentra en el itinerario
 	 */
 	public void agregarCamino(Camino c) throws Exception{
-		//Camino aux = new Camino(co,cd,trans); 
 		if (caminos.contains(c)) throw CaminoYaExiste; 
 		else caminos.add(c); 
 	}
