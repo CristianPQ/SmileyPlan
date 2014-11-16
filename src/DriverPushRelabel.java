@@ -14,7 +14,7 @@ private static void menu() {
 	                + "\n 3.anadirArista(int vertex, int targetVertex, int flow, int capacity, int cost)"
 	                + "\n 4.consultarFlujoArista(int vertex, int targetVertex)"
 	                + "\n 5.modificarFlujoArista(int vertex,int targetVertex, int nuevoFlujo)"
-	              + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
+	                + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
 	                + "\n 7.consultarCapacidadArista(int vertex,int targetVertex)"
 	                + "\n 8.modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad)"
 	                + "\n 9.consultarCosteArista(int vertex,int targetVertex)"
