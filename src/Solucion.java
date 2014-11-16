@@ -4,7 +4,7 @@ public class Solucion {
 	
 	private int tiempo;
 	private int espacio; //???
-	private boolean tieneSolucion = false;
+	private boolean tieneSolucion = false; //falso si no la tiene true en caso contrario
 	
 	private ArrayList<Integer>[] itinerarios; 
 	//private ArrayList<Integer> capacidadIt; 

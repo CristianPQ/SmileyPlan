@@ -137,7 +137,7 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    					
 	    				}	
-	    				case 14: {//
+	    				/*case 14: {//
 	    					int s = Integer.parseInt(lsplited[1]);
 	    					int t = Integer.parseInt(lsplited[2]);
 	    					int flow = 0;
@@ -154,6 +154,7 @@ public static void main(String [] args) throws Exception {
 	    				
 	    					break;
 	    				}
+	    				*/
 	    				case 15: {//
 	    					int s = Integer.parseInt(lsplited[1]);
 	    					int t = Integer.parseInt(lsplited[2]);

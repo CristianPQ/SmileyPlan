@@ -15,21 +15,12 @@ public class PushRelabel extends Algoritmo {
 	String file;
 	String buffer; 
 	
-	
-	/**
-	 * inicializa todas las alturas a 0 menos la del origen a numero de vertices, incializo
-	 * el exceso de del origen a tanto como la suma de los flujos q tiene de salida
-	 * @param g
-	 * @param s
-	 */
+	*/
 	
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
-		//System.out.println();
 		for (int i = indiceI; i <= indiceF; ++i){
-				//System.out.println( " vertice " + u + " itinerario " + i + " flow " + flow);
 				sol.agregarVertice(i, u);
-				//System.out.println("aqui");
 				if (u == t) sol.agregarCosteAItinerario(i, coste );
 		}
 		if (u != t){
@@ -40,7 +31,6 @@ public class PushRelabel extends Algoritmo {
 					coste +=  adyacencias.get(j).consultarCoste();
 					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; 
 					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo());
-					//System.out.println("estoy en " + u + " y llamo a " + v + " flow "+ flow  + " flujo arista " + adyacencias.get(j).consultarFlujo());
 					crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste);
 					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo());
 					g.modificarFlujoArista(u, v, nuevoFlujo);
@@ -99,11 +89,9 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	private void push(GrafoAntiguo g, int u, int v, int t) throws Exception{
-		System.out.println( g.consultarFlujoArista(0, 2));
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
 		int temp = Math.min(capacidadResidual,exceso[u]);
 		int nuevoFlujo = g.consultarFlujoArista(u, v) + temp;
-		System.out.println(u + " pushea a " + v+ " con un flow de " + temp );
 		g.modificarFlujoArista(u, v, nuevoFlujo); 
 		if (v == t) {
 			flow+=temp;
@@ -147,8 +135,12 @@ public class PushRelabel extends Algoritmo {
 	 * lo quito de la cola y vuelvo a iterar con el siguiente vertice de la cola.
 	 * @throws Exception 
 	 */
-	public GrafoAntiguo ejecutar ( GrafoAntiguo g, int s, int t, int f) throws Exception{
-	
+	public Solucion ejecutar (Entrada e) throws Exception{
+		GrafoAntiguo g = e.consultarGrafo();
+		int s = e.consultarOrigen();
+		int t = e.consultarDestino();
+		int numA = e.consultarNumAgentes();
+		
 		alturas = new int[g.consultarNumVertices()];
 		exceso = new int[g.consultarNumVertices()];
 		active = new int[g.consultarNumVertices()];
@@ -190,9 +182,14 @@ public class PushRelabel extends Algoritmo {
 			}
 
 		} 
-		f = flow;
+		Solucion sol = new Solucion(flow);
+		if (flow > numA){
+			sol.modificartieneSolucion(true);
+			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
+		}
 	//	Guardar(path,file); 
-		return g;
+		
+		return sol;
 		
 	}
 	

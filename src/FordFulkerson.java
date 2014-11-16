@@ -1,15 +1,13 @@
 import java.util.*;
 
 
-public class FordFulkerson {
+public class FordFulkerson extends Algoritmo{
 	
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		System.out.println();
 		for (int i = indiceI; i <= indiceF; ++i){
-				System.out.println( " vertice " + u + " itinerario " + i + " flow " + flow);
 				sol.agregarVertice(i, u);
-				//System.out.println("aqui");
 				if (u == t) sol.agregarCosteAItinerario(i, coste );
 		}
 		if (u != t){
@@ -20,7 +18,6 @@ public class FordFulkerson {
 					coste +=  adyacencias.get(j).consultarCoste();
 					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; 
 					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo());
-					System.out.println("estoy en " + u + " y llamo a " + v + " flow "+ flow  + " flujo arista " + adyacencias.get(j).consultarFlujo());
 					crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste);
 					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo());
 					g.modificarFlujoArista(u, v, nuevoFlujo);
@@ -55,13 +52,9 @@ public class FordFulkerson {
 		      if (!vis[v] && capacidadResidual > 0) {
 		        int df = findPath(g, vis, v, t, Math.min(f, capacidadResidual));
 		        if (df > 0) {
-		         // cap[u][v] -= df;
-		        	System.out.println("aqui");
 		          int nuevoFlujo = g.consultarFlujoArista(u, v) + df;
-		          System.out.println("nuevoFlujo de " + u + " a " + v + " es " + nuevoFlujo);
 		          g.modificarFlujoArista(u,v,nuevoFlujo);
 		          nuevoFlujo = g.consultarFlujoArista(v, u) - df;
-		         // cap[v][u] += df;
 		          g.modificarFlujoArista(v,u,nuevoFlujo);
 		          return df;
 		        }
@@ -72,53 +65,42 @@ public class FordFulkerson {
 	 
 	 
 
-	public int ejecutar ( GrafoAntiguo g, int s, int t, int f) throws Exception{
+	public Solucion ejecutar ( Entrada e) throws Exception{
+		GrafoAntiguo g = e.consultarGrafo();
+		int s = e.consultarOrigen();
+		int t = e.consultarDestino();
+		int numA = e.consultarNumAgentes();
 		inicializacion(g,s,t);
-	    for (int flow = 0;;) {
+		int flow = 0;
+	    for (flow = 0;;) {
 	        int df = findPath(g, new boolean[g.consultarNumVertices()], s, t, Integer.MAX_VALUE);
 	        if (df == 0)
-	          return flow;
+	          break;
 	        flow += df;
 	      }
-		
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-/*	
-	public GNode ejecutar(GNode g, GNode f, String destino, ArrayList<String> rec) {
-		if(g != null) {
-			Iterator<GNodePeso> it = g.consultarIteradorHijos();
-			while(it.hasNext()) {
-				GNodePeso nPeso = it.next();
-				GNode n = nPeso.consultarNodo();
-				n =  ejecutar(n, f, destino, rec);
-				((GNodePeso) it).modificarNodo(n);
-			}
-			
+		Solucion sol = new Solucion(flow);
+		//System.out.println("el flow es" + flow);
+		if (flow > numA){
+			sol.modificartieneSolucion(true);
+			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
-		return g;
+	//	Guardar(path,file); 
+		
+		return sol;
+		
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
-*/
+	
+	
+	
+	
