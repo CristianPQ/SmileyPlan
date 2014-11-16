@@ -9,8 +9,7 @@ public class Entrada {
 		private int numeroAgentesSyT;
 		private String[] mapping; //HABRA QUE COPIARLO A CNTRLALGORITMO AL INICIALIZAR EL CNTRL, acordarse del SIZE
 		
-		public Entrada(ControladorMapa m, ControladorAgentes ca, ControladorMedioTransporte cm,
-				 String source, String sink, int numAgentes) throws Exception{
+		public Entrada(String source, String sink, int numAgentes) throws Exception{
 				ciudadOrigen = source;
 				ciudadDestino = sink;
 				numeroAgentesSyT = numAgentes;
