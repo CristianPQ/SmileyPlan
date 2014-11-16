@@ -6,7 +6,7 @@ public class Solucion {
 	private int espacio; //???
 	
 	private ArrayList<ArrayList<Integer>> itinerarios; 
-	private ArrayList<Integer > flowIt; 
+	private ArrayList<Integer > capacidadIt; 
 	private ArrayList<Integer> costeIt; 
 	
 
