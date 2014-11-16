@@ -66,6 +66,7 @@ public class FordFulkerson extends Algoritmo{
 	 
 
 	public Solucion ejecutar ( Entrada e) throws Exception{
+		double t1 = System.currentTimeMillis();
 		GrafoAntiguo g = e.consultarGrafo();
 		int s = e.consultarOrigen();
 		int t = e.consultarDestino();
@@ -82,10 +83,12 @@ public class FordFulkerson extends Algoritmo{
 		//System.out.println("el flow es" + flow);
 		if (flow > numA){
 			sol.modificartieneSolucion(true);
+			sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
 	//	Guardar(path,file); 
-		
+		double t2 = System.currentTimeMillis();
+		sol.modificarTiempo(t2-t1);
 		return sol;
 		
 		

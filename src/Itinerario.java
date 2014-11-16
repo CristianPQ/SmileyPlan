@@ -8,23 +8,23 @@ public class Itinerario {
 
 	//Datos
 	private String nombre; 
-	private ArrayList<Camino> caminos; 
+	private ArrayList<String> caminos; 
 
-	private static Exception CaminoYaExiste = new Exception("el camino ya esta en el itinerario");
+	private static Exception CiudadYaExiste = new Exception("la ciudad ya esta en el itinerario");
 		
 	public Itinerario() {	
 	}
 	
-	/**
+	/*/**
 	 * Creadora de camino con transporte null
 	 * @param co
 	 * @param cd
 	 * @param trans
 	 */
-	public Camino crearCamino(String co, String cd){
+	/*public Camino crearCamino(String co, String cd){
 		Camino cam = new Camino(co,cd,null); 
 		return cam; 
-	}
+	}*/
 		
 	/**
 	 * Constructora itinerario con parametros
@@ -34,7 +34,7 @@ public class Itinerario {
 	 * del itinerario (un itinerario por agente)
 	 */
 	public Itinerario(String nombreAg) throws Exception{ 
-			caminos = new ArrayList<Camino>();
+			caminos = new ArrayList<String>();
 			nombre = nombreAg; 
 	}	
 	
@@ -53,7 +53,7 @@ public class Itinerario {
 	 * Consultora de numero de caminos
 	 * @return nombre de caminos que hay en el itinerario
 	 */
-	public int getNumeroCaminos(){
+	public int getNumeroCiudades(){
 		return caminos.size(); 
 	}
 	
@@ -73,9 +73,9 @@ public class Itinerario {
 	 * @param trans medio transporte
 	 * @throws Exception si el camino ya se encuentra en el itinerario
 	 */
-	public void agregarCamino(Camino c) throws Exception{
-		if (caminos.contains(c)) throw CaminoYaExiste; 
-		else caminos.add(c); 
+	public void agregarCiudad(String s) throws Exception{
+		if (caminos.contains(s)) throw CiudadYaExiste; 
+		else caminos.add(s); 
 	}
 		
 	

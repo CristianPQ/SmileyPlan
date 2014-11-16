@@ -14,7 +14,6 @@ public class DriverItinerario {
                 + "\n 3.getNumeroCaminos()"
                 + "\n 4.getNombreItinerario()"
                 + "\n 5.agregarCamino(Camino c)"
-                + "\n 6.crear Camino(co,cd)"
         		+"\n");
     }
 	
@@ -38,7 +37,7 @@ public class DriverItinerario {
 	                break;
 	            }
 	            case 3: {
-	               System.out.print( it.getNumeroCaminos() + "\n");
+	               System.out.print( it.getNumeroCiudades() + "\n");
 	               break;
 	            }
 
@@ -47,19 +46,9 @@ public class DriverItinerario {
 	                break;
 	            }     
 	            case 5: {
-	            	String CO = lsplited[1];
-	            	String CD = lsplited[2];
-	            	String tra = lsplited[3]; 
-	            	Camino c = new Camino(CO,CD, tra);
-	            	it.agregarCamino(c); 
+	            	String ciudad = lsplited[1];
+	            	it.agregarCiudad(ciudad); 
 	                break;
-	            }
-	            case 6: {
-	            	String co = lsplited[1];
-	            	String cd = lsplited[2];
-	            	Camino c = it.crearCamino(co, cd);
-	            	//System.out.print(c.consultarOrigen()); 
-	            	break; 
 	            }
 	            case 0: {
 	                System.exit(0);
