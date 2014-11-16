@@ -22,7 +22,7 @@ public class ControladorMapa {
 	private ArrayList<Coordenadas> continente(String cont) {
 		ArrayList<Coordenadas> borde = new ArrayList<Coordenadas>();
 		String[] cArray = cont.split(" ");;
-		for(int i = 0; cArray[i] != "$" && cArray[i+1] != "$"; i += 2) {
+		for(int i = 0; i < cArray.length; i += 2) {
 			int x = Integer.parseInt(cArray[i]);
 			int y = Integer.parseInt(cArray[i+1]);
 			borde.add(new Coordenadas(x, y));
@@ -100,6 +100,10 @@ public class ControladorMapa {
 		Camino c = m.consultarCamino(cOrig, cDest, medio);
 		String cam = cOrig + " " + cDest + " " + medio + " " + Integer.toString(c.consultarCapacidad()) + "\n";
 		return cam;
+	}
+	
+	public void eliminarCamino(String cOrig, String cDest, String medio) throws Exception {
+		m.eliminarCamino(cOrig, cDest, medio);
 	}
 	
 	public ArrayList<Camino> consultarCaminosEntre(String cOrig, String cDest) throws Exception {
@@ -182,12 +186,12 @@ public class ControladorMapa {
 		//##########Gestion de datos
 		//#########################################
 		
-		/**
-		 * Guardar ciudades
-		 * @param path
-		 * @param file
-		 * @throws Exception si file no existe
-		 */
+	/**
+	 * Guardar ciudades
+	 * @param path
+	 * @param file
+	 * @throws Exception si file no existe
+	 */
 	public void GuardarCiudades(String path,String file) throws Exception{
 		GestorDatos gd = new GestorDatos(path,file);
 		//GestorDatos gd = new GestorDatos(path,file);

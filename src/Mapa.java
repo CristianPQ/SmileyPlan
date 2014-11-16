@@ -264,20 +264,28 @@ public class Mapa {
 		TST<ArrayList<Camino>> camOrig = new TST<ArrayList<Camino>>();
 		ArrayList<Camino> camDest = new ArrayList<Camino>();
 			//System.out.println("Despues inicializar" + "\n");
+			//System.out.println(cOrig + " " + cDest + "\n");
 		if(caminos.existe(cOrig)) {
 			//camOrig tiene el TST de TST de caminos con ciudad origen cOrig
 			camOrig = caminos.consultar(cOrig);
 			if(camOrig.existe(cDest)) {
+					//System.out.println("en IF camOrig.existe(cDest)" + "\n");
 				//camDest tiene tiene el TST de ciudades con origen cOrig y destino cDest
 				camDest = camOrig.consultar(cDest);
 				camDest.add(c);
+					//System.out.println("Tiene " + camDest.size() + " \n");
+				camOrig.modificar(cDest, camDest);
 			}
 			else {
+					//System.out.println("en ELSE camOrig.existe(cDest)" + "\n");
 				camDest = new ArrayList<Camino>();
 				camDest.add(c);
+				camOrig.insert(cDest, camDest);
 			}
-			camOrig.modificar(cDest, camDest);
+				//System.out.println("antes de modificar)" + "\n");
+				//System.out.println("Tiene " + camDest.size() + " \n");
 			caminos.modificar(cOrig, camOrig);
+				//System.out.println("Despues de modificar)" + "\n");
 		}
 		else {
 			//No hay ningun camino con ciudad de origen cOrig

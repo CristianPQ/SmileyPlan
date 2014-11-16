@@ -248,8 +248,11 @@ class TST<E>  //no estava la <E>
     
     private TSTNode modificarNodo(TSTNode f, TSTNode r, char[] word, int ptr, E e)
     {
-        if (r == null)
+        if (r == null) {
+        	//System.out.println("ESTE NODO ES NULL" + " \n");
             return null;
+        }
+        	//System.out.println("ESTE NODO NUEVO NO ES NULL" + " \n");
         
         char letra;
     	//Si ya se ha recorrido toda la palabra es una word[ptr], sino es $
@@ -264,18 +267,23 @@ class TST<E>  //no estava la <E>
     	if(ptr == word.length && rChar.data == '$') {
     		//Se ha encontrado la palabra
     		TSTNodeFinal rFinal = (TSTNodeFinal)r.middle;
+    			//System.out.println("Antes modificar en TST" + " \n");
     		rFinal.modificar(e);
+    			//System.out.println("Despues modificar en TST" + " \n");
     		r.middle = rFinal;
     		
     		
     	}
-    	//System.out.println("rChar.data: " + rChar.data + "\n" + "letra: " + letra + "\n" + "\n");
+    		//System.out.println("rChar.data: " + rChar.data + "\n" + "letra: " + letra + "\n" + "\n");
     	
     	//Profundizando en el arbol, siguiente letra de la palabra
         if (letra < rChar.data)
-            r.left = delete(r, r.left, word, ptr);
-        else if (letra > rChar.data)
-            r.right = delete(r, r.right, word, ptr);
+            r.left = modificarNodo(r, r.left, word, ptr, e);
+        else if (letra > rChar.data) {
+        		//System.out.println("Entro en hijo derecho con letra mayor" + "\n");
+            r.right = modificarNodo(r, r.right, word, ptr, e);
+            	//System.out.println("Salgo de hijo derecho con letra mayor" + "\n");
+        }
         else
         {
         	if(ptr < word.length)
