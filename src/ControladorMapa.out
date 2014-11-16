@@ -19,6 +19,7 @@ mad
 Error: Este elemento no existe
 
 mad 5 5
+
 bil
 mad
 
@@ -75,35 +76,29 @@ mad bcn bmw 7
 mad bcn renault 10
 
 
-mad bcn bmw 7
-mad bcn renault 10
-
+mad bcn bmw 7 mad bcn renault 10 
 
 bcn mad bmw 5
 bcn mad renault 2
 mad bcn renault 10
 
 
-mad bcn renault 10
-
-
-bcn mad renault 2
-bcn mad bmw 99
-mad bcn renault 10
-
-
-mad bcn renault 10
-
+mad bcn renault 10 
 
 bcn mad renault 2
 bcn mad bmw 99
+mad bcn renault 10
 
+
+mad bcn renault 10 
+
+bcn mad renault 2 bcn mad bmw 99 
 
 bcn mad renault 2
 bcn mad bmw 99
 
-mad bcn renault 10
 
+mad bcn renault 10
 
 
 

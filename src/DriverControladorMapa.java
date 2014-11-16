@@ -57,7 +57,7 @@ public class DriverControladorMapa {
 		                //coords = coords + "$ $";
 		                	//System.out.println("Antes de einicializar el controlador" + "\n");
 		                m = new ControladorMapa(anchuraX, alturaY, coords);
-		                	System.out.println("Despues de einicializar el controlador" + "\n");
+		                	//System.out.println("Despues de einicializar el controlador" + "\n");
 		                break;
 		            }
 		            case 2: {
@@ -76,7 +76,7 @@ public class DriverControladorMapa {
 		            case 4:{
 		            	String nombre = lsplited[1];
 		            	String ciudad = m.consultarCiudadToString(nombre);
-		            	System.out.print(ciudad +"\n");
+		            	if(ciudad != null) System.out.print(ciudad +"\n");
 		                break;
 		            }
 		            case 5:{
@@ -88,7 +88,7 @@ public class DriverControladorMapa {
 		            }
 		            case 6: {
 		            	String li = m.listarCiudadesToString();
-		            	System.out.print(li +"\n");
+		            	if(li != null) System.out.print(li +"\n");
 		                break;
 		            }
 		            case 7: {
@@ -103,7 +103,7 @@ public class DriverControladorMapa {
 		            	String cOrig = lsplited[1];
 		            	String cDest = lsplited[2];
 		            	String cons = m.consultarCaminosEntreToString(cOrig, cDest);
-		            	System.out.println(cons + "\n");
+		            	if(cons != null) System.out.println(cons + "\n");
 		                break;
 		            }
 		            case 9: {
@@ -124,12 +124,12 @@ public class DriverControladorMapa {
 		            case 11: {
 		            	String cOrig = lsplited[1];
 		            	String ciu = m.consultarCaminosDestinoToString(cOrig);
-		            	System.out.println(ciu + "\n");
+		            	if(ciu != null) System.out.println(ciu + "\n");
 		                break;
 		            }
 		            case 12: {
 		            	String map = m.consultarMapaToString();
-		            	System.out.println(map + "\n");
+		            	if(map != null) System.out.println(map + "\n");
 		                break;
 		            }
 		            case 13: {
@@ -137,12 +137,12 @@ public class DriverControladorMapa {
 		            	String cDest = lsplited[2];
 		            	String medio = lsplited[3];
 		            	String cam = m.consultarCaminoToString(cOrig, cDest, medio);
-		            	System.out.println(cam + "\n");
+		            	if(cam != null) System.out.println(cam + "\n");
 		            	break;
 		            }
 		            case 14: {
 		            	String cam = m.consultarTodosCaminosToString();
-		            	System.out.println(cam + "\n");
+		            	if(cam != null) System.out.println(cam + "\n");
 		            	break;
 		            }
 		            case 0: {

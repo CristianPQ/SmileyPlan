@@ -150,7 +150,10 @@ public class ControladorMapa {
 	
 	public String consultarCaminosDestinoToString(String cOrig) throws Exception {
 		ArrayList<Camino> listCamino = m.consultarCaminosDestino(cOrig);
-		if(listCamino.isEmpty()) return null;
+		if(listCamino.isEmpty()) {
+			//System.out.println("Esta vacio");
+			return null;
+		}
 		Iterator<Camino> it = listCamino.iterator();
 		String listC = new String();
 		Camino c = null;

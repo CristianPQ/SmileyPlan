@@ -142,7 +142,7 @@ public class DriverMapa {
 		        		while(it.hasNext()) {
 		        			c = it.next();
 		        			listC = listC + c.consultarOrigen() + " " + c.consultarDestino() + " " + 
-		        			c.consultarTransporte() + " " + Integer.toString(c.consultarCapacidad()) + " ";
+		        			c.consultarTransporte() + " " + Integer.toString(c.consultarCapacidad()) + "\n";
 		        		}
 		            	System.out.println(listC + "\n");
 		                break;
