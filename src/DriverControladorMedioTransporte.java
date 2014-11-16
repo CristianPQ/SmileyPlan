@@ -35,7 +35,7 @@ public class DriverControladorMedioTransporte {
 	                break;
 	            }
 	           case 2: {
-	        	   Agente aux = null; 
+	        	   //Agente aux = null; 
 	        	   String nombre = lsplited[1]; 
 	        	   int p = Integer.parseInt(lsplited[2]);
 	               cm.agregarMedioTransporte(nombre,p);

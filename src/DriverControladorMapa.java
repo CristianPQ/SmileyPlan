@@ -23,6 +23,10 @@ public class DriverControladorMapa {
         		+ "\n 12.consultarMapaToString(): String"   
         		+ "\n 13.consultarCaminoToString(String cOrig, String cDest, String medio): String"
         		+ "\n 14.consultarTodosCaminosToString(): String"
+        		+ "\n 15.guardarCiudades(String path,String file)"
+        		+ "\n 16.cargarCiudades(String path,String file)"
+        		+ "\n 17.guardarCaminos(String path,String file)"
+        		+ "\n 18.cargarCaminos(String path, String file)"
         		+"\n");
     }
 	
@@ -144,6 +148,26 @@ public class DriverControladorMapa {
 		            	String cam = m.consultarTodosCaminosToString();
 		            	if(cam != null) System.out.println(cam + "\n");
 		            	break;
+		            }
+		            case 15:{
+		            	String  path = lsplited[1]; 
+		            	String file = lsplited[2]; 
+		            	m.guardarCiudades(path, file);
+		            }
+		            case 16:{
+		            	String  path = lsplited[1]; 
+		            	String file = lsplited[2]; 
+		            	m.cargarCiudades(path, file);
+		            }
+		            case 17:{
+		            	String  path = lsplited[1]; 
+		            	String file = lsplited[2]; 
+		            	m.guardarCaminos(path, file);
+		            }
+		            case 18:{
+		            	String  path = lsplited[1]; 
+		            	String file = lsplited[2];
+		            	m.cargarCaminos(path, file);
 		            }
 		            case 0: {
 		                System.exit(0);

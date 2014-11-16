@@ -195,7 +195,7 @@ public class ControladorMapa {
 	 * @param file
 	 * @throws Exception si file no existe
 	 */
-	public void GuardarCiudades(String path,String file) throws Exception{
+	public void guardarCiudades(String path,String file) throws Exception{
 		GestorDatos gd = new GestorDatos(path,file);
 		//GestorDatos gd = new GestorDatos(path,file);
 		
@@ -237,7 +237,7 @@ public class ControladorMapa {
 	 * @param file
 	 * @throws Exception
 	 */
-	public void CargarCiudades(String path,String file) throws Exception {
+	public void cargarCiudades(String path,String file) throws Exception {
 		GestorDatos gd = new GestorDatos(path,file); 
 		//GestorDatos gd = new GestorDatos(path,file); 
 		
@@ -295,7 +295,7 @@ public class ControladorMapa {
 	 * @param file
 	 * @throws Exception
 	 */
-	public void GuardarCaminos(String path,String file) throws Exception{
+	public void guardarCaminos(String path,String file) throws Exception{
 		GestorDatos gd = new GestorDatos(path,file); 
 		
 		gd.createFile(); 
@@ -335,7 +335,7 @@ public class ControladorMapa {
 	 * @param file
 	 * @throws Exception
 	 */
-	public void CargarCaminos(String path, String file) throws Exception {
+	public void cargarCaminos(String path, String file) throws Exception {
 		GestorDatos gd = new GestorDatos(path,file); 
 		gd.createFile();
 		gd.openFile("read"); 
