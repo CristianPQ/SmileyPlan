@@ -227,19 +227,15 @@ public class ControladorAlgoritmo {
 	 */
 	public void convertirItinerario(int i, String nombreAg) throws Exception{
 		int num = sol.obtenNumCiudades(i); 
-		//Itinerario it = cit.agregarItinerario(nombreAg); 
+		ArrayList<String> listaciudades = new ArrayList<String>();	
 		for(int j = 0; j < num; ++j) {
 			int v = sol.obtenVertice(i, j); 
-			int w = sol.obtenVertice(i, j+1); 
-			//buscar equivalencies int amb ciutat 
-			String co = consultarElementRelacCiudades(v); 
-			String cd = consultarElementRelacCiudades(w); 
-			//convertir de ciutat v a ciutat w a cami
-			Camino c = cit.crearCamino(co,cd); 
-			//afegir cami 
-			cit.agregarCaminoAlItinerario(it,c); 
+			String c = consultarElementRelacCiudades(v); 
+			listaciudades.add(c);
 		}
+		cit.agregarItinerario(nombreAg,listaciudades); 
 	}
+	
 	
 	/**
 	 * Guarda la sequencia del PushRelabel
