@@ -16,7 +16,8 @@ public class DriverControladorItinerarios {
     }
 	
     public static void main(String [] args) throws Exception {
-    	ControladorItinerarios ci = null;
+    	ControladorItinerarios aux = null;
+    	Itinerario it; 
         menu();
         Scanner sc = new Scanner(System.in);
         String[] lsplited;
@@ -25,31 +26,33 @@ public class DriverControladorItinerarios {
 	        lsplited = sc.nextLine().split(" ");
 	        switch(Integer.parseInt(lsplited[0])) {
 	            case 1: {
-	            	ci = new ControladorItinerarios(); 
+	            	aux = new ControladorItinerarios(); 
 	                break;
 	            }
 	           case 2: {
-	        	   String nombre = lsplited[1];
-	        	  ci.agregarItinerario(nombre); 
+	        	  String nombre = lsplited[1];
+	        	  aux.agregarItinerario(nombre);
+	        	  int n = aux.consultarSize(); 
+	        	  System.out.println( n +"\n");
 	              break;
 	            }
 	            case 3: {
 	            	String nA = lsplited[1]; 
 	            	String co = lsplited[2];
 	            	String cd = lsplited[3];
-	            	Itinerario it = new Itinerario(nA);
-	            	System.out.println("itinerario " + it.getNombreItinerario() + "\n");
-	            	Camino c = ci.crearCamino(co,cd); 
-	            	
-	            	ci.agregarCaminoAlItinerario(it,c);
+	            	//it = new Itinerario(nA);
+	            	Camino c = new Camino(co,cd, null); 
+	            	aux.agregarCaminoAlItinerario(nA,c);
+	            	Itinerario m = new Itinerario(nA); 
+	            	int n = aux.consultarCaminosIt(m); 
+	            	System.out.println( n +"\n");
 	               break;
 	            }
 	            case 4:{
 	            	String CO = lsplited[1];
 	            	String CD = lsplited[2];
-	            	Camino c = ci.crearCamino(CO,CD);
+	            	Camino c = aux.crearCamino(CO,CD);
 	                break;
-	            	
 	            }     
 	            case 0: {
 	                System.exit(0);

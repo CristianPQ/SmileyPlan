@@ -242,6 +242,13 @@ public class Mapa {
 		return false;
 	}
 	
+	public boolean existeCaminoDesdeA(String cOrig, String cDest) {
+		if(caminos.existe(cOrig)) {
+			return (caminos.consultar(cOrig).existe(cDest));
+		}
+		return false;
+	}
+	
 	private boolean existeCamino(Camino c) {
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();

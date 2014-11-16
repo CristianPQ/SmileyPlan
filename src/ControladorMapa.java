@@ -11,6 +11,13 @@ public class ControladorMapa {
 	
 	private static Exception NoExiste = new Exception ("Este elemento no existe");
 	
+	/**
+	 * Constructora de ControladorMapa
+	 * @param anchuraX
+	 * @param alturaY
+	 * @param continente
+	 * @throws Exception
+	 */
 	public ControladorMapa(int anchuraX, int alturaY, String continente) throws Exception {
 		
 		//Para delimitar el continente son necesarios por lo menos 4 coordenadas
@@ -18,7 +25,13 @@ public class ControladorMapa {
 		m = new Mapa(anchuraX, alturaY, cont);
 	}
 	
+	
 	//Transforma el String en un tipo valido para mapa
+	/**
+	 * Transforma un string en un ArrayList para la constructora de Mapa
+	 * @param cont
+	 * @return Un arrayList de coordenadas que delimitaran el terreno util
+	 */
 	private ArrayList<Coordenadas> continente(String cont) {
 		ArrayList<Coordenadas> borde = new ArrayList<Coordenadas>();
 		String[] cArray = cont.split(" ");;
@@ -36,21 +49,46 @@ public class ControladorMapa {
 	//##########SOBRE CIUDADES
 	//#########################################
 	
+	/**
+	 * Agregar una nueva ciudad
+	 * @param nombre
+	 * @param x
+	 * @param y
+	 * @throws Exception si la ciudad ya existe o las coordenadas no son validas
+	 */
 	public void agregarCiudad(String nombre, int x, int y) throws Exception {
 		Coordenadas coord = new Coordenadas(x,y);
 		Ciudad c = new Ciudad(nombre, coord);
 		m.agregarCiudad(c);
 	}
 	
+	/**
+	 * Elimina una ciudad existente
+	 * @param c
+	 * @throws Exception Si la ciudad no existe
+	 */
 	public void eliminarCiudad(String c) throws Exception {
 		m.eliminarCiudad(c);
 	}
 	
+	/**
+	 * Consultora de ciudad a partir del nombre
+	 * @param c
+	 * @return La ciudad consultada
+	 * @throws Exception Si la ciudad no existe
+	 */
 	public Ciudad consultarCiudad(String c) throws Exception {
 		return m.consultarCiudad(c);
 	}
 	
 	//Consulta una ciudad y ademas la devuelve en String para poder pasarla entre capas
+	/**
+	 * Consultora de ciudad a partir del nombre
+	 * @param nombre
+	 * @return Devuelve un String con el contenido de la ciduad
+	 * 
+	 * @throws Exception
+	 */
 	public String consultarCiudadToString(String nombre) throws Exception {
 		Ciudad c = m.consultarCiudad(nombre);
 		int x = c.consultarCoordenadas().consultarX();
@@ -60,14 +98,31 @@ public class ControladorMapa {
 		return ciudadSt;
 	}
 	
+	/**
+	 * Modificador de los atributos de una ciudad
+	 * @param nombre
+	 * @param x
+	 * @param y
+	 * @throws Exception No existe una ciudad con ese nombre
+	 */
 	public void modificarAtributosCiudad(String nombre, int x, int y) throws Exception {
 		m.modificarAtributosCiudad(nombre, x, y);
 	}
 	
+	/**
+	 * Consultora de todas las ciudades existentes
+	 * @return Los nombres de todas las ciudades
+	 * @throws Exception Si no hay ninguna ciudad
+	 */
 	public ArrayList<String> listarCiudades() throws Exception{
 		return m.listarCiudades();
 	}
 	
+	/**
+	 * Consultora de todas las ciudades existentes
+	 * @return Los nombres de todas las ciudades en un String
+	 * @throws Exception Si no hay ninguna ciudad
+	 */
 	public String listarCiudadesToString() throws Exception {
 		ArrayList<String> list = m.listarCiudades();
 		String nombreC = new String();
@@ -83,6 +138,10 @@ public class ControladorMapa {
 	//#########################################
 	//##########SOBRE CAMINOS
 	//#########################################
+	
+	public boolean existeCaminoDesdeA(String cOrig, String cDest) {
+		return m.existeCaminoDesdeA(cOrig, cDest);
+	}
 	
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap, ControladorMedioTransporte contMT) throws Exception {
 		
@@ -303,14 +362,11 @@ public class ControladorMapa {
 		
 		ArrayList<Camino> lista = new ArrayList<Camino>(); 
 		lista = m.consultarTodosCaminos(); 
-
 		String linea = Integer.toString(lista.size()) + "\n"; 
 		buffer = linea; 
-				
 		for(int i = 0; i < lista.size(); ++i){
-
 			String co = lista.get(i).consultarOrigen(); 
-			int cap = lista.get(i).consultarCapacidad(); 
+			String cap = Integer.toString(lista.get(i).consultarCapacidad()); 
 			String transporte = lista.get(i).consultarTransporte(); 
 			String cd = lista.get(i).consultarDestino();  
 			linea = co + " " + cap + " " + transporte + " " + cd; 
@@ -325,7 +381,6 @@ public class ControladorMapa {
 		if(buffer != null) {
 			gd.writeBuffer(buffer);
 		}
-		
 		gd.closeFile(); 
 	}
 	

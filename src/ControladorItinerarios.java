@@ -8,17 +8,16 @@ import java.util.*;
 
 public class ControladorItinerarios {
 	
-	private ArrayList<Itinerario> ci; 
-	
-	Itinerario iti; 
+	private ArrayList<Itinerario> cjtoit; 
+	private Itinerario iti = new Itinerario(); 
 	
 	private static Exception ItinerarioYaExiste = new Exception("el itinerario ya existe");
 	
 	/**
 	 * Constructora Controlador Itinerarios
 	 */
-	public void ControladorItinerarios() {
-		ci = new ArrayList<Itinerario>(); 
+	public ControladorItinerarios() {
+		cjtoit = new ArrayList<Itinerario>(); 
 	}
 	
 	/**
@@ -27,7 +26,7 @@ public class ControladorItinerarios {
 	 * @param cd
 	 * @return
 	 */
-	public Camino crearCamino(String co, String cd){
+	public Camino crearCamino(String co, String cd) throws Exception{
 		return iti.crearCamino(co, cd);
 	}
 	
@@ -39,13 +38,10 @@ public class ControladorItinerarios {
 	 */
 	public Itinerario agregarItinerario(String nombreAg) throws Exception {
 		Itinerario i = new Itinerario(nombreAg); 
-		System.out.println("itinerario " + i.getNombreItinerario() + "\n");
-		if(ci.contains(i)) throw ItinerarioYaExiste; 
+		if(cjtoit.contains(i)) throw ItinerarioYaExiste; 
 		else {
-			System.out.println("no hi ha cap itinerari igual \n");
-			ci.add(i); 
+			cjtoit.add(i); 
 		}
-		System.out.println("itinerario" + i.getNombreItinerario() + "\n");
 		return i; 
 	}
 
@@ -56,11 +52,34 @@ public class ControladorItinerarios {
 	 * @param c
 	 * @throws Exception si el nombre de itinerario ya existe
 	 */
-	public void agregarCaminoAlItinerario(Itinerario it, Camino c) throws Exception {
-		System.out.println("he entrat a la funcio\n");
-		System.out.println("itinerario" + it.getNombreItinerario() + "\n");
-		System.out.println("itinerario" + c.consultarOrigen() + "\n");
-		it.agregarCamino(c);
+	public void agregarCaminoAlItinerario(String name, Camino c) throws Exception {
+		Itinerario iti = new Itinerario(name); 
+		if(!cjtoit.contains(iti)) throw new Exception("El itinerario no existe"); 
+		else{
+			System.out.println("ja existeix");
+			iti.agregarCamino(c);
+		}
 	}
+	
+	
+	
+	
+	/**
+	 * consultora tamano conjunto 
+	 * @return
+	 */
+	public int consultarSize(){
+		return cjtoit.size(); 
+	}
+	
+	/**
+	 * consultora numero caminos de un itinerario
+	 * @param it
+	 * @return
+	 */
+	public int consultarCaminosIt(Itinerario aux){
+		return aux.getNumeroCaminos(); 
+	}
+		
 	
 }

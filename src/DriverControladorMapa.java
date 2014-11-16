@@ -153,21 +153,25 @@ public class DriverControladorMapa {
 		            	String  path = lsplited[1]; 
 		            	String file = lsplited[2]; 
 		            	m.guardarCiudades(path, file);
+		            	break;
 		            }
 		            case 16:{
 		            	String  path = lsplited[1]; 
 		            	String file = lsplited[2]; 
 		            	m.cargarCiudades(path, file);
+		            	break;
 		            }
 		            case 17:{
 		            	String  path = lsplited[1]; 
 		            	String file = lsplited[2]; 
 		            	m.guardarCaminos(path, file);
+		            	break;
 		            }
 		            case 18:{
 		            	String  path = lsplited[1]; 
 		            	String file = lsplited[2];
 		            	m.cargarCaminos(path, file);
+		            	break;
 		            }
 		            case 0: {
 		                System.exit(0);
