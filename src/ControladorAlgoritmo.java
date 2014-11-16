@@ -1,12 +1,17 @@
 import java.util.*;
 public class ControladorAlgoritmo {
 	private String[] relacCiudades;
-	private Entrada e;
-	private Solucion s;
+	private Entrada ent;
+	private Solucion sol;
+	private GrafoAntiguo g; 
+	private int flow; 
+	private int s; 
+	private int t; 
 	
-	public ControladorAlgoritmo(Entrada ent) throws Exception{
-		e = ent;
-		s= new Solucion(); //esto puede cambiar
+	
+	public ControladorAlgoritmo(Entrada entrada) throws Exception{
+		ent = entrada;
+		sol= new Solucion(); //esto puede cambiar
 		
 	}
 	
@@ -32,6 +37,26 @@ public class ControladorAlgoritmo {
 			return indice;
 	}
 	
+	public void prepararEjecucion() {
+		g = obtenerGrafo(); 
+		s = obtenerCiudadSalida();  //s'ha de crear una funcio per aquestes
+		t = obtenerCiudadObjetivo(); //que vagi a entrada 
+		int flow = null; 
+	}
+	
+	public GrafoAntiguo obtenerGrafo(){
+		return ent.consultarGrafo(); 
+	}
+	
+	public void ejecutarAlgoritmoFordFulkerson(GrafoAntiguo g, int s, int t) {
+		FordFulkerson ff = new FordFulkerson(); 
+		//g = ff.ejecutar(g,s,t,f); 	
+	}
+	
+	public void ejecutarAlgoritmoPushRelabel(GrafoAntiguo g, int s, int t, int f) throws Exception{
+		PushRelabel p = new PushRelabel(); 
+		g = p.ejecutar(g, s, t, f); 
+	}
 	
 
 	
