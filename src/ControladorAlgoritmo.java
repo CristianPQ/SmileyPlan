@@ -75,6 +75,13 @@ public class ControladorAlgoritmo {
 	//########## Salida ##################
 	//#########################################
 	
+	public void assignarItinerarioAAgente(){
+		
+		
+		
+	}
+	
+	
 	/**
 	 * Convierte una fila de la matriz solucion en un itinerario 
 	 * del conjunto de itinerarios
