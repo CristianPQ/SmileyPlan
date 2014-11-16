@@ -15,6 +15,9 @@ public class ControladorAlgoritmo {
 		
 	}
 	
+	public GrafoAntiguo consultarGrafo(){
+		return entrada.consultarGrafo();
+	}
 	public void inicializarRelacCiudades(int size){
 		relacCiudades = new String[size];
 	}

@@ -46,6 +46,10 @@ public class ControladorAgentes {
 		
 		/**
 		 * Anadir un agente
+		 * @param nombre nombre del agente que se quiere anadir
+		 * @param ciudadInicial ciudad donde empieza el recorrido del agente
+		 * @param ciudadObjetivo ciudad que quiere alcanzar el agente
+		 * @throws Exception si ya existe agente con este nombre
 		 */
 			
 		public void anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo)
@@ -61,6 +65,8 @@ public class ControladorAgentes {
 		
 		/**
 		 * Eliminar un agente
+		 * @param nombre nombre del agente que se quiere eliminar
+		 * @throws Exception si no existe el agente a eliminar
 		 */
 		
 		public void eliminarAgente(String nombre) throws Exception{ 
@@ -75,6 +81,9 @@ public class ControladorAgentes {
 
 		/**
 		 * Consultora de la ciudadInicial de un agente
+		 * @param nombre nombre del agente del que se quiere saber la ciudadInicial
+		 * @reurn
+		 * @throws Exception si no existe el agente solicitado
 		 */
 		
 		public String consultarCiudadInicialAgente(String nombre) throws Exception{
@@ -87,6 +96,8 @@ public class ControladorAgentes {
 		
 		/**
 		 * Consultora de la ciudadObjetivo de un agente
+		 * @param nombre nombre del agente del que se quiere saber la ciudadObjetivo
+		 * @throws Exception si no existe el agente solicitado
 		 */
 		
 		public String consultarCiudadObjetivoAgente(String nombre) throws Exception{
@@ -100,6 +111,9 @@ public class ControladorAgentes {
 		
 		/**
 		 * Modificadora del nombre de un agente (si existe)
+		 * @param nombreAntiguo nombre del agente al que se le quiere cambiar el nombre
+		 * @param nombreNuevo nombre nuevo que se le quiere dar al agente
+		 * @throws Exception si no existe el agente solicitado o si ya existe uno con el nuevo nombre
 		 */
 		
 		public void modificarNombreAgente(String nombreAntiguo, String nombreNuevo)throws Exception{
@@ -117,20 +131,20 @@ public class ControladorAgentes {
 			
 		}
 
-		/**
-		 * Modificadora de la ciudadInicial de un agente (si este existe)
-		 */
 		
+		/**
+		 * Modificadora de la ciudadInicial de un agente
+		 * @param nombre nombre del agente a modificar
+		 * @param ciudadInicial nueva ciudadInicial
+		 * @throws Exception si no existe el agente a modificar
+		 */
         public void modificarCiudadInicialAgente(String nombre, String ciudadInicial)throws Exception{//NO CREO 8
 			
 			if (existeAgente(nombre)){ //si no existe, Exception
 				Agente a = Agentes.consultar(nombre);
 				a.modificarCiudadInicial(ciudadInicial);
-				if (!existeAgente(nombre)) {
 					Agentes.delete(nombre);
 					Agentes.insert(nombre,a);	
-				}
-				else throw NombreYaExiste;
 			}
 			else throw NoExiste;
 			
@@ -138,10 +152,10 @@ public class ControladorAgentes {
 
 		
 		/**
-		 * Modificadora de la ciudadObjetivo de un agente (si este existe)
-		 * @param nombre nombre del agente
+		 * Modificadora de la ciudadObjetivo de un agente
+		 * @param nombre nombre del agente a modificar
     	 * @param ciudadObjetivo nueva ciudadObjetivo
-    	 * @throws Exception si no existe el agente
+    	 * @throws Exception si no existe el agente a modificar
 		 */
 		
         public void modificarCiudadObjetivoAgente(String nombre, String ciudadObjetivo)throws Exception{
@@ -149,31 +163,51 @@ public class ControladorAgentes {
 			if (existeAgente(nombre)){//si no existe, Exception
 				Agente a = Agentes.consultar(nombre);
 				a.modificarCiudadObjetivo(ciudadObjetivo);
-				if (!existeAgente(nombre)) {
 					Agentes.delete(nombre);
 					Agentes.insert(nombre,a);	
-					}
 			}
 			else throw NoExiste;
 		}
         
 		/**
 		 * Consultora del numero de agentes contenidos
+		 * @return el número de agentes que hay
 		 */
         
         public int getNumeroDeAgentes(){ 
 		return numAgentes;
 		}
         
-		/**
+		/** 
 		 * Consultora de los nombres de los agentes
+		 * @return Lista de String con los nombres de los agentes
 		 */
-        
         public ArrayList<String> consultarNombresAgentes()
         {
         	return Agentes.consultar();
         }
         
+        public ArrayList<String> consultarAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)
+        	throws Exception{
+        	ArrayList<String> nombres = consultarNombresAgentes();
+        	ArrayList<String> retornar = new ArrayList<String>();
+        	for (int i = 0; i < nombres.size(); ++i){
+        		System.out.println(nombres.get(i));
+        		System.out.println(consultarCiudadInicialAgente(nombres.get(i)));
+        		System.out.println(consultarCiudadObjetivoAgente(nombres.get(i)));
+        		if (consultarCiudadInicialAgente(nombres.get(i))  == ciudadInicial){
+        				if	(consultarCiudadObjetivoAgente(nombres.get(i)) == ciudadObjetivo){
+        					System.out.println(nombres.get(i));
+        					retornar.add(nombres.get(i));
+        				}
+        			}
+        		}
+        		return retornar;
+        }
+        
+   //     public ArrayList<String, String> casosDiferentes(){
+        	
+        //}
         
         /**
     	 * Cargar agentes

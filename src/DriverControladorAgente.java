@@ -23,6 +23,7 @@ private static void menu() {
 	                + "\n 12.obtenerNombresAgentes()"
 	                + "\n 13.Guardar(String path, String file)"
 	                + "\n 14.Cargar(String path, String file)"
+	                + "\n 15.ConsultarAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
 	        		+"\n");
 }
 
@@ -38,7 +39,7 @@ public static void main(String [] args) throws Exception {
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {//INIT
 	    					conjAgentes = new ControladorAgentes();
-	    					System.out.println("Conjunto de agentes inicializado");
+	    					System.out.println("Conjunto de agentes inicializado\n");
 	    					break;
 	    				}
 	    				
@@ -58,21 +59,21 @@ public static void main(String [] args) throws Exception {
 	    				case 4: {//EXISTE?
 	    					String nombre = lsplited[1];
 	    					boolean existe = conjAgentes.existeAgente(nombre);
-	    					if (existe) System.out.println("El agente "+ nombre+" existe");
-	    					else System.out.println("El agente no existe");
+	    					if (existe) System.out.println("El agente "+ nombre+" existe\n");
+	    					else System.out.println("El agente no existe\n");
 	    					break;
 	    				}	    			
 	    				
 	    				case 5: {//consultarCiudadInicial
 	    					String nombre = lsplited[1];
 	    					String ciudadInicial = conjAgentes.consultarCiudadInicialAgente(nombre);
-	    					System.out.println("El agente "+ nombre+" tiene "+ ciudadInicial+ " como ciudadInicial");
+	    					System.out.println("El agente "+ nombre+" tiene "+ ciudadInicial+ " como ciudadInicial\n");
 	    					break;
 	    				}	    				
 	    				case 6: {//consultarCiudadObjetivo
 	    					String nombre = lsplited[1];
 	    					String ciudadObjetivo = conjAgentes.consultarCiudadObjetivoAgente(nombre);
-	    					System.out.println("El agente "+ nombre+" tiene "+ ciudadObjetivo+ " como ciudadObjetivo");
+	    					System.out.println("El agente "+ nombre+" tiene "+ ciudadObjetivo+ " como ciudadObjetivo\n");
 	    					break;
 	    				}
 	    				
@@ -129,6 +130,17 @@ public static void main(String [] args) throws Exception {
 	    	            	String file = "provaAgente"; 
 	    	            	conjAgentes.Cargar(path, file);
 	    	            	break;
+	    	            }
+	    	            
+	    	            
+	    	            case 15:{//Consulta agentes por ciudadOrigen + ciudadObjetivo
+	    					String ciudadInicial = lsplited[1];
+	    					String ciudadObjetivo = lsplited[2];
+	    					ArrayList <String> nombres = conjAgentes.consultarAgentesOrigenObjetivo(ciudadInicial, ciudadObjetivo);
+	    					System.out.println(nombres.get(0));
+	    					for (int i = 0; i < nombres.size(); ++i)
+	    						System.out.println(nombres.get(i) +"\n");
+	    					break;
 	    	            }
 	    					
 	    				case 0: {
