@@ -2,30 +2,12 @@ import java.util.*;
 
 public class Solucion {
 	
-	//tiempo
-	//espacio 
-	//sequencia 
+	private int tiempo;
+	private int espacio; //???
 	
+	private ArrayList<ArrayList<int>>> itinerarios; 
+	private ArrayList<int> flowIt; 
+	private ArrayList<int> costeIt; 
 	
-	/*public void compararFlow(List agents, int flow) {
-		String s; 
-		if(flow == 0) s = "no hay solucion"; 
-		else if (flow > numAgents) {
-			mirar costos 
-			triar els camins amb menys costos
-		}
-		else --> comensem pels menys costos
-		
-		
-		
-		[si cost = -1 == ignorar] 
-	}
-	*/ 
-	
-	public void crearSequencia(GrafoAntiguo g, int flow) {
-		
-		
-		
-	}
 
 }
