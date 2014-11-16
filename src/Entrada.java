@@ -2,13 +2,18 @@ import java.util.*;
 
 public class Entrada {
 		private GrafoAntiguo g;
+		private String ciudadOrigen;
+		private String ciudadDestino;
 		private int s;
 		private int t;
 		private int numeroAgentesSyT;
 		private String[] mapping; //HABRA QUE COPIARLO A CNTRLALGORITMO AL INICIALIZAR EL CNTRL, acordarse del SIZE
 		
 		public Entrada(ControladorMapa m, ControladorAgentes ca, ControladorMedioTransporte cm,
-				 int source, int sink, int numAgentes) throws Exception{
+				 String source, String sink, int numAgentes) throws Exception{
+				ciudadOrigen = source;
+				ciudadDestino = sink;
+				numeroAgentesSyT = numAgentes;
 		}
 		
 		public GrafoAntiguo consultarGrafo(){
@@ -50,12 +55,21 @@ public class Entrada {
 			
 			mapping = new String[mapeo.size()];
 			for (int z = 0; z < mapeo.size(); ++z) mapping[z] = mapeo.get(z);
+			
+			s = returnCityIndex(ciudadOrigen); //StringToVertex
+			t = returnCityIndex(ciudadDestino); //StringToVertex
 		}
-
+		
+		/*public void OrigenToSandObjetivoToT(){ //NO SE PUEDE HACER SI NO HAY MAPPING
+			s = returnCityIndex(ciudadOrigen);
+			t = returnCityIndex(ciudadDestino);
+		}*/
+		
+		
 		public int returnCityIndex(String city){
 			int indice = -1;
 			for (int i = 0; i < mapping.length; ++i) 
-				if (mapping[i] == city) {indice = i; return indice;}
+				if (mapping[i].equals(city)) {indice = i; return indice;}
 				return indice;
 		}
 		

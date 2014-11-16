@@ -10,7 +10,7 @@ public class DriverEntrada{
 private static void menu() {
 	        System.out.println("Driver clase ControladorAgente"
 	                + "\n 0.Salir"
-	                + "\n 1.new ControladorMapa()"
+	                + "\n 1.new ControladorMapa(int longX, int longY, int continente)  - rellenar - new ControladorMedioTransporte()"
 	                + "\n 2.new ControladorMedioTransporte()"
 	                + "\n 3.new "
 	                + "\n 3."
@@ -43,14 +43,18 @@ public static void main(String [] args) throws Exception {
 	    		try{
 	    			lsplited = sc.nextLine().split(" ");
 	    			switch(Integer.parseInt(lsplited[0])){
-	    				case 1: {//INIT controlador mapa
-	    					m = new ControladorMapa(100,100,null);
+	    				case 1: {
+	    					//INIT controlador mapa
+	    					m = new ControladorMapa(100,100,null);		
 	    					m.agregarCiudad("barcelona", 0, 1);
 	    					m.agregarCiudad("madrid", 0, 10);
 	    					m.agregarCiudad("oviedo", 20, 12);
 	    					m.agregarCiudad("sevilla", 34, 56);
 	    					m.agregarCiudad("valencia", 2, 40);
 	    					m.agregarCiudad("zaragoza", 12, 70);
+	    					
+	    					mt = new ControladorMedioTransporte();
+	    					mt.agregarMedioTransporte("coche", 1);
 	    					
 	    					m.agregarCamino("barcelona", "madrid", "coche", 10, mt);
 	    					m.agregarCamino("barcelona", "oviedo", "coche", 10, mt);
@@ -63,14 +67,12 @@ public static void main(String [] args) throws Exception {
 	    					m.agregarCamino("barcelona", "madrid", "coche", 10, mt);
 	    					
 
-
-	    					
-	    					System.out.println("Conjunto de agentes inicializado\n");
+	    					System.out.println("Base inicializada\n");
 	    					break;
 	    				}
 	    				
-	    				case 2: {//ANADIR
-	    					String nombre = lsplited[1];
+	    				case 2: {//INIT ENTRADA
+	    					ent = new Entrada(m, mt, throws)
 	    					String ciudadInicial = lsplited[2];
 	    					String ciudadObjetivo = lsplited[3];	    					
 	    					conjAgentes.anadirAgente(nombre, ciudadInicial, ciudadObjetivo);
