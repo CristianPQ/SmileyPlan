@@ -12,7 +12,7 @@ private static void menu() {
 	                + "\n 0.Salir"
 	                + "\n 1.new ControladorMapa()"
 	                + "\n 2.new ControladorMedioTransporte()"
-	                + "\n 3.new ControladorAlgoritmo()"
+	                + "\n 3.new "
 	                + "\n 3."
 	                + "\n 4."
 	                + "\n 5."
@@ -34,7 +34,7 @@ public static void main(String [] args) throws Exception {
 			Entrada ent;
 			ControladorMapa m;
 			ControladorMedioTransporte mt;
-			ControladorAlgoritmo ca;
+			
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
@@ -44,8 +44,26 @@ public static void main(String [] args) throws Exception {
 	    			lsplited = sc.nextLine().split(" ");
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {//INIT controlador mapa
-	    					m = m.ControladorMapa(1000,1000,null);
+	    					m = new ControladorMapa(100,100,null);
+	    					m.agregarCiudad("barcelona", 0, 1);
+	    					m.agregarCiudad("madrid", 0, 10);
+	    					m.agregarCiudad("oviedo", 20, 12);
+	    					m.agregarCiudad("sevilla", 34, 56);
+	    					m.agregarCiudad("valencia", 2, 40);
+	    					m.agregarCiudad("zaragoza", 12, 70);
 	    					
+	    					m.agregarCamino("barcelona", "madrid", "coche", 10, mt);
+	    					m.agregarCamino("barcelona", "oviedo", "coche", 10, mt);
+	    					m.agregarCamino("madrid", "oviedo", "coche", 2, mt);
+	    					m.agregarCamino("madrid", "sevilla", "coche", 4, mt);
+	    					m.agregarCamino("madrid", "valencia", "coche", 8, mt);
+	    					m.agregarCamino("sevilla", "zaragoza", "coche", 10, mt);
+	    					m.agregarCamino("valencia", "zaragoza", "coche", 10, mt);
+	    					m.agregarCamino("valencia", "sevilla", "coche", 6, mt);
+	    					m.agregarCamino("barcelona", "madrid", "coche", 10, mt);
+	    					
+
+
 	    					
 	    					System.out.println("Conjunto de agentes inicializado\n");
 	    					break;

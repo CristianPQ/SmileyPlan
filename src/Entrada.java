@@ -5,15 +5,29 @@ public class Entrada {
 		private int s;
 		private int t;
 		private int numeroAgentesSyT;
+		private String[] mapping; //HABRA QUE COPIARLO A CNTRLALGORITMO AL INICIALIZAR EL CNTRL, acordarse del SIZE
 		
 		public Entrada(ControladorMapa m, ControladorAgentes ca, ControladorMedioTransporte cm,
-				ControladorAlgoritmo caa, int source, int sink, int numAgentes) throws Exception{
+				 int source, int sink, int numAgentes) throws Exception{
 		}
 		
 		public GrafoAntiguo consultarGrafo(){
 			return g;
 		}
 		
+		public int consultarOrigen(){
+			return s;
+		}
+		
+		public int consultarDestino(){
+			return t;
+		}
+		
+		public int consultarNumAgentes(){
+			return numeroAgentesSyT;
+		}
+		
+
 		public void insertarCiudadesMapping(ControladorAlgoritmo ca, Mapa m) throws Exception{
 			int i;
 			int donde_guardo = 0;
@@ -34,10 +48,16 @@ public class Entrada {
 				donde_guardo += necesito;
 			}
 			
-			ca.inicializarRelacCiudades(mapeo.size());
-			for (int z = 0; z < mapeo.size(); ++z) ca.modificarRelacCiudad(mapeo.get(z), z);
+			mapping = new String[mapeo.size()];
+			for (int z = 0; z < mapeo.size(); ++z) mapping[z] = mapeo.get(z);
 		}
 
+		public int returnCityIndex(String city){
+			int indice = -1;
+			for (int i = 0; i < mapping.length; ++i) 
+				if (mapping[i] == city) {indice = i; return indice;}
+				return indice;
+		}
 		
 		public void crearGrafo(ControladorMapa m, ControladorAlgoritmo ca, ControladorMedioTransporte cm)throws Exception{
 			g = new GrafoAntiguo(ca.consultarNumeroVertices()); //init grafo
@@ -46,7 +66,7 @@ public class Entrada {
 				aristando = m.consultarCaminosDestino(m.listarCiudades().get(i)); //consultar ciudades adyacentes
 				for (int j = 0; j < aristando.size(); ++j){ //cada ciudad adyacente...
 					////////////////PREPARAR LA ARISTA
-					int targetVertex  = ca.devolverIndiceCiudad(aristando.get(j).consultarDestino());
+					int targetVertex  = returnCityIndex(aristando.get(j).consultarDestino());
 					int capacity = aristando.get(i).consultarCapacidad();
 					////////CALCULO TEMA COSTE
 					MedioTransporte mtrans = cm.buscarMedio(aristando.get(j).consultarTransporte());
@@ -70,8 +90,8 @@ public class Entrada {
 					}
 					
 					for (int d = 0; d < insert_here; ++d) 
-						g.anadirArista(ca.devolverIndiceCiudad(m.listarCiudades().get(i)) + d, 
-								ca.devolverIndiceCiudad(m.listarCiudades().get(i)) +1, 0, 2147483647, 0);
+						g.anadirArista(returnCityIndex(m.listarCiudades().get(i)) + d, 
+								returnCityIndex(m.listarCiudades().get(i)) +1, 0, 2147483647, 0);
 						
 					}
 				}
