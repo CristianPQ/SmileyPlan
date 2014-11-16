@@ -82,6 +82,7 @@ public class FordFulkerson extends Algoritmo{
 		//System.out.println("el flow es" + flow);
 		if (flow > numA){
 			sol.modificartieneSolucion(true);
+			sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
 	//	Guardar(path,file); 

@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Solucion {
-	
+	private GrafoAntiguo g;
 	private int tiempo;
 	private int espacio; //???
 	private boolean tieneSolucion = false; //falso si no la tiene true en caso contrario
@@ -50,6 +50,9 @@ public class Solucion {
 	}
 	public void modificartieneSolucion(boolean s){
 		tieneSolucion = s;
+	}
+	public void modificarGrafo(GrafoAntiguo g2){
+		g = g2;
 	}
 	/**
 	 * Obtener el vertice de un cierto itinerario
