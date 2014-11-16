@@ -9,7 +9,7 @@ public class Entrada {
 		private int numeroAgentesSyT;
 		private String[] mapping; //HABRA QUE COPIARLO A CNTRLALGORITMO AL INICIALIZAR EL CNTRL, acordarse del SIZE
 		
-		public Entrada(ControladorMapa m, ControladorAgentes ca, ControladorMedioTransporte cm,
+		public Entrada(ControladorMapa m, ControladorMedioTransporte cm,
 				 String source, String sink, int numAgentes) throws Exception{
 				ciudadOrigen = source;
 				ciudadDestino = sink;
@@ -32,20 +32,35 @@ public class Entrada {
 			return numeroAgentesSyT;
 		}
 		
-
-		public void insertarCiudadesMapping(ControladorAlgoritmo ca, Mapa m) throws Exception{
+		
+		public int returnCityIndex(String city){
+			int indice = -1;
+			for (int i = 0; i < mapping.length; ++i) 
+				if (mapping[i].equals(city)) {indice = i; return indice;}
+				return indice;
+		}
+		
+		public String[] consultarMapping(){
+			return mapping;
+		}
+		
+		
+		public void insertarCiudadesMapping(ControladorMapa m) throws Exception{
 			int i;
 			int donde_guardo = 0;
 			ArrayList<String> mapeo = new ArrayList<String>();
 
 			for (i = 0; i < m.listarCiudades().size();++i){ //per cada ciutat
+				System.out.println("entro for");
 				int necesito = 1;
 				for (int j = 0; j < m.listarCiudades().size(); ++j){ 
 					//per cada ciutat possiblement adjacent a la ciutat (i)
 					
 					if (j != i){	//consultar caminos (i,j) 	
-						ArrayList<Camino> Caminos = m.consultarCaminosEntre(m.listarCiudades().get(i), m.listarCiudades().get(j));		
-						if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();							
+						ArrayList<Camino> Caminos = m.consultarCaminosEntre(m.listarCiudades().get(i), m.listarCiudades().get(j));
+						System.out.println("casi if ");
+						if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();
+						System.out.println("entro de vez en cuando al if");
 					}
 				}
 				
@@ -58,6 +73,8 @@ public class Entrada {
 			
 			s = returnCityIndex(ciudadOrigen); //StringToVertex
 			t = returnCityIndex(ciudadDestino); //StringToVertex
+			
+			System.out.println("llego al final");
 		}
 		
 		/*public void OrigenToSandObjetivoToT(){ //NO SE PUEDE HACER SI NO HAY MAPPING
@@ -65,16 +82,9 @@ public class Entrada {
 			t = returnCityIndex(ciudadDestino);
 		}*/
 		
-		
-		public int returnCityIndex(String city){
-			int indice = -1;
-			for (int i = 0; i < mapping.length; ++i) 
-				if (mapping[i].equals(city)) {indice = i; return indice;}
-				return indice;
-		}
-		
-		public void crearGrafo(ControladorMapa m, ControladorAlgoritmo ca, ControladorMedioTransporte cm)throws Exception{
-			g = new GrafoAntiguo(ca.consultarNumeroVertices()); //init grafo
+
+		public void crearGrafo(ControladorMapa m, ControladorMedioTransporte cm)throws Exception{
+			g = new GrafoAntiguo(mapping.length); //init grafo
 			ArrayList<Camino> aristando;
 			for (int i = 0; i < m.listarCiudades().size(); ++i){ //cada ciudad del mapa
 				aristando = m.consultarCaminosDestino(m.listarCiudades().get(i)); //consultar ciudades adyacentes
@@ -97,7 +107,7 @@ public class Entrada {
 					int insert_here = 0;
 					boolean insertado = false;
 					while (!insertado){
-						if (!g.existeAdyacente(ca.devolverIndiceCiudad(m.listarCiudades().get(i)) + insert_here, targetVertex)){
+						if (!g.existeAdyacente(returnCityIndex(m.listarCiudades().get(i)) + insert_here, targetVertex)){
 							insertado = true;
 							g.anadirArista(i,targetVertex, 0, capacity, cost);}
 						++insert_here;

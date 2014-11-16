@@ -18,6 +18,7 @@ public class ControladorItinerarios {
 	 */
 	public ControladorItinerarios() {
 		cjtoit = new ArrayList<Itinerario>(); 
+
 	}
 	
 	/**
