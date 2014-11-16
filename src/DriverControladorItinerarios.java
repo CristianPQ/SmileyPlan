@@ -42,7 +42,8 @@ public class DriverControladorItinerarios {
 	            	String tra = lsplited[3]; 
 	            	String nA = lsplited[4]; 
 	            	Itinerario it = new Itinerario(nA); 
-	            	ci.agregarCaminoAlItinerario(it,CO,CD,tra);
+	            	Camino c = new Camino(CO,CD,tra);
+	            	ci.agregarCaminoAlItinerario(it,c);
 	                break;
 	            	
 	            }     

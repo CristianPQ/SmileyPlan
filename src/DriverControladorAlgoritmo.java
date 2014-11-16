@@ -6,6 +6,7 @@ public class DriverControladorAlgoritmo {
                 + "\n 0.Salir"
                 + "\n 1.crear ControladorAlgoritmo(Entrada e)"
                 + "\n 2.asignarItinerarioAAgente()"
+                + "\n 3.llamar algoritmo"
         		+"\n");
     }
 	
@@ -27,6 +28,11 @@ public class DriverControladorAlgoritmo {
 	            	
 	                break;
 	            }
+	           case 3: {
+	        	   
+	        	   //ca.ejecutarAlgoritmoPushRelabel(g, s, t);
+	        	   break;
+	           }
 	            case 0: {
 	                System.exit(0);
 	            }

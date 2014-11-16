@@ -1,4 +1,6 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
+
 public class ControladorAlgoritmo {
 	private String[] relacCiudades;
 	private Entrada ent;
@@ -10,12 +12,13 @@ public class ControladorAlgoritmo {
 	private int t; 
 	private ArrayList<String > AgentesConSyT;
 	private int NumAgentesConSyT;
+	long tiempo; 
 	
 	
 	
 	public ControladorAlgoritmo(Entrada entrada) throws Exception{
 		ent = entrada;
-		sol= new Solucion(); //esto puede cambiar
+		//sol= new Solucion(); //esto puede cambiar
 		
 	}
 	
@@ -67,7 +70,11 @@ public class ControladorAlgoritmo {
 	
 	public void ejecutarAlgoritmoPushRelabel(GrafoAntiguo g, int s, int t, int f) throws Exception{
 		PushRelabel p = new PushRelabel(); 
+		Date date = new Date();  
+		long t1 = date.getTime(); 
 		g = p.ejecutar(g, s, t, f); 
+		tiempo = t1 - date.getTime();
+		System.out.println(tiempo); 
 	}
 	
 	
@@ -79,7 +86,7 @@ public class ControladorAlgoritmo {
 	 * Asigna los itinerarios a los agentes 
 	 * @throws Exception
 	 */
-	public void assignarItinerarioAAgente() throws Exception{
+	public void asignarItinerarioAAgente() throws Exception{
 		int numAg = AgentesConSyT.size(); //numero de agentes para asignar
 		int numIt = sol.obtenNumeroItinerarios(); 
 		//cas no solucio?
@@ -133,6 +140,26 @@ public class ControladorAlgoritmo {
 		}
 	}
 	
-	
-	public void guardarSolucion(String path, String filename){}
+	/**
+	 * Guarda la sequencia del PushRelabel
+	 * @param path
+	 * @param filename
+	 * @throws Exception
+	 */
+	public void guardarSeqPR(String path, String filename) throws Exception{
+		GestorDatos gd = new GestorDatos(path,filename); 
+		PushRelabel pr = new PushRelabel(); 
+		
+		//int n = pr.obtenerSeqSize(); 
+		gd.createFile(); 
+		gd.openFile("write"); 
+		
+		String buffer; 
+		
+		/*for(int i = 0; i < n; ++i) {
+			buffer = pr.LeerSeq(i); 
+			gd.writeBuffer(buffer); 
+		}*/
+		gd.closeFile(); 
+	}
 }
