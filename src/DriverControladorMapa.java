@@ -1,30 +1,28 @@
-
-//package Dominio;
-import java.util.*;
+import java.util.Scanner;
 
 
-public class DriverMapa {
-    private static Scanner sc;
+public class DriverControladorMapa {
+	private static Scanner sc;
 
 	private static void menu() {
         System.out.println("Driver clase Mapa"
                 + "\n 0.Salir"
-                + "\n 1.Mapa(int anchuraX, int alturaY, ArrayList<Coordenadas> continente)"
+                + "\n 1.new Mapa(int anchuraX, int alturaY, Coordenadas[] continente)"
                 + "\n ##########CIUDADES##########"
-                + "\n 2.agregarCiudad(Ciudad c)"
+                + "\n 2.agregarCiudad(String nombre, int x, int y)"
                 + "\n 3.eliminarCiudad(String c)"
-                + "\n 4.consultarCiudad(String nombre): Ciudad"
+                + "\n 4.consultarCiudadToString(String nombre): String"
                 + "\n 5.modificarAtributosCiudad(String nombre, int x, int y)"
-                + "\n 6.listarCiudades(): ArrayList<String>"
+                + "\n 6.listarCiudadesToString(): String"
                 + "\n ##########CAMINOS##########"
-                + "\n 7.agregarCamino(Camino c)"
-                + "\n 8.consultarCaminosEntre(String cOrig, String cDest): ArrayList<Camino>"
+                + "\n 7.agregarCamino(String cOrig, String cDest, String medio, int cap)"
+                + "\n 8.consultarCaminosToString(String cOrig, String cDest): String"
                 + "\n 9.eliminarCamino(String cOrig, String cDest, String medio, int cap)"
         		+ "\n 10.modificarAtributosCamino(String cOrig, String cDest, String medio, int cap)"
-        		+ "\n 11.consultarCaminosDestino(String cOrig): ArrayList<Camino>"
+        		+ "\n 11.consultarCaminosDestinoToString(String cOrig): String"
         		+ "\n 12.consultarMapaToString(): String"   
-        		+ "\n 13.consultarCamino(String cOrig, String cDest, String medio): Camino"
-        		+ "\n 14.consultarTodosCaminos(): ArrayList<Camino>"
+        		+ "\n 13.consultarCaminoToString(String cOrig, String cDest, String medio): String"
+        		+ "\n 14.consultarTodosCaminosToString(): String"
         		+"\n");
     }
 	
@@ -40,15 +38,21 @@ public class DriverMapa {
 		            case 1: {
 		            	int anchuraX = Integer.parseInt(lsplited[1]);
 		                int alturaY = Integer.parseInt(lsplited[2]);
-		                ArrayList<Coordenadas> coords = new ArrayList<Coordenadas>();
-		                for(int i = 3; i+1 < lsplited.length;i += 2) {
-		                	int x = Integer.parseInt(lsplited[1]);
-		        			int y = Integer.parseInt(lsplited[1+1]);
-		        			coords.add(new Coordenadas(x, y));
+		                /*String coord = new String();
+		                for(int i = 3;lsplited[i] != "$" && lsplited[i+i] != "$";i += 2) {
+		                	
+		                		System.out.println("lsplited size: " + lsplited.length + "\n");
+		                		System.out.println("Coord X " + i + ": " + lsplited[i] + "\n"
+		                			+ "Coord Y " + (i+1) + ": " + lsplited[i+1] + "\n");
+		                		
+		                	coord.concat(lsplited[i] + " " + lsplited[i+1] + " ");
+		                	
+		                		System.out.println("despues del split" + "\n");
+		                	
 		                }
-		                if(coords.size() < 4) coords = null;
+		                coord.concat("$ $");*/
 		                	//System.out.println("Antes de inicializar mapa" + "\n");
-		                m = new Mapa(anchuraX, alturaY, coords);
+		                m = new Mapa(anchuraX, alturaY, null);
 		                	//System.out.println("Despues de inicializar mapa" + "\n");
 		                break;
 		            }
@@ -56,9 +60,7 @@ public class DriverMapa {
 		            	String nombre = lsplited[1];
 		            	int coordX = Integer.parseInt(lsplited[2]);
 		                int coordY = Integer.parseInt(lsplited[3]);
-		                Coordenadas coord = new Coordenadas(coordX, coordY);
-		                Ciudad c = new Ciudad(nombre, coord);
-		            	m.agregarCiudad(c);
+		            	m.agregarCiudad(nombre, coordX, coordY);
 		                break;
 		            }
 		            case 3: {
