@@ -2,7 +2,9 @@ import java.util.*;
 
 public class Entrada {
 		private GrafoAntiguo g;
-		
+		private int s;
+		private int t;
+		private int numeroAgentesSyT;
 		
 		public Entrada(ControladorMapa m, ControladorAgentes ca, ControladorMedioTransporte cm,
 				ControladorAlgoritmo caa, int source, int sink, int numAgentes) throws Exception{
@@ -23,7 +25,7 @@ public class Entrada {
 					//per cada ciutat possiblement adjacent a la ciutat (i)
 					
 					if (j != i){	//consultar caminos (i,j) 	
-						ArrayList<Camino> Caminos = m.consultarCaminos(m.listarCiudades().get(i), m.listarCiudades().get(j));		
+						ArrayList<Camino> Caminos = m.consultarCaminosEntre(m.listarCiudades().get(i), m.listarCiudades().get(j));		
 						if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();							
 					}
 				}
@@ -41,7 +43,7 @@ public class Entrada {
 			g = new GrafoAntiguo(ca.consultarNumeroVertices()); //init grafo
 			ArrayList<Camino> aristando;
 			for (int i = 0; i < m.listarCiudades().size(); ++i){ //cada ciudad del mapa
-				aristando = m.consultarCiudadesDestino(m.listarCiudades().get(i)); //consultar ciudades adyacentes
+				aristando = m.consultarCaminosDestino(m.listarCiudades().get(i)); //consultar ciudades adyacentes
 				for (int j = 0; j < aristando.size(); ++j){ //cada ciudad adyacente...
 					////////////////PREPARAR LA ARISTA
 					int targetVertex  = ca.devolverIndiceCiudad(aristando.get(j).consultarDestino());
