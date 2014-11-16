@@ -23,6 +23,13 @@ public class Mapa {
 	/*
 	 * Constructor Ciudad
 	 */
+	/**
+	 * Constructora de Mapa
+	 * @param anchuraX
+	 * @param alturaY
+	 * @param continente
+	 * @throws Exception
+	 */
 	public Mapa(int anchuraX, int alturaY, ArrayList<Coordenadas> continente) throws Exception {
 		//continente es cerrado siempre
 		ciudades = new TST<Ciudad>();
@@ -38,6 +45,11 @@ public class Mapa {
 	//##########SOBRE MAPA
 	//#########################################
 	
+	/**
+	 * 
+	 * @param noValido
+	 * @throws Exception
+	 */
 	private void delimitar(ArrayList<Coordenadas> noValido) throws Exception {
 		Coordenadas co = noValido.get(0);
 		int xAnt = co.consultarX();
@@ -92,7 +104,11 @@ public class Mapa {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @param noValido
+	 * @throws Exception
+	 */
 	private void agregarContinente(ArrayList<Coordenadas> noValido) throws Exception {
 		if(noValido != null) {
 			delimitar(noValido);
@@ -115,6 +131,11 @@ public class Mapa {
 	/*
 	 * Comprobar si la Coord es valida para el mapa
 	 */
+	/**
+	 * 
+	 * @param coord
+	 * @throws Exception
+	 */
 	private void posicionValida(Coordenadas coord) throws Exception {
 		int x = coord.consultarX();
 		int y = coord.consultarY();
@@ -132,6 +153,11 @@ public class Mapa {
 	/*
 	 * Comprobar si la ciudad ya existe
 	 */
+	/**
+	 * 
+	 * @param c
+	 * @return
+	 */
 	private boolean existeCiudad(String c) {
 		return ciudades.existe(c);
 	}
@@ -147,6 +173,11 @@ public class Mapa {
 		ciudades.insert(nombre, c);
 	}
 	
+	/**
+	 * 
+	 * @param c
+	 * @throws Exception
+	 */
 	public void eliminarCiudad(String c) throws Exception {
 		if(!existeCiudad(c)) throw NoExiste;
 		//if(existenCaminosCon(c)) throw HayCaminos;
@@ -162,7 +193,12 @@ public class Mapa {
 		mapa[y][x] = null;
 	}
 	
-	//No aparece en el driver porque es llamaada por la funcion inferior
+	/**
+	 * 
+	 * @param nombre
+	 * @return
+	 * @throws Exception
+	 */
 	public Ciudad consultarCiudad(String nombre) throws Exception {
 		if(!existeCiudad(nombre)) throw NoExiste;
 		return ciudades.consultar(nombre);
@@ -180,7 +216,11 @@ public class Mapa {
 		mapa[y][x] = nombre;
 	}
 	
-	//No aparece en el driver porque es llamaada por la funcion inferior
+	/**
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public ArrayList<String> listarCiudades() throws Exception{
 		if(ciudades.isEmpty()) throw Vacio;
 		return ciudades.consultar();
@@ -190,6 +230,11 @@ public class Mapa {
 	//##########SOBRE CAMINOS
 	//#########################################
 	
+	/**
+	 * 
+	 * @param cDest
+	 * @return
+	 */
 	private boolean existenCaminosCon(String cDest) {
 		if(ciudades.existe(cDest)) return true;
 		ArrayList<String> todosCamOrig = caminos.consultar();
@@ -203,6 +248,10 @@ public class Mapa {
 		return hay;
 	}
 	
+	/**
+	 * 
+	 * @param cDest
+	 */
 	private void eliminarCaminosConDestino(String cDest) {
 		caminos.delete(cDest);
 		ArrayList<String> todosCamOrig = caminos.consultar();
@@ -218,6 +267,13 @@ public class Mapa {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param cOrig
+	 * @param cDest
+	 * @param medio
+	 * @return
+	 */
 	private boolean existeCamino(String cOrig, String cDest, String medio) {
 			//System.out.println("Entra en existeCamino" + "\n");
 		if(caminos.existe(cOrig)) {
@@ -242,6 +298,12 @@ public class Mapa {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param cOrig
+	 * @param cDest
+	 * @return
+	 */
 	public boolean existeCaminoDesdeA(String cOrig, String cDest) {
 		if(caminos.existe(cOrig)) {
 			return (caminos.consultar(cOrig).existe(cDest));
@@ -249,6 +311,11 @@ public class Mapa {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param c
+	 * @return
+	 */
 	private boolean existeCamino(Camino c) {
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
@@ -256,6 +323,11 @@ public class Mapa {
 		return existeCamino(cOrig, cDest, medio);
 	}
 	
+	/**
+	 * 
+	 * @param c
+	 * @throws Exception
+	 */
 	public void agregarCamino(Camino c) throws Exception {
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
@@ -304,14 +376,27 @@ public class Mapa {
 		}
 	}
 	
-	//No aparece en el driver porque es llamaada por la funcion inferior
+	/**
+	 * 
+	 * @param cOrig
+	 * @param cDest
+	 * @return
+	 * @throws Exception
+	 */
 	public ArrayList<Camino> consultarCaminosEntre(String cOrig, String cDest) throws Exception {
 		ArrayList<Camino> listCamino =  caminos.consultar(cOrig).consultar(cDest);
 		if(listCamino == null) throw NoExiste;
 		return listCamino;		
 	}
 	
-	//No aparece en el driver porque es llamaada por la funcion inferior
+	/**
+	 * 
+	 * @param cOrig
+	 * @param cDest
+	 * @param medio
+	 * @return
+	 * @throws Exception
+	 */
 	public Camino consultarCamino(String cOrig, String cDest, String medio) throws Exception {
 		if(!existeCamino(cOrig, cDest, medio)) throw NoExiste;
 		ArrayList<Camino> liCam= caminos.consultar(cOrig).consultar(cDest);
@@ -330,6 +415,13 @@ public class Mapa {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param cOrig
+	 * @param cDest
+	 * @param medio
+	 * @throws Exception
+	 */
 	public void eliminarCamino(String cOrig, String cDest, String medio) throws Exception {
 		Camino c = consultarCamino(cOrig, cDest, medio);
 		TST<ArrayList<Camino>> camOrig = caminos.consultar(cOrig);
@@ -339,6 +431,14 @@ public class Mapa {
 		caminos.modificar(cOrig, camOrig);
 	}
 	
+	/**
+	 * 
+	 * @param cOrig
+	 * @param cDest
+	 * @param medio
+	 * @param cap
+	 * @throws Exception
+	 */
 	public void modificarAtributosCamino(String cOrig, String cDest, String medio, int cap) throws Exception {
 		Camino c = new Camino(cOrig, cDest, cap, medio);
 		if(!existeCamino(c)) throw NoExiste;
@@ -360,7 +460,10 @@ public class Mapa {
 		caminos.modificar(cOrig, camOrig);
 	}
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Camino> consultarTodosCaminos() {
 		ArrayList<Camino> todoCaminos = new ArrayList<Camino>();
 		ArrayList<String> camOrig = caminos.consultar();
@@ -370,7 +473,12 @@ public class Mapa {
 		}
 		return todoCaminos;
 	}
-
+	
+	/**
+	 * Consultora de los caminos desde una ciudad
+	 * @param cOrig
+	 * @return Todos los caminos alcanzables desde una ciudad cOrig
+	 */
 	public ArrayList<Camino> consultarCaminosDestino(String cOrig) {
 		//Caminos de la misma ciudad origen
 		TST<ArrayList<Camino>> camOrig = caminos.consultar(cOrig);
@@ -395,7 +503,10 @@ public class Mapa {
 	//##########CONSULTORAS
 	//#########################################
 	
-	//No aparece en el driver porque es llamaada por la funcion inferior
+	/**
+	 * Consultora de la matriz de string
+	 * @return matriz con los identificadores de las ciudades en su posicion
+	 */
 	public String[][] consultarMapa() {
 		return mapa;
 	}

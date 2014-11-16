@@ -15,7 +15,7 @@ public class GrafoAntiguo {
 		numVertices = numVertex;
 		Adyacencias = new ArrayList[numVertices];
 		for(int i = 0; i < numVertices; i++) Adyacencias[i] = new ArrayList<Arista>();
-		}
+	}
 
 	
 	public ArrayList<Arista> consultarAdyacentes(int vertex){
