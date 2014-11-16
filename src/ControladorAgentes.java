@@ -5,8 +5,7 @@
 import java.util.*;
 public class ControladorAgentes {
 		private TST<Agente> Agentes;
-		private int numAgentes;
-		
+		private int numAgentes; 
 		public ArrayList<Agente> guardaAg; 
 		
 		private final static int BUFFER_SIZE = 3250; 
@@ -188,6 +187,7 @@ public class ControladorAgentes {
         }
         
 
+        
         public ArrayList<String> consultarAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)
             	throws Exception{
             	ArrayList<String> nombres = consultarNombresAgentes();
