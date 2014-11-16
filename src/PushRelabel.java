@@ -185,6 +185,7 @@ public class PushRelabel extends Algoritmo {
 		Solucion sol = new Solucion(flow);
 		if (flow > numA){
 			sol.modificartieneSolucion(true);
+			sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
 	//	Guardar(path,file); 
