@@ -49,6 +49,11 @@ public class Coordenadas {
 		return y;
 	}
 
+	/**
+	 * Devuelve la distancia de las coordenadas que pasamos por parametro
+	 * @param coordD
+	 * @return
+	 */
 	public int distancia(Coordenadas coordD) {
 		int cX = coordD.consultarX();
 		int cY = coordD.consultarY();

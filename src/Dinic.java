@@ -5,6 +5,17 @@ public class Dinic extends Algoritmo {
 
 	static ArrayList<String> seq = new ArrayList<String>(); 
 	
+	/**
+	 * Crea los itinerarios de la solucion 
+	 * @param sol
+	 * @param g
+	 * @param indiceI
+	 * @param indiceF
+	 * @param flow
+	 * @param u
+	 * @param t
+	 * @param coste
+	 */
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		for (int i = indiceI; i <= indiceF; ++i){
