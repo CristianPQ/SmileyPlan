@@ -126,8 +126,8 @@ public class PushRelabel extends Algoritmo {
 		g.modificarFlujoArista(v, u, nuevoFlujo ); /** arista residual **/
 		exceso[u] -= temp;
 		exceso[v] += temp;
-		System.out.println( u + " pushea a " + v + " con " + temp + " el exceso de 1 es " + exceso[1] );
-		System.out.println( "el vertice 1 esta en estado " + active[1] + " la altura es " + alturas[1] );
+		//System.out.println( u + " pushea a " + v + " con " + temp + " el exceso de 1 es " + exceso[1] );
+		//System.out.println( "el vertice 1 esta en estado " + active[1] + " la altura es " + alturas[1] );
 		//System.out.println(" la altura de 4 es "+ alturas[4]);
 	}
 
