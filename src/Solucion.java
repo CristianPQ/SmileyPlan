@@ -10,6 +10,20 @@ public class Solucion {
 	//private ArrayList<Integer> capacidadIt; 
 	private int[] costeIt; 
 	
+	public ArrayList< String > seqsol = new ArrayList<String>(); 
+	
+	
+	
+	 /**
+		 * Devuelve una arrayList con la sequencia de pasos que ha seguido 
+		 * el algorismo
+		 * @return seq
+		 */
+		public ArrayList<String> obtenSeq() {
+			System.out.println("dins sol " +seqsol.size() + "\n");
+			return seqsol; 
+		} 
+		
 	
 	/**
 	 * Creadora de solucion

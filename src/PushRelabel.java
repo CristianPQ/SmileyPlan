@@ -10,7 +10,7 @@ public class PushRelabel extends Algoritmo {
 	private LinkedList<Integer> q;
 	private int flow;
 	
-	ArrayList<String> seq = new ArrayList <String>(); 
+	public ArrayList<String> seq = new ArrayList <String>(); 
 	
 	/**
 	 * Crea los itinerarios de la solucion con el algorismo PushRelabel
@@ -128,6 +128,7 @@ public class PushRelabel extends Algoritmo {
 		String o = "el exceso de " + u + " despues del push es " + exceso[u] + "\n";
 		seq.add(o);
 		/////////////////////////////////
+
 		//System.out.println( u + " pushea a " + v + " con " + temp + " el exceso de 1 es " + exceso[1] );
 		//System.out.println( "el vertice 1 esta en estado " + active[1] + " la altura es " + alturas[1] );
 		//System.out.println(" la altura de 4 es "+ alturas[4]);
@@ -218,21 +219,9 @@ public class PushRelabel extends Algoritmo {
 
 		double t2 = System.currentTimeMillis();
 		sol.modificarTiempo(t2-t1);
+		sol.seqsol = seq; 
 		return sol;
 		
 	}
-	
-	
-	 /**
-	 * Devuelve una arrayList con la sequencia de pasos que ha seguido 
-	 * el algorismo
-	 * @return seq
-	 */
-	public ArrayList<String> obtenSeq() {
-		return seq; 
-	}  
-	
-	
-	
 	
 }

@@ -277,20 +277,22 @@ public class ControladorAlgoritmo {
 	 * @param filename
 	 * @throws Exception
 	 */
-	public void guardarSeqPR(String path, String filename) throws Exception{
+	public void guardarSeq(String path, String filename) throws Exception{
 		GestorDatos gd = new GestorDatos(path,filename); 
-		PushRelabel pr = new PushRelabel(); 
 		
 		gd.createFile(); 
 		gd.openFile("write"); 
 		
 		String buffer; 
 		
-		ArrayList<String> guardaseq = pr.obtenSeq(); 
-		int n = guardaseq.size(); 
+		ArrayList<String> guardaseq = sol.obtenSeq(); 
+		int n = guardaseq.size();
+		//System.out.println(n + "\n");
 		
 		for(int i = 0; i < n; ++i) {
 			buffer = guardaseq.get(i); 
+			String prova = guardaseq.get(i); 
+			System.out.println(prova+ "\n");
 			gd.writeBuffer(buffer); 
 		}
 		gd.closeFile(); 

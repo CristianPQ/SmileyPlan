@@ -145,7 +145,7 @@ public class DriverControladorAlgoritmo {
     	        	case 7: {
     	        		String path = "/Users/olgacarbo/Desktop/SmileyPlan/src/";
     	        		String filename = "prova alg"; 
-    	        		cAlg.guardarSeqPR(path, filename);
+    	        		cAlg.guardarSeq(path, filename);
     	        	}
     	        	case 0: {
     	                System.exit(0);
