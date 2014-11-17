@@ -10,6 +10,7 @@ public class DriverControladorItinerarios {
                 + "\n 0.Salir"
                 + "\n 1.crear ControladorItinerario()"
                 + "\n 2.agregarItinerario(String nombre)" 
+                + "\n 3.escribirItinerario()"
                 +"\n");
     }
 	
@@ -28,6 +29,7 @@ public class DriverControladorItinerarios {
 	                break;
 	            }
 	           case 2: {
+	        	  it = new Itinerario(); 
 	        	  String nombre = lsplited[1];
 	        	  ArrayList<String> ciudades = new ArrayList<String>(); 
 	        	  String n1 = lsplited[2]; ciudades.add(n1); 
@@ -36,12 +38,16 @@ public class DriverControladorItinerarios {
 	        	  String n4 = lsplited[5]; ciudades.add(n4); 
 	        	  String n5 = lsplited[6]; ciudades.add(n5); 
 	        	  String n6 = lsplited[7]; ciudades.add(n6); 
-	        	  it = aux.agregarItinerario(nombre, ciudades);
+	        	  aux.agregarItinerario(nombre, ciudades);
 	        	  int n = aux.consultarSize(); 
 	        	  int m = aux.consultarCiudadesIt(it); 
 	        	  System.out.println( n + " " + m + "\n");
 	              break;
 	            }
+	           case 3: {
+	        	  aux.escribirItinerarios(); 
+	        	  break;
+	           }
  
 	            case 0: {
 	                System.exit(0);
