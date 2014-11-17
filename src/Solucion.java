@@ -11,6 +11,10 @@ public class Solucion {
 	private int[] costeIt; 
 	
 	
+	/**
+	 * Creadora de solucion
+	 * @param numItinerarios 
+	 */
 	public Solucion(int numItinerarios){
 		itinerarios = new ArrayList[numItinerarios];
 		for(int i = 0; i < numItinerarios; ++i) itinerarios[i] = new ArrayList<Integer>();
@@ -44,26 +48,52 @@ public class Solucion {
 	 * @param i identificador itinerario
 	 * @return coste
 	 */
-	
 	public double consultarTiempo(){
 		return tiempo;
 	}
+	
+	/**
+	 * Modificadora del tiempo
+	 * @param t
+	 */
 	public void modificarTiempo(double t){
 		tiempo = t;
 	}
 	
+	/**
+	 * Consultora del coste de un itinerario
+	 * @param i
+	 * @return
+	 */
 	public int obtenCoste(int i){
 		return costeIt[i]; 
 	}
+	
+	/**
+	 * Consultora que devuelve si la ejecucion con dicho algoritmo
+	 * tiene solucion
+	 * @return
+	 */
 	public boolean consultarTieneSolucion(){
 		return tieneSolucion;
 	}
+	
+	/**
+	 * Modificadora del parametro tieneSolucion
+	 * @param s booleano
+	 */
 	public void modificartieneSolucion(boolean s){
 		tieneSolucion = s;
 	}
+	
+	/**
+	 * Modificadora del grafo
+	 * @param g2 grafo nuevo 
+	 */
 	public void modificarGrafo(GrafoAntiguo g2){
 		g = g2;
 	}
+	
 	/**
 	 * Obtener el vertice de un cierto itinerario
 	 * @param i identificador del itinerario

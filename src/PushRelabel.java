@@ -12,6 +12,17 @@ public class PushRelabel extends Algoritmo {
 	
 	ArrayList<String> seq = new ArrayList <String>(); 
 	
+	/**
+	 * Crea los itinerarios de la solucion con el algorismo PushRelabel
+	 * @param sol Solucion
+	 * @param g Grafo del qual queremos la solucion
+	 * @param indiceI
+	 * @param indiceF
+	 * @param flow
+	 * @param u
+	 * @param t
+	 * @param coste
+	 */
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		for (int i = indiceI; i <= indiceF; ++i){
@@ -39,7 +50,12 @@ public class PushRelabel extends Algoritmo {
 		
 	
 	
-	
+	/**
+	 * Inicializa el grafo g
+	 * @param g
+	 * @param s
+	 * @param t
+	 */
 	private void inicializacion(GrafoAntiguo g,int s, int t){
 		int v;
 		flow = 0;

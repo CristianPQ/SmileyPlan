@@ -46,8 +46,8 @@ public class Mapa {
 	//#########################################
 	
 	/**
-	 * 
-	 * @param noValido
+	 * Delimita el mapa 
+	 * @param noValido posiciones que delimitan el mapa
 	 * @throws Exception
 	 */
 	private void delimitar(ArrayList<Coordenadas> noValido) throws Exception {
@@ -105,7 +105,7 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Agregar un continente en el mapa 
 	 * @param noValido
 	 * @throws Exception
 	 */
@@ -132,7 +132,7 @@ public class Mapa {
 	 * Comprobar si la Coord es valida para el mapa
 	 */
 	/**
-	 * 
+	 * Comprueva si una coordenada es valida para el mapa 
 	 * @param coord
 	 * @throws Exception
 	 */
@@ -150,6 +150,13 @@ public class Mapa {
 	//##########SOBRE CIUDADES
 	//#########################################
 	
+	/**
+	 * Devuelve la distancia entre las ciudades cOrig y cDest
+	 * @param cOrig
+	 * @param cDest
+	 * @return distancia 
+	 * @throws Exception
+	 */
 	public int distanciaCiudades(String cOrig, String cDest) throws Exception {
 		if(!existeCiudad(cOrig) || !existeCiudad(cDest)) throw NoExiste;
 		Ciudad ciuO = consultarCiudad(cOrig);
@@ -163,7 +170,7 @@ public class Mapa {
 	 * Comprobar si la ciudad ya existe
 	 */
 	/**
-	 * 
+	 * Comprueva si la ciudad ya existe
 	 * @param c
 	 * @return
 	 */
@@ -171,6 +178,11 @@ public class Mapa {
 		return ciudades.existe(c);
 	}
 	
+	/**
+	 * Agrega una ciudad c en el mapa
+	 * @param c
+	 * @throws Exception
+	 */
 	public void agregarCiudad(Ciudad c) throws Exception {
 		Coordenadas coord = c.consultarCoordenadas();
 		String nombre = c.consultarNombre();
@@ -183,7 +195,7 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Elimina una ciudad c del mapa
 	 * @param c
 	 * @throws Exception
 	 */
@@ -203,9 +215,9 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Devuelve la ciudad con el nombre que se pasa como parametro
 	 * @param nombre
-	 * @return
+	 * @return ciudad
 	 * @throws Exception
 	 */
 	public Ciudad consultarCiudad(String nombre) throws Exception {
@@ -213,6 +225,13 @@ public class Mapa {
 		return ciudades.consultar(nombre);
 	}
 
+	/**
+	 * Modificadora de los atributos x e y de ciudad
+	 * @param nombre de la ciudad que se quiere modificar
+	 * @param x
+	 * @param y
+	 * @throws Exception
+	 */
 	public void modificarAtributosCiudad(String nombre, int x, int y) throws Exception {
 		if(!ciudades.existe(nombre)) throw NoExiste;
 		Coordenadas coord = new Coordenadas(x,y);
@@ -226,8 +245,8 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Devuelve un array con los identificadores de las ciudades
+	 * @return array 
 	 * @throws Exception
 	 */
 	public ArrayList<String> listarCiudades() throws Exception{
@@ -239,6 +258,11 @@ public class Mapa {
 	//##########SOBRE CAMINOS
 	//#########################################
 	
+	/**
+	 * Consultora de si existe un Camino con el origen cOrig
+	 * @param cOrig
+	 * @return booleano
+	 */
 	public boolean existeCaminoConOrigen(String cOrig) {
 		if(caminos.existe(cOrig)) {
 			TST<ArrayList<Camino>> tstCam = caminos.consultar(cOrig);
@@ -248,9 +272,9 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Consultora de si existe un Camino con el destino cDest
 	 * @param cDest
-	 * @return
+	 * @return booleano
 	 */
 	private boolean existenCaminosCon(String cDest) {
 		if(ciudades.existe(cDest)) return true;
@@ -266,7 +290,7 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Elimina caminos con el destino cDest
 	 * @param cDest
 	 */
 	private void eliminarCaminosConDestino(String cDest) {
@@ -285,7 +309,7 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Consulta si existe un camino con los atributos que pasamos como parametro
 	 * @param cOrig
 	 * @param cDest
 	 * @param medio
@@ -316,10 +340,10 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Consulta si existe un camino desde cOrig hasta cDest 
 	 * @param cOrig
 	 * @param cDest
-	 * @return
+	 * @return booleano
 	 */
 	public boolean existeCaminoDesdeA(String cOrig, String cDest) {
 		if(caminos.existe(cOrig)) {
@@ -329,9 +353,9 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Consulta si existe un camino c
 	 * @param c
-	 * @return
+	 * @return booleano
 	 */
 	private boolean existeCamino(Camino c) {
 		String cOrig = c.consultarOrigen();
@@ -341,7 +365,7 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Agrega un camino c en el mapa 
 	 * @param c
 	 * @throws Exception
 	 */
@@ -394,10 +418,10 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Devuelve un array con los caminos entre cOrig y cDest 
 	 * @param cOrig
 	 * @param cDest
-	 * @return
+	 * @return array
 	 * @throws Exception
 	 */
 	public ArrayList<Camino> consultarCaminosEntre(String cOrig, String cDest) throws Exception {
@@ -407,7 +431,7 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Devuelve el camino con cOrig, cDest y medio 
 	 * @param cOrig
 	 * @param cDest
 	 * @param medio
@@ -433,7 +457,7 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Elimina el camino con cOrig, cDest y medio
 	 * @param cOrig
 	 * @param cDest
 	 * @param medio
@@ -449,7 +473,7 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Modifica los atributos del camino 
 	 * @param cOrig
 	 * @param cDest
 	 * @param medio
@@ -478,7 +502,7 @@ public class Mapa {
 	}
 	
 	/**
-	 * 
+	 * Devuelve un array con todos los caminos del mapa 
 	 * @return
 	 */
 	public ArrayList<Camino> consultarTodosCaminos() {
