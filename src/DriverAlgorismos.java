@@ -149,6 +149,7 @@ public static void main(String [] args) throws Exception {
 	    					if (sol.consultarTieneSolucion() == false)    System.out.println("No tiene solucion");
 	    					else {
 	    						System.out.println("El max flow es " + sol.consultarNumItinerarios()); 
+	    						System.out.println("Los itinerarios disponibles son: ");
 	    						for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
 	    							for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
 	    								System.out.print(sol.obtenVertice(i, j) + " ");
@@ -169,7 +170,8 @@ public static void main(String [] args) throws Exception {
 	    					sol = f.ejecutar(e);
 	    					if (sol.consultarTieneSolucion() == false)    System.out.println("No tiene solucion");
 	    					else {
-	    						System.out.println("El max flow es " + sol.consultarNumItinerarios()); 
+	    						System.out.println("El max flow es " + sol.consultarNumItinerarios());
+	    						System.out.println("Los itinerarios disponibles son: ");
 	    						for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
 	    							for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
 	    								System.out.print(sol.obtenVertice(i, j) + " ");
@@ -190,7 +192,8 @@ public static void main(String [] args) throws Exception {
 	    					sol = d.ejecutar(e);
 	    					if (sol.consultarTieneSolucion() == false)    System.out.println("No tiene solucion");
 	    					else {
-	    						System.out.println("El max flow es " + sol.consultarNumItinerarios()); 
+	    						System.out.println("El max flow es " + sol.consultarNumItinerarios());
+	    						System.out.println("Los itinerarios disponibles son: ");
 	    						for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
 	    							for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
 	    								System.out.print(sol.obtenVertice(i, j) + " ");

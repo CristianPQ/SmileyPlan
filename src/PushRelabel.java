@@ -37,7 +37,8 @@ public class PushRelabel extends Algoritmo {
 					coste +=  adyacencias.get(j).consultarCoste();
 					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; 
 					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo());
-					crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste);
+					//System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + Math.min(flow,adyacencias.get(j).consultarFlujo()) + " indicesI es " + indiceI + " incideF es" + indiceF);
+					if (Math.min(flow,adyacencias.get(j).consultarFlujo()) > 0 ) crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste);
 					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo());
 					g.modificarFlujoArista(u, v, nuevoFlujo);
 					indiceI = nuevoIndiceF+1;
@@ -106,6 +107,7 @@ public class PushRelabel extends Algoritmo {
 		g.modificarFlujoArista(u, v, nuevoFlujo); 
 		if (v == t) {
 			flow+=temp;
+			//System.out.println( "el flujo en este momento es " + flow );
 			///////// per guardar //////////////////////////
 			String s = + u + " hace push a " + v + " de flow: " + temp + "\n";
 			seq.add(s); 
@@ -119,6 +121,9 @@ public class PushRelabel extends Algoritmo {
 		g.modificarFlujoArista(v, u, nuevoFlujo ); /** arista residual **/
 		exceso[u] -= temp;
 		exceso[v] += temp;
+		//System.out.println( u + " pushea a " + v + " con " + temp + " el exceso de 1 es " + exceso[1] );
+		//System.out.println( "el vertice 1 esta en estado " + active[1] + " la altura es " + alturas[1] );
+		///System.out.println(" la altura de 4 es "+ alturas[4]);
 	}
 
 	/**
@@ -174,7 +179,7 @@ public class PushRelabel extends Algoritmo {
 					if (alturas[u] > alturas[v]){ 
 						push(g,u,v,t); 
 						if (active[v] == 0 && v != s && v != t){
-							active[i] = 1;
+							active[u] = 1;
 							q.addLast(v); 
 						}
 					}
