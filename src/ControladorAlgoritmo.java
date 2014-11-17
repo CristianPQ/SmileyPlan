@@ -73,6 +73,10 @@ public class ControladorAlgoritmo {
 	
 	/////////FIN CONSTRUCTORA////////////////////////////
 	
+	public ControladorItinerarios consultarItinerarios() {
+		return cit;
+	}
+	
 	public void EjecutarGrafo(int i) {
 		
 	}
@@ -147,8 +151,32 @@ public class ControladorAlgoritmo {
 	
 	
 	///////DUDA: TAMBIEN HAY QUE CREARL DENTRO DE LA CONSTRUCTORA NO?
+	public void ejecutar(int i) throws Exception {
+		switch(i) {
+			case 1: {
+				ejecutarAlgoritmoFordFulkerson();
+				break;
+			}
+			case 2: {
+				ejecutarAlgoritmoPushRelabel();
+				break;
+			}
+			case 3: {
+				ejecutarAlgoritmoDinic();
+				break;
+			}
+			default: {
+				System.out.println("No hay mas algoritmos" + "\n");
+				System.exit(0);
+				break;
+			}
+		}
+	}
 	
-	
+	public void ejecutarAlgoritmoDinic() throws Exception{
+		Dinic d = new Dinic(); 
+		sol = d.ejecutar(ent);
+	}
 	
 
 	public void ejecutarAlgoritmoFordFulkerson() throws Exception {

@@ -51,6 +51,21 @@ public class ControladorItinerarios {
 	public int consultarCiudadesIt(Itinerario aux){
 		return aux.getNumeroCiudades(); 
 	}
-		
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String escribirItinerarios() {
+		String its = new String();
+		for(int i = 0; i < cjtoit.size(); ++i) {
+			Itinerario iti = cjtoit.get(i);
+			its = its + "Agente: " + iti.getNombreItinerario() + "\n";
+			for(int j = 0; j < iti.getNumeroCiudades(); ++j) {
+				its = its + "    " + iti.consultarCiudad(j) + " ";
+			}
+		}
+		return its;
+	}
 	
 }

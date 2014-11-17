@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class DriverControladorAlgoritmo {
 	
 	private static Scanner sc;
 	
@@ -11,7 +11,7 @@ public class Main {
                 + "\n 2.Inicializar ControladorMapa(int anchuraX, int alturaY, String continente)"
                 + "\n 3.Inicializar ControladorAgentes()"
                 + "\n 4.Crear Controlador Algoritmos( string s, string t)"
-                + "\n 5.Crear Controlador Itinerarios"
+                + "\n 5.Consultar ControladorItinerarios"
         		+"\n");
     }
 	
@@ -115,12 +115,14 @@ public class Main {
     	        		break;
     	        	}
     	        	case 4: {
+    	        		System.out.println("CiudadOrigen y CiudadDestino a tratar");
     	        		String s = lsplited[1];
     	        		String t = lsplited[2];
-    	        		cAlgo = new ControladorAlgoritmo(cAgentes, cMapa, cMedio, s,t);
+    	        		cAlg = new ControladorAlgoritmo(cAge, m, cMed, s,t);
     	        	}
     	        	case 5: {
-    	        		cIt = new ControladorItinerarios();
+    	        		cAlg.asignarItinerarioAAgente();
+    	        		cIt = cAlg.consultarItinerarios();
     	        		break;
     	        	}
     	        	case 6: {
@@ -167,6 +169,6 @@ public class Main {
 	    		System.out.println("Error: " + e.getMessage() + "\n");
         	}
         }
-	}*/
+	}
 
 }

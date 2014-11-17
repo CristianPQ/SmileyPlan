@@ -85,6 +85,15 @@ public class Itinerario {
 		if (caminos.contains(s)) throw CiudadYaExiste; 
 		else caminos.add(s); 
 	}
+	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
+	public String consultarCiudad(int i) {
+		return caminos.get(i);
+	}
 		
 	
 
