@@ -15,9 +15,8 @@ public class FordFulkerson extends Algoritmo{
 	 * @param u
 	 * @param t
 	 * @param coste
-	 * @throws Exception 
 	 */
-	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste) throws Exception{
+	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		System.out.println();
 		for (int i = indiceI; i <= indiceF; ++i){
@@ -47,9 +46,8 @@ public class FordFulkerson extends Algoritmo{
 	 * @param g
 	 * @param s
 	 * @param t
-	 * @throws Exception 
 	 */
-	private void inicializacion(GrafoAntiguo g,int s, int t) throws Exception{
+	private void inicializacion(GrafoAntiguo g,int s, int t){
 		int v;
 		ArrayList <Arista> adyacencias;
 		/** creo todos las aristas inversas **/
@@ -72,9 +70,8 @@ public class FordFulkerson extends Algoritmo{
 	 * @param t
 	 * @param f
 	 * @return
-	 * @throws Exception 
 	 */
-	 static int findPath(GrafoAntiguo g, boolean[] vis, int u, int t, int f) throws Exception {
+	 static int findPath(GrafoAntiguo g, boolean[] vis, int u, int t, int f) {
 		    if (u == t)
 		      return f;
 		    vis[u] = true;
