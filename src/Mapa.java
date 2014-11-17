@@ -20,9 +20,6 @@ public class Mapa {
 	
 	
 	
-	/*
-	 * Constructor Ciudad
-	 */
 	/**
 	 * Constructora de Mapa
 	 * @param anchuraX
@@ -36,8 +33,6 @@ public class Mapa {
 		caminos = new TST<TST<ArrayList<Camino>>>();
 		mapa = new String[alturaY][anchuraX];
 		
-		//continente debe de tener una doble marca de  $ para indicar que es el final
-		//de la forma: numeroX " " numeroY " "...
 		agregarContinente(continente);
 	}
 	
@@ -128,9 +123,7 @@ public class Mapa {
 	}
 	
 	
-	/*
-	 * Comprobar si la Coord es valida para el mapa
-	 */
+	
 	/**
 	 * Comprueva si una coordenada es valida para el mapa 
 	 * @param coord
@@ -166,9 +159,7 @@ public class Mapa {
 		return coordO.distancia(coordD);
 	}
 	
-	/*
-	 * Comprobar si la ciudad ya existe
-	 */
+	
 	/**
 	 * Comprueva si la ciudad ya existe
 	 * @param c
@@ -374,38 +365,23 @@ public class Mapa {
 		String cDest = c.consultarDestino();
 		String medio = c.consultarTransporte();
 		if(!existeCiudad(cOrig) || !existeCiudad(cDest)) throw NoExistenCiudades;
-			//System.out.println("Entra en agregarCamino" + "\n");
 		if(cOrig.equals(cDest)) throw NoValido;
-			//System.out.println("cOrig:" + cOrig + "cDest:" + cDest +"fin" +"\n" +
-			//"medio" + medio + cap + "\n");
-			//System.out.println("Despues de comparacion" + "\n");
 		if(existeCamino(cOrig, cDest, medio)) throw Existe;
-			//System.out.println("Despues de comparacion existe camino" + "\n");
 		TST<ArrayList<Camino>> camOrig = new TST<ArrayList<Camino>>();
 		ArrayList<Camino> camDest = new ArrayList<Camino>();
-			//System.out.println("Despues inicializar" + "\n");
-			//System.out.println(cOrig + " " + cDest + "\n");
 		if(caminos.existe(cOrig)) {
-			//camOrig tiene el TST de TST de caminos con ciudad origen cOrig
 			camOrig = caminos.consultar(cOrig);
 			if(camOrig.existe(cDest)) {
-					//System.out.println("en IF camOrig.existe(cDest)" + "\n");
-				//camDest tiene tiene el TST de ciudades con origen cOrig y destino cDest
 				camDest = camOrig.consultar(cDest);
 				camDest.add(c);
-					//System.out.println("Tiene " + camDest.size() + " \n");
 				camOrig.modificar(cDest, camDest);
 			}
 			else {
-					//System.out.println("en ELSE camOrig.existe(cDest)" + "\n");
 				camDest = new ArrayList<Camino>();
 				camDest.add(c);
 				camOrig.insert(cDest, camDest);
 			}
-				//System.out.println("antes de modificar)" + "\n");
-				//System.out.println("Tiene " + camDest.size() + " \n");
 			caminos.modificar(cOrig, camOrig);
-				//System.out.println("Despues de modificar)" + "\n");
 		}
 		else {
 			//No hay ningun camino con ciudad de origen cOrig
@@ -523,10 +499,8 @@ public class Mapa {
 	public ArrayList<Camino> consultarCaminosDestino(String cOrig) {
 		//Caminos de la misma ciudad origen
 		TST<ArrayList<Camino>> camOrig = caminos.consultar(cOrig);
-		
 		//Lista de ciudades destino
 		ArrayList<String> nCamDest = camOrig.consultar();
-		
 		//Donde se guardaran todos los caminos de salida posibles
 		ArrayList<Camino> cPosibles = new ArrayList<Camino>();
 		//Iterador para recorrer todos los destinos existentes
@@ -551,7 +525,4 @@ public class Mapa {
 	public String[][] consultarMapa() {
 		return mapa;
 	}
-	
-
-	
 }

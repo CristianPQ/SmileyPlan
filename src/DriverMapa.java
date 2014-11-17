@@ -47,9 +47,7 @@ public class DriverMapa {
 		        			coords.add(new Coordenadas(x, y));
 		                }
 		                if(coords.size() < 4) coords = null;
-		                	//System.out.println("Antes de inicializar mapa" + "\n");
 		                m = new Mapa(anchuraX, alturaY, coords);
-		                	//System.out.println("Despues de inicializar mapa" + "\n");
 		                break;
 		            }
 		            case 2: {
@@ -58,7 +56,6 @@ public class DriverMapa {
 		                int coordY = Integer.parseInt(lsplited[3]);
 		                Coordenadas coord = new Coordenadas(coordX, coordY);
 		                Ciudad c = new Ciudad(nombre, coord);
-		                	//System.out.print(nombre + " " + coordX + " " + coordY + "\n");
 		            	m.agregarCiudad(c);
 		                break;
 		            }
@@ -88,7 +85,6 @@ public class DriverMapa {
 						Iterator<String> it = list.iterator();
 						while(it.hasNext()) {
 							String n = it.next();
-								//System.out.println(n + "\n");
 							nombreC = nombreC + n + "\n";
 						}
 		            	System.out.print(nombreC +"\n");

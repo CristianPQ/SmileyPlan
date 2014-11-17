@@ -54,14 +54,9 @@ public class DriverControladorMapa {
 		                int alturaY = Integer.parseInt(lsplited[2]);
 		                String coords = new String();
 		                for(int i = 3;i < lsplited.length;i += 2) {
-		                		//System.out.println("coords " + lsplited[i] + " " + lsplited[i+1] + "\n");
 		                	coords = coords + lsplited[i] + " " + lsplited[i+1] + " ";
-		                		//System.out.println("despues de agregar als coord anteriores" + "\n");
 		                }
-		                //coords = coords + "$ $";
-		                	//System.out.println("Antes de einicializar el controlador" + "\n");
 		                m = new ControladorMapa(anchuraX, alturaY, coords);
-		                	//System.out.println("Despues de einicializar el controlador" + "\n");
 		                break;
 		            }
 		            case 2: {

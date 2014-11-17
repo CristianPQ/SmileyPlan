@@ -1,15 +1,4 @@
-//package Dominio;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Cristian Pinto
- */
 public class Coordenadas {
 	
 	private int x;	//Posicion segun el eje horizontal
@@ -33,13 +22,6 @@ public class Coordenadas {
 		return x;
 	}
 
-	/*
-	 * Modificador del elemento x
-	 * @param coordX referencia sobre el eje horizontal
-	 *
-	public void modificarX(int coordX) {
-		x = coordX;
-	}*/
 
 	/**
 	 * Consultor del elemento y
@@ -61,12 +43,5 @@ public class Coordenadas {
 		int dif2 = (int) dif;
 		return dif2;
 	}
-	
-	/*
-	 * Setter del elemento y
-	 * @param coordY referencia sobre el eje horizontal
-	 *
-	public void modificarY(int coordY) {
-		x = coordY;
-	}*/
+
 }

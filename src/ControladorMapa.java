@@ -49,15 +49,20 @@ public class ControladorMapa {
 	//##########SOBRE CIUDADES
 	//#########################################
 	
+	/**
+	 * Comprobar si existe una ciudad
+	 * @param nombre
+	 * @return
+	 */
 	public boolean existeCiudad(String nombre) {
 		return m.existeCiudad(nombre);
 	}
 	
 	/**
-	 * 
+	 * Devuelve la distancia entre 2 ciudades
 	 * @param cOrig
 	 * @param cDest
-	 * @return
+	 * @return distancia entre 2 ciudades
 	 * @throws Exception
 	 */
 	public int distanciaCiudades(String cOrig, String cDest) throws Exception {
@@ -332,10 +337,18 @@ public class ControladorMapa {
 	//##########OTROS
 	//#########################################
 	
+	/**
+	 * Consultora de la matriz mapa
+	 * @return matriz de strings mapa
+	 */
 	public String[][] consultarMapa() {
 		return m.consultarMapa();
 	}
 	
+	/**
+	 * Consultora del string que compone mapa
+	 * @return un string con la info de la matriz mapa
+	 */
 	public String consultarMapaToString() {
 		String map = new String();
 		String[][] ma = m.consultarMapa();
@@ -545,8 +558,5 @@ public class ControladorMapa {
 		gd.closeFile(); 
 		}
 	}
-	
-
-
-	
+		
 }
