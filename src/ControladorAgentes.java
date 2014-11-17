@@ -207,6 +207,21 @@ public class ControladorAgentes {
         	return consultarAgentesOrigenObjetivo(ciudadInicial, ciudadObjetivo).size();
         }
         
+        public ArrayList<String[]> casosDiferentes() throws Exception{
+        	ArrayList<String[]> retorno = new ArrayList <String[]>();
+        	for (int i = 0; i < consultarNombresAgentes().size();++i) {
+        		String[] caso = new String[2];
+        		caso[0] = consultarCiudadInicialAgente(consultarNombresAgentes().get(i));
+        		caso[1] = consultarCiudadObjetivoAgente(consultarNombresAgentes().get(i));
+        		boolean existe = false;
+        		for (int j = 0; j < retorno.size() && !existe; ++j ) {
+        			String[] chequeo = retorno.get(j);
+        			if (caso[0].equals(chequeo[0])&& caso[1].equals(chequeo[1])) existe = true;
+        		}
+        		if (!existe) retorno.add(caso);
+        	}
+        	return retorno;
+        }
    //     public ArrayList<String, String> casosDiferentes(){
         	
         //}

@@ -25,6 +25,7 @@ private static void menu() {
 	                + "\n 14.Cargar(String path, String file)"
 	                + "\n 15.ConsultarAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
 	                + "\n 16.NumeroAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
+	                + "\n 17.CasosDiferentes()"
 	        		+"\n");
 }
 
@@ -147,13 +148,24 @@ public static void main(String [] args) throws Exception {
 	    					String ciudadInicial = lsplited[1];
 	    					String ciudadObjetivo = lsplited[2];
 	    					System.out.println(conjAgentes.numeroAgentesOrigenObjetivo(ciudadInicial, ciudadObjetivo));
+	    					break;
+	    	            }
+	    	            
+	    	            case 17:{
+	    	            	ArrayList<String[]> resultado = conjAgentes.casosDiferentes();
+	    	            	String[] caso;
+	    	            	for (int i = 0; i < resultado.size(); ++i){
+	    	            		caso = resultado.get(i);
+	    	            		System.out.println(caso[0] + " " + caso[1]);		
+	    	            	}
+	    	            	break;
 	    	            }
 	    					
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }
 	    				default: {
-	    	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 17 o 0 para salir\n");
+	    	                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 19 o 0 para salir\n");
 	    	                break;
 	    	            } 
 	    			}
