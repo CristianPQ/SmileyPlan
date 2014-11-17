@@ -59,6 +59,7 @@ public static void main(String [] args) throws Exception {
 	    					m.agregarCamino("barcelona", "madrid", "coche", 10, mt);
 	    					m.agregarCamino("barcelona", "oviedo", "coche", 10, mt);
 	    					System.out.println("pasado");
+	    					m.agregarCamino("oviedo", "valencia", "coche", 9, mt);
 	    					m.agregarCamino("madrid", "oviedo", "coche", 2, mt);
 	    					m.agregarCamino("madrid", "sevilla", "coche", 4, mt);
 	    					m.agregarCamino("madrid", "valencia", "coche", 8, mt);
@@ -74,10 +75,11 @@ public static void main(String [] args) throws Exception {
 	    				case 2: {//INIT ENTRADA E IMPRESION DEL MAPEO
 	    					ent = new ANTIGUOEntrada(m, mt,"barcelona", "zaragoza",17);
 	    					ent.insertarCiudadesMapping(m);
-	    					ent.crearGrafo(m, mt);
 	    					String[] relacion = ent.consultarMapping();
 	    					for(int i = 0; i < relacion.length; ++i) 
 	    						System.out.println(i + " " + relacion[i]+"\n");
+	    					
+	    					ent.crearGrafo(m, mt);
 	    					break;
 	    					
 	    				}
