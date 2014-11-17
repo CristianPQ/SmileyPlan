@@ -170,7 +170,7 @@ public class ControladorAgentes {
         
 		/**
 		 * Consultora del numero de agentes contenidos
-		 * @return el número de agentes que hay
+		 * @return el numero de agentes que hay
 		 */
         
         public int getNumeroDeAgentes(){ 

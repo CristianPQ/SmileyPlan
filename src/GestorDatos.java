@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.util.*;
 
 
-
 public class GestorDatos {
 	
 	 protected String nomD;
