@@ -99,7 +99,7 @@ public class FordFulkerson extends Algoritmo{
 	 * Ejecuta el algoritmo 
 	 */
 	public Solucion ejecutar ( Entrada e) throws Exception{
-		long t1 = System.currentTimeMillis();
+		float t1 = System.currentTimeMillis();
 		GrafoAntiguo g = e.consultarGrafo();
 		int s = e.consultarSource();
 		int t = e.consultarSink();
@@ -119,7 +119,7 @@ public class FordFulkerson extends Algoritmo{
 			sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
-		long t2 = System.currentTimeMillis();
+		float t2 = System.currentTimeMillis();
 		sol.modificarTiempo(t2-t1);
 		sol.seqsol = list; 
 		return sol;

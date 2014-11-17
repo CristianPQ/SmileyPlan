@@ -10,7 +10,7 @@ public class ControladorAlgoritmo {
 	
 	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
 	
-	public long consultarTiempo() throws Exception {
+	public float consultarTiempo() throws Exception {
 		if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
 		return sol.consultarTiempo();
 	}

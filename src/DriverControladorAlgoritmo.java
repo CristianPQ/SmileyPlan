@@ -149,7 +149,7 @@ public class DriverControladorAlgoritmo {
     	        		cAlg.guardarSeq(path, filename);
     	        	}
     	        	case 8: {
-    	        		long t = cAlg.consultarTiempo();
+    	        		float t = cAlg.consultarTiempo();
     	        		System.out.println(t + "\n");
     	        	}
     	        	case 0: {

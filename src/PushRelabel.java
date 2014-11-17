@@ -162,7 +162,7 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	public Solucion ejecutar (Entrada e) throws Exception{
-		long t1 = System.currentTimeMillis();
+		float t1 = System.currentTimeMillis();
 		GrafoAntiguo g = e.consultarGrafo();
 		int s = e.consultarSource();
 		int t = e.consultarSink();
@@ -217,7 +217,7 @@ public class PushRelabel extends Algoritmo {
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
 
-		long t2 = System.currentTimeMillis();
+		float t2 = System.currentTimeMillis();
 		sol.modificarTiempo(t2-t1);
 		sol.seqsol = seq; 
 		return sol;
