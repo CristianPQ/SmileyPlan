@@ -11,7 +11,8 @@ public class DriverControladorAlgoritmo {
                 + "\n 2.Inicializar ControladorMapa(int anchuraX, int alturaY, String continente)"
                 + "\n 3.Inicializar ControladorAgentes()"
                 + "\n 4.Crear Controlador Algoritmos( string s, string t)"
-                + "\n 5.Consultar ControladorItinerarios"
+                + "\n 5.ejecutar(int i)"
+                + "\n 6.Consultar ControladorItinerarios"
         		+"\n");
     }
 	
@@ -121,8 +122,19 @@ public class DriverControladorAlgoritmo {
     	        		String s = lsplited[0];
     	        		String t = lsplited[1];
     	        		cAlg = new ControladorAlgoritmo(cAge, m, cMed, s,t);
+    	        		break;
     	        	}
     	        	case 5: {
+    	        		System.out.println("\n 1.FordFulkerson()"
+    	        				+ "\n 2. PushRelabel"
+    	        				+ "\n 3. Dinic");
+    	        		linea = in.nextLine();
+                        lsplited = linea.split(" ");
+                        int i = Integer.parseInt(lsplited[0]);
+    	        		cAlg.ejecutar(i);
+    	        		break;
+    	        	}
+    	        	case 6: {
     	        		cAlg.asignarItinerarioAAgente();
     	        		cIt = cAlg.consultarItinerarios();
     	        		String its = cIt.escribirItinerarios();
