@@ -59,19 +59,19 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    				}
 
-	    				case 3: {//ConsultarSink
-	    					System.out.println(e.consultarSink());
+	    				case 4: {//ConsultarSink
+	    					System.out.println(e.consultarSink()+"\n");
 	    					break;
 	    				}
 	    				
-	    				case 4:{ //ConsultarSource
-	    					System.out.println(e.consultarSource());
+	    				case 3:{ //ConsultarSource
+	    					System.out.println(e.consultarSource()+"\n");
 
 	    					break;
 	    				}
 	    				
 	    				case 5: {//consultarNumAg
-	    					System.out.println(e.consultarNumeroAgentes());
+	    					System.out.println(e.consultarNumeroAgentes()+"\n");
 
 	    					break;
 	    				}
@@ -83,20 +83,22 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    				}
 	    				
-	    				case 7: {//modificarSink
+	    				case 8: {//modificarSink
 	    					int sink = Integer.parseInt(lsplited[1]);
 	    					e.modificarSink(sink);
 	    					break;
 	    				}
 	    				
-	    				case 8: {//modificarSource
-	    					int sink = Integer.parseInt(lsplited[1]);
-	    					e.modificarSink(sink);
+	    				case 7: {//modificarSource
+	    					int source = Integer.parseInt(lsplited[1]);
+	    					e.modificarSource(source);
+	    					break;
 	    				}
 	    				
 	    				case 9: {//modificarNumAg
-	    					int sink = Integer.parseInt(lsplited[1]);
-	    					e.modificarSink(sink);
+	    					int numAg = Integer.parseInt(lsplited[1]);
+	    					e.modificarNumeroAgentes(numAg);
+	    					break;
 	    				}
 
 	    				
