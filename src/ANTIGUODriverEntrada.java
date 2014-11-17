@@ -54,17 +54,20 @@ public static void main(String [] args) throws Exception {
 	    					m.agregarCiudad("zaragoza", 12, 70);
 	    					
 	    					mt.agregarMedioTransporte("coche", 1);
+	    					mt.agregarMedioTransporte("tren", 2);
 	    					
 	    					System.out.println("dhdhhd");
-	    					m.agregarCamino("barcelona", "madrid", "coche", 10, mt);
-	    					m.agregarCamino("barcelona", "oviedo", "coche", 10, mt);
+	    					m.agregarCamino("barcelona", "madrid", "coche", 10, mt);//01
+	    					m.agregarCamino("barcelona", "madrid", "tren", 10, mt);//01
+	    					m.agregarCamino("barcelona", "oviedo", "coche", 10, mt);//02
 	    					System.out.println("pasado");
-	    					m.agregarCamino("oviedo", "valencia", "coche", 9, mt);
-	    					m.agregarCamino("madrid", "oviedo", "coche", 2, mt);
-	    					m.agregarCamino("madrid", "sevilla", "coche", 4, mt);
-	    					m.agregarCamino("madrid", "valencia", "coche", 8, mt);
-	    					m.agregarCamino("sevilla", "zaragoza", "coche", 10, mt);
-	    					m.agregarCamino("valencia", "zaragoza", "coche", 10, mt);
+	    					m.agregarCamino("oviedo", "valencia", "coche", 9, mt);//24
+	    					m.agregarCamino("oviedo", "valencia", "tren",12, mt);
+	    					m.agregarCamino("madrid", "oviedo", "coche", 2, mt);//12
+	    					m.agregarCamino("madrid", "sevilla", "coche", 4, mt);//13
+	    					m.agregarCamino("madrid", "valencia", "coche", 8, mt);//14
+	    					m.agregarCamino("sevilla", "zaragoza", "coche", 10, mt);//3 5
+	    					m.agregarCamino("valencia", "zaragoza", "coche", 10, mt);//3 4
 	    					m.agregarCamino("valencia", "sevilla", "coche", 6, mt);
 	    					
 
@@ -80,8 +83,66 @@ public static void main(String [] args) throws Exception {
 	    						System.out.println(i + " " + relacion[i]+"\n");
 	    					
 	    					ent.crearGrafo(m, mt);
+	    					
+	    					for(int i = 0; i < m.listarCiudades().size();++i){
+	    						System.out.println(m.listarCiudades().get(i));
+	    						System.out.println(ent.returnCityIndex(m.listarCiudades().get(i)));
+	    					}
+	    					System.out.println("TAMANO MAPPING" + ent.tamanoMapping());
+	    					GrafoAntiguo G = ent.consultarGrafo();
+	    					System.out.println("IMPRIMIENDO ARISTAS");
+	    					
+	    					ArrayList<Arista> a = G.consultarAdyacentes(0);
+	    					for(int i = 0; i < G.consultarAdyacentes(0).size(); ++i)
+	    						System.out.println(a.get(i).consultarVerticeDestino());
+	    						System.out.println("\n");
+	    					
+	    					ArrayList<Arista> ab = G.consultarAdyacentes(1);
+	    					for(int i = 0; i < G.consultarAdyacentes(1).size(); ++i)
+	    						System.out.println(ab.get(i).consultarVerticeDestino());
+	    					System.out.println("\n");
+	    					
+	    					ArrayList<Arista> ac = G.consultarAdyacentes(2);
+	    					for(int i = 0; i < G.consultarAdyacentes(2).size(); ++i)
+	    						System.out.println(ac.get(i).consultarVerticeDestino());
+	    					
+	    					System.out.println("\n");
+	    					
+	    					ArrayList<Arista> ad = G.consultarAdyacentes(3);
+	    					for(int i = 0; i < G.consultarAdyacentes(3).size(); ++i)
+	    						System.out.println(ad.get(i).consultarVerticeDestino());
+	    					
+	    					System.out.println("\n");
+	    					
+	    					ArrayList<Arista> af = G.consultarAdyacentes(4);
+	    					for(int i = 0; i < G.consultarAdyacentes(4).size(); ++i)
+	    						System.out.println(af.get(i).consultarVerticeDestino());
+	    					System.out.println("\n");
+	    					
+	    					ArrayList<Arista> ag = G.consultarAdyacentes(5);
+	    					for(int i = 0; i < G.consultarAdyacentes(5).size(); ++i)
+	    						System.out.println(ag.get(i).consultarVerticeDestino());
+	    					System.out.println("\n");
+	    					
+	    					ArrayList<Arista> aw = G.consultarAdyacentes(6);
+	    					for(int i = 0; i < G.consultarAdyacentes(6).size(); ++i)
+	    						System.out.println(ag.get(i).consultarVerticeDestino());
+	    					System.out.println("\n");
+	    					
+	    					ArrayList<Arista> aj = G.consultarAdyacentes(6);
+	    					for(int i = 0; i < G.consultarAdyacentes(6).size(); ++i)
+	    						System.out.println(ag.get(i).consultarVerticeDestino());
+	    					System.out.println("\n");
+
+	    					int wee = G.consultarCapacidadArista(0,1);
+	    					System.out.println(wee +"\n");
 	    					break;
 	    					
+	    					
+	    				}
+	    				
+	    				case 3:{//relacCiudades
+
 	    				}
 	    			/*	
 	    				case 3: {//ELIMINAR

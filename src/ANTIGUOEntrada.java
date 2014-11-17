@@ -82,6 +82,10 @@ public class ANTIGUOEntrada {
 		public String[] consultarMapping(){
 			return mapping;
 		}
+		
+		public int tamanoMapping(){
+			return mapping.length;
+		}
 		/*public void OrigenToSandObjetivoToT(){ //NO SE PUEDE HACER SI NO HAY MAPPING
 			s = returnCityIndex(ciudadOrigen);
 			t = returnCityIndex(ciudadDestino);
@@ -91,21 +95,21 @@ public class ANTIGUOEntrada {
 		public void crearGrafo(ControladorMapa m, ControladorMedioTransporte cm)throws Exception{
 			g = new GrafoAntiguo(mapping.length); //init grafo
 			//ArrayList<Camino> aristando = new ArrayList<Camino>();
+			
 			ArrayList<Camino> aristando;
 			for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
 				aristando = new ArrayList<Camino>();
 				System.out.println("entra for"+ m.listarCiudades().get(i));
 				String ciudadEncontrandoAristas = m.listarCiudades().get(i);
+				if(m.existeCaminoConOrigen(ciudadEncontrandoAristas))
 				aristando = m.consultarCaminosDestino(ciudadEncontrandoAristas); //consultar ciudades adyacentes
-				System.out.println("a que aqui paro?");
 				if (!aristando.equals(null)){
 					for (int j = 0; j < aristando.size(); ++j){ //cada ciudad adyacente...
 					////////////////PREPARAR LA ARISTA
 						int targetVertex  = returnCityIndex(aristando.get(j).consultarDestino());
-						System.out.println("aqui no se si ?");
 						int capacity = aristando.get(j).consultarCapacidad();
 					////////CALCULO TEMA COSTE
-						MedioTransporte mtrans = cm.buscarMedio(aristando.get(j).consultarTransporte());
+						/*MedioTransporte mtrans = cm.buscarMedio(aristando.get(j).consultarTransporte());
 						System.out.println("aqui no se si ?");
 						int x1 = m.consultarCiudad(ciudadEncontrandoAristas).consultarCoordenadas().consultarX();
 						System.out.println("aqui no se si ?");
@@ -118,16 +122,19 @@ public class ANTIGUOEntrada {
 						if (y1 > y2) y= y1-y2; else y = y2-y1;
 						int cost = (x + y)* mtrans.getPrecio(); //REVISAR ESTO
 					///////////////////////
-					 
+					 */
+						int cost = 0;
 						System.out.println("aqui no se si llego?");
-						int insert_here = 0;
+						int insert_here = -1;
 						boolean insertado = false;
-						while (!insertado){
+						while (!insertado){ //para tener en cuenta num d'iteraciones
+							++insert_here;
 							if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
 								insertado = true;
-								g.anadirArista(i,targetVertex, 0, capacity, cost);
+								g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here,targetVertex, 0, capacity, cost);
+								System.out.println("CUANTAS VECES INSERTO");
 								}
-							++insert_here; //AQUI PODRIA HABEER UN FALLO
+							//if(!insertado)++insert_here; //AQUI PODRIA HABEER UN FALLO
 						}
 					
 						for (int d = 0; d < insert_here; ++d) 
