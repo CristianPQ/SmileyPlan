@@ -4,7 +4,7 @@ import java.util.*;
  * @author Daniel Villanueva 
  */
 
-public class DriverPushRelabel {
+public class DriverAlgorismos {
 
 private static void menu() {
 	        System.out.println("Driver clase GrafoAntiguoAntiguo"
@@ -22,8 +22,9 @@ private static void menu() {
 	                + "\n 11.consultarNumVertices()"
 	                + "\n 12.consultarNumAristasVertice(int vertex)"
 	                + "\n 13.CONSULTARADYACENTES(int vertex)"
-	                + "\n 14. ejecutar PushRelabel (int s, int t) --> maxflow"
-	                + "\n 15. ejecutar  (int s, int t) --> maxflow"
+	                + "\n 14. ejecutar PushRelabel (int s, int t, int numAgentes) --> itinerarios disponibles"
+	                + "\n 15. ejecutar FordFulkerson (int s, int t, int numAgentes) --> itinerarios disponibles"
+	                + "\n 16. ejecutar Dinic (int s, int t, int numAgentes) --> itinerarios disponibles"
 	                +"\n");
 }
 
@@ -137,38 +138,67 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    					
 	    				}	
-	    				/*case 14: {//
+	    				case 14: {//
 	    					int s = Integer.parseInt(lsplited[1]);
 	    					int t = Integer.parseInt(lsplited[2]);
+	    					int num = Integer.parseInt(lsplited[3]);
 	    					int flow = 0;
-	    					Solucion sol = new Solucion(19);
-	    					a.ejecutar(g, s, t, flow);
-	    					a.crearItinerarios(sol, g, 0, 18, 19, 0, 5, 0);
-	    					System.out.println("final ejecucion el max flow es  " + flow );
-	    					for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
-	    						for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
-	    	    					System.out.println(sol.obtenVertice(i, j) + " ");
+	    					Entrada e = new Entrada(g,s,t,num);
+	    					Solucion sol;
+	    					sol = a.ejecutar(e);
+	    					if (sol.consultarTieneSolucion() == false)    System.out.println("No tiene solucion");
+	    					else {
+	    						System.out.println("El max flow es " + sol.consultarNumItinerarios()); 
+	    						for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
+	    							for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
+	    								System.out.print(sol.obtenVertice(i, j) + " ");
+	    							}
+	    							System.out.println();
 	    						}
-	    						System.out.println();
 	    					}
 	    				
 	    					break;
 	    				}
-	    				*/
 	    				case 15: {//
 	    					int s = Integer.parseInt(lsplited[1]);
 	    					int t = Integer.parseInt(lsplited[2]);
+	    					int num = Integer.parseInt(lsplited[3]);
 	    					int flow = 0;
-	    					Solucion sol = new Solucion(19);
-	    					f.ejecutar(g, s, t, flow);
-	    					f.crearItinerarios(sol, g, 0, 18, 19, 0, 5, 0);
-	    					System.out.println("final ejecucion el max flow es  " + flow );
-	    					for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
-	    						for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
-	    	    					System.out.println(sol.obtenVertice(i, j) + " ");
+	    					Entrada e = new Entrada(g,s,t,num);
+	    					Solucion sol;
+	    					sol = f.ejecutar(e);
+	    					if (sol.consultarTieneSolucion() == false)    System.out.println("No tiene solucion");
+	    					else {
+	    						System.out.println("El max flow es " + sol.consultarNumItinerarios()); 
+	    						for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
+	    							for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
+	    								System.out.print(sol.obtenVertice(i, j) + " ");
+	    							}
+	    							System.out.println();
 	    						}
-	    						System.out.println();
 	    					}
+	    				
+	    					break;
+	    				}
+	    				case 16: {//
+	    					int s = Integer.parseInt(lsplited[1]);
+	    					int t = Integer.parseInt(lsplited[2]);
+	    					int num = Integer.parseInt(lsplited[3]);
+	    					int flow = 0;
+	    					Entrada e = new Entrada(g,s,t,num);
+	    					Solucion sol;
+	    					sol = d.ejecutar(e);
+	    					if (sol.consultarTieneSolucion() == false)    System.out.println("No tiene solucion");
+	    					else {
+	    						System.out.println("El max flow es " + sol.consultarNumItinerarios()); 
+	    						for ( int i = 0; i < sol.obtenNumeroItinerarios(); ++i){
+	    							for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
+	    								System.out.print(sol.obtenVertice(i, j) + " ");
+	    							}
+	    							System.out.println();
+	    						}
+	    					}
+	    				
 	    					break;
 	    				}
 	    				/*case 16:{
@@ -176,7 +206,7 @@ public static void main(String [] args) throws Exception {
 	    					String file = "prova"; 
 	    					a.Guardar(path,file); 
 	    				}	*/
-	    				case 17: {//
+	    			/*	case 17: {//
 	    					int s = Integer.parseInt(lsplited[1]);
 	    					int t = Integer.parseInt(lsplited[2]);
 	    					int flow = 0;
@@ -191,7 +221,7 @@ public static void main(String [] args) throws Exception {
 	    						System.out.println();
 	    					}
 	    					break;
-	    				}
+	    				} */
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }

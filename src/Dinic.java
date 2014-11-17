@@ -75,9 +75,9 @@ public class Dinic extends Algoritmo {
 			double t1 = System.currentTimeMillis();
 		    int flow = 0;
 			GrafoAntiguo g = e.consultarGrafo();
-			int src = e.consultarOrigen();
-			int dest = e.consultarDestino();
-			int numA = e.consultarNumAgentes();
+			int src = e.consultarSource();
+			int dest = e.consultarSink();
+			int numA = e.consultarNumeroAgentes();
 		    int[] dist = new int[g.consultarNumVertices()];
 		    while (dinicBfs(g, src, dest, dist)) {
 		      int[] ptr = new int[g.consultarNumVertices()];
@@ -89,7 +89,7 @@ public class Dinic extends Algoritmo {
 		      }
 		    }
 			Solucion sol = new Solucion(flow);
-			if (flow > numA){
+			if (flow >= numA){
 				sol.modificartieneSolucion(true);
 				sol.modificarGrafo(g);
 				crearItinerarios(sol,g,0,flow-1,flow,src,dest,0);

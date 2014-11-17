@@ -27,7 +27,9 @@ public class Solucion {
 	}
 	//la de Relabel s'haura de llegir al reves 
 	
-	
+	public int consultarNumItinerarios(){
+		return itinerarios.length;
+	}
 	/**
 	 * Agregar el coste total de un itinerario
 	 * @param i identificador del itinerario

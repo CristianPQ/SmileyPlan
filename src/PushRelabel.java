@@ -138,9 +138,9 @@ public class PushRelabel extends Algoritmo {
 	public Solucion ejecutar (Entrada e) throws Exception{
 		double t1 = System.currentTimeMillis();
 		GrafoAntiguo g = e.consultarGrafo();
-		int s = e.consultarOrigen();
-		int t = e.consultarDestino();
-		int numA = e.consultarNumAgentes();
+		int s = e.consultarSource();
+		int t = e.consultarSink();
+		int numA = e.consultarNumeroAgentes();
 		
 		alturas = new int[g.consultarNumVertices()];
 		exceso = new int[g.consultarNumVertices()];
@@ -184,7 +184,7 @@ public class PushRelabel extends Algoritmo {
 
 		} 
 		Solucion sol = new Solucion(flow);
-		if (flow > numA){
+		if (flow >= numA){
 			sol.modificartieneSolucion(true);
 			sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
