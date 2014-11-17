@@ -18,7 +18,7 @@ public class FordFulkerson extends Algoritmo{
 	 */
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
-		System.out.println();
+		//System.out.println();
 		for (int i = indiceI; i <= indiceF; ++i){
 				sol.agregarVertice(i, u);
 				if (u == t) sol.agregarCosteAItinerario(i, coste );
