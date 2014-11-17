@@ -48,6 +48,11 @@ public class ControladorMapa {
 	//#########################################
 	//##########SOBRE CIUDADES
 	//#########################################
+	
+	public boolean existeCiudad(String nombre) {
+		return m.existeCiudad(nombre);
+	}
+	
 	/**
 	 * 
 	 * @param cOrig

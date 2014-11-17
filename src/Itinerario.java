@@ -87,9 +87,9 @@ public class Itinerario {
 	}
 	
 	/**
-	 * 
+	 * Consulta el string en una posicion
 	 * @param i
-	 * @return
+	 * @return String de caminos en la posicion i
 	 */
 	public String consultarCiudad(int i) {
 		return caminos.get(i);

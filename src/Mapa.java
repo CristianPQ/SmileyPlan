@@ -174,7 +174,7 @@ public class Mapa {
 	 * @param c
 	 * @return
 	 */
-	private boolean existeCiudad(String c) {
+	public boolean existeCiudad(String c) {
 		return ciudades.existe(c);
 	}
 	
