@@ -111,7 +111,12 @@ public class GrafoAntiguo {
 	}
 
 
-	
+	/**
+	 * Consultora capacidad
+	 * @param vertex vertice origen
+	 * @param targetVertex vertice destino
+	 * @return
+	 */
 	public int consultarCapacidadArista(int vertex, int targetVertex) {
 		int i;
 		for (i = 0; i < Adyacencias[vertex].size(); ++i){
@@ -123,7 +128,12 @@ public class GrafoAntiguo {
 		return -1;
 	}
 
-
+	/**
+	 * Modificadora capacidad
+	 * @param vertex vertice origen
+	 * @param targetVertex vertice destino
+	 * @param nuevaCapacidad
+	 */
 	public void modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad) 
 			{
 				
@@ -138,7 +148,13 @@ public class GrafoAntiguo {
 			}			
 		}
 	}
-	
+	/**
+	 * Consultar coste
+	 * @param vertex
+	 * @param targetVertex
+	 * @return
+	 * @throws Exception
+	 */
 	public int consultarCosteArista(int vertex, int targetVertex)throws Exception{
 		int i;
 		for (i = 0; i < Adyacencias[vertex].size(); ++i){
@@ -150,7 +166,12 @@ public class GrafoAntiguo {
 		return -1;
 	}
 
-	
+	/**
+	 * Modificar coste
+	 * @param vertex
+	 * @param targetVertex
+	 * @param nuevoCoste
+	 */
 	public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)
 		{
 		int i;
@@ -166,25 +187,19 @@ public class GrafoAntiguo {
 		}
 	}
 	
-
-	
-	/*	public int consultarVerticeDestinoArista
-	(int vertex){
-		Arista a = grafo.get(vertex);
-		return a.consultarVerticeDestino();
-}
-public void modificarVerticeDestinoArista
-	(int vertex, int nuevoVerticeDestino) {
-		Arista a = grafo.get(vertex);
-		a.modificarVerticeDestino(nuevoFlujo);
-		grafo.add(vertex,a);
-}
-*/
-	//consulta num vertices
+	/**
+	 * Consulta del numero de vertices del grafo
+	 * @return
+	 */
 	public int consultarNumVertices(){
 		return numVertices;
 	}
 
+	/**
+	 * Consultar el numero de aristas que salen de un vertice determinado
+	 * @param vertex
+	 * @return
+	 */
 	public int consultarNumAristasVertice(int vertex){
 		return Adyacencias[vertex].size();
 	}

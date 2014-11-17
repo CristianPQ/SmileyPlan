@@ -11,14 +11,13 @@ private static void menu() {
 	                + "\n 0.Salir"
 	                + "\n 1.[Constructora] Entrada(GrafoAntiguo G, int s, int t, int numAgentes)"
 	                + "\n 2.GrafoAntiguo consultarGrafo()"
-	                + "\n 2.consultarSource()"	                
-	                + "\n 2.consultarSink()"
-	                + "\n 2.consultarNumeroAgentes()"
-	                + "\n 2.modificarGrafo(GrafoAntiguo G)"
-	                + "\n 2.modificarSource(int source)"
-	                + "\n 2.modificarSink(int sink)"
-	                + "\n 2.modificarNumeroAgentes(int numAg)"
-
+	                + "\n 3.consultarSource()"	                
+	                + "\n 4.consultarSink()"
+	                + "\n 5.consultarNumeroAgentes()"
+	                + "\n 6.modificarGrafo(GrafoAntiguo G)"
+	                + "\n 7.modificarSource(int source)"
+	                + "\n 8.modificarSink(int sink)"
+	                + "\n 9.modificarNumeroAgentes(int numAg)"
 	                +"\n");
 }
 
