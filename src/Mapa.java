@@ -239,6 +239,14 @@ public class Mapa {
 	//##########SOBRE CAMINOS
 	//#########################################
 	
+	public boolean existeCaminoConOrigen(String cOrig) {
+		if(caminos.existe(cOrig)) {
+			TST<ArrayList<Camino>> tstCam = caminos.consultar(cOrig);
+			return !tstCam.isEmpty();
+		}
+		return false;
+	}
+	
 	/**
 	 * 
 	 * @param cDest

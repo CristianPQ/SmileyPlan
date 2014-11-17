@@ -5,21 +5,23 @@ public class ControladorAlgoritmo {
 	private ArrayList<String> relacCiudades;
 	private Entrada ent;
 	private Solucion sol;
-	private ControladorItinerarios cit; 
-	private int flow; 
-	private int s; 
-	private int t; 
-	private ArrayList<String > AgentesConSyT;
-	private int NumAgentesConSyT;
+	private ControladorItinerarios cit;
+	private ArrayList<String > agentes;
 	long tiempo; 
 	
 	
 	
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
-			ControladorMedioTransporte mt) throws Exception{
+			ControladorMedioTransporte mt, String cOrig, String cDest) throws Exception{
 		relacCiudades = cm.listarCiudades();
-		GrafoAntiguo g; 
-		
+		int orig = consultarIntCiudad(cOrig);
+		int dest = consultarIntCiudad(cDest);
+		GrafoAntiguo g = crearGrafo(cm, mt);
+		int nAgent = ca.numeroAgentesOrigenObjetivo(cOrig, cDest);
+		ent = new Entrada(g, orig, dest, nAgent);
+		cit = new ControladorItinerarios();
+		agentes = ca.consultarAgentesOrigenObjetivo(cOrig, cDest);
+		sol = new Solucion(nAgent);
 	}
 	
 	private int consultarIntCiudad(String c) {
@@ -30,7 +32,7 @@ public class ControladorAlgoritmo {
 		return -1;
 	}
 	
-	private GrafoAntiguo crearGrafo(ControladorMapa m, ControladorMedioTransporte mt) {
+	private GrafoAntiguo crearGrafo(ControladorMapa m, ControladorMedioTransporte mt) throws Exception {
 		GrafoAntiguo g = new GrafoAntiguo(relacCiudades.size());
 		for(int i = 0; i < relacCiudades.size(); ++i) {
 			String cOrig = relacCiudades.get(i);
@@ -41,10 +43,12 @@ public class ControladorAlgoritmo {
 				String cDest = c.consultarDestino();
 				String medioT = c.consultarTransporte();
 				int cap = c.consultarCapacidad();
-				int coste = mt.getPrecioTransporte(medioT)*
-				Arista ar = new Arista()
+				int coste = mt.getPrecioTransporte(medioT)*m.distanciaCiudades(cOrig, cDest);
+				int iDest =consultarIntCiudad(cDest); 
+				g.anadirArista(i, iDest, 0, cap, coste);
 			}
 		}
+		return g;
 	}
 	
 	//#########################################

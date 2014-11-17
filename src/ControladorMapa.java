@@ -48,7 +48,13 @@ public class ControladorMapa {
 	//#########################################
 	//##########SOBRE CIUDADES
 	//#########################################
-	
+	/**
+	 * 
+	 * @param cOrig
+	 * @param cDest
+	 * @return
+	 * @throws Exception
+	 */
 	public int distanciaCiudades(String cOrig, String cDest) throws Exception {
 		return m.distanciaCiudades(cOrig, cDest);
 	}
@@ -142,6 +148,9 @@ public class ControladorMapa {
 	//#########################################
 	//##########SOBRE CAMINOS
 	//#########################################
+	public boolean existeCaminoConOrigen(String cOrig) {
+		return m.existeCaminoConOrigen(cOrig);
+	}
 	
 	public boolean existeCaminoDesdeA(String cOrig, String cDest) {
 		return m.existeCaminoDesdeA(cOrig, cDest);
