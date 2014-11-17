@@ -171,14 +171,16 @@ public class ControladorAlgoritmo {
 				break;
 			}
 		}
-		if(!sol.consultarTieneSolucion()) System.out.println(" #######################"
+		if(!sol.consultarTieneSolucion()) {
+			System.out.println(" #######################"
 				+ "\n NO HAY SOLUCION POSIBLE"
 				+ "\n #######################"
 				+ "\n Carque nuevamente el ControladorAlgoritmo");
-		ent = null;
-		sol = null;
-		cit = null;
-		agentes = null;
+			ent = null;
+			sol = null;
+			cit = null;
+			agentes = null;
+		}
 	}
 	
 	public void ejecutarAlgoritmoDinic() throws Exception{
