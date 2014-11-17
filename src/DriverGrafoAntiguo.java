@@ -9,7 +9,7 @@ public class DriverGrafoAntiguo {
 private static void menu() {
 	        System.out.println("Driver clase GrafoAntiguo"
 	                + "\n 0.Salir"
-	                + "\n 1.[Constructora] GrafoAntiguo()"
+	                + "\n 1.[Constructora] GrafoAntiguo(int numVertex)"
 	                + "\n 2.existeAdyacente(int numVertex, int targetVertex)"
 	                + "\n 3.anadirArista(int vertex, int targetVertex, int flow, int capacity, int cost)"
 	                + "\n 4.eliminarArista(int vertex, int targetVertex)"
@@ -123,6 +123,7 @@ public static void main(String [] args) throws Exception {
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int num = g.consultarNumAristasVertice(vertex);
 	    					System.out.println("Aristas desde vertice "+ vertex+ ": " + num + "\n");
+	    				
 	    					break;
 	    				}	
 	    				
@@ -132,6 +133,7 @@ public static void main(String [] args) throws Exception {
 	    					for (int i = 0; i < l.size(); ++i){
 	    						System.out.println(l.get(i).consultarVerticeDestino()  + " ");
 	    					}
+	    					System.out.println("\n");
 	    					break;
 	    					
 	    				}	

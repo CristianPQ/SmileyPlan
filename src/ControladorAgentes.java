@@ -14,6 +14,8 @@ public class ControladorAgentes {
 		
 		private static Exception NombreYaExiste = new Exception ("El agente ya existe");
 		private static Exception NoExiste = new Exception ("El agente no existe");
+		private static Exception NoInicial = new Exception("No existe la ciudadInicial");
+		private static Exception NoObjetivo = new Exception("No existe la ciudadInicial");
 
 		/**
 		 * Constructora del controlador
@@ -50,16 +52,23 @@ public class ControladorAgentes {
 		 * @param ciudadObjetivo ciudad que quiere alcanzar el agente
 		 * @throws Exception si ya existe agente con este nombre
 		 */
-			
-		public void anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo)
+		private void anadirAgenteInterna(String nombre, String ciudadInicial, String ciudadObjetivo)
+		if (!existeAgente(nombre)){//si no existe, Exception
+			Agente a = new Agente(nombre, ciudadInicial, ciudadObjetivo);
+			Agentes.insert(nombre,a);
+			++numAgentes;
+		}	
+		else throw NombreYaExiste;	
+	}
+
+		public void anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo,
+				ControladorMapa m)
 				throws Exception{ 
-			
-			if (!existeAgente(nombre)){//si no existe, Exception
-				Agente a = new Agente(nombre, ciudadInicial, ciudadObjetivo);
-				Agentes.insert(nombre,a);
-				++numAgentes;
-			}	
-			else throw NombreYaExiste;	
+				if(!m.exists(ciudadInicial)) throw NoInicial; //si no existe, saltara excepcion de ctrlmapa
+				if(!m.exists())
+	
+				m.exists(ciudadObjetivo);//si no existe, saltara la excepcion de ctrlmapa
+				anadirAgenteInterna(nombre, ciudadInicial,ciudadObjetivo);
 		}
 		
 		/**
@@ -255,7 +264,7 @@ public class ControladorAgentes {
     				String nombre = cortarstring[0];
     				String ci = cortarstring[1];
     				String co = cortarstring[2]; 
-    				anadirAgente(nombre,ci,co); 
+    				anadirAgenteInterna(nombre,ci,co); 
     				
     				/////////////per comprovar ////////////////
     				System.out.print(nombre + " "+ ci + " "+ co + "\n"); 
@@ -272,7 +281,7 @@ public class ControladorAgentes {
     					String nombre = cortarstring[0];
         				String ci = cortarstring[1];
         				String co = cortarstring[2]; 
-        				anadirAgente(nombre,ci,co); 
+        				anadirAgenteInterna(nombre,ci,co); 
         				
         				/////////////per comprovar ////////////////
         				System.out.print(nombre + " "+ ci + " "+ co + "\n"); 
