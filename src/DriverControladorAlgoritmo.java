@@ -23,10 +23,10 @@ public class DriverControladorAlgoritmo {
 		ControladorAlgoritmo cAlg = null;
 		ControladorItinerarios cIt;
 		menu();
-        while (in.hasNext()) {
+        String[] lsplited;
+        while (in.hasNextLine()) {
         	try {
         		String linea = in.nextLine();
-                String[] lsplited;
                 lsplited = linea.split(" ");
     	        switch(Integer.parseInt(lsplited[0])) {
     	        	case 1: {
@@ -41,16 +41,18 @@ public class DriverControladorAlgoritmo {
                             lsplited = linea.split(" ");
                             cMed.agregarCoche(lsplited[0], Integer.parseInt(lsplited[1]));
                         }
+                        System.out.println("Fin agregarCoches");
                         System.out.println("numero de trenes a agregar: int");
                         linea = in.nextLine();
                         lsplited = linea.split(" ");
-                        n = Integer.parseInt(lsplited[1]);
-                        for (int i = 0; i < n; i++) {
+                        n = Integer.parseInt(lsplited[0]);
+                        for (int j = 0; j < n; j++) {
                         	System.out.println("agregarTren(String Nombre, int Coste");
                             linea = in.nextLine();
                             lsplited = linea.split(" ");
                             cMed.agregarTren(lsplited[0], Integer.parseInt(lsplited[1]));
                         }
+                        System.out.println("Fin agregarTrenes");
                         System.out.println("FIN de agregarMediosTransporte");
                         break;
     	        	}
@@ -79,16 +81,14 @@ public class DriverControladorAlgoritmo {
                         System.out.println("numero de caminos");
                         linea = in.nextLine();
                         lsplited = linea.split(" ");
-                        n = Integer.parseInt(lsplited[1]);
+                        n = Integer.parseInt(lsplited[0]);
                         for (int i = 0; i < n; i++) {
                         	System.out.println("agregarCamino(cOrig, cDest, medio, cap, contMT)");
-                        	linea = in.nextLine();
-                            lsplited = linea.split(" ");
                             linea = in.nextLine();
                             lsplited = linea.split(" ");
                             String cOrig = lsplited[0];
                             String cDest = lsplited[1];
-                            String medio = lsplited[2];
+                            String medio = lsplited[3];
                             int cap = Integer.parseInt(lsplited[2]);
                             m.agregarCamino(cOrig, cDest, medio, cap, cMed);
                         }
@@ -109,7 +109,7 @@ public class DriverControladorAlgoritmo {
                             String nombre = lsplited[0];
                             String cOrig = lsplited[1];
                             String cObj = lsplited[2];
-                            cAge.anadirAgente(nombre, cOrig, cObj);
+                            cAge.anadirAgente(nombre, cOrig, cObj, m);
                         }
                         System.out.println("FIN agregarAgentes");
     	        		break;
