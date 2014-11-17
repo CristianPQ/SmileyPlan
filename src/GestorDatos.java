@@ -11,13 +11,13 @@ public class GestorDatos {
 	 protected String nomD;
 	 protected String nomF;
 	 protected File f;
-	 private BufferedWriter bw; //Mantiene buffer de 8KB
-	 private BufferedReader br; //Mantiene buffer de 8KB
+	 private BufferedWriter bw; 
+	 private BufferedReader br; 
 	 private FileWriter fw;
 	 private FileReader fr;
 	 private boolean lectura;
 	 private boolean escritura;
-	 //protected final static int BUFF_SIZE = 1000;//mirar de posar 250
+	 
 	 
 	 /**
 	  * Constructora por defecto
