@@ -26,6 +26,8 @@ private static void menu() {
 	                + "\n 15.ConsultarAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
 	                + "\n 16.NumeroAgentesOrigenObjetivo(String ciudadInicial, String ciudadObjetivo)"
 	                + "\n 17.CasosDiferentes()"
+	                + "\n\nDISPONES DE LAS SIGUIENTES CIUDADES: "
+	                + "\nbarcelona, madrid, oviedo, sevilla, valencia, zaragoza\n"
 	        		+"\n");
 }
 
