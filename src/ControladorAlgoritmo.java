@@ -246,16 +246,18 @@ public class ControladorAlgoritmo {
 		GestorDatos gd = new GestorDatos(path,filename); 
 		PushRelabel pr = new PushRelabel(); 
 		
-		//int n = pr.obtenerSeqSize(); 
 		gd.createFile(); 
 		gd.openFile("write"); 
 		
 		String buffer; 
 		
-		/*for(int i = 0; i < n; ++i) {
-			buffer = pr.LeerSeq(i); 
+		ArrayList<String> guardaseq = pr.obtenSeq(); 
+		int n = guardaseq.size(); 
+		
+		for(int i = 0; i < n; ++i) {
+			buffer = guardaseq.get(i); 
 			gd.writeBuffer(buffer); 
-		}*/
+		}
 		gd.closeFile(); 
 	}
 }

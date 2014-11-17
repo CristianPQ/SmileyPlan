@@ -171,8 +171,8 @@ public class PushRelabel extends Algoritmo {
 				alturas[u] = 1 + m;
 				/////per guardar ///////////////////
 				int aux = m+1; 
-				String sol = "la altura de " + u + " ahora es "+ aux + "\n"; 
-				seq.add(sol); 
+				String li = "la altura de " + u + " ahora es "+ aux + "\n"; 
+				seq.add(li); 
 				///////////////////////////////////
 			}
 			else {
@@ -194,14 +194,15 @@ public class PushRelabel extends Algoritmo {
 		
 	}
 	
-	/**
+	
+	 /**
 	 * Devuelve una arrayList con la sequencia de pasos que ha seguido 
 	 * el algorismo
 	 * @return seq
 	 */
 	public ArrayList<String> obtenSeq() {
 		return seq; 
-	}
+	}  
 	
 	
 	
