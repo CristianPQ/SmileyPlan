@@ -5,6 +5,17 @@ public class FordFulkerson extends Algoritmo{
 	
 	static ArrayList<String> list = new ArrayList <String>(); 
 	
+	/**
+	 * Crea los itinerarios que forman parte de la solucion de esta ejecucion
+	 * @param sol
+	 * @param g
+	 * @param indiceI
+	 * @param indiceF
+	 * @param flow
+	 * @param u
+	 * @param t
+	 * @param coste
+	 */
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		System.out.println();
@@ -30,7 +41,12 @@ public class FordFulkerson extends Algoritmo{
 		}
 		
 	}
-		
+	/**
+	 * Inicializadora	
+	 * @param g
+	 * @param s
+	 * @param t
+	 */
 	private void inicializacion(GrafoAntiguo g,int s, int t){
 		int v;
 		ArrayList <Arista> adyacencias;
@@ -45,6 +61,16 @@ public class FordFulkerson extends Algoritmo{
 		}
 		
 	}
+	
+	/**
+	 * Encuentra un camino
+	 * @param g
+	 * @param vis
+	 * @param u
+	 * @param t
+	 * @param f
+	 * @return
+	 */
 	 static int findPath(GrafoAntiguo g, boolean[] vis, int u, int t, int f) {
 		    if (u == t)
 		      return f;
@@ -69,8 +95,9 @@ public class FordFulkerson extends Algoritmo{
 		    return 0;
 		  }
 	 
-	 
-
+	/**
+	 * Ejecuta el algoritmo 
+	 */
 	public Solucion ejecutar ( Entrada e) throws Exception{
 		double t1 = System.currentTimeMillis();
 		GrafoAntiguo g = e.consultarGrafo();
@@ -102,7 +129,7 @@ public class FordFulkerson extends Algoritmo{
 	
 	 /**
 		 * Devuelve una arrayList con la sequencia de pasos que ha seguido 
-		 * el algorismo
+		 * el algoritmo
 		 * @return seq
 		 */
 		public ArrayList<String> obtenSeq() {

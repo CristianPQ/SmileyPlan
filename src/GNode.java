@@ -5,11 +5,19 @@ public class GNode {
 	String nombreCiudad;
 	private ArrayList<GNode> hijos;
 	
+	/** 
+	 * Creadora nodo
+	 * @param nCiudad
+	 */
 	public GNode(String nCiudad) {
 		nombreCiudad = nCiudad;
 		hijos = new ArrayList<GNode>();
 	}
 	
+	/**
+	 * Devuelve un array con los hijos 
+	 * @return
+	 */
 	public ArrayList<GNode> consultarHijos() {
 		return hijos;
 	}

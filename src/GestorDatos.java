@@ -48,8 +48,8 @@ public class GestorDatos {
 	    
 	    /**
 	     * creadora de un archivo con control de errores
-	     * @return true if created, otherwise false
-	     * @throws Exception File IOException
+	     * @return true si se ha creado
+	     * @throws Exception 
 	     */
 	    public boolean createFile() throws Exception{
 	        if (!f.exists()) {
@@ -60,8 +60,8 @@ public class GestorDatos {
 	    
 	    /**
 	     * Abre un archivo previamente creado
-	     * @param read true for read, false for write
-	     * @return true if opened, otherwise false
+	     * @param read o write 
+	     * @return true si se abre el archivo sin problema 
 	     * @throws Exception File, BufferedReader and BufferedWriter IOExceptions
 	     */
 	    public boolean openFile(String s) throws Exception {
@@ -81,8 +81,8 @@ public class GestorDatos {
 	    }
 	    
 	    /**
-	     * Closes file
-	     * @return true if closed, otherwise false
+	     * Cerrar el archivo
+	     * @return true si se cierra sin problemas
 	     * @throws Exception BufferedReader and BufferedWriter exceptions
 	     */
 	    public boolean closeFile() throws Exception {
@@ -101,8 +101,8 @@ public class GestorDatos {
 	    }
 	    
 	    /**
-	     * deletes file
-	     * @return true if deleted, otherwise false
+	     * Elimina el archivo
+	     * @return true si se elimina con exito
 	     * @throws Exception File exception 
 	     */
 	    public boolean deleteFile() throws Exception {
@@ -115,8 +115,8 @@ public class GestorDatos {
 	    
 	    /**
 	     * 
-	     * @param buffer stream to write into file
-	     * @return true if written, otherwise false
+	     * @param buffer que vamos a escribir dentro del archivo
+	     * @return true 
 	     * @throws Exception BufferedWriter exception
 	     */
 	    public boolean writeBuffer(String buffer) throws Exception {
@@ -129,9 +129,9 @@ public class GestorDatos {
 	    }
 	    
 	    /**
-	     * read stream of a file
-	     * @param numLines lines to be read
-	     * @return stream read
+	     * Lee las lineas de un buffer
+	     * @param numLines lineas que vamos a leer
+	     * @return 
 	     * @throws Exception BufferedWriter exception
 	     */
 	    public String readBuffer(int numLines) throws Exception {
@@ -149,8 +149,8 @@ public class GestorDatos {
 	    }
 	    
 	    /**
-	     * read a line of a file
-	     * @return line read
+	     * lee la linea de un archivo
+	     * @return la linea leida
 	     * @throws Exception BufferedWrite exception 
 	     */
 	    public String readLine() throws Exception {
