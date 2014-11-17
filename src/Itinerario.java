@@ -33,8 +33,8 @@ public class Itinerario {
 	 * @param Agente ag, para asociar el nombre del agente al nombre 
 	 * del itinerario (un itinerario por agente)
 	 */
-	public Itinerario(String nombreAg) throws Exception{ 
-			caminos = new ArrayList<String>();
+	public Itinerario(String nombreAg, ArrayList<String> ciudades) throws Exception{ 
+			caminos = ciudades;
 			nombre = nombreAg; 
 	}	
 	

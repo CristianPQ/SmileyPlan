@@ -27,11 +27,9 @@ public class ControladorItinerarios {
 	 * del agente al que esta relacionado
 	 * @throws Exception si el itinerario ya existe
 	 */
-	public Itinerario agregarItinerario(String nombreAg, ArrayList<String> ciudades) throws Exception {
-		Itinerario aux = new Itinerario(nombreAg); 
-		aux.agregarCiudades(ciudades); 
-		cjtoit.add(aux); 
-		return aux; 
+	public void agregarItinerario(String nombreAg, ArrayList<String> ciudades) throws Exception {
+		Itinerario aux = new Itinerario(nombreAg, ciudades); 
+		cjtoit.add(aux);  
 	}
 	
 	
