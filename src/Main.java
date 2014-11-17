@@ -2,20 +2,25 @@ import java.util.*;
 
 public class Main {
 	
-	/*private static Scanner sc;
+	private static Scanner sc;
 	
 	private static void menu() {
-        System.out.println("Driver clase Ciudad"
+        System.out.println("main"
                 + "\n 0.Salir"
-                + "\n 1.add(String s)"
-                + "\n 2.delete(String s)"
-                + "\n 3.escribirString():String"
-                + "\n 4.escribirStringModif():String"
+                + "\n 1.Crear Controlador mapa (int x, int y, string continente"
+                + "\n 2.Crear Controlador Agentes"
+                + "\n 3.Crear Controlador MediosTransporte"
+                + "\n 4.Crear Controlador Algoritmos"
+                + "\n 5.Crear Controlador Itinerarios"
         		+"\n");
     }
 	
 	public static void main(String [] args) throws Exception {
-		ArrayList<String> nombres = null;
+		ControladorMapa cMapa;
+		ControladorAgentes cAgentes;
+		ControladorMedioTransporte cMedio;
+		ControladorAlgoritmo cAlgo;
+		ControladorItinerarios cIt;
 		menu();
 		sc = new Scanner(System.in);
         String[] lsplited;
@@ -24,30 +29,23 @@ public class Main {
         		lsplited = sc.nextLine().split(" ");
     	        switch(Integer.parseInt(lsplited[0])) {
     	        	case 1: {
-    	        		String s = lsplited[1];
-    	            	nombres.add(s);
+    	        		int x = Integer.parseInt(lsplited[1]);
+    	        		int y = Integer.parseInt(lsplited[2]);
+    	        		//llegir continent
+    	        		cMapa = new ControladorMapa (x,y,continente);
+    	     
     	            	break;
     	        	}
     	        	case 2: {
-    	        		String s = lsplited[1];
-    	            	nombres.remove(s);
+    	        		cAgentes = new ControladorAgentes();
     	            	break;
     	        	}
     	        	case 3: {
-    	        		for(Iterator<String> it = nombres.iterator(); it.hasNext(); ) {
-    	        			System.out.println(it.next() + '\n');
-    	        		}
+    	        		cMedio = new ControladorMedioTransporte();
     	        		break;
     	        	}
     	        	case 4: {
-    	        		for(ListIterator<String> it = nombres.listIterator(); it.hasNext(); ) {
-    	        			String str = it.next();
-    	        			
-    	        			it.set("hola");
-    	        			it.remove();
-    	        			System.out.println(str + '\n');
-    	        		}
-    	        		break;
+    	        		cAlgo = new ControladorAlgoritmo(cAgentes, cMapa, cMedio);
     	        	}
     	        	case 5: {
     	        		nombres = new ArrayList<String>();
