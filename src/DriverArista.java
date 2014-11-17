@@ -80,7 +80,7 @@ public static void main(String [] args) throws Exception {
 	    				
 	    				case 8: {//consultarCoste
 	    					int c = a.consultarCoste();
-	    					System.out.println("Capacidad:" + c + "\n");
+	    					System.out.println("Coste:" + c + "\n");
 	    					break;
 	    				}
 	    				
