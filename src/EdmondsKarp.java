@@ -2,6 +2,13 @@ import java.util.*;
 
 public class EdmondsKarp {
 	int flow = 0;
+	
+	/**
+	 * Inicializadora
+	 * @param g
+	 * @param s
+	 * @param t
+	 */
 	private void inicializacion(GrafoAntiguo g,int s, int t){
 		int v;
 		flow = 0;
@@ -19,6 +26,13 @@ public class EdmondsKarp {
 
 
 		}
+	/**
+	 * 
+	 * @param g
+	 * @param s
+	 * @param t
+	 * @return
+	 */
 	 public static int maxFlow(GrafoAntiguo g, int s, int t) {
 		    int flow = 0;
 		    int[] q = new int[g.consultarNumVertices()];

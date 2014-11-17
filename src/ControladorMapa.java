@@ -148,14 +148,35 @@ public class ControladorMapa {
 	//#########################################
 	//##########SOBRE CAMINOS
 	//#########################################
+	
+	/**
+	 * Consultar si existe un camino con origen a cOrig
+	 * @param cOrig
+	 * @return
+	 */
 	public boolean existeCaminoConOrigen(String cOrig) {
 		return m.existeCaminoConOrigen(cOrig);
 	}
 	
+	/**
+	 * Consultar si existe un camino entre las ciudades cOrig, cDest
+	 * @param cOrig
+	 * @param cDest
+	 * @return
+	 */
 	public boolean existeCaminoDesdeA(String cOrig, String cDest) {
 		return m.existeCaminoDesdeA(cOrig, cDest);
 	}
 	
+	/**
+	 * Agregar un camino en el mapa
+	 * @param cOrig
+	 * @param cDest
+	 * @param medio
+	 * @param cap
+	 * @param contMT
+	 * @throws Exception
+	 */
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap, ControladorMedioTransporte contMT) throws Exception {
 		
 		//Comprobar que el medioTransporte ya existe
@@ -164,24 +185,61 @@ public class ControladorMapa {
 		m.agregarCamino(c);
 	}
 	
+	/**
+	 * Devuelve el camino representado por cOrig, cDest y med 
+	 * @param cOrig
+	 * @param cDest
+	 * @param med
+	 * @return
+	 * @throws Exception
+	 */
 	public Camino consultarCamino(String cOrig, String cDest, String med) throws Exception {
 		return m.consultarCamino(cOrig, cDest, med);
 	}
 
+	/**
+	 * Devuelve string con los caminos
+	 * @param cOrig
+	 * @param cDest
+	 * @param medio
+	 * @return
+	 * @throws Exception
+	 */
 	public String consultarCaminoToString(String cOrig, String cDest, String medio) throws Exception {
 		Camino c = m.consultarCamino(cOrig, cDest, medio);
 		String cam = cOrig + " " + cDest + " " + medio + " " + Integer.toString(c.consultarCapacidad()) + "\n";
 		return cam;
 	}
 	
+	/**
+	 * Elimina el camino representado por cOrig, cDest y medio
+	 * @param cOrig
+	 * @param cDest
+	 * @param medio
+	 * @throws Exception
+	 */
 	public void eliminarCamino(String cOrig, String cDest, String medio) throws Exception {
 		m.eliminarCamino(cOrig, cDest, medio);
 	}
 	
+	/**
+	 * Consultora que devuelve un array con los caminos entre cOrig y cDest
+	 * @param cOrig
+	 * @param cDest
+	 * @return
+	 * @throws Exception
+	 */
 	public ArrayList<Camino> consultarCaminosEntre(String cOrig, String cDest) throws Exception {
 		return m.consultarCaminosEntre(cOrig, cDest);
 	}
 	
+	/**
+	 * Consultora de los caminos entre ciudades cOirg y cDest
+	 * @param cOrig
+	 * @param cDest
+	 * @return lista caminos
+	 * @throws Exception
+	 */
 	public String consultarCaminosEntreToString(String cOrig, String cDest) throws Exception {
 		ArrayList<Camino> listCamino = m.consultarCaminosEntre(cOrig, cDest);
 		Iterator<Camino> it = listCamino.iterator();
@@ -195,19 +253,41 @@ public class ControladorMapa {
 		return listC;
 	}
 	
+	/**
+	 * Modificadora de los atributos de caminos 
+	 * @param cOrig
+	 * @param cDest
+	 * @param medio
+	 * @param cap
+	 * @throws Exception
+	 */
 	public void modificarAtributosCamino(String cOrig, String cDest, String medio, int cap) throws Exception {
 		m.modificarAtributosCamino(cOrig, cDest, medio, cap);
 	}
 	
+	/**
+	 * Devuelve los identificadores de las ciudades que se pueden alcanzar 
+	 * a partir de una ciudad
+	 * @param cOrig
+	 * @return
+	 */
 	//A partir de una ciudad origen se devuelven los identificadores de las ciudades que se pueden alcanzar
 	public ArrayList<Camino> consultarCaminosDestino(String cOrig) {
 		return m.consultarCaminosDestino(cOrig);
 	}
 	
+	/**
+	 * Devuelve array con todos los caminos
+	 * @return
+	 */
 	public ArrayList<Camino> consultarTodosCaminos() {
 		return m.consultarTodosCaminos();
 	}
 	
+	/**
+	 * Devuelve string con todos los caminos 
+	 * @return lista de caminos
+	 */
 	public String consultarTodosCaminosToString() {
 		ArrayList<Camino> todoCaminos = m.consultarTodosCaminos();
 		Iterator<Camino> it = todoCaminos.iterator();
@@ -220,6 +300,12 @@ public class ControladorMapa {
 		return listC;
 	}
 	
+	/**
+	 * Devuelve string con los caminos que tengan destino a cOrig
+	 * @param cOrig
+	 * @return lista de caminos
+	 * @throws Exception
+	 */
 	public String consultarCaminosDestinoToString(String cOrig) throws Exception {
 		ArrayList<Camino> listCamino = m.consultarCaminosDestino(cOrig);
 		if(listCamino.isEmpty()) {
