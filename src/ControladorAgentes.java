@@ -142,8 +142,9 @@ public class ControladorAgentes {
 			if (existeAgente(nombre)){ //si no existe, Exception
 				Agente a = Agentes.consultar(nombre);
 				a.modificarCiudadInicial(ciudadInicial);
-					Agentes.delete(nombre);
-					Agentes.insert(nombre,a);	
+				Agentes.modificar(nombre, a);
+					//Agentes.delete(nombre);
+					//Agentes.insert(nombre,a);	
 			}
 			else throw NoExiste;
 			
@@ -162,8 +163,9 @@ public class ControladorAgentes {
 			if (existeAgente(nombre)){//si no existe, Exception
 				Agente a = Agentes.consultar(nombre);
 				a.modificarCiudadObjetivo(ciudadObjetivo);
-					Agentes.delete(nombre);
-					Agentes.insert(nombre,a);	
+				Agentes.modificar(nombre, a);
+					//Agentes.delete(nombre);
+					//Agentes.insert(nombre,a);	
 			}
 			else throw NoExiste;
 		}

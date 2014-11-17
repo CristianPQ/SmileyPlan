@@ -7,9 +7,8 @@ public class GrafoAntiguo {
 	private ArrayList<Arista>[] Adyacencias;
 	private int numVertices;
 	
-	//private static Exception NoExiste = new Exception ("La adyacencia NO existe");
-
-
+	private static Exception NoExiste = new Exception ("La adyacencia NO existe");
+	private static Exception Existe = new Exception ("Ya existe");
 	/**
 	 * Constructora del grafo
 	 * @param numVertex que tendra el grafo
@@ -23,7 +22,7 @@ public class GrafoAntiguo {
 	/**
 	 * Devuelve un array con los vertices adyacentes a vertex
 	 * @param vertex
-	 * @return
+	 * @return la lista de aristas de salida que tiene ese vertice
 	 */
 	public ArrayList<Arista> consultarAdyacentes(int vertex){
 		return Adyacencias[vertex];
@@ -33,7 +32,7 @@ public class GrafoAntiguo {
 	 * Consulta si existe un vertice adyacente a vertex 
 	 * @param vertex
 	 * @param targetVertex
-	 * @return
+	 * @return booleano que indica si existe esa arista o no
 	 */
 	public boolean existeAdyacente(int vertex, int targetVertex){
 		for (int i = 0; i < Adyacencias[vertex].size();++i) 
@@ -49,8 +48,10 @@ public class GrafoAntiguo {
 	 * @param capacity
 	 * @param cost
 	 */
-	public void anadirArista (int vertex, int targetVertex,
-			int flow, int capacity, int cost){
+	public void anadirArista (int vertex, int targetVertex, int flow, int capacity, int cost) throws Exception{
+		
+		if(existeAdyacente(vertex,targetVertex)) throw Existe;
+		
 		Arista a = new Arista(targetVertex, flow, capacity, cost);
 		Adyacencias[vertex].add(a);
 	}
@@ -59,8 +60,10 @@ public class GrafoAntiguo {
 	 * Elimina una arista del vertice vertex 
 	 * @param vertex
 	 * @param targetVertex
+	 * @throws Exception si no existe
 	 */
-	public void eliminarArista(int vertex, int targetVertex){
+	public void eliminarArista(int vertex, int targetVertex) throws Exception{
+		if (existeAdyacente(vertex, targetVertex)){
 		int i = 0;
 		boolean trobat = false;
 		for (i = 0; i < Adyacencias[vertex].size() && !trobat; ++i){			
@@ -68,9 +71,10 @@ public class GrafoAntiguo {
 					Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
 					Adyacencias[vertex].remove(i);
 				trobat = true;
+				}	
 			}
-			
 		}
+		else throw NoExiste;
 	}
 	
 	
@@ -78,27 +82,30 @@ public class GrafoAntiguo {
 	 * Consultora del flujo de una arista del vertice vertex 
 	 * @param vertex
 	 * @param targetVertex
-	 * @return
+	 * @return flujo de la arista solicitada
+	 * @throws Exception si no existe
 	 */
-	public int consultarFlujoArista(int vertex, int targetVertex){
+	public int consultarFlujoArista(int vertex, int targetVertex) throws Exception{
 		int i;
 		for (i = 0; i < Adyacencias[vertex].size(); ++i){
 			if( !Adyacencias[vertex].get(i).equals(null) &&
 					Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
 						return Adyacencias[vertex].get(i).consultarFlujo();
-			}			
-		}
-		return -1;
-	}
+				}			
+			}
+		throw NoExiste;
+		}	
+
 
 	/**
 	 * Modificadora del flujo de la arista entre vertex y targetVertex
 	 * @param vertex
 	 * @param targetVertex
 	 * @param nuevoFlujo
+	 * @throws Exception si no existe
 	 */
-	public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo) 
-			{
+	public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo) throws Exception{
+		if(existeAdyacente(vertex, targetVertex)){
 		int i;
 		for (i = 0; i < Adyacencias[vertex].size(); ++i){
 			if( !Adyacencias[vertex].get(i).equals(null) &&
@@ -107,9 +114,10 @@ public class GrafoAntiguo {
 						a.modificarFlujo(nuevoFlujo);
 						Adyacencias[vertex].remove(i);
 						Adyacencias[vertex].add(i,a);
-
+				}
 			}			
 		}
+		else throw NoExiste;
 	}
 
 
@@ -117,28 +125,29 @@ public class GrafoAntiguo {
 	 * Consultora de la capacidad de la arista entre vertex y targetVertex
 	 * @param vertex
 	 * @param targetVertex
-	 * @return
+	 * @return capacidad de la arista solicitada
+	 * @throws Exception si no existe
 	 */
-	public int consultarCapacidadArista(int vertex, int targetVertex) {
+	public int consultarCapacidadArista(int vertex, int targetVertex) throws Exception {
 		int i;
 		for (i = 0; i < Adyacencias[vertex].size(); ++i){
 			if( !Adyacencias[vertex].get(i).equals(null) &&
 					Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
 						return Adyacencias[vertex].get(i).consultarCapacidad();
-			}			
-		}
-		return -1;
-	}
+				}			
+			}
+		throw NoExiste;
+		}	
 
 	/**
 	 * Modificadora de la capacidad de la arista entre vertex y targetVertex
 	 * @param vertex
 	 * @param targetVertex
 	 * @param nuevaCapacidad
+	 * @throws Exception si no existe
 	 */
-	public void modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad) 
-			{
-				
+	public void modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad) throws Exception{
+		if(existeAdyacente(vertex, targetVertex)){
 		int i;
 		for (i = 0; i < Adyacencias[vertex].size(); ++i){
 			if( !Adyacencias[vertex].get(i).equals(null) &&
@@ -147,27 +156,29 @@ public class GrafoAntiguo {
 						a.modificarCapacidad(nuevaCapacidad);
 						Adyacencias[vertex].remove(i);
 						Adyacencias[vertex].add(i,a);
+				}
 			}			
 		}
+		else throw NoExiste;
 	}
 	
 	/**
 	 * Consultora del coste de la artista entre vertex y targetVertex
 	 * @param vertex
 	 * @param targetVertex
-	 * @return
-	 * @throws Exception
+	 * @return Coste de la arista solicitada
+	 * @throws Exception si no existe
 	 */
-	public int consultarCosteArista(int vertex, int targetVertex)throws Exception{
+	public int consultarCosteArista(int vertex, int targetVertex) throws Exception {
 		int i;
 		for (i = 0; i < Adyacencias[vertex].size(); ++i){
 			if( !Adyacencias[vertex].get(i).equals(null) &&
 					Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
 						return Adyacencias[vertex].get(i).consultarCoste();
-			}			
-		}
-		return -1;
-	}
+				}			
+			}
+		throw NoExiste;
+		}	
 
 	
 	/**
@@ -175,9 +186,10 @@ public class GrafoAntiguo {
 	 * @param vertex
 	 * @param targetVertex
 	 * @param nuevoCoste
+	 * @throws Exception si no existe
 	 */
-	public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)
-		{
+	public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste) throws Exception {
+		if(existeAdyacente(vertex, targetVertex)){
 		int i;
 		for (i = 0; i < Adyacencias[vertex].size(); ++i){
 			if( !Adyacencias[vertex].get(i).equals(null) &&
@@ -186,27 +198,14 @@ public class GrafoAntiguo {
 						a.modificarCoste(nuevoCoste);
 						Adyacencias[vertex].remove(i);
 						Adyacencias[vertex].add(i,a);
-
+				}
 			}			
 		}
+		else throw NoExiste;
 	}
 	
 
-	
-	/*	public int consultarVerticeDestinoArista
-	(int vertex){
-		Arista a = grafo.get(vertex);
-		return a.consultarVerticeDestino();
-}
 
-public void modificarVerticeDestinoArista
-	(int vertex, int nuevoVerticeDestino) {
-		Arista a = grafo.get(vertex);
-		a.modificarVerticeDestino(nuevoFlujo);
-		grafo.add(vertex,a);
-}
-*/
-	//consulta num vertices
 	/**
 	 * Consultora del numero de vertices 
 	 * @return
@@ -220,6 +219,7 @@ public void modificarVerticeDestinoArista
 	 * @param vertex
 	 * @return
 	 */
+	
 	public int consultarNumAristasVertice(int vertex){
 		return Adyacencias[vertex].size();
 	}

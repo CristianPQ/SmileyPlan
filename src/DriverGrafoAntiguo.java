@@ -7,21 +7,21 @@ import java.util.*;
 public class DriverGrafoAntiguo {
 
 private static void menu() {
-	        System.out.println("Driver clase Grafo"
+	        System.out.println("Driver clase GrafoAntiguo"
 	                + "\n 0.Salir"
-	                + "\n 1.[Constructora] Grafo()"
-	            //    + "\n 2.anadirNumeroAdyacencias(int numvertex, int numAd)"
+	                + "\n 1.[Constructora] GrafoAntiguo()"
+	                + "\n 2.existeAdyacente(int numVertex, int targetVertex)"
 	                + "\n 3.anadirArista(int vertex, int targetVertex, int flow, int capacity, int cost)"
 	                + "\n 4.eliminarArista(int vertex, int targetVertex)"
 	                + "\n 5.consultarFlujoArista(int vertex,int targetVertex, int nuevoFlujo)"
-	              + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
+	                + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
 	                + "\n 7.consultarCapacidadArista(int vertex,int targetVertex)"
 	                + "\n 8.modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad)"
 	                + "\n 9.consultarCosteArista(int vertex,int targetVertex)"
 	                + "\n 10.modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)"
 	                + "\n 11.consultarNumVertices()"
 	                + "\n 12.consultarNumAristasVertice(int vertex)"
-	                + "\n 13.CONSULTARADYACENTES(int vertex)"
+	                + "\n 13.ConsultarAdyacentesDe(int vertex)"
 	                +"\n");
 }
 
@@ -40,13 +40,14 @@ public static void main(String [] args) throws Exception {
 	    					g = new GrafoAntiguo(numVertex);
 	    					break;
 	    				}
-	    				/*case 2:{	    				
+	    				case 2:{//existe la arista?    				
 	    					int numVertex = Integer.parseInt(lsplited[1]);
 	    					int numAd = Integer.parseInt(lsplited[2]);
-	    					g.anadirNumeroAdyacencias(numVertex, numAd);
+	    					g.existeAdyacente(numVertex, numAd);
+	    					System.out.println("Si existe arista desde " + numVertex + " hacia "+ numAd);
 	    					break;
 	    				}
-	    				*/
+
 	    				case 3: {//AnadirArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
@@ -135,16 +136,6 @@ public static void main(String [] args) throws Exception {
 	    					
 	    				}	
 	    				
-	    				case 14:{
-	    					for (int i = 0; i < g.consultarNumVertices(); ++i){
-	                            ArrayList <Arista>adyacencias = g.consultarAdyacentes(i);
-	                            for (int j = 0; j < adyacencias.size(); ++j){
-	                                    int v = adyacencias.get(j).consultarVerticeDestino();
-	                                    g.anadirArista(v,i,adyacencias.get(j).consultarCapacidad(),adyacencias.get(j).consultarCapacidad(),0);
-	                            }
-	                    }
-	    					break;
-	    				}
 	   		
 	    				case 0: {
 	    	                System.exit(0);

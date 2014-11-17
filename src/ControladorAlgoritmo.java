@@ -26,7 +26,9 @@ public class ControladorAlgoritmo {
 	
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
 			ControladorMedioTransporte mt, String cOrig, String cDest) throws Exception{
-		
+		//#########################################
+		//########## MAPEADO ##################
+		//#########################################
 		int i;
 
 		ArrayList<String> mapeo = new ArrayList<String>();
@@ -54,6 +56,10 @@ public class ControladorAlgoritmo {
 			
 		mapping = new String[mapeo.size()];
 		for (int z = 0; z < mapeo.size(); ++z) mapping[z] = mapeo.get(z);
+		
+		//#########################################
+		//########## FIN MAPEADO ##################
+		//#########################################
 	
 		int orig = returnCityIndex(cOrig);
 		int dest = returnCityIndex(cDest);
@@ -70,30 +76,8 @@ public class ControladorAlgoritmo {
 	public void EjecutarGrafo(int i) {
 		
 	}
-	
-/*	private int consultarIntCiudad(String c) {
-		int i;
-		for(i = 0; i < relacCiudades.size(); ++i) {
-			if(relacCiudades.get(i).equals(c)) return i;
-		}
-		return -1;
-	}
-	
-*/
-	//#########################################
-	//##########Entrada ##################
-	//#########################################
 
-	
-	//#########################################
-	//########## MAPEADO ##################
-	//#########################################
-	
 
-	
-	
-	
-	
 	//#########################################
 	//########## CREACION GRAFO ################
 	//#########################################
