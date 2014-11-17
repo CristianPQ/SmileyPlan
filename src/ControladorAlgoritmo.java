@@ -2,7 +2,7 @@
 import java.util.*;
 
 public class ControladorAlgoritmo {
-	private String[] mapping;
+	private ArrayList<String> relacCiudades;
 	private Entrada ent;
 	private Solucion sol;
 	private ControladorItinerarios cit;
@@ -47,48 +47,7 @@ public class ControladorAlgoritmo {
 	//#########################################
 	
 
-			public void insertarCiudadesMapping(ControladorMapa m) throws Exception{
-			int i;
-		//	int donde_guardo = 0;
-			ArrayList<String> mapeo = new ArrayList<String>();
-
-			for (i = 0; i < m.listarCiudades().size();++i){ //per cada ciutat
-				int necesito = 1;
-				for (int j = 0; j < m.listarCiudades().size(); ++j){ 
-					//per cada ciutat possiblement adjacent a la ciutat (i)
-					
-					if (j != i){//hacer a ver si existen caminos para EVITAR EXCEPCIONES
-						//consultar caminos (i,j) 	
-						if(m.existeCaminoDesdeA(m.listarCiudades().get(i), m.listarCiudades().get(j))){
-							
-							ArrayList<Camino> Caminos = m.consultarCaminosEntre(m.listarCiudades().get(i), m.listarCiudades().get(j));
-							if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();
-							}
-						}
-					}
-				int w = 0;
-				while (w < necesito) { //porque a lo mejor necesito + vertices!
-					mapeo.add(m.listarCiudades().get(i));
-					System.out.println(m.listarCiudades().get(i));
-					++w;
-				}
-			}
-			
-			mapping = new String[mapeo.size()];
-			for (int z = 0; z < mapeo.size(); ++z) mapping[z] = mapeo.get(z);
-		}
-		
-		
-
-
-
-		public String[] consultarMapping(){
-			return mapping;
-		}
-
-		public int consultarNumVertices(){
-			return mapping.length;
-		}
+	
 	
 	
 	
@@ -96,68 +55,24 @@ public class ControladorAlgoritmo {
 	//########## CREACION GRAFO ################
 	//#########################################
 	
-		public GrafoAntiguo crearGrafo(ControladorMapa m, ControladorMedioTransporte cm)throws Exception{
-			Grafo g = new GrafoAntiguo(mapping.length); //init grafo
-			//ArrayList<Camino> aristando = new ArrayList<Camino>();
-			
-			ArrayList<Camino> aristando;
-			for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
-				aristando = new ArrayList<Camino>();
-
-				String ciudadEncontrandoAristas = m.listarCiudades().get(i);
-				if(m.existeCaminoConOrigen(ciudadEncontrandoAristas))
-				aristando = m.consultarCaminosDestino(ciudadEncontrandoAristas); //consultar ciudades adyacentes
-				if (!aristando.equals(null)){
-					for (int j = 0; j < aristando.size(); ++j){ //cada ciudad adyacente...
-						
-					////////////////PREPARAR LA ARISTA
-						int targetVertex  = returnCityIndex(aristando.get(j).consultarDestino()); 
-						////aqui arriba traduzco el nombre de la ciudad por el indice correspondiente
-						int capacity = aristando.get(j).consultarCapacidad();
-						///aqui arriba otengo la capacidad
-
-						////////CALCULO TEMA COSTE//////////////////////////
-						////////////////////////////////////////////////
-						MedioTransporte mtrans = cm.buscarMedio(aristando.get(j).consultarTransporte());
-						//aqui arriba busco el medio						
-						int x1 = m.consultarCiudad(ciudadEncontrandoAristas).consultarCoordenadas().consultarX();
-						int y1 =  m.consultarCiudad(ciudadEncontrandoAristas).consultarCoordenadas().consultarY();
-						//consulta cordenadas x e y de la ciudad de la cual sale el camino
-
-						int x2 = m.consultarCiudad(aristando.get(j).consultarDestino()).consultarCoordenadas().consultarX();						
-						int y2 = m.consultarCiudad(aristando.get(j).consultarDestino()).consultarCoordenadas().consultarY();
-						//consulta coordenadas x e y de la ciudad donde acaba el camino
-
-						int x; int y;
-						if (x1 > x2) x= x1-x2; else x = x2-x1;
-						if (y1 > y2) y= y1-y2; else y = y2-y1;
-						int cost = (x + y)* mtrans.getPrecio(); //REVISAR ESTO!!!!!!!!!!
-						
-						//////MECANISMO PARA SALTAR DE VERTICE
-
-						int insert_here = -1;
-						boolean insertado = false;
-						while (!insertado){ //para tener en cuenta num d'iteraciones
-							++insert_here;
-							if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
-								insertado = true;
-								g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here,targetVertex, 0, capacity, cost);
-								}
-						}
-					
-						/////////AFEGEIXO CONEXIONES ENTRE VERTICES CORRESPONDIENTES A LA MISMA CIUDAD
-						for (int d = 0; d < insert_here; ++d) 
-							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + d, 
-									returnCityIndex(ciudadEncontrandoAristas) +1, 0, 2147483647, 0);
-						
-						}
-						
-					}
-					
-				}
-				
-			return g;
+	private GrafoAntiguo crearGrafo(ControladorMapa m, ControladorMedioTransporte mt) throws Exception {
+		GrafoAntiguo g = new GrafoAntiguo(relacCiudades.size());
+		for(int i = 0; i < relacCiudades.size(); ++i) {
+			String cOrig = relacCiudades.get(i);
+			ArrayList<Camino> listCam = m.consultarCaminosDestino(cOrig);
+			Iterator<Camino> it = listCam.iterator();
+			while(it.hasNext()) {
+				Camino c = it.next();
+				String cDest = c.consultarDestino();
+				String medioT = c.consultarTransporte();
+				int cap = c.consultarCapacidad();
+				int coste = mt.getPrecioTransporte(medioT)*m.distanciaCiudades(cOrig, cDest);
+				int iDest =consultarIntCiudad(cDest); 
+				g.anadirArista(i, iDest, 0, cap, coste);
 			}
+		}
+		return g;
+	}
 	
 	//#########################################
 	//########## ALGORITMOS ################
