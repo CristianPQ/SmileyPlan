@@ -213,19 +213,19 @@ public class ControladorAlgoritmo {
 		}
 		//cas que sobren camins, mirem els de menys cost
 		else if (numIt > numAg){ 
-				System.out.println("numIt mayor que numAg \n");
-			int min = 1000; 
-			int pos = 1000; 
+				System.out.println("numIt mayor que numAg \n"); 
 			for(int i = 0; i < numAg; ++i){
+				int min = 1000;
+				int pos = 1000;
 				for(int j = 0; j < numIt; ++j){
 					if(sol.obtenCoste(j) < min) {
 						min = sol.obtenCoste(j);
 						pos = j; 
 					}
-					sol.agregarCosteAItinerario(pos, 1000);//posem marca
-					String s = agentes.get(i); 
-					convertirItinerario(i,s); 
 				}
+				String s = agentes.get(i); 
+				convertirItinerario(pos,s);
+				sol.agregarCosteAItinerario(pos, 1000);//posem marca 
 			}
 		}
 	}
