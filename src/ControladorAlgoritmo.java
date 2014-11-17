@@ -272,7 +272,8 @@ public class ControladorAlgoritmo {
 	
 	
 	/**
-	 * Guarda la sequencia del PushRelabel
+	 * Guarda la sequencia del ultimo algoritmo ejecutado
+	 * primero hay que ejecutar para que funcione
 	 * @param path
 	 * @param filename
 	 * @throws Exception
