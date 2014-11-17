@@ -104,22 +104,12 @@ public class ControladorAlgoritmo {
 					///aqui arriba otengo la capacidad
 
 					////////CALCULO TEMA COSTE//////////////////////////
+					int precioTransporte = mt.getPrecioTransporte(aristando.get(j).consultarTransporte());
+					int distanciaCiudades = m.distanciaCiudades(m.listarCiudades().get(i), 
+												aristando.get(j).consultarDestino());
+					int cost = precioTransporte*distanciaCiudades; //REVISAR ESTO!!!!!!!!!!
+
 					////////////////////////////////////////////////
-					MedioTransporte mtrans = mt.buscarMedio(aristando.get(j).consultarTransporte());
-					//aqui arriba busco el medio						
-					int x1 = m.consultarCiudad(ciudadEncontrandoAristas).consultarCoordenadas().consultarX();
-					int y1 =  m.consultarCiudad(ciudadEncontrandoAristas).consultarCoordenadas().consultarY();
-					//consulta cordenadas x e y de la ciudad de la cual sale el camino
-
-					int x2 = m.consultarCiudad(aristando.get(j).consultarDestino()).consultarCoordenadas().consultarX();						
-					int y2 = m.consultarCiudad(aristando.get(j).consultarDestino()).consultarCoordenadas().consultarY();
-					//consulta coordenadas x e y de la ciudad donde acaba el camino
-
-					int x; int y;
-					if (x1 > x2) x= x1-x2; else x = x2-x1;
-					if (y1 > y2) y= y1-y2; else y = y2-y1;
-					int cost = (x + y)* mtrans.getPrecio(); //REVISAR ESTO!!!!!!!!!!
-					
 					//////MECANISMO PARA SALTAR DE VERTICE DENTRO DE LA MISMA CIUDAD
 
 					int insert_here = -1;
