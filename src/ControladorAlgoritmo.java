@@ -171,6 +171,14 @@ public class ControladorAlgoritmo {
 				break;
 			}
 		}
+		if(!sol.consultarTieneSolucion()) System.out.println(" #######################"
+				+ "\n NO HAY SOLUCION POSIBLE"
+				+ "\n #######################"
+				+ "\n Carque nuevamente el ControladorAlgoritmo");
+		ent = null;
+		sol = null;
+		cit = null;
+		agentes = null;
 	}
 	
 	public void ejecutarAlgoritmoDinic() throws Exception{
@@ -203,15 +211,8 @@ public class ControladorAlgoritmo {
 		int numIt = sol.obtenNumeroItinerarios(); 
 		//cas no solucio?
 		
-		
-		
-		//COmprobar si tiene solucion
-		/*if(sol.consultarTieneSolucion()) {
-			
-		}*/
-		
 		//cas falten o igual camins
-		if(numIt <= numAg) {
+		/*if(numIt <= numAg) {
 				//System.out.println("numIt menor o igual que numAg \n");
 			for(int i = 0; i < numAg; ++i) {
 				String s;
@@ -228,9 +229,9 @@ public class ControladorAlgoritmo {
 				}
 
 			}
-		}
+		}*/
 		//cas que sobren camins, mirem els de menys cost
-		else if (numIt > numAg){ 
+		//else if (numIt > numAg){ 
 				//System.out.println("numIt mayor que numAg \n"); 
 			for(int i = 0; i < numAg; ++i){
 				int min = 1000;
@@ -245,7 +246,7 @@ public class ControladorAlgoritmo {
 				convertirItinerario(pos,s);
 				sol.agregarCosteAItinerario(pos, 1000);//posem marca 
 			}
-		}
+		//}
 	}
 	
 	
