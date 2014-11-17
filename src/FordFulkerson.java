@@ -122,6 +122,7 @@ public class FordFulkerson extends Algoritmo{
 	//	Guardar(path,file); 
 		double t2 = System.currentTimeMillis();
 		sol.modificarTiempo(t2-t1);
+		sol.seqsol = list; 
 		return sol;
 		
 		
