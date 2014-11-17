@@ -23,7 +23,7 @@ public class DriverControladorAlgoritmoC {
     	medioT.agregarTren("cercanias", 12);
     	medioT.agregarTren("ave", 36);
     	
-    	ControladorMapa ma = new ControladorMapa(10, 10, "2 3 2 4 2 5 3 6 4 6 5 6 6 5 6 4 6 3 5 2 4 2 3");
+    	ControladorMapa ma = new ControladorMapa(10, 10, "2 3 2 4 2 5 3 6 4 6 5 6 6 5 6 4 6 3 5 2 4 2 3 2");
     	ma.agregarCiudad("bcn", 3, 3);
     	ma.agregarCiudad("bil", 3, 4);
     	ma.agregarCiudad("mad", 3, 5);
@@ -33,6 +33,13 @@ public class DriverControladorAlgoritmoC {
     	ma.agregarCiudad("gir", 5, 3);
     	ma.agregarCiudad("tar", 5, 4);
     	ma.agregarCiudad("gal", 5, 5);
+    	ma.agregarCamino("bcn", "bil", "bmw", 2, medioT);
+    	ma.agregarCamino("bil", "mad", "renaul", 2, medioT);
+    	ma.agregarCamino("mad", "sev", "ave", 4, medioT);
+    	ma.agregarCamino("bcn", "mad", "cercanias", 2, medioT);
+    	ma.agregarCamino("sev", "gal", "audi", 4, medioT);
+    	ma.agregarCamino("bcn", "gir", "bmw", 5, medioT);
+    	ma.agregarCamino("gir", "gal", "ave", 5, medioT);
     	
     	ControladorAgentes cAgentes = new ControladorAgentes();
     	cAgentes.anadirAgente("joan", "bcn", "gal");
@@ -48,26 +55,25 @@ public class DriverControladorAlgoritmoC {
 		        lsplited = sc.nextLine().split(" ");
 		        switch(Integer.parseInt(lsplited[0])) {
 		            case 1: {
-		            	
-		            	
+		            	cAl = new ControladorAlgoritmoC(cAgentes, ma, medioT, "bcn", "gal");
 		                break;
 		            }
 		           case 2: {
-		            	
+		            	int i = Integer.parseInt(lsplited[1]);
+		            	cAl.ejecutar(i);
 		                break;
 		            }
 		           case 3: {
-		        	   
-		        	   //ca.ejecutarAlgoritmoPushRelabel(g, s, t);
+		        	   cAl.asignarItinerarioAAgente();
 		        	   break;
 		           }
 		           case 4:{
-		        	   
+		        	   cAl.guardarSeqPR("/Users/cristianPQ/Documents/Eclipse/SmileyPlan/src/", "pruebaAlg");
 		           }
-		            case 0: {
+		           case 0: {
 		                System.exit(0);
-		            }
-		            default: {
+		           }
+		           default: {
 		                System.out.println("Entrada de datos no valida, pruebe con un valor entre 1 y 5 o 0 para salir\n");
 		                break;
 		            }       
