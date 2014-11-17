@@ -119,7 +119,6 @@ public class FordFulkerson extends Algoritmo{
 			sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
-	//	Guardar(path,file); 
 		double t2 = System.currentTimeMillis();
 		sol.modificarTiempo(t2-t1);
 		sol.seqsol = list; 
@@ -127,22 +126,6 @@ public class FordFulkerson extends Algoritmo{
 		
 		
 	}
-	
-	 /**
-		 * Devuelve una arrayList con la sequencia de pasos que ha seguido 
-		 * el algoritmo
-		 * @return seq
-		 */
-		public ArrayList<String> obtenSeq() {
-			return list; 
-		} 
-	
-	
-	
-	
-	
-	
-	
 	
 }
 	

@@ -113,17 +113,9 @@ public class Dinic extends Algoritmo {
 		//	Guardar(path,file); 
 			double t2 = System.currentTimeMillis();
 			sol.modificarTiempo(t2-t1);
+			sol.seqsol = seq; 
 			return sol;
 		  }
-		  
-		  /**
-			 * Devuelve una arrayList con la sequencia de pasos que ha seguido 
-			 * el algorismo
-			 * @return seq
-			 */
-			public ArrayList<String> obtenSeq() {
-				return seq; 
-			} 
 		  
 }
 

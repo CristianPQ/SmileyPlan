@@ -20,7 +20,7 @@ public class Solucion {
 		 * @return seq
 		 */
 		public ArrayList<String> obtenSeq() {
-			System.out.println("dins sol " +seqsol.size() + "\n");
+			//System.out.println("dins sol " +seqsol.size() + "\n");
 			return seqsol; 
 		} 
 		
