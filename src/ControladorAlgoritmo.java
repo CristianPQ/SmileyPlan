@@ -28,7 +28,24 @@ public class ControladorAlgoritmo {
 			if(relacCiudades.get(i).equals(c)) return i;
 		}
 		return -1;
-	}	
+	}
+	
+	private GrafoAntiguo crearGrafo(ControladorMapa m, ControladorMedioTransporte mt) {
+		GrafoAntiguo g = new GrafoAntiguo(relacCiudades.size());
+		for(int i = 0; i < relacCiudades.size(); ++i) {
+			String cOrig = relacCiudades.get(i);
+			ArrayList<Camino> listCam = m.consultarCaminosDestino(cOrig);
+			Iterator<Camino> it = listCam.iterator();
+			while(it.hasNext()) {
+				Camino c = it.next();
+				String cDest = c.consultarDestino();
+				String medioT = c.consultarTransporte();
+				int cap = c.consultarCapacidad();
+				int coste = mt.getPrecioTransporte(medioT)*
+				Arista ar = new Arista()
+			}
+		}
+	}
 	
 	//#########################################
 	//##########Entrada ##################
@@ -58,7 +75,7 @@ public class ControladorAlgoritmo {
 	//########## MAPEADO ##################
 	//#########################################
 	
-	public void insertarCiudadesMapping( Mapa m) throws Exception{
+	/*public void insertarCiudadesMapping( Mapa m) throws Exception{
 		int i;
 		int donde_guardo = 0;
 		ArrayList<String> mapeo = new ArrayList<String>();
@@ -80,7 +97,7 @@ public class ControladorAlgoritmo {
 		
 		relacCiudades = new String[mapeo.size()];
 		for (int z = 0; z < mapeo.size(); ++z) relacCiudades[z] = mapeo.get(z);
-	}
+	}*/
 
 	
 	
@@ -212,7 +229,7 @@ public class ControladorAlgoritmo {
 		ArrayList<String> listaciudades = new ArrayList<String>();	
 		for(int j = 0; j < num; ++j) {
 			int v = sol.obtenVertice(i, j); 
-			String c = consultarElementRelacCiudades(v); 
+			String c = relacCiudades.get(v); 
 			listaciudades.add(c);
 		}
 		cit.agregarItinerario(nombreAg,listaciudades); 

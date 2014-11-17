@@ -48,6 +48,14 @@ public class Coordenadas {
 	public int consultarY() {
 		return y;
 	}
+
+	public int distancia(Coordenadas coordD) {
+		int cX = coordD.consultarX();
+		int cY = coordD.consultarY();
+		double dif = Math.sqrt(Math.pow((cX-x),2) + Math.pow((cY-y),2));
+		int dif2 = (int) dif;
+		return dif2;
+	}
 	
 	/*
 	 * Setter del elemento y

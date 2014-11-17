@@ -150,6 +150,15 @@ public class Mapa {
 	//##########SOBRE CIUDADES
 	//#########################################
 	
+	public int distanciaCiudades(String cOrig, String cDest) throws Exception {
+		if(!existeCiudad(cOrig) || !existeCiudad(cDest)) throw NoExiste;
+		Ciudad ciuO = consultarCiudad(cOrig);
+		Coordenadas coordO = ciuO.consultarCoordenadas();
+		Ciudad ciuD = consultarCiudad(cDest);
+		Coordenadas coordD = ciuD.consultarCoordenadas();
+		return coordO.distancia(coordD);
+	}
+	
 	/*
 	 * Comprobar si la ciudad ya existe
 	 */

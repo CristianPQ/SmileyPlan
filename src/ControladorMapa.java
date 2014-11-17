@@ -49,6 +49,10 @@ public class ControladorMapa {
 	//##########SOBRE CIUDADES
 	//#########################################
 	
+	public int distanciaCiudades(String cOrig, String cDest) throws Exception {
+		return m.distanciaCiudades(cOrig, cDest);
+	}
+	
 	/**
 	 * Agregar una nueva ciudad
 	 * @param nombre
