@@ -7,11 +7,10 @@ public class ControladorAlgoritmo {
 	private Solucion sol;
 	private ControladorItinerarios cit;
 	private ArrayList<String > agentes;
-	long tiempo; 
 	
 	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
 	
-	public double consultarTiempo() throws Exception {
+	public long consultarTiempo() throws Exception {
 		if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
 		return sol.consultarTiempo();
 	}

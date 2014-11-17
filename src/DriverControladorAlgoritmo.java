@@ -14,6 +14,7 @@ public class DriverControladorAlgoritmo {
                 + "\n 5.ejecutar(int i)"
                 + "\n 6.Consultar ControladorItinerarios"
                 + "\n 7.Guardar sequencia algoritmo pushRelabel"
+                + "\n 8.Consultar tiempo de ejecucion"
         		+"\n");
     }
 	
@@ -146,6 +147,10 @@ public class DriverControladorAlgoritmo {
     	        		String path = "/Users/olgacarbo/Desktop/SmileyPlan/src/";
     	        		String filename = "prova alg"; 
     	        		cAlg.guardarSeq(path, filename);
+    	        	}
+    	        	case 8: {
+    	        		long t = cAlg.consultarTiempo();
+    	        		System.out.println(t + "\n");
     	        	}
     	        	case 0: {
     	                System.exit(0);
