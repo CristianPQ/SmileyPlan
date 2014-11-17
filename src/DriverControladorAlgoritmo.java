@@ -2,8 +2,8 @@ import java.util.*;
 
 public class DriverControladorAlgoritmo {
 	
-	private static Scanner sc;
-	
+	private static Scanner in;
+
 	private static void menu() {
         System.out.println("main"
                 + "\n 0.Salir"
@@ -16,7 +16,7 @@ public class DriverControladorAlgoritmo {
     }
 	
 	public static void main(String [] args) throws Exception {
-		Scanner in = new Scanner(System.in);
+		in = new Scanner(System.in);
 		ControladorMapa m = null;
 		ControladorAgentes cAge = null;
 		ControladorMedioTransporte cMed = null;
@@ -123,38 +123,9 @@ public class DriverControladorAlgoritmo {
     	        	case 5: {
     	        		cAlg.asignarItinerarioAAgente();
     	        		cIt = cAlg.consultarItinerarios();
+    	        		String its = cIt.escribirItinerarios();
+    	        		System.out.println(its + "\n");
     	        		break;
-    	        	}
-    	        	case 6: {
-    	        		//leer ciudades
-    	        		int n = Integer.parseInt(lsplited[1]); //Numero de ciudades a leer
-    	        		for (int i = 0; i < n; i++) {
-    	        			lsplited = sc.nextLine().split(" ");
-    	        			String nombre = lsplited[1];
-    		            	int coordX = Integer.parseInt(lsplited[2]);
-    		                int coordY = Integer.parseInt(lsplited[3]);
-    		                Coordenadas coord = new Coordenadas(coordX, coordY);
-    		                Ciudad c = new Ciudad(nombre, coord);
-    	        			cMapa.agregarCiudad(nombre, coordX, coordY);
-    	        		}
-    	        		break;
-    	        		
-    	        	}
-    	        	case 7: {
-    	        		//leer caminos
-    	        		int n = Integer.parseInt(lsplited[1]); //Numero de caminos a leer
-    	        		for (int i = 0; i < n; i++) {
-    	        			lsplited = sc.nextLine().split(" ");
-    	        			String nombre = lsplited[1];
-    	        			String cOrig = lsplited[1];
-    		            	String cDest = lsplited[2];
-    		            	String medio = lsplited[3];
-    		            	int cap = Integer.parseInt(lsplited[4]);
-    		            	Camino c = new Camino(cOrig, cDest, cap, medio);
-    		            	//cMapa.agregarCamino(cDest,cap, medio,medioT);
-    	        		}
-    		            break;
-    	        		
     	        	}
     	        	case 0: {
     	                System.exit(0);
