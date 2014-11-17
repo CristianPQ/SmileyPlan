@@ -46,13 +46,14 @@ public class ControladorAgentes {
 		}
 		
 		/**
-		 * Anadir un agente
+		 * Anadir un agente AUX
 		 * @param nombre nombre del agente que se quiere anadir
 		 * @param ciudadInicial ciudad donde empieza el recorrido del agente
 		 * @param ciudadObjetivo ciudad que quiere alcanzar el agente
 		 * @throws Exception si ya existe agente con este nombre
 		 */
-		private void anadirAgenteInterna(String nombre, String ciudadInicial, String ciudadObjetivo)
+		private void anadirAgenteInterna(String nombre, String ciudadInicial, String ciudadObjetivo) 
+		throws Exception{
 		if (!existeAgente(nombre)){//si no existe, Exception
 			Agente a = new Agente(nombre, ciudadInicial, ciudadObjetivo);
 			Agentes.insert(nombre,a);
@@ -60,14 +61,21 @@ public class ControladorAgentes {
 		}	
 		else throw NombreYaExiste;	
 	}
+		
+		/**
+		 * Anadir un agente
+		 * @param nombre nombre del agente que se quiere anadir
+		 * @param ciudadInicial ciudad donde empieza el recorrido del agente
+		 * @param ciudadObjetivo ciudad que quiere alcanzar el agente
+		 * @param m controladorMapa para verificar que existen las ciudades
+		 * @throws Exception si no existe una de las ciudades
+		 */
 
 		public void anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo,
 				ControladorMapa m)
 				throws Exception{ 
-				if(!m.exists(ciudadInicial)) throw NoInicial; //si no existe, saltara excepcion de ctrlmapa
-				if(!m.exists())
-	
-				m.exists(ciudadObjetivo);//si no existe, saltara la excepcion de ctrlmapa
+				if(!m.existeCiudad(ciudadInicial)) throw NoInicial; //si no existe, saltara excepcion de ctrlmapa
+				if(!m.existeCiudad(ciudadObjetivo)) throw NoObjetivo;//si no existe, saltara la excepcion de ctrlmapa
 				anadirAgenteInterna(nombre, ciudadInicial,ciudadObjetivo);
 		}
 		

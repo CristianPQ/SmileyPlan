@@ -31,6 +31,14 @@ private static void menu() {
 
 public static void main(String [] args) throws Exception {
 			ControladorAgentes conjAgentes = null;
+			//////MAPA DE PRUEBAS///////////////////////
+			ControladorMapa cm = new ControladorMapa(100, 100, " ");
+			cm.agregarCiudad("barcelona", 0, 1);
+			cm.agregarCiudad("madrid", 0, 10);
+			cm.agregarCiudad("oviedo", 20, 12);
+			cm.agregarCiudad("sevilla", 34, 56);
+			cm.agregarCiudad("valencia", 2, 40);
+			cm.agregarCiudad("zaragoza", 12, 70);
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
@@ -49,7 +57,7 @@ public static void main(String [] args) throws Exception {
 	    					String nombre = lsplited[1];
 	    					String ciudadInicial = lsplited[2];
 	    					String ciudadObjetivo = lsplited[3];	    					
-	    					conjAgentes.anadirAgente(nombre, ciudadInicial, ciudadObjetivo);
+	    					conjAgentes.anadirAgente(nombre, ciudadInicial, ciudadObjetivo,cm);
 	    					break;
 	    				}
 	    				
