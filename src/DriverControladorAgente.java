@@ -107,6 +107,7 @@ public static void main(String [] args) throws Exception {
 	    					String nombre = lsplited[1];
 	    					String ciudadObjetivo = lsplited[2];
 	    					conjAgentes.modificarCiudadObjetivoAgente(nombre, ciudadObjetivo);
+	    					System.out.println("\n");
 	    					break;
 	    				}
 
@@ -115,6 +116,7 @@ public static void main(String [] args) throws Exception {
 	    					int numAg = conjAgentes.getNumeroDeAgentes();
 	    					System.out.println("Numero de agentes:" + numAg + "\n");
 	    					break;
+	    					
 	    				}
 	    				
 	    				case 11:{//eliminarTodo
@@ -128,6 +130,7 @@ public static void main(String [] args) throws Exception {
 			            	while(it.hasNext()) {
 			            		System.out.println(it.next() + "\n");
 			            	}
+	    					System.out.println("\n");
 			                break;
 	    				}
 	    				
@@ -151,6 +154,8 @@ public static void main(String [] args) throws Exception {
 	    					ArrayList <String> nombres = conjAgentes.consultarAgentesOrigenObjetivo(ciudadInicial, ciudadObjetivo);
 	    					for (int i = 0; i < nombres.size(); ++i)
 	    						System.out.println(nombres.get(i) +"\n");
+	    					
+	    					System.out.println("\n");
 	    					break;
 	    	            }
 	    	            
@@ -158,7 +163,9 @@ public static void main(String [] args) throws Exception {
 	    					String ciudadInicial = lsplited[1];
 	    					String ciudadObjetivo = lsplited[2];
 	    					System.out.println(conjAgentes.numeroAgentesOrigenObjetivo(ciudadInicial, ciudadObjetivo));
+	    					System.out.println("\n");
 	    					break;
+
 	    	            }
 	    	            
 	    	            case 17:{
@@ -168,6 +175,7 @@ public static void main(String [] args) throws Exception {
 	    	            		caso = resultado.get(i);
 	    	            		System.out.println(caso[0] + " " + caso[1]);		
 	    	            	}
+	    	            	System.out.println("\n");
 	    	            	break;
 	    	            }
 	    					

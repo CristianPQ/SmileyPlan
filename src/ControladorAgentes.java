@@ -16,6 +16,7 @@ public class ControladorAgentes {
 		private static Exception NoExiste = new Exception ("El agente no existe");
 		private static Exception NoInicial = new Exception("No existe la ciudadInicial");
 		private static Exception NoObjetivo = new Exception("No existe la ciudadInicial");
+		private static Exception Iguales = new Exception("La ciudadInicial y la ciudadObjetivo deben ser distintas");
 
 		/**
 		 * Constructora del controlador
@@ -74,6 +75,7 @@ public class ControladorAgentes {
 		public void anadirAgente(String nombre, String ciudadInicial, String ciudadObjetivo,
 				ControladorMapa m)
 				throws Exception{ 
+				if (ciudadInicial.equals(ciudadObjetivo)) throw Iguales;
 				if(!m.existeCiudad(ciudadInicial)) throw NoInicial; //si no existe, saltara excepcion de ctrlmapa
 				if(!m.existeCiudad(ciudadObjetivo)) throw NoObjetivo;//si no existe, saltara la excepcion de ctrlmapa
 				anadirAgenteInterna(nombre, ciudadInicial,ciudadObjetivo);
@@ -155,9 +157,10 @@ public class ControladorAgentes {
 		 * @throws Exception si no existe el agente a modificar
 		 */
         public void modificarCiudadInicialAgente(String nombre, String ciudadInicial)throws Exception{//NO CREO 8
-			
+	
 			if (existeAgente(nombre)){ //si no existe, Exception
 				Agente a = Agentes.consultar(nombre);
+				if (ciudadInicial.equals(a.consultarCiudadObjetivo())) throw Iguales;
 				a.modificarCiudadInicial(ciudadInicial);
 				Agentes.modificar(nombre, a);
 					//Agentes.delete(nombre);
@@ -179,6 +182,7 @@ public class ControladorAgentes {
 	
 			if (existeAgente(nombre)){//si no existe, Exception
 				Agente a = Agentes.consultar(nombre);
+				if (ciudadObjetivo.equals(a.consultarCiudadInicial())) throw Iguales;
 				a.modificarCiudadObjetivo(ciudadObjetivo);
 				Agentes.modificar(nombre, a);
 					//Agentes.delete(nombre);
