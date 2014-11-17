@@ -55,14 +55,18 @@ public static void main(String [] args) throws Exception {
 	    					
 	    					mt.agregarMedioTransporte("coche", 1);
 	    					mt.agregarMedioTransporte("tren", 2);
+	    					mt.agregarMedioTransporte("nave", 3);
 	    					
 	    					System.out.println("dhdhhd");
 	    					m.agregarCamino("barcelona", "madrid", "coche", 10, mt);//01
-	    					m.agregarCamino("barcelona", "madrid", "tren", 10, mt);//01
+	    					m.agregarCamino("barcelona", "madrid", "tren", 10, mt);
+	    					//m.agregarCamino("barcelona", "madrid", "nave",12, mt);//01
+	    					
 	    					m.agregarCamino("barcelona", "oviedo", "coche", 10, mt);//02
 	    					System.out.println("pasado");
 	    					m.agregarCamino("oviedo", "valencia", "coche", 9, mt);//24
 	    					m.agregarCamino("oviedo", "valencia", "tren",12, mt);
+	    					//m.agregarCamino("oviedo","valencia", "nave",2, mt);
 	    					m.agregarCamino("madrid", "oviedo", "coche", 2, mt);//12
 	    					m.agregarCamino("madrid", "sevilla", "coche", 4, mt);//13
 	    					m.agregarCamino("madrid", "valencia", "coche", 8, mt);//14
@@ -126,18 +130,29 @@ public static void main(String [] args) throws Exception {
 	    					
 	    					ArrayList<Arista> aw = G.consultarAdyacentes(6);
 	    					for(int i = 0; i < G.consultarAdyacentes(6).size(); ++i)
-	    						System.out.println(ag.get(i).consultarVerticeDestino());
+	    						System.out.println(aw.get(i).consultarVerticeDestino());
 	    					System.out.println("\n");
 	    					
-	    					ArrayList<Arista> aj = G.consultarAdyacentes(6);
-	    					for(int i = 0; i < G.consultarAdyacentes(6).size(); ++i)
-	    						System.out.println(ag.get(i).consultarVerticeDestino());
+	    					ArrayList<Arista> aj = G.consultarAdyacentes(7);
+	    					for(int i = 0; i < G.consultarAdyacentes(7).size(); ++i)
+	    						System.out.println(aj.get(i).consultarVerticeDestino());
 	    					System.out.println("\n");
+	    					
+	    					ArrayList<Arista> am = G.consultarAdyacentes(8);
+	    					for(int i = 0; i < G.consultarAdyacentes(8).size(); ++i)
+	    						System.out.println(am.get(i).consultarVerticeDestino());
+	    					System.out.println("\n");
+	    					
+	    					ArrayList<Arista> an = G.consultarAdyacentes(9);
+	    					for(int i = 0; i < G.consultarAdyacentes(9).size(); ++i)
+	    						System.out.println(an.get(i).consultarVerticeDestino());
+	    					System.out.println("\n");
+	    					
 
-	    					int wee = G.consultarCapacidadArista(0,1);
+	    					int wee = G.consultarCosteArista(1,2);
 	    					System.out.println(wee +"\n");
 	    					break;
-	    					
+
 	    					
 	    				}
 	    				

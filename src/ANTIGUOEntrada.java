@@ -99,48 +99,59 @@ public class ANTIGUOEntrada {
 			ArrayList<Camino> aristando;
 			for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
 				aristando = new ArrayList<Camino>();
-				System.out.println("entra for"+ m.listarCiudades().get(i));
+
 				String ciudadEncontrandoAristas = m.listarCiudades().get(i);
 				if(m.existeCaminoConOrigen(ciudadEncontrandoAristas))
 				aristando = m.consultarCaminosDestino(ciudadEncontrandoAristas); //consultar ciudades adyacentes
 				if (!aristando.equals(null)){
 					for (int j = 0; j < aristando.size(); ++j){ //cada ciudad adyacente...
+					 //Servira para calcular las aux
 					////////////////PREPARAR LA ARISTA
-						int targetVertex  = returnCityIndex(aristando.get(j).consultarDestino());
+						int targetVertex  = returnCityIndex(aristando.get(j).consultarDestino()); 
+						////aqui arriba traduzco el nombre de la ciudad por el indice correspondiente
 						int capacity = aristando.get(j).consultarCapacidad();
-					////////CALCULO TEMA COSTE
-						/*MedioTransporte mtrans = cm.buscarMedio(aristando.get(j).consultarTransporte());
-						System.out.println("aqui no se si ?");
+						///aqui arriba otengo la capacidad
+						////////CALCULO TEMA COSTE//////////////////////////
+						////////////////////////////////////////////////
+						MedioTransporte mtrans = cm.buscarMedio(aristando.get(j).consultarTransporte());
+	
 						int x1 = m.consultarCiudad(ciudadEncontrandoAristas).consultarCoordenadas().consultarX();
-						System.out.println("aqui no se si ?");
+
 						int y1 =  m.consultarCiudad(ciudadEncontrandoAristas).consultarCoordenadas().consultarY();
-						System.out.println("aqui no se si ?");
+
 						int x2 = m.consultarCiudad(aristando.get(j).consultarDestino()).consultarCoordenadas().consultarX();
+						
 						int y2 = m.consultarCiudad(aristando.get(j).consultarDestino()).consultarCoordenadas().consultarY();
 						int x; int y;
 						if (x1 > x2) x= x1-x2; else x = x2-x1;
 						if (y1 > y2) y= y1-y2; else y = y2-y1;
 						int cost = (x + y)* mtrans.getPrecio(); //REVISAR ESTO
-					///////////////////////
-					 */
-						int cost = 0;
+						
 						System.out.println("aqui no se si llego?");
 						int insert_here = -1;
 						boolean insertado = false;
 						while (!insertado){ //para tener en cuenta num d'iteraciones
 							++insert_here;
 							if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
-								insertado = true;
 								g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here,targetVertex, 0, capacity, cost);
+								insertado = true;
 								System.out.println("CUANTAS VECES INSERTO");
 								}
-							//if(!insertado)++insert_here; //AQUI PODRIA HABEER UN FALLO
+							
+							else if 
+							(!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
+									returnCityIndex(ciudadEncontrandoAristas) + insert_here + 1)){
+								g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
+										returnCityIndex(ciudadEncontrandoAristas) +insert_here +1, 0, 2147483647, 0);
+							}
 						}
 					
-						for (int d = 0; d < insert_here; ++d) 
-							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + d, 
-									returnCityIndex(ciudadEncontrandoAristas) +1, 0, 2147483647, 0);
-						
+						/*for (int d = 0; d < insert_here; ++d) {
+							if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + d, 
+									returnCityIndex(ciudadEncontrandoAristas) +1))
+							
+									g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + d, 
+									returnCityIndex(ciudadEncontrandoAristas) +1, 0, 2147483647, 0);}*/
 						}
 						
 					}
