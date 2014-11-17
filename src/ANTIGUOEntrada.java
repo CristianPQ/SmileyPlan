@@ -146,12 +146,7 @@ public class ANTIGUOEntrada {
 							}
 						}
 					
-						/*for (int d = 0; d < insert_here; ++d) {
-							if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + d, 
-									returnCityIndex(ciudadEncontrandoAristas) +1))
-							
-									g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + d, 
-									returnCityIndex(ciudadEncontrandoAristas) +1, 0, 2147483647, 0);}*/
+
 						}
 						
 					}
