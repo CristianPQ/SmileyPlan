@@ -3,7 +3,8 @@ import java.util.*;
 
 public class Dinic extends Algoritmo {
 
-		
+	static ArrayList<String> seq = new ArrayList<String>(); 
+	
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		for (int i = indiceI; i <= indiceF; ++i){
@@ -61,6 +62,10 @@ public class Dinic extends Algoritmo {
 		        int df = dinicDfs(g, ptr, dist, dest, v, Math.min(f, capacidadResidual ));
 		        if (df > 0) {
 			          int nuevoFlujo = g.consultarFlujoArista(u, v) + df;
+			          ///////////////////////////////////////per guardar ////////////
+			          String s = "Pasara un flujo de "+df+" entre "+u+" y "+v+"\n";
+			          seq.add(s); 
+			          ////////////////////////////////////////////////////////////////
 			          g.modificarFlujoArista(u,v,nuevoFlujo);
 			          nuevoFlujo = g.consultarFlujoArista(v, u) - df;
 			          g.modificarFlujoArista(v,u,nuevoFlujo);
@@ -99,6 +104,15 @@ public class Dinic extends Algoritmo {
 			sol.modificarTiempo(t2-t1);
 			return sol;
 		  }
+		  
+		  /**
+			 * Devuelve una arrayList con la sequencia de pasos que ha seguido 
+			 * el algorismo
+			 * @return seq
+			 */
+			public ArrayList<String> obtenSeq() {
+				return seq; 
+			} 
 		  
 }
 

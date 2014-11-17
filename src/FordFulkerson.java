@@ -3,6 +3,8 @@ import java.util.*;
 
 public class FordFulkerson extends Algoritmo{
 	
+	static ArrayList<String> list = new ArrayList <String>(); 
+	
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		System.out.println();
@@ -53,6 +55,10 @@ public class FordFulkerson extends Algoritmo{
 		        int df = findPath(g, vis, v, t, Math.min(f, capacidadResidual));
 		        if (df > 0) {
 		          int nuevoFlujo = g.consultarFlujoArista(u, v) + df;
+		          /////////////////// per guardar /////////////////////
+		          String s = "Pasara un flujo de "+df+" entre "+u+" y "+v+"\n"; 
+		          list.add(s); 
+		          /////////////////////////////////////////////////////
 		          g.modificarFlujoArista(u,v,nuevoFlujo);
 		          nuevoFlujo = g.consultarFlujoArista(v, u) - df;
 		          g.modificarFlujoArista(v,u,nuevoFlujo);
@@ -94,6 +100,14 @@ public class FordFulkerson extends Algoritmo{
 		
 	}
 	
+	 /**
+		 * Devuelve una arrayList con la sequencia de pasos que ha seguido 
+		 * el algorismo
+		 * @return seq
+		 */
+		public ArrayList<String> obtenSeq() {
+			return list; 
+		} 
 	
 	
 	
