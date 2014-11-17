@@ -3,7 +3,7 @@ import java.util.*;
 public class DriverSolucion {
 	
 	private static void menu() {
-        System.out.println("Driver clase Controlador de Medios de Transporte"
+        System.out.println("Driver clase Solucion"
                 + "\n 0.Salir"
                 + "\n 1.crear Solucion()"
                 + "\n 2.agregarVertice(int i, int vertex)"
@@ -29,14 +29,16 @@ public class DriverSolucion {
 	                break;
 	            }
 	           case 2: {
-	        
+	        	   int i = Integer.parseInt(lsplited[1]);
+	        	   int ver = Integer.parseInt(lsplited[2]);
+	        	   so.agregarVertice(i, ver);
 	               break;
 	            }
 	            case 3: {
 	            	int c  = Integer.parseInt(lsplited[1]);
 	            	int i = Integer.parseInt(lsplited[1]);
 	            	so.agregarCosteAItinerario(i, c);
-	               break;
+	            	break;
 	            }
 	            case 4:{
 	            	int posv  = Integer.parseInt(lsplited[1]);
@@ -47,11 +49,11 @@ public class DriverSolucion {
 	            }
 	            case 5:{
 	            	int i = Integer.parseInt(lsplited[1]);
-	            	System.out.print(so.obtenNumCiudades(i) + "/n");            	
+	            	System.out.print(so.obtenNumCiudades(i) + "\n");            	
 	                break;            	
 	            }
 	            case 6: {
-	            	System.out.println(so.obtenNumeroItinerarios() + "/n");
+	            	System.out.println(so.obtenNumeroItinerarios() + "\n");
 	            	break; 
 	            }
 	            case 0: {

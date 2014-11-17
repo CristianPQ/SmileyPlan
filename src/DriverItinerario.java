@@ -27,9 +27,9 @@ public class DriverItinerario {
 	        lsplited = sc.nextLine().split(" ");
 	        switch(Integer.parseInt(lsplited[0])) {
 	            case 1: {
-	            	String nombre = lsplited[1]; 
-	            	it = new Itinerario(nombre); 
-	                break;
+	            	//String nombre = lsplited[1]; 
+	            	it = new Itinerario(); 
+	                //break;
 	            }
 	           case 2: {
 	            	String nom = lsplited[1];
