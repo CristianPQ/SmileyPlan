@@ -1,0 +1,42 @@
+Numero coches a agregar
+agregarCoche(String Nombre, int Coste
+agregarCoche(String Nombre, int Coste
+Fin agregarCoches
+numero de trenes a agregar: int
+agregarTren(String Nombre, int Coste
+agregarTren(String Nombre, int Coste
+Fin agregarTrenes
+FIN de agregarMediosTransporte
+Numero ciudades a agregar
+agregarCiudad(String Nombre, int x, int y
+agregarCiudad(String Nombre, int x, int y
+agregarCiudad(String Nombre, int x, int y
+Ciudades agregadas
+numero de caminos
+agregarCamino(cOrig, cDest, medio, cap, contMT)
+agregarCamino(cOrig, cDest, medio, cap, contMT)
+agregarCamino(cOrig, cDest, medio, cap, contMT)
+Caminos agregadas
+FIN agregarCiudad y agregarCaminos
+Numero Agentes a agregar
+agregarAgente(String nombew, String cOrig, String cObj
+agregarAgente(String nombew, String cOrig, String cObj
+agregarAgente(String nombew, String cOrig, String cObj
+agregarAgente(String nombew, String cOrig, String cObj
+agregarAgente(String nombew, String cOrig, String cObj
+FIN agregarAgentes
+CiudadOrigen y CiudadDestino a tratar
+
+ 1.FordFulkerson()
+ 2. PushRelabel
+ 3. Dinic
+Agente: cristian
+    bcn     bil 
+Agente: dani
+    bcn     bil 
+Agente: joan
+    bcn     bil 
+Agente: olga
+    bcn     mad     bil 
+Agente: rosa
+    bcn     mad     bil 

@@ -45,6 +45,10 @@ public class Solucion {
 	}
 	//la de Relabel s'haura de llegir al reves 
 	
+	/**
+	 * Consultador del numero de Itinerarios
+	 * @return numero de itinerarios
+	 */
 	public int consultarNumItinerarios(){
 		return itinerarios.length;
 	}

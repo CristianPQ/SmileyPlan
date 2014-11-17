@@ -9,6 +9,13 @@ public class ControladorAlgoritmo {
 	private ArrayList<String > agentes;
 	long tiempo; 
 	
+	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
+	
+	public double consultarTiempo() throws Exception {
+		if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
+		return sol.consultarTiempo();
+	}
+	
 	public String[] consultarMapping(){
 		return mapping;
 	}
