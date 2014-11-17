@@ -10,6 +10,7 @@ public class DriverCoordenadas {
                 + "\n 1.Coordenadas(int coordX, int coordY)"
                 + "\n 2.getCoordX():int"
                 + "\n 3.getCoordY():int"
+                + "\n 4.distancia(Coordenadas coordD):int"
         		+"\n");
     }
 	
@@ -36,6 +37,14 @@ public class DriverCoordenadas {
     	        	case 3: {
     	        		int coordY = coord.consultarY();
     	        		System.out.println(coordY + "\n");
+    	        		break;
+    	        	}
+    	        	case 4: {
+    	        		int coordX = Integer.parseInt(lsplited[1]);
+    	            	int coordY = Integer.parseInt(lsplited[2]);
+    	                Coordenadas co = new Coordenadas(coordX, coordY);
+    	                int d = coord.distancia(co);
+    	                System.out.println(d + "\n");
     	        		break;
     	        	}
     	        	case 0: {

@@ -31,11 +31,8 @@ import java.util.Scanner;
 	            {
 	            case 1 : 
 	                System.out.println("Enter word to insert");
-		        	   String ciudadOrigen = scan.next(); 
-		        	   String ciudadDestino = scan.next(); 
-		        	   String transporte = scan.next(); 
-		        	   Camino c = new Camino(ciudadOrigen, ciudadDestino, transporte);
-	                tst.insert( ciudadOrigen, c  );                     
+		        	String st = scan.next(); 
+	                tst.insert(st, st);                     
 	                break;                          
 	            case 2 : 
 	                System.out.println("Enter word to search");
