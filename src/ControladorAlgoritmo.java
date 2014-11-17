@@ -205,6 +205,7 @@ public class ControladorAlgoritmo {
 		
 		//cas falten o igual camins
 		if(numIt <= numAg) {
+				System.out.println("numIt menor o igual que numAg \n");
 			for(int i = 0; i < numAg; ++i) {
 				String s = agentes.get(i); 
 				convertirItinerario(i,s); 
@@ -212,6 +213,7 @@ public class ControladorAlgoritmo {
 		}
 		//cas que sobren camins, mirem els de menys cost
 		else if (numIt > numAg){ 
+				System.out.println("numIt mayor que numAg \n");
 			int min = 1000; 
 			int pos = 1000; 
 			for(int i = 0; i < numAg; ++i){
