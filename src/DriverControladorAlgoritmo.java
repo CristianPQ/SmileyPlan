@@ -13,6 +13,7 @@ public class DriverControladorAlgoritmo {
                 + "\n 4.Crear Controlador Algoritmos( string s, string t)"
                 + "\n 5.ejecutar(int i)"
                 + "\n 6.Consultar ControladorItinerarios"
+                + "\n 7.Guardar sequencia algoritmo pushRelabel"
         		+"\n");
     }
 	
@@ -140,6 +141,11 @@ public class DriverControladorAlgoritmo {
     	        		String its = cIt.escribirItinerarios();
     	        		System.out.println(its + "\n");
     	        		break;
+    	        	}
+    	        	case 7: {
+    	        		String path = "/Users/olgacarbo/Desktop/SmileyPlan/src/";
+    	        		String filename = "prova alg"; 
+    	        		cAlg.guardarSeqPR(path, filename);
     	        	}
     	        	case 0: {
     	                System.exit(0);
