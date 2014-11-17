@@ -15,15 +15,10 @@ private static void menu() {
 	                + "\n 2.consultarSink()"
 	                + "\n 2.consultarNumeroAgentes()"
 	                + "\n 2.modificarGrafo(GrafoAntiguo G)"
-	                + "\n 5.consultarFlujoArista(int vertex,int targetVertex, int nuevoFlujo)"
-	                + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
-	                + "\n 7.consultarCapacidadArista(int vertex,int targetVertex)"
-	                + "\n 8.modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad)"
-	                + "\n 9.consultarCosteArista(int vertex,int targetVertex)"
-	                + "\n 10.modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)"
-	                + "\n 11.consultarNumVertices()"
-	                + "\n 12.consultarNumAristasVertice(int vertex)"
-	                + "\n 13.ConsultarAdyacentesDe(int vertex)"
+	                + "\n 2.modificarSource(int source)"
+	                + "\n 2.modificarSink(int sink)"
+	                + "\n 2.modificarNumeroAgentes(int numAg)"
+
 	                +"\n");
 }
 

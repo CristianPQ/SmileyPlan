@@ -10,30 +10,56 @@ public class GrafoAntiguo {
 	//private static Exception NoExiste = new Exception ("La adyacencia NO existe");
 
 
-	
+	/**
+	 * Constructora Grafo
+	 * @param numVertex
+	 */
 	public GrafoAntiguo(int numVertex){
 		numVertices = numVertex;
 		Adyacencias = new ArrayList[numVertices];
 		for(int i = 0; i < numVertices; i++) Adyacencias[i] = new ArrayList<Arista>();
 		}
 
-	
+	/**
+	 * Consultora de adyacencias de un determinado vértice
+	 * @param vertex
+	 * @return
+	 */
 	public ArrayList<Arista> consultarAdyacentes(int vertex){
 		return Adyacencias[vertex];
 	}
 
+	/**
+	 * 
+	 * @param vertex vertice del cual sale la arista
+	 * @param targetVertex vertice al cual se dirige la arista
+	 * @return
+	 */
 	public boolean existeAdyacente(int vertex, int targetVertex){
 		for (int i = 0; i < Adyacencias[vertex].size();++i) 
 			if (Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex) return true;
 			return false;
 	}
 	
+	/**
+	 * Adicion de una arista
+	 * @param vertex vertice origen
+	 * @param targetVertex vertice destino
+	 * @param flow flujo inicial
+	 * @param capacity capacidad de la arista (necesario para MaxFlow)
+	 * @param cost  Coste economico
+	 */
 	public void anadirArista (int vertex, int targetVertex,
 			int flow, int capacity, int cost){
 		Arista a = new Arista(targetVertex, flow, capacity, cost);
 		Adyacencias[vertex].add(a);
 	}
 
+	/**
+	 * Eliminacion de una arista
+	 * @param vertex vertice origen
+	 * @param targetVertex vertice destino 
+	 */
 	public void eliminarArista(int vertex, int targetVertex){
 		int i = 0;
 		boolean trobat = false;
@@ -47,7 +73,11 @@ public class GrafoAntiguo {
 		}
 	}
 	
-	
+	/**
+	 * Consulta del flujo de una arista
+	 * @param vertex vertice origen
+	 * @param targetVertex vertice destino 
+	 */
 	public int consultarFlujoArista(int vertex, int targetVertex){
 		int i;
 		for (i = 0; i < Adyacencias[vertex].size(); ++i){
@@ -59,6 +89,12 @@ public class GrafoAntiguo {
 		return -1;
 	}
 
+	/**
+	 * Modificadora flujo de una arista
+	 * @param vertex vertice origen
+	 * @param targetVertex vertice destino
+	 * @param nuevoFlujo
+	 */
 	public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo) 
 			{
 		int i;
