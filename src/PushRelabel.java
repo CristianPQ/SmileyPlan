@@ -113,19 +113,20 @@ public class PushRelabel extends Algoritmo {
 		if (v == t) {
 			flow+=temp;
 			//System.out.println( "el flujo en este momento es " + flow );
+			////////////per guardar /////////////////
+			String sa = "el flujo en este momento es "+ flow +"\n"; 
+			seq.add(sa); 
+			//////////////////////////////////
 		}
 		nuevoFlujo =  g.consultarFlujoArista(v, u) - temp;
-		////////////per guardar /////////////////
-		String sa = "el flujo en este momento es "+ flow +"\n"; 
-		seq.add(sa); 
-		//////////////////////////////////
 		g.modificarFlujoArista(v, u, nuevoFlujo ); /** arista residual **/
 		exceso[u] -= temp;
 		exceso[v] += temp;
 		///////// per guardar //////////////////////////
-		String o = "el exceso de " + u + " despues del push es " + exceso[u] + "\n";
  		String s = + u + " hace push a " + v + " de flow: " + temp + "\n";
 		seq.add(s); 
+		String o = "el exceso de " + u + " despues del push es " + exceso[u] + "\n";
+		seq.add(o);
 		/////////////////////////////////
 		//System.out.println( u + " pushea a " + v + " con " + temp + " el exceso de 1 es " + exceso[1] );
 		//System.out.println( "el vertice 1 esta en estado " + active[1] + " la altura es " + alturas[1] );
