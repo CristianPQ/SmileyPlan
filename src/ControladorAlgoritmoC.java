@@ -1,7 +1,8 @@
+import java.util.ArrayList;
+import java.util.Iterator;
 
-import java.util.*;
 
-public class ControladorAlgoritmo {
+public class ControladorAlgoritmoC {
 	private ArrayList<String> relacCiudades;
 	private Entrada ent;
 	private Solucion sol;
@@ -11,7 +12,7 @@ public class ControladorAlgoritmo {
 	
 	
 	
-	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
+	public ControladorAlgoritmoC(ControladorAgentes ca, ControladorMapa cm, 
 			ControladorMedioTransporte mt, String cOrig, String cDest) throws Exception{
 		relacCiudades = cm.listarCiudades();
 		int orig = consultarIntCiudad(cOrig);
@@ -24,8 +25,26 @@ public class ControladorAlgoritmo {
 		sol = new Solucion(nAgent);
 	}
 	
-	public void EjecutarGrafo(int i) {
-		
+	public void ejecutar(int i) throws Exception {
+		switch(i) {
+			case 1: {
+				ejecutarAlgoritmoFordFulkerson();
+				break;
+			}
+			case 2: {
+				ejecutarAlgoritmoPushRelabel();
+				break;
+			}
+			case 3: {
+				ejecutarAlgoritmoDinic();
+				break;
+			}
+			default: {
+				System.out.println("No hay mas algoritmos" + "\n");
+				System.exit(0);
+				break;
+			}
+		}
 	}
 	
 	private int consultarIntCiudad(String c) {
@@ -86,6 +105,11 @@ public class ControladorAlgoritmo {
 	public void ejecutarAlgoritmoPushRelabel() throws Exception{
 		PushRelabel p = new PushRelabel(); 
 		sol = p.ejecutar(ent);
+	}
+	
+	public void ejecutarAlgoritmoDinic() throws Exception{
+		Dinic d = new Dinic(); 
+		sol = d.ejecutar(ent);
 	}
 	
 	
