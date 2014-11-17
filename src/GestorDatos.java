@@ -5,9 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.*;
 
-/**
- * @author Olga 
- */
+
 
 public class GestorDatos {
 	
