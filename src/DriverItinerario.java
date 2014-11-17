@@ -13,7 +13,7 @@ public class DriverItinerario {
                 + "\n 2.setNombre(String nombre)"
                 + "\n 3.getNumeroCaminos()"
                 + "\n 4.getNombreItinerario()"
-                + "\n 5.agregarCamino(Camino c)"
+                + "\n 5.agregarCiudad(Camino c)"
         		+"\n");
     }
 	
