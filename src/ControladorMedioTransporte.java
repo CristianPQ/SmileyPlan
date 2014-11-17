@@ -96,6 +96,7 @@ public class ControladorMedioTransporte {
 		else if (medios.existe(nNuevo)) throw NombreYaExiste; 
 		else {
 			MedioTransporte aux = buscarMedio(n);
+			//medios.modificar(nNuevo, aux);
 			int c = aux.getPrecio(); 
 			borrarMedioTransporte(n);
 			agregarMedioTransporte(nNuevo,c);

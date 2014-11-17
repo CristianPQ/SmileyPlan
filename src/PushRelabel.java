@@ -10,12 +10,7 @@ public class PushRelabel extends Algoritmo {
 	private LinkedList<Integer> q;
 	private int flow;
 	
-/*	
-	String path; 
-	String file;
-	String buffer; 
-	
-	*/
+	ArrayList<String> seq = new ArrayList <String>(); 
 	
 	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
@@ -96,12 +91,14 @@ public class PushRelabel extends Algoritmo {
 		if (v == t) {
 			flow+=temp;
 			///////// per guardar //////////////////////////
-		//	buffer = buffer + u + " hace push a " + v + " de flow: " + temp + "\n";
+			String s = + u + " hace push a " + v + " de flow: " + temp + "\n";
+			seq.add(s); 
 			/////////////////////////////////
 		}
 		nuevoFlujo =  g.consultarFlujoArista(v, u) - temp;
 		//////////// per guardar /////////////////
-		//buffer = buffer + "el flujo en este momento es "+ nuevoFlujo +"\n"; 
+		String s = "el flujo en este momento es "+ nuevoFlujo +"\n"; 
+		seq.add(s); 
 		//////////////////////////////////
 		g.modificarFlujoArista(v, u, nuevoFlujo ); /** arista residual **/
 		exceso[u] -= temp;
@@ -174,7 +171,8 @@ public class PushRelabel extends Algoritmo {
 				alturas[u] = 1 + m;
 				/////per guardar ///////////////////
 				int aux = m+1; 
-			//	buffer = buffer + "la altura de " + u + " ahora es "+ aux + "\n"; 
+				String sol = "la altura de " + u + " ahora es "+ aux + "\n"; 
+				seq.add(sol); 
 				///////////////////////////////////
 			}
 			else {
@@ -189,7 +187,7 @@ public class PushRelabel extends Algoritmo {
 			sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
-	//	Guardar(path,file); 
+
 		double t2 = System.currentTimeMillis();
 		sol.modificarTiempo(t2-t1);
 		return sol;
@@ -197,26 +195,15 @@ public class PushRelabel extends Algoritmo {
 	}
 	
 	/**
-	 * Guardar la sequencia de pasos de algoritmo 
-	 * @param path
-	 * @param file
-	 * @param buffer
-	 * @throws Exception
+	 * Devuelve una arrayList con la sequencia de pasos que ha seguido 
+	 * el algorismo
+	 * @return seq
 	 */
-/*	public void Guardar(String path,String file) throws Exception {
-		
-		GestorDatos gd = new GestorDatos(path,file); 
-		
-		gd.createFile(); 
-		gd.openFile("write"); 
-		
-		gd.writeBuffer(buffer); 
-		buffer = null; 
-		
-		gd.closeFile(); 
+	public ArrayList<String> obtenSeq() {
+		return seq; 
 	}
 	
-	*/
+	
 	
 	
 }
