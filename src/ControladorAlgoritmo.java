@@ -203,17 +203,35 @@ public class ControladorAlgoritmo {
 		int numIt = sol.obtenNumeroItinerarios(); 
 		//cas no solucio?
 		
+		
+		
+		//COmprobar si tiene solucion
+		/*if(sol.consultarTieneSolucion()) {
+			
+		}*/
+		
 		//cas falten o igual camins
 		if(numIt <= numAg) {
-				System.out.println("numIt menor o igual que numAg \n");
+				//System.out.println("numIt menor o igual que numAg \n");
 			for(int i = 0; i < numAg; ++i) {
-				String s = agentes.get(i); 
-				convertirItinerario(i,s); 
+				String s;
+				while(i< numIt) {
+					s = agentes.get(i); 
+					convertirItinerario(i,s);
+					++i;
+				}
+				if(i < numAg) {
+					s = agentes.get(i);
+					ArrayList<String> ciudades = new ArrayList<String>();
+					ciudades.add("No tiene solucion");
+					cit.agregarItinerario(s, ciudades);
+				}
+
 			}
 		}
 		//cas que sobren camins, mirem els de menys cost
 		else if (numIt > numAg){ 
-				System.out.println("numIt mayor que numAg \n"); 
+				//System.out.println("numIt mayor que numAg \n"); 
 			for(int i = 0; i < numAg; ++i){
 				int min = 1000;
 				int pos = 1000;
