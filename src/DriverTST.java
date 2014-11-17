@@ -10,7 +10,7 @@ import java.util.Scanner;
 	        Scanner scan = new Scanner(System.in);
 	 
 	        /* Creating object of TernarySearchTree */
-	        TST<Camino> tst = new TST();
+	        TST<String> tst = new TST();
 	        System.out.println("Ternary Search Tree Test\n"); 
 	 
 	        char ch;
@@ -18,12 +18,13 @@ import java.util.Scanner;
 	        do    
 	        {
 	            System.out.println("\nTernary Search Tree Operations\n");
-	            System.out.println("1. insert element");
-	            System.out.println("2. contains elemnt");
-	            System.out.println("3. delete key");
-	            System.out.println("4. check empty");
-	            System.out.println("5. make empty");
-	            System.out.println("6. get word");
+	            System.out.println("1. insert(String key, E e)");
+	            System.out.println("2. existe(String word)");
+	            System.out.println("3. delete(String word)");
+	            System.out.println("4. modificar(String word, E e)");
+	            System.out.println("5. consultar(String word): E");
+	            System.out.println("6. toString()");
+	            System.out.println("6. numero(): int");
 	 
 	            int choice = scan.nextInt();            
 	            switch (choice)

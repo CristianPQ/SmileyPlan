@@ -122,30 +122,6 @@ class TST<E>  //no estava la <E>
 			}
 		}
 		return r;
-   
-/*	
-		
-        //Si yas has recorrido la palabra
-        TSTNodeChar rChar = (TSTNodeChar)r;
-		if(rChar.data == '$') {
-			//Guarda el elemento en la siguiente posicion central
-        	r.middle = new TSTNodeFinal(e);
-        }
-        //Si estas recorriendo la palabra
-        else {
-        	if(r.middle == null) {
-        		r.middle = insert(r.middle, word, ptr + 1, e);
-        	}
-        	else if(word[ptr] == rChar.data)
-                r.middle = insert(r.middle, word, ptr, e);
-        	else if(word[ptr] < rChar.data)
-                r.left = insert(r.left, word, ptr, e);
-            else if (word[ptr] > rChar.data)
-                r.right = insert(r.right, word, ptr, e);	
-        	
-        }
-
-        return r;*/
     }
  
     
