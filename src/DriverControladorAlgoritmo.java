@@ -116,8 +116,10 @@ public class DriverControladorAlgoritmo {
     	        	}
     	        	case 4: {
     	        		System.out.println("CiudadOrigen y CiudadDestino a tratar");
-    	        		String s = lsplited[1];
-    	        		String t = lsplited[2];
+    	        		linea = in.nextLine();
+                        lsplited = linea.split(" ");
+    	        		String s = lsplited[0];
+    	        		String t = lsplited[1];
     	        		cAlg = new ControladorAlgoritmo(cAge, m, cMed, s,t);
     	        	}
     	        	case 5: {

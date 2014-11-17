@@ -1,0 +1,24 @@
+1
+2
+bmw 10
+audi 18
+2
+ave 6
+talgo 10
+2 10 10 2 3 2 4 2 5 3 6 4 6 5 6 6 5 6 4 6 3 5 2 4 2 3 2
+3
+bcn 4 5
+mad 5 5
+bil 4 4
+3
+bcn mad 2 talgo
+mad bil 3 ave
+bcn bil 3 audi
+3
+3
+dani bcn bil
+joan bcn bil
+cristian bcn bil
+4
+bcn bil
+5
