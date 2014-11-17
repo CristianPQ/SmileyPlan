@@ -2,11 +2,10 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ControladorAlgoritmo {
-	private String[] relacCiudades;
+	private ArrayList<String> relacCiudades;
 	private Entrada ent;
 	private Solucion sol;
 	private ControladorItinerarios cit; 
-	private GrafoAntiguo g; 
 	private int flow; 
 	private int s; 
 	private int t; 
@@ -18,35 +17,18 @@ public class ControladorAlgoritmo {
 	
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
 			ControladorMedioTransporte mt) throws Exception{
-		//sol= new Solucion(); //esto puede cambiar
+		relacCiudades = cm.listarCiudades();
+		GrafoAntiguo g; 
 		
 	}
 	
-	public GrafoAntiguo consultarGrafo(){
-		return g;
-	}
-	public void inicializarRelacCiudades(int size){
-		relacCiudades = new String[size];
-	}
-	public void modificarRelacCiudad(String a, int i){
-		relacCiudades[i] = a;
+	private int consultarIntCiudad(String c) {
+		int i;
+		for(i = 0; i < relacCiudades.size(); ++i) {
+			if(relacCiudades.get(i).equals(c)) return i;
 		}
-	
-	public String consultarElementRelacCiudades(int i){
-		return relacCiudades[i];
-	}
-	
-	public int consultarNumeroVertices(){
-		return relacCiudades.length;
-	}
-	
-	public int devolverIndiceCiudad(String city){
-		int indice = -1;
-		for (int i = 0; i < relacCiudades.length; ++i) 
-			if (relacCiudades[i] == city) {indice = i; return indice;}
-			return indice;
-	}
-	
+		return -1;
+	}	
 	
 	//#########################################
 	//##########Entrada ##################
