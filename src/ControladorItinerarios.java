@@ -64,6 +64,7 @@ public class ControladorItinerarios {
 			for(int j = 0; j < iti.getNumeroCiudades(); ++j) {
 				its = its + "    " + iti.consultarCiudad(j) + " ";
 			}
+			its = its + "\n";
 		}
 		return its;
 	}
