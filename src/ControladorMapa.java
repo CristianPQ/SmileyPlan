@@ -365,6 +365,96 @@ public class ControladorMapa {
 		//##########Gestion de datos
 		//#########################################
 		
+	
+	 public void guardarMapa(String path, String file) throws Exception {
+		 GestorDatos gd = new GestorDatos(path,file); 
+		 
+		 gd.createFile(); 
+		 gd.openFile("write"); 
+		 System.out.print("he obert file \n");
+		 gd.writeBuffer("hola"); 
+		 
+		 //guardarCiutats
+		 guardarCiudadSinCerrar(gd); 
+		 System.out.print("he guardat ciutats \n");
+		 
+		 //guardarCamins 
+		 guardarCaminosSinCerrar(gd); 
+		 System.out.print("he guardat caminos \n");
+		 //guardar medidas mapa 
+		 
+		 //altura y anchura
+		 int x = m.consultarAnchura();
+		 int y = m.consultarAltura(); 
+		 String linea = x + " " + y + "\n"; 
+		 buffer = buffer + linea; 
+		 
+		 //numero de coordenadas
+		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
+		 linea = Integer.toString(c.size())+ "\n";  
+		 buffer = buffer+ linea + "\n"; 
+		 
+		 //guardar coordenadas
+		 for(int i = 0; i < c.size(); ++i) {
+			 Coordenadas aux = c.get(i); 
+			 int c1 = aux.consultarX(); 
+			 int c2 = aux.consultarY();
+			 linea = c1 + " " + c2; 
+			 buffer = buffer + linea + "\n"; 
+			 
+			 if(buffer.length() > BUFFER_SIZE) {
+					gd.writeBuffer(buffer); 
+					buffer = null; 
+			 }
+			 
+		if(buffer != null) {
+			gd.writeBuffer(buffer);
+		}
+		
+		gd.closeFile(); 
+	}
+		 
+		 
+		 
+		 
+}
+	
+	
+	 /**
+	  * guardar Ciudades sin cerrar el archivo. util para poder guardar
+	  * los caminos y el mapa a continuacion
+	  * @param gd 
+	  * @throws Exception
+	  */
+	 public void guardarCiudadSinCerrar(GestorDatos gd) throws Exception {
+		 
+		 ArrayList<String> lista = new ArrayList<String>();
+			lista = m.listarCiudades();
+			
+			String linea = Integer.toString(lista.size()) + "\n"; 
+			buffer = linea; 
+			
+					
+			for(int i = 0; i < lista.size(); ++i){
+				String s = lista.get(i); 
+				Ciudad aux = m.consultarCiudad(s); 
+				int x = (aux.consultarCoordenadas()).consultarX(); 
+				int y = (aux.consultarCoordenadas()).consultarY(); 
+				linea = aux.consultarNombre() + " " + x + " " + y; 
+				buffer = buffer + linea + "\n"; 
+				
+				if(buffer.length() > BUFFER_SIZE) {
+					gd.writeBuffer(buffer); 
+					buffer = null; 
+				}
+			}
+			
+			if(buffer != null) {
+				gd.writeBuffer(buffer);
+			}	
+	 }
+	 
+	 
 	/**
 	 * Guardar ciudades
 	 * @param path
@@ -373,36 +463,11 @@ public class ControladorMapa {
 	 */
 	public void guardarCiudades(String path,String file) throws Exception{
 		GestorDatos gd = new GestorDatos(path,file);
-		//GestorDatos gd = new GestorDatos(path,file);
 		
 		gd.createFile(); 
 		gd.openFile("write"); 
 		
-		
-		ArrayList<String> lista = new ArrayList<String>();
-		lista = m.listarCiudades();
-		
-		String linea = Integer.toString(lista.size()) + "\n"; 
-		buffer = linea; 
-		
-				
-		for(int i = 0; i < lista.size(); ++i){
-			String s = lista.get(i); 
-			Ciudad aux = m.consultarCiudad(s); 
-			int x = (aux.consultarCoordenadas()).consultarX(); 
-			int y = (aux.consultarCoordenadas()).consultarY(); 
-			linea = aux.consultarNombre() + " " + x + " " + y; 
-			buffer = buffer + linea + "\n"; 
-			
-			if(buffer.length() > BUFFER_SIZE) {
-				gd.writeBuffer(buffer); 
-				buffer = null; 
-			}
-		}
-		
-		if(buffer != null) {
-			gd.writeBuffer(buffer);
-		}
+		guardarCiudadSinCerrar(gd); 
 		
 		gd.closeFile(); 
 	}
@@ -464,18 +529,12 @@ public class ControladorMapa {
 	}
 	}
 	
-	
 	/**
-	 * Guardar caminos del mapa
-	 * @param path
-	 * @param file
+	 * Guarda los caminos sin cerrar el archivo 
+	 * @param gd
 	 * @throws Exception
 	 */
-	public void guardarCaminos(String path,String file) throws Exception{
-		GestorDatos gd = new GestorDatos(path,file); 
-		
-		gd.createFile(); 
-		gd.openFile("write"); 
+	public void guardarCaminosSinCerrar(GestorDatos gd) throws Exception {
 		
 		ArrayList<Camino> lista = new ArrayList<Camino>(); 
 		lista = m.consultarTodosCaminos(); 
@@ -498,6 +557,22 @@ public class ControladorMapa {
 		if(buffer != null) {
 			gd.writeBuffer(buffer);
 		}
+	}
+	
+	/**
+	 * Guardar caminos del mapa
+	 * @param path
+	 * @param file
+	 * @throws Exception
+	 */
+	public void guardarCaminos(String path,String file) throws Exception{
+		GestorDatos gd = new GestorDatos(path,file); 
+		
+		gd.createFile(); 
+		gd.openFile("write"); 
+		
+		guardarCaminosSinCerrar(gd); 
+		
 		gd.closeFile(); 
 	}
 	

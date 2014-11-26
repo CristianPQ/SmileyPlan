@@ -27,6 +27,7 @@ public class DriverControladorMapa {
         		+ "\n 16.cargarCiudades(String path,String file)"
         		+ "\n 17.guardarCaminos(String path,String file)"
         		+ "\n 18.cargarCaminos(String path, String file)"
+        		+ "\n 19.guardarMapa(String path, String file)"
         		+"\n");
     }
 	
@@ -166,6 +167,12 @@ public class DriverControladorMapa {
 		            	String  path = lsplited[1]; 
 		            	String file = lsplited[2];
 		            	m.cargarCaminos(path, file);
+		            	break;
+		            }
+		            case 19:{
+		            	String  path = lsplited[1]; 
+		            	String file = lsplited[2];
+		            	m.guardarMapa(path, file);
 		            	break;
 		            }
 		            case 0: {

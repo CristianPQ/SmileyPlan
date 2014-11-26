@@ -16,8 +16,8 @@ public class ControladorMedioTransporte {
 	private int CARGA_MAX = 250; 
 	public String buffer = null; 
 	
-	public String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
-	public String file = "prova"; 
+	//public String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
+	//public String file = "prova"; 
 	
 	//control errores 
 	private static Exception NombreYaExiste = new Exception ("El nombre ya existe");

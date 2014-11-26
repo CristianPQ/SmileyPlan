@@ -7,6 +7,7 @@ public class Mapa {
 	private TST<TST<ArrayList<Camino>>> caminos;
 	private TST <Ciudad> ciudades;
 	private String[][] mapa;
+	private ArrayList<Coordenadas> coord; 
 	
 	private static Exception CoordInvalidas = new Exception ("Estas "
 			+ "coordenadas no son validas para este mapa");
@@ -32,6 +33,7 @@ public class Mapa {
 		ciudades = new TST<Ciudad>();
 		caminos = new TST<TST<ArrayList<Camino>>>();
 		mapa = new String[alturaY][anchuraX];
+		coord = continente; 
 		
 		agregarContinente(continente);
 	}
@@ -138,6 +140,25 @@ public class Mapa {
 		}
 	}
 	
+	/**
+	 * Consultora de la anchura de mapa
+	 * @return anchura mapa
+	 */
+	public int consultarAnchura() {
+		return mapa[0].length; 
+	}
+	
+	/**
+	 * Consultora de la altura de mapa
+	 * @return altura de mapa
+	 */
+	public int consultarAltura() {
+		return mapa.length; 
+	}
+	
+	public ArrayList<Coordenadas> consultarArrayCoord(){
+		return coord; 
+	}
 	
 	//#########################################
 	//##########SOBRE CIUDADES
