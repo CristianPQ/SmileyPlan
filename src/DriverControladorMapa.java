@@ -146,8 +146,8 @@ public class DriverControladorMapa {
 		            	break;
 		            }
 		            case 15:{
-		            	String  path = lsplited[1]; 
-		            	String file = lsplited[2]; 
+		            	String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
+		            	String file = "provaC"; 
 		            	m.guardarCiudades(path, file);
 		            	break;
 		            }
@@ -172,7 +172,7 @@ public class DriverControladorMapa {
 		            case 19:{
 		            	String  path = lsplited[1]; 
 		            	String file = lsplited[2];
-		            	m.guardarMapa(path, file);
+		            	//m.guardarMapa(path, file);
 		            	break;
 		            }
 		            case 0: {
