@@ -1,59 +1,86 @@
 
 import java.util.ArrayList;
 public class Grafo<E> {
-
-	//constructora
-//	ArrayList<ArrayList<Arista>> grafo;
-
-	private ArrayList<ArrayList<E>> Adyacencias;
-	private int numVertices;
 	
-	//private static Exception NoExiste = new Exception ("La adyacencia NO existe");
+	class Sentidos {
+		
+		private ArrayList<E> entrada;
+		private ArrayList<E> salida;
+		
+		public Sentidos() {
+			entrada = new ArrayList<E>();
+			salida = new ArrayList<E>();
+		}
+		
+		//No se si esta bien
+		public boolean existe(E e) {
+			return entrada.contains(e) || salida.contains(e);
+		}
+		
+		public boolean entradaEmpty() {
+			return entrada.isEmpty();
+		}
+		
+		public boolean salidaEmpty() {
+			return salida.isEmpty();
+		}
+		
+		public agregarEntrada() {
+			
+		}
+	}
+
+	private ArrayList<Sentidos> adyacencias;
 
 
 	/**
 	 * Constructora Grafo
 	 * @param numVertex
 	 */
-	public Grafo(int numVertex){
-		numVertices = numVertex;
-		Adyacencias = new ArrayList[numVertices];
-		for(int i = 0; i < numVertices; i++) Adyacencias[i] = new ArrayList<Arista>();
-		}
-
+	public Grafo() {
+		//numVertices = numVertex;
+		adyacencias = new ArrayList<Sentidos>();
+	}
+	
 	/**
-	 * Consultora de adyacencias de un determinado vértice
-	 * @param vertex
+	 * Consultora de adyacencias de salida de un vertice
+	 * @param indice
 	 * @return
 	 */
-	public ArrayList<Arista> consultarAdyacentes(int vertex){
-		return Adyacencias[vertex];
+	public ArrayList<E> consultarAdyacentesSalida(int indice){
+		return adyacencias.get(indice).salida;
+	}
+	
+	/**
+	 * Consultora de adyacencias de entrada de un vertice
+	 * @param indice
+	 * @return
+	 */
+	public ArrayList<E> consultarAdyacentesEntrada(int indice){
+		return adyacencias.get(indice).entrada;
 	}
 
 	/**
 	 * 
-	 * @param vertex vertice del cual sale la arista
-	 * @param targetVertex vertice al cual se dirige la arista
+	 * @param indice
+	 * @param e
 	 * @return
 	 */
-	public boolean existeAdyacente(int vertex, int targetVertex){
-		for (int i = 0; i < Adyacencias[vertex].size();++i) 
-			if (Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex) return true;
-			return false;
+	public boolean existeAdyacente(int indice, E e) {
+		return adyacencias.get(indice).existe(e);
 	}
 	
 	/**
-	 * Adicion de una arista
+	 * Adicion de elemento
 	 * @param vertex vertice origen
-	 * @param targetVertex vertice destino
-	 * @param flow flujo inicial
-	 * @param capacity capacidad de la arista (necesario para MaxFlow)
-	 * @param cost  Coste economico
+	 * @param e
 	 */
-	public void anadirArista (int vertex, int targetVertex,
-			int flow, int capacity, int cost){
-		Arista a = new Arista(targetVertex, flow, capacity, cost);
-		Adyacencias[vertex].add(a);
+	public void agregarElemento(int in, int out, E e) {
+		Sentidos ent = adyacencias.get(in).agregarEntrada(e);
+		adyacencias.set(in, ent);
+		
+		Sentidos sal = adyacencias.get(out).agregarSalida(e);
+		adyacencias.set(out, sal);
 	}
 
 	/**
