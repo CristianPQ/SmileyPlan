@@ -6,7 +6,7 @@ import java.util.*;
 public class ControladorAgentes {
 		private TST<Agente> Agentes;
 		private int numAgentes; 
-		public ArrayList<Agente> guardaAg; 
+		//public ArrayList<Agente> guardaAg; 
 		
 		private final static int BUFFER_SIZE = 3250; 
 		private int CARGA_MAX = 250; 

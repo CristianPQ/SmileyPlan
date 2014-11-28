@@ -539,6 +539,9 @@ public class Mapa {
 	//##########CONSULTORAS
 	//#########################################
 	
+	
+	
+	//TIENE QUE SER PRIVADA O NO SE PUEDE DEVOLVER UNA ESTRUCTURA DE ESTE TIPO
 	/**
 	 * Consultora de la matriz de string
 	 * @return matriz con los identificadores de las ciudades en su posicion
