@@ -24,12 +24,35 @@ public class Grafo<E> {
             return salida.isEmpty();
         }
         
-        public agregarEntrada() {
-            
+        public void agregarEntrada(E e) {
+            entrada.add(e);
+        }
+        
+        public void agregarSalida(E e) {
+            salida.add(e);
+        }
+        
+        public void eliminarEntrada(E e) {
+        	for(int i = 0; i < entrada.size(); ++i) {
+        		if(entrada.get(i).equals(e)) {
+        			entrada.remove(i);
+        			return;
+        		}
+        	}
+        }
+        public void eliminarSalida(E e) {
+        	for(int i = 0; i < salida.size(); ++i) {
+        		if(salida.get(i).equals(e)) {
+        			salida.remove(i);
+        			return;
+        		}
+        	}
         }
     }
     
     private ArrayList<Sentidos> adyacencias;
+    
+    private static Exception NoExiste = new Exception ("Este elemento no existe");
     
     
     /**
@@ -75,36 +98,38 @@ public class Grafo<E> {
      * @param e
      */
     public void agregarElemento(int in, int out, E e) {
-        Sentidos ent = adyacencias.get(in).agregarEntrada(e);
+        Sentidos ent = adyacencias.get(in);
+        ent.agregarEntrada(e);
         adyacencias.set(in, ent);
         
-        Sentidos sal = adyacencias.get(out).agregarSalida(e);
+        Sentidos sal = adyacencias.get(out);
+        sal.agregarSalida(e);
         adyacencias.set(out, sal);
     }
     
     /**
-     * Eliminacion de una arista
+     * Eliminacion de un elemento
      * @param vertex vertice origen
      * @param targetVertex vertice destino
+     * @throws Exception 
      */
-    public void eliminarArista(int vertex, int targetVertex){
-        int i = 0;
-        boolean trobat = false;
-        for (i = 0; i < Adyacencias[vertex].size() && !trobat; ++i){
-            if( !Adyacencias[vertex].get(i).equals(null) &&
-               Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-                Adyacencias[vertex].remove(i);
-                trobat = true;
-            }
-            
-        }
+    public void eliminarArista(int in, int out, E e) throws Exception{
+    	Sentidos ent = adyacencias.get(in);
+    	Sentidos sal= adyacencias.get(out);
+        if(!ent.existe(e) || !sal.existe(e)) throw NoExiste;
+        ent.eliminarEntrada(e);
+        sal.eliminarSalida(e);
+        adyacencias.set(in, ent);
+        adyacencias.set(out, sal);
     }
+    
     
     /**
      * Consulta del flujo de una arista
      * @param vertex vertice origen
      * @param targetVertex vertice destino
      */
+    /*
     public int consultarFlujoArista(int vertex, int targetVertex){
         int i;
         for (i = 0; i < Adyacencias[vertex].size(); ++i){
@@ -114,7 +139,7 @@ public class Grafo<E> {
             }
         }
         return -1;
-    }
+    }*/
     
     /**
      * Modificadora flujo de una arista
@@ -122,6 +147,7 @@ public class Grafo<E> {
      * @param targetVertex vertice destino
      * @param nuevoFlujo
      */
+    /*
     public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)
     {
         int i;
@@ -135,7 +161,7 @@ public class Grafo<E> {
                 
             }
         }
-    }
+    }*/
     
     
     /**
@@ -144,6 +170,7 @@ public class Grafo<E> {
      * @param targetVertex vertice destino
      * @return
      */
+    /*
     public int consultarCapacidadArista(int vertex, int targetVertex) {
         int i;
         for (i = 0; i < Adyacencias[vertex].size(); ++i){
@@ -153,7 +180,7 @@ public class Grafo<E> {
             }
         }
         return -1;
-    }
+    }*/
     
     /**
      * Modificadora capacidad
@@ -161,6 +188,7 @@ public class Grafo<E> {
      * @param targetVertex vertice destino
      * @param nuevaCapacidad
      */
+    /*
     public void modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad)
     {
         
@@ -174,7 +202,7 @@ public class Grafo<E> {
                 Adyacencias[vertex].add(i,a);
             }
         }
-    }
+    }*/
     /**
      * Consultar coste
      * @param vertex
@@ -182,6 +210,7 @@ public class Grafo<E> {
      * @return
      * @throws Exception
      */
+    /*
     public int consultarCosteArista(int vertex, int targetVertex)throws Exception{
         int i;
         for (i = 0; i < Adyacencias[vertex].size(); ++i){
@@ -191,7 +220,7 @@ public class Grafo<E> {
             }			
         }
         return -1;
-    }
+    }*/
     
     /**
      * Modificar coste
@@ -199,6 +228,7 @@ public class Grafo<E> {
      * @param targetVertex
      * @param nuevoCoste
      */
+    /*
     public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)
     {
         int i;
@@ -212,24 +242,26 @@ public class Grafo<E> {
                 
             }			
         }
-    }
+    }*/
     
     /**
      * Consulta del numero de vertices del grafo
      * @return
      */
+    /*
     public int consultarNumVertices(){
         return numVertices;
-    }
+    }*/
     
     /**
      * Consultar el numero de aristas que salen de un vertice determinado
      * @param vertex
      * @return
      */
+    /*
     public int consultarNumAristasVertice(int vertex){
         return Adyacencias[vertex].size();
-    }
+    }*/
     
     
 }
