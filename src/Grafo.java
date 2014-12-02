@@ -64,6 +64,13 @@ public class Grafo<E> {
         adyacencias = new ArrayList<Sentidos>();
     }
     
+    public Grafo(int n) {
+    	adyacencias = new ArrayList<Sentidos>();
+    	for(int i = 0; i < n; ++i) {
+    		agrandar();
+    	}
+    }
+    
     /**
      * Consultora de adyacencias de salida de un vertice
      * @param indice
@@ -113,7 +120,7 @@ public class Grafo<E> {
      * @param targetVertex vertice destino
      * @throws Exception 
      */
-    public void eliminarArista(int in, int out, E e) throws Exception{
+    public void eliminarElemento(int in, int out, E e) throws Exception{
     	Sentidos ent = adyacencias.get(in);
     	Sentidos sal= adyacencias.get(out);
         if(!ent.existe(e) || !sal.existe(e)) throw NoExiste;
@@ -122,6 +129,33 @@ public class Grafo<E> {
         adyacencias.set(in, ent);
         adyacencias.set(out, sal);
     }
+    
+    public int size() {
+    	return adyacencias.size();
+    }
+    
+    public void agrandar() {
+    	Sentidos s = new Sentidos();
+    	adyacencias.add(s);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     /**
