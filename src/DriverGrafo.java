@@ -13,6 +13,7 @@ public class DriverGrafo {
                 + "\n 4.existeAdyacente(int indice, E e):boolean"
                 + "\n 5.agregarElemento(int in, int out, E e)"
                 + "\n 6.eliminarElemento(int in, int out, E e)"
+                + "\n 7.Grafo(int n)"
         		+"\n");
     }
 	
@@ -71,6 +72,11 @@ public class DriverGrafo {
     	        		int out = Integer.parseInt(lsplited[2]);
     	            	String st = lsplited[3];
     	                g.eliminarElemento(in, out, st);
+    	        		break;
+    	        	}
+    	        	case 7: {
+    	        		int n = Integer.parseInt(lsplited[1]);
+    	        		g = new Grafo<String>(n);
     	        		break;
     	        	}
     	        	case 0: {
