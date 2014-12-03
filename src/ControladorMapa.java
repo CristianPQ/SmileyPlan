@@ -366,33 +366,80 @@ public class ControladorMapa {
 		//#########################################
 		
 	
-	 public void guardarMapa(String path, String file) throws Exception {
+	/**
+	 * Cargar el mapa con sus limites, sus coordenadas, sus ciudades y sus caminos 
+	 * @param path
+	 * @param file
+	 * @throws Exception
+	 */
+	public void cargarMapa(String path, String file) throws Exception {
+		
+		//gestor datos
+		GestorDatos gd = new GestorDatos(path,file); 
+		gd.createFile();
+		gd.openFile("read"); 
+		
+		//cargar mapa
+		int i = 0; 
+		int num = Integer.parseInt(gd.readLine()); 
+		buffer = gd.readBuffer(num+1); //totes les linies de coordenades + la de x i y 
+		if(buffer == null) throw new Exception("fichero vacio"); 
+
+		
+		String[] lineas = buffer.split("\n"); 
+		String[] cortarstring = lineas[i].split(" ");
+		int x = Integer.parseInt(cortarstring[i]);
+		int y = Integer.parseInt(cortarstring[i+1]);
+		//captar continente y luego crear mapa 
+		
+		ArrayList<Coordenadas> cont = new ArrayList<Coordenadas>(); 
+		
+		for (int j = 1; j < num; ++j) {
+			cortarstring = lineas[j].split(" ");
+			int pos1 = Integer.parseInt(cortarstring[1]);
+			int pos2 = Integer.parseInt(cortarstring[2]);
+			Coordenadas aux = new Coordenadas(pos1,pos2); 
+			cont.add(aux); 
+		}
+		
+		//crear mapa con (x,y,cont); 
+		 
+		
+		//cargar ciudades
+		
+		//cargar caminos 
+	}
+		
+		
+	/**
+	 * Guardar el mapa con sus limites, sus coordenadas, sus ciudades y sus caminos
+	 * @param path
+	 * @param file
+	 * @throws Exception
+	 */
+	public void guardarMapa(String path, String file) throws Exception {
 		 GestorDatos gd = new GestorDatos(path,file); 
+		 
+		 /**
+		  * En mapa guardar primer el num de coordenades, despres la x i la y i despres les coordenades
+		  * cada una en una linia
+		  */
 		 
 		 gd.createFile(); 
 		 gd.openFile("write"); 
 		 System.out.print("he obert file \n");
 		 gd.writeBuffer("hola"); 
 		 
-		 //guardarCiutats
-		 guardarCiudadSinCerrar(gd); 
-		 System.out.print("he guardat ciutats \n");
-		 
-		 //guardarCamins 
-		 guardarCaminosSinCerrar(gd); 
-		 System.out.print("he guardat caminos \n");
-		 //guardar medidas mapa 
+		 //numero de coordenadas
+		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
+		 String linea = Integer.toString(c.size())+ "\n";  
+		 buffer = buffer+ linea + "\n"; 
 		 
 		 //altura y anchura
 		 int x = m.consultarAnchura();
 		 int y = m.consultarAltura(); 
-		 String linea = x + " " + y + "\n"; 
+		 linea = x + " " + y + "\n"; 
 		 buffer = buffer + linea; 
-		 
-		 //numero de coordenadas
-		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
-		 linea = Integer.toString(c.size())+ "\n";  
-		 buffer = buffer+ linea + "\n"; 
 		 
 		 //guardar coordenadas
 		 for(int i = 0; i < c.size(); ++i) {
@@ -406,17 +453,22 @@ public class ControladorMapa {
 					gd.writeBuffer(buffer); 
 					buffer = null; 
 			 }
-			 
+		 }
+		 
 		if(buffer != null) {
 			gd.writeBuffer(buffer);
 		}
+		 
+		 //guardarCiutats
+		 guardarCiudadSinCerrar(gd); 
+		 System.out.print("he guardat ciutats \n");
+		 
+		 //guardarCamins 
+		 guardarCaminosSinCerrar(gd); 
+		 System.out.print("he guardat caminos \n");
+		 //guardar medidas mapa 
 		
 		gd.closeFile(); 
-	}
-		 
-		 
-		 
-		 
 }
 	
 	
@@ -486,7 +538,6 @@ public class ControladorMapa {
 		gd.openFile("read"); 
 		
 		int num = Integer.parseInt(gd.readLine()); 
-		
 		buffer = gd.readBuffer(num); 
 		if(buffer == null) throw new Exception("fichero vacio"); 
 		
@@ -630,8 +681,12 @@ public class ControladorMapa {
 				}
 			}
 		
-		gd.closeFile(); 
 		}
+		gd.closeFile(); 
+	}
+	
+	public void CargarCaminosSinCerrar(GestorDatos gd) {
+		
 	}
 		
 }

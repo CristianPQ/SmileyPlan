@@ -135,14 +135,14 @@ public static void main(String [] args) throws Exception {
 	    				}
 	    				
 	    	            case 13:{ //Guardado
-	    	            	String  path = "/Users/Dani/Desktop/SmileyPlan/src/"; 
-	    	            	String file = "provaAgente"; 
+	    	            	String  path = lsplited[1];
+	    	            	String file = lsplited[2]; 
 	    	            	conjAgentes.Guardar(path, file);
 	    	            	break;
 	    	            }
 	    	            case 14:{ //Carga
-	    	            	String  path = "/Users/Dani/Desktop/SmileyPlan/src/";
-	    	            	String file = "provaAgente"; 
+	    	            	String  path = lsplited[1];
+	    	            	String file = lsplited[2];
 	    	            	conjAgentes.Cargar(path, file);
 	    	            	break;
 	    	            }

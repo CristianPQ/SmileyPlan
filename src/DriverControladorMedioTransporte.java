@@ -71,13 +71,13 @@ public class DriverControladorMedioTransporte {
 	            	break; 
 	            }
 	            case 8:{
-	            	String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
-	            	String file = "prova"; 
+	            	String  path = lsplited[1];
+	            	String file = lsplited[2];
 	            	cm.Guardar(path, file);
 	            }
 	            case 9:{
-	            	String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
-	            	String file = "prova"; 
+	            	String  path = lsplited[1];
+	            	String file = lsplited[2];
 	            	cm.Cargar(path, file);
 	            }
 	            case 0: {
@@ -95,6 +95,9 @@ public class DriverControladorMedioTransporte {
     }
 
     }
+    
+    //String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
+	//String file = "prova"; 
 
 }
 

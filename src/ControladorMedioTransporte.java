@@ -16,12 +16,10 @@ public class ControladorMedioTransporte {
 	private int CARGA_MAX = 250; 
 	public String buffer = null; 
 	
-	//public String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
-	//public String file = "prova"; 
-	
 	//control errores 
 	private static Exception NombreYaExiste = new Exception ("El nombre ya existe");
 	private static Exception NoExiste = new Exception ("El nombre no existe");
+	private static Exception Negativo = new Exception("El valor no puede ser negativo"); 
 	
 	/**
 	 * Controladora por defecto
@@ -41,6 +39,7 @@ public class ControladorMedioTransporte {
 	 */
 	public void agregarMedioTransporte(String nombre, int coste) throws Exception{
 		if (medios.existe(nombre)) throw NombreYaExiste;
+		else if (coste < 0) throw Negativo; 
 		else{
 			MedioTransporte m = new MedioTransporte(nombre,coste); 
 			medios.insert(nombre,m);
