@@ -84,6 +84,7 @@ public class ControladorMedioTransporte {
 		else medios.delete(nombre); 
 	}
 	
+	
 	/**
 	 * Modificadora de nombre
 	 * @param nNuevo nombre nuevo
@@ -161,25 +162,27 @@ public class ControladorMedioTransporte {
 	 * @param file donde vamos a guardar la informacion
 	 * @Exception al crear archivo 
 	 */
-	public void Guardar(String path, String file) throws Exception {
+	public void Guardar(String file) throws Exception {
 		
-		GestorDatos gd = new GestorDatos(path,file);
+		GestorDatos gd = new GestorDatos(file);
 		
-		gd.createFile(); 
-		gd.openFile("write"); 
-		
+		//gd.createFile(); 
+		gd.abrirArchivo("write"); 
 		
 		ArrayList<String> lista = new ArrayList<String>();
 		lista = medios.consultar(); //obtenim un array ordenada amb els ident de TST
 		
-		String linea = Integer.toString(lista.size()) + "\n"; 
-		buffer = linea; 
+		//String linea = Integer.toString(lista.size()) + "\n"; 
+		//buffer = linea; 
 		
-		
-		
-		for(int i = 0; i < lista.size(); ++i){
-			String s = lista.get(i); 
-			MedioTransporte aux = medios.consultar(s); 
+		String s = lista.get(0); 
+		MedioTransporte aux = medios.consultar(s); 
+		String linea = aux.getNombre() + " " + aux.getPrecio();
+		buffer = linea + "\n"; 
+
+		for(int i = 1; i < lista.size(); ++i){
+			s = lista.get(i); 
+			aux = medios.consultar(s); 
 			linea = aux.getNombre() + " " + aux.getPrecio(); 
 			buffer = buffer + linea + "\n"; 
 			
@@ -193,8 +196,30 @@ public class ControladorMedioTransporte {
 			gd.writeBuffer(buffer);
 		}
 		
-		gd.closeFile(); 
+		gd.cerrarArchivo(); 
+	}
 
+	
+	/**
+	 * Convierte el string a medios de transporte
+	 * @param carga
+	 * @throws Exception si el medio ya existe
+	 */
+	public void ConvertirGuardados(ArrayList<String> carga) throws Exception {
+		int total = carga.size() - 1;
+		System.out.println("carga.size " + total);
+		for(int i = 0; i < total; ++i) {
+			//guardo el primer string i el tallo en petits strings separats per " "
+			String[] cortarstring = carga.get(i).split(" "); 
+			String nombre = cortarstring[0];
+			int Precio = Integer.parseInt(cortarstring[1]);
+			/////////////per comprovar ////////////////
+			System.out.println("he carregat medio " + i); 
+			System.out.println(nombre + " " + Precio); 
+			/////////////////////////////////////////////
+			agregarMedioTransporte(nombre,Precio);
+		}
+		System.out.println("surto de la funcio");
 	}
 	
 	/**
@@ -203,52 +228,30 @@ public class ControladorMedioTransporte {
 	 * @param file donde esta la informacion que queremos cargar
 	 * @throws Exception si el fichero esta vacio 
 	 */
-	public void Cargar(String path, String file) throws Exception{
+	public void Cargar(String file) throws Exception{
+		ArrayList<String> carga = new ArrayList<String>(); 
+		GestorDatos gd = new GestorDatos(file); 
 		
-		GestorDatos gd = new GestorDatos(path,file); 
-		
-		gd.createFile();
-		gd.openFile("read"); 
-		
-		int num = Integer.parseInt(gd.readLine()); 
-		
-		buffer = gd.readBuffer(num); 
-		if(buffer == null) throw new Exception("fichero vacio"); 
-		
-		String[] lineas = buffer.split("\n"); 
-		int i = 0; 
-		
+		gd.abrirArchivo("read"); 
+		int num = gd.bufferToStrings(); 
+		System.out.println("numero de strings " + num);
+
 		if (num <= CARGA_MAX) {
-			while(i < num) {
-				String[] cortarstring = lineas[i].split(" "); 
-				String nombre = cortarstring[0];
-				int Precio = Integer.parseInt(cortarstring[1]);
-				agregarMedioTransporte(nombre,Precio); 
-				/////////////per comprovar ////////////////
-				System.out.print(nombre + " "+ Precio + "\n"); 
-				/////////////////////////////////////////////
-				i++; 
+			carga = gd.obtenerTodoElString(); 
+			ConvertirGuardados(carga); 
+		}
+		else {
+			while(num > CARGA_MAX){
+				num -= CARGA_MAX; 
+				carga = gd.obtenerStrings(CARGA_MAX);
+				ConvertirGuardados(carga); 
+			}
+			if(num != 0) { //si queden restes
+				carga = gd.obtenerStrings(num); 
+				ConvertirGuardados(carga); 
 			}
 		}
-		
-		else {
-			while(num >= CARGA_MAX) {
-				buffer = gd.readBuffer(CARGA_MAX); 
-				num = num - CARGA_MAX; 
-				while(i < CARGA_MAX) {
-					String[] cortarstring = lineas[i].split(" "); 
-					String nombre = cortarstring[0];
-					int Precio = Integer.parseInt(cortarstring[1]);
-					agregarMedioTransporte(nombre,Precio); 
-					
-					/////////////per comprovar ////////////////
-					System.out.print(nombre + " "+ Precio + "\n"); 
-					/////////////////////////////////////////////
-					i++; 
-				}
-			}
-		
-		gd.closeFile(); 
-	}
+		System.out.println("he acabat de guardar");
+		gd.cerrarArchivo(); 
 	}
 }

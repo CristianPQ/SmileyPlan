@@ -3,21 +3,24 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.LineNumberReader;
 import java.util.*;
 
 
 public class GestorDatos {
 	
-	 protected String nomD;
-	 protected String nomF;
-	 protected File f;
+	 //protected String Directorio;
+	 protected String Archivo;
+	 //protected File f;
 	 private BufferedWriter bw; 
 	 private BufferedReader br; 
 	 private FileWriter fw;
 	 private FileReader fr;
 	 private boolean lectura;
 	 private boolean escritura;
-	 
+	 protected String buffer; 
+	 //private int cont; 
+ 	ArrayList<String> sol = new ArrayList<String>(); 
 	 
 	 /**
 	  * Constructora por defecto
@@ -26,63 +29,51 @@ public class GestorDatos {
 		 
 	 }
 	    
-	    /**
-	     * Constructora
-	     * @param nomD2 nombre del directorio
-	     * @param nomF2 nombre del archivo
-	     */
-	  public GestorDatos(String nomD2, String nomF2) {
+	 /**
+	   * Constructora
+	   * @param nomD2 nombre del directorio
+	   * @param nomF2 nombre del archivo
+	  */
+	  public GestorDatos(String file) {
 	       br = null;
 	       bw = null;
 	       fr = null;
 	       fw = null;
 	       lectura = false;
 	       escritura = false;
-	       nomD = nomD2;
-	       nomF = nomF2;
-	       f = new File(nomD2, nomF2);
+	       Archivo = file;
 	    }
 	    
-	    /**
-	     * creadora de un archivo con control de errores
-	     * @return true si se ha creado
-	     * @throws Exception 
-	     */
-	    public boolean createFile() throws Exception{
-	        if (!f.exists()) {
-		    return f.createNewFile();
-		}
-		return false;
-	    }
-	    
+
 	    /**
 	     * Abre un archivo previamente creado
 	     * @param read o write 
 	     * @return true si se abre el archivo sin problema 
-	     * @throws Exception File, BufferedReader and BufferedWriter IOExceptions
+	     * @throws 
 	     */
-	    public boolean openFile(String s) throws Exception {
-	        if (s == "read" && f.exists()) {
+	    public void abrirArchivo(String modo) throws Exception {
+	    	File f = new File(Archivo);
+	    	f.createNewFile(); 
+	        if (modo == "read") { //and f.exists eliminat
+	        	System.out.print("dins opcio read \n");
 	            fr = new FileReader(f);
 	            br = new BufferedReader(fr); 
 	            lectura = true;
-	            return true;
 	        }
-	        if (s == "write" && f.exists()) {
+	        if (modo == "write") { //and f.exists eliminat
+	        	System.out.print("dins opcio write \n");
 	            fw = new FileWriter(f);
 	            bw = new BufferedWriter(fw);
 	            escritura = true;
-	            return true;
 	        }
-	        return false;
 	    }
 	    
 	    /**
 	     * Cerrar el archivo
 	     * @return true si se cierra sin problemas
-	     * @throws Exception BufferedReader and BufferedWriter exceptions
+	     * @throws 
 	     */
-	    public boolean closeFile() throws Exception {
+	    public boolean cerrarArchivo() throws Exception {
 	        if (!lectura && !escritura) return false;
 	        if (lectura) {
 	            br.close();
@@ -97,24 +88,47 @@ public class GestorDatos {
 	        return true;
 	    }
 	    
-	    /**
-	     * Elimina el archivo
-	     * @return true si se elimina con exito
-	     * @throws Exception File exception 
-	     */
-	    public boolean deleteFile() throws Exception {
-	        closeFile();
-	        if(f.exists()) {
-	            return f.delete();
-	        }
-	        return false;
+	    public ArrayList<String> obtenerTodoElString(){
+	    	return sol; 
 	    }
+	    
+	    public ArrayList<String> obtenerStrings(int n) {
+	    	Iterator itr = new sol.iterator(); 
+	    	return sol; 
+	    }
+	    
+	    /**
+	     * Convierte el buffer en array de strings y devuelve el numero de lineas de este
+	     * @return numero de lineas
+	     * @throws Exception si el archivo esta vacio
+	     */
+	    public int bufferToStrings() throws Exception{
+	    	String s; 
+	    	int cont = 0; 
+	    	if ((s = br.readLine()) == null) throw new Exception ("fichero vacío"); 
+	    	sol.add(s); 
+	    	while( (s = br.readLine()) != null) {
+	    		sol.add(s); 
+	    		++cont; 
+	    		System.out.println(cont);
+	    	}
+	    	return cont; 
+	    }
+	    
+	    /**
+	     * Devuelve el numero de lineas que contiene el archivo
+	     * @return numero de lineas
+	     */
+	   // public int obtenerNumeroLineas(){
+	    //	return cont; 
+	    //}
+
 	    
 	    /**
 	     * 
 	     * @param buffer que vamos a escribir dentro del archivo
 	     * @return true 
-	     * @throws Exception BufferedWriter exception
+	     * @throws 
 	     */
 	    public boolean writeBuffer(String buffer) throws Exception {
 	        if (escritura) {
@@ -129,7 +143,7 @@ public class GestorDatos {
 	     * Lee las lineas de un buffer
 	     * @param numLines lineas que vamos a leer
 	     * @return 
-	     * @throws Exception BufferedWriter exception
+	     * @throws 
 	     */
 	    public String readBuffer(int numLines) throws Exception {
 	        String result = null;
@@ -145,15 +159,4 @@ public class GestorDatos {
 	        return result;
 	    }
 	    
-	    /**
-	     * lee la linea de un archivo
-	     * @return la linea leida
-	     * @throws Exception BufferedWrite exception 
-	     */
-	    public String readLine() throws Exception {
-	        if (lectura) {
-	            return br.readLine();
-	        }
-	        return null;
-	    }
 	}

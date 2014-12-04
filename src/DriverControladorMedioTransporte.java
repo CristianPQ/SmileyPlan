@@ -71,14 +71,14 @@ public class DriverControladorMedioTransporte {
 	            	break; 
 	            }
 	            case 8:{
-	            	String  path = lsplited[1];
-	            	String file = lsplited[2];
-	            	cm.Guardar(path, file);
+	            	String file = lsplited[1];
+	            	cm.Guardar(file);
+	            	break;
 	            }
 	            case 9:{
-	            	String  path = lsplited[1];
-	            	String file = lsplited[2];
-	            	cm.Cargar(path, file);
+	            	String file = lsplited[1];
+	            	cm.Cargar(file);
+	            	break; 
 	            }
 	            case 0: {
 	                System.exit(0);
@@ -98,6 +98,14 @@ public class DriverControladorMedioTransporte {
     
     //String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
 	//String file = "prova"; 
+
+    /*
+     * Pel joc de proves: 
+     * Primer carrego de l'arxiu que ha d'estar ple, despres
+     * puc afegir mes medios per veure si la creadora funciona
+     * i finalment els guardo
+     * Sino la carregadora no funciona pq ja hi ha elements! 
+     */
 
 }
 
