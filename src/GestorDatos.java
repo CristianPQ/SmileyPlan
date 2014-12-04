@@ -53,6 +53,7 @@ public class GestorDatos {
 	     */
 	    public void abrirArchivo(String modo) throws Exception {
 	    	File f = new File(Archivo);
+	    	System.out.println("he creat arxiu"); 
 	    	f.createNewFile(); 
 	        if (modo == "read") { //and f.exists eliminat
 	        	System.out.print("dins opcio read \n");
@@ -93,7 +94,7 @@ public class GestorDatos {
 	    }
 	    
 	    public ArrayList<String> obtenerStrings(int n) {
-	    	Iterator itr = new sol.iterator(); 
+	    	//Iterator itr = new sol.iterator(); 
 	    	return sol; 
 	    }
 	    

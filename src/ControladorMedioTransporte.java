@@ -165,15 +165,11 @@ public class ControladorMedioTransporte {
 	public void Guardar(String file) throws Exception {
 		
 		GestorDatos gd = new GestorDatos(file);
-		
-		//gd.createFile(); 
+
 		gd.abrirArchivo("write"); 
 		
 		ArrayList<String> lista = new ArrayList<String>();
 		lista = medios.consultar(); //obtenim un array ordenada amb els ident de TST
-		
-		//String linea = Integer.toString(lista.size()) + "\n"; 
-		//buffer = linea; 
 		
 		String s = lista.get(0); 
 		MedioTransporte aux = medios.consultar(s); 

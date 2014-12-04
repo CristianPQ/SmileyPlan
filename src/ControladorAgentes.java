@@ -9,7 +9,7 @@ public class ControladorAgentes {
 		
 		private final static int BUFFER_SIZE = 3250; 
 		private int CARGA_MAX = 250; 
-		public String buffer = null; 
+		public String buffer; 
 		
 		private static Exception NombreYaExiste = new Exception ("El agente ya existe");
 		private static Exception NoExiste = new Exception ("El agente no existe");
@@ -248,64 +248,58 @@ public class ControladorAgentes {
         	
         //}
         
-        /**
+        
+    	/**
+    	 * Convierte el string a agentes
+    	 * @param carga
+    	 * @throws Exception si el agente ya existe
+    	 */
+    	public void ConvertirGuardados(ArrayList<String> carga) throws Exception {
+    		int total = carga.size() - 1;
+    		for(int i = 0; i < total; ++i) {
+    			String[] cortarstring = carga.get(i).split(" "); 
+    			String nombre = cortarstring[0];
+    			String ci = cortarstring[1];
+				String co = cortarstring[2]; 
+    			/////////////per comprovar ////////////////
+				System.out.print(nombre + " "+ ci + " "+ co + "\n");
+    			/////////////////////////////////////////////
+				anadirAgenteInterna(nombre,ci,co); 
+    		}
+    		System.out.println("surto de la funcio");
+    	}
+    	
+    	/**
     	 * Cargar agentes
     	 * @param path donde esta el archivo
     	 * @param file donde esta la informacion que queremos cargar
     	 * @throws Exception si el fichero esta vacio 
     	 */
-    	public void Cargar(String path, String file) throws Exception{
+    	public void Cargar(String file) throws Exception{
+    		ArrayList<String> carga = new ArrayList<String>(); 
+    		GestorDatos gd = new GestorDatos(file); 
     		
-    		GestorDatos gd = new GestorDatos(path,file); 
-    		
-    		gd.createFile();
-    		gd.openFile("read"); 
-    		
-    		int num = Integer.parseInt(gd.readLine()); 
-    		
-    		buffer = gd.readBuffer(num); 
-    		if(buffer == null) throw new Exception("fichero vacio"); 
-    		
-    		String[] lineas = buffer.split("\n"); 
-    		int i = 0; 
-    		
+    		gd.abrirArchivo("read"); 
+    		int num = gd.bufferToStrings(); 
+
     		if (num <= CARGA_MAX) {
-    			while(i < num) {
-    				String[] cortarstring = lineas[i].split(" "); 
-    				String nombre = cortarstring[0];
-    				String ci = cortarstring[1];
-    				String co = cortarstring[2]; 
-    				anadirAgenteInterna(nombre,ci,co); 
-    				
-    				/////////////per comprovar ////////////////
-    				System.out.print(nombre + " "+ ci + " "+ co + "\n"); 
-    				/////////////////////////////////////////////
-    				i++; 
-    			}
-    		} 
+    			carga = gd.obtenerTodoElString(); 
+    			ConvertirGuardados(carga); 
+    		}
     		else {
-    			while(num >= CARGA_MAX) {
-    				buffer = gd.readBuffer(CARGA_MAX); 
-    				num = num - CARGA_MAX; 
-    				while(i < CARGA_MAX) {
-    					String[] cortarstring = lineas[i].split(" "); 
-    					String nombre = cortarstring[0];
-        				String ci = cortarstring[1];
-        				String co = cortarstring[2]; 
-        				anadirAgenteInterna(nombre,ci,co); 
-        				
-        				/////////////per comprovar ////////////////
-        				System.out.print(nombre + " "+ ci + " "+ co + "\n"); 
-        				/////////////////////////////////////////////
-        				i++;  
-    				}
+    			while(num > CARGA_MAX){
+    				num -= CARGA_MAX; 
+    				carga = gd.obtenerStrings(CARGA_MAX);
+    				ConvertirGuardados(carga); 
+    			}
+    			if(num != 0) { //si queden restes
+    				carga = gd.obtenerStrings(num); 
+    				ConvertirGuardados(carga); 
     			}
     		}
-    		gd.closeFile(); 
+    		gd.cerrarArchivo(); 
     	}
-        
-        
-        
+    	
     	
     	/**
     	 * Guardar agentes
@@ -313,23 +307,20 @@ public class ControladorAgentes {
     	 * @param file donde vamos a guardar la informacion
     	 * @Exception al crear archivo 
     	 */
-    	public void Guardar(String path, String file) throws Exception {
-    		GestorDatos gd = new GestorDatos(path,file);
+    	public void Guardar(String file) throws Exception {
+    		GestorDatos gd = new GestorDatos(file);
     		
-    		gd.createFile(); 
-    		gd.openFile("write"); 
-    		
-    		
+    		gd.abrirArchivo("write"); 
+
     		ArrayList<String> lista = new ArrayList<String>();
-    		lista = Agentes.consultar(); //obtenim un array ordenada amb els ident de TST
+    		lista = Agentes.consultar(); 
     		
-    		String linea = Integer.toString(lista.size()) + "\n"; 
-    		buffer = linea; 
+    		String s = lista.get(0); 
+			String linea = s + " " + consultarCiudadInicialAgente(s)+ " " + consultarCiudadObjetivoAgente(s); 
+			buffer = linea + "\n"; 
     		
-    		
-    		
-    		for(int i = 0; i < lista.size(); ++i){
-    			String s = lista.get(i); 
+    		for(int i = 1; i < lista.size(); ++i){
+    			s = lista.get(i); 
     			linea = s + " " + consultarCiudadInicialAgente(s)+ " " + consultarCiudadObjetivoAgente(s); 
     			buffer = buffer + linea + "\n"; 
     			
@@ -343,7 +334,7 @@ public class ControladorAgentes {
     			gd.writeBuffer(buffer);
     		}
     		
-    		gd.closeFile(); 
+    		gd.cerrarArchivo(); 
 
     	}
     	

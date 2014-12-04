@@ -135,15 +135,13 @@ public static void main(String [] args) throws Exception {
 	    				}
 	    				
 	    	            case 13:{ //Guardado
-	    	            	String  path = lsplited[1];
-	    	            	String file = lsplited[2]; 
-	    	            	conjAgentes.Guardar(path, file);
+	    	            	String file = lsplited[1]; 
+	    	            	conjAgentes.Guardar(file);
 	    	            	break;
 	    	            }
-	    	            case 14:{ //Carga
-	    	            	String  path = lsplited[1];
-	    	            	String file = lsplited[2];
-	    	            	conjAgentes.Cargar(path, file);
+	    	            case 14:{ //Cargar
+	    	            	String file = lsplited[1];
+	    	            	conjAgentes.Cargar(file);
 	    	            	break;
 	    	            }
 	    	            
