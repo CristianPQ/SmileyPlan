@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.*; 
+import java.lang.*;
 
 public class main {
 
@@ -6,12 +8,19 @@ public class main {
 		
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
 			
-			ControladorPresentacionMedios cpm = new ControladorPresentacionMedios(); 
-			ControladorPresentacionAgentes cpa = new ControladorPresentacionAgentes(); 
-			ControladorPresentacionMapa cpmapa = new ControladorPresentacionMapa(); 
-			ControladorPresentacionAlgoritmo cpalg = new ControladorPresentacionAlgoritmo();
+			public void run() {
+				try {
+	               UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	             }
+	             catch (Exception e) {System.out.println(e);}
+				ControladorPresentacionMedios cpm = new ControladorPresentacionMedios(); 
+				ControladorPresentacionAgentes cpa = new ControladorPresentacionAgentes(); 
+				ControladorPresentacionMapa cpmapa = new ControladorPresentacionMapa(); 
+				ControladorPresentacionAlgoritmo cpalg = new ControladorPresentacionAlgoritmo();
+				
+				VistaPrincipal vp = new VistaPrincipal(cpm,cpa,cpmapa,cpalg);
+			}
 			
-			VistaPrincipal vp = new VistaPrincipal(cpm,cpa,cpmapa,cpalg);
 		}); 
 		
 	}

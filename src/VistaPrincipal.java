@@ -33,15 +33,23 @@ public class VistaPrincipal {
         JMenu menu1 = new JMenu("Guardar");  
         JMenu menu2 = new JMenu("Cargar");
 		JMenu menu3 = new JMenu("Deshacer");
-		
 		menuBar.add(menu1); 
 		menuBar.add(menu2); 
-		menuBar.add(menu3); 
-		
+		menuBar.add(menu3); 		
 		frame.setJMenuBar(menuBar);
-		
-		
 
+		Ayuda ayuda = new Ayuda(); 
+
+		tabs = new JTabbedPane(); 
+		//tabs.add("Mapa", cpmapa.getPanel());
+		//tabs.add("Agente", cpa.getPanel());
+		//tabs.add("MedioTransporte", cpm.getPanel());
+		//tabs.add("Algoritmo", cpalg.getPanel());
+		//tabs.add("Ayuda", ayuda); 
+		
+		frame.add(tabs);
+		frame.pack(); 
+		frame.setVisible(true); 
 		
 	}
 	
