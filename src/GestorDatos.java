@@ -20,7 +20,8 @@ public class GestorDatos {
 	 private boolean escritura;
 	 protected String buffer; 
 	 //private int cont; 
- 	ArrayList<String> sol = new ArrayList<String>(); 
+ 	private ArrayList<String> sol = new ArrayList<String>();
+ 	private Iterator<String> it = sol.iterator();
 	 
 	 /**
 	  * Constructora por defecto
@@ -89,13 +90,29 @@ public class GestorDatos {
 	        return true;
 	    }
 	    
+	    /**
+	     * Obtener todos los strings de la arraylist
+	     * @return arraylist d'strings
+	     */
 	    public ArrayList<String> obtenerTodoElString(){
 	    	return sol; 
 	    }
 	    
+	    //###### Arreglar: #######
+	    
+	    /**
+	     * Devuelve 
+	     * @param n
+	     * @return
+	     */
 	    public ArrayList<String> obtenerStrings(int n) {
-	    	//Iterator itr = new sol.iterator(); 
-	    	return sol; 
+	    	ArrayList<String> dev = new ArrayList<String>(); 
+	    	
+	    	for(int pos= 0; pos < n; ++pos){
+	    		dev.add(it.next()); 
+	    	}
+	    	//pos = ??
+	    	return dev; 
 	    }
 	    
 	    /**
@@ -116,15 +133,7 @@ public class GestorDatos {
 	    	return cont; 
 	    }
 	    
-	    /**
-	     * Devuelve el numero de lineas que contiene el archivo
-	     * @return numero de lineas
-	     */
-	   // public int obtenerNumeroLineas(){
-	    //	return cont; 
-	    //}
-
-	    
+	
 	    /**
 	     * 
 	     * @param buffer que vamos a escribir dentro del archivo
