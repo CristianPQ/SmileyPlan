@@ -42,11 +42,11 @@ public class ControladorPresentacionMedios {
 	}
 	
 	public void guardarMedio(String path, String file) throws Exception {
-		cm.Guardar(path, file);
+		cm.Guardar(file);
 	}
 	
 	public void cargarMedio(String path, String file) throws Exception {
-		cm.Cargar(path, file);
+		cm.Cargar(file);
 	}
 	
 	//***************************************************
