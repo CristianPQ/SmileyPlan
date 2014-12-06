@@ -1,4 +1,6 @@
 //import classes domini
+import java.awt.Component;
+
 import javax.swing.*;
 
 public class ControladorPresentacionMedios {
@@ -53,5 +55,7 @@ public class ControladorPresentacionMedios {
 	//*****************PANEL*****************************
 	//***************************************************
 	
-	
+	public static VistaMedioTransporte getVista(){
+		return vistaMedio; 
+	}
 }

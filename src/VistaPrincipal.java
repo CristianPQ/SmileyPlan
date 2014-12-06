@@ -26,7 +26,7 @@ public class VistaPrincipal {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         frame.setPreferredSize(new Dimension(1100, 500));
-        frame.setResizable(false);
+        frame.setResizable(true);
         
         JMenuBar menuBar = new JMenuBar(); 
         
@@ -43,7 +43,7 @@ public class VistaPrincipal {
 		tabs = new JTabbedPane(); 
 		//tabs.add("Mapa", cpmapa.getPanel());
 		//tabs.add("Agente", cpa.getPanel());
-		//tabs.add("MedioTransporte", cpm.getPanel());
+		tabs.addTab("MedioTransporte", cpm.getVista());
 		//tabs.add("Algoritmo", cpalg.getPanel());
 		//tabs.add("Ayuda", ayuda); 
 		
