@@ -38,11 +38,19 @@ public abstract class Vista2 extends Vista1 {
 		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
 		panelLista.setMinimumSize(new Dimension(600,100));
 		panelLista.setMaximumSize(new Dimension(600,100));
-		
-		//aixo es el quadrat de la llista?
+	
 		text1 = new JTextField(); 
 		text1.setPreferredSize(new Dimension(70,30));
 		text1.setEditable(true);
+		label1 = new JLabel();
+		label2 = new JLabel(); 
+		text2 = new JTextField(); 
+
+		text2.setPreferredSize(new Dimension(70,30));
+		text2.setEditable(true);
+		panelLista.add(text2); 
+		panelLista.add(label2);
+		panelLista.add(label1);
 		
 		panelLista.add(text1);
 		
@@ -68,24 +76,18 @@ public abstract class Vista2 extends Vista1 {
 		panelBotones.add(botonCrear);
 		
 		//panel crear
-		panelCrear = new JPanel(); 
-		panelCrear.setBorder(BorderFactory.createLoweredBevelBorder());
+		/*
+		 * panelCrear = new JPanel(); 
+		 * panelCrear.setBorder(BorderFactory.createLoweredBevelBorder());
 		panelCrear.setMinimumSize(new Dimension(70,30));
 		panelCrear.setMaximumSize(new Dimension(70,30));
-		//botonCrear = new JButton(); 
-		label1 = new JLabel();
-		label2 = new JLabel(); 
-		text2 = new JTextField(); 
-		text2.setPreferredSize(new Dimension(70,30));
-		text2.setEditable(true);
-		//panelCrear.add(botonCrear);
-		panelCrear.add(text2); 
-		panelCrear.add(label2);
-		panelCrear.add(label1);
+		 */
+
+
 		
 		panelv2.add(panelLista);
 		panelv2.add(panelBotones);
-		panelv2.add(panelCrear);
+		//panelv2.add(panelCrear);
 		
 		
 		super.panelPrincipal.add(panelv2); 
