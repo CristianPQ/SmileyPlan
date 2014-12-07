@@ -55,7 +55,7 @@ public class ControladorPresentacionMedios {
 	//*****************PANEL*****************************
 	//***************************************************
 	
-	public static VistaMedioTransporte getVista(){
+	public VistaMedioTransporte getVista(){
 		return vistaMedio; 
 	}
 }

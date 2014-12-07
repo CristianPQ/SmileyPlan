@@ -22,6 +22,7 @@ public class GestorDatos {
 	 //private int cont; 
  	private ArrayList<String> sol = new ArrayList<String>();
  	private Iterator<String> it = sol.iterator();
+ 	private int pos = 0; 
 	 
 	 /**
 	  * Constructora por defecto
@@ -94,25 +95,45 @@ public class GestorDatos {
 	     * Obtener todos los strings de la arraylist
 	     * @return arraylist d'strings
 	     */
-	    public ArrayList<String> obtenerTodoElString(){
-	    	return sol; 
+	    public String obtenerTodoElString(){
+	    	int i = 1; 
+	    	String line = sol.get(0) + "\n"; 
+	    	while(i < sol.size()){
+	    		line = line + sol.get(i) + "\n";
+	    		++i; 
+	    	}
+	    	return line; 
 	    }
 	    
-	    //###### Arreglar: #######
 	    
 	    /**
-	     * Devuelve 
-	     * @param n
-	     * @return
+	     * Devuelve los strings en bloques de 250  
+	     * @param n que equivale a 250 que es la carga maxima
+	     * @return el string con 250 elementos
 	     */
-	    public ArrayList<String> obtenerStrings(int n) {
-	    	ArrayList<String> dev = new ArrayList<String>(); 
-	    	
-	    	for(int pos= 0; pos < n; ++pos){
-	    		dev.add(it.next()); 
+	    public String obtenerStrings(int n) {
+	    	System.out.println("sobrepassa carga");
+	    	//ArrayList<String> dev = new ArrayList<String>(); 
+	    	String line = sol.get(pos) + "\n";
+	    	++pos; 
+	    	System.out.println("posicio on segueixo" + pos); 
+	    	int j; 
+	    	for(j= pos; j < n; ++j){    		
+	    		//String prova = it.next(); 
+	    		line = line + sol.get(j) + "\n"; 
+	    		System.out.println(line); 
+	    		//dev.add(sol.get(j)); 
 	    	}
+	    	//int stop = dev.size(); 
+	    	//int i = 1; 
+	    	//String line = dev.get(0); 
+	    	//while(i < stop){
+	    		//line = line + dev.get(i); 
+	    		//++i; 
+	    	//}
 	    	//pos = ??
-	    	return dev; 
+	    	pos = j; 
+	    	return line; 
 	    }
 	    
 	    /**
