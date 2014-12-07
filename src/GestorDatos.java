@@ -57,13 +57,13 @@ public class GestorDatos {
 	    	File f = new File(Archivo);
 	    	System.out.println("he creat arxiu"); 
 	    	f.createNewFile(); 
-	        if (modo == "read") { //and f.exists eliminat
+	        if (modo == "read") { 
 	        	System.out.print("dins opcio read \n");
 	            fr = new FileReader(f);
 	            br = new BufferedReader(fr); 
 	            lectura = true;
 	        }
-	        if (modo == "write") { //and f.exists eliminat
+	        if (modo == "write") { 
 	        	System.out.print("dins opcio write \n");
 	            fw = new FileWriter(f);
 	            bw = new BufferedWriter(fw);
@@ -112,27 +112,16 @@ public class GestorDatos {
 	     * @return el string con 250 elementos
 	     */
 	    public String obtenerStrings(int n) {
-	    	System.out.println("sobrepassa carga");
-	    	//ArrayList<String> dev = new ArrayList<String>(); 
 	    	String line = sol.get(pos) + "\n";
 	    	++pos; 
 	    	System.out.println("posicio on segueixo" + pos); 
 	    	int j; 
-	    	for(j= pos; j < n; ++j){    		
-	    		//String prova = it.next(); 
-	    		line = line + sol.get(j) + "\n"; 
-	    		System.out.println(line); 
-	    		//dev.add(sol.get(j)); 
+	    	--n; 
+	    	for(j= 0; j < n; ++j){    		
+	    		line = line + sol.get(pos) + "\n"; 
+	    		//System.out.println(line); 
+	    		++pos; 
 	    	}
-	    	//int stop = dev.size(); 
-	    	//int i = 1; 
-	    	//String line = dev.get(0); 
-	    	//while(i < stop){
-	    		//line = line + dev.get(i); 
-	    		//++i; 
-	    	//}
-	    	//pos = ??
-	    	pos = j; 
 	    	return line; 
 	    }
 	    
@@ -145,11 +134,11 @@ public class GestorDatos {
 	    	String s; 
 	    	int cont = 0; 
 	    	if ((s = br.readLine()) == null) throw new Exception ("fichero vacío"); 
-	    	sol.add(s); 
+	    	sol.add(s);
+	    	++cont; 
 	    	while( (s = br.readLine()) != null) {
 	    		sol.add(s); 
 	    		++cont; 
-	    		System.out.println(cont);
 	    	}
 	    	return cont; 
 	    }

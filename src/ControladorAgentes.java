@@ -254,10 +254,10 @@ public class ControladorAgentes {
     	 * @param carga
     	 * @throws Exception si el agente ya existe
     	 */
-    	public void ConvertirGuardados(ArrayList<String> carga) throws Exception {
-    		int total = carga.size() - 1;
+    	public void ConvertirGuardados(String[] l) throws Exception {
+    		int total = l.length; 
     		for(int i = 0; i < total; ++i) {
-    			String[] cortarstring = carga.get(i).split(" "); 
+    			String[] cortarstring = l[i].split(" "); 
     			String nombre = cortarstring[0];
     			String ci = cortarstring[1];
 				String co = cortarstring[2]; 
@@ -265,8 +265,8 @@ public class ControladorAgentes {
 				System.out.print(nombre + " "+ ci + " "+ co + "\n");
     			/////////////////////////////////////////////
 				anadirAgenteInterna(nombre,ci,co); 
+				//System.out.println("agente agregat");
     		}
-    		System.out.println("surto de la funcio");
     	}
     	
     	/**
@@ -276,7 +276,7 @@ public class ControladorAgentes {
     	 * @throws Exception si el fichero esta vacio 
     	 */
     	public void Cargar(String file) throws Exception{
-    		ArrayList<String> carga = new ArrayList<String>(); 
+    		String carga; 
     		GestorDatos gd = new GestorDatos(file); 
     		
     		gd.abrirArchivo("read"); 
@@ -284,17 +284,20 @@ public class ControladorAgentes {
 
     		if (num <= CARGA_MAX) {
     			carga = gd.obtenerTodoElString(); 
-    			ConvertirGuardados(carga); 
+    			String[] l = carga.split("\n"); 
+    			ConvertirGuardados(l); 
     		}
     		else {
     			while(num > CARGA_MAX){
-    				num -= CARGA_MAX; 
+    				num = num - CARGA_MAX; 
     				carga = gd.obtenerStrings(CARGA_MAX);
-    				ConvertirGuardados(carga); 
+    				String[] l = carga.split("\n"); 
+    				ConvertirGuardados(l); 
     			}
     			if(num != 0) { //si queden restes
     				carga = gd.obtenerStrings(num); 
-    				ConvertirGuardados(carga); 
+    				String[] l = carga.split("\n"); 
+    				ConvertirGuardados(l);
     			}
     		}
     		gd.cerrarArchivo(); 

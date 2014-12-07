@@ -13,7 +13,7 @@ public class ControladorMedioTransporte {
 	private TST<MedioTransporte> medios;	
 	
 	private final static int BUFFER_SIZE = 3250; //aprox 250 elem
-	private int CARGA_MAX = 2; 
+	private int CARGA_MAX = 250; 
 	public String buffer = null; 
 	
 	//control errores 
@@ -202,20 +202,19 @@ public class ControladorMedioTransporte {
 	 * @throws Exception si el medio ya existe
 	 */
 	public void ConvertirGuardados(String[] l) throws Exception {
-		//int total = carga.size() - 1;
 		int total = l.length; 
-		System.out.println("carga.size " + l.length);
+		//System.out.println("carga.size " + l.length);
 		for(int i = 0; i < total; ++i) {
 			//guardo el primer string i el tallo en petits strings separats per " "
 			String[] cortarstring = l[i].split(" "); 
 			String nombre = cortarstring[0];
 			int Precio = Integer.parseInt(cortarstring[1]);
 			/////////////per comprovar ////////////////
-			System.out.println("he carregat medio " + i); 
-			System.out.println(nombre + " " + Precio); 
+			//System.out.println("he carregat medio " + i); 
+			//System.out.println(nombre + " " + Precio); 
 			/////////////////////////////////////////////
 			agregarMedioTransporte(nombre,Precio);
-			System.out.println("medio agregat");
+			//System.out.println("medio agregat");
 		}
 	}
 	
@@ -226,37 +225,35 @@ public class ControladorMedioTransporte {
 	 * @throws Exception si el fichero esta vacio 
 	 */
 	public void Cargar(String file) throws Exception{
-		//ArrayList<String> carga = new ArrayList<String>(); 
 		String carga; 
 		GestorDatos gd = new GestorDatos(file); 
 		
 		gd.abrirArchivo("read"); 
 		int num = gd.bufferToStrings(); 
-		System.out.println("numero de strings " + num);
+		//System.out.println("numero de strings " + num);
 
 		if (num <= CARGA_MAX) {
 			carga = gd.obtenerTodoElString(); 
 			/////prova///
-			System.out.println(carga);
+			//System.out.println(carga);
 			String[] l = carga.split("\n"); 
-
 			ConvertirGuardados(l); 
 		}
 		else {
-			while(num > CARGA_MAX){
-				num -= CARGA_MAX; 
+			while(num >= CARGA_MAX){
+				num = num - CARGA_MAX; 
 				carga = gd.obtenerStrings(CARGA_MAX);
 				String[] l = carga.split("\n"); 
 				ConvertirGuardados(l);  
 			}
 			if(num != 0) { //si queden restes
-				System.out.println("restes");
+				//System.out.println("restes");
 				carga = gd.obtenerStrings(num); 
 				String[] l = carga.split("\n"); 
 				ConvertirGuardados(l); 
 			}
 		}
-		System.out.println("he acabat de guardar");
+		//System.out.println("he acabat de guardar");
 		gd.cerrarArchivo(); 
 	}
 }
