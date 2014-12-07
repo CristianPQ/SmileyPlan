@@ -20,7 +20,7 @@ public class VistaAgentes extends Vista2 {
 	
 }
 	
-	void crearListeners(){
+	void crearListeners()  {
 		
 		botonCrear.addActionListener(new ActionListener(){
 			@Override
@@ -29,17 +29,17 @@ public class VistaAgentes extends Vista2 {
 				String ciuIni = text2.getText();
 				//String ciuObj = text3.getText();
 				if (!text1.getText().equals("") && !text2.getText().equals("")
-						&& !text2.getText().equals(""))
-					try {
+						&& !text2.getText().equals("")){
 						ctrlPAg.agregarAgente(nombre, ciuIni, ciuIni);
-					} catch (Exception e1) {
 						// TODO Auto-generated catch block
-						e1.printStackTrace();
 					}
-			}	
+				}	
 		});
-				}
+	}
+	
+}
+
 	
 
 
-	}
+	
