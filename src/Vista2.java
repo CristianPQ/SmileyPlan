@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 
 public abstract class Vista2 extends Vista1 {
@@ -10,19 +11,22 @@ public abstract class Vista2 extends Vista1 {
 	private JPanel panelBotones; 
 	private JPanel panelCrear; 
 	
-	private JButton botonCargar; 
-	private JButton botonGuardar;
-	private JButton botonModificar;
-	private JButton botonEliminar; 
-	private JButton botonCrear; 
+	protected JButton botonCargar; 
+	protected JButton botonGuardar;
+	protected JButton botonModificar;
+	protected JButton botonEliminar; 
+	protected JButton botonCrear; 
 	
-	private JTextField text1;
-	private JTextField text2; 
+	protected JTextField text1;
+	protected JTextField text2; 
+	
+	protected JLabel label1;
+	protected JLabel label2; 
 	
 	public Vista2() {
 		super(); 
 		
-		vb = new VistaBuscador(this); 
+		//vb = new VistaBuscador(this); 
 		
 		//panel que engloba a todos
 		panelv2 = new JPanel(); 
@@ -51,26 +55,35 @@ public abstract class Vista2 extends Vista1 {
 		botonGuardar = new JButton();
 		botonModificar = new JButton();
 		botonEliminar = new JButton();
+		botonGuardar.setText("Guardar"); 
+		botonCargar.setText("Cargar");
+		botonModificar.setText("Modificar");
+		botonEliminar.setText("Eliminar"); 
 		panelBotones.add(botonCargar);
 		panelBotones.add(botonGuardar);
 		panelBotones.add(botonModificar);
 		panelBotones.add(botonEliminar);
 		
-		//panel cargar
+		//panel crear
 		panelCrear = new JPanel(); 
 		panelCrear.setBorder(BorderFactory.createLoweredBevelBorder());
 		panelCrear.setMinimumSize(new Dimension(70,30));
 		panelCrear.setMaximumSize(new Dimension(70,30));
 		botonCrear = new JButton(); 
+		label1 = new JLabel();
+		label2 = new JLabel(); 
 		text2 = new JTextField(); 
 		text1.setPreferredSize(new Dimension(70,30));
 		text1.setEditable(true);
 		panelCrear.add(botonCrear);
 		panelCrear.add(text2); 
+		panelCrear.add(label2);
+		panelCrear.add(label1);
 		
 		panelv2.add(panelLista);
 		panelv2.add(panelBotones);
 		panelv2.add(panelCrear);
+		
 		
 		super.panelv1.add(panelv2); 
 		super.panelv1.add(vb); 
