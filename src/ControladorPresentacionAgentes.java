@@ -4,16 +4,18 @@ import javax.swing.*;
 public class ControladorPresentacionAgentes {
 	private static ControladorAgentes ca;
 	private static VistaAgentes vistaAg;
+	private static ControladorMapa mapa;
+
 	
-	public ControladorPresentacionAgentes(){
+	public ControladorPresentacionAgentes(ControladorMapa ma){
 		ca = new ControladorAgentes();
 		vistaAg = new VistaAgentes(this);
 		
 	}
 	
-	public void agregarAgente (String n, String ciuIni, String ciuObj, ControladorMapa m) 
+	public void agregarAgente (String n, String ciuIni, String ciuObj) 
 			throws Exception{
-				ca.anadirAgente(n, ciuIni, ciuObj, m);
+				ca.anadirAgente(n, ciuIni, ciuObj, mapa);
 				}
 	
 	public void modificarNombre(String antiguo, String nuevo) throws Exception {
