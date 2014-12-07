@@ -1,5 +1,7 @@
 import java.awt.*;
+
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +15,13 @@ public class VistaAgentes extends Vista2 {
 		
 		super.label1.setText("Nombre: ");
 		super.label2.setText("Ciudad Inicial: ");
-		//super.label3.setText("Ciudad Objetivo: ");
+		label3 = new JLabel(); 
+		super.label3.setText("Ciudad Objetivo: ");
+		text3 = new JTextField(); 
+		text3.setPreferredSize(new Dimension(70,30));
+		text3.setEditable(true);
+		super.panelLista.add(label3);
+		super.panelLista.add(text3);
 		
 		crearListeners();
 		

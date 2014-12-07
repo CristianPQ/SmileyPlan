@@ -19,9 +19,11 @@ public abstract class Vista2 extends Vista1 {
 	
 	protected JTextField text1;
 	protected JTextField text2; 
+	protected JTextField text3; 
 	
 	protected JLabel label1;
 	protected JLabel label2; 
+	protected JLabel label3; 
 	
 	public Vista2() {
 		super(); 
@@ -44,14 +46,19 @@ public abstract class Vista2 extends Vista1 {
 		text1.setEditable(true);
 		label1 = new JLabel();
 		label2 = new JLabel(); 
-		text2 = new JTextField(); 
-
+		text2 = new JTextField();
 		text2.setPreferredSize(new Dimension(70,30));
-		text2.setEditable(true); 
+		text2.setEditable(true);
+		
+
+		//text2.setPreferredSize(new Dimension(70,30));
+		//text2.setEditable(true); 
 		panelLista.add(label1);
 		panelLista.add(text1);
 		panelLista.add(label2);
 		panelLista.add(text2);
+		//panelLista.add(label3);
+		//panelLista.add(text3);
 
 		
 		//panel botones 
