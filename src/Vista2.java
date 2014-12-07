@@ -36,46 +36,49 @@ public abstract class Vista2 extends Vista1 {
 		//panel de lista
 		panelLista = new JPanel(); 
 		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
-		panelLista.setMinimumSize(new Dimension(400,40));
-		panelLista.setMaximumSize(new Dimension(400,40));
+		panelLista.setMinimumSize(new Dimension(600,100));
+		panelLista.setMaximumSize(new Dimension(600,100));
 		
 		//aixo es el quadrat de la llista?
 		text1 = new JTextField(); 
 		text1.setPreferredSize(new Dimension(70,30));
-		text1.setEditable(false);
+		text1.setEditable(true);
 		
 		panelLista.add(text1);
 		
 		//panel botones 
 		panelBotones = new JPanel(); 
 		panelBotones.setBorder(BorderFactory.createLoweredBevelBorder());
-		panelBotones.setMinimumSize(new Dimension(250,80));
-		panelBotones.setMaximumSize(new Dimension(250,80));
+		panelBotones.setMinimumSize(new Dimension(600,100));
+		panelBotones.setMaximumSize(new Dimension(600,100));
 		botonCargar = new JButton(); 
 		botonGuardar = new JButton();
 		botonModificar = new JButton();
 		botonEliminar = new JButton();
+		botonCrear = new JButton(); 
 		botonGuardar.setText("Guardar"); 
 		botonCargar.setText("Cargar");
 		botonModificar.setText("Modificar");
 		botonEliminar.setText("Eliminar"); 
+		botonCrear.setText("Crear");
 		panelBotones.add(botonCargar);
 		panelBotones.add(botonGuardar);
 		panelBotones.add(botonModificar);
 		panelBotones.add(botonEliminar);
+		panelBotones.add(botonCrear);
 		
 		//panel crear
 		panelCrear = new JPanel(); 
 		panelCrear.setBorder(BorderFactory.createLoweredBevelBorder());
 		panelCrear.setMinimumSize(new Dimension(70,30));
 		panelCrear.setMaximumSize(new Dimension(70,30));
-		botonCrear = new JButton(); 
+		//botonCrear = new JButton(); 
 		label1 = new JLabel();
 		label2 = new JLabel(); 
 		text2 = new JTextField(); 
-		text1.setPreferredSize(new Dimension(70,30));
-		text1.setEditable(true);
-		panelCrear.add(botonCrear);
+		text2.setPreferredSize(new Dimension(70,30));
+		text2.setEditable(true);
+		//panelCrear.add(botonCrear);
 		panelCrear.add(text2); 
 		panelCrear.add(label2);
 		panelCrear.add(label1);

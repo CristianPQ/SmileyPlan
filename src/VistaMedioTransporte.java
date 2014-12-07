@@ -31,12 +31,14 @@ public  class VistaMedioTransporte extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 				String nombre = text1.getText(); 
 				int coste = Integer.parseInt(text2.getText()); 
-				if (!text1.getText().equals("") && !text2.getText().equals(""))
-					try {
-						cpm.agregarMedio(nombre, coste);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+				if (!text1.getText().equals("") && !text2.getText().equals("")){
+						try {
+							cpm.agregarMedio(nombre, coste);
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
 					}
 			}	
 		});

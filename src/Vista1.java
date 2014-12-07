@@ -1,17 +1,13 @@
 
-
-
-
 import java.awt.*;
 
 import javax.swing.*;
 
-
-
 public abstract class Vista1 extends JPanel {
-	JPanel panelPrincipal;
-	JPanel panelErrores;
-	JLabel error;
+	
+	protected JPanel panelPrincipal;
+	protected JPanel panelErrores;
+	protected JLabel error;
 	
 	Vista1(){
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -30,6 +26,7 @@ public abstract class Vista1 extends JPanel {
 		this.add(panelErrores);
 		
 	}
+	
     //abstract void agregarBotones();
     
     public void setError(String e) {
@@ -41,6 +38,5 @@ public abstract class Vista1 extends JPanel {
         error.setText("Visor de errores");
         error.setForeground(Color.black);
     }
-	
 	
 }
