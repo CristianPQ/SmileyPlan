@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VistaAgentes extends Vista2 {
+public abstract class VistaAgentes extends Vista2 {
 	
 	private ControladorPresentacionAgentes ctrlPAg;
 	
@@ -13,7 +13,7 @@ public class VistaAgentes extends Vista2 {
 		
 		super.label1.setText("Nombre: ");
 		super.label2.setText("Ciudad Inicial: ");
-		super.label3.setText("Ciudad Objetivo: ");
+		//super.label3.setText("Ciudad Objetivo: ");
 		
 		crearListeners();
 		
@@ -27,11 +27,11 @@ public class VistaAgentes extends Vista2 {
 			public void actionPerformed(ActionEvent e){
 				String nombre = text1.getText();
 				String ciuIni = text2.getText();
-				String ciuObj = text3.getText();
+				//String ciuObj = text3.getText();
 				if (!text1.getText().equals("") && !text2.getText().equals("")
 						&& !text2.getText().equals(""))
 					try {
-						ctrlPAg.agregarAgente(nombre, ciuIni, ciuObj, cm.);
+						//ctrlPAg.agregarAgente(nombre, ciuIni, ciuObj, cm);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
