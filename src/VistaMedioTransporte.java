@@ -34,6 +34,9 @@ public  class VistaMedioTransporte extends Vista2 {
 				if (!text1.getText().equals("") && !text2.getText().equals("")){
 						try {
 							cpm.agregarMedio(nombre, coste);
+							vb.agregar(nombre+"  "+coste);                    
+		                    text1.setText("");
+		                    text2.setText("");
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
