@@ -1,7 +1,7 @@
 
 import javax.swing.*;
 
-public class ControladorPresentacionAgentes {
+public class ControladorPresentacionAgentes{
 	private static ControladorAgentes ca;
 	private static VistaAgentes vistaAg;
 	private static ControladorMapa mapa;
@@ -9,19 +9,33 @@ public class ControladorPresentacionAgentes {
 	
 	public ControladorPresentacionAgentes(){
 		ca = new ControladorAgentes();
-		//vistaAg = new VistaAgentes(this);
+		vistaAg = new VistaAgentes(this);
 
 		
 	}
 	
 	public void agregarAgente (String n, String ciuIni, String ciuObj) 
-			throws Exception{
-				ca.anadirAgente(n, ciuIni, ciuObj, mapa);
+			{
+				try {
+					ca.anadirAgente(n, ciuIni, ciuObj, mapa);
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					vistaAg.setError(e.getMessage());
 				}
+			}
 	
-	public void modificarNombre(String antiguo, String nuevo) throws Exception {
-		ca.modificarNombreAgente(antiguo, nuevo);
+	public void modificarNombre(String antiguo, String nuevo) {
+		try {
+			ca.modificarNombreAgente(antiguo, nuevo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
+	
+
 	
 	public void modificarCiudadInicial(String n, String ciuIni) throws Exception{
 		ca.modificarCiudadInicialAgente(n, ciuIni);

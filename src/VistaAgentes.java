@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public abstract class VistaAgentes extends Vista2 {
+public class VistaAgentes extends Vista2 {
 	
 	private ControladorPresentacionAgentes ctrlPAg;
 	
