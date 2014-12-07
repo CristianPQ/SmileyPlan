@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public abstract class VistaMedioTransporte extends Vista2 {
+public  class VistaMedioTransporte extends Vista2 {
 	
 	private ControladorPresentacionMedios cpm; 
 	

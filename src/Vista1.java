@@ -30,7 +30,7 @@ public abstract class Vista1 extends JPanel {
 		this.add(panelErrores);
 		
 	}
-    abstract void agregarBotones();
+    //abstract void agregarBotones();
     
     public void setError(String e) {
         error.setText("Error: "+e);

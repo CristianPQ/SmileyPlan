@@ -7,9 +7,10 @@ public class ControladorPresentacionAgentes {
 	private static ControladorMapa mapa;
 
 	
-	public ControladorPresentacionAgentes(ControladorMapa ma){
+	public ControladorPresentacionAgentes(){
 		ca = new ControladorAgentes();
-		vistaAg = new VistaAgentes(this);
+		//vistaAg = new VistaAgentes(this);
+
 		
 	}
 	

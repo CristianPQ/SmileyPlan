@@ -14,7 +14,7 @@ public class ControladorPresentacionMedios {
 		
 		//crea la vista de medio de transporte y se pasa a si mismo 
 		//como parametro
-		//vistaMedio = new VistaMedioTransporte(this); 
+		vistaMedio = new VistaMedioTransporte(this); 
 	}
 	
 	//A continuación crea todos los metodos que llaman al controlador

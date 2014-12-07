@@ -31,7 +31,7 @@ public abstract class VistaAgentes extends Vista2 {
 				if (!text1.getText().equals("") && !text2.getText().equals("")
 						&& !text2.getText().equals(""))
 					try {
-						//ctrlPAg.agregarAgente(nombre, ciuIni, ciuObj, cm);
+						ctrlPAg.agregarAgente(nombre, ciuIni, ciuIni);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -39,5 +39,7 @@ public abstract class VistaAgentes extends Vista2 {
 			}	
 		});
 				}
+	
+
 
 	}
