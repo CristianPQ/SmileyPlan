@@ -1,5 +1,5 @@
 
-public class VistaMedioTransporte extends Vista {
+public class VistaMedioTransporte extends Vista1 {
 	
 	private ControladorPresentacionMedios cpm; 
 	

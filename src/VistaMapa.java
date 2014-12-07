@@ -1,4 +1,4 @@
 
-public class VistaMapa extends Vista{
+public class VistaMapa extends Vista1{
 
 }

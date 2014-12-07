@@ -1,4 +1,4 @@
 
-public class VistaAlgoritmo extends Vista {
+public class VistaAlgoritmo extends Vista1 {
 
 }

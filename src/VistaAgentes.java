@@ -1,4 +1,4 @@
 
-public class VistaAgentes extends Vista {
+public class VistaAgentes extends Vista1 {
 
 }
