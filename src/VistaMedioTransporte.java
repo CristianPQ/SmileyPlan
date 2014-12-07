@@ -45,7 +45,7 @@ public abstract class VistaMedioTransporte extends Vista2 {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String linea = vb.getSelected(); 
+				String linea = vb.DevolverSeleccionado(); 
 				String nombreviejo = linea.split(" ")[0]; 
 				String costeviejo = linea.split(" ")[1]; 
 				if (!text1.getText().equals("")) {

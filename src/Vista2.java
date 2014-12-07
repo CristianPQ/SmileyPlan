@@ -26,7 +26,7 @@ public abstract class Vista2 extends Vista1 {
 	public Vista2() {
 		super(); 
 		
-		//vb = new VistaBuscador(this); 
+		vb = new VistaBuscador(this); 
 		
 		//panel que engloba a todos
 		panelv2 = new JPanel(); 
