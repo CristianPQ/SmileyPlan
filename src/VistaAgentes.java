@@ -35,15 +35,29 @@ public class VistaAgentes extends Vista2 {
 			public void actionPerformed(ActionEvent e){
 				String nombre = text1.getText();
 				String ciuIni = text2.getText();
-				//String ciuObj = text3.getText();
+				String ciuObj = text3.getText();
 				if (!text1.getText().equals("") && !text2.getText().equals("")
 						&& !text2.getText().equals("")){
-						ctrlPAg.agregarAgente(nombre, ciuIni, ciuIni);
-						// TODO Auto-generated catch block
+						ctrlPAg.agregarAgente(nombre, ciuIni, ciuObj);
 					}
 				}	
 		});
-	}
+		
+		botonModificar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				String nombre = text1.getText();
+				String ciuIni = text2.getText();
+				String ciuObj = text3.getText();
+				
+				if (!text1.getText().equals("")) 
+					ctrlPAg.modificarNombre(text1/*en verdad hara falta nombreantiguo*/, text1);
+					&& !text2.getText().equals("")
+						&& !text2.getText().equals("")){
+						ctrlPAg.modificarNombre(nombre, ciuIni, ciuObj);
+						
+				}}});
+
 	
 }
 
