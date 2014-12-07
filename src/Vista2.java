@@ -4,12 +4,12 @@ import java.awt.*;
 
 public abstract class Vista2 extends Vista1 {
 
-	private VistaBuscador vb; 
+	protected VistaBuscador vb; 
 	
-	private JPanel panelv2; 
-	private JPanel panelLista; 
-	private JPanel panelBotones; 
-	private JPanel panelCrear; 
+	protected JPanel panelv2; 
+	protected JPanel panelLista; 
+	protected JPanel panelBotones; 
+	protected JPanel panelCrear; 
 	
 	protected JButton botonCargar; 
 	protected JButton botonGuardar;
@@ -85,8 +85,8 @@ public abstract class Vista2 extends Vista1 {
 		panelv2.add(panelCrear);
 		
 		
-		super.panelv1.add(panelv2); 
-		super.panelv1.add(vb); 
+		super.panelPrincipal.add(panelv2); 
+		super.panelPrincipal.add(vb); 
 	}
 	
 	//falten classes abstractes per obrir el browser 

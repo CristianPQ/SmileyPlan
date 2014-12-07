@@ -50,13 +50,23 @@ public abstract class VistaMedioTransporte extends Vista2 {
 				String costeviejo = linea.split(" ")[1]; 
 				if (!text1.getText().equals("")) {
 					String nombrenuevo = text1.getText(); 
-					cpm.modificarNombre(nombrenuevo, nombreviejo);
+					try {
+						cpm.modificarNombre(nombrenuevo, nombreviejo);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				if (!text2.getText().equals("")) {
 					String costenuevo = text2.getText(); 
 					int costeN = Integer.parseInt(costenuevo);
 					int costeV = Integer.parseInt(costeviejo);
-					cpm.modificarPrecio(costeN, nombreviejo);
+					try {
+						cpm.modificarPrecio(costeN, nombreviejo);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
