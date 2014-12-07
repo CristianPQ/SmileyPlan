@@ -47,12 +47,12 @@ public abstract class Vista2 extends Vista1 {
 		text2 = new JTextField(); 
 
 		text2.setPreferredSize(new Dimension(70,30));
-		text2.setEditable(true);
-		panelLista.add(text2); 
-		panelLista.add(label2);
+		text2.setEditable(true); 
 		panelLista.add(label1);
-		
 		panelLista.add(text1);
+		panelLista.add(label2);
+		panelLista.add(text2);
+
 		
 		//panel botones 
 		panelBotones = new JPanel(); 
@@ -75,19 +75,9 @@ public abstract class Vista2 extends Vista1 {
 		panelBotones.add(botonEliminar);
 		panelBotones.add(botonCrear);
 		
-		//panel crear
-		/*
-		 * panelCrear = new JPanel(); 
-		 * panelCrear.setBorder(BorderFactory.createLoweredBevelBorder());
-		panelCrear.setMinimumSize(new Dimension(70,30));
-		panelCrear.setMaximumSize(new Dimension(70,30));
-		 */
-
-
 		
 		panelv2.add(panelLista);
 		panelv2.add(panelBotones);
-		//panelv2.add(panelCrear);
 		
 		
 		super.panelPrincipal.add(panelv2); 
