@@ -28,6 +28,10 @@ public class ControladorPresentacionMapa {
 		cm.modificarAtributosCiudad(n, x, y);
 	}
 	
+	public VistaMapa getVista() {
+		return vm;
+	}
+	
 	
 	
 	}

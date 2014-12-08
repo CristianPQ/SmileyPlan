@@ -47,7 +47,7 @@ public class VistaPrincipal {
 		Ayuda ayuda = new Ayuda(); 
 
 		tabs = new JTabbedPane(); 
-		//tabs.add("Mapa", cpmapa.getVista());
+		tabs.add("Mapa", cpmapa.getVista());
 		tabs.add("Agente", cpa.getVista());
 		tabs.add("MedioTransporte", cpm.getVista());
 		//tabs.add("Algoritmo", cpalg.getVista());

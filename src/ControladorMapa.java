@@ -11,6 +11,9 @@ public class ControladorMapa {
 	
 	private static Exception NoExiste = new Exception ("Este elemento no existe");
 	
+	public ControladorMapa(){
+		
+	}
 	/**
 	 * Constructora de ControladorMapa
 	 * @param anchuraX
