@@ -38,6 +38,7 @@ public abstract class Vista2 extends Vista1 {
 		//panel de lista
 		panelLista = new JPanel(); 
 		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
+		//panelLista.setBackground(Color.CYAN);
 		panelLista.setMinimumSize(new Dimension(600,100));
 		panelLista.setMaximumSize(new Dimension(600,100));
 	
@@ -50,15 +51,10 @@ public abstract class Vista2 extends Vista1 {
 		text2.setPreferredSize(new Dimension(70,30));
 		text2.setEditable(true);
 		
-
-		//text2.setPreferredSize(new Dimension(70,30));
-		//text2.setEditable(true); 
 		panelLista.add(label1);
 		panelLista.add(text1);
 		panelLista.add(label2);
 		panelLista.add(text2);
-		//panelLista.add(label3);
-		//panelLista.add(text3);
 
 		
 		//panel botones 
@@ -72,10 +68,15 @@ public abstract class Vista2 extends Vista1 {
 		botonEliminar = new JButton();
 		botonCrear = new JButton(); 
 		botonGuardar.setText("Guardar"); 
+		//botonGuardar.setBackground(Color.CYAN);
 		botonCargar.setText("Cargar");
+		//botonCargar.setBackground(Color.red);
 		botonModificar.setText("Modificar");
+		//botonModificar.setBackground(Color.green);
 		botonEliminar.setText("Eliminar"); 
+		//botonEliminar.setBackground(Color.ORANGE);
 		botonCrear.setText("Crear");
+		//botonCrear.setBackground(Color.GRAY);
 		panelBotones.add(botonCargar);
 		panelBotones.add(botonGuardar);
 		panelBotones.add(botonModificar);

@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public  class VistaMedioTransporte extends Vista2 {
 	
@@ -53,6 +55,12 @@ public  class VistaMedioTransporte extends Vista2 {
 				String linea = vb.DevolverSeleccionado(); 
 				String nombreviejo = linea.split(" ")[0]; 
 				String costeviejo = linea.split(" ")[1]; 
+				text1.setText(nombreviejo); 
+				text2.setText(costeviejo);
+				
+				
+				
+				
 				if (!text1.getText().equals("")) {
 					String nombrenuevo = text1.getText(); 
 					try {
@@ -95,6 +103,24 @@ public  class VistaMedioTransporte extends Vista2 {
 			}
 			
 		});
+		
+		super.vb.funcionSeleccionar(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				   if (vb.haySeleccionado()) {
+	                    String linea = vb.devolverSeleccionado();
+	                    String nombre = linea.split(" ")[0];
+	                    String coste = linea.split(" ")[1];
+	                    text1.setText(nombre);
+	                    text2.setText(coste);
+	                }
+	                else {
+	                    text1.setText("");
+	                    text2.setText("");
+	                }
+			}       
+        });
 	}
 	
 	private void abrirBrowserCargar() {
