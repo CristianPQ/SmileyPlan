@@ -42,12 +42,12 @@ public abstract class Vista2 extends Vista1 {
 		panelLista.setMaximumSize(new Dimension(600,100));
 	
 		text1 = new JTextField(); 
-		text1.setPreferredSize(new Dimension(70,30));
+		text1.setPreferredSize(new Dimension(100,30));
 		text1.setEditable(true);
 		label1 = new JLabel();
 		label2 = new JLabel(); 
 		text2 = new JTextField();
-		text2.setPreferredSize(new Dimension(70,30));
+		text2.setPreferredSize(new Dimension(100,30));
 		text2.setEditable(true);
 		
 		panelLista.add(label1);

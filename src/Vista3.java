@@ -93,7 +93,7 @@ public abstract class Vista3 extends Vista1 {
 		panelCiudad.setMaximumSize(new Dimension(700,100));
 		//panelLista.setBorder(Ciudad);
 		txtIdCiutat = new JTextField(); 
-		txtIdCiutat.setPreferredSize(new Dimension(70,30));
+		txtIdCiutat.setPreferredSize(new Dimension(100,30));
 		txtIdCiutat.setEditable(true);
 		label1 = new JLabel();
 		label1.setText("Nombre: ");
@@ -102,10 +102,10 @@ public abstract class Vista3 extends Vista1 {
 		label3 = new JLabel(); 
 		label3.setText("Y: ");
 		txtX = new JTextField();
-		txtX.setPreferredSize(new Dimension(70,30));
+		txtX.setPreferredSize(new Dimension(100,30));
 		txtX.setEditable(true);
 		txtY = new JTextField();
-		txtY.setPreferredSize(new Dimension(70,30));
+		txtY.setPreferredSize(new Dimension(100,30));
 		txtY.setEditable(true);
 		
 		panelCiudad.add(label1);
@@ -123,7 +123,7 @@ public abstract class Vista3 extends Vista1 {
 		panelCaminos.setMinimumSize(new Dimension(700,100));
 		panelCaminos.setMaximumSize(new Dimension(700,100));
 		txtCO = new JTextField(); 
-		txtCO.setPreferredSize(new Dimension(70,30));
+		txtCO.setPreferredSize(new Dimension(80,30));
 		txtCO.setEditable(true);
 		label4 = new JLabel();
 		label4.setText("Ciudad de Origen: ");
@@ -132,10 +132,10 @@ public abstract class Vista3 extends Vista1 {
 		label6 = new JLabel(); 
 		label6.setText("Medio de Transporte: ");
 		txtCD = new JTextField();
-		txtCD.setPreferredSize(new Dimension(70,30));
+		txtCD.setPreferredSize(new Dimension(80,30));
 		txtCD.setEditable(true);
 		txtMedio = new JTextField();
-		txtMedio.setPreferredSize(new Dimension(70,30));
+		txtMedio.setPreferredSize(new Dimension(80,30));
 		txtMedio.setEditable(true);
 		
 		panelCaminos.add(label4);
@@ -148,8 +148,8 @@ public abstract class Vista3 extends Vista1 {
 		//panel Botones
 		panelBotones = new JPanel(); 
 		panelBotones.setBorder(BorderFactory.createLoweredBevelBorder());
-		panelBotones.setMinimumSize(new Dimension(700,100));
-		panelBotones.setMaximumSize(new Dimension(700,100));
+		panelBotones.setMinimumSize(new Dimension(700,50));
+		panelBotones.setMaximumSize(new Dimension(700,50));
 		botonCargar = new JButton(); 
 		botonGuardar = new JButton();
 		botonModificar = new JButton();

@@ -23,7 +23,7 @@ public class VistaAgentes extends Vista2 {
 		label3 = new JLabel(); 
 		super.label3.setText("Ciudad Objetivo: ");
 		text3 = new JTextField(); 
-		text3.setPreferredSize(new Dimension(70,30));
+		text3.setPreferredSize(new Dimension(100,30));
 		text3.setEditable(true);
 		super.panelLista.add(label3);
 		super.panelLista.add(text3);

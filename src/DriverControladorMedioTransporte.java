@@ -21,8 +21,7 @@ public class DriverControladorMedioTransporte {
                 + "\n 10. nombresMedios()" 
                 + "\n 11. esTren()"
                 + "\n 12. crearTren()"
-                + "\n 13. crearCoche()"
-                
+                + "\n 13. crearCoche()"            
         		+"\n");
     }
 	
