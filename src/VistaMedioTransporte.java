@@ -1,11 +1,12 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.util.*;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class VistaMedioTransporte extends Vista2 {
 	
@@ -37,6 +38,9 @@ public class VistaMedioTransporte extends Vista2 {
 		grupob.add(tren);
 		super.panelLista.add(coche);
 		super.panelLista.add(tren); 
+		
+	    super.chooser.setFileFilter(new FileNameExtensionFilter(".Medios"));
+        super.chooser.setApproveButtonText("Abrir Medios de Transporte");
 		
 		crearListeners(); 
 	}
@@ -133,24 +137,21 @@ public class VistaMedioTransporte extends Vista2 {
 		
 		
 		botonCargar.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				abrirBrowserCargar(); 	
 			}
 			
 		});
 		
 		botonGuardar.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				abrirBrowserGuardar(); 
 			}
 			
 		});
+		
 		
 		/**
 		 * Seleccionar un elemento de la lista y que se vea en cuadros de texto
@@ -175,13 +176,20 @@ public class VistaMedioTransporte extends Vista2 {
         });
 	}
 	
-	private void abrirBrowserCargar() {
+	public void abrirBrowserGuardar() {
+		int n = chooser.showSaveDialog(null);
+        if(n == JFileChooser.APPROVE_OPTION) {
+            String file = chooser.getSelectedFile().getAbsolutePath();
+            file = file.concat(".Medios");
+            cpm.guardarMedio(file);
+        }
+		
+	}
+	
+	public void abrirBrowserCargar() {
 		// TODO Auto-generated method stub
 		
 	}	
 	
-	private void abrirBrowserGuardar() {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

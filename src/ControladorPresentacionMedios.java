@@ -93,12 +93,20 @@ public class ControladorPresentacionMedios {
 		}
 	}
 	
-	public void guardarMedio(String path, String file) throws Exception {
-		cm.Guardar(file);
+	public void guardarMedio(String file) {
+		try {
+			cm.Guardar(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void cargarMedio(String path, String file) throws Exception {
-		cm.Cargar(file);
+	public void cargarMedio(String file) {
+		try {
+			cm.Cargar(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public boolean esTren(String ident){
