@@ -82,7 +82,7 @@ public class FordFulkerson extends Algoritmo{
 		        if (df > 0) {
 		          int nuevoFlujo = g.consultarFlujoArista(u, v) + df;
 		          /////////////////// per guardar /////////////////////
-		          String s = "Pasara un flujo de "+df+" entre "+u+" y "+v+"\n"; 
+		          String s = "Pasara un flujo de "+ df +" entre "+ u +" y "+ v +"\n"; 
 		          list.add(s); 
 		          /////////////////////////////////////////////////////
 		          g.modificarFlujoArista(u,v,nuevoFlujo);
