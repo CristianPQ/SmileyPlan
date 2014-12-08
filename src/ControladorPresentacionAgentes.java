@@ -1,4 +1,4 @@
-
+import java.util.*;
 import javax.swing.*;
 
 public class ControladorPresentacionAgentes{
@@ -33,6 +33,23 @@ public class ControladorPresentacionAgentes{
 		
 	}
 	
+	public String consultarCiudadInicial(String n){
+		try {
+			return ca.consultarCiudadInicialAgente(n);
+		} catch (Exception e) {
+			vistaAg.setError(e.getMessage());
+		}
+		return null; //No se que devolver, aunque tampoco importa porque no deberia saltar
+	}
+	
+	public String consultarCiudadObjetivo(String n){
+		try {
+			return ca.consultarCiudadObjetivoAgente(n);
+		} catch (Exception e) {
+			vistaAg.setError(e.getMessage());
+		}
+		return null;  //No se que devolver, aunque tampoco importa porque no deberia saltar
+	}
 
 	
 	public void modificarCiudadInicial(String n, String ciuIni) {
@@ -60,6 +77,29 @@ public class ControladorPresentacionAgentes{
 
 		}
 	}
+	
+	public ArrayList<String> listarAgentes(){
+		
+		String nombres = ca.NombresAgentes();
+		ArrayList<String> ret = new ArrayList<String>();
+		if(nombres == null) return ret;
+		int i = 0;
+		String nom;
+		while (i < nombres.length()){
+			nom = "";
+			nom += nombres.charAt(i);
+			++i;
+			while (nombres.charAt(i) != ' '){
+				nom += nombres.charAt(i);
+				++i;	
+			}
+			++i;
+			if (nom.charAt(0) != ' ') ret.add(nom);			
+		}
+		
+		return ret;
+	}
+	
 	
 	public void guardarAgente(String path, String file){
 		try {

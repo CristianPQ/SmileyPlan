@@ -244,10 +244,20 @@ public class ControladorAgentes {
         	}
         	return retorno;
         }
-   //     public ArrayList<String, String> casosDiferentes(){
-        	
-        //}
-        
+
+    	public String NombresAgentes(){
+    		ArrayList<String> nombres = Agentes.consultar();
+    		String buff = null;
+    		if(nombres.isEmpty()) return buff;
+    		String linea = nombres.get(0) +' ';
+    		buff =linea;
+    		for (int i = 1; i < nombres.size(); ++i) {
+    			linea = nombres.get(i) + ' ';
+    			buff = buff + linea;
+    		}
+    		return buff;
+    		
+    	}
         
     	/**
     	 * Convierte el string a agentes

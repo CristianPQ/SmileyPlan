@@ -14,7 +14,7 @@ public class main {
 	             }
 	             catch (Exception e) {System.out.println(e);}
 				ControladorPresentacionMedios cpm = new ControladorPresentacionMedios(); 
-			//	ControladorPresentacionAgentes cpa = new ControladorPresentacionAgentes(); 
+				ControladorPresentacionAgentes cpa = new ControladorPresentacionAgentes(); 
 				ControladorPresentacionMapa cpmapa = new ControladorPresentacionMapa(); 
 				ControladorPresentacionAlgoritmo cpalg = new ControladorPresentacionAlgoritmo();
 				
