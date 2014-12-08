@@ -11,8 +11,9 @@ public class VistaMedioTransporte extends Vista2 {
 	
 	private ControladorPresentacionMedios cpm; 
 	private String identificador; 
-	private JCheckBox coche; 
-	private JCheckBox tren; 
+	private JRadioButton coche; 
+	private JRadioButton tren; 
+	private ButtonGroup grupob; 
 	
 	
 	VistaMedioTransporte(ControladorPresentacionMedios cntrlpm){
@@ -26,14 +27,21 @@ public class VistaMedioTransporte extends Vista2 {
 		super.label1.setText("Nombre: ");
 		super.label2.setText("Coste: ");
 		
-		coche = new JCheckBox("coche");
-		tren = new JCheckBox("tren"); 
 		
-		coche.setSelected(false);
-		tren.setSelected(false);
+		grupob = new ButtonGroup(); 
+		coche = new JRadioButton("coche");
+		tren = new JRadioButton("tren"); 
+		grupob.add(coche);
+		grupob.add(tren);
+	
 		
 		super.panelLista.add(coche);
 		super.panelLista.add(tren); 
+		
+		
+		//coche.setSelected(false);
+		//tren.setSelected(false);
+
 		
 		
 		crearListeners(); 

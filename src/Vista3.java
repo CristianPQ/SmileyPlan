@@ -174,8 +174,6 @@ public abstract class Vista3 extends Vista1 {
 		
 		super.panelPrincipal.add(panelv3);
 		super.panelPrincipal.add(vb);
-		
-		JLabel Imatge = new JLabel(new ImageIcon("/Users/olgacarbo/Desktop/SmileyPlan/mapa.jpg")); 
 
 		
 	}
