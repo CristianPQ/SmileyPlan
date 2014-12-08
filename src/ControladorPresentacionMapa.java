@@ -7,6 +7,7 @@ public class ControladorPresentacionMapa {
 	
 	public ControladorPresentacionMapa(){
 		vm = new VistaMapa(this);
+		//cm = new ControladorMapa();
 		
 		}
 	
