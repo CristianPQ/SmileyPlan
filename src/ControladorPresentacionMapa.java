@@ -41,6 +41,8 @@ public class ControladorPresentacionMapa {
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap,ControladorMedioTransporte contMT){
 		
 	}
-	
+	public ControladorMapa devolverControlador(){
+		return cm;
+	}
 	}
 
