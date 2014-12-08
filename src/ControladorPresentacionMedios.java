@@ -55,7 +55,7 @@ public class ControladorPresentacionMedios {
 		
 		String nombres = cm.NombresMedios();
 		ArrayList<String> ret = new ArrayList<String>();
-		if(nombres.isEmpty()) return ret;
+		if(nombres == null) return ret;
 		int i = 0;
 		String nom;
 		while (i < nombres.length()){

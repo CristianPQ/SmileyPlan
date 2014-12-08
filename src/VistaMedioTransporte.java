@@ -29,14 +29,12 @@ public class VistaMedioTransporte extends Vista2 {
 	}
 	
 	private void actualizarLista(){
-		if (!cpm.listarMedios().isEmpty()){
 		ArrayList<String> medios = cpm.listarMedios();
-		//if(!medios.isEmpty())
+		if(!medios.isEmpty())
 		for(int i = 0; i < medios.size(); ++i) {
 			vb.agregar(medios.get(i) + "  "+cpm.consultarCoste(medios.get(i)));
 			}
 		}
-	}
 	
 	void crearListeners() {
 		
