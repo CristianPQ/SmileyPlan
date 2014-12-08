@@ -16,7 +16,6 @@ public class VistaBuscador extends JPanel{
     private JList l;
     private JScrollPane scroller;
 
-    private JButton boton;
     
     private Vista1 padre;
     
@@ -37,8 +36,8 @@ public class VistaBuscador extends JPanel{
         scroller.setMinimumSize(new Dimension(220,500));
         scroller.setMaximumSize(new Dimension(220,500));
     
-        boton = new JButton();
-        boton.setAlignmentX(CENTER_ALIGNMENT);
+
+        
         
         vistaBuscar = new JPanel();
         vistaBuscar.setMinimumSize(new Dimension(210,50));
@@ -72,8 +71,6 @@ public class VistaBuscador extends JPanel{
         vistaBuscar.add(textoBusqueda);
         vistaBuscar.add(botonBuscar);
         
-        boton = new JButton();
-        boton.setAlignmentX(CENTER_ALIGNMENT);
         
         this.add(label);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -81,7 +78,6 @@ public class VistaBuscador extends JPanel{
         this.add(Box.createRigidArea(new Dimension(0, 5)));
         this.add(scroller);
         this.add(Box.createRigidArea(new Dimension(0, 10)));
-        this.add(boton);
     }
  
     
@@ -89,15 +85,12 @@ public class VistaBuscador extends JPanel{
         label.setText(text);
     }
     
-    public void setButtonText(String text) {
-        boton.setText(text);
-    }
     
     public void clear() {
         model.clear();
     }
     
-    public boolean haySelecionado() {
+    public boolean haySeleccionado() {
         return !l.isSelectionEmpty();
     }
     
@@ -105,7 +98,7 @@ public class VistaBuscador extends JPanel{
         model.addElement(s);
     }    
     
-    public String DevolverSeleccionado() {
+    public String devolverSeleccionado() {
         return l.getSelectedValue().toString();
     }
     
@@ -117,11 +110,9 @@ public class VistaBuscador extends JPanel{
         model.remove(l.getSelectedIndex());
     }
     
-    public void agregarBotonListener(ActionListener a) {
-        boton.addActionListener(a);
-    }
+
     
-    public void AgregarSelecListener(ListSelectionListener lista) {
+    public void agregarSelecListener(ListSelectionListener lista) {
         l.addListSelectionListener(lista);
     }
     
@@ -134,14 +125,12 @@ public class VistaBuscador extends JPanel{
     }
     
     public void activar() {
-        boton.setEnabled(true);
         scroller.setEnabled(true);
         textoBusqueda.setEnabled(true);
         botonBuscar.setEnabled(true);
     }
     
     public void desactivar() {
-        boton.setEnabled(false);
         scroller.setEnabled(false);
         textoBusqueda.setEnabled(false);
         botonBuscar.setEnabled(false);

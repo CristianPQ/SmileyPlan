@@ -1,4 +1,4 @@
 
-public abstract class VistaMapa extends Vista1{
-
+public abstract class VistaMapa extends Vista2{
+	
 }
