@@ -1,7 +1,9 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.*; 
 
 
@@ -29,6 +31,11 @@ public class VistaPrincipal {
 		JFrame frame = new JFrame("Main");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        JLabel Imatge = new JLabel(new ImageIcon("/Users/olgacarbo/Desktop/SmileyPlan/mapa.jpg")); 
+        //Imatge.setLayout(new FlowLayout());
+        //frame.add(Imatge); 
+        //frame.setContentPane(Imatge);
+   
         frame.setPreferredSize(new Dimension(1100, 500));
         frame.setResizable(true);
         

@@ -21,6 +21,7 @@ public abstract class Vista1 extends JPanel {
         panelErrores.setMaximumSize(new Dimension(1000,40));
         panelErrores.setBorder(BorderFactory.createEtchedBorder());
         panelErrores.add(error);
+        
 		
 		this.add(panelPrincipal);
 		this.add(panelErrores);
