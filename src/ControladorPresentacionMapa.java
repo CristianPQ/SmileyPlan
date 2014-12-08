@@ -5,14 +5,20 @@ public class ControladorPresentacionMapa {
 	private static VistaMapa vm;
 	
 	
-	public ControladorPresentacionMapa(){
+	public ControladorPresentacionMapa( ControladorPresentacionMedios cm){
 		vm = new VistaMapa(this);
 		//cm = new ControladorMapa();
 		
 		}
 	
 	public void crearMapa(int x, int y, String cont) throws Exception{
-		cm = new ControladorMapa(x, y, cont);
+	
+		try{
+			cm = new ControladorMapa(x, y, cont);
+		}
+		catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
 	}
 	////////////////CIUDADES//////////////////
 	public void agregarCiudad(String n, int x, int y) throws Exception{
@@ -32,7 +38,9 @@ public class ControladorPresentacionMapa {
 		return vm;
 	}
 	
-	
+	public void agregarCamino(String cOrig, String cDest, String medio, int cap,ControladorMedioTransporte contMT){
+		
+	}
 	
 	}
 

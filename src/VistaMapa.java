@@ -25,7 +25,7 @@ public class VistaMapa extends Vista3{
 	private JLabel label5;
 	private JLabel label6;
 	*/
-	
+	boolean mapaCreado = false;
 	VistaMapa (ControladorPresentacionMapa controladorPMapa){
 		super();
 		
@@ -45,18 +45,49 @@ public class VistaMapa extends Vista3{
 	void crearListeners() {
 		/**
 		 * BOTON CREAR
-		 *//*
+		 */
 		botonCrear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//crear mapa
+				if (!mapaCreado){ 
+					String X = txtXMapa.getText();
+					String Y = txtYMapa.getText();
+					String Continente = txtConti.getText();
+					cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);
+					
+					mapaCreado = true;
+					
+					txtCO.setEditable(true);
+					txtCD.setEditable(true);
+					txtMedio.setEditable(true);
+					txtIdCiutat.setEditable(true);
+					txtX.setEditable(true);
+					txtY.setEditable(true);
+				}
+				//crear ciudad
+				else if (txtCO.getText().equals("")){ //si el de cami esta buit
+					String nom = txtIdCiutat.getText();
+					String X = txtX.getText();
+					String Y = txtY.getText();
+					cpmapa.agregarCiudad(nom, Integer.parseInt(X), Integer.parseInt(Y));
+				}
+				//crear camino
+				else if(txtIdCiutat.getText().equals("")){
+					String ciudadO = txtCO.getText();
+					String ciudadD = txtCD.getText();
+					String md = txtMedio.getText();
+					cpmapa.agregarCamino(ciudadO,ciudadD,md);
+				}
 				
 			}
-		}
-		*/
+		
+		});
+	}
 		  
 		 
 		
 		
 		
-	}
+	
 }
