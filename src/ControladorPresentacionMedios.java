@@ -31,8 +31,7 @@ public class ControladorPresentacionMedios {
 		try {
 			cm.agregarCoche(nombre, coste);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			vistaMedio.setError(e.getMessage());
 		}
 	}
 	
@@ -40,8 +39,7 @@ public class ControladorPresentacionMedios {
 		try {
 			cm.agregarTren(nombre, coste);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			vistaMedio.setError(e.getMessage());
 		}
 	}
 	

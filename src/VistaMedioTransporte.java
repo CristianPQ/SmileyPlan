@@ -46,9 +46,9 @@ public class VistaMedioTransporte extends Vista2 {
 		if(!medios.isEmpty()) 
 		for(int i = 0; i < medios.size(); ++i) {
 			if (cpm.esTren(medios.get(i))) {
-				vb.agregar(medios.get(i) + "  "+cpm.consultarCoste(medios.get(i)) + " " + "Tren");
+				vb.agregar(medios.get(i) + "  "+cpm.consultarCoste(medios.get(i)) + "  " + "Tren");
 			}
-			else vb.agregar(medios.get(i) + "  "+cpm.consultarCoste(medios.get(i)) + " " + "Coche");
+			else vb.agregar(medios.get(i) + "  "+cpm.consultarCoste(medios.get(i)) + "  " + "Coche");
 		}
 	}
 	
@@ -101,7 +101,6 @@ public class VistaMedioTransporte extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 				String id = text1.getText(); 
 				String coste = text2.getText();
-				//text2.setText(identificador);
 				if (!text1.getText().equals("") && !text2.getText().equals("")){
 					if (identificador.equals(id)) {
 						int c = Integer.parseInt(coste); 
@@ -117,7 +116,6 @@ public class VistaMedioTransporte extends Vista2 {
 					
                     text1.setText("");
                     text2.setText("");
-                   // vb.quitarSeleccion();
 				}
 			}
 		});
