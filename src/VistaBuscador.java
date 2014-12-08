@@ -35,8 +35,7 @@ public class VistaBuscador extends JPanel{
         scroller = new JScrollPane(l);
         scroller.setMinimumSize(new Dimension(220,500));
         scroller.setMaximumSize(new Dimension(220,500));
-    
-
+ 
         
         
         vistaBuscar = new JPanel();
@@ -92,8 +91,11 @@ public class VistaBuscador extends JPanel{
     
     public boolean haySeleccionado() {
         return !l.isSelectionEmpty();
+     //   l.clearSelection();
     }
-    
+    public void quitarSeleccion() {
+    	l.clearSelection();
+    }
     public void agregar(String s) {
         model.addElement(s);
     }    
