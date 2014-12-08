@@ -17,6 +17,7 @@ public class DriverMedioTransporte {
                 //casos para ver si funciona con tren y coche vv ?
                 + "\n 6.crear Tren(String nombreTransporte, int precio)"
                 + "\n 7.crear Coche(String nombreTransporte, int precio)"
+                + "\n 8 esTren()"
         		+"\n");
     }
 	
@@ -64,6 +65,12 @@ public class DriverMedioTransporte {
 	            	int precio = Integer.parseInt(lsplited[2]);  
 	                med = new Coche(nombre,precio);
 	                break;
+	            }
+	            case 8 :{
+	            	boolean tren = med.esTren(); 
+	            	if (tren) System.out.println("es tren");
+	            	else System.out.println("es coche");
+	            	break; 
 	            }
 	            case 0: {
 	                System.exit(0);

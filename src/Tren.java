@@ -20,8 +20,10 @@ public class Tren extends MedioTransporte {
 	public Tren(String nombreTransporte, int precio) throws Exception {
 		super(nombreTransporte, precio);
 		if(precio > limitePrecio) throw ErrorPrecio;	
+		super.via = true; 
+		super.carretera = false; 
 	}
-	
 
+	
 }
 

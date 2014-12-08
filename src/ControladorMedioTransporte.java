@@ -89,8 +89,7 @@ public class ControladorMedioTransporte {
 		if (!medios.existe(nombre)) throw NoExiste;
 		else medios.delete(nombre); 
 	}
-	
-	
+		
 	/**
 	 * Modificadora de nombre
 	 * @param nNuevo nombre nuevo
@@ -160,7 +159,33 @@ public class ControladorMedioTransporte {
 		return false;
 	}
 	
+	/**
+	 * Funcion que devuelve true si el medio es un tren
+	 * y false si es un coche
+	 * @param ident
+	 * @return true si es tren, false si es coche
+	 */
+	public boolean esTren(String ident) {
+		return (medios.consultar(ident)).esTren(); 
+	}
+	
+	/**
+	 * Nombre medios en string
+	 * @return String con todos los nombres de los medios
+	 */
+	public String NombresMedios(){
+		ArrayList<String> nombres = medios.consultar();
+		String buff = null;
+		if(nombres.isEmpty()) return buff;
+		String linea = nombres.get(0) +' ';
+		buff =linea;
+		for (int i = 1; i < nombres.size(); ++i) {
+			linea = nombres.get(i) + ' ';
+			buff = buff + linea;
+		}
+		return buff;
 		
+	}	
 	
 	/**
 	 * Guardar datos en el fichero filename ubicado en path 
@@ -224,45 +249,6 @@ public class ControladorMedioTransporte {
 			//System.out.println("medio agregat");
 		}
 	}
-	/**
-	 * Nombre medios en string
-	 * @return String con todos los nombres de los medios
-	 */
-	public String NombresMedios(){
-		ArrayList<String> nombres = medios.consultar();
-		String buff = null;
-		if(nombres.isEmpty()) return buff;
-		String linea = nombres.get(0) +' ';
-		buff =linea;
-		for (int i = 1; i < nombres.size(); ++i) {
-			linea = nombres.get(i) + ' ';
-			buff = buff + linea;
-		}
-		return buff;
-		
-	}
-
-/*
-	public ArrayList<String> listarMedios(){
-		String nombres = NombresMedios();
-		ArrayList<String> ret = new ArrayList<String>();
-		int i = 0;
-		String nom;
-		while (i < nombres.length()){
-			nom = "";
-			nom += nombres.charAt(i);
-			++i;
-			while (nombres.charAt(i) != ' '){
-				nom += nombres.charAt(i);
-				++i;	
-			}
-			++i;
-			if (nom.charAt(0) != ' ') ret.add(nom);			
-		}
-		
-		return ret;
-	}
-*/	
 	
 	/**
 	 * Cargar medios de transporte

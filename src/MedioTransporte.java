@@ -7,6 +7,8 @@ public class MedioTransporte {
 
 	protected String nombre;
 	protected int precioDistancia;
+	protected boolean carretera; 
+	protected boolean via; 
 
 	/**
 	 * Creadora por defecto
@@ -54,5 +56,8 @@ public class MedioTransporte {
 	public void setPrecio(int precio) {
 		precioDistancia = precio;
 	}
-
+	
+	public boolean esTren(){
+		return via; 
+	}
 }

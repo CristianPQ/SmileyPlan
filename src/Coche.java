@@ -19,7 +19,8 @@ public class Coche extends MedioTransporte {
 	public Coche(String nombreTransporte, int precio) throws Exception {
 		super(nombreTransporte, precio);
 		if(precio < limitePrecio) throw ErrorPrecio;
-		
+		super.carretera = true; 
+		super.via = false; 
 	}
 
 }

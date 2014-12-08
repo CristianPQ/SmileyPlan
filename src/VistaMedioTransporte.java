@@ -15,6 +15,9 @@ public class VistaMedioTransporte extends Vista2 {
 	private JRadioButton tren; 
 	private ButtonGroup grupob; 
 	
+	private boolean esCoche = false; 
+	private boolean esTren = false; 
+	
 	
 	VistaMedioTransporte(ControladorPresentacionMedios cntrlpm){
 		super(); 
@@ -27,36 +30,48 @@ public class VistaMedioTransporte extends Vista2 {
 		super.label1.setText("Nombre: ");
 		super.label2.setText("Coste: ");
 		
-		
 		grupob = new ButtonGroup(); 
 		coche = new JRadioButton("coche");
 		tren = new JRadioButton("tren"); 
 		grupob.add(coche);
 		grupob.add(tren);
-	
-		
 		super.panelLista.add(coche);
 		super.panelLista.add(tren); 
 		
-		
-		//coche.setSelected(false);
-		//tren.setSelected(false);
-
-		
-		
 		crearListeners(); 
-		
 	}
 	
 	private void actualizarLista(){
 		ArrayList<String> medios = cpm.listarMedios();
-		if(!medios.isEmpty())
+		if(!medios.isEmpty()) 
 		for(int i = 0; i < medios.size(); ++i) {
-			vb.agregar(medios.get(i) + "  "+cpm.consultarCoste(medios.get(i)));
+			if (cpm.esTren(medios.get(i))) {
+				vb.agregar(medios.get(i) + "  "+cpm.consultarCoste(medios.get(i)) + " " + "Tren");
 			}
+			else vb.agregar(medios.get(i) + "  "+cpm.consultarCoste(medios.get(i)) + " " + "Coche");
 		}
+	}
 	
 	void crearListeners() {
+		
+		
+		coche.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				esTren = false;
+				esCoche = true; 
+			}
+			
+		});
+		
+		tren.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				esCoche = false; 
+				esTren = true;
+			}			
+		});
+		
 		
 		/**
 		 * BOTON CREAR
@@ -67,13 +82,15 @@ public class VistaMedioTransporte extends Vista2 {
 				String nombre = text1.getText(); 
 				int coste = Integer.parseInt(text2.getText()); 
 				if (!text1.getText().equals("") && !text2.getText().equals("")){
-							cpm.agregarMedio(nombre, coste);
-							vb.clear();
-		                    actualizarLista();
-							text1.setText("");
-		                    text2.setText("");
-						}
-					}
+					if(esCoche)	cpm.agregarCoche(nombre, coste);	
+					else if (esTren) cpm.agregarTren(nombre,coste);
+					//cpm.agregarMedio(nombre, coste);
+					vb.clear();
+		            actualizarLista();
+		            text1.setText("");
+		            text2.setText("");
+				}
+			}
 		});
 		
 		/**
@@ -115,9 +132,6 @@ public class VistaMedioTransporte extends Vista2 {
                 text1.setText("");
                 text2.setText("");	
 			}});
-		
-		
-		
 		
 		
 		botonCargar.addActionListener(new ActionListener(){

@@ -19,6 +19,10 @@ public class DriverControladorMedioTransporte {
                 + "\n 8 guardarMedio(path,file)" 
                 + "\n 9 cargarMedio(path,file)" 
                 + "\n 10. nombresMedios()" 
+                + "\n 11. esTren()"
+                + "\n 12. crearTren()"
+                + "\n 13. crearCoche()"
+                
         		+"\n");
     }
 	
@@ -87,7 +91,24 @@ public class DriverControladorMedioTransporte {
 	            	System.out.print(m);
 	            	break;
 	            }
-
+	            case 11: {
+	            	String ident = lsplited[1];
+	            	boolean tren = cm.esTren(ident); 
+	            	if(tren) System.out.println("esTren");
+	            	else System.out.println("esCoche");
+	            }
+	            case 12 : {
+	            	String nombre = lsplited[1]; 
+		        	int p = Integer.parseInt(lsplited[2]);
+		            cm.agregarTren(nombre,p);
+		            break;
+	            }
+	            case 13: {
+	            	String nombre = lsplited[1]; 
+		        	int p = Integer.parseInt(lsplited[2]);
+		            cm.agregarCoche(nombre,p);
+		            break;
+	            }
 	            case 0: {
 	                System.exit(0);
 	            }

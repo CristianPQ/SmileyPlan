@@ -27,12 +27,22 @@ public class ControladorPresentacionMedios {
 		}
 	}
 	
-	public void agregarCoche(String nombre, int coste) throws Exception {
-		cm.agregarCoche(nombre, coste);
+	public void agregarCoche(String nombre, int coste) {
+		try {
+			cm.agregarCoche(nombre, coste);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public void agregarTren(String nombre, int coste) throws Exception {
-		cm.agregarTren(nombre, coste);
+	public void agregarTren(String nombre, int coste)  {
+		try {
+			cm.agregarTren(nombre, coste);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void borrarMedio(String nombre) {
@@ -91,6 +101,10 @@ public class ControladorPresentacionMedios {
 	
 	public void cargarMedio(String path, String file) throws Exception {
 		cm.Cargar(file);
+	}
+	
+	public boolean esTren(String ident){
+		return cm.esTren(ident); 
 	}
 	
 	//***************************************************
