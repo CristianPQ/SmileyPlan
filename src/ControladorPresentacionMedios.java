@@ -112,6 +112,9 @@ public class ControladorPresentacionMedios {
 	public VistaMedioTransporte getVista(){
 		return vistaMedio; 
 	}
-	
+	public ControladorMedioTransporte devolverControlador(){
+		return cm;
+		
+	}
 	
 }

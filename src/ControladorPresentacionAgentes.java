@@ -7,7 +7,7 @@ public class ControladorPresentacionAgentes{
 	private static ControladorMapa mapa;
 
 	
-	public ControladorPresentacionAgentes(){
+	public ControladorPresentacionAgentes( ControladorPresentacionMapa cpmapa){
 		ca = new ControladorAgentes();
 		vistaAg = new VistaAgentes(this);
 
