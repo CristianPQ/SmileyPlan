@@ -96,6 +96,7 @@ public class VistaBuscador extends JPanel{
     public void quitarSeleccion() {
     	l.clearSelection();
     }
+  
     public void agregar(String s) {
         model.addElement(s);
     }    
