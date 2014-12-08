@@ -35,8 +35,12 @@ public class ControladorPresentacionMedios {
 		cm.agregarTren(nombre, coste);
 	}
 	
-	public void borrarMedio(String nombre) throws Exception {
-		cm.borrarMedioTransporte(nombre);
+	public void borrarMedio(String nombre) {
+		try {
+			cm.borrarMedioTransporte(nombre);
+		} catch (Exception e) {
+			vistaMedio.setError(e.getMessage());
+		}
 	}
 	
 	public void modificarNombre(String nNuevo, String n) {
@@ -48,8 +52,10 @@ public class ControladorPresentacionMedios {
 	}
 	
 	public ArrayList<String> listarMedios(){
+		
 		String nombres = cm.NombresMedios();
 		ArrayList<String> ret = new ArrayList<String>();
+		if(nombres.isEmpty()) return ret;
 		int i = 0;
 		String nom;
 		while (i < nombres.length()){

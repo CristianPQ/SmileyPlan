@@ -29,14 +29,14 @@ public class VistaMedioTransporte extends Vista2 {
 	}
 	
 	private void actualizarLista(){
+		if (!cpm.listarMedios().isEmpty()){
 		ArrayList<String> medios = cpm.listarMedios();
-		
+		//if(!medios.isEmpty())
 		for(int i = 0; i < medios.size(); ++i) {
-			
 			vb.agregar(medios.get(i) + "  "+cpm.consultarCoste(medios.get(i)));
+			}
 		}
 	}
-	
 	
 	void crearListeners() {
 		
@@ -50,7 +50,6 @@ public class VistaMedioTransporte extends Vista2 {
 				int coste = Integer.parseInt(text2.getText()); 
 				if (!text1.getText().equals("") && !text2.getText().equals("")){
 							cpm.agregarMedio(nombre, coste);
-							//vb.agregar(nombre+"  "+coste);
 							vb.clear();
 		                    actualizarLista();
 							text1.setText("");
@@ -73,23 +72,34 @@ public class VistaMedioTransporte extends Vista2 {
 						int c = Integer.parseInt(coste); 
 						cpm.modificarPrecio(c, id);
 						vb.clear();
-						actualizarLista();
-						//vb.eliminarSeleccionado();
-						//vb.agregar(id+"  "+coste);                    
-	                    text1.setText("");
-	                    text2.setText("");
+						actualizarLista();                
 					}
 					else {
 						cpm.modificarNombre(id, identificador);
 						vb.clear();
 						actualizarLista();             
-	                    text1.setText("");
-	                    text2.setText("");
 					}
-				
+					
+                    text1.setText("");
+                    text2.setText("");
+                   // vb.quitarSeleccion();
 				}
 			}
 		});
+		
+		botonEliminar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String id = text1.getText(); 
+				cpm.borrarMedio(id);
+				vb.clear();
+				actualizarLista();
+                text1.setText("");
+                text2.setText("");	
+			}});
+		
+		
+		
 		
 		
 		botonCargar.addActionListener(new ActionListener(){

@@ -230,8 +230,9 @@ public class ControladorMedioTransporte {
 	 */
 	public String NombresMedios(){
 		ArrayList<String> nombres = medios.consultar();
-		String linea = nombres.get(0) +' ';
+		if(nombres.isEmpty()) return buffer;
 		String buffer = null;
+		String linea = nombres.get(0) +' ';
 		buffer =linea;
 		for (int i = 1; i < nombres.size(); ++i) {
 			linea = nombres.get(i) + ' ';
