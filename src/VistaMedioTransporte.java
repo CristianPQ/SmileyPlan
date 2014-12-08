@@ -54,17 +54,19 @@ public class VistaMedioTransporte extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 				String id = text1.getText(); 
 				String coste = text2.getText();
-				
+				//text2.setText(identificador);
 				if (!text1.getText().equals("") && !text2.getText().equals("")){
-					if (identificador == id) {
+					if (identificador.equals(id)) {
 						int c = Integer.parseInt(coste); 
 						cpm.modificarPrecio(c, id);
+						vb.eliminarSeleccionado();
 						vb.agregar(id+"  "+coste);                    
 	                    text1.setText("");
 	                    text2.setText("");
 					}
 					else {
 						cpm.modificarNombre(id, identificador);
+						vb.eliminarSeleccionado();
 						vb.agregar(id+"  "+coste);                    
 	                    text1.setText("");
 	                    text2.setText("");
@@ -105,10 +107,10 @@ public class VistaMedioTransporte extends Vista2 {
 				   if (vb.haySeleccionado()) {
 	                    String linea = vb.devolverSeleccionado();
 	                    String nombre = linea.split(" ")[0];
-	                    String coste = linea.split(" ")[1];
+	                    String coste = linea.split("  ")[1];
 	                    text1.setText(nombre);
 	                    text2.setText(coste);
-	                    identificador = nombre; 
+	                    identificador = nombre;
 	                }
 	                else {
 	                    text1.setText("");

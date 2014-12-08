@@ -196,6 +196,7 @@ public class ControladorMedioTransporte {
 	}
 
 	
+	
 	/**
 	 * Convierte el string a medios de transporte
 	 * @param carga
@@ -218,6 +219,18 @@ public class ControladorMedioTransporte {
 		}
 	}
 	
+	public String NombresMedios(){
+		ArrayList<String> nombres = medios.consultar();
+		String linea = nombres.get(0) +"/n";
+		String buffer = null;
+		buffer = buffer + linea;
+		for (int i = 1; i < nombres.size(); ++i) {
+			linea = nombres.get(i) +"/n";
+			buffer = buffer + linea;
+		}
+		return buffer;
+		
+	}
 	/**
 	 * Cargar medios de transporte
 	 * @param path donde esta el archivo

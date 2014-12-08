@@ -1,4 +1,4 @@
-
+import java.util.*;
 import java.awt.Component;
 
 import javax.swing.*;
@@ -23,8 +23,7 @@ public class ControladorPresentacionMedios {
 		try {
 			cm.agregarMedioTransporte(nombre, coste);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			vistaMedio.setError(e.getMessage());
 		}
 	}
 	
@@ -44,17 +43,18 @@ public class ControladorPresentacionMedios {
 		try {
 			cm.modificarNombre(nNuevo, n);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			vistaMedio.setError(e.getMessage());
 		}
 	}
+	
+	//public ArrayList<MedioTransporte> listarMedios(){
+		
 	
 	public void modificarPrecio(int pNuevo, String ident) {
 		try {
 			cm.modificarPrecio(pNuevo, ident);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			vistaMedio.setError(e.getMessage());
 		}
 	}
 	
