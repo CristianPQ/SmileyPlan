@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.*;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -27,6 +28,14 @@ public class VistaMedioTransporte extends Vista2 {
 		
 	}
 	
+	private void actualizarLista(){
+		ArrayList<String> medios = cpm.listarMedios();
+		
+		for(int i = 0; i < medios.size(); ++i) {
+			
+			vb.agregar(medios.get(i) + " "+cpm.consultarCoste(medios.get(i)));
+		}
+	}
 	void crearListeners() {
 		
 		/**
@@ -39,8 +48,10 @@ public class VistaMedioTransporte extends Vista2 {
 				int coste = Integer.parseInt(text2.getText()); 
 				if (!text1.getText().equals("") && !text2.getText().equals("")){
 							cpm.agregarMedio(nombre, coste);
-							vb.agregar(nombre+"  "+coste);                    
-		                    text1.setText("");
+							//vb.agregar(nombre+"  "+coste);
+							vb.clear();
+		                    actualizarLista();
+							text1.setText("");
 		                    text2.setText("");
 						}
 					}

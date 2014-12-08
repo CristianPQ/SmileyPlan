@@ -47,8 +47,29 @@ public class ControladorPresentacionMedios {
 		}
 	}
 	
-	//public ArrayList<MedioTransporte> listarMedios(){
+	public ArrayList<String> listarMedios(){
+		String nombres = cm.NombresMedios();
+		ArrayList<String> ret = new ArrayList<String>();
+		int i = 0;
+		String nom;
+		while (i < nombres.length()){
+			nom = "";
+			nom += nombres.charAt(i);
+			++i;
+			while (nombres.charAt(i) != ' '){
+				nom += nombres.charAt(i);
+				++i;	
+			}
+			++i;
+			if (nom.charAt(0) != ' ') ret.add(nom);			
+		}
 		
+		return ret;
+	}
+	
+	public int consultarCoste(String nombre){
+		return cm.consultarCoste(nombre);
+	}
 	
 	public void modificarPrecio(int pNuevo, String ident) {
 		try {

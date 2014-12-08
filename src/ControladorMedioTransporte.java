@@ -74,6 +74,12 @@ public class ControladorMedioTransporte {
 		}
 	}
 	
+	public int consultarCoste(String nombre){
+		MedioTransporte mt =  medios.consultar(nombre);
+		return mt.getPrecio();
+	}
+	
+	
 	/**
 	 * Borrar un medio de transporte por nombre
 	 * @param nombre del medio que se quiere borrar
@@ -218,19 +224,45 @@ public class ControladorMedioTransporte {
 			//System.out.println("medio agregat");
 		}
 	}
-	
+	/**
+	 * Nombre medios en string
+	 * @return String con todos los nombres de los medios
+	 */
 	public String NombresMedios(){
 		ArrayList<String> nombres = medios.consultar();
-		String linea = nombres.get(0) +"/n";
+		String linea = nombres.get(0) +' ';
 		String buffer = null;
-		buffer = buffer + linea;
+		buffer =linea;
 		for (int i = 1; i < nombres.size(); ++i) {
-			linea = nombres.get(i) +"/n";
+			linea = nombres.get(i) + ' ';
 			buffer = buffer + linea;
 		}
 		return buffer;
 		
 	}
+
+/*
+	public ArrayList<String> listarMedios(){
+		String nombres = NombresMedios();
+		ArrayList<String> ret = new ArrayList<String>();
+		int i = 0;
+		String nom;
+		while (i < nombres.length()){
+			nom = "";
+			nom += nombres.charAt(i);
+			++i;
+			while (nombres.charAt(i) != ' '){
+				nom += nombres.charAt(i);
+				++i;	
+			}
+			++i;
+			if (nom.charAt(0) != ' ') ret.add(nom);			
+		}
+		
+		return ret;
+	}
+*/	
+	
 	/**
 	 * Cargar medios de transporte
 	 * @param path donde esta el archivo

@@ -18,6 +18,7 @@ public class DriverControladorMedioTransporte {
                 + "\n 7 buscarMedio(String ident)" 
                 + "\n 8 guardarMedio(path,file)" 
                 + "\n 9 cargarMedio(path,file)" 
+                + "\n 10. nombresMedios()" 
         		+"\n");
     }
 	
@@ -80,6 +81,13 @@ public class DriverControladorMedioTransporte {
 	            	cm.Cargar(file);
 	            	break; 
 	            }
+	            
+	            case 10:{
+	            	String m = cm.NombresMedios();
+	            	System.out.print(m);
+	            	break;
+	            }
+
 	            case 0: {
 	                System.exit(0);
 	            }
