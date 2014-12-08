@@ -18,27 +18,27 @@ public abstract class Vista3 extends Vista1 {
 	protected JButton botonEliminar; 
 	protected JButton botonCrear; 
 	
-	protected JTextField text1;
-	protected JTextField text2; 
-	protected JTextField text3; 
+	protected JTextField txtXMapa;
+	protected JTextField txtYMapa; 
+	protected JTextField txtConti; 
 	
 	protected JLabel label1;
 	protected JLabel label2; 
 	protected JLabel label3; 
 	
-	private JPanel panelCiudad; 
-	private JPanel panelCaminos; 
+	protected JPanel panelCiudad; 
+	protected JPanel panelCaminos; 
 	
-	private JTextField txtIdCiutat; 
-	private JTextField txtY; 
-	private JTextField txtX; 
-	private JTextField txtCO; 
-	private JTextField txtCD; 
-	private JTextField txtMedio;
+	protected JTextField txtIdCiutat; 
+	protected JTextField txtY; 
+	protected JTextField txtX; 
+	protected JTextField txtCO; 
+	protected JTextField txtCD; 
+	protected JTextField txtMedio;
 	
-	private JLabel label4;
-	private JLabel label5;
-	private JLabel label6;
+	protected JLabel label4;
+	protected JLabel label5;
+	protected JLabel label6;
 	
 	
 	
@@ -59,30 +59,30 @@ public abstract class Vista3 extends Vista1 {
 		panelLista.setMinimumSize(new Dimension(700,100));
 		panelLista.setMaximumSize(new Dimension(700,100));
 		
-		text1 = new JTextField(); 
-		text1.setPreferredSize(new Dimension(70,30));
-		text1.setEditable(true);
+		txtXMapa = new JTextField(); 
+		txtXMapa.setPreferredSize(new Dimension(70,30));
+		txtXMapa.setEditable(true);
 		label1 = new JLabel();
 		label2 = new JLabel(); 
-		text2 = new JTextField();
-		text2.setPreferredSize(new Dimension(70,30));
-		text2.setEditable(true);
+		txtYMapa = new JTextField();
+		txtYMapa.setPreferredSize(new Dimension(70,30));
+		txtYMapa.setEditable(true);
 		label1 = new JLabel(); 
 		label2 = new JLabel(); 
 		label1.setText("X: ");
 		label2.setText("Y: ");
 		label3 = new JLabel(); 
 		label3.setText("Continente: ");
-		text3 = new JTextField(); 
-		text3.setPreferredSize(new Dimension(400,30));
-		text3.setEditable(true);
+		txtConti = new JTextField(); 
+		txtConti.setPreferredSize(new Dimension(400,30));
+		txtConti.setEditable(true);
 		
 		panelLista.add(label1);
-		panelLista.add(text1);
+		panelLista.add(txtXMapa);
 		panelLista.add(label2);
-		panelLista.add(text2);
+		panelLista.add(txtYMapa);
 		panelLista.add(label3);
-		panelLista.add(text3);
+		panelLista.add(txtConti);
 		
 		//panell Ciutat
 		TitledBorder Ciudad;
