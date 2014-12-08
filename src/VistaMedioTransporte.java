@@ -6,9 +6,10 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public  class VistaMedioTransporte extends Vista2 {
+public class VistaMedioTransporte extends Vista2 {
 	
 	private ControladorPresentacionMedios cpm; 
+	private String identificador; 
 	
 	
 	VistaMedioTransporte(ControladorPresentacionMedios cntrlpm){
@@ -28,61 +29,51 @@ public  class VistaMedioTransporte extends Vista2 {
 	
 	void crearListeners() {
 		
+		/**
+		 * BOTON CREAR
+		 */
 		botonCrear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String nombre = text1.getText(); 
 				int coste = Integer.parseInt(text2.getText()); 
 				if (!text1.getText().equals("") && !text2.getText().equals("")){
-						try {
 							cpm.agregarMedio(nombre, coste);
 							vb.agregar(nombre+"  "+coste);                    
 		                    text1.setText("");
 		                    text2.setText("");
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
 						}
-
 					}
-			}	
 		});
 		
+		/**
+		 * BOTON MODIFICAR
+		 */
 		botonModificar.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String linea = vb.DevolverSeleccionado(); 
-				String nombreviejo = linea.split(" ")[0]; 
-				String costeviejo = linea.split(" ")[1]; 
-				text1.setText(nombreviejo); 
-				text2.setText(costeviejo);
+				String id = text1.getText(); 
+				String coste = text2.getText();
 				
-				
-				
-				
-				if (!text1.getText().equals("")) {
-					String nombrenuevo = text1.getText(); 
-					try {
-						cpm.modificarNombre(nombrenuevo, nombreviejo);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+				if (!text1.getText().equals("") && !text2.getText().equals("")){
+					if (identificador == id) {
+						int c = Integer.parseInt(coste); 
+						cpm.modificarPrecio(c, id);
+						vb.agregar(id+"  "+coste);                    
+	                    text1.setText("");
+	                    text2.setText("");
 					}
-				}
-				if (!text2.getText().equals("")) {
-					String costenuevo = text2.getText(); 
-					int costeN = Integer.parseInt(costenuevo);
-					int costeV = Integer.parseInt(costeviejo);
-					try {
-						cpm.modificarPrecio(costeN, nombreviejo);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					else {
+						cpm.modificarNombre(id, identificador);
+						vb.agregar(id+"  "+coste);                    
+	                    text1.setText("");
+	                    text2.setText("");
 					}
+				
 				}
 			}
 		});
+		
 		
 		botonCargar.addActionListener(new ActionListener(){
 
@@ -104,7 +95,10 @@ public  class VistaMedioTransporte extends Vista2 {
 			
 		});
 		
-		super.vb.funcionSeleccionar(new ListSelectionListener() {
+		/**
+		 * Seleccionar un elemento de la lista y que se vea en cuadros de texto
+		 */
+		super.vb.agregarSelecListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO Auto-generated method stub
@@ -114,6 +108,7 @@ public  class VistaMedioTransporte extends Vista2 {
 	                    String coste = linea.split(" ")[1];
 	                    text1.setText(nombre);
 	                    text2.setText(coste);
+	                    identificador = nombre; 
 	                }
 	                else {
 	                    text1.setText("");

@@ -135,4 +135,5 @@ public class VistaBuscador extends JPanel{
         textoBusqueda.setEnabled(false);
         botonBuscar.setEnabled(false);
     }
+
 }
