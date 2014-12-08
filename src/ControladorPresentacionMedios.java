@@ -19,8 +19,13 @@ public class ControladorPresentacionMedios {
 	
 	//A continuación crea todos los metodos que llaman al controlador
 	
-	public void agregarMedio(String nombre, int coste) throws Exception{
-		cm.agregarMedioTransporte(nombre, coste);
+	public void agregarMedio(String nombre, int coste){
+		try {
+			cm.agregarMedioTransporte(nombre, coste);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void agregarCoche(String nombre, int coste) throws Exception {
@@ -35,12 +40,22 @@ public class ControladorPresentacionMedios {
 		cm.borrarMedioTransporte(nombre);
 	}
 	
-	public void modificarNombre(String nNuevo, String n) throws Exception {
-		cm.modificarNombre(nNuevo, n);
+	public void modificarNombre(String nNuevo, String n) {
+		try {
+			cm.modificarNombre(nNuevo, n);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public void modificarPrecio(int pNuevo, String ident) throws Exception {
-		cm.modificarPrecio(pNuevo, ident);
+	public void modificarPrecio(int pNuevo, String ident) {
+		try {
+			cm.modificarPrecio(pNuevo, ident);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void guardarMedio(String path, String file) throws Exception {
