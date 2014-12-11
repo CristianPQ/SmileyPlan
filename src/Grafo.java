@@ -1,18 +1,18 @@
 import java.util.ArrayList;
-public class Grafo<E> {
+public class Grafo<E1, E2> {
     
-    class Sentidos {
+    public class Sentidos {
         
-        private ArrayList<E> entrada;
-        private ArrayList<E> salida;
+        private ArrayList<E2> entrada;
+        private ArrayList<E2> salida;
         
         public Sentidos() {
-            entrada = new ArrayList<E>();
-            salida = new ArrayList<E>();
+            entrada = new ArrayList<E2>();
+            salida = new ArrayList<E2>();
         }
         
         //No se si esta bien
-        public boolean existe(E e) {
+        public boolean existe(E2 e) {
             return entrada.contains(e) || salida.contains(e);
         }
         
@@ -24,15 +24,15 @@ public class Grafo<E> {
             return salida.isEmpty();
         }
         
-        public void agregarEntrada(E e) {
+        public void agregarEntrada(E2 e) {
             entrada.add(e);
         }
         
-        public void agregarSalida(E e) {
+        public void agregarSalida(E2 e) {
             salida.add(e);
         }
         
-        public void eliminarEntrada(E e) {
+        public void eliminarEntrada(E2 e) {
         	for(int i = 0; i < entrada.size(); ++i) {
         		if(entrada.get(i).equals(e)) {
         			entrada.remove(i);
@@ -40,7 +40,7 @@ public class Grafo<E> {
         		}
         	}
         }
-        public void eliminarSalida(E e) {
+        public void eliminarSalida(E2 e) {
         	for(int i = 0; i < salida.size(); ++i) {
         		if(salida.get(i).equals(e)) {
         			salida.remove(i);
@@ -50,7 +50,8 @@ public class Grafo<E> {
         }
     }
     
-    private ArrayList<Sentidos> adyacencias;
+    private TST<E1> vertices;
+    private ArrayList<Sentidos> aristas;
     
     private static Exception NoExiste = new Exception ("Este elemento no existe");
     
@@ -61,32 +62,32 @@ public class Grafo<E> {
      */
     public Grafo() {
         //numVertices = numVertex;
-        adyacencias = new ArrayList<Sentidos>();
+        aristas = new ArrayList<Sentidos>();
     }
     
     public Grafo(int n) {
-    	adyacencias = new ArrayList<Sentidos>();
+    	aristas = new ArrayList<Sentidos>();
     	for(int i = 0; i < n; ++i) {
     		agrandar();
     	}
     }
     
     /**
-     * Consultora de adyacencias de salida de un vertice
+     * Consultora de aristas de salida de un vertice
      * @param indice
      * @return
      */
-    public ArrayList<E> consultarAdyacentesSalida(int indice){
-        return adyacencias.get(indice).salida;
+    public ArrayList<E2> consultarAdyacentesSalida(int indice){
+        return aristas.get(indice).salida;
     }
     
     /**
-     * Consultora de adyacencias de entrada de un vertice
+     * Consultora de aristas de entrada de un vertice
      * @param indice
      * @return
      */
-    public ArrayList<E> consultarAdyacentesEntrada(int indice){
-        return adyacencias.get(indice).entrada;
+    public ArrayList<E2> consultarAdyacentesEntrada(int indice){
+        return aristas.get(indice).entrada;
     }
     
     /**
@@ -95,8 +96,8 @@ public class Grafo<E> {
      * @param e
      * @return
      */
-    public boolean existeAdyacente(int indice, E e) {
-        return adyacencias.get(indice).existe(e);
+    public boolean existeAdyacente(int indice, E2 e) {
+        return aristas.get(indice).existe(e);
     }
     
     /**
@@ -104,14 +105,14 @@ public class Grafo<E> {
      * @param vertex vertice origen
      * @param e
      */
-    public void agregarElemento(int in, int out, E e) {
-        Sentidos ent = adyacencias.get(in);
+    public void agregarElemento(int in, int out, E2 e) {
+        Sentidos ent = aristas.get(in);
         ent.agregarEntrada(e);
-        adyacencias.set(in, ent);
+        aristas.set(in, ent);
         
-        Sentidos sal = adyacencias.get(out);
+        Sentidos sal = aristas.get(out);
         sal.agregarSalida(e);
-        adyacencias.set(out, sal);
+        aristas.set(out, sal);
     }
     
     /**
@@ -120,23 +121,23 @@ public class Grafo<E> {
      * @param targetVertex vertice destino
      * @throws Exception 
      */
-    public void eliminarElemento(int in, int out, E e) throws Exception{
-    	Sentidos ent = adyacencias.get(in);
-    	Sentidos sal= adyacencias.get(out);
+    public void eliminarElemento(int in, int out, E2 e) throws Exception{
+    	Sentidos ent = aristas.get(in);
+    	Sentidos sal= aristas.get(out);
         if(!ent.existe(e) || !sal.existe(e)) throw NoExiste;
         ent.eliminarEntrada(e);
         sal.eliminarSalida(e);
-        adyacencias.set(in, ent);
-        adyacencias.set(out, sal);
+        aristas.set(in, ent);
+        aristas.set(out, sal);
     }
     
     public int size() {
-    	return adyacencias.size();
+    	return aristas.size();
     }
     
     public void agrandar() {
     	Sentidos s = new Sentidos();
-    	adyacencias.add(s);
+    	aristas.add(s);
     }
     
     
@@ -166,10 +167,10 @@ public class Grafo<E> {
     /*
     public int consultarFlujoArista(int vertex, int targetVertex){
         int i;
-        for (i = 0; i < Adyacencias[vertex].size(); ++i){
-            if( !Adyacencias[vertex].get(i).equals(null) &&
-               Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-                return Adyacencias[vertex].get(i).consultarFlujo();
+        for (i = 0; i < aristas[vertex].size(); ++i){
+            if( !aristas[vertex].get(i).equals(null) &&
+               aristas[vertex].get(i).consultarVerticeDestino() == targetVertex){
+                return aristas[vertex].get(i).consultarFlujo();
             }
         }
         return -1;
@@ -185,13 +186,13 @@ public class Grafo<E> {
     public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)
     {
         int i;
-        for (i = 0; i < Adyacencias[vertex].size(); ++i){
-            if( !Adyacencias[vertex].get(i).equals(null) &&
-               Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-                Arista a = Adyacencias[vertex].get(i);
+        for (i = 0; i < aristas[vertex].size(); ++i){
+            if( !aristas[vertex].get(i).equals(null) &&
+               aristas[vertex].get(i).consultarVerticeDestino() == targetVertex){
+                Arista a = aristas[vertex].get(i);
                 a.modificarFlujo(nuevoFlujo);
-                Adyacencias[vertex].remove(i);
-                Adyacencias[vertex].add(i,a);
+                aristas[vertex].remove(i);
+                aristas[vertex].add(i,a);
                 
             }
         }
@@ -207,10 +208,10 @@ public class Grafo<E> {
     /*
     public int consultarCapacidadArista(int vertex, int targetVertex) {
         int i;
-        for (i = 0; i < Adyacencias[vertex].size(); ++i){
-            if( !Adyacencias[vertex].get(i).equals(null) &&
-               Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-                return Adyacencias[vertex].get(i).consultarCapacidad();
+        for (i = 0; i < aristas[vertex].size(); ++i){
+            if( !aristas[vertex].get(i).equals(null) &&
+               aristas[vertex].get(i).consultarVerticeDestino() == targetVertex){
+                return aristas[vertex].get(i).consultarCapacidad();
             }
         }
         return -1;
@@ -227,13 +228,13 @@ public class Grafo<E> {
     {
         
         int i;
-        for (i = 0; i < Adyacencias[vertex].size(); ++i){
-            if( !Adyacencias[vertex].get(i).equals(null) &&
-               Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-                Arista a = Adyacencias[vertex].get(i);
+        for (i = 0; i < aristas[vertex].size(); ++i){
+            if( !aristas[vertex].get(i).equals(null) &&
+               aristas[vertex].get(i).consultarVerticeDestino() == targetVertex){
+                Arista a = aristas[vertex].get(i);
                 a.modificarCapacidad(nuevaCapacidad);
-                Adyacencias[vertex].remove(i);
-                Adyacencias[vertex].add(i,a);
+                aristas[vertex].remove(i);
+                aristas[vertex].add(i,a);
             }
         }
     }*/
@@ -247,10 +248,10 @@ public class Grafo<E> {
     /*
     public int consultarCosteArista(int vertex, int targetVertex)throws Exception{
         int i;
-        for (i = 0; i < Adyacencias[vertex].size(); ++i){
-            if( !Adyacencias[vertex].get(i).equals(null) &&
-               Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-                return Adyacencias[vertex].get(i).consultarCoste();
+        for (i = 0; i < aristas[vertex].size(); ++i){
+            if( !aristas[vertex].get(i).equals(null) &&
+               aristas[vertex].get(i).consultarVerticeDestino() == targetVertex){
+                return aristas[vertex].get(i).consultarCoste();
             }			
         }
         return -1;
@@ -266,13 +267,13 @@ public class Grafo<E> {
     public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)
     {
         int i;
-        for (i = 0; i < Adyacencias[vertex].size(); ++i){
-            if( !Adyacencias[vertex].get(i).equals(null) &&
-               Adyacencias[vertex].get(i).consultarVerticeDestino() == targetVertex){
-                Arista a = Adyacencias[vertex].get(i);
+        for (i = 0; i < aristas[vertex].size(); ++i){
+            if( !aristas[vertex].get(i).equals(null) &&
+               aristas[vertex].get(i).consultarVerticeDestino() == targetVertex){
+                Arista a = aristas[vertex].get(i);
                 a.modificarCoste(nuevoCoste);
-                Adyacencias[vertex].remove(i);
-                Adyacencias[vertex].add(i,a);
+                aristas[vertex].remove(i);
+                aristas[vertex].add(i,a);
                 
             }			
         }
@@ -294,7 +295,7 @@ public class Grafo<E> {
      */
     /*
     public int consultarNumAristasVertice(int vertex){
-        return Adyacencias[vertex].size();
+        return aristas[vertex].size();
     }*/
     
     

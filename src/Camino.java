@@ -9,6 +9,26 @@ public class Camino {
 	private String ciudadOrigen;
 	
 	
+	public boolean equals(Object obj) {
+		if(this == obj) return true;
+		if(obj == null) return false;
+		if(getClass() != obj.getClass()) return false;
+		Camino c = (Camino) obj;
+		if(ciudadDestino == null) {
+			if(c.ciudadDestino != null) return false;
+		} else if(!ciudadDestino.equals(c.ciudadDestino)) return false;
+		if(transporte == null) {
+			if(c.transporte != null) return false;
+		} else if(!transporte.equals(c.transporte)) return false;
+		if(ciudadOrigen == null) {
+			if(c.ciudadOrigen != null) return false;
+		} else if(!ciudadOrigen.equals(c.ciudadOrigen)) return false;
+		return true;
+	}
+		
+	
+	
+	
 	/**
 	 * Creadora 
 	 * @param string ciudadOrigen2

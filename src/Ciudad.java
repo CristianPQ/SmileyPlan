@@ -3,6 +3,7 @@ public class Ciudad {
 	
 	private String nombre; 		//Identificador
 	private Coordenadas coord;	//Senala la ubicacion
+	private int equivalente;
 	
 	/**
 	 * Constructor de Ciudad
@@ -12,6 +13,20 @@ public class Ciudad {
 	public Ciudad(String nombreCiudad, Coordenadas coordCiudad){
 		nombre = nombreCiudad;
 		coord = coordCiudad;
+	}
+	
+	public Ciudad(String nombreCiudad, Coordenadas coordCiudad, int eq){
+		nombre = nombreCiudad;
+		coord = coordCiudad;
+		equivalente = eq;
+	}
+	
+	public void equivalente(int eq) {
+		equivalente = eq;
+	}
+	
+	public int consultarEquivalente() {
+		return equivalente;
 	}
 
 	/**
