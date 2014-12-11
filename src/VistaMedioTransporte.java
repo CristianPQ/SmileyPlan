@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.*;
 
 import javax.swing.*;
@@ -39,8 +40,10 @@ public class VistaMedioTransporte extends Vista2 {
 		super.panelLista.add(coche);
 		super.panelLista.add(tren); 
 		
-	    super.chooser.setFileFilter(new FileNameExtensionFilter(".Medios"));
-        super.chooser.setApproveButtonText("Abrir Medios de Transporte");
+		
+	    //super.chooser.setFileFilter(new FileNameExtensionFilter(".Medios"));
+        super.filechooser.setApproveButtonText("Abrir Medios de Transporte");
+		super.filechooser.setDialogTitle("Elige archivo para los Medios de Transporte");   
 		
 		crearListeners(); 
 	}
@@ -177,17 +180,22 @@ public class VistaMedioTransporte extends Vista2 {
 	}
 	
 	public void abrirBrowserGuardar() {
-		int n = chooser.showSaveDialog(null);
-        if(n == JFileChooser.APPROVE_OPTION) {
-            String file = chooser.getSelectedFile().getAbsolutePath();
-            file = file.concat(".Medios");
-            cpm.guardarMedio(file);
-        }
-		
+		   JFrame parentFrame = new JFrame();
+	 		int userSelection = filechooser.showSaveDialog(parentFrame);
+	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+	 			cpm.guardarMedio(file);
+	 		}
 	}
 	
 	public void abrirBrowserCargar() {
-		// TODO Auto-generated method stub
+		JFrame parentFrame = new JFrame();
+ 		int userSelection = filechooser.showSaveDialog(parentFrame);
+ 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+ 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+ 			cpm.cargarMedio(file);
+ 			actualizarLista();
+ 		}
 		
 	}	
 	

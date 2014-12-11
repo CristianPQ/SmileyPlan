@@ -31,7 +31,7 @@ public class VistaPrincipal {
 		JFrame frame = new JFrame("Main");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-        JLabel Imatge = new JLabel(new ImageIcon("/Users/olgacarbo/Desktop/SmileyPlan/mapa.jpg")); 
+        //JLabel Imatge = new JLabel(new ImageIcon("/Users/olgacarbo/Desktop/SmileyPlan/mapa.jpg")); 
         //Imatge.setLayout(new FlowLayout());
         //frame.add(Imatge); 
         //frame.setContentPane(Imatge);

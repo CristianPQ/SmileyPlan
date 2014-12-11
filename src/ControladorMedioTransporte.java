@@ -204,13 +204,13 @@ public class ControladorMedioTransporte {
 		
 		String s = lista.get(0); 
 		MedioTransporte aux = medios.consultar(s); 
-		String linea = aux.getNombre() + " " + aux.getPrecio();
+		String linea = aux.getNombre() + " " + aux.getPrecio() + " " +  aux.esTren();
 		buffer = linea + "\n"; 
 
 		for(int i = 1; i < lista.size(); ++i){
 			s = lista.get(i); 
 			aux = medios.consultar(s); 
-			linea = aux.getNombre() + " " + aux.getPrecio(); 
+			linea = aux.getNombre() + " " + aux.getPrecio() + " " + aux.esTren(); 
 			buffer = buffer + linea + "\n"; 
 			
 			if(buffer.length() > BUFFER_SIZE) {
@@ -241,11 +241,14 @@ public class ControladorMedioTransporte {
 			String[] cortarstring = l[i].split(" "); 
 			String nombre = cortarstring[0];
 			int Precio = Integer.parseInt(cortarstring[1]);
+			boolean t = Boolean.valueOf(cortarstring[2]); 
 			/////////////per comprovar ////////////////
-			//System.out.println("he carregat medio " + i); 
-			//System.out.println(nombre + " " + Precio); 
+			System.out.println("he carregat medio " + i); 
+			System.out.println(nombre + " " + Precio + " " + t); 
 			/////////////////////////////////////////////
-			agregarMedioTransporte(nombre,Precio);
+			if(t) agregarTren(nombre,Precio); 
+			else agregarCoche(nombre,Precio); 
+			//agregarMedioTransporte(nombre,Precio);
 			//System.out.println("medio agregat");
 		}
 	}

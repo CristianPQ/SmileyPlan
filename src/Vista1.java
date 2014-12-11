@@ -8,7 +8,7 @@ public abstract class Vista1 extends JPanel {
 	protected JPanel panelPrincipal;
 	protected JPanel panelErrores;
 	protected JLabel error;
-	protected JFileChooser chooser; 
+	protected JFileChooser filechooser; 
 	
 	Vista1(){
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -23,7 +23,7 @@ public abstract class Vista1 extends JPanel {
         panelErrores.setBorder(BorderFactory.createEtchedBorder());
         panelErrores.add(error);
         
-        chooser = new JFileChooser(); 
+        filechooser = new JFileChooser(); 
 		
 		this.add(panelPrincipal);
 		this.add(panelErrores);
