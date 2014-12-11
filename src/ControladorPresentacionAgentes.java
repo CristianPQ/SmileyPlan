@@ -101,7 +101,7 @@ public class ControladorPresentacionAgentes{
 	}
 	
 	
-	public void guardarAgente(String path, String file){
+	public void guardarAgente(String file){
 		try {
 			ca.Guardar(file);
 		} catch (Exception e) {
@@ -109,7 +109,7 @@ public class ControladorPresentacionAgentes{
 		}
 	}
 	
-	public void cargarAgente(String path, String file) {
+	public void cargarAgente(String file) {
 		try {
 			ca.Cargar(file);
 		} catch (Exception e) {

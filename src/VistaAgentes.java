@@ -1,7 +1,7 @@
 import java.awt.*;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
@@ -27,6 +27,7 @@ public class VistaAgentes extends Vista2 {
 		text3.setEditable(true);
 		super.panelLista.add(label3);
 		super.panelLista.add(text3);
+		super.filechooser.setDialogTitle("Elige archivo para los Agentes");   
 		
 		crearListeners();
 	
@@ -124,7 +125,43 @@ public class VistaAgentes extends Vista2 {
 	                }
 			}       
         });
+		
+		botonCargar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				abrirBrowserCargar(); 	
+			}
+			
+		});
+		
+		botonGuardar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				abrirBrowserGuardar(); 
+			}
+			
+		});
 
-	}}
+	}
+	public void abrirBrowserGuardar() {
+		   JFrame parentFrame = new JFrame();
+	 		int userSelection = filechooser.showSaveDialog(parentFrame);
+	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+	 			ctrlPAg.guardarAgente(file);
+	 		}
+	}
+	
+	public void abrirBrowserCargar() {
+		JFrame parentFrame = new JFrame();
+		int userSelection = filechooser.showSaveDialog(parentFrame);
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+			ctrlPAg.cargarAgente(file);
+			actualizarLista();
+		}
+		
+	}		
+}
 
 	
