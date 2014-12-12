@@ -40,6 +40,21 @@ public class Dinic extends Algoritmo {
 		
 	}
 		
+	private void inicializacion(GrafoAntiguo g,int s, int t){
+		int v;
+		ArrayList <Arista> adyacencias;
+		/** creo todos las aristas inversas **/
+		for (int i = 0; i < g.consultarNumVertices(); ++i){
+			adyacencias = g.consultarAdyacentes(i);
+			for (int j = 0; j < adyacencias.size(); ++j){
+				
+				v = adyacencias.get(j).consultarVerticeDestino();
+				if (adyacencias.get(j).consultarFlujo() == 0 )g.anadirArista(v,i,adyacencias.get(j).consultarCapacidad(),adyacencias.get(j).consultarCapacidad(),-1);
+			}
+		}
+		
+	}
+	
 		  static boolean dinicBfs(GrafoAntiguo g, int src, int dest, int[] dist) {
 		    Arrays.fill(dist, -1);
 		    dist[src] = 0;
@@ -94,6 +109,7 @@ public class Dinic extends Algoritmo {
 			int src = e.consultarSource();
 			int dest = e.consultarSink();
 			int numA = e.consultarNumeroAgentes();
+			inicializacion(g,src,dest);
 		    int[] dist = new int[g.consultarNumVertices()];
 		    while (dinicBfs(g, src, dest, dist)) {
 		      int[] ptr = new int[g.consultarNumVertices()];
@@ -111,6 +127,7 @@ public class Dinic extends Algoritmo {
 				crearItinerarios(sol,g,0,flow-1,flow,src,dest,0);
 			}
 		//	Guardar(path,file); 
+			System.out.println("el flow es" + flow);
 			float t2 = System.currentTimeMillis();
 			sol.modificarTiempo(t2-t1);
 			sol.seqsol = seq; 
