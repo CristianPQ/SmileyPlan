@@ -25,6 +25,8 @@ public class Camino {
 		} else if(!ciudadOrigen.equals(c.ciudadOrigen)) return false;
 		return true;
 	}
+	
+	public int
 		
 	
 	
