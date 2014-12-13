@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -44,6 +45,28 @@ public class VistaMapa extends Vista3{
 		
 	}
 	
+	//
+	public void actualizarListaCiudades() throws Exception{
+		ArrayList<String> ciudades = cpmapa.listarCiudades();
+		if(!ciudades.isEmpty()) 
+		for(int i = 0; i < ciudades.size(); ++i){
+			String ciu = ciudades.get(i); 
+			System.out.println(ciu + " " + cpmapa.coordX(ciu)); 
+			try {
+				vciut.agregar(ciu + "  "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void actualizarListaCaminos() throws Exception{
+		ArrayList<String> caminos = cpmapa.listarCaminos();
+		if(!caminos.isEmpty()) 
+		for(int i = 0; i < caminos.size(); ++i) vb.agregar(caminos.get(i));
+	}
+
+	
 	void crearListeners() {
 		/**
 		 * BOTON CREAR
@@ -72,8 +95,13 @@ public class VistaMapa extends Vista3{
 				else if (txtCO.getText().equals("")){ //si el de cami esta buit
 					String nom = txtIdCiutat.getText();
 					int X = Integer.parseInt(txtX.getText());
-					int Y = Integer.parseInt(txtY.getText());		
+					int Y = Integer.parseInt(txtY.getText());	
 					cpmapa.agregarCiudad(nom, X, Y);
+					try {
+						actualizarListaCiudades();
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
 				}
 				//crear camino
 				else if(txtIdCiutat.getText().equals("")){
@@ -84,10 +112,28 @@ public class VistaMapa extends Vista3{
 					String md = txtMedio.getText();
 					int cap = Integer.parseInt(txtCap.getText());
 					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
+					try {
+						actualizarListaCaminos();
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					} 
 					}
 				}	
 			}
 		
+		});
+		
+		/**
+		 * BOTON MODIFICAR
+		 */
+		botonModificar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+	
+			
 		});
 	}
 		  
