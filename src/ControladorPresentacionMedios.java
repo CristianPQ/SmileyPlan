@@ -118,8 +118,7 @@ public class ControladorPresentacionMedios {
 		return vistaMedio; 
 	}
 	public ControladorMedioTransporte devolverControlador(){
-		return cm;
-		
+		return cm;	
 	}
 	
 }

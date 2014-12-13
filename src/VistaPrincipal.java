@@ -57,7 +57,7 @@ public class VistaPrincipal {
 		tabs.add("Mapa", cpmapa.getVista());
 		tabs.add("Agente", cpa.getVista());
 		tabs.add("MedioTransporte", cpm.getVista());
-		//tabs.add("Algoritmo", cpalg.getVista());
+		tabs.add("Algoritmo", cpalg.getVista());
 		//tabs.add("Ayuda", ayuda); 
 		
 		frame.add(tabs);
