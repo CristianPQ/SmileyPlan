@@ -97,7 +97,7 @@ public class ControladorPresentacionMedios {
 		try {
 			cm.Guardar(file);
 		} catch (Exception e) {
-			e.printStackTrace();
+			vistaMedio.setError(e.getMessage());
 		}
 	}
 	
