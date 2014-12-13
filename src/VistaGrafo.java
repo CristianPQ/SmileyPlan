@@ -24,7 +24,11 @@ public class VistaGrafo extends JPanel{
 
     
     public VistaGrafo(){
+
     	this.setBackground(Color.white);
+
+    	System.out.print("aqui");
+
     };
     
     public void agregarGrafo(GrafoAntiguo gra){
