@@ -52,6 +52,12 @@ public class VistaAgentes extends Vista2 {
 				String nombre = text1.getText();
 				String ciuIni = text2.getText();
 				String ciuObj = text3.getText();
+				if (nombre.equals("") || ciuIni.equals("") || ciuObj.equals(""))
+					try {
+						throw new Exception("Falta rellenar uno de los espacios");
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
 				if (!text1.getText().equals("") && !text2.getText().equals("")
 						&& !text2.getText().equals("")){
 						ctrlPAg.agregarAgente(nombre, ciuIni, ciuObj);
@@ -65,8 +71,16 @@ public class VistaAgentes extends Vista2 {
 				String id = text1.getText(); 
 				String ciuIni = text2.getText();
 				String ciuObj = text3.getText();
+				
+				if (id.equals("") || ciuIni.equals("") || ciuObj.equals(""))
+					try {
+						throw new Exception("Falta rellenar uno de los espacios");
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
+				
 				//text2.setText(identificador);
-				if (!text1.getText().equals("") && !text2.getText().equals("")){
+	//			if (!text1.getText().equals("") && !text2.getText().equals("")){
 					if (identificador.equals(id)) {
 						ctrlPAg.modificarCiudadInicial(id, ciuIni);
 						if(!ciuIni.equals(tempIni)) ctrlPAg.modificarCiudadInicial(id,ciuObj);
@@ -83,7 +97,7 @@ public class VistaAgentes extends Vista2 {
 					
                     text1.setText("");
                     text2.setText("");
-				}
+				
 			}
 		});
 	
