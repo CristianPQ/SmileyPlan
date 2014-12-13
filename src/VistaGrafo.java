@@ -16,7 +16,9 @@ public class VistaGrafo extends JPanel{
  
     
     
-    public VistaGrafo(){};
+    public VistaGrafo(){
+    	
+    };
     
 
 	    public void paintComponent (Graphics g)

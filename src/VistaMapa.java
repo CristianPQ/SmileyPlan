@@ -10,7 +10,7 @@ import javax.swing.border.TitledBorder;
 
 public class VistaMapa extends Vista3{
 	private ControladorPresentacionMapa cpmapa;
-	
+
 	/*private JPanel panelCiudad; 
 	private JPanel panelCaminos; 
 	
@@ -36,6 +36,7 @@ public class VistaMapa extends Vista3{
 		super.txtCD.setEditable(false);
 		super.txtMedio.setEditable(false);
 		super.txtIdCiutat.setEditable(false);
+		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
 		VistaGrafo vg = new VistaGrafo();
@@ -54,8 +55,8 @@ public class VistaMapa extends Vista3{
 				if (!mapaCreado){ 
 					String X = txtXMapa.getText();
 					String Y = txtYMapa.getText();
-					String Continente = txtConti.getText();
-			//		cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);
+					//String Continente = txtConti.getText();
+					cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y));
 					
 					mapaCreado = true;
 					
@@ -63,23 +64,27 @@ public class VistaMapa extends Vista3{
 					txtCD.setEditable(true);
 					txtMedio.setEditable(true);
 					txtIdCiutat.setEditable(true);
+					txtCap.setEditable(true);
 					txtX.setEditable(true);
 					txtY.setEditable(true);
 				}
 				//crear ciudad
 				else if (txtCO.getText().equals("")){ //si el de cami esta buit
 					String nom = txtIdCiutat.getText();
-					String X = txtX.getText();
-					String Y = txtY.getText();
-				//	cpmapa.agregarCiudad(nom, Integer.parseInt(X), Integer.parseInt(Y));
+					int X = Integer.parseInt(txtX.getText());
+					int Y = Integer.parseInt(txtY.getText());		
+					cpmapa.agregarCiudad(nom, X, Y);
 				}
 				//crear camino
 				else if(txtIdCiutat.getText().equals("")){
+					if (!txtCO.getText().equals("") && !txtCD.getText().equals("")
+							&& !txtCap.getText().equals("")){
 					String ciudadO = txtCO.getText();
 					String ciudadD = txtCD.getText();
 					String md = txtMedio.getText();
 					int cap = Integer.parseInt(txtCap.getText());
 					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
+					}
 				}
 				
 			}
