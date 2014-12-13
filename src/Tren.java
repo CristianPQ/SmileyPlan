@@ -8,7 +8,7 @@ public class Tren extends MedioTransporte {
 		super(); 
 	}
 	
-	static private Exception ErrorPrecio = new Exception("Este precio no es posible para un tren");
+	static private Exception ErrorPrecio = new Exception("Para un tren: precio inferior a 40");
 	
 	static private int limitePrecio = 40; 
 	

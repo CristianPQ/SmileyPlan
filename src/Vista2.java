@@ -39,7 +39,6 @@ public abstract class Vista2 extends Vista1 {
 		//panel de introduccion datos 
 		panelLista = new JPanel(); 
 		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
-		//panelLista.setBackground(Color.CYAN);
 		panelLista.setMinimumSize(new Dimension(600,100));
 		panelLista.setMaximumSize(new Dimension(600,100));
 	
@@ -92,5 +91,4 @@ public abstract class Vista2 extends Vista1 {
 	    
 	}
 	
-	//falten classes abstractes per obrir el browser 
 }

@@ -26,9 +26,6 @@ public class VistaMedioTransporte extends Vista2 {
 		
 		this.cpm = cntrlpm; 
 		
-		//super.vb.setLabelText(); 
-		//super.vb.setButtonText(); 
-		
 		super.label1.setText("Nombre: ");
 		super.label2.setText("Coste: ");
 		
@@ -36,7 +33,6 @@ public class VistaMedioTransporte extends Vista2 {
 		coche = new JRadioButton("coche");
 		tren = new JRadioButton("tren"); 
 		coche.setSelected(true); 
-		//coche.setEnabled(true);
 		grupob.add(coche);
 		grupob.add(tren);
 		super.panelLista.add(coche);
@@ -44,7 +40,7 @@ public class VistaMedioTransporte extends Vista2 {
 		
 		
 	    //super.chooser.setFileFilter(new FileNameExtensionFilter(".Medios"));
-        super.filechooser.setApproveButtonText("Abrir Medios de Transporte");
+       // super.filechooser.setApproveButtonText("Abrir Medios de Transporte");
 		super.filechooser.setDialogTitle("Elige archivo para los Medios de Transporte");   
 		
 		crearListeners(); 
@@ -195,7 +191,7 @@ public class VistaMedioTransporte extends Vista2 {
 	
 	public void abrirBrowserCargar() {
 		JFrame parentFrame = new JFrame();
- 		int userSelection = filechooser.showSaveDialog(parentFrame);
+ 		int userSelection = filechooser.showOpenDialog(parentFrame);
  		if (userSelection == JFileChooser.APPROVE_OPTION) {
  			String file = filechooser.getSelectedFile().getAbsolutePath(); 
  			cpm.cargarMedio(file);

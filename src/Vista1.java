@@ -37,8 +37,8 @@ public abstract class Vista1 extends JPanel {
     }
     
     public void comprovar(String txt) {
-    //    error.setText("Visor de errores");
-     //   error.setForeground(Color.black);
+        labelError.setText("Visor de errores");
+        labelError.setForeground(Color.black);
     }
 	
     public void cargarConChooser(){}

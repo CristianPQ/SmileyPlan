@@ -9,7 +9,7 @@ public class Coche extends MedioTransporte {
 	
 	static private int limitePrecio = 5; 
 
-	static private Exception ErrorPrecio = new Exception("Este precio no es posible para un coche");
+	static private Exception ErrorPrecio = new Exception("Para un coche: precio superior a 5");
 	
 	/**
 	 * Constructora de Tren
