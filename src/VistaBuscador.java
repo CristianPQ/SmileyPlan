@@ -33,14 +33,14 @@ public class VistaBuscador extends JPanel{
         model = new DefaultListModel();
         l = new JList(model);
         scroller = new JScrollPane(l);
-        scroller.setMinimumSize(new Dimension(220,500));
-        scroller.setMaximumSize(new Dimension(220,500));
+        scroller.setMinimumSize(new Dimension(250,500));
+        scroller.setMaximumSize(new Dimension(250,500));
  
         
         
         vistaBuscar = new JPanel();
-        vistaBuscar.setMinimumSize(new Dimension(210,50));
-        vistaBuscar.setMaximumSize(new Dimension(210,50));
+        vistaBuscar.setMinimumSize(new Dimension(250,50));
+        vistaBuscar.setMaximumSize(new Dimension(250,50));
     
         textoBusqueda = new JTextField();
         textoBusqueda.setPreferredSize(new Dimension(120,30));
