@@ -21,12 +21,12 @@ public class VistaPrincipal {
 	private JMenu menu4; 
 	
 	
-	VistaPrincipal(ControladorPresentacionMedios cpm,ControladorPresentacionAgentes cpa, ControladorPresentacionMapa cpmapa, ControladorPresentacionAlgoritmo cpalg){
+	VistaPrincipal(ControladorPresentacionMedios cpmed,ControladorPresentacionAgentes cpag, ControladorPresentacionMapa cpmap, ControladorPresentacionAlgoritmo cpal){
 		
-		cpm = cpm; 
-		cpa = cpa; 
-		cpmapa = cpmapa; 
-		cpalg = cpalg; 
+		cpm = cpmed; 
+		cpa = cpag; 
+		cpmapa = cpmap; 
+		cpalg = cpal; 
 		
 		JFrame frame = new JFrame("Main");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,13 +51,13 @@ public class VistaPrincipal {
 		menuBar.add(menu4); 
 		frame.setJMenuBar(menuBar);
 
-		Ayuda ayuda = new Ayuda(); 
+		//Ayuda ayuda = new Ayuda(); 
 
 		tabs = new JTabbedPane(); 
 		tabs.add("Mapa", cpmapa.getVista());
 		tabs.add("Agente", cpa.getVista());
 		tabs.add("MedioTransporte", cpm.getVista());
-		//tabs.add("Algoritmo", cpalg.getVista());
+		tabs.add("Algoritmo", cpalg.getVista());
 		//tabs.add("Ayuda", ayuda); 
 		
 		frame.add(tabs);

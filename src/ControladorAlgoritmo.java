@@ -30,6 +30,8 @@ public class ControladorAlgoritmo {
 			return indice;
 	}
 	
+	public ControladorAlgoritmo() {}
+	
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
 			ControladorMedioTransporte mt, String cOrig, String cDest) throws Exception{
 		//#########################################

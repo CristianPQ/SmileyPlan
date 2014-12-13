@@ -74,11 +74,12 @@ public abstract class Vista2 extends Vista1 {
 		botonModificar.setText("Modificar");
 		botonEliminar.setText("Eliminar"); 
 		botonCrear.setText("Crear");
-		panelBotones.add(botonCargar);
-		panelBotones.add(botonGuardar);
+		panelBotones.add(botonCrear);
 		panelBotones.add(botonModificar);
 		panelBotones.add(botonEliminar);
-		panelBotones.add(botonCrear);
+		panelBotones.add(botonGuardar);
+		panelBotones.add(botonCargar);
+		
 		
 		
 		panelv2.add(panelLista);
