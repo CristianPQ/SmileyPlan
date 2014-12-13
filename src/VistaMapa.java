@@ -39,8 +39,8 @@ public class VistaMapa extends Vista3{
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
-		VistaGrafo vg = new VistaGrafo();
-		super.panelPrincipal.add(vg); 
+	//		VistaGrafo vg = new VistaGrafo();
+	//	super.panelPrincipal.add(vg); 
 		
 	}
 	
@@ -85,8 +85,7 @@ public class VistaMapa extends Vista3{
 					int cap = Integer.parseInt(txtCap.getText());
 					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
 					}
-				}
-				
+				}	
 			}
 		
 		});
