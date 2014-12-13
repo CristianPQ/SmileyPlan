@@ -61,7 +61,17 @@ public class ControladorMapa {
 		return m.existeCiudad(nombre);
 	}
 	
-	public int coordXCiudad()
+	public int coordXCiudad(String nombre) throws Exception {
+		Ciudad c = consultarCiudad(nombre);
+		Coordenadas coord = c.consultarCoordenadas();
+		return coord.consultarX();
+	}
+	
+	public int coordYCiudad(String nombre) throws Exception {
+		Ciudad c = consultarCiudad(nombre);
+		Coordenadas coord = c.consultarCoordenadas();
+		return coord.consultarY();
+	}
 	
 	/**
 	 * Devuelve la distancia entre 2 ciudades
