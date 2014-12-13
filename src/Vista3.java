@@ -181,6 +181,8 @@ public abstract class Vista3 extends Vista1 {
 		panelv3.add(panelCaminos);
 		panelv3.add(panelBotones);
 		
+		VistaBuscador vb2 = new VistaBuscador(this);
+		super.panelPrincipal.add(vb2);
 		
 		super.panelPrincipal.add(panelv3);
 		super.panelPrincipal.add(vb);
