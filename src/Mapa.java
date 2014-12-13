@@ -311,7 +311,7 @@ public class Mapa {
 		for(int j = 0; j < sal.size(); ++j) {
 			Camino cam = sal.get(j);
 			int index2 = g.consultarVertice(cam.consultarDestino()).consultarEquivalente();
-			
+			g.eliminarArista(cam,)
 		}
 	}
 	

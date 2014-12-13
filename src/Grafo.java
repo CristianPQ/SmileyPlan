@@ -3,7 +3,9 @@ public class Grafo<E1, E2> {
     
     public class Sentidos {
         
+    	//Soy destino
         private ArrayList<E2> entrada;
+        //Soy origen
         private ArrayList<E2> salida;
         
         public Sentidos() {
