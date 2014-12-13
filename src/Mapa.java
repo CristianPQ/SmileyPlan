@@ -221,8 +221,9 @@ public class Mapa {
 			//System.out.println("Antes de eliminar la ciudad" + "\n");
 		Ciudad ciu = g.consultarVertice(c);
 		int index = ciu.consultarEquivalente();
-		eliminarCaminosConDestino(c);
-		eliminarCaminosConOrigen(c);
+		/*eliminarCaminosConDestino(c);
+		eliminarCaminosConOrigen(c);*/
+		eliminarCaminosCon(c);
 		g.eliminarVertice(c, index);
 		Coordenadas coord = ciu.consultarCoordenadas();
 			//System.out.println("Antes de eliminar en mapa" + "\n");
@@ -306,12 +307,12 @@ public class Mapa {
 		for(int i = 0; i < ent.size(); ++i) {
 			Camino cam = ent.get(i);
 			int index2 = g.consultarVertice(cam.consultarOrigen()).consultarEquivalente();
-			g.eliminarArista(cam, index, index2);
+			g.eliminarArista(cam, index2, index);
 		}
 		for(int j = 0; j < sal.size(); ++j) {
 			Camino cam = sal.get(j);
 			int index2 = g.consultarVertice(cam.consultarDestino()).consultarEquivalente();
-			g.eliminarArista(cam,)
+			g.eliminarArista(cam, index, index2);
 		}
 	}
 	
@@ -319,7 +320,7 @@ public class Mapa {
 	 * Elimina caminos con el destino cDest
 	 * @param cDest
 	 */
-	private void eliminarCaminosConDestino(String cDest) {
+	/*private void eliminarCaminosConDestino(String cDest) {
 		Ciudad c = g.consultarVertice(cDest);
 		int index = c.consultarEquivalente();
 		ArrayList<Camino> ent = g.consultarAristasEntrada(index);
@@ -345,7 +346,7 @@ public class Mapa {
 	
 	private void eliminarCaminosConOrigen(String cOrig) {
 		dd
-	}
+	}*/
 	
 	/**
 	 * Consulta si existe un camino con los atributos que pasamos como parametro
