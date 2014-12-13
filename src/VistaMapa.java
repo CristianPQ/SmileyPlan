@@ -77,7 +77,7 @@ public class VistaMapa extends Vista3{
 					String ciudadO = txtCO.getText();
 					String ciudadD = txtCD.getText();
 					String md = txtMedio.getText();
-					cpmapa.agregarCamino(ciudadO,ciudadD,md);
+					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
 				}
 				
 			}

@@ -4,11 +4,12 @@ import javax.swing.*;
 public class ControladorPresentacionAgentes{
 	private static ControladorAgentes ca;
 	private static VistaAgentes vistaAg;
-	private static ControladorMapa mapa;
+	private static ControladorPresentacionMapa mapa;
 
 	
-	public ControladorPresentacionAgentes( ControladorPresentacionMapa cpmapa){
+	public ControladorPresentacionAgentes(ControladorPresentacionMapa cpmapa){
 		ca = new ControladorAgentes();
+		mapa = cpmapa;
 		vistaAg = new VistaAgentes(this);
 
 		
@@ -17,7 +18,7 @@ public class ControladorPresentacionAgentes{
 	public void agregarAgente (String n, String ciuIni, String ciuObj) 
 			{
 				try {
-					ca.anadirAgente(n, ciuIni, ciuObj, mapa);
+					ca.anadirAgente(n, ciuIni, ciuObj, mapa.devolverControlador());
 					
 				} catch (Exception e) {
 					vistaAg.setError(e.getMessage());

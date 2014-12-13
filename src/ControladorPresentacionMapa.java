@@ -3,9 +3,10 @@ public class ControladorPresentacionMapa {
 	
 	private static ControladorMapa cm;
 	private static VistaMapa vm;
+	private static ControladorPresentacionMedios cmed;
 	
-	
-	public ControladorPresentacionMapa( ControladorPresentacionMedios cm){
+	public ControladorPresentacionMapa( ControladorPresentacionMedios cmd){
+		cmed = cmd;
 		vm = new VistaMapa(this);
 		//cm = new ControladorMapa();
 		
@@ -38,9 +39,14 @@ public class ControladorPresentacionMapa {
 		return vm;
 	}
 	
-	public void agregarCamino(String cOrig, String cDest, String medio, int cap,ControladorMedioTransporte contMT){
-		
+	public void agregarCamino(String cOrig, String cDest, String medio, int cap){
+		try{
+			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());		}
+		catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
 	}
+
 	public ControladorMapa devolverControlador(){
 		return cm;
 	}
