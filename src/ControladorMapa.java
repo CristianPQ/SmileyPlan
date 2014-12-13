@@ -356,24 +356,16 @@ public class ControladorMapa {
 	 * Consultora de la matriz mapa
 	 * @return matriz de strings mapa
 	 */
-	public String[][] consultarMapa() {
+	/*public String[][] consultarMapa() {
 		return m.consultarMapa();
-	}
+	}*/
 	
 	/**
 	 * Consultora del string que compone mapa
 	 * @return un string con la info de la matriz mapa
 	 */
 	public String consultarMapaToString() {
-		String map = new String();
-		String[][] ma = m.consultarMapa();
-		for(int i = 0; i < ma.length; ++i) {
-			for(int j = 0; j < ma[0].length; ++j) {
-				map = map + "[" + ma[i][j] + "]" + " ";
-			}
-			map = map + "\n";
-		}
-		return map;
+		return m.consultarMapa();
 	}
 	
 	//#########################################
