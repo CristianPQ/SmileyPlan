@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 
 public abstract class Vista2 extends Vista1 {
@@ -23,6 +24,7 @@ public abstract class Vista2 extends Vista1 {
 	protected JLabel label1;
 	protected JLabel label2; 
 	protected JLabel label3; 
+	protected JLabel labelError; 
 	
 	public Vista2() {
 		super(); 
@@ -34,7 +36,7 @@ public abstract class Vista2 extends Vista1 {
 		panelv2.setLayout(new BoxLayout(panelv2, BoxLayout.Y_AXIS));
 		panelv2.setBorder(BorderFactory.createEmptyBorder(10,20,15,20));
 		
-		//panel de lista
+		//panel de introduccion datos 
 		panelLista = new JPanel(); 
 		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
 		//panelLista.setBackground(Color.CYAN);
@@ -46,6 +48,7 @@ public abstract class Vista2 extends Vista1 {
 		text1.setEditable(true);
 		label1 = new JLabel();
 		label2 = new JLabel(); 
+		labelError = new JLabel(); 
 		text2 = new JTextField();
 		text2.setPreferredSize(new Dimension(100,30));
 		text2.setEditable(true);
@@ -54,6 +57,7 @@ public abstract class Vista2 extends Vista1 {
 		panelLista.add(text1);
 		panelLista.add(label2);
 		panelLista.add(text2);
+		panelLista.add(labelError); 
 
 		
 		//panel botones 
@@ -67,15 +71,10 @@ public abstract class Vista2 extends Vista1 {
 		botonEliminar = new JButton();
 		botonCrear = new JButton(); 
 		botonGuardar.setText("Guardar"); 
-		//botonGuardar.setBackground(Color.CYAN);
 		botonCargar.setText("Cargar");
-		//botonCargar.setBackground(Color.red);
 		botonModificar.setText("Modificar");
-		//botonModificar.setBackground(Color.green);
 		botonEliminar.setText("Eliminar"); 
-		//botonEliminar.setBackground(Color.ORANGE);
 		botonCrear.setText("Crear");
-		//botonCrear.setBackground(Color.GRAY);
 		panelBotones.add(botonCargar);
 		panelBotones.add(botonGuardar);
 		panelBotones.add(botonModificar);
@@ -89,6 +88,8 @@ public abstract class Vista2 extends Vista1 {
 		
 		super.panelPrincipal.add(panelv2); 
 		super.panelPrincipal.add(vb); 
+		
+	    
 	}
 	
 	//falten classes abstractes per obrir el browser 

@@ -275,7 +275,7 @@ public class ControladorAlgoritmo {
 	 * @throws Exception
 	 */
 	public void guardarSeq(String path, String filename) throws Exception{
-		GestorDatos gd = new GestorDatos(path,filename); 
+		GestorDatos gd = new GestorDatos(filename); 
 		
 		gd.createFile(); 
 		gd.openFile("write"); 

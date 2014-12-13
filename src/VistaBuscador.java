@@ -36,8 +36,6 @@ public class VistaBuscador extends JPanel{
         scroller.setMinimumSize(new Dimension(250,500));
         scroller.setMaximumSize(new Dimension(250,500));
  
-        
-        
         vistaBuscar = new JPanel();
         vistaBuscar.setMinimumSize(new Dimension(250,50));
         vistaBuscar.setMaximumSize(new Dimension(250,50));
@@ -79,6 +77,10 @@ public class VistaBuscador extends JPanel{
         this.add(Box.createRigidArea(new Dimension(0, 10)));
     }
  
+    
+    public boolean listaEsVacia(){
+    	return model.isEmpty(); 
+    }
     
     public void setLabelText(String text) {
         label.setText(text);

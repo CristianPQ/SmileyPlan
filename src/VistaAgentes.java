@@ -137,7 +137,8 @@ public class VistaAgentes extends Vista2 {
 		botonGuardar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				abrirBrowserGuardar(); 
+				if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
+				else abrirBrowserGuardar(); 
 			}
 			
 		});

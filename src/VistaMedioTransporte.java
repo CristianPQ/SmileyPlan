@@ -35,6 +35,8 @@ public class VistaMedioTransporte extends Vista2 {
 		grupob = new ButtonGroup(); 
 		coche = new JRadioButton("coche");
 		tren = new JRadioButton("tren"); 
+		coche.setSelected(true); 
+		//coche.setEnabled(true);
 		grupob.add(coche);
 		grupob.add(tren);
 		super.panelLista.add(coche);
@@ -83,7 +85,7 @@ public class VistaMedioTransporte extends Vista2 {
 		/**
 		 * BOTON CREAR
 		 */
-		botonCrear.addActionListener(new ActionListener() {
+		botonCrear.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String nombre = text1.getText(); 
@@ -91,6 +93,8 @@ public class VistaMedioTransporte extends Vista2 {
 				if (!text1.getText().equals("") && !text2.getText().equals("")){
 					if(esCoche)	cpm.agregarCoche(nombre, coste);	
 					else if (esTren) cpm.agregarTren(nombre,coste);
+					else cpm.agregarCoche(nombre, coste);
+					//else throw new Exception("Debes elegir si es tren o coche"); 
 					//cpm.agregarMedio(nombre, coste);
 					vb.clear();
 		            actualizarLista();
@@ -150,7 +154,8 @@ public class VistaMedioTransporte extends Vista2 {
 		botonGuardar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				abrirBrowserGuardar(); 
+				if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
+				else abrirBrowserGuardar();
 			}
 			
 		});
@@ -179,7 +184,7 @@ public class VistaMedioTransporte extends Vista2 {
         });
 	}
 	
-	public void abrirBrowserGuardar() {
+	public void abrirBrowserGuardar()  {
 		   JFrame parentFrame = new JFrame();
 	 		int userSelection = filechooser.showSaveDialog(parentFrame);
 	 		if (userSelection == JFileChooser.APPROVE_OPTION) {

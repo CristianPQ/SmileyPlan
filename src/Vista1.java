@@ -7,7 +7,7 @@ public abstract class Vista1 extends JPanel {
 	
 	protected JPanel panelPrincipal;
 	protected JPanel panelErrores;
-	protected JLabel error;
+	protected JLabel labelError;
 	protected JFileChooser filechooser; 
 	
 	Vista1(){
@@ -16,12 +16,12 @@ public abstract class Vista1 extends JPanel {
         panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.X_AXIS));
 		
-        error = new JLabel("Visor de errores");
+        labelError = new JLabel("Visor de errores");
         panelErrores = new JPanel();
         panelErrores.setMinimumSize(new Dimension(1000,40));
         panelErrores.setMaximumSize(new Dimension(1000,40));
         panelErrores.setBorder(BorderFactory.createEtchedBorder());
-        panelErrores.add(error);
+        panelErrores.add(labelError);
         
         filechooser = new JFileChooser(); 
 		
@@ -31,15 +31,14 @@ public abstract class Vista1 extends JPanel {
 	}
 	
     //abstract void agregarBotones();
-    
     public void setError(String e) {
-        error.setText("Error: "+e);
-        error.setForeground(Color.red);
+        labelError.setText("Error: "+e);
+        labelError.setForeground(Color.red);
     }
     
     public void comprovar(String txt) {
-        error.setText("Visor de errores");
-        error.setForeground(Color.black);
+    //    error.setText("Visor de errores");
+     //   error.setForeground(Color.black);
     }
 	
     public void cargarConChooser(){}
