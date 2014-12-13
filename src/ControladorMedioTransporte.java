@@ -256,7 +256,7 @@ public class ControladorMedioTransporte {
 	 * @param file donde esta la informacion que queremos cargar
 	 * @throws Exception si el fichero esta vacio 
 	 */
-	public void Cargar(String file) throws Exception{
+	public boolean Cargar(String file) throws Exception{
 		String carga; 
 		GestorDatos gd = new GestorDatos(file); 
 		
@@ -287,5 +287,6 @@ public class ControladorMedioTransporte {
 		}
 		//System.out.println("he acabat de guardar");
 		gd.cerrarArchivo(); 
+		return true; 
 	}
 }

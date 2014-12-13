@@ -1,7 +1,9 @@
 
 import java.awt.*;
+import java.io.FileFilter;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public abstract class Vista1 extends JPanel {
 	
@@ -9,6 +11,7 @@ public abstract class Vista1 extends JPanel {
 	protected JPanel panelErrores;
 	protected JLabel labelError;
 	protected JFileChooser filechooser; 
+	protected FileNameExtensionFilter filter; 
 	
 	Vista1(){
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -24,6 +27,9 @@ public abstract class Vista1 extends JPanel {
         panelErrores.add(labelError);
         
         filechooser = new JFileChooser(); 
+        filter = new FileNameExtensionFilter(".medios", "medios");
+        filechooser.setFileFilter(filter);
+        filechooser.addChoosableFileFilter(filter);
 		
 		this.add(panelPrincipal);
 		this.add(panelErrores);

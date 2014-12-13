@@ -46,7 +46,7 @@ public class VistaMedioTransporte extends Vista2 {
 		crearListeners(); 
 	}
 	
-	private void actualizarLista(){
+	public void actualizarLista(){
 		ArrayList<String> medios = cpm.listarMedios();
 		if(!medios.isEmpty()) 
 		for(int i = 0; i < medios.size(); ++i) {
@@ -142,7 +142,11 @@ public class VistaMedioTransporte extends Vista2 {
 		botonCargar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				abrirBrowserCargar(); 	
+				try {
+					abrirBrowserCargar();
+				} catch (Exception e1) {
+					setError(e1.getMessage());
+				} 	
 			}
 			
 		});
@@ -185,17 +189,18 @@ public class VistaMedioTransporte extends Vista2 {
 	 		int userSelection = filechooser.showSaveDialog(parentFrame);
 	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+	 			file = file.concat(".medios");
 	 			cpm.guardarMedio(file);
 	 		}
 	}
 	
-	public void abrirBrowserCargar() {
+	public void abrirBrowserCargar() throws Exception {
 		JFrame parentFrame = new JFrame();
  		int userSelection = filechooser.showOpenDialog(parentFrame);
  		if (userSelection == JFileChooser.APPROVE_OPTION) {
  			String file = filechooser.getSelectedFile().getAbsolutePath(); 
- 			cpm.cargarMedio(file);
- 			actualizarLista();
+ 			boolean success = cpm.cargarMedio(file);
+			if (success) actualizarLista();
  		}
 		
 	}	

@@ -101,12 +101,9 @@ public class ControladorPresentacionMedios {
 		}
 	}
 	
-	public void cargarMedio(String file) {
-		try {
-			cm.Cargar(file);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public boolean cargarMedio(String file) throws Exception {
+		boolean success = cm.Cargar(file);
+		return success; 
 	}
 	
 	public boolean esTren(String ident){
