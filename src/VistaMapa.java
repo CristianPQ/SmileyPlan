@@ -38,7 +38,8 @@ public class VistaMapa extends Vista3{
 		super.txtIdCiutat.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
-		
+		VistaGrafo vg = new VistaGrafo();
+		super.panelPrincipal.add(vg); 
 		
 	}
 	
@@ -54,7 +55,7 @@ public class VistaMapa extends Vista3{
 					String X = txtXMapa.getText();
 					String Y = txtYMapa.getText();
 					String Continente = txtConti.getText();
-					cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);
+			//		cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);
 					
 					mapaCreado = true;
 					
@@ -70,7 +71,7 @@ public class VistaMapa extends Vista3{
 					String nom = txtIdCiutat.getText();
 					String X = txtX.getText();
 					String Y = txtY.getText();
-					cpmapa.agregarCiudad(nom, Integer.parseInt(X), Integer.parseInt(Y));
+				//	cpmapa.agregarCiudad(nom, Integer.parseInt(X), Integer.parseInt(Y));
 				}
 				//crear camino
 				else if(txtIdCiutat.getText().equals("")){
