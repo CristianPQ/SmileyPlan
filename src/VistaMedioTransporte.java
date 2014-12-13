@@ -57,6 +57,15 @@ public class VistaMedioTransporte extends Vista2 {
 		}
 	}
 	
+	public static boolean isNumeric(String str)
+	{
+	    for (char c : str.toCharArray())
+	    {
+	        if (!Character.isDigit(c)) return false;
+	    }
+	    return true;
+	}
+	
 	void crearListeners() {
 		
 		
@@ -93,20 +102,37 @@ public class VistaMedioTransporte extends Vista2 {
 						setError(e1.getMessage());
 					}
 				else {
-					int coste = Integer.parseInt(c); 
-					if(esCoche)	cpm.agregarCoche(nombre, coste);	
-					else if (esTren) cpm.agregarTren(nombre,coste);
-					else cpm.agregarCoche(nombre, coste);
-					//else throw new Exception("Debes elegir si es tren o coche"); 
-					//cpm.agregarMedio(nombre, coste);
-					vb.clear();
-		            actualizarLista();
-		            text1.setText("");
-		            text2.setText("");
+					if (!isNumeric(c)){
+						try {
+							throw new Exception("El valor de coste debe ser numerico");
+						} catch (Exception e1) {
+							setError(e1.getMessage());
+						}
+					}
+					if (isNumeric(nombre)) {
+						try {
+							throw new Exception("Nombre no puede tener un valor numerico");
+						} catch (Exception e1) {
+							setError(e1.getMessage());
+						}
+					}
+					else{
+						int coste = Integer.parseInt(c); 
+						if(esCoche)	cpm.agregarCoche(nombre, coste);	
+						else if (esTren) cpm.agregarTren(nombre,coste);
+						else cpm.agregarCoche(nombre, coste);
+						//else throw new Exception("Debes elegir si es tren o coche"); 
+						//cpm.agregarMedio(nombre, coste);
+						vb.clear();
+			            actualizarLista();
+			            text1.setText("");
+			            text2.setText("");
+					}
 				}
 			}
 		});
 		
+	
 		/**
 		 * BOTON MODIFICAR
 		 */

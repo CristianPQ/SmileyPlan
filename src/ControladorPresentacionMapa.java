@@ -12,27 +12,40 @@ public class ControladorPresentacionMapa {
 		
 		}
 	
-	public void crearMapa(int x, int y, String cont) throws Exception{
+	public void crearMapa(int x, int y){
 	
 		try{
-			cm = new ControladorMapa(x, y, cont);
+			cm = new ControladorMapa(x,y," ");
 		}
 		catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
 	}
+	
 	////////////////CIUDADES//////////////////
-	public void agregarCiudad(String n, int x, int y) throws Exception{
-		cm.agregarCiudad(n,x,y);
+	public void agregarCiudad(String n, int x, int y){
+		try {
+			cm.agregarCiudad(n,x,y);
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
 
 	}
 	
-	public void eliminarCiudad(String c) throws Exception{
-		cm.eliminarCiudad(c);
+	public void eliminarCiudad(String c){
+		try {
+			cm.eliminarCiudad(c);
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
 	}
 	
-	public void modificarCoordenadas(String n, int x, int y) throws Exception{
-		cm.modificarAtributosCiudad(n, x, y);
+	public void modificarCoordenadas(String n, int x, int y){
+		try {
+			cm.modificarAtributosCiudad(n, x, y);
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
 	}
 	
 	public VistaMapa getVista() {
@@ -41,7 +54,7 @@ public class ControladorPresentacionMapa {
 	
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap){
 		try{
-			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());		}
+			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());}
 		catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
