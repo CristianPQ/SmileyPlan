@@ -16,11 +16,14 @@ public class VistaGrafo extends JPanel{
  
     
     
-    public VistaGrafo(){};
+    public VistaGrafo(){
+    	System.out.print("aqui");
+    };
     
 
 	    public void paintComponent (Graphics g)
 	    {
+	     	System.out.print("aqui");
 	        super.paintComponent(g);
 	        Graphics2D g2 = (Graphics2D)g;
 	        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
