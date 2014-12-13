@@ -298,11 +298,28 @@ public class Mapa {
 		return g.existeAristaCon(index);
 	}
 	
+	private void eliminarCaminosCon(String c) {
+		Ciudad ciu = g.consultarVertice(c);
+		int index = ciu.consultarEquivalente();
+		ArrayList<Camino> ent = g.consultarAristasEntrada(index);
+		ArrayList<Camino> sal = g.consultarAristasSalida(index);
+		for(int i = 0; i < ent.size(); ++i) {
+			Camino cam = ent.get(i);
+			int index2 = g.consultarVertice(cam.consultarOrigen()).consultarEquivalente();
+			g.eliminarArista(cam, index, index2);
+		}
+		for(int j = 0; j < sal.size(); ++j) {
+			Camino cam = sal.get(j);
+			int index2 = g.consultarVertice(cam.consultarDestino()).consultarEquivalente();
+			
+		}
+	}
+	
 	/**
 	 * Elimina caminos con el destino cDest
 	 * @param cDest
 	 */
-	private void eliminarCaminos(String cDest) {
+	private void eliminarCaminosConDestino(String cDest) {
 		Ciudad c = g.consultarVertice(cDest);
 		int index = c.consultarEquivalente();
 		ArrayList<Camino> ent = g.consultarAristasEntrada(index);

@@ -61,6 +61,8 @@ public class ControladorMapa {
 		return m.existeCiudad(nombre);
 	}
 	
+	public int coordXCiudad()
+	
 	/**
 	 * Devuelve la distancia entre 2 ciudades
 	 * @param cOrig
@@ -535,6 +537,7 @@ public class ControladorMapa {
 	 */
 	public void cargarCiudades(String path,String file) throws Exception {
 		GestorDatos gd = new GestorDatos(path,file); 
+		//GestorDatos gd = new GestorDatos(path,file); 
 		
 		gd.createFile();
 		gd.openFile("read"); 
