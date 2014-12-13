@@ -306,13 +306,13 @@ public class Mapa {
 		ArrayList<Camino> sal = g.consultarAristasSalida(index);
 		for(int i = 0; i < ent.size(); ++i) {
 			Camino cam = ent.get(i);
-			int index2 = g.consultarVertice(cam.consultarOrigen()).consultarEquivalente();
-			g.eliminarArista(cam, index2, index);
+			int out = g.consultarVertice(cam.consultarOrigen()).consultarEquivalente();
+			g.eliminarArista(cam, index, out);
 		}
 		for(int j = 0; j < sal.size(); ++j) {
 			Camino cam = sal.get(j);
-			int index2 = g.consultarVertice(cam.consultarDestino()).consultarEquivalente();
-			g.eliminarArista(cam, index, index2);
+			int in = g.consultarVertice(cam.consultarDestino()).consultarEquivalente();
+			g.eliminarArista(cam, in, index);
 		}
 	}
 	
@@ -416,6 +416,7 @@ public class Mapa {
 	 * @throws Exception
 	 */
 	public ArrayList<Camino> consultarCaminosEntre(String cOrig, String cDest) throws Exception {
+		if(!g.existeVertice(cOrig) || !g.existeVertice(cDest)) throw NoExiste;
 		ArrayList<Camino> listCamino =  new ArrayList<Camino>();
 		int out = g.consultarVertice(cOrig).consultarEquivalente();
 		ArrayList<Camino> camOut = g.consultarAristasSalida(out);
@@ -479,7 +480,9 @@ public class Mapa {
 		ArrayList<Camino> todoCaminos = new ArrayList<Camino>();
 		ArrayList<Ciudad> cius = g.consultarVertices();
 		for(int i = 0; i < cius.size(); ++i) {
-			todoCaminos.addAll(g.consultarAristasSalida(cius.get(i).consultarEquivalente()));
+			int out = cius.get(i).consultarEquivalente();
+			ArrayList<Camino> cams = g.consultarAristasSalida(out);
+			if(cams != null && cams.size() > 0) todoCaminos.addAll(cams);
 		}
 		return todoCaminos;
 	}

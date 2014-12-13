@@ -99,7 +99,7 @@ public class Grafo<E1, E2> {
     	ArrayList<String> v = vertices.consultar();
     	ArrayList<E1> vr = new ArrayList<E1>();
     	int n = vertices.numero();
-    	for(int i = 0; i < n; ++n) {
+    	for(int i = 0; i < n; ++i) {
     		vr.add(vertices.consultar(v.get(i)));
     	}
     	return vr;
