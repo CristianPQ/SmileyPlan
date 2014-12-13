@@ -40,6 +40,7 @@ public class Grafo<E1, E2> {
         		}
         	}
         }
+        
         public void eliminarSalida(E2 e) {
         	for(int i = 0; i < salida.size(); ++i) {
         		if(salida.get(i).equals(e)) {
@@ -52,6 +53,7 @@ public class Grafo<E1, E2> {
     
     private TST<E1> vertices;
     private ArrayList<Sentidos> aristas;
+    private ArrayList<Integer> vacios;
     
     private static Exception NoExiste = new Exception ("Este elemento no existe");
     
@@ -62,22 +64,113 @@ public class Grafo<E1, E2> {
      */
     public Grafo() {
         //numVertices = numVertex;
+    	vertices =  new TST<E1>();
         aristas = new ArrayList<Sentidos>();
+        vacios = new ArrayList<Integer>();
     }
     
-    public Grafo(int n) {
-    	aristas = new ArrayList<Sentidos>();
-    	for(int i = 0; i < n; ++i) {
-    		agrandar();
+    public int siguiente() {
+    	if(vacios.isEmpty()) {
+    		return vertices.numero();
+    	}
+    	else {
+    		int i = vacios.get(0);
+    		vacios.remove(0);
+    		return i;
     	}
     }
     
+    public void agregarVertice(E1 e, int index) {
+    	vertices.insert(e);
+    	while(aristas.size() < index+1) {
+    		aristas.add(new Sentidos());
+    	}
+    }
+    
+    public void eliminarVertice(String id, int index) {
+    	vertices.delete(id);
+    	aristas.set(index, new Sentidos());
+    	vacios.add(index);
+    }
+    
+    public ArrayList<E1> consultarVertices() {
+    	ArrayList<String> v = vertices.consultar();
+    	ArrayList<E1> vr = new ArrayList<E1>();
+    	int n = vertices.numero();
+    	for(int i = 0; i < n; ++n) {
+    		vr.add(vertices.consultar(v.get(i)));
+    	}
+    	return vr;
+    }
+    
+    public ArrayList<String> consultarVerticesID() {
+    	return vertices.consultar();
+    }
+    
+    public E1 consultarVertice(String id) {
+    	return vertices.consultar(id);
+    }
+    
+    public boolean existeVertice(String id) {
+    	return vertices.existe(id);
+    }
+    
+    public void modificarVertice(String id, E1 e) {
+    	vertices.modificar(id, e);
+    }
+    
+    public boolean isEmpty() {
+    	if(vertices.numero() > 0) return false;
+    	else return true;
+    }
+    
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////
+    
+    public void agregarArista(E2 e, int in, int out) {
+    	Sentidos ent = aristas.get(in);
+    	ent.agregarEntrada(e);
+    	aristas.set(in, ent);
+    	Sentidos sal = aristas.get(out);
+    	sal.agregarSalida(e);
+    	aristas.set(out, sal);
+    }
+    
+    public void eliminarArista(E2 e, int in, int out) {
+    	Sentidos ent = aristas.get(in);
+    	ent.eliminarEntrada(e);
+    	aristas.set(in, ent);
+    	Sentidos sal = aristas.get(out);
+    	sal.eliminarSalida(e);
+    	aristas.set(out, sal);
+    }
+    
+    public void eliminarAristaEntrada(E2 e, int in) {
+    	Sentidos ent = aristas.get(in);
+    	ent.eliminarEntrada(e);
+    	aristas.set(in, ent);
+    }
+    
+    public void eliminarAristaSalida(E2 e, int out) {
+    	Sentidos sal = aristas.get(out);
+    	sal.eliminarEntrada(e);
+    	aristas.set(out, sal);
+    }
+    
+    public boolean existeArista(E2 e, int in, int out) {
+    	Sentidos ent = aristas.get(in);
+    	if(ent.existe(e)) return true;
+    	Sentidos sal = aristas.get(out);
+    	if(sal.existe(e)) return true;
+    	return false;
+    }
+   
     /**
      * Consultora de aristas de salida de un vertice
      * @param indice
      * @return
      */
-    public ArrayList<E2> consultarAdyacentesSalida(int indice){
+    public ArrayList<E2> consultarAristasSalida(int indice){
         return aristas.get(indice).salida;
     }
     
@@ -86,9 +179,39 @@ public class Grafo<E1, E2> {
      * @param indice
      * @return
      */
-    public ArrayList<E2> consultarAdyacentesEntrada(int indice){
+    public ArrayList<E2> consultarAristasEntrada(int indice){
         return aristas.get(indice).entrada;
     }
+    
+    public boolean existeAristaConOrigen(int id) {
+    	return !aristas.get(id).salidaEmpty();
+    }
+    
+    public boolean existeAristaConDestino(int id) {
+    	return !aristas.get(id).entradaEmpty();
+    }
+    
+    public boolean existeAristaCon(int id) {
+    	return !aristas.get(id).salidaEmpty() || !aristas.get(id).entradaEmpty();
+    }
+    
+    
+    
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    
+    public Grafo(int n) {
+    	aristas = new ArrayList<Sentidos>();
+    	for(int i = 0; i < n; ++i) {
+    		agrandar();
+    	}
+    }
+    
     
     /**
      *

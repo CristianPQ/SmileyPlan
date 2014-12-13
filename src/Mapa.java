@@ -4,8 +4,9 @@ import java.util.*;
 public class Mapa {
 	
 	
-	private TST<TST<ArrayList<Camino>>> caminos;
-	private TST <Ciudad> ciudades;
+	private Grafo<Ciudad,Camino> g;
+	/*private TST<TST<ArrayList<Camino>>> caminos;
+	private TST <Ciudad> ciudades;*/
 	private String[][] mapa;
 	private ArrayList<Coordenadas> coord; 
 	
@@ -30,8 +31,7 @@ public class Mapa {
 	 */
 	public Mapa(int anchuraX, int alturaY, ArrayList<Coordenadas> continente) throws Exception {
 		//continente es cerrado siempre
-		ciudades = new TST<Ciudad>();
-		caminos = new TST<TST<ArrayList<Camino>>>();
+		g = new Grafo<Ciudad, Camino>();
 		mapa = new String[alturaY][anchuraX];
 		coord = continente; 
 		
@@ -187,7 +187,7 @@ public class Mapa {
 	 * @return
 	 */
 	public boolean existeCiudad(String c) {
-		return ciudades.existe(c);
+		return g.existeVertice(c);
 	}
 	
 	/**
@@ -203,7 +203,10 @@ public class Mapa {
 		int x = coord.consultarX();
 		int y = coord.consultarY();
 		mapa[y][x] = nombre;
-		ciudades.insert(nombre, c);
+		
+		int index = g.siguiente();
+		c.equivalente(index);
+		g.agregarVertice(c, index);
 	}
 	
 	/**
@@ -215,10 +218,12 @@ public class Mapa {
 		if(!existeCiudad(c)) throw NoExiste;
 		//if(existenCaminosCon(c)) throw HayCaminos;
 			//System.out.println("Antes de eliminar caminos con destino" + "\n");
-		eliminarCaminosConDestino(c);
 			//System.out.println("Antes de eliminar la ciudad" + "\n");
-		Ciudad ciu = ciudades.consultar(c);
-		ciudades.delete(c);
+		Ciudad ciu = g.consultarVertice(c);
+		int index = ciu.consultarEquivalente();
+		eliminarCaminosConDestino(c);
+		eliminarCaminosConOrigen(c);
+		g.eliminarVertice(c, index);
 		Coordenadas coord = ciu.consultarCoordenadas();
 			//System.out.println("Antes de eliminar en mapa" + "\n");
 		int x = coord.consultarX();
@@ -234,7 +239,7 @@ public class Mapa {
 	 */
 	public Ciudad consultarCiudad(String nombre) throws Exception {
 		if(!existeCiudad(nombre)) throw NoExiste;
-		return ciudades.consultar(nombre);
+		return g.consultarVertice(nombre);
 	}
 
 	/**
@@ -245,14 +250,15 @@ public class Mapa {
 	 * @throws Exception
 	 */
 	public void modificarAtributosCiudad(String nombre, int x, int y) throws Exception {
-		if(!ciudades.existe(nombre)) throw NoExiste;
+		if(!existeCiudad(nombre)) throw NoExiste;
 		Coordenadas coord = new Coordenadas(x,y);
 		posicionValida(coord);
-		Ciudad cAnt = ciudades.consultar(nombre);
+		Ciudad cAnt = g.consultarVertice(nombre);
+		int eq = cAnt.consultarEquivalente();
 		Coordenadas coordAnt = cAnt.consultarCoordenadas();
 		mapa[coordAnt.consultarY()][coordAnt.consultarX()] = null;
-		Ciudad c = new Ciudad(nombre, coord);
-		ciudades.modificar(nombre, c);
+		Ciudad c = new Ciudad(nombre, coord, eq);
+		g.modificarVertice(nombre, c);
 		mapa[y][x] = nombre;
 	}
 	
@@ -262,8 +268,8 @@ public class Mapa {
 	 * @throws Exception
 	 */
 	public ArrayList<String> listarCiudades() throws Exception{
-		if(ciudades.isEmpty()) throw Vacio;
-		return ciudades.consultar();
+		if(g.isEmpty()) throw Vacio;
+		return g.consultarVerticesID();
 	}
 	
 	//#########################################
@@ -276,11 +282,9 @@ public class Mapa {
 	 * @return booleano
 	 */
 	public boolean existeCaminoConOrigen(String cOrig) {
-		if(caminos.existe(cOrig)) {
-			TST<ArrayList<Camino>> tstCam = caminos.consultar(cOrig);
-			return !tstCam.isEmpty();
-		}
-		return false;
+		Ciudad c = g.consultarVertice(cOrig);
+		int index = c.consultarEquivalente();
+		return g.existeAristaConOrigen(index);
 	}
 	
 	/**
@@ -288,24 +292,26 @@ public class Mapa {
 	 * @param cDest
 	 * @return booleano
 	 */
-	private boolean existenCaminosCon(String cDest) {
-		if(ciudades.existe(cDest)) return true;
-		ArrayList<String> todosCamOrig = caminos.consultar();
-		Iterator<String> it = todosCamOrig.iterator();
-		
-		boolean hay = false;
-		while(it.hasNext()) {
-			hay = caminos.consultar(it.next()).existe(cDest);
-			if(hay) break;
-		}
-		return hay;
+	private boolean existenCaminosCon(String nC) {
+		Ciudad c = g.consultarVertice(nC);
+		int index = c.consultarEquivalente();
+		return g.existeAristaCon(index);
 	}
 	
 	/**
 	 * Elimina caminos con el destino cDest
 	 * @param cDest
 	 */
-	private void eliminarCaminosConDestino(String cDest) {
+	private void eliminarCaminos(String cDest) {
+		Ciudad c = g.consultarVertice(cDest);
+		int index = c.consultarEquivalente();
+		ArrayList<Camino> ent = g.consultarAristasEntrada(index);
+		for(int i = 0; i < ent.size(); ++i) {
+			Camino cam = ent.get(i);
+			int index2 = g.consultarVertice(cam.consultarOrigen()).consultarEquivalente();
+			g.el
+		}
+		
 		caminos.delete(cDest);
 		ArrayList<String> todosCamOrig = caminos.consultar();
 		Iterator<String> it = todosCamOrig.iterator();
@@ -318,6 +324,10 @@ public class Mapa {
 				caminos.modificar(nCiudad, camDest);
 			}
 		}
+	}
+	
+	private void eliminarCaminosConOrigen(String cOrig) {
+		dd
 	}
 	
 	/**

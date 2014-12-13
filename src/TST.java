@@ -79,10 +79,17 @@ class TST<E>  //no estava la <E>
     {
         root = null;
     }
+    
     /** function to insert for a word **/
     public void insert(String key, E e) //++
+    {	
+        root = (TSTNodeChar) insert(root, key.toCharArray(), 0, e); //*
+    }
+    
+    /** function to insert for a word **/
+    public void insert(E e) //++
     {
-    	
+    	String key = e.toString(); 
         root = (TSTNodeChar) insert(root, key.toCharArray(), 0, e); //*
     }
     
