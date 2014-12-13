@@ -39,9 +39,12 @@ public class VistaMapa extends Vista3{
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
-		VistaGrafo vg = new VistaGrafo();
+		VistaGrafo vg = new VistaGrafo(500,20);
 		super.panelPrincipal.add(vg); 
-		
+		vg.setlimites(200, 200);
+		vg.agregarCiudad(10, 10);
+		vg.agregarCiudad(20,20);
+		vg.agregarCaminoCoche(10, 10, 20, 20);
 	}
 	
 	void crearListeners() {

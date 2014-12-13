@@ -2,7 +2,7 @@
 import java.awt.*;
 
 import javax.swing.*;
- 
+ import LEDA.graph.*;
 
 
 public class VistaGrafo extends JPanel{
@@ -32,8 +32,9 @@ public class VistaGrafo extends JPanel{
     private boolean coche = true;
 
     
-    public VistaGrafo(){
-
+    public VistaGrafo(int x, int y){
+    	xCiudad = x;
+    	yCiudad = y;
     	this.setBackground(Color.white);
     	System.out.print("aqui");
 
@@ -48,6 +49,7 @@ public class VistaGrafo extends JPanel{
     	pintaContinente = true;
     }
     public void agregarCiudad(int x, int y){
+    	System.out.print("agregarCiudad");
     	xCiudad = x;
     	yCiudad = y;
     	pintaCiudad = true;
@@ -99,12 +101,27 @@ public class VistaGrafo extends JPanel{
 
     public void paintComponent (Graphics g)
     {
-     	//System.out.print("aqui");
+    	
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int w = getWidth();
         int h = getHeight();
+        g2.fillOval(xCiudad-dotRadius, yCiudad-dotRadius, 2*dotRadius, 2*dotRadius);
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+     	//System.out.print("aqui");
+
        // g2.drawLine(PAD, PAD, PAD, h-PAD);
         //g2.drawLine(PAD, h-PAD, w-PAD, h-PAD);
         double xScale = (w - 2*PAD) / (data.length + 1);
@@ -117,29 +134,39 @@ public class VistaGrafo extends JPanel{
         // draw connecting line
         if (pintaCiudad)
         {
+        	System.out.print(w);
         	if (borrar) g2.setPaint(Color.white);
         	else g2.setPaint(Color.black);
         	xCiudad = (xCiudad * w)/xLimite;
         	yCiudad = (yCiudad * h)/yLimite;
         	g2.fillOval(xCiudad-dotRadius, yCiudad-dotRadius, 2*dotRadius, 2*dotRadius);
         	pintaCiudad = false;
+        	borrar = false;
         }
 
         // draw the points as little circles in red
         if (pintaCamino)
         {
+        	System.out.println("camino");
         	if (borrar) g2.setPaint(Color.white);
             else if (coche) g2.setPaint(Color.blue);
             else g2.setPaint(Color.black);
-        	g2.drawLine(x1p, y1p, x2p, y2p);
-        	pintaCamino = false;     
+        	x1p = (x1p * w)/xLimite;
+        	x2p = (x2p * w)/xLimite;
+        	y1p = (y1p * h)/yLimite;
+        	y1p = (y1p * h)/yLimite;
+        	//g2.setPaint(Color.black);
+        	g2.drawLine(0, 0, 50, 50);
+        	pintaCamino = false; 
+        	borrar = false;
+        	System.out.println("Surtcamino");
         }
-        if(true){
-        	g2.drawLine(0, 0, 10, 10);
-        	System.out.println(w+ ' ');
+        if (true){
+        	System.out.println("aqui");
+        g2.drawLine(100, 00, 50, 50);
         }
-    }
-    
+        
+    }   
 	
 }
 /*
