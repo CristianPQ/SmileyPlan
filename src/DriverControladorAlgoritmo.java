@@ -13,7 +13,7 @@ public class DriverControladorAlgoritmo {
                 + "\n 4.Crear Controlador Algoritmos( string s, string t)"
                 + "\n 5.ejecutar(int i)"
                 + "\n 6.Consultar ControladorItinerarios"
-                + "\n 7.Guardar sequencia algoritmo pushRelabel"
+                + "\n 7.Guardar sequencia algoritmo"
                 + "\n 8.Consultar tiempo de ejecucion"
         		+"\n");
     }
@@ -144,9 +144,8 @@ public class DriverControladorAlgoritmo {
     	        		break;
     	        	}
     	        	case 7: {
-    	        		String path = "/Users/olgacarbo/Desktop/SmileyPlan/src/";
-    	        		String filename = "prova alg"; 
-    	        		cAlg.guardarSeq(path, filename);
+    	        		String filename = lsplited[1]; 
+    	        		cAlg.guardarSeq(filename);
     	        	}
     	        	case 8: {
     	        		float t = cAlg.consultarTiempo();

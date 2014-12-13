@@ -21,6 +21,7 @@ public abstract class Vista3 extends Vista1 {
 	protected JTextField txtXMapa;
 	protected JTextField txtYMapa; 
 	protected JTextField txtConti; 
+	protected JTextField txtCap; 
 	
 	protected JLabel label1;
 	protected JLabel label2; 
@@ -39,6 +40,7 @@ public abstract class Vista3 extends Vista1 {
 	protected JLabel label4;
 	protected JLabel label5;
 	protected JLabel label6;
+	protected JLabel label7; 
 	
 	
 	
@@ -132,6 +134,11 @@ public abstract class Vista3 extends Vista1 {
 		label6 = new JLabel(); 
 		label6.setText("Medio de Transporte: ");
 		txtCD = new JTextField();
+		label7 = new JLabel(); 
+		label7.setText("Capacidad: ");
+		txtCap = new JTextField(); 
+		txtCap.setPreferredSize(new Dimension(80,30));
+		txtCD.setEditable(true);
 		txtCD.setPreferredSize(new Dimension(80,30));
 		txtCD.setEditable(true);
 		txtMedio = new JTextField();
@@ -144,6 +151,8 @@ public abstract class Vista3 extends Vista1 {
 		panelCaminos.add(txtCD);
 		panelCaminos.add(label6);
 		panelCaminos.add(txtMedio);
+		panelCaminos.add(label7);
+		panelCaminos.add(txtCap);
 		
 		//panel Botones
 		panelBotones = new JPanel(); 
