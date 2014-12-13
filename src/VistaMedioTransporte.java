@@ -85,8 +85,15 @@ public class VistaMedioTransporte extends Vista2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String nombre = text1.getText(); 
-				int coste = Integer.parseInt(text2.getText()); 
-				if (!text1.getText().equals("") && !text2.getText().equals("")){
+				String c = text2.getText(); 
+				if (nombre.equals("") || c.equals(""))
+					try {
+						throw new Exception("Falta rellenar uno de los espacios");
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
+				else {
+					int coste = Integer.parseInt(c); 
 					if(esCoche)	cpm.agregarCoche(nombre, coste);	
 					else if (esTren) cpm.agregarTren(nombre,coste);
 					else cpm.agregarCoche(nombre, coste);
@@ -108,7 +115,7 @@ public class VistaMedioTransporte extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 				String id = text1.getText(); 
 				String coste = text2.getText();
-				if (!text1.getText().equals("") && !text2.getText().equals("")){
+				if (!text1.getText().equals(" ") && !text2.getText().equals(" ")){
 					if (identificador.equals(id)) {
 						int c = Integer.parseInt(coste); 
 						cpm.modificarPrecio(c, id);
