@@ -60,7 +60,7 @@ public class VistaGrafo extends JPanel {
 		g.insertEdge(parent, null, Capacidad, source, target);
 		g.getModel().endUpdate();
 	}
-	public void borrarCamino(String nom1, String nom2, String Capacidad){
+	public void borrarCamino(String nom1, String nom2){
 		Object parent = g.getDefaultParent();
 		g.getModel().beginUpdate();
 		Object source = vertexs.consultar(nom1);

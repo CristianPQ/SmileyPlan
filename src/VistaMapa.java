@@ -25,6 +25,7 @@ public class VistaMapa extends Vista3{
 	private JButton botonciC; 
 	private JButton botoncaG; 
 	private JButton botonciG;
+	private VistaGrafo vg;
 	
 	boolean mapaCreado = false;
 	VistaMapa (ControladorPresentacionMapa controladorPMapa){
@@ -49,7 +50,7 @@ public class VistaMapa extends Vista3{
 		vb.add(botonciC);
 		vb.add(botonciG); 
 		
-		VistaGrafo vg = new VistaGrafo();
+		vg = new VistaGrafo();
 		super.panelPrincipal.add(vg); 
 	}
 	
@@ -77,6 +78,7 @@ public class VistaMapa extends Vista3{
 					txtCap.setEditable(true);
 					txtX.setEditable(true);
 					txtY.setEditable(true);
+					vg.setLimites(Integer.parseInt(X),  Integer.parseInt(Y));
 				}
 				//crear ciudad
 				else if (txtCO.getText().equals("")){ //si el de cami esta buit
@@ -85,6 +87,7 @@ public class VistaMapa extends Vista3{
 					int X = Integer.parseInt(txtX.getText());
 					int Y = Integer.parseInt(txtY.getText());	
 					cpmapa.agregarCiudad(nom, X, Y);
+					vg.agregarCiudad(X, Y, nom);
 					try {
 						vb.clear(); 
 						actualizarListaCiudades();
@@ -107,6 +110,7 @@ public class VistaMapa extends Vista3{
 					String md = txtMedio.getText();
 					int cap = Integer.parseInt(txtCap.getText());
 					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
+					vg.agregarCamino(ciudadO, ciudadD, txtCap.getText());
 					try {
 						vciut.clear(); 
 						actualizarListaCaminos();
@@ -262,6 +266,7 @@ public class VistaMapa extends Vista3{
 					String md = txtMedio.getText();
 					cpmapa.eliminarCamino(ciudadO, ciudadD, md);
 					vciut.clear(); 
+					vg.borrarCamino(ciudadO, ciudadD);
 					try {
 						actualizarListaCaminos();
 					} catch (Exception e1) {
