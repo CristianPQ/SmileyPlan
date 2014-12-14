@@ -301,7 +301,7 @@ public class VistaMapa extends Vista3{
 				abrirBrowserGuardar();
 			}
 		});
-		
+		/*
 		botoncaG.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -340,7 +340,7 @@ public class VistaMapa extends Vista3{
 				} 	
 			}
 			
-		});
+		});*/
 		
 	}
 		
