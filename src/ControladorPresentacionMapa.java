@@ -33,6 +33,26 @@ public class ControladorPresentacionMapa {
 
 	}
 	
+	public int consultarX(String city){
+		try {
+			return cm.consultarCiudad(city).consultarCoordenadas().consultarX();
+			////CREAR METODO DIRECTO EN CMAPA
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+		return -1;
+	}
+	
+	public int consultarY(String city){ 
+		try {
+			return cm.consultarCiudad(city).consultarCoordenadas().consultarY(); 
+			////CREAR METODO DIRECTO EN CMAPA
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+		return -1;
+	}
+	
 	public void eliminarCiudad(String c){
 		try {
 			cm.eliminarCiudad(c);

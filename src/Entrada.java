@@ -1,7 +1,9 @@
 import java.util.*;
 
+import javax.lang.model.type.NullType;
+
 public class Entrada {
-		private GrafoAntiguo g;
+		private Grafo<NullType, Arista> g;
 		private int source;
 		private int sink;
 		private int numeroAgentesSyT;
@@ -14,7 +16,7 @@ public class Entrada {
 		 * @param numAgentes
 		 * @throws Exception
 		 */
-		public Entrada(GrafoAntiguo G, int s, int t, int numAgentes) throws Exception{
+		public Entrada(Grafo<NullType,Arista> G, int s, int t, int numAgentes) throws Exception{
 				g = G;
 				source = s;
 				sink = t;
@@ -25,7 +27,7 @@ public class Entrada {
 		 * Devuelve el grafo 
 		 * @return
 		 */
-		public GrafoAntiguo consultarGrafo(){
+		public Grafo<NullType,Arista> consultarGrafo(){
 			return g;
 		}
 		
@@ -33,9 +35,36 @@ public class Entrada {
 		 * Modificadora de el grafo
 		 * @param G
 		 */
-		public void modificarGrafo(GrafoAntiguo G){
+		public void modificarGrafo(Grafo<NullType, Arista> G){
 			g = G;
 		}
+		
+		///////////////FUNCIONES GRAFO ARISTA///////////
+		
+		//ArrayList<Arista> consultarAdyacentes(int vertex) -> g.consultarAdyacentesSalida(int vertex)
+		public boolean existeAdyacente(int vertex, int targetVertex){
+			ArrayList<Arista> a = g.consultarAdyacentesSalida(vertex);
+			for (int i = 0; i < a.size(); ++i)
+				if (a.get(i).consultarVerticeDestino() == targetVertex) return true;
+			return false;
+		}
+		
+		public void anadirArista (int vertex, int targetVertex,
+				int flow, int capacity, int cost){
+			Arista a = new Arista(targetVertex, flow, capacity, cost);
+			g.agregarElemento(vertex, targetVertex, a);
+		}
+		
+		/*public void eliminarArista(int vertex, int targetVertex){
+			for(int i = 0; i < g.consultarAdyacentesSalida(vertex).size(); ++i){	
+			}
+		}
+		*/
+		public void
+		
+		
+		
+		
 		
 		/**
 		 * Modificadora de la Source
