@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +21,10 @@ public class VistaMapa extends Vista3{
 	private String identificador; 
 	private String id2;
 	private String id3; 
+	private JButton botoncaC; 
+	private JButton botonciC; 
+	private JButton botoncaG; 
+	private JButton botonciG;
 	
 	boolean mapaCreado = false;
 	VistaMapa (ControladorPresentacionMapa controladorPMapa){
@@ -35,9 +40,17 @@ public class VistaMapa extends Vista3{
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
-		//VistaGrafo vg = new VistaGrafo();
-		//super.panelPrincipal.add(vg); 
+		botoncaC = new JButton("Cargar"); 
+		botonciC = new JButton("Cargar"); 
+		botoncaG = new JButton("Guardar"); 
+		botonciG = new JButton("Guardar"); 
+		vciut.add(botoncaC);
+		vciut.add(botoncaG); 
+		vb.add(botonciC);
+		vb.add(botonciG); 
 		
+		VistaGrafo vg = new VistaGrafo();
+		super.panelPrincipal.add(vg); 
 	}
 	
 	void crearListeners() {
@@ -263,6 +276,8 @@ public class VistaMapa extends Vista3{
 			}
 		});
 		
+		//***************GESTION DATOS ***********//
+		
 		botonCargar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -277,14 +292,54 @@ public class VistaMapa extends Vista3{
 		
 		botonGuardar.addActionListener(new ActionListener(){
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				//TRACTAR SI NO ES MAPA!!!! //if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
+			public void actionPerformed(ActionEvent e) { 
 				abrirBrowserGuardar();
 			}
 		});
+		
+		botoncaG.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (vciut.listaEsVacia()) setError("No hay nada para guardar"); 
+				abrirBrowserGuardarCaminos();
+			}
+		});
+		
+		botoncaC.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					abrirBrowserCargarCaminos();
+				} catch (Exception e1) {
+					setError(e1.getMessage());
+				} 	
+			}
+			
+		});
+		
+		botonciG.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
+				abrirBrowserGuardarCiudades();
+			}
+		});
+		
+		botonciC.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					abrirBrowserCargarCiudades();
+				} catch (Exception e1) {
+					setError(e1.getMessage());
+				} 	
+			}
+			
+		});
+		
 	}
 		
-		//GD caminos
+		///FUNCIONES DE CARGAR/GUARDAR///////
 		public void abrirBrowserGuardar()  {
 			   JFrame parentFrame = new JFrame();
 		 		int userSelection = filechooser.showSaveDialog(parentFrame);
@@ -320,7 +375,60 @@ public class VistaMapa extends Vista3{
 	 		}
 		}
 		
+		public void abrirBrowserGuardarCiudades()  {
+			   JFrame parentFrame = new JFrame();
+		 		int userSelection = filechooser.showSaveDialog(parentFrame);
+		 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".ciudad", "ciudad");
+		 		super.filechooser.setFileFilter(filtermapa);
+		        super.filechooser.addChoosableFileFilter(filtermapa);
+		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+		 			file = file.concat(".ciudad");
+		 			cpmapa.guardarCiudades(file);
+		 		}
+		}
 		
+		public void abrirBrowserCargarCiudades() throws Exception {
+			JFrame parentFrame = new JFrame();
+	 		int userSelection = filechooser.showOpenDialog(parentFrame);
+	 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".ciudad", "ciudad");
+	 		super.filechooser.setFileFilter(filtermapa);
+	        super.filechooser.addChoosableFileFilter(filtermapa);
+	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+	 			boolean success = cpmapa.cargarCiudades(file);
+				if (success) actualizarListaCiudades();
+	 		}
+		}
+		
+		public void abrirBrowserGuardarCaminos()  {
+			   JFrame parentFrame = new JFrame();
+		 		int userSelection = filechooser.showSaveDialog(parentFrame);
+		 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".camino", "camino");
+		 		super.filechooser.setFileFilter(filtermapa);
+		        super.filechooser.addChoosableFileFilter(filtermapa);
+		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+		 			file = file.concat(".camino");
+		 			cpmapa.guardarCaminos(file);
+		 		}
+		}
+		
+		public void abrirBrowserCargarCaminos() throws Exception {
+			JFrame parentFrame = new JFrame();
+	 		int userSelection = filechooser.showOpenDialog(parentFrame);
+	 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".camino", "camino");
+	 		super.filechooser.setFileFilter(filtermapa);
+	        super.filechooser.addChoosableFileFilter(filtermapa);
+	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+	 			boolean success = cpmapa.cargarCaminos(file);
+				if (success) actualizarListaCaminos();
+	 		}
+		}
+		
+		
+		//// ACTUALIZAR LISTAS ////
 		public void actualizarListaCiudades() throws Exception{
 			String[] ciudades = cpmapa.listarCiudades();
 			if(ciudades.length != 0) {
