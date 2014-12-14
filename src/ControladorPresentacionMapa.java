@@ -10,9 +10,8 @@ public class ControladorPresentacionMapa {
 	public ControladorPresentacionMapa( ControladorPresentacionMedios cmd){
 		cmed = cmd;
 		vm = new VistaMapa(this);
-		//cm = new ControladorMapa();
-		
-		}
+		//cm = new ControladorMapa();	
+	}
 	
 	public void crearMapa(int x, int y){
 		try{
@@ -80,24 +79,10 @@ public class ControladorPresentacionMapa {
 	
 	
 	
-	public ArrayList<String> listarCiudades() throws Exception {
+	public String[] listarCiudades() throws Exception {
 		String nombres = cm.listarCiudadesToString();
-		ArrayList<String> ret = new ArrayList<String>();
-		if(nombres == null) return ret;
-		int i = 0;
-		String nom;
-		while (i < nombres.length()){
-			nom = "";
-			nom += nombres.charAt(i);
-			++i;
-			while (nombres.charAt(i) != ' '){
-				nom += nombres.charAt(i);
-				++i;	
-			}
-			++i;
-			if (nom.charAt(0) != ' ') ret.add(nom);			
-		}
-		return ret;
+		String[] ret = nombres.split("\n"); 
+		return ret; 
 	}
 	
 	public ArrayList<String> listarCaminos() throws Exception {

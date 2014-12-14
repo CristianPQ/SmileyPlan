@@ -47,15 +47,15 @@ public class VistaMapa extends Vista3{
 	
 	//
 	public void actualizarListaCiudades() throws Exception{
-		ArrayList<String> ciudades = cpmapa.listarCiudades();
-		if(!ciudades.isEmpty()) 
-		for(int i = 0; i < ciudades.size(); ++i){
-			String ciu = ciudades.get(i); 
-			System.out.println(ciu + " " + cpmapa.coordX(ciu)); 
+		String[] ciudades = cpmapa.listarCiudades();
+		if(ciudades.length != 0) 
+		for(int i = 0; i < ciudades.length; ++i){
+			String ciu = ciudades[i]; 
+			System.out.println(ciu + " " + cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu)); 
 			try {
-				vciut.agregar(ciu + "  "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
+				vb.agregar(ciu + "  "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
 			} catch (Exception e) {
-				e.printStackTrace();
+				setError(e.getMessage());
 			}
 		}
 	}
@@ -98,7 +98,12 @@ public class VistaMapa extends Vista3{
 					int Y = Integer.parseInt(txtY.getText());	
 					cpmapa.agregarCiudad(nom, X, Y);
 					try {
+						vb.clear(); 
 						actualizarListaCiudades();
+						 txtIdCiutat.setText("");
+				         txtY.setText("");
+				         txtX.setText("");
+						
 					} catch (Exception e1) {
 						setError(e1.getMessage());
 					}
