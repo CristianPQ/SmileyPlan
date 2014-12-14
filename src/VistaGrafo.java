@@ -23,12 +23,15 @@ public class VistaGrafo extends JPanel {
 	};
 	
 	public void agregarCiudad(int x, int y, String nom){
+		System.out.println("aqui");
 		Object parent = g.getDefaultParent();
 		 g.getModel().beginUpdate();
 		 int xscale = (x*this.getWidth())/LimiteX;
 		 int yscale = (y*this.getHeight())/LimiteY;
 		 int tamano = nom.length() * 6; //6 pixels per lletra
-		 g.insertVertex(parent, nom, nom, xscale, yscale, 200,200);
+		 //g.insertVertex(parent, nom, nom, xscale, yscale, 200,200);
+		 g.insertVertex(parent, null, "Hello", 20, 20, 30,
+                 30);
 		 vertexs.add(nom);
 		 mxGraphComponent graphComponent = new mxGraphComponent(g);
 		 this.add(graphComponent);

@@ -26,7 +26,8 @@ public class VistaMapa extends Vista3{
 	private JLabel label5;
 	private JLabel label6;
 	*/
-	
+	VistaGrafo vg;
+	 
 	boolean mapaCreado = false;
 	VistaMapa (ControladorPresentacionMapa controladorPMapa){
 		super();
@@ -41,9 +42,9 @@ public class VistaMapa extends Vista3{
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
-		//VistaGrafo vg = new VistaGrafo();
-		//super.panelPrincipal.add(vg); 
-		
+		vg = new VistaGrafo();
+		super.panelPrincipal.add(vg);
+
 	}
 	
 	//
@@ -95,6 +96,8 @@ public class VistaMapa extends Vista3{
 					txtCap.setEditable(true);
 					txtX.setEditable(true);
 					txtY.setEditable(true);
+					vg.setLimites(200, 200);
+					vg.agregarCiudad(100, 100, "barcelona");
 				}
 				//crear ciudad
 				else if (txtCO.getText().equals("")){ //si el de cami esta buit
