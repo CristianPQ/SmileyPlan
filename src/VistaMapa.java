@@ -440,7 +440,7 @@ public class VistaMapa extends Vista3{
 				for(int i = 0; i < ciudades.length; ++i){
 					String ciu = ciudades[i]; 
 					try{
-						vb.agregar(ciu + "  "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
+						vb.agregar(ciu + " "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
 					} catch (Exception e) {
 						setError(e.getMessage());
 					}
