@@ -5,7 +5,7 @@ public class DriverControladorMapa {
 	private static Scanner sc;
 
 	private static void menu() {
-        System.out.println("Driver clase Mapa"
+        System.out.println("Driver clase ControladorMapa"
                 + "\n 0.Salir"
                 + "\n 1.new Mapa(int anchuraX, int alturaY, String continente)"
                 + "\n ##########CIUDADES##########"

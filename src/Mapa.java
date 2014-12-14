@@ -218,15 +218,15 @@ public class Mapa {
 		if(!existeCiudad(c)) throw NoExiste;
 		//if(existenCaminosCon(c)) throw HayCaminos;
 			//System.out.println("Antes de eliminar caminos con destino" + "\n");
-			System.out.println("Antes de consultarVerticesd" + "\n");
+			//System.out.println("Antes de consultarVerticesd" + "\n");
 		Ciudad ciu = g.consultarVertice(c);
-			System.out.println("Despues de consultarVerticesd" + "\n");
+			//System.out.println("Despues de consultarVerticesd" + "\n");
 		int index = ciu.consultarEquivalente();
-			System.out.println("Despues de consultarEquivalente" + "\n");
+			//System.out.println("Despues de consultarEquivalente" + "\n");
 		eliminarCaminosCon(c);
-			System.out.println("Antes de eliminarVertice" + "\n");
+			//System.out.println("Antes de eliminarVertice" + "\n");
 		g.eliminarVertice(c, index);
-			System.out.println("despues de eliminarVertice" + "\n");
+			//System.out.println("despues de eliminarVertice" + "\n");
 		Coordenadas coord = ciu.consultarCoordenadas();
 			//System.out.println("Antes de eliminar en mapa" + "\n");
 		int x = coord.consultarX();
@@ -304,30 +304,33 @@ public class Mapa {
 	private void eliminarCaminosCon(String c) {
 		Ciudad ciu = g.consultarVertice(c);
 		int index = ciu.consultarEquivalente();
-			System.out.println("Antes de consultarAristasEntrasa");
+			//System.out.println("Antes de consultarAristasEntrasa");
 		ArrayList<Camino> ent = g.consultarAristasEntrada(index);
-			System.out.println("Despues de consultarAristasEntrasa tamano: " + ent.size());
-			System.out.println("Antes de consultarAristasSalida");
+			//System.out.println("Despues de consultarAristasEntrasa tamano: " + ent.size());
+			//System.out.println("Antes de consultarAristasSalida");
 		ArrayList<Camino> sal = g.consultarAristasSalida(index);
-			System.out.println("Despues de consultarAristasSalida tamano: " + sal.size());
-		for(int i = 0; i < ent.size(); ++i) {
-				System.out.println("Antes de consutlarVertice con i = " + i);
-			Camino cam = ent.get(i);
+			//System.out.println("Despues de consultarAristasSalida tamano: " + sal.size());
+		while(ent.size() > 0) {
+				//System.out.println("Antes de consutlarVertice");
+			Camino cam = ent.get(0);
 			int out = g.consultarVertice(cam.consultarOrigen()).consultarEquivalente();
-				System.out.println("Despues de consutlarVertice con i = " + i); 
+				//System.out.println("Despues de consutlarVertice"); 
 			g.eliminarArista(cam, index, out);
+				//System.out.println("Ent.size() = " + ent.size());
 		}
 		
-		for(int j = 0; j < sal.size(); ++j) {
-				System.out.println("tamano: " + sal.size());
-				System.out.println("Antes de consutlarVertice con j = " + j);
-			Camino cam = sal.get(j);
+		while(sal.size() > 0) {
+				//System.out.println("tamano: " + sal.size());
+				//System.out.println("Antes de consutlarVertice con j = " + 0);
+			Camino cam = sal.get(0);
+				//System.out.println("Sal.size() = " + sal.size());
 			int in = g.consultarVertice(cam.consultarDestino()).consultarEquivalente();
-				System.out.println("Despues de consutlarVertice con j = " + j);
+				//System.out.println("Despues de consutlarVertice con j = " + 0);
+				//System.out.println("Sal.size() = " + sal.size());
 			g.eliminarArista(cam, in, index);
-				System.out.println("Despues de eliminarArista");
+				//System.out.println("Despues de eliminarArista j = " + 0);
+				//System.out.println("Sal.size() = " + sal.size());
 		}
-			System.out.println("Fin eliminarCaminosCon");
 	}
 	
 	/**
