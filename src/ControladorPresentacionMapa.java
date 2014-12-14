@@ -13,9 +13,9 @@ public class ControladorPresentacionMapa {
 		//cm = new ControladorMapa();	
 	}
 	
-	public void crearMapa(int x, int y){
+	public void crearMapa(int x, int y, String cont){
 		try{
-			cm = new ControladorMapa(x,y," ");
+			cm = new ControladorMapa(x,y,cont);
 		}
 		catch (Exception e) {
 			vm.setError(e.getMessage());
@@ -81,14 +81,6 @@ public class ControladorPresentacionMapa {
 		return vm;
 	}
 	
-	public void agregarCamino(String cOrig, String cDest, String medio, int cap){
-		try{
-			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());}
-		catch (Exception e) {
-			vm.setError(e.getMessage());
-		}
-	}
-
 	public ControladorMapa devolverControlador(){
 		return cm;
 	}
@@ -105,9 +97,11 @@ public class ControladorPresentacionMapa {
 		return ret; 
 	}
 	
-	public ArrayList<String> listarCaminos() throws Exception {
+	public String[] listarCaminos() throws Exception {
+		System.out.println("control present mapa");
 		String nombres = cm.consultarTodosCaminosToString();
-		ArrayList<String> ret = new ArrayList<String>();
+		String[] ret = nombres.split("\n"); 
+ 		/*ArrayList<String> ret = new ArrayList<String>();
 		if(nombres == null) return ret;
 		int i = 0;
 		String nom;
@@ -121,9 +115,18 @@ public class ControladorPresentacionMapa {
 			}
 			++i;
 			if (nom.charAt(0) != ' ') ret.add(nom);			
-		}
+		}*/
 		return ret;
 	}
 	
+	public void agregarCamino(String cOrig, String cDest, String medio, int cap){
+		try{
+			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());}
+		catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
 	}
+
+	
+}
 

@@ -49,22 +49,26 @@ public class VistaMapa extends Vista3{
 	//
 	public void actualizarListaCiudades() throws Exception{
 		String[] ciudades = cpmapa.listarCiudades();
-		if(ciudades.length != 0) 
-		for(int i = 0; i < ciudades.length; ++i){
-			String ciu = ciudades[i]; 
-			System.out.println(ciu + " " + cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu)); 
-			try {
-				vb.agregar(ciu + "  "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
-			} catch (Exception e) {
-				setError(e.getMessage());
+		if(ciudades.length != 0) {
+			for(int i = 0; i < ciudades.length; ++i){
+				String ciu = ciudades[i]; 
+				//System.out.println(ciu + " " + cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu)); 
+				try {
+					vb.agregar(ciu + "  "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
+				} catch (Exception e) {
+					setError(e.getMessage());
+				}
 			}
 		}
 	}
 	
 	public void actualizarListaCaminos() throws Exception{
-		ArrayList<String> caminos = cpmapa.listarCaminos();
-		if(!caminos.isEmpty()) 
-		for(int i = 0; i < caminos.size(); ++i) vb.agregar(caminos.get(i));
+		String[] caminos = cpmapa.listarCaminos();
+		System.out.println("vista mapa");
+		System.out.println(caminos[0]); 
+		if(caminos.length != 0) {
+			for(int i = 0; i < caminos.length; ++i) vciut.agregar(caminos[i]);
+		}
 	}
 
 	
@@ -79,8 +83,8 @@ public class VistaMapa extends Vista3{
 				if (!mapaCreado){ 
 					String X = txtXMapa.getText();
 					String Y = txtYMapa.getText();
-					//String Continente = txtConti.getText();
-					cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y));
+					String Continente = txtConti.getText();
+					cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);
 					
 					mapaCreado = true;
 					
@@ -119,14 +123,19 @@ public class VistaMapa extends Vista3{
 					int cap = Integer.parseInt(txtCap.getText());
 					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
 					try {
+						vciut.clear(); 
 						actualizarListaCaminos();
+						txtCO.setText("");
+						txtCD.setText("");
+						txtMedio.setText("");
+						txtCap.setText("");
+						
 					} catch (Exception e1) {
 						setError(e1.getMessage());
 					} 
 					}
 				}	
 			}
-		
 		});
 		
 		/**

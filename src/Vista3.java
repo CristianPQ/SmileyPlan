@@ -48,7 +48,8 @@ public abstract class Vista3 extends Vista1 {
 	public Vista3() {
 		super(); 
 		
-		vb = new VistaBuscador(this); 
+		vb = new VistaBuscador(this);
+		vciut = new VistaBuscador(this);
 		//panel que engloba a todos
 		panelv3 = new JPanel(); 
 		panelv3.setLayout(new BoxLayout(panelv3, BoxLayout.Y_AXIS));
@@ -182,7 +183,7 @@ public abstract class Vista3 extends Vista1 {
 		panelv3.add(panelCaminos);
 		panelv3.add(panelBotones);
 		
-		VistaBuscador vciut = new VistaBuscador(this);
+	
 		super.panelPrincipal.add(vciut);
 		
 		super.panelPrincipal.add(panelv3);

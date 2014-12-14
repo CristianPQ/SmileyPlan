@@ -208,6 +208,7 @@ public class ControladorMapa {
 		if(!contMT.existe(medio)) throw NoExiste;
 		Camino c = new Camino(cOrig, cDest, cap, medio);
 		m.agregarCamino(c);
+		System.out.println("camino agregado con exito");
 	}
 	
 	/**
