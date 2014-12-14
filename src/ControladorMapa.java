@@ -394,7 +394,7 @@ public class ControladorMapa {
 		 int x = m.consultarAnchura();
 		 int y = m.consultarAltura(); 
 		 String linea = x + " " + y + "\n"; 
-		 buffer = buffer + linea; 
+		 buffer = linea; 
 		 
 		 //guardar coordenadas
 		 for(int i = 0; i < c.size(); ++i) {
@@ -545,12 +545,15 @@ public class ControladorMapa {
 		GestorDatos gd = new GestorDatos(file); 
 		gd.abrirArchivo("read"); 
 		
-		int num = gd.bufferToStrings(); 
+		
+		//int num = gd.bufferToStrings(); 
+			System.out.println("Antes de obtenerTodoElString");
 		String carga = gd.obtenerTodoElString(); 
+			System.out.println("Despues de obtenerTodoElString");
 		
 		//buffer = gd.readBuffer(num+1); //totes les linies de coordenades + la de x i y  
 		
-		String[] lineas = carga.split("\n"); 
+		String[] lineas = carga.split("\n");
 		convertirMapa(lineas);
 		
 		gd.cerrarArchivo(); 
