@@ -52,6 +52,14 @@ public class VistaGrafo extends JPanel {
 			g.getModel().endUpdate();	
 		}
 	}
+	public void borarCiudad(String nom){
+		Object source = vertexs.consultar(nom);
+		Object[] borrar = {source};
+		g.removeCells(borrar);
+		vertexs.delete(nom);
+	}
+	
+	
 	public void agregarCamino(String nom1, String nom2, String Capacidad){
 		Object parent = g.getDefaultParent();
 		g.getModel().beginUpdate();
@@ -66,6 +74,7 @@ public class VistaGrafo extends JPanel {
 		Object source = vertexs.consultar(nom1);
 		Object target = vertexs.consultar(nom2);
 		 Object[] edges = g.getEdgesBetween( source, target);
+		 g.removeCells(edges);
 		g.getModel().endUpdate();
 	}
 	public static class CustomGraphComponent extends mxGraphComponent
