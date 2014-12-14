@@ -74,6 +74,7 @@ public class VistaMapa extends Vista3{
 					int X = Integer.parseInt(txtX.getText());
 					int Y = Integer.parseInt(txtY.getText());		
 					cpmapa.agregarCiudad(nom, X, Y);
+					vg.agregarCiudad(x,y);
 				}
 				//crear camino
 				else if(txtIdCiutat.getText().equals("")){
@@ -84,6 +85,7 @@ public class VistaMapa extends Vista3{
 					String md = txtMedio.getText();
 					int cap = Integer.parseInt(txtCap.getText());
 					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
+					vg.agregarCamino(consultarX(ciudadO), consultarY(ciudad0), consultarX(ciudad1), consultarY(ciudad1));
 					}
 				}	
 			}
