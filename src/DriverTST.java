@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 	/** class TernarySearchTree **/
@@ -29,38 +30,59 @@ import java.util.Scanner;
 	    		try{
 	    			lsplited = sc.nextLine().split(" ");
 	    			switch(Integer.parseInt(lsplited[0])){
-			            case 1:
+			            case 1:{
+			            	tst = new TST<String>();
 			            	break;
-			            case 2 : 
+			            }
+			            case 2 :{ 
 			                System.out.println("Empty Status : "+ tst.isEmpty() );                
-			                break;    
-			            case 3 : 
-			                System.out.println("Ternary Search Tree cleared"); 
+			                break;
+			            }
+			            case 3 :{ 
 			                tst.makeEmpty();               
-			                break; 
-			            case 4 : 
-			                System.out.println("Enter word to insert");
-				        	String st = sc.next(); 
-			                tst.insert(st, st);                     
-			                break; 
-			            case 5 : 
-			                System.out.println("Enter word to delete");
-			                tst.delete( sc.next() );                     
 			                break;
-			            case 6:
-			            	break;
-			            case 7:
-			            	break;
-			            case 8 : 
-			                System.out.println("Enter word to search");
-			                System.out.println("Search result : "+ tst.consultar( sc.next() ));
+			            }
+			            case 4 :{ 
+				        	String st = lsplited[1];
+				        	if(!lsplited[1].equals(lsplited[2])) {
+				        		System.out.println("key incorrecta");
+				        		break;
+				        	}
+			                tst.insert(lsplited[1], lsplited[2]);                     
+			                break; 
+			            }
+			            case 5 :{ 
+			                tst.delete(lsplited[1]);                     
 			                break;
-			            case 9:
+			            }
+			            case 6:{
+			            	tst.modificar(lsplited[1], lsplited[2]);
 			            	break;
-			            case 10:
+			            }
+			            case 7:{
+			            	System.out.println("Este elemento " + tst.existe(lsplited[1]) + "existe");
 			            	break;
-			            case 11:
+			            }
+			            case 8 :{ 
+			                System.out.println("Search result : "+ tst.consultar(lsplited[1]));
+			                break;
+			            }
+			            case 9:{
+			            	System.out.println("Elementos: \n" + tst.toString());
 			            	break;
+			            }
+			            case 10:{
+			            	ArrayList<String> st = tst.consultar();
+			            	System.out.println("Elementos:");
+			            	for(int i = 0; i < st.size(); ++i) {
+			            		System.out.println(st.get(i));
+			            	}
+			            	break;
+			            }
+			            case 11:{
+			            	System.out.println("Hay " + tst.numero() + "elementos");
+			            	break;
+			            }
 			            case 0: {
 	    	                System.exit(0);
 	    	            }

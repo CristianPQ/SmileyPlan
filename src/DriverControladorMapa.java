@@ -23,11 +23,12 @@ public class DriverControladorMapa {
         		+ "\n 12.consultarMapaToString(): String"   
         		+ "\n 13.consultarCaminoToString(String cOrig, String cDest, String medio): String"
         		+ "\n 14.consultarTodosCaminosToString(): String"
-        		+ "\n 15.guardarCiudades(String path,String file)"
-        		+ "\n 16.cargarCiudades(String path,String file)"
-        		+ "\n 17.guardarCaminos(String path,String file)"
-        		+ "\n 18.cargarCaminos(String path, String file)"
-        		+ "\n 19.guardarMapa(String path, String file)"
+        		+ "\n 15.guardarMapa(String file)"
+        		+ "\n 16.guardarCiudades(String file)"
+        		+ "\n 17.guardarCaminos(String file)"
+        		+ "\n 18.cargarMapa(String file):boolean"
+        		+ "\n 19.cargarCiudades(String file):boolean"
+        		+ "\n 20.cargarCaminos(String file):boolean"
         		+"\n");
     }
 	
@@ -146,33 +147,33 @@ public class DriverControladorMapa {
 		            	break;
 		            }
 		            case 15:{
-		            	String  path = "/Users/olgacarbo/Desktop/SmileyPlan/src/"; 
-		            	String file = "provaC"; 
-		            	m.guardarCiudades(path, file);
+		            	String file = lsplited[1]; 
+		            	m.guardarMapa(file);
 		            	break;
 		            }
-		            case 16:{
-		            	String  path = lsplited[1]; 
-		            	String file = lsplited[2]; 
-		            	m.cargarCiudades(path, file);
+		            case 16:{ 
+		            	String file = lsplited[1]; 
+		            	m.guardarCiudades(file);
 		            	break;
 		            }
 		            case 17:{
-		            	String  path = lsplited[1]; 
-		            	String file = lsplited[2]; 
-		            	m.guardarCaminos(path, file);
+		            	String file = lsplited[1]; 
+		            	m.guardarCaminos(file);
 		            	break;
 		            }
-		            case 18:{
-		            	String  path = lsplited[1]; 
-		            	String file = lsplited[2];
-		            	m.cargarCaminos(path, file);
+		            case 18:{ 
+		            	String file = lsplited[1];
+		            	m.cargarMapa(file);
 		            	break;
 		            }
 		            case 19:{
-		            	String  path = lsplited[1]; 
-		            	String file = lsplited[2];
-		            	//m.guardarMapa(path, file);
+		            	String file = lsplited[1];
+		            	m.cargarCiudades(file);
+		            	break;
+		            }
+		            case 20:{
+		            	String file = lsplited[1];
+		            	m.cargarCaminos(file);
 		            	break;
 		            }
 		            case 0: {

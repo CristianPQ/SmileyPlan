@@ -25,6 +25,7 @@ public class DriverMapa {
         		+ "\n 12.consultarMapaToString(): String"   
         		+ "\n 13.consultarCamino(String cOrig, String cDest, String medio): Camino"
         		+ "\n 14.consultarTodosCaminos(): ArrayList<Camino>"
+        		+ "\n 15.consultarCaminosOrigen(String cDest): ArrayList<Camino>"
         		+"\n");
     }
 	
@@ -168,6 +169,20 @@ public class DriverMapa {
 		        		}
 		            	System.out.println(listC + "\n");
 		            	break;
+		            }
+		            case 15: {
+		            	String cDest = lsplited[1];
+		            	ArrayList<Camino> listCamino = m.consultarCaminosOrigen(cDest);
+		        		Iterator<Camino> it = listCamino.iterator();
+		        		String listC = new String();
+		        		Camino c = null;
+		        		while(it.hasNext()) {
+		        			c = it.next();
+		        			listC = listC + c.consultarOrigen() + " " + c.consultarDestino() + " " + 
+		        			c.consultarTransporte() + " " + Integer.toString(c.consultarCapacidad()) + "\n";
+		        		}
+		            	System.out.println(listC + "\n");
+		                break;
 		            }
 		            case 0: {
 		                System.exit(0);
