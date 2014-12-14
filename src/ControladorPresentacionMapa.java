@@ -32,25 +32,6 @@ public class ControladorPresentacionMapa {
 
 	}
 	
-	public int consultarX(String city){
-		try {
-			return cm.consultarCiudad(city).consultarCoordenadas().consultarX();
-			////CREAR METODO DIRECTO EN CMAPA
-		} catch (Exception e) {
-			vm.setError(e.getMessage());
-		}
-		return -1;
-	}
-	
-	public int consultarY(String city){ 
-		try {
-			return cm.consultarCiudad(city).consultarCoordenadas().consultarY(); 
-			////CREAR METODO DIRECTO EN CMAPA
-		} catch (Exception e) {
-			vm.setError(e.getMessage());
-		}
-		return -1;
-	}
 	
 	public void eliminarCiudad(String c){
 		try {
@@ -60,12 +41,22 @@ public class ControladorPresentacionMapa {
 		}
 	}
 	
-	public int coordX(String ciudad) throws Exception {
-			return cm.coordXCiudad(ciudad);
+	public int coordX(String ciudad) {
+			try {
+				return cm.coordXCiudad(ciudad);
+			} catch (Exception e) {
+				vm.setError(e.getMessage());
+			}
+			return -1;
 	}
 	
-	public int coordY(String ciudad) throws Exception {
-		return cm.coordYCiudad(ciudad);
+	public int coordY(String ciudad) {
+		try {
+			return cm.coordYCiudad(ciudad);
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+		return -1;
 	}
 	
 	
