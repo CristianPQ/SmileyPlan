@@ -53,10 +53,13 @@ public class VistaGrafo extends JPanel {
 		}
 	}
 	public void borarCiudad(String nom){
+		Object parent = g.getDefaultParent();
+		 g.getModel().beginUpdate();
 		Object source = vertexs.consultar(nom);
 		Object[] borrar = {source};
 		g.removeCells(borrar);
 		vertexs.delete(nom);
+		g.getModel().endUpdate();
 	}
 	
 	

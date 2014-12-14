@@ -251,6 +251,7 @@ public class VistaMapa extends Vista3{
 					//MIRAR QUE QUAN ESBORRI CIUTAT ESBORRI TAMBE AGENTES I CAMINOS
 					String c = txtIdCiutat.getText(); 
 					cpmapa.eliminarCiudad(c);
+					vg.borarCiudad(c);
 					vb.clear(); 
 					try {
 						actualizarListaCiudades();
