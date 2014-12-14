@@ -82,6 +82,7 @@ public class VistaMapa extends Vista3{
 			public void actionPerformed(ActionEvent e) {
 				//crear mapa
 				if (!mapaCreado){ 
+					System.out.println("crear mapa"); 
 					String X = txtXMapa.getText();
 					String Y = txtYMapa.getText();
 					String Continente = txtConti.getText();
@@ -101,6 +102,7 @@ public class VistaMapa extends Vista3{
 				}
 				//crear ciudad
 				else if (txtCO.getText().equals("")){ //si el de cami esta buit
+					System.out.println("crear ciudades"); 
 					String nom = txtIdCiutat.getText();
 					int X = Integer.parseInt(txtX.getText());
 					int Y = Integer.parseInt(txtY.getText());	
@@ -117,13 +119,16 @@ public class VistaMapa extends Vista3{
 					}
 				}
 				//crear camino
-				else if(txtIdCiutat.getText().equals("")){
+				//else if(txtIdCiutat.getText().equals("")){
+				else{
+					System.out.println("crear caminos"); 
 					if (!txtCO.getText().equals("") && !txtCD.getText().equals("")
 							&& !txtCap.getText().equals("")){
 					String ciudadO = txtCO.getText();
 					String ciudadD = txtCD.getText();
 					String md = txtMedio.getText();
 					int cap = Integer.parseInt(txtCap.getText());
+					System.out.println("hem disposo a agregar");
 					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
 					try {
 						vciut.clear(); 

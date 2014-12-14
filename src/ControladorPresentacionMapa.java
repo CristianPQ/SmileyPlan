@@ -112,6 +112,7 @@ public class ControladorPresentacionMapa {
 	
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap){
 		try{
+			System.out.println("estic a controlador presnt per crear");
 			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());}
 		catch (Exception e) {
 			vm.setError(e.getMessage());

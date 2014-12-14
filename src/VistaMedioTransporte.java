@@ -121,8 +121,6 @@ public class VistaMedioTransporte extends Vista2 {
 						if(esCoche)	cpm.agregarCoche(nombre, coste);	
 						else if (esTren) cpm.agregarTren(nombre,coste);
 						else cpm.agregarCoche(nombre, coste);
-						//else throw new Exception("Debes elegir si es tren o coche"); 
-						//cpm.agregarMedio(nombre, coste);
 						vb.clear();
 			            actualizarLista();
 			            text1.setText("");
