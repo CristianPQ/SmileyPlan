@@ -13,13 +13,13 @@ import java.util.*;
 public class VistaGrafo extends JPanel {
 	
 	private mxGraph g;
-	private ArrayList<Integer> vertexs;
+	private ArrayList<String> vertexs;
 	private int LimiteX;
 	private int LimiteY;
 	
 	public VistaGrafo (){
 		 g = new mxGraph();
-		 vertexs = new ArrayList<Integer>();
+		 vertexs = new ArrayList<String>();
 	};
 	
 	public void agregarCiudad(int x, int y, String nom){
@@ -28,13 +28,19 @@ public class VistaGrafo extends JPanel {
 		 int xscale = (x*this.getWidth())/LimiteX;
 		 int yscale = (y*this.getHeight())/LimiteY;
 		 int tamano = nom.length() * 6; //6 pixels per lletra
-		 g.insertVertex(parent, null, "nom", xscale, yscale, tamano,
-                 30);
+		 g.insertVertex(parent, nom, nom, xscale, yscale, 200,200);
+		 vertexs.add(nom);
+		 mxGraphComponent graphComponent = new mxGraphComponent(g);
+		 this.add(graphComponent);
+		 
 	}
 	
+	public void setLimites (int x, int y){
+		LimiteX = x;
+		LimiteY = y;
+	}
 	
 	/*
-	
     public static void main(String[] args) {
         mxGraph graph = new mxGraph();
         Object parent = graph.getDefaultParent();
@@ -52,7 +58,7 @@ public class VistaGrafo extends JPanel {
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         exempleJgraph frame = new exempleJgraph();
-       frame.add(graphComponent);
+        frame.add(graphComponent);
         f.add(frame);
         f.pack();
         f.setVisible(true);
