@@ -37,6 +37,30 @@ public class VistaGrafo extends JPanel{
     	yCiudad = y;
     	this.setBackground(Color.white);
     	System.out.print("aqui");
+    	Graph G;    //define directed graph G
+
+    	  node center=G.new_node();   //create new node "center" of G
+
+    	  int i; 
+    	  for (i=0;i<100;i++) {
+    	    node v=G.new_node();     //create new node v of G
+    	    G.new_edge(center,v);    //create new edge of G 
+    	                             //with source center and target v
+    	  }
+    	  
+    	  edge e;
+    	  forall_edges(e,G) {           //iterate over all edges e of G
+    	    node source=G.source(e);  //compute source of e
+    	    node target=G.target(e);  //compute target of e
+
+    	  
+    	    G.print_edge(e);          //print edge
+    	
+    	    G.print_node(source);     //print source
+    
+    	    G.print_node(target);     //print target
+    	
+    	  }
 
     };
     
