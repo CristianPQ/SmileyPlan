@@ -4,12 +4,15 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class VistaMapa extends Vista3{
 	
@@ -36,32 +39,6 @@ public class VistaMapa extends Vista3{
 		//super.panelPrincipal.add(vg); 
 		
 	}
-	
-	//
-	public void actualizarListaCiudades() throws Exception{
-		String[] ciudades = cpmapa.listarCiudades();
-		if(ciudades.length != 0) {
-			for(int i = 0; i < ciudades.length; ++i){
-				String ciu = ciudades[i]; 
-				//System.out.println(ciu + " " + cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu)); 
-				try {
-					vb.agregar(ciu + "  "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
-				} catch (Exception e) {
-					setError(e.getMessage());
-				}
-			}
-		}
-	}
-	
-	public void actualizarListaCaminos() throws Exception{
-		String[] caminos = cpmapa.listarCaminos();
-		//System.out.println("vista mapa");
-		//System.out.println(caminos[0]); 
-		if(caminos.length != 0) {
-			for(int i = 0; i < caminos.length; ++i) vciut.agregar(caminos[i]);
-		}
-	}
-
 	
 	void crearListeners() {
 		/**
@@ -247,7 +224,124 @@ public class VistaMapa extends Vista3{
 			}       
         });
 		
+		botonEliminar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (txtCO.getText().equals(""))	 {
+					//cas ciutat
+					//MIRAR QUE QUAN ESBORRI CIUTAT ESBORRI TAMBE AGENTES I CAMINOS
+					String c = txtIdCiutat.getText(); 
+					cpmapa.eliminarCiudad(c);
+					vb.clear(); 
+					try {
+						actualizarListaCiudades();
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
+					txtIdCiutat.setText(" ");
+                    txtX.setText(" ");
+                    txtY.setText(" ");
+				}
+				else {
+					//cas caminos
+					String ciudadO = txtCO.getText();
+					String ciudadD = txtCD.getText();
+					String md = txtMedio.getText();
+					cpmapa.eliminarCamino(ciudadO, ciudadD, md);
+					vciut.clear(); 
+					try {
+						actualizarListaCaminos();
+					} catch (Exception e1) {
+						setError(e1.getMessage()); 
+					}
+					txtCO.setText("");
+					txtCD.setText("");
+					txtMedio.setText("");
+					txtCap.setText("");
+				}
+				
+			}
+		});
 		
+		botonCargar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					abrirBrowserCargar();
+				} catch (Exception e1) {
+					setError(e1.getMessage());
+				} 	
+			}
+			
+		});
+		
+		botonGuardar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//TRACTAR SI NO ES MAPA!!!! //if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
+				abrirBrowserGuardar();
+			}
+		});
 	}
+		
+		//GD caminos
+		public void abrirBrowserGuardar()  {
+			   JFrame parentFrame = new JFrame();
+		 		int userSelection = filechooser.showSaveDialog(parentFrame);
+		 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".mapa", "mapa");
+		 		super.filechooser.setFileFilter(filtermapa);
+		        super.filechooser.addChoosableFileFilter(filtermapa);
+		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+		 			file = file.concat(".mapa");
+		 			cpmapa.guardarMapa(file);
+		 		}
+		}
+		
+		public void abrirBrowserCargar() throws Exception {
+			JFrame parentFrame = new JFrame();
+	 		int userSelection = filechooser.showOpenDialog(parentFrame);
+	 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".mapa", "mapa");
+	 		super.filechooser.setFileFilter(filtermapa);
+	        super.filechooser.addChoosableFileFilter(filtermapa);
+	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+	 			boolean success = cpmapa.cargarMapa(file);
+				if (success) {
+					mapaCreado = true;	
+					txtCO.setEditable(true);
+					txtCD.setEditable(true);
+					txtMedio.setEditable(true);
+					txtIdCiutat.setEditable(true);
+					txtCap.setEditable(true);
+					txtX.setEditable(true);
+					txtY.setEditable(true);
+				}
+	 		}
+		}
+		
+		
+		public void actualizarListaCiudades() throws Exception{
+			String[] ciudades = cpmapa.listarCiudades();
+			if(ciudades.length != 0) {
+				for(int i = 0; i < ciudades.length; ++i){
+					String ciu = ciudades[i]; 
+					try{
+						vb.agregar(ciu + "  "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
+					} catch (Exception e) {
+						setError(e.getMessage());
+					}
+				}
+			}
+		}
+		
+		public void actualizarListaCaminos() throws Exception{
+			String[] caminos = cpmapa.listarCaminos();
+			if(caminos.length != 0) {
+				for(int i = 0; i < caminos.length; ++i) vciut.agregar(caminos[i]);
+			}
+		}
+
+		
 }
 		  

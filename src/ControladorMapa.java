@@ -512,7 +512,7 @@ public class ControladorMapa {
 	 * @param l
 	 * @throws Exception 
 	 */
-	public void convertirMapa(String[] l) throws Exception {
+	private void convertirMapa(String[] l) throws Exception {
 		int total = l.length; 
 		int i = 0; 
 		String[] cortarstring = l[i].split(" ");
@@ -563,7 +563,7 @@ public class ControladorMapa {
 	 * @param l
 	 * @throws Exception
 	 */
-	public void convertirCiudades(String[] l) throws Exception {
+	private void convertirCiudades(String[] l) throws Exception {
 		int total = l.length; 
 		for(int i = 0; i < total; ++i) {
 			String[] cortarstring = l[i].split(" "); 
@@ -619,7 +619,7 @@ public class ControladorMapa {
 	 * @param l
 	 * @throws Exception
 	 */
-	public void convertirCaminos(String[] l) throws Exception {
+	private void convertirCaminos(String[] l) throws Exception {
 		int total = l.length; 
 		for(int i = 0; i < total; ++i) {
 			String[] cortarstring = l[i].split(" "); 

@@ -22,6 +22,18 @@ public class ControladorPresentacionMapa {
 		}
 	}
 	
+	public boolean cargarMapa(String file) throws Exception{
+		return cm.cargarMapa(file);
+	}
+	
+	public void guardarMapa(String file) {
+		try {
+			cm.guardarMapa(file);
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
+	
 	////////////////CIUDADES//////////////////
 	public void agregarCiudad(String n, int x, int y){
 		try {
@@ -76,17 +88,26 @@ public class ControladorPresentacionMapa {
 		return cm;
 	}
 	
-	
-	///// CAMINO ///
-	
-	
-	
-	
 	public String[] listarCiudades() throws Exception {
 		String nombres = cm.listarCiudadesToString();
 		String[] ret = nombres.split("\n"); 
 		return ret; 
 	}
+	
+	public boolean cargarCiudades(String file) throws Exception{
+		return cm.cargarCiudades(file);
+	}
+	
+	public void guardarCiudades(String file) {
+		try {
+			cm.guardarCiudades(file);
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
+	
+	///// CAMINO ///
+
 	
 	public String[] listarCaminos() throws Exception {
 		//System.out.println("control present mapa");
@@ -112,6 +133,25 @@ public class ControladorPresentacionMapa {
 		}
 	}
 
+	public void eliminarCamino(String COrig, String cDest, String medio){
+		try {
+			cm.eliminarCamino(COrig, cDest, medio);
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
+	
+	public boolean cargarCaminos(String file) throws Exception {
+		return cm.cargarCaminos(file); 
+	}
+	
+	public void guardarCaminos(String file) {
+		try {
+			cm.guardarCaminos(file);
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
 	
 }
 
