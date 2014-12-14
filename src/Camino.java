@@ -1,5 +1,18 @@
+import java.util.Comparator;
+
 //package Dominio;
 
+class OrdenCamino implements Comparator<Camino> {
+	public int compare(Camino a, Camino b) {
+		int orig = a.consultarOrigen().compareTo(b.consultarOrigen());
+		if(orig != 0) return orig;
+		else {
+			int dest = a.consultarDestino().compareTo(b.consultarDestino());
+			if(dest != 0) return dest;
+			else return a.consultarTransporte().compareTo(b.consultarDestino());
+		}
+	}
+}
 
 public class Camino {
 

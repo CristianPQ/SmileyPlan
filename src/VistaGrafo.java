@@ -1,5 +1,6 @@
 
 import java.awt.*;
+
 import javax.swing.*;
  
 
@@ -21,45 +22,81 @@ public class VistaGrafo extends JPanel{
     private int x2p;
     private int y1p;
     private int y2p;
+    private int xLimite;
+    private int yLimite;
+    private boolean pintaCamino = false;
+    private boolean pintaCiudad = false;
+    private boolean pintaGrafo = false;
+    private boolean pintaContinente = false;
+    private boolean borrar = false;
+    private boolean coche = true;
 
     
     public VistaGrafo(){
 
     	this.setBackground(Color.white);
-
     	System.out.print("aqui");
 
     };
     
     public void agregarGrafo(GrafoAntiguo gra){
     	grafo = gra;
+    	pintaGrafo = true;
     }
     public void agregarContinente(String s){
     	continente = s;
+    	pintaContinente = true;
     }
     public void agregarCiudad(int x, int y){
     	xCiudad = x;
     	yCiudad = y;
+    	pintaCiudad = true;
     }
-    public void agregarCamino(int x1, int y1, int x2, int y2){
-    	x1 = x1p;
-    	x2 = x2p;
-    	y1 = y1p;
-    	y2 = y2p; 	
+    public void agregarCaminoCoche(int x1, int y1, int x2, int y2){
+    	x1p = x1;
+    	x2p = x2;
+    	y1p = y1;
+    	y2p = y2; 
+    	coche = true;
+    	pintaCamino = true;
     }
-    //public pintarCamino
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    public void agregarCaminoTren(int x1, int y1, int x2, int y2){
+    	x1p = x1;
+    	x2p = x2;
+    	y1p = y1;
+    	y2p = y2; 
+    	coche = false;
+    	pintaCamino = true;
+    }
+    public void eliminarrGrafo(GrafoAntiguo gra){
+    	grafo = gra;
+    	borrar = true;
+    	pintaGrafo = true;
+    }
+    public void eliminarContinente(String s){
+    	continente = s;
+    	borrar = true;
+    	pintaContinente = true;	
+    }
+    public void elimnarCiudad(int x, int y){
+    	xCiudad = x;
+    	yCiudad = y;
+    	borrar=true;
+    	pintaCiudad = true;
+    }
+    public void eliminarCamino(int x1, int y1, int x2, int y2){
+    	x1p = x1;
+    	x2p = x2;
+    	y1p = y1;
+    	y2p = y2; 
+    	borrar = true;
+    	pintaCamino = true;
+    }
+    public void setlimites(int x, int y){
+    	xLimite = x;
+    	yLimite = y;
+    }
+
     public void paintComponent (Graphics g)
     {
      	//System.out.print("aqui");
@@ -78,31 +115,28 @@ public class VistaGrafo extends JPanel{
         int y0 = h-PAD;
 
         // draw connecting line
-        if (drawLine)
+        if (pintaCiudad)
         {
-        	g2.setPaint(Color.white);
-            for (int j = 0; j < data.length-1; j++)
-            {
-                int x1 = x0 + (int)(xScale * (j+1));
-                int y1 = y0 - (int)(yScale * data[j]);
-                int x2 = x0 + (int)(xScale * (j+2));
-                int y2 = y0 - (int)(yScale * data[j+1]);
-                g2.drawLine(x1, y1, x2, y2);
-            }
+        	if (borrar) g2.setPaint(Color.white);
+        	else g2.setPaint(Color.black);
+        	xCiudad = (xCiudad * w)/xLimite;
+        	yCiudad = (yCiudad * h)/yLimite;
+        	g2.fillOval(xCiudad-dotRadius, yCiudad-dotRadius, 2*dotRadius, 2*dotRadius);
+        	pintaCiudad = false;
         }
 
         // draw the points as little circles in red
-        if (drawDots)
+        if (pintaCamino)
         {
-            g2.setPaint(Color.red);
-            for (int j = 0; j < data.length; j++)
-            {
-                int x = x0 + (int)(xScale * (j+1));
-                int y = y0 - (int)(yScale * data[j]);
-                g2.fillOval(x-dotRadius, y-dotRadius, 2*dotRadius, 2*dotRadius);
-                
-            }
-            
+        	if (borrar) g2.setPaint(Color.white);
+            else if (coche) g2.setPaint(Color.blue);
+            else g2.setPaint(Color.black);
+        	g2.drawLine(x1p, y1p, x2p, y2p);
+        	pintaCamino = false;     
+        }
+        if(true){
+        	g2.drawLine(0, 0, 10, 10);
+        	System.out.println(w+ ' ');
         }
     }
     
