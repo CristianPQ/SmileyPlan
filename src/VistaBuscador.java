@@ -11,6 +11,11 @@ public class VistaBuscador extends JPanel{
     private JPanel vistaBuscar;
     private JTextField textoBusqueda;
     private JButton botonBuscar;
+    //protected JButton botoncaC; 
+	//protected JButton botonciC; 
+	//protected JButton botoncaG; 
+	//protected JButton botonciG;
+    
     
     private DefaultListModel model;
     private JList l;
