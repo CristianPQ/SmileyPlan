@@ -164,7 +164,6 @@ public class ControladorMapa {
 		Iterator<String> it = list.iterator();
 		while(it.hasNext()) {
 			String n = it.next();
-				System.out.println(n + "\n");
 			nombreC = nombreC + n + "\n";
 		}
 		return nombreC;
