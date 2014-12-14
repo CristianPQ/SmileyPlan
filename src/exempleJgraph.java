@@ -1,5 +1,4 @@
 
-
 import javax.swing.JFrame;
 
 import com.mxgraph.swing.mxGraphComponent;
@@ -8,33 +7,8 @@ import com.mxgraph.view.mxGraph;
 import java.awt.*;
 
 import javax.swing.*;
-import java.util.*;
 
-public class VistaGrafo extends JPanel {
-	
-	private mxGraph g;
-	private ArrayList<Integer> vertexs;
-	private int LimiteX;
-	private int LimiteY;
-	
-	public VistaGrafo (){
-		 g = new mxGraph();
-		 vertexs = new ArrayList<Integer>();
-	};
-	
-	public void agregarCiudad(int x, int y, String nom){
-		Object parent = g.getDefaultParent();
-		 g.getModel().beginUpdate();
-		 int xscale = (x*this.getWidth())/LimiteX;
-		 int yscale = (y*this.getHeight())/LimiteY;
-		 int tamano = nom.length() * 6; //6 pixels per lletra
-		 g.insertVertex(parent, null, "nom", xscale, yscale, tamano,
-                 30);
-	}
-	
-	
-	/*
-	
+public class exempleJgraph extends JPanel {
     public static void main(String[] args) {
         mxGraph graph = new mxGraph();
         Object parent = graph.getDefaultParent();
