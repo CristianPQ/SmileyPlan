@@ -1,7 +1,7 @@
 /**
  ** Java Program to Implement Ternary Search Tree
  **/
- 
+
 import java.util.ArrayList;
 //import java.util.*;
  

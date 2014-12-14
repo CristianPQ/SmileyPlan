@@ -144,14 +144,7 @@ public class DriverMapa {
 		                break;
 		            }
 		            case 12: {
-		            	String map = new String();
-		        		String[][] ma = m.consultarMapa();
-		        		for(int i = 0; i < ma.length; ++i) {
-		        			for(int j = 0; j < ma[0].length; ++j) {
-		        				map = map + "[" + ma[i][j] + "]" + " ";
-		        			}
-		        			map = map + "\n";
-		        		}
+		            	String map = m.consultarMapa();
 		            	System.out.println(map + "\n");
 		                break;
 		            }

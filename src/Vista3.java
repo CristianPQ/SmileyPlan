@@ -6,6 +6,7 @@ import java.awt.*;
 public abstract class Vista3 extends Vista1 {
 
 	protected VistaBuscador vb;
+	protected VistaBuscador vciut; 
 	
 	protected JPanel panelv3; 
 	protected JPanel panelLista; 
@@ -181,8 +182,8 @@ public abstract class Vista3 extends Vista1 {
 		panelv3.add(panelCaminos);
 		panelv3.add(panelBotones);
 		
-		VistaBuscador vb2 = new VistaBuscador(this);
-		super.panelPrincipal.add(vb2);
+		VistaBuscador vciut = new VistaBuscador(this);
+		super.panelPrincipal.add(vciut);
 		
 		super.panelPrincipal.add(panelv3);
 		super.panelPrincipal.add(vb);
