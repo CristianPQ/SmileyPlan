@@ -1,30 +1,35 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.lang.model.type.NullType;
 
+public class AlgDriv {
 
-public class AlgGraph {
-	private Grafo<NullType, Arista> g;
+	class AlgGraph {
+		 Grafo<NullType, Arista> g;
 	///////////////////////////////////////////////
 	///////////////FUNCIONES GRAFO ARISTA///////////
 	////////////////////////////////////////////////
 	
+		AlgGraph(Grafo<NullType, Arista> g1) {
+		g = g1;
+		}
 	//ArrayList<Arista> consultarAdyacentes(int vertex) -> g.consultarAdyacentesSalida(int vertex)
-	public boolean existeAdyacente(int vertex, int targetVertex){
+		boolean existeAdyacente(int vertex, int targetVertex){
 		ArrayList<Arista> a = g.consultarAristasSalida(vertex);
 		for (int i = 0; i < a.size(); ++i)
 			if (a.get(i).consultarVerticeDestino() == targetVertex) return true;
 		return false;
 	}
 	
-	public void anadirArista (int vertex, int targetVertex,
+	 void anadirArista (int vertex, int targetVertex,
 			int flow, int capacity, int cost){
 		Arista a = new Arista(targetVertex, flow, capacity, cost);
 		g.agregarElemento(targetVertex, vertex, a);
 	}
 	
-	public void eliminarArista(int vertex, int targetVertex){
+	 void eliminarArista(int vertex, int targetVertex){
 		ArrayList<Arista> adj = g.consultarAristasSalida(vertex);
 		boolean trobat = false;
 		Arista ar = null;
@@ -37,7 +42,7 @@ public class AlgGraph {
 		if (trobat) g.eliminarAristaSalida(ar, vertex);					
 	}
 	
-	public int consultarFlujoArista(int vertex, int targetVertex){
+	 int consultarFlujoArista(int vertex, int targetVertex){
 		int i;
 		ArrayList<Arista> adj = g.consultarAristasSalida(vertex);
 		for (i = 0; i < adj.size(); ++i){
@@ -49,7 +54,7 @@ public class AlgGraph {
 		return -1;
 	}
 	
-	public void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo){
+	 void modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo){
 		int i;
 		ArrayList<Arista> adj = g.consultarAristasSalida(vertex);
 		Arista ar = null;
@@ -65,7 +70,7 @@ public class AlgGraph {
 		g.agregarArista(ar, targetVertex, vertex);
 	}
 	
-	public int consultarCapacidadArista(int vertex, int targetVertex){
+	 int consultarCapacidadArista(int vertex, int targetVertex){
 		int i;
 		ArrayList<Arista> adj = g.consultarAristasSalida(vertex);
 		for (i = 0; i < adj.size(); ++i){
@@ -93,7 +98,7 @@ public class AlgGraph {
 		g.agregarArista(ar, targetVertex, vertex);
 	}
 
-	public int consultarCosteArista(int vertex, int targetVertex){
+	 int consultarCosteArista(int vertex, int targetVertex){
 		int i;
 		ArrayList<Arista> adj = g.consultarAristasSalida(vertex);
 		for (i = 0; i < adj.size(); ++i){
@@ -105,7 +110,7 @@ public class AlgGraph {
 		return -1;
 	}
 	
-	public void modificarCosteArista(int vertex, int targetVertex, int nuevaCapacidad){
+	 void modificarCosteArista(int vertex, int targetVertex, int nuevaCapacidad){
 		int i;
 		ArrayList<Arista> adj = g.consultarAristasSalida(vertex);
 		Arista ar = null;
@@ -126,7 +131,7 @@ public class AlgGraph {
 	//y lo devolveria, se puede hacer en mismo grafo easy
 	
 	
-	public int consultarNumAristasVertice(int vertex){
+	 int consultarNumAristasVertice(int vertex){
 		return g.consultarAristasSalida(vertex).size();
 	}
 	
@@ -136,12 +141,7 @@ public class AlgGraph {
 
 
 
-
-
-
-public class DriverGrafoArista {
-
-private static void menu() {
+	private static void menu() {
 	        System.out.println("Driver clase GrafoAntiguo"
 	                + "\n 0.Salir"
 	                + "\n 1.[Constructora] GrafoAntiguo(int numVertex)"
@@ -161,7 +161,7 @@ private static void menu() {
 }
 
 public static void main(String [] args) throws Exception {
-			Grafo<Arista> g = null;
+			AlgGraph g = null;
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
@@ -172,7 +172,8 @@ public static void main(String [] args) throws Exception {
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
-	    					g = new Grafo<Arista>(numVertex);
+	    					Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista> (numVertex);
+	    					g.g = g1;
 	    					break;
 	    				}
 	    				case 2:{//existe la arista?    				
@@ -247,12 +248,13 @@ public static void main(String [] args) throws Exception {
 	    					break;
 	    				}
 	    				
-	    				case 11: {
+	    			/*	case 11: {
 	    					int num = g.consultarNumVertices();
 	    					System.out.println("Numero de vertices:" + num + "\n");
 	    					break;
 	    					
 	    				}
+	    				*/
 	    				
 	    				case 12: {
 	    					int vertex = Integer.parseInt(lsplited[1]);
@@ -264,7 +266,7 @@ public static void main(String [] args) throws Exception {
 	    				
 	    				case 13: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
-	    					ArrayList <Arista> l = g.consultarAdyacentes(numVertex);
+	    					ArrayList <Arista> l = g.g.consultarAristasSalida(numVertex);
 	    					for (int i = 0; i < l.size(); ++i){
 	    						System.out.println(l.get(i).consultarVerticeDestino()  + " ");
 	    					}
@@ -288,4 +290,4 @@ public static void main(String [] args) throws Exception {
     	}
 
 } //Cierra funcion
-} //Cierra clase
+}
