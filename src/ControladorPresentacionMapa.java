@@ -89,32 +89,25 @@ public class ControladorPresentacionMapa {
 	}
 	
 	public String[] listarCaminos() throws Exception {
-		System.out.println("control present mapa");
+		//System.out.println("control present mapa");
 		String nombres = cm.consultarTodosCaminosToString();
 		String[] ret = nombres.split("\n"); 
- 		/*ArrayList<String> ret = new ArrayList<String>();
-		if(nombres == null) return ret;
-		int i = 0;
-		String nom;
-		while (i < nombres.length()){
-			nom = "";
-			nom += nombres.charAt(i);
-			++i;
-			while (nombres.charAt(i) != ' '){
-				nom += nombres.charAt(i);
-				++i;	
-			}
-			++i;
-			if (nom.charAt(0) != ' ') ret.add(nom);			
-		}*/
 		return ret;
 	}
 	
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap){
 		try{
-			System.out.println("estic a controlador presnt per crear");
+			//System.out.println("estic a controlador presnt per crear");
 			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());}
 		catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
+	
+	public void modificarCamino(String COrig, String cDest, String medio, int cap){
+		try {
+			cm.modificarAtributosCamino(COrig, cDest, medio, cap);
+		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
 	}

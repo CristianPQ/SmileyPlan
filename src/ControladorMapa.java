@@ -164,7 +164,7 @@ public class ControladorMapa {
 		Iterator<String> it = list.iterator();
 		while(it.hasNext()) {
 			String n = it.next();
-				//System.out.println(n + "\n");
+				System.out.println(n + "\n");
 			nombreC = nombreC + n + "\n";
 		}
 		return nombreC;
@@ -203,7 +203,7 @@ public class ControladorMapa {
 	 * @throws Exception
 	 */
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap, ControladorMedioTransporte contMT) throws Exception {
-		System.out.println("estic a agregar camino");
+		
 		//Comprobar que el medioTransporte ya existe
 		if(!contMT.existe(medio)) throw NoExiste;
 		Camino c = new Camino(cOrig, cDest, cap, medio);
