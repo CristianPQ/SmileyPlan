@@ -26,16 +26,8 @@ public class AlgGraph {
 	}
 	
 		public void eliminarArista(int vertex, int targetVertex){
-		ArrayList<Arista> adj = g.consultarAristasSalida(vertex);
-		boolean trobat = false;
-		Arista ar = null;
-		for(int i = 0; i < adj.size() && !trobat; ++i){	
-			if(!adj.get(i).equals(null) && adj.get(i).consultarVerticeDestino() == targetVertex){
-			ar = adj.get(i);
-			trobat = true;				
-			}
-		}
-		if (trobat) g.eliminarAristaSalida(ar, vertex);					
+		Arista ar = new Arista(targetVertex, 0, 0, 0);
+		g.eliminarArista(ar, targetVertex, vertex);				
 	}
 	
 	 public int consultarFlujoArista(int vertex, int targetVertex){
@@ -61,7 +53,7 @@ public class AlgGraph {
 				}			
 			}
 		
-		g.eliminarAristaSalida(ar, vertex);
+		g.eliminarArista(ar, targetVertex, vertex);
 		ar.modificarFlujo(nuevoFlujo);		
 		g.agregarArista(ar, targetVertex, vertex);
 	}
@@ -89,7 +81,7 @@ public class AlgGraph {
 				}			
 			}
 		
-		g.eliminarAristaSalida(ar, vertex);
+		g.eliminarArista(ar, targetVertex, vertex);
 		ar.modificarCapacidad(nuevaCapacidad);		
 		g.agregarArista(ar, targetVertex, vertex);
 	}
@@ -117,7 +109,7 @@ public class AlgGraph {
 				}			
 			}
 		
-		g.eliminarAristaSalida(ar, vertex);
+		g.eliminarArista(ar, targetVertex, vertex);
 		ar.modificarCoste(nuevaCapacidad);		
 		g.agregarArista(ar, targetVertex, vertex);
 	}	

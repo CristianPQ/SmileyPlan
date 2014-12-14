@@ -1,8 +1,20 @@
+
 public class Arista{
+
 		private int verticeDestino;
 		private int flujo;
 		private int capacidad;
 		private int coste;
+		
+		public boolean equals(Object obj) {
+			if(this == obj) return true;
+			if(obj == null) return false;
+			if(getClass() != obj.getClass()) return false;
+			Arista c = (Arista) obj;
+			if (verticeDestino == c.consultarVerticeDestino()) return true;
+			return false;
+
+		}
 		
 		/**
 		 * Creadora arista

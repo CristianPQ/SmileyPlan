@@ -41,11 +41,8 @@ public static void main(String [] args) throws Exception {
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
-	    					System.out.println("Llego");
 	    					Grafo<NullType,Arista> g2 = new Grafo<NullType, Arista> (numVertex);
-	    					System.out.println("Llego");
 	    					g = new AlgGraph(g2);
-	    					System.out.println("Llego");
 
 	    					break;
 	    				}
@@ -54,6 +51,7 @@ public static void main(String [] args) throws Exception {
 	    					int numAd = Integer.parseInt(lsplited[2]);
 	    					if(g.existeAdyacente(numVertex, numAd))
 	    					System.out.println("Si existe arista desde " + numVertex + " hacia "+ numAd);
+	    					else System.out.println("Esa arista no existe");
 	    					break;
 	    				}
 
@@ -117,7 +115,7 @@ public static void main(String [] args) throws Exception {
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
 	    					int nuevoCoste = Integer.parseInt(lsplited[3]);
-	    					g.modificarCapacidadArista(vertex, targetVertex, nuevoCoste);
+	    					g.modificarCosteArista(vertex, targetVertex, nuevoCoste);
 	    					break;
 	    				}
 	    				
@@ -139,7 +137,7 @@ public static void main(String [] args) throws Exception {
 	    				
 	    				case 13: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
-	    					ArrayList <Arista> l = g.g.consultarAristasSalida(numVertex);
+	    					ArrayList <Arista> l =g.g.consultarAristasSalida(numVertex);
 	    					for (int i = 0; i < l.size(); ++i){
 	    						System.out.println(l.get(i).consultarVerticeDestino()  + " ");
 	    					}
