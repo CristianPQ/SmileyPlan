@@ -100,14 +100,14 @@ public class FordFulkerson extends Algoritmo{
 	 */
 	public Solucion ejecutar ( Entrada e) throws Exception{
 		float t1 = System.currentTimeMillis();
-		GrafoAntiguo g = e.consultarGrafo();
+		//GrafoAntiguo g = e.consultarGrafo();
 		int s = e.consultarSource();
 		int t = e.consultarSink();
 		int numA = e.consultarNumeroAgentes();
-		inicializacion(g,s,t);
+		inicializacion(e,s,t);
 		int flow = 0;
 	    for (flow = 0;;) {
-	        int df = findPath(g, new boolean[g.consultarNumVertices()], s, t, Integer.MAX_VALUE);
+	        int df = findPath(e, new boolean[e.consultarNumVertices()], s, t, Integer.MAX_VALUE);
 	        if (df == 0)
 	          break;
 	        flow += df;

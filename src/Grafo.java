@@ -125,6 +125,9 @@ public class Grafo<E1, E2> {
     	if(vertices.numero() > 0) return false;
     	else return true;
     }
+    public int consultarNumVertices() {
+    	return aristas.size();
+    }
     
 	/////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////
