@@ -33,7 +33,7 @@ public class DriverControladorMapa {
     }
 	
     public static void main(String [] args) throws Exception {
-    	ControladorMapa m = null;
+    	ControladorMapa m = new ControladorMapa();
     	ControladorMedioTransporte medioT = new ControladorMedioTransporte();
     	
     	//Medios disponibles
