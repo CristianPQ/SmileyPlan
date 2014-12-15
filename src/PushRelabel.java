@@ -26,7 +26,7 @@ public class PushRelabel extends Algoritmo {
 	
 	/** funcion recursiva para crear los itinerarios a partir del grafo, cada llamada agrega su vertice al itinerario tantas veces como la diferencia entre indiceF y indiceI
 	 * estos son el numero de flow por el que ha sido llamado**/
-	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
+	void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		for (int i = indiceI; i <= indiceF; ++i){
 				sol.agregarVertice(i, u);
@@ -61,12 +61,12 @@ public class PushRelabel extends Algoritmo {
 	 * @param s
 	 * @param t
 	 */
-	private void inicializacion(GrafoAntiguo g,int s, int t){
+	private void inicializacion(Entrada g,int s, int t){
 		int v;
 		flow = 0;
 		ArrayList <Arista> adyacencias;
 		/** creo todos las aristas inversas **/
-		for (int i = 0; i < g.consultarNumVertices(); ++i){
+		for (int i = 0; i < g.consultarNumeroVertices(); ++i){
 			adyacencias = g.consultarAdyacentes(i);
 			for (int j = 0; j < adyacencias.size(); ++j){		
 				v = adyacencias.get(j).consultarVerticeDestino();
@@ -78,7 +78,7 @@ public class PushRelabel extends Algoritmo {
 		 * es el destino aumento el flow **/
 		for (int i = 0; i < alturas.length; ++i){
 			if ( i == s) {
-				alturas[i] = g.consultarNumVertices();
+				alturas[i] = g.consultarNumeroVertices();
 				adyacencias = g.consultarAdyacentes(i);
 				for (int j = 0; j < adyacencias.size(); ++j){
 					v = adyacencias.get(j).consultarVerticeDestino();
@@ -110,7 +110,7 @@ public class PushRelabel extends Algoritmo {
 	 * @param v
 	 * @throws Exception 
 	 */
-	private void push(GrafoAntiguo g, int u, int v, int t) throws Exception{
+	private void push(Entrada g, int u, int v, int t) throws Exception{
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v); //la capacidad redidual sera la capacidad de la arista menos el flujo que passa por esta
 		int temp = Math.min(capacidadResidual,exceso[u]); // temporal para saber cuanto podemos pushear
 		int nuevoFlujo = g.consultarFlujoArista(u, v) + temp; //el nuevo flujo de la arista sera el antiguo mas el que ahora pasa
@@ -149,17 +149,18 @@ public class PushRelabel extends Algoritmo {
 	 * lo quito de la cola y vuelvo a iterar con el siguiente vertice de la cola.
 	 * @throws Exception 
 	 */
-	public Solucion ejecutar (Entrada e) throws Exception{
+	public Solucion ejecutar (Entrada g) throws Exception{
 		
 		float t1 = System.currentTimeMillis();
-		GrafoAntiguo g = e.consultarGrafo();
-		int s = e.consultarSource();
-		int t = e.consultarSink();
-		int numA = e.consultarNumeroAgentes();
+		//GrafoAntiguo g = e.consultarGrafo();
 		
-		alturas = new int[g.consultarNumVertices()];
-		exceso = new int[g.consultarNumVertices()];
-		active = new int[g.consultarNumVertices()];
+		int s = g.consultarSource();
+		int t = g.consultarSink();
+		int numA = g.consultarNumeroAgentes();
+		
+		alturas = new int[g.consultarNumeroVertices()];
+		exceso = new int[g.consultarNumeroVertices()];
+		active = new int[g.consultarNumeroVertices()];
 		q = new LinkedList<Integer>();
 		inicializacion(g, s, t);
 		int capacidadResidual,u,v,m;
@@ -202,7 +203,7 @@ public class PushRelabel extends Algoritmo {
 		Solucion sol = new Solucion(flow);
 		if (flow >= numA){ //si el flow es mas grande que numero de agentes hay solucion
 			sol.modificartieneSolucion(true);
-			sol.modificarGrafo(g);
+			//sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0); //crea los itinerarios a partir del grafo
 		}
 
