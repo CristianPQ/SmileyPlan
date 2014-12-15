@@ -47,6 +47,25 @@ public class ControladorMapa {
 		return borde;
 	}
 	
+	public int conusltarAnchura() {
+		return m.consultarAnchura();
+	}
+	
+	public int consultarAltura() {
+		return consultarAltura();
+	}
+	
+	public String consultarContinente() {
+		ArrayList<Coordenadas> cont = m.consultarArrayCoord();
+		String continente = new String();
+		for(int i = 0; i < cont.size(); ++i) {
+			Coordenadas coord = cont.get(i);
+			continente = coord.consultarX() + " " + coord.consultarY() + " ";
+		}
+		return continente;
+	}
+	
+	
 	
 	//#########################################
 	//##########SOBRE CIUDADES
