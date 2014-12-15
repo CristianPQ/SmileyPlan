@@ -51,6 +51,24 @@ public class Grafo<E1, E2> {
         		}
         	}
         }
+        
+        public void modificarEntrada(E2 e) {
+        	for(int i = 0; i < entrada.size(); ++i) {
+        		if(entrada.get(i).equals(e)) {
+        			entrada.set(i,e);
+        			return;
+        		}
+        	}
+        }
+        
+        public void modificarSalida(E2 e) {
+        	for(int i = 0; i < salida.size(); ++i) {
+        		if(salida.get(i).equals(e)) {
+        			salida.set(i,e);
+        			return;
+        		}
+        	}
+        }
     }
     
     private TST<E1> vertices;
@@ -141,6 +159,15 @@ public class Grafo<E1, E2> {
     	aristas.set(out, sal);
     }
     
+    public void modificarArista(E2 e, int in, int out) {
+    	Sentidos ent = aristas.get(in);
+    	ent.modificarEntrada(e);
+    	aristas.set(in, ent);
+    	Sentidos sal = aristas.get(out);
+    	sal.modificarSalida(e);
+    	aristas.set(out, sal);
+    }
+    
     public void eliminarArista(E2 e, int in, int out) {
     	Sentidos ent = aristas.get(in);
     	ent.eliminarEntrada(e);
@@ -215,48 +242,6 @@ public class Grafo<E1, E2> {
     	for(int i = 0; i < n; ++i) {
     		agrandar();
     	}
-    }
-    
-    
-    /**
-     *
-     * @param indice
-     * @param e
-     * @return
-     */
-    public boolean existeAdyacente(int indice, E2 e) {
-        return aristas.get(indice).existe(e);
-    }
-    
-    /**
-     * Adicion de elemento
-     * @param vertex vertice origen
-     * @param e
-     */
-    public void agregarElemento(int in, int out, E2 e) {
-        Sentidos ent = aristas.get(in);
-        ent.agregarEntrada(e);
-        aristas.set(in, ent);
-        
-        Sentidos sal = aristas.get(out);
-        sal.agregarSalida(e);
-        aristas.set(out, sal);
-    }
-    
-    /**
-     * Eliminacion de un elemento
-     * @param vertex vertice origen
-     * @param targetVertex vertice destino
-     * @throws Exception 
-     */
-    public void eliminarElemento(int in, int out, E2 e) throws Exception{
-    	Sentidos ent = aristas.get(in);
-    	Sentidos sal= aristas.get(out);
-        if(!ent.existe(e) || !sal.existe(e)) throw NoExiste;
-        ent.eliminarEntrada(e);
-        sal.eliminarSalida(e);
-        aristas.set(in, ent);
-        aristas.set(out, sal);
     }
     
     public int size() {

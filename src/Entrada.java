@@ -105,12 +105,14 @@ public class Entrada {
 			if( !adj.get(i).equals(null) &&
 					adj.get(i).consultarVerticeDestino() == targetVertex){
 						ar = adj.get(i);
+						ar.modificarFlujo(nuevoFlujo);		
+						g.modificarArista(ar, targetVertex, vertex);
 				}			
 			}
 		
-		g.eliminarArista(ar, targetVertex, vertex);
+		/*g.eliminarArista(ar, targetVertex, vertex);
 		ar.modificarFlujo(nuevoFlujo);		
-		g.agregarArista(ar, targetVertex, vertex);
+		g.agregarArista(ar, targetVertex, vertex);*/
 	}
 	
 	
@@ -137,12 +139,14 @@ public class Entrada {
 			if( !adj.get(i).equals(null) &&
 					adj.get(i).consultarVerticeDestino() == targetVertex){
 						ar = adj.get(i);
+						ar.modificarCapacidad(nuevaCapacidad);
+						g.modificarArista(ar, targetVertex, vertex);
 				}			
 			}
 		
-		g.eliminarArista(ar, targetVertex, vertex);
+		/*g.eliminarArista(ar, targetVertex, vertex);
 		ar.modificarCapacidad(nuevaCapacidad);		
-		g.agregarArista(ar, targetVertex, vertex);
+		g.agregarArista(ar, targetVertex, vertex);*/
 	}
 
 	
@@ -161,7 +165,7 @@ public class Entrada {
 	
 	 
 	 
-	public void modificarCosteArista(int vertex, int targetVertex, int nuevaCapacidad){
+	public void modificarCosteArista(int vertex, int targetVertex, int nuevoCoste){
 		int i;
 		ArrayList<Arista> adj = g.consultarAristasSalida(vertex);
 		Arista ar = null;
@@ -169,12 +173,14 @@ public class Entrada {
 			if( !adj.get(i).equals(null) &&
 					adj.get(i).consultarVerticeDestino() == targetVertex){
 						ar = adj.get(i);
+						ar.modificarCoste(nuevoCoste);
+						g.modificarArista(ar, targetVertex, vertex);
 				}			
 			}
 		
-		g.eliminarArista(ar, targetVertex, vertex);
-		ar.modificarCoste(nuevaCapacidad);		
-		g.agregarArista(ar, targetVertex, vertex);
+		/*g.eliminarArista(ar, targetVertex, vertex);
+		ar.modificarCoste(nuevoCoste);		
+		g.agregarArista(ar, targetVertex, vertex);*/
 	}	
 	
 	
