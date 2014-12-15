@@ -2,7 +2,6 @@
 import java.util.*;
 
 public class ControladorAlgoritmo {
-	private String[] mapping;
 	private Entrada ent;
 	private Solucion sol;
 	private ControladorItinerarios cit;
@@ -14,21 +13,9 @@ public class ControladorAlgoritmo {
 		if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
 		return sol.consultarTiempo();
 	}
-	
-	public String[] consultarMapping(){
-		return mapping;
-	}
 
-	public int consultarNumVertices(){
-		return mapping.length;
-	}
-	
-	public int returnCityIndex(String city){
-		int indice = -1;
-		for (int i = 0; i < mapping.length; ++i) 
-			if (mapping[i].equals(city)) {indice = i; return indice;}
-			return indice;
-	}
+
+
 	
 	public ControladorAlgoritmo() {}
 	
@@ -37,7 +24,7 @@ public class ControladorAlgoritmo {
 		//#########################################
 		//########## MAPEADO ##################
 		//#########################################
-		int i;
+/*		int i;
 
 		ArrayList<String> mapeo = new ArrayList<String>();
 
@@ -64,16 +51,16 @@ public class ControladorAlgoritmo {
 			
 		mapping = new String[mapeo.size()];
 		for (int z = 0; z < mapeo.size(); ++z) mapping[z] = mapeo.get(z);
-		
+	*/	
 		//#########################################
 		//########## FIN MAPEADO ##################
 		//#########################################
 	
-		int orig = returnCityIndex(cOrig);
-		int dest = returnCityIndex(cDest);
+	//	int orig = returnCityIndex(cOrig);
+	//	int dest = returnCityIndex(cDest);
 		GrafoAntiguo g = crearGrafo(cm, mt);
 		int nAgent = ca.numeroAgentesOrigenObjetivo(cOrig, cDest);
-		ent = new Entrada(g, orig, dest, nAgent);
+		//ent = new Entrada(g, orig, dest, nAgent);
 		cit = new ControladorItinerarios();
 		agentes = ca.consultarAgentesOrigenObjetivo(cOrig, cDest);
 		sol = new Solucion(nAgent);
