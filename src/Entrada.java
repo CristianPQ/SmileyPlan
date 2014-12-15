@@ -71,7 +71,7 @@ public class Entrada {
 		public void anadirArista (int vertex, int targetVertex,
 				int flow, int capacity, int cost){
 			Arista a = new Arista(targetVertex, flow, capacity, cost);
-			g.agregarElemento(targetVertex, vertex, a);
+			g.agregarArista(a,targetVertex,vertex);
 		}
 	
 		

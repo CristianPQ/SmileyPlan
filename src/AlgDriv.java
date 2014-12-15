@@ -30,7 +30,7 @@ public class AlgDriv {
 }
 
 public static void main(String [] args) throws Exception {
-			AlgGraph g = null;
+			Entrada e = null;
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
@@ -42,14 +42,14 @@ public static void main(String [] args) throws Exception {
 	    				case 1: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
 	    					Grafo<NullType,Arista> g2 = new Grafo<NullType, Arista> (numVertex);
-	    					g = new AlgGraph(g2);
+	    					e = new Entrada(g2, numVertex);
 
 	    					break;
 	    				}
 	    				case 2:{//existe la arista?    				
 	    					int numVertex = Integer.parseInt(lsplited[1]);
 	    					int numAd = Integer.parseInt(lsplited[2]);
-	    					if(g.existeAdyacente(numVertex, numAd))
+	    					if(e.existeAdyacente(numVertex, numAd))
 	    					System.out.println("Si existe arista desde " + numVertex + " hacia "+ numAd);
 	    					else System.out.println("Esa arista no existe");
 	    					break;
@@ -61,20 +61,20 @@ public static void main(String [] args) throws Exception {
 	    					int flow = Integer.parseInt(lsplited[3]);
 	    					int capacity = Integer.parseInt(lsplited[4]);
 	    					int cost = Integer.parseInt(lsplited[5]);
-	    					g.anadirArista(vertex, targetVertex, flow, capacity, cost);
+	    					e.anadirArista(vertex, targetVertex, flow, capacity, cost);
 	    					break;
 	    				}
 	    				case 4:{ //eliminarArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
-	    					g.eliminarArista(vertex, targetVertex);
+	    					e.eliminarArista(vertex, targetVertex);
 	    					break;
 	    				}
 	    				
 	    				case 5: {//consultarFlujoArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
-	    					int flujoArista = g.consultarFlujoArista(vertex, targetVertex);
+	    					int flujoArista = e.consultarFlujoArista(vertex, targetVertex);
 	    					System.out.println("Flujo Arista ("+ vertex + "," +  targetVertex +"): "+ flujoArista +"\n");
 	    					break;
 	    				}
@@ -83,14 +83,14 @@ public static void main(String [] args) throws Exception {
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
 	    					int nuevoFlujo = Integer.parseInt(lsplited[3]);
-	    					g.modificarFlujoArista(vertex, targetVertex, nuevoFlujo);
+	    					e.modificarFlujoArista(vertex, targetVertex, nuevoFlujo);
 	    					break;
 	    				}
 	    				
 	    				case 7: {//consultarCapacidadArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
-	    					int capacidadArista = g.consultarCapacidadArista(vertex, targetVertex);
+	    					int capacidadArista = e.consultarCapacidadArista(vertex, targetVertex);
 	    					System.out.println("Capacidad Arista ("+ vertex + "," +  targetVertex +"): "+ capacidadArista +"\n");
 	    					break;
 	    				}
@@ -99,14 +99,14 @@ public static void main(String [] args) throws Exception {
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
 	    					int nuevaCapacidad = Integer.parseInt(lsplited[3]);
-	    					g.modificarCapacidadArista(vertex, targetVertex, nuevaCapacidad);
+	    					e.modificarCapacidadArista(vertex, targetVertex, nuevaCapacidad);
 	    					break;
 	    				}
 	    				
 	    				case 9: {//ConsultarCosteArista
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
-	    					int costeArista = g.consultarCosteArista(vertex, targetVertex);
+	    					int costeArista = e.consultarCosteArista(vertex, targetVertex);
 	    					System.out.println("Coste Arista ("+ vertex + "," +  targetVertex +"): "+ costeArista +"\n");
 	    					break;
 	    				}
@@ -115,21 +115,21 @@ public static void main(String [] args) throws Exception {
 	    					int vertex = Integer.parseInt(lsplited[1]);
 	    					int targetVertex = Integer.parseInt(lsplited[2]);
 	    					int nuevoCoste = Integer.parseInt(lsplited[3]);
-	    					g.modificarCosteArista(vertex, targetVertex, nuevoCoste);
+	    					e.modificarCosteArista(vertex, targetVertex, nuevoCoste);
 	    					break;
 	    				}
 	    				
-	    			/*	case 11: {
-	    					int num = g.consultarNumVertices();
+	    				case 11: {
+	    					int num = e.consultarNumeroVertices();
 	    					System.out.println("Numero de vertices:" + num + "\n");
 	    					break;
 	    					
 	    				}
-	    				*/
+	    				
 	    				
 	    				case 12: {
 	    					int vertex = Integer.parseInt(lsplited[1]);
-	    					int num = g.consultarNumAristasVertice(vertex);
+	    					int num = e.consultarNumAristasVertice(vertex);
 	    					System.out.println("Aristas desde vertice "+ vertex+ ": " + num + "\n");
 	    				
 	    					break;
@@ -137,7 +137,7 @@ public static void main(String [] args) throws Exception {
 	    				
 	    				case 13: {
 	    					int numVertex = Integer.parseInt(lsplited[1]);
-	    					ArrayList <Arista> l =g.g.consultarAristasSalida(numVertex);
+	    					ArrayList <Arista> l =e.consultarAdyacentes(numVertex);
 	    					for (int i = 0; i < l.size(); ++i){
 	    						System.out.println(l.get(i).consultarVerticeDestino()  + " ");
 	    					}
@@ -155,8 +155,8 @@ public static void main(String [] args) throws Exception {
 	    	                break;
 	    	            } 
 	    			}
-	    		} catch(Exception e) {
-	    	        System.out.println("Error: " + e.getMessage() + "\n");
+	    		} catch(Exception ef) {
+	    	        System.out.println("Error: " + ef.getMessage() + "\n");
 	    	}
     	}
 
