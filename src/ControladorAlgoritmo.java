@@ -5,7 +5,9 @@ public class ControladorAlgoritmo {
 	private Entrada ent;
 	private Solucion sol;
 	private ControladorItinerarios cit;
+	private boolean CosteDistancia; //si 0, coste*distancia; si 1, distancia
 	private ArrayList<String > agentes;
+	private String[] mapping;
 	
 	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
 	
@@ -58,7 +60,7 @@ public class ControladorAlgoritmo {
 	
 	//	int orig = returnCityIndex(cOrig);
 	//	int dest = returnCityIndex(cDest);
-		GrafoAntiguo g = crearGrafo(cm, mt);
+		ent  = cm.crearGrafo(CosteDistancia, mt);
 		int nAgent = ca.numeroAgentesOrigenObjetivo(cOrig, cDest);
 		//ent = new Entrada(g, orig, dest, nAgent);
 		cit = new ControladorItinerarios();
@@ -80,7 +82,8 @@ public class ControladorAlgoritmo {
 	//#########################################
 	//########## CREACION GRAFO ################
 	//#########################################
-	private GrafoAntiguo crearGrafo(ControladorMapa m, ControladorMedioTransporte mt) throws Exception{
+
+	/*private GrafoAntiguo crearGrafo(ControladorMapa m, ControladorMedioTransporte mt) throws Exception{
 		GrafoAntiguo g = new GrafoAntiguo(mapping.length); //init grafo		
 		ArrayList<Camino> aristando;
 		for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
@@ -132,7 +135,7 @@ public class ControladorAlgoritmo {
 			}
 			
 		return g;
-	}
+	}*/
 	
 	
 	///////DUDA: TAMBIEN HAY QUE CREARL DENTRO DE LA CONSTRUCTORA NO?

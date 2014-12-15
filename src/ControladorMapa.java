@@ -769,11 +769,12 @@ public class ControladorMapa {
 		return mapping.length;
 	}
 	
-	private void /*GrafoAntiguo*/ crearGrafo(/*ControladorControladorMedioTransporte mt*/) throws Exception{
+	public Entrada /*GrafoAntiguo*/ crearGrafo(boolean calcCoste, ControladorMedioTransporte mt) 
+			throws Exception{
 		
 		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(mapping.length); //init grafo	
 		Entrada e = new Entrada (g1, mapping.length);
-		
+
 		ArrayList<Camino> aristando;
 		for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
 			aristando = new ArrayList<Camino>();
@@ -791,10 +792,14 @@ public class ControladorMapa {
 					///aqui arriba otengo la capacidad
 
 					////////CALCULO TEMA COSTE//////////////////////////
-				//	int precioTransporte = mt.getPrecioTransporte(aristando.get(j).consultarTransporte());
+					FuncionCoste f;
+					int precio = mt.getPrecioTransporte(aristando.get(j).consultarTransporte());
 					int distanciaCiudades = m.distanciaCiudades(m.listarCiudades().get(i), 
 												aristando.get(j).consultarDestino());
-				//	int cost = precioTransporte*distanciaCiudades; //REVISAR ESTO!!!!!!!!!!
+					
+					if (calcCoste)	f = new FuncionCostePorDistancia();
+					else f = new FuncionPorDistancia();
+					precio = f.getCoste(precio, distanciaCiudades);			
 
 					////////////////////////////////////////////////
 					//////MECANISMO PARA SALTAR DE VERTICE DENTRO DE LA MISMA CIUDAD
@@ -802,11 +807,11 @@ public class ControladorMapa {
 					int insert_here = -1;
 					boolean insertado = false;
 					
-					while (!insertado){ //para tener en cuenta y poder anadir los vertices auxiliares
+					while (!insertado){
 						++insert_here;
 						if (!e.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
 							insertado = true;
-					//		e.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here,targetVertex, 0, capacity, cost);
+							e.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex, 0, capacity, precio);
 							}
 						
 						//Aqui abajo: para tener en cuenta y poder anadir los vertices auxiliares
@@ -823,7 +828,7 @@ public class ControladorMapa {
 				
 			}
 			
-	//	return g;
+		return e;
 	}
 	
 }
