@@ -516,18 +516,18 @@ public class ControladorMapa {
 		int total = l.length; 
 		int i = 0; 
 		String[] cortarstring = l[i].split(" ");
+		
 		int x = Integer.parseInt(cortarstring[i]);
 		int y = Integer.parseInt(cortarstring[i+1]);
-		//captar continente y luego crear mapa 
+		++i; 
 		
 		ArrayList<Coordenadas> cont = new ArrayList<Coordenadas>(); 
 		
-		for (int j = 1; j < total; ++j) {
+		for (int j = i; j < total; ++j) {
 			cortarstring = l[j].split(" ");
-			int pos1 = Integer.parseInt(cortarstring[1]);
-			int pos2 = Integer.parseInt(cortarstring[2]);
-			Coordenadas aux = new Coordenadas(pos1,pos2); 
-			cont.add(aux); 
+			int pos1 = Integer.parseInt(cortarstring[0]);
+			int pos2 = Integer.parseInt(cortarstring[1]);
+			cont.add(new Coordenadas(pos1, pos2));
 		}
 		m = new Mapa(x, y, cont);
 	}
@@ -546,17 +546,14 @@ public class ControladorMapa {
 		gd.abrirArchivo("read"); 
 		
 		
-		//int num = gd.bufferToStrings(); 
-			System.out.println("Antes de obtenerTodoElString");
+		int num = gd.bufferToStrings(); 
 		String carga = gd.obtenerTodoElString(); 
-			System.out.println("Despues de obtenerTodoElString");
-		
-		//buffer = gd.readBuffer(num+1); //totes les linies de coordenades + la de x i y  
 		
 		String[] lineas = carga.split("\n");
 		convertirMapa(lineas);
 		
-		gd.cerrarArchivo(); 
+		gd.cerrarArchivo();
+		System.out.println("fi"); 
 		return true; 
 	}
 	

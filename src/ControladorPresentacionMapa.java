@@ -48,6 +48,18 @@ public class ControladorPresentacionMapa {
 	public void eliminarCiudad(String c){
 		try {
 			cm.eliminarCiudad(c);
+			/*String cam1 = cm.consultarCaminosDestinoToString(c);
+			String cam2 = cm.consultarCaminosDestinoToString(c);
+			
+			for(int i = 0; i < cam1.length(); i+=3){
+				String co = cam1.split(" ")[i]; 
+				String cd = cam1.split(" ")[i+1]; 
+				String medio = cam1.split(" ")[i+2]; 
+				cm.eliminarCamino(co, cd, medio);
+			}*/
+			
+			//TAMBE AMB AGENTES
+			
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
@@ -108,6 +120,8 @@ public class ControladorPresentacionMapa {
 	
 	///// CAMINO ///
 
+	
+	
 	
 	public String[] listarCaminos() throws Exception {
 		//System.out.println("control present mapa");

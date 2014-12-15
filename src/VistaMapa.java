@@ -295,7 +295,6 @@ public class VistaMapa extends Vista3{
 					setError(e1.getMessage());
 				} 	
 			}
-			
 		});
 		
 		botonGuardar.addActionListener(new ActionListener(){
@@ -304,6 +303,7 @@ public class VistaMapa extends Vista3{
 				abrirBrowserGuardar();
 			}
 		});
+		
 		/*
 		botoncaG.addActionListener(new ActionListener(){
 			@Override
@@ -371,6 +371,7 @@ public class VistaMapa extends Vista3{
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 	 			boolean success = cpmapa.cargarMapa(file);
 				if (success) {
+					System.out.println("success"); 
 					mapaCreado = true;	
 					txtCO.setEditable(true);
 					txtCD.setEditable(true);
@@ -379,6 +380,9 @@ public class VistaMapa extends Vista3{
 					txtCap.setEditable(true);
 					txtX.setEditable(true);
 					txtY.setEditable(true);
+					//txtYMapa.setText(cpmapa.);
+					//txtXMapa.setText();
+					//txtConti.setText(); 
 				}
 	 		}
 		}
