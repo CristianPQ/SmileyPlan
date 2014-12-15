@@ -57,28 +57,26 @@ public class ControladorMapa {
 		return m.consultarAltura();
 	}
 	
-	public String consultarContinente() {
-		 ArrayList<Coordenadas> c = m.consultarArrayCoord();
-		 String continente = new String(); 
-		 for(int i = 0; i < c.size(); ++i) {
-			 Coordenadas aux = c.get(i); 
-			 int c1 = aux.consultarX(); 
-			 int c2 = aux.consultarY();
-			 String par = c1 + " " + c2 + " "; 
-			 continente = continente + par; 
-		 } 
-		/*ArrayList<Coordenadas> cont = m.consultarArrayCoord();
+    public String consultarContinente() {
+        ArrayList<Coordenadas> c = m.consultarArrayCoord();
+        String continente = new String();
+        for(int i = 0; i < c.size(); ++i) {
+                Coordenadas aux = c.get(i);
+                int c1 = aux.consultarX();
+                int c2 = aux.consultarY();
+                String par = c1 + " " + c2 + " ";
+                continente = continente + par;
+        }
+		/*ArrayList<Coordenadas> cont = m.consultarArrayCoord();        
 		String continente = new String();
 		for(int i = 0; i < cont.size(); ++i) {
 			Coordenadas coord = cont.get(i);
 			continente = coord.consultarX() + " " + coord.consultarY() + " ";
-		}*/
+			}*/
 		System.out.println(continente); 
 		return continente;
 	}
-	
-	
-	
+
 	//#########################################
 	//##########SOBRE CIUDADES
 	//#########################################
@@ -418,13 +416,15 @@ public class ControladorMapa {
 		 
 		 gd.abrirArchivo("write"); 
 		 
+		 //numero de coordenadas
+		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
+		 
 		 //altura y anchura
 		 int x = m.consultarAnchura();
 		 int y = m.consultarAltura(); 
 		 String linea = x + " " + y + "\n"; 
 		 buffer = linea; 
 		 
-		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
 		 //guardar coordenadas
 		 for(int i = 0; i < c.size(); ++i) {
 			 Coordenadas aux = c.get(i); 
@@ -753,9 +753,10 @@ public class ControladorMapa {
 		return mapping.length;
 	}
 	
-	private GrafoAntiguo crearGrafo(/*ControladorControladorMedioTransporte mt*/) throws Exception{
-		Entrada e = 
-		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(mapping.length); //init grafo
+	private void /*GrafoAntiguo*/ crearGrafo(/*ControladorControladorMedioTransporte mt*/) throws Exception{
+		
+		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(mapping.length); //init grafo	
+		Entrada e = new Entrada (g1, mapping.length);
 		
 		ArrayList<Camino> aristando;
 		for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
@@ -774,10 +775,10 @@ public class ControladorMapa {
 					///aqui arriba otengo la capacidad
 
 					////////CALCULO TEMA COSTE//////////////////////////
-					int precioTransporte = mt.getPrecioTransporte(aristando.get(j).consultarTransporte());
+				//	int precioTransporte = mt.getPrecioTransporte(aristando.get(j).consultarTransporte());
 					int distanciaCiudades = m.distanciaCiudades(m.listarCiudades().get(i), 
 												aristando.get(j).consultarDestino());
-					int cost = precioTransporte*distanciaCiudades; //REVISAR ESTO!!!!!!!!!!
+				//	int cost = precioTransporte*distanciaCiudades; //REVISAR ESTO!!!!!!!!!!
 
 					////////////////////////////////////////////////
 					//////MECANISMO PARA SALTAR DE VERTICE DENTRO DE LA MISMA CIUDAD
@@ -787,15 +788,15 @@ public class ControladorMapa {
 					
 					while (!insertado){ //para tener en cuenta y poder anadir los vertices auxiliares
 						++insert_here;
-						if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
+						if (!e.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
 							insertado = true;
-							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here,targetVertex, 0, capacity, cost);
+					//		e.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here,targetVertex, 0, capacity, cost);
 							}
 						
 						//Aqui abajo: para tener en cuenta y poder anadir los vertices auxiliares
-						else if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
+						else if (!e.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
 								returnCityIndex(ciudadEncontrandoAristas) + insert_here + 1)){
-							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
+							e.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
 									returnCityIndex(ciudadEncontrandoAristas) +insert_here +1, 0, 2147483647, 0);
 							}
 						}
@@ -806,7 +807,7 @@ public class ControladorMapa {
 				
 			}
 			
-		return g;
+	//	return g;
 	}
 	
 }
