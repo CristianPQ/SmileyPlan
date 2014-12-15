@@ -179,12 +179,12 @@ public class Entrada {
 	
 	
 	
-	int consultarNumeroVertices(){
+	public int consultarNumeroVertices(){
 		return nVertex;
 	}
 	
 	
-	 int consultarNumAristasVertice(int vertex){
+	public int consultarNumAristasVertice(int vertex){
 		return g.consultarAristasSalida(vertex).size();
 	}
 	
