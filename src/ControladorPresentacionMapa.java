@@ -10,7 +10,7 @@ public class ControladorPresentacionMapa {
 	public ControladorPresentacionMapa( ControladorPresentacionMedios cmd){
 		cmed = cmd;
 		vm = new VistaMapa(this);
-		//cm = new ControladorMapa();	
+		cm = new ControladorMapa();	
 	}
 	
 	public void crearMapa(int x, int y, String cont){
@@ -34,6 +34,17 @@ public class ControladorPresentacionMapa {
 		}
 	}
 	
+	public int consultarAnchura(){
+		return cm.conusltarAnchura(); 
+	}
+	
+	public int consultarAltura() {
+		return cm.consultarAltura(); 
+	}
+	
+	public String consultarContinente(){
+		return cm.consultarContinente(); 
+	}
 	////////////////CIUDADES//////////////////
 	public void agregarCiudad(String n, int x, int y){
 		try {

@@ -54,16 +54,26 @@ public class ControladorMapa {
 	}
 	
 	public int consultarAltura() {
-		return consultarAltura();
+		return m.consultarAltura();
 	}
 	
 	public String consultarContinente() {
-		ArrayList<Coordenadas> cont = m.consultarArrayCoord();
+		 ArrayList<Coordenadas> c = m.consultarArrayCoord();
+		 String continente = new String(); 
+		 for(int i = 0; i < c.size(); ++i) {
+			 Coordenadas aux = c.get(i); 
+			 int c1 = aux.consultarX(); 
+			 int c2 = aux.consultarY();
+			 String par = c1 + " " + c2 + " "; 
+			 continente = continente + par; 
+		 } 
+		/*ArrayList<Coordenadas> cont = m.consultarArrayCoord();
 		String continente = new String();
 		for(int i = 0; i < cont.size(); ++i) {
 			Coordenadas coord = cont.get(i);
 			continente = coord.consultarX() + " " + coord.consultarY() + " ";
-		}
+		}*/
+		System.out.println(continente); 
 		return continente;
 	}
 	
@@ -408,15 +418,13 @@ public class ControladorMapa {
 		 
 		 gd.abrirArchivo("write"); 
 		 
-		 //numero de coordenadas
-		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
-		 
 		 //altura y anchura
 		 int x = m.consultarAnchura();
 		 int y = m.consultarAltura(); 
 		 String linea = x + " " + y + "\n"; 
 		 buffer = linea; 
 		 
+		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
 		 //guardar coordenadas
 		 for(int i = 0; i < c.size(); ++i) {
 			 Coordenadas aux = c.get(i); 

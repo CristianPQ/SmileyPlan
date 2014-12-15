@@ -351,9 +351,9 @@ public class VistaMapa extends Vista3{
 		public void abrirBrowserGuardar()  {
 			   JFrame parentFrame = new JFrame();
 		 		int userSelection = filechooser.showSaveDialog(parentFrame);
-		 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".mapa", "mapa");
-		 		super.filechooser.setFileFilter(filtermapa);
-		        super.filechooser.addChoosableFileFilter(filtermapa);
+		 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".mapa", "mapa");
+		 		//super.filechooser.setFileFilter(filtermapa);
+		        //super.filechooser.addChoosableFileFilter(filtermapa);
 		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 		 			file = file.concat(".mapa");
@@ -364,14 +364,14 @@ public class VistaMapa extends Vista3{
 		public void abrirBrowserCargar() throws Exception {
 			JFrame parentFrame = new JFrame();
 	 		int userSelection = filechooser.showOpenDialog(parentFrame);
-	 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".mapa", "mapa");
-	 		super.filechooser.setFileFilter(filtermapa);
-	        super.filechooser.addChoosableFileFilter(filtermapa);
+	 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".mapa", "mapa");
+	 		//super.filechooser.setFileFilter(filtermapa);
+	        //super.filechooser.addChoosableFileFilter(filtermapa);
 	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 	 			boolean success = cpmapa.cargarMapa(file);
 				if (success) {
-					System.out.println("success"); 
+					//System.out.println("success"); 
 					mapaCreado = true;	
 					txtCO.setEditable(true);
 					txtCD.setEditable(true);
@@ -380,9 +380,9 @@ public class VistaMapa extends Vista3{
 					txtCap.setEditable(true);
 					txtX.setEditable(true);
 					txtY.setEditable(true);
-					//txtYMapa.setText(cpmapa.);
-					//txtXMapa.setText();
-					//txtConti.setText(); 
+					txtXMapa.setText(Integer.toString(cpmapa.consultarAnchura()));
+					txtYMapa.setText(Integer.toString(cpmapa.consultarAltura()));
+					txtConti.setText(cpmapa.consultarContinente()); 
 				}
 	 		}
 		}
