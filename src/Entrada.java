@@ -17,13 +17,19 @@ public class Entrada {
 		 * @param numAgentes
 		 * @throws Exception
 		 */
-		public Entrada(Grafo<NullType,Arista> G, int s, int t, int numAgentes, int nVert) throws Exception{
+	/*	public Entrada(Grafo<NullType,Arista> G, int s, int t, int numAgentes, int nVert) throws Exception{
 				g = G;
 				nVertex = nVert;
 				source = s;
 				sink = t;
 				numeroAgentesSyT = numAgentes;
 		}
+		*/
+		public Entrada(Grafo<NullType, Arista> G, int nVert) throws Exception{
+			g = G;
+			nVertex = nVert;
+		}
+		
 		
 		/**
 		 * Devuelve el grafo 

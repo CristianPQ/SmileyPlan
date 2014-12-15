@@ -1,9 +1,11 @@
 import java.util.*;
+import javax.lang.model.type.NullType;
+
 
 public class ControladorMapa {
 
 	private Mapa m;
-	
+	private String[] mapping;
 	
 	private String buffer; 
 	private static int BUFFER_SIZE = 3250; //aprox 250 elem
@@ -691,4 +693,112 @@ public class ControladorMapa {
 		return true; 
 	
 	}
+	
+	//////////////////////////////////////////////////////
+	/////////////////////MAPPING///////////////////////////
+	//////////////////////////////////////////////////////
+	
+	public void initMapeo() throws Exception{
+
+		int i;
+
+		ArrayList<String> mapeo = new ArrayList<String>();
+
+		for (i = 0; i < listarCiudades().size();++i){ //per cada ciutat
+			int necesito = 1;
+			for (int j = 0; j < listarCiudades().size(); ++j){ 
+			//per cada ciutat possiblement adjacent a la ciutat (i)					
+				
+				if (j != i){//hacer a ver si existen caminos para EVITAR EXCEPCIONES
+					//consultar caminos (i,j) 	
+					if(existeCaminoDesdeA(listarCiudades().get(i), listarCiudades().get(j))){
+						
+						ArrayList<Camino> Caminos = consultarCaminosEntre(listarCiudades().get(i), listarCiudades().get(j));
+						if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();
+						}
+					}
+				}
+			int w = 0;
+			while (w < necesito) { //porque a lo mejor necesito + vertices!
+				mapeo.add(listarCiudades().get(i));
+				++w;
+			}
+		}	
+		
+		mapping = new String[mapeo.size()];
+		for (int z = 0; z < mapeo.size(); ++z) mapping[z] = mapeo.get(z);
+	}
+	
+	
+	public int returnCityIndex(String city){
+		int indice = -1;
+		for (int i = 0; i < mapping.length; ++i) 
+			if (mapping[i].equals(city)) {indice = i; return indice;}
+			return indice;
+	}
+	
+	public String[] consultarMapping(){
+		return mapping;
+	}
+	
+	public int consultarNumVertices(){
+		return mapping.length;
+	}
+	
+	private GrafoAntiguo crearGrafo(/*ControladorControladorMedioTransporte mt*/) throws Exception{
+		Entrada e = 
+		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(mapping.length); //init grafo
+		
+		ArrayList<Camino> aristando;
+		for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
+			aristando = new ArrayList<Camino>();
+
+			String ciudadEncontrandoAristas = m.listarCiudades().get(i);
+			if(m.existeCaminoConOrigen(ciudadEncontrandoAristas))
+			aristando = m.consultarCaminosDestino(ciudadEncontrandoAristas); //consultar ciudades adyacentes
+			if (!aristando.equals(null)){
+				for (int j = 0; j < aristando.size(); ++j){ //cada ciudad adyacente...
+					
+				////////////////PREPARAR LA ARISTA
+					int targetVertex  = returnCityIndex(aristando.get(j).consultarDestino()); 
+					////aqui arriba traduzco el nombre de la ciudad por el indice correspondiente
+					int capacity = aristando.get(j).consultarCapacidad();
+					///aqui arriba otengo la capacidad
+
+					////////CALCULO TEMA COSTE//////////////////////////
+					int precioTransporte = mt.getPrecioTransporte(aristando.get(j).consultarTransporte());
+					int distanciaCiudades = m.distanciaCiudades(m.listarCiudades().get(i), 
+												aristando.get(j).consultarDestino());
+					int cost = precioTransporte*distanciaCiudades; //REVISAR ESTO!!!!!!!!!!
+
+					////////////////////////////////////////////////
+					//////MECANISMO PARA SALTAR DE VERTICE DENTRO DE LA MISMA CIUDAD
+
+					int insert_here = -1;
+					boolean insertado = false;
+					
+					while (!insertado){ //para tener en cuenta y poder anadir los vertices auxiliares
+						++insert_here;
+						if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
+							insertado = true;
+							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here,targetVertex, 0, capacity, cost);
+							}
+						
+						//Aqui abajo: para tener en cuenta y poder anadir los vertices auxiliares
+						else if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
+								returnCityIndex(ciudadEncontrandoAristas) + insert_here + 1)){
+							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
+									returnCityIndex(ciudadEncontrandoAristas) +insert_here +1, 0, 2147483647, 0);
+							}
+						}
+
+					}
+					
+				}
+				
+			}
+			
+		return g;
+	}
+	
 }
