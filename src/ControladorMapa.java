@@ -57,6 +57,21 @@ public class ControladorMapa {
 		return m.consultarAltura();
 	}
 	
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	public String consultarContinente() {
+		 ArrayList<Coordenadas> c = m.consultarArrayCoord();
+		 String continente = new String(); 
+		 for(int i = 0; i < c.size(); ++i) {
+			 Coordenadas aux = c.get(i); 
+			 int c1 = aux.consultarX(); 
+			 int c2 = aux.consultarY();
+			 String par = c1 + " " + c2 + " "; 
+			 continente = continente + par; 
+		 } 
+=======
+>>>>>>> Stashed changes
     public String consultarContinente() {
         ArrayList<Coordenadas> c = m.consultarArrayCoord();
         String continente = new String();
@@ -74,6 +89,7 @@ public class ControladorMapa {
 			continente = coord.consultarX() + " " + coord.consultarY() + " ";
 			}*/
 		System.out.println(continente); 
+>>>>>>> FETCH_HEAD
 		return continente;
 	}
 

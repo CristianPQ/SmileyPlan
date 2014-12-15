@@ -27,7 +27,7 @@ public abstract class Vista1 extends JPanel {
         panelErrores.add(labelError);
         
         filechooser = new JFileChooser(); 
-        filter = new FileNameExtensionFilter(".medios", "medios");
+        filter = new FileNameExtensionFilter(".smiley", "smiley");
         filechooser.setFileFilter(filter);
         filechooser.addChoosableFileFilter(filter);
 		

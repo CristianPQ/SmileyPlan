@@ -220,7 +220,7 @@ public class VistaMedioTransporte extends Vista2 {
 	 		int userSelection = filechooser.showSaveDialog(parentFrame);
 	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
-	 			file = file.concat(".medios");
+	 			file = file.concat(".smiley");
 	 			cpm.guardarMedio(file);
 	 		}
 	}

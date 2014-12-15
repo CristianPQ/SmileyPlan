@@ -43,6 +43,11 @@ public abstract class Vista3 extends Vista1 {
 	protected JLabel label6;
 	protected JLabel label7; 
 	
+	protected JButton botoncaC; 
+	protected JButton botonciC; 
+	protected JButton botoncaG; 
+	protected JButton botonciG;
+	
 	
 	
 	public Vista3() {
@@ -177,6 +182,14 @@ public abstract class Vista3 extends Vista1 {
 		panelBotones.add(botonGuardar);
 		panelBotones.add(botonCargar);
 		
+		botoncaC = new JButton("Cargar"); 
+		botonciC = new JButton("Cargar"); 
+		botoncaG = new JButton("Guardar"); 
+		botonciG = new JButton("Guardar"); 
+		vciut.add(botoncaC);
+		vciut.add(botoncaG); 
+		vb.add(botonciC);
+		vb.add(botonciG); 
 		
 		panelv3.add(panelLista);
 		panelv3.add(panelCiudad);
@@ -188,7 +201,6 @@ public abstract class Vista3 extends Vista1 {
 		
 		super.panelPrincipal.add(panelv3);
 		super.panelPrincipal.add(vb);
-
 		
 	}
 
