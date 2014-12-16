@@ -30,13 +30,13 @@ public class ControladorPresentacionAlgoritmo {
 			}
 		}
 		
-		public void ejecutar(int i) {
+		public void ejecutar(int i, String s, String t, boolean funcionCoste) {
 			try {
-				ControladorAgentes ca = cpa.devolverControlador();
+				ControladorAgentes cagentes = cpa.devolverControlador();
 				ControladorMedioTransporte cmt = cpm.devolverControlador();
 				ControladorMapa cmapa = cpmapa.devolverControlador();
-				ca = new ControladorAlgoritmo(); 
-				ca.ejecutar(i);
+				ca = new ControladorAlgoritmo(cagentes,cmapa,cmt,s,t); 
+				ca.ejecutar(i,funcionCoste);
 			} catch (Exception e) {
 				va.setError(e.getMessage()); 
 			}

@@ -125,16 +125,24 @@ public class VistaAlgoritmo extends Vista2 {
 	void crearListeners() {
 		botonEjecutar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (text1.equals("") || text2.equals(""))
+				String source = text1.getText();
+				String sink = text2.getText();
+				if (source.equals("") || sink.equals(""))
 					try {
 						throw new Exception("Falta rellenar alguno de los espacios");
 					} catch (Exception e1) {
 						setError(e1.getMessage());
+					}
+				else {
+					boolean funcionCoste;
+					if (precio.isSelected()) funcionCoste = false;
+					else funcionCoste = true;
 					
-				
-				if (ff) cpalg.ejecutar(1);
-				else if (pr)  cpalg.ejecutar(2);
-				else if (dinic) cpalg.ejecutar(3);
+					if (ff) cpalg.ejecutar(1,source,sink,funcionCoste);
+					else if (pr)  cpalg.ejecutar(2,source,sink,funcionCoste);
+					else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
+					
+				}
 			}
 		});
 		
