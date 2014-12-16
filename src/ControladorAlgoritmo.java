@@ -20,7 +20,7 @@ public class ControladorAlgoritmo {
 	public ControladorAlgoritmo() {}
 	
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
-			ControladorMedioTransporte mt, String cOrig, String cDest, boolean CosteDistancia) throws Exception{
+			ControladorMedioTransporte mt, String cOrig, String cDest, boolean CosteDistancia, ControladorItinerarios cI) throws Exception{
 		
 		mapping = cm.consultarMapping();
 		if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;
@@ -32,7 +32,7 @@ public class ControladorAlgoritmo {
 		int t = cm.returnCityIndex(cDest);
 		ent.modificarSource(s);
 		ent.modificarSink(t);
-		cit = new ControladorItinerarios();
+		cit = cI;
 		agentes = ca.consultarAgentesOrigenObjetivo(cOrig, cDest);
 		sol = new Solucion(nAgent);
 	}
