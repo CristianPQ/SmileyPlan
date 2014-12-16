@@ -181,6 +181,9 @@ public static void main(String [] args) throws Exception {
 	    					int t = Integer.parseInt(lsplited[2]);
 	    					int num = Integer.parseInt(lsplited[3]);
 	    					int flow = 0;
+	    					e.modificarNumeroAgentes(num);
+	    					e.modificarSink(t);
+	    					e.modificarSource(s);
 	    					Solucion sol;
 	    					sol = f.ejecutar(e);
 	    					if (sol.consultarTieneSolucion() == false)    System.out.println("No tiene solucion");
@@ -202,6 +205,9 @@ public static void main(String [] args) throws Exception {
 	    					int t = Integer.parseInt(lsplited[2]);
 	    					int num = Integer.parseInt(lsplited[3]);
 	    					int flow = 0;
+	    					e.modificarNumeroAgentes(num);
+	    					e.modificarSink(t);
+	    					e.modificarSource(s);
 	    					Solucion sol;
 	    					sol = d.ejecutar(e);
 	    					if (sol.consultarTieneSolucion() == false)    System.out.println("No tiene solucion");

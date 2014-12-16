@@ -16,7 +16,7 @@ public class Dinic extends Algoritmo {
 	 * @param t
 	 * @param coste
 	 */
-	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
+	void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		for (int i = indiceI; i <= indiceF; ++i){
 				sol.agregarVertice(i, u);
@@ -40,11 +40,11 @@ public class Dinic extends Algoritmo {
 		
 	}
 		
-	private void inicializacion(GrafoAntiguo g,int s, int t){
+	private void inicializacion(Entrada g,int s, int t){
 		int v;
 		ArrayList <Arista> adyacencias;
 		/** creo todos las aristas inversas **/
-		for (int i = 0; i < g.consultarNumVertices(); ++i){
+		for (int i = 0; i < g.consultarNumeroVertices(); ++i){
 			adyacencias = g.consultarAdyacentes(i);
 			for (int j = 0; j < adyacencias.size(); ++j){
 				
@@ -55,10 +55,10 @@ public class Dinic extends Algoritmo {
 		
 	}
 	
-		  static boolean dinicBfs(GrafoAntiguo g, int src, int dest, int[] dist) {
+		  static boolean dinicBfs(Entrada g, int src, int dest, int[] dist) {
 		    Arrays.fill(dist, -1);
 		    dist[src] = 0;
-		    int[] Q = new int[g.consultarNumVertices()];
+		    int[] Q = new int[g.consultarNumeroVertices()];
 		    int sizeQ = 0;
 		    Q[sizeQ++] = src;
 		    for (int i = 0; i < sizeQ; i++) {
@@ -76,7 +76,7 @@ public class Dinic extends Algoritmo {
 		    return dist[dest] >= 0;
 		  }
 
-		  static int dinicDfs(GrafoAntiguo g, int[] ptr, int[] dist, int dest, int u, int f) {
+		  static int dinicDfs(Entrada g, int[] ptr, int[] dist, int dest, int u, int f) {
 		    if (u == dest)
 		      return f;
 		    ArrayList <Arista> adyacencias =  g.consultarAdyacentes(u);
@@ -102,17 +102,17 @@ public class Dinic extends Algoritmo {
 		    return 0;
 		  }
 
-		  public Solucion ejecutar(Entrada e) {
+		  public Solucion ejecutar(Entrada g) {
 			float t1 = System.currentTimeMillis();
 		    int flow = 0;
-			GrafoAntiguo g = e.consultarGrafo();
-			int src = e.consultarSource();
-			int dest = e.consultarSink();
-			int numA = e.consultarNumeroAgentes();
+			//GrafoAntiguo g = e.consultarGrafo();
+			int src = g.consultarSource();
+			int dest = g.consultarSink();
+			int numA = g.consultarNumeroAgentes();
 			inicializacion(g,src,dest);
-		    int[] dist = new int[g.consultarNumVertices()];
+		    int[] dist = new int[g.consultarNumeroVertices()];
 		    while (dinicBfs(g, src, dest, dist)) {
-		      int[] ptr = new int[g.consultarNumVertices()];
+		      int[] ptr = new int[g.consultarNumeroVertices()];
 		      while (true) {
 		        int df = dinicDfs(g, ptr, dist, dest, src, Integer.MAX_VALUE);
 		        if (df == 0)
@@ -123,7 +123,7 @@ public class Dinic extends Algoritmo {
 			Solucion sol = new Solucion(flow);
 			if (flow >= numA){
 				sol.modificartieneSolucion(true);
-				sol.modificarGrafo(g);
+				///sol.modificarGrafo(g);
 				crearItinerarios(sol,g,0,flow-1,flow,src,dest,0);
 			}
 		//	Guardar(path,file); 
