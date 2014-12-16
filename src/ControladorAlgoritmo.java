@@ -10,7 +10,7 @@ public class ControladorAlgoritmo {
 	private String[] mapping;
 	
 	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
-	
+	private static Exception NoHayAgentes = new Exception ("No existe ningún agente");
 	public float consultarTiempo() throws Exception {
 		if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
 		return sol.consultarTiempo();
@@ -23,46 +23,16 @@ public class ControladorAlgoritmo {
 	
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
 			ControladorMedioTransporte mt, String cOrig, String cDest) throws Exception{
-		//#########################################
-		//########## MAPEADO ##################
-		//#########################################
-/*		int i;
-
-		ArrayList<String> mapeo = new ArrayList<String>();
-
-		for (i = 0; i < cm.listarCiudades().size();++i){ //per cada ciutat
-			int necesito = 1;
-			for (int j = 0; j < cm.listarCiudades().size(); ++j){ 
-				//per cada ciutat possiblement adjacent a la ciutat (i)					
-					
-			if (j != i){//hacer a ver si existen caminos para EVITAR EXCEPCIONES
-					//consultar caminos (i,j) 	
-					if(cm.existeCaminoDesdeA(cm.listarCiudades().get(i), cm.listarCiudades().get(j))){
-							
-						ArrayList<Camino> Caminos = cm.consultarCaminosEntre(cm.listarCiudades().get(i), cm.listarCiudades().get(j));
-						if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();
-						}
-					}
-				}
-			int w = 0;
-			while (w < necesito) { //porque a lo mejor necesito + vertices!
-				mapeo.add(cm.listarCiudades().get(i));
-				++w;
-			}
-		}
-			
-		mapping = new String[mapeo.size()];
-		for (int z = 0; z < mapeo.size(); ++z) mapping[z] = mapeo.get(z);
-	*/	
-		//#########################################
-		//########## FIN MAPEADO ##################
-		//#########################################
-	
-	//	int orig = returnCityIndex(cOrig);
-	//	int dest = returnCityIndex(cDest);
-		ent  = cm.crearGrafo(CosteDistancia, mt);
+		
+		mapping = cm.consultarMapping();
+		if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;
 		int nAgent = ca.numeroAgentesOrigenObjetivo(cOrig, cDest);
-		//ent = new Entrada(g, orig, dest, nAgent);
+		ent  = cm.crearGrafo(CosteDistancia, mt);
+		ent.modificarNumeroAgentes(nAgent);
+		int s = cm.returnCityIndex(cOrig);
+		int t = cm.returnCityIndex(cDest);
+		ent.modificarSource(s);
+		ent.modificarSink(t);
 		cit = new ControladorItinerarios();
 		agentes = ca.consultarAgentesOrigenObjetivo(cOrig, cDest);
 		sol = new Solucion(nAgent);
@@ -78,64 +48,6 @@ public class ControladorAlgoritmo {
 		
 	}
 
-
-	//#########################################
-	//########## CREACION GRAFO ################
-	//#########################################
-
-	/*private GrafoAntiguo crearGrafo(ControladorMapa m, ControladorMedioTransporte mt) throws Exception{
-		GrafoAntiguo g = new GrafoAntiguo(mapping.length); //init grafo		
-		ArrayList<Camino> aristando;
-		for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
-			aristando = new ArrayList<Camino>();
-
-			String ciudadEncontrandoAristas = m.listarCiudades().get(i);
-			if(m.existeCaminoConOrigen(ciudadEncontrandoAristas))
-			aristando = m.consultarCaminosDestino(ciudadEncontrandoAristas); //consultar ciudades adyacentes
-			if (!aristando.equals(null)){
-				for (int j = 0; j < aristando.size(); ++j){ //cada ciudad adyacente...
-					
-				////////////////PREPARAR LA ARISTA
-					int targetVertex  = returnCityIndex(aristando.get(j).consultarDestino()); 
-					////aqui arriba traduzco el nombre de la ciudad por el indice correspondiente
-					int capacity = aristando.get(j).consultarCapacidad();
-					///aqui arriba otengo la capacidad
-
-					////////CALCULO TEMA COSTE//////////////////////////
-					int precioTransporte = mt.getPrecioTransporte(aristando.get(j).consultarTransporte());
-					int distanciaCiudades = m.distanciaCiudades(m.listarCiudades().get(i), 
-												aristando.get(j).consultarDestino());
-					int cost = precioTransporte*distanciaCiudades; //REVISAR ESTO!!!!!!!!!!
-
-					////////////////////////////////////////////////
-					//////MECANISMO PARA SALTAR DE VERTICE DENTRO DE LA MISMA CIUDAD
-
-					int insert_here = -1;
-					boolean insertado = false;
-					
-					while (!insertado){ //para tener en cuenta y poder anadir los vertices auxiliares
-						++insert_here;
-						if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
-							insertado = true;
-							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here,targetVertex, 0, capacity, cost);
-							}
-						
-						//Aqui abajo: para tener en cuenta y poder anadir los vertices auxiliares
-						else if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
-								returnCityIndex(ciudadEncontrandoAristas) + insert_here + 1)){
-							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
-									returnCityIndex(ciudadEncontrandoAristas) +insert_here +1, 0, 2147483647, 0);
-							}
-						}
-
-					}
-					
-				}
-				
-			}
-			
-		return g;
-	}*/
 	
 	
 	///////DUDA: TAMBIEN HAY QUE CREARL DENTRO DE LA CONSTRUCTORA NO?
