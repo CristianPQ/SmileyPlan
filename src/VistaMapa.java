@@ -21,7 +21,7 @@ public class VistaMapa extends Vista3{
 	private String identificador; 
 	private String id2;
 	private String id3; 
-	private VistaGrafo vg;
+	//private VistaGrafo vg;
 	
 	boolean mapaCreado = false;
 	VistaMapa (ControladorPresentacionMapa controladorPMapa){
@@ -37,8 +37,8 @@ public class VistaMapa extends Vista3{
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
-		vg = new VistaGrafo();
-		super.panelPrincipal.add(vg); 
+		//vg = new VistaGrafo();
+		//super.panelPrincipal.add(vg); 
 	}
 	
 	void crearListeners() {
@@ -67,7 +67,7 @@ public class VistaMapa extends Vista3{
 					txtCap.setEditable(true);
 					txtX.setEditable(true);
 					txtY.setEditable(true);
-					vg.setLimites(Integer.parseInt(X),  Integer.parseInt(Y));
+					//vg.setLimites(Integer.parseInt(X),  Integer.parseInt(Y));
 				}
 				//crear ciudad
 				else if (txtCO.getText().equals("")){ //si el de cami esta buit
@@ -76,7 +76,7 @@ public class VistaMapa extends Vista3{
 					int X = Integer.parseInt(txtX.getText());
 					int Y = Integer.parseInt(txtY.getText());	
 					cpmapa.agregarCiudad(nom, X, Y);
-					vg.agregarCiudad(X, Y, nom);
+					//vg.agregarCiudad(X, Y, nom);
 					try {
 						vb.clear(); 
 						actualizarListaCiudades();
@@ -99,7 +99,7 @@ public class VistaMapa extends Vista3{
 					String md = txtMedio.getText();
 					int cap = Integer.parseInt(txtCap.getText());
 					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
-					vg.agregarCamino(ciudadO, ciudadD, txtCap.getText());
+					//vg.agregarCamino(ciudadO, ciudadD, txtCap.getText());
 					try {
 						vciut.clear(); 
 						actualizarListaCaminos();
@@ -238,7 +238,7 @@ public class VistaMapa extends Vista3{
 					//MIRAR QUE QUAN ESBORRI CIUTAT ESBORRI TAMBE AGENTES I CAMINOS
 					String c = txtIdCiutat.getText(); 
 					cpmapa.eliminarCiudad(c);
-					vg.borarCiudad(c);
+					//vg.borarCiudad(c);
 					vb.clear(); 
 					vciut.clear();
 					try {
@@ -258,7 +258,7 @@ public class VistaMapa extends Vista3{
 					String md = txtMedio.getText();
 					cpmapa.eliminarCamino(ciudadO, ciudadD, md);
 					vciut.clear(); 
-					vg.borrarCamino(ciudadO, ciudadD);
+					//vg.borrarCamino(ciudadO, ciudadD);
 					try {
 						actualizarListaCaminos();
 					} catch (Exception e1) {
