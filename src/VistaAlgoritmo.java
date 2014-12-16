@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import java.util.*;
+
 public class VistaAlgoritmo extends Vista2 {
 	
 	private ControladorPresentacionAlgoritmo cpalg; 
@@ -39,6 +41,7 @@ public class VistaAlgoritmo extends Vista2 {
     protected JTextField text1;
     protected JTextField text2;
     //private JTextField texto; 
+   // protected VistaBuscador vb; 
 	
 	private boolean esPrecio = false; 
 	private boolean esDistancia = false; 
@@ -72,7 +75,7 @@ public class VistaAlgoritmo extends Vista2 {
 		panelAlg.add(D);
 		super.panelv2.add(panelAlg);
 		super.panelv2.remove(panelBotones);
-		super.panelPrincipal.remove(vb); 
+		//super.panelPrincipal.remove(vb); 
 		//super.vb.remove(botonBuscar);
 		
 		GrupoCoste = new ButtonGroup(); 
@@ -90,14 +93,17 @@ public class VistaAlgoritmo extends Vista2 {
 		//model = new DefaultListModel();
 	    //l = new JList(model);
 		JTextArea textArea = new JTextArea();
-		
+		/*
 	    scroller = new JScrollPane(textArea);
 	    scroller.setMinimumSize(new Dimension(500,250));
 	    scroller.setMaximumSize(new Dimension(500,250));
+	    */
 	    //texto = new JTextField();
         //texto.setPreferredSize(new Dimension(120,30));
+		
+		//vb = new VistaBuscador(this);
         
-        super.panelv2.add(scroller);
+        super.panelv2.add(vb);
         
         panelLista = new JPanel(); 
 		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
@@ -120,14 +126,18 @@ public class VistaAlgoritmo extends Vista2 {
         
         super.panelv2.add(panelLista);
       
-		actualizarInformacion();
+		//actualizarInformacion();
 	}
 	
 	void crearListeners() {
+		
+		
 		botonEjecutar.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				actualizarInformacion();
+				System.out.println("hola");
+				//actualizarInformacion();
+				vb.agregar("hola");
 				String source = text1.getText();
 				String sink = text2.getText();
 				if (source.equals("") || sink.equals(""))
