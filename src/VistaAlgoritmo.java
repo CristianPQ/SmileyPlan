@@ -98,6 +98,7 @@ public class VistaAlgoritmo extends Vista2 {
         //texto.setPreferredSize(new Dimension(120,30));
         
         super.panelv2.add(scroller);
+        
         panelLista = new JPanel(); 
 		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
 		panelLista.setMinimumSize(new Dimension(600,100));
@@ -119,12 +120,14 @@ public class VistaAlgoritmo extends Vista2 {
         
         super.panelv2.add(panelLista);
       
-		
+		actualizarInformacion();
 	}
 	
 	void crearListeners() {
 		botonEjecutar.addActionListener( new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				actualizarInformacion();
 				String source = text1.getText();
 				String sink = text2.getText();
 				if (source.equals("") || sink.equals(""))
