@@ -33,15 +33,19 @@ public class VistaAgentes extends Vista2 {
 	
 	}
 	
-	private void actualizarLista(){
+	public void actualizarLista(){
+			//System.out.println("dentro de actualizarLista");
+		vb.clear();
 		ArrayList<String> agentes = ctrlPAg.listarAgentes();
-		if(!agentes.isEmpty())
-		for(int i = 0; i < agentes.size(); ++i) {
-			vb.agregar(agentes.get(i) + "  "
-					+ctrlPAg.consultarCiudadInicial(agentes.get(i)) + "  "
-					+	ctrlPAg.consultarCiudadObjetivo(agentes.get(i)));
-			}
+		if(!agentes.isEmpty()) {
+			for(int i = 0; i < agentes.size(); ++i) {
+					//System.out.println("Agente: " + agentes.get(i));
+				vb.agregar(agentes.get(i) + "  "
+						+ctrlPAg.consultarCiudadInicial(agentes.get(i)) + "  "
+						+	ctrlPAg.consultarCiudadObjetivo(agentes.get(i)));
+			}	
 		}
+	}
 
 	
 	void crearListeners()  {
@@ -58,9 +62,10 @@ public class VistaAgentes extends Vista2 {
 					} catch (Exception e1) {
 						setError(e1.getMessage());
 					}
-				if (!text1.getText().equals("") && !text2.getText().equals("")
-						&& !text2.getText().equals("")){
+				
+				else {
 						ctrlPAg.agregarAgente(nombre, ciuIni, ciuObj);
+						actualizarLista();
 					}
 				}	
 		});

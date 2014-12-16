@@ -121,6 +121,9 @@ public class ControladorPresentacionAgentes{
 	//*****************PANEL*****************************
 	
 	public static VistaAgentes getVista(){
+			//System.out.println("antes de actualizarLista");
+		vistaAg.actualizarLista();
+			//System.out.println("despues de actualizarLista");
 		return vistaAg;
 	}
 }
