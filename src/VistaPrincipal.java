@@ -47,7 +47,7 @@ public class VistaPrincipal {
 		//JMenu menu4 = new JMenu("Salir"); 
 		menuBar.add(menu1); 
 		menuBar.add(menu2); 
-		menuBar.add(menu3);
+		//menuBar.add(menu3);
 		//menuBar.add(menu4); 
 		frame.setJMenuBar(menuBar);
 
