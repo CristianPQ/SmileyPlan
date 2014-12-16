@@ -22,6 +22,7 @@ public class ControladorAlgoritmo {
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
 			ControladorMedioTransporte mt, String cOrig, String cDest, boolean CosteDistancia, ControladorItinerarios cI) throws Exception{
 		System.out.println("entro a domini");
+		cm.initMapeo();
 		mapping = cm.consultarMapping();
 		System.out.println("sorto del mapping");
 		if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;

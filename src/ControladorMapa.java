@@ -702,7 +702,7 @@ public class ControladorMapa {
 	public void initMapeo() throws Exception{
 
 		int i;
-
+		System.out.println("llego aqui");
 		ArrayList<String> mapeo = new ArrayList<String>();
 
 		for (i = 0; i < listarCiudades().size();++i){ //per cada ciutat
@@ -727,7 +727,13 @@ public class ControladorMapa {
 		}	
 		
 		mapping = new String[mapeo.size()];
-		for (int z = 0; z < mapeo.size(); ++z) mapping[z] = mapeo.get(z);
+		System.out.println("llego aqui");
+
+		for (int z = 0; z < mapeo.size(); ++z) {
+			System.out.println("tengo size diferente de 0");
+
+			mapping[z] = mapeo.get(z);
+		}
 	}
 	
 	
@@ -748,35 +754,51 @@ public class ControladorMapa {
 	
 	public Entrada /*GrafoAntiguo*/ crearGrafo(boolean calcCoste, ControladorMedioTransporte mt) 
 			throws Exception{
+		System.out.println("1.1");
+		for (int i = 0; i < consultarNumVertices();++i)	System.out.println(mapping[i]);
+		System.out.println("1.2");
+		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(consultarNumVertices()); //init grafo	
 		
-		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(mapping.length); //init grafo	
+		System.out.println("1");
+		
 		Entrada e = new Entrada (g1, mapping.length);
-
+		System.out.println("2");
 		ArrayList<Camino> aristando;
 		for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
 			aristando = new ArrayList<Camino>();
+			System.out.println("3");
 
 			String ciudadEncontrandoAristas = m.listarCiudades().get(i);
+			System.out.println("4");
 			if(m.existeCaminoConOrigen(ciudadEncontrandoAristas))
 			aristando = m.consultarCaminosDestino(ciudadEncontrandoAristas); //consultar ciudades adyacentes
+			System.out.println("5");
 			if (!aristando.equals(null)){
+				System.out.println("5.1");
 				for (int j = 0; j < aristando.size(); ++j){ //cada ciudad adyacente...
-					
+					System.out.println("6");
 				////////////////PREPARAR LA ARISTA
 					int targetVertex  = returnCityIndex(aristando.get(j).consultarDestino()); 
+					System.out.println("7");
 					////aqui arriba traduzco el nombre de la ciudad por el indice correspondiente
 					int capacity = aristando.get(j).consultarCapacidad();
 					///aqui arriba otengo la capacidad
-
+					System.out.println("8");
 					////////CALCULO TEMA COSTE//////////////////////////
 					FuncionCoste f;
 					int precio = mt.getPrecioTransporte(aristando.get(j).consultarTransporte());
+					System.out.println("9");
 					int distanciaCiudades = m.distanciaCiudades(m.listarCiudades().get(i), 
 												aristando.get(j).consultarDestino());
+					System.out.println("10");
 					
 					if (calcCoste)	f = new FuncionCostePorDistancia();
+					
 					else f = new FuncionPorDistancia();
-					precio = f.getCoste(precio, distanciaCiudades);			
+					System.out.println("11");
+		
+					precio = f.getCoste(precio, distanciaCiudades);		
+					System.out.println("12");
 
 					////////////////////////////////////////////////
 					//////MECANISMO PARA SALTAR DE VERTICE DENTRO DE LA MISMA CIUDAD
@@ -785,17 +807,22 @@ public class ControladorMapa {
 					boolean insertado = false;
 					
 					while (!insertado){
+						System.out.println("13");
 						++insert_here;
 						if (!e.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
+							System.out.println("14");
 							insertado = true;
 							e.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex, 0, capacity, precio);
-							}
+							System.out.println("15");
+						}
 						
 						//Aqui abajo: para tener en cuenta y poder anadir los vertices auxiliares
 						else if (!e.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
 								returnCityIndex(ciudadEncontrandoAristas) + insert_here + 1)){
+							System.out.println("16");
 							e.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
 									returnCityIndex(ciudadEncontrandoAristas) +insert_here +1, 0, 2147483647, 0);
+							System.out.println("17");
 							}
 						}
 
