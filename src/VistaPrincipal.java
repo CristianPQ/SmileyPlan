@@ -90,7 +90,7 @@ public class VistaPrincipal {
 				 	 */
 	            }
 		}); 
-		
+		/*
 		menu3.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent event) {
             
@@ -98,7 +98,7 @@ public class VistaPrincipal {
             }
 			
 		}); 
-		
+		*/
 		//menu4.addActionListener(new ActionListener() {
 			// public void actionPerformed(ActionEvent event) {
 				// System.exit(0); 

@@ -137,10 +137,12 @@ public class VistaAlgoritmo extends Vista2 {
 					boolean funcionCoste;
 					if (precio.isSelected()) funcionCoste = false;
 					else funcionCoste = true;
-					
+					/*
 					if (ff) cpalg.ejecutar(1,source,sink,funcionCoste);
 					else if (pr)  cpalg.ejecutar(2,source,sink,funcionCoste);
 					else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
+					*/
+					actualizarInformacion();
 					
 				}
 			}

@@ -35,8 +35,8 @@ public class ControladorPresentacionAlgoritmo {
 				ControladorAgentes cagentes = cpa.devolverControlador();
 				ControladorMedioTransporte cmt = cpm.devolverControlador();
 				ControladorMapa cmapa = cpmapa.devolverControlador();
-				ca = new ControladorAlgoritmo(cagentes,cmapa,cmt,s,t); 
-				ca.ejecutar(i,funcionCoste);
+				ca = new ControladorAlgoritmo(cagentes,cmapa,cmt,s,t,funcionCoste); 
+				ca.ejecutar(i);
 			} catch (Exception e) {
 				va.setError(e.getMessage()); 
 			}
