@@ -6,6 +6,6 @@ public class FuncionPorDistancia extends FuncionCoste{
 	}
 	@Override
 	public int getCoste(int coste, int distancia ){
-		return distancia;
+		return distancia*100;
 	}
 }
