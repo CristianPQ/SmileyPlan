@@ -345,7 +345,7 @@ public class VistaMapa extends Vista3{
 		        //super.filechooser.addChoosableFileFilter(filtermapa);
 		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
-		 			file = file.concat(".mapa");
+		 			//file = file.concat(".mapa");
 		 			cpmapa.guardarMapa(file);
 		 		}
 		}
@@ -379,12 +379,12 @@ public class VistaMapa extends Vista3{
 		public void abrirBrowserGuardarCiudades()  {
 			   JFrame parentFrame = new JFrame();
 		 		int userSelection = filechooser.showSaveDialog(parentFrame);
-		 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
-		 		super.filechooser.setFileFilter(filtermapa);
-		        super.filechooser.addChoosableFileFilter(filtermapa);
+		 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
+		 		//super.filechooser.setFileFilter(filtermapa);
+		        //super.filechooser.addChoosableFileFilter(filtermapa);
 		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
-		 			file = file.concat(".ciudad");
+		 			//file = file.concat(".ciudad");
 		 			cpmapa.guardarCiudades(file);
 		 		}
 		}
@@ -392,9 +392,9 @@ public class VistaMapa extends Vista3{
 		public void abrirBrowserCargarCiudades() throws Exception {
 			JFrame parentFrame = new JFrame();
 	 		int userSelection = filechooser.showOpenDialog(parentFrame);
-	 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
-	 		super.filechooser.setFileFilter(filtermapa);
-	        super.filechooser.addChoosableFileFilter(filtermapa);
+	 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
+	 		//super.filechooser.setFileFilter(filtermapa);
+	        //super.filechooser.addChoosableFileFilter(filtermapa);
 	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 	 			boolean success = cpmapa.cargarCiudades(file);
@@ -405,12 +405,12 @@ public class VistaMapa extends Vista3{
 		public void abrirBrowserGuardarCaminos()  {
 			   JFrame parentFrame = new JFrame();
 		 		int userSelection = filechooser.showSaveDialog(parentFrame);
-		 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
-		 		super.filechooser.setFileFilter(filtermapa);
-		        super.filechooser.addChoosableFileFilter(filtermapa);
+		 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
+		 		//super.filechooser.setFileFilter(filtermapa);
+		        //super.filechooser.addChoosableFileFilter(filtermapa);
 		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
-		 			file = file.concat(".camino");
+		 			//file = file.concat(".");
 		 			cpmapa.guardarCaminos(file);
 		 		}
 		}
@@ -418,9 +418,9 @@ public class VistaMapa extends Vista3{
 		public void abrirBrowserCargarCaminos() throws Exception {
 			JFrame parentFrame = new JFrame();
 	 		int userSelection = filechooser.showOpenDialog(parentFrame);
-	 		FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
-	 		super.filechooser.setFileFilter(filtermapa);
-	        super.filechooser.addChoosableFileFilter(filtermapa);
+	 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
+	 		//super.filechooser.setFileFilter(filtermapa);
+	        //super.filechooser.addChoosableFileFilter(filtermapa);
 	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 	 			boolean success = cpmapa.cargarCaminos(file);

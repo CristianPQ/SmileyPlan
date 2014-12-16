@@ -36,7 +36,6 @@ public abstract class Vista1 extends JPanel {
 		
 	}
 	
-    //abstract void agregarBotones();
     public void setError(String e) {
         labelError.setText("Error: "+e);
         labelError.setForeground(Color.red);
