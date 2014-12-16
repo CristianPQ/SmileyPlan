@@ -7,6 +7,7 @@ public class ControladorPresentacionMedios {
 	
 	private static ControladorMedioTransporte cm; 
 	private static VistaMedioTransporte vistaMedio; 
+	private ControladorPresentacionMapa mapa;
 	
 	public ControladorPresentacionMedios() {
 		//crea el controlador de datos de medio de transporte
@@ -16,6 +17,11 @@ public class ControladorPresentacionMedios {
 		//como parametro
 		vistaMedio = new VistaMedioTransporte(this); 
 	}
+	
+	public void setContPresMapa(ControladorPresentacionMapa cpm) {
+		mapa = cpm;
+	}
+	
 	
 	//A continuación crea todos los metodos que llaman al controlador
 	

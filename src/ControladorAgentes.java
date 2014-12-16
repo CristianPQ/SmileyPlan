@@ -94,7 +94,18 @@ public class ControladorAgentes {
 			}
 			else throw NoExiste;
 
+		}
+		
+		public void eliminarAgentesConCiudad(String c) {
+			ArrayList<String> ags = Agentes.consultar();
+			for(int i = 0; i < ags.size(); ++i) {
+				Agente a = Agentes.consultar(ags.get(i));
+				if(a.consultarCiudadInicial().equals(c) || a.consultarCiudadObjetivo().equals(c)) {
+					Agentes.delete(ags.get(i));
+					--numAgentes;
+				}
 			}
+		}
 
 		/**
 		 * Consultora de la ciudadInicial de un agente

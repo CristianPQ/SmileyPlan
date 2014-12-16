@@ -4,22 +4,22 @@ import javax.swing.*;
 public class ControladorPresentacionAgentes{
 	private static ControladorAgentes ca;
 	private static VistaAgentes vistaAg;
-	private static ControladorPresentacionMapa mapa;
+	private ControladorPresentacionMapa mapa;
 
 	
-	public ControladorPresentacionAgentes(ControladorPresentacionMapa cpmapa){
+	public ControladorPresentacionAgentes(){
 		ca = new ControladorAgentes();
-		mapa = cpmapa;
 		vistaAg = new VistaAgentes(this);
-
-		
+	}
+	
+	public void setContPresMapa(ControladorPresentacionMapa cpm) {
+		mapa = cpm;
 	}
 	
 	public void agregarAgente (String n, String ciuIni, String ciuObj) 
 			{
 				try {
 					ca.anadirAgente(n, ciuIni, ciuObj, mapa.devolverControlador());
-					
 				} catch (Exception e) {
 					vistaAg.setError(e.getMessage());
 				}
@@ -79,6 +79,15 @@ public class ControladorPresentacionAgentes{
 		}
 	}
 	
+	public void eliminarAgentesConCiudad(String n){
+		try {
+			ca.eliminarAgentesConCiudad(n);
+		} catch (Exception e) {
+			vistaAg.setError(e.getMessage());
+
+		}
+	}
+	
 	public ArrayList<String> listarAgentes(){
 		
 		String nombres = ca.NombresAgentes();
@@ -116,6 +125,10 @@ public class ControladorPresentacionAgentes{
 		} catch (Exception e) {
 			vistaAg.setError(e.getMessage());
 		}
+	}
+	
+	public void actualizarLista() {
+		vistaAg.actualizarLista();
 	}
 
 	//*****************PANEL*****************************

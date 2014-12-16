@@ -6,11 +6,15 @@ public class ControladorPresentacionMapa {
 	private static ControladorMapa cm;
 	private static VistaMapa vm;
 	private static ControladorPresentacionMedios cmed;
+	private static ControladorPresentacionAgentes cag;
 	
-	public ControladorPresentacionMapa( ControladorPresentacionMedios cmd){
+	public ControladorPresentacionMapa( ControladorPresentacionMedios cmd, ControladorPresentacionAgentes cagen){
+		cmd.setContPresMapa(this);
 		cmed = cmd;
 		vm = new VistaMapa(this);
-		cm = new ControladorMapa();	
+		cm = new ControladorMapa();
+		cagen.setContPresMapa(this);
+		cag = cagen;
 	}
 	
 	public void crearMapa(int x, int y, String cont){
@@ -59,6 +63,8 @@ public class ControladorPresentacionMapa {
 	public void eliminarCiudad(String c){
 		try {
 			cm.eliminarCiudad(c);
+			cag.eliminarAgentesConCiudad(c);
+			cag.actualizarLista();
 			/*String cam1 = cm.consultarCaminosDestinoToString(c);
 			String cam2 = cm.consultarCaminosDestinoToString(c);
 			

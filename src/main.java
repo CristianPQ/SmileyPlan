@@ -14,11 +14,11 @@ public class main {
 	             }
 	             catch (Exception e) {System.out.println(e);}
 				ControladorPresentacionMedios cpm = new ControladorPresentacionMedios(); 
-				ControladorPresentacionMapa cpmapa = new ControladorPresentacionMapa(cpm); 
-				ControladorPresentacionAgentes cpa = new ControladorPresentacionAgentes(cpmapa); 
+				ControladorPresentacionAgentes cpa = new ControladorPresentacionAgentes(); 
+				ControladorPresentacionMapa cpmapa = new ControladorPresentacionMapa(cpm, cpa); 				
 				ControladorPresentacionAlgoritmo cpalg = new ControladorPresentacionAlgoritmo();
 				
-				VistaPrincipal vp = new VistaPrincipal(cpm,null,cpmapa,cpalg);
+				VistaPrincipal vp = new VistaPrincipal(cpm,cpa,cpmapa,cpalg);
 			}
 			
 		}); 

@@ -125,8 +125,9 @@ public class ControladorMapa {
 	 * @param c
 	 * @throws Exception Si la ciudad no existe
 	 */
-	public void eliminarCiudad(String c) throws Exception {
+	public void eliminarCiudad(String c/*, ControladorAgentes ca*/) throws Exception {
 		m.eliminarCiudad(c);
+		//ca.eliminarAgentesConCiudad(c);
 	}
 	
 	/**
