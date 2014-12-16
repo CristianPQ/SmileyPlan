@@ -2,9 +2,10 @@ import java.awt.*;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
-public abstract class VistaAlgoritmo extends Vista2 {
+public class VistaAlgoritmo extends Vista2 {
 	
 	private ControladorPresentacionAlgoritmo cpalg; 
 	private JRadioButton distancia; 
@@ -14,6 +15,8 @@ public abstract class VistaAlgoritmo extends Vista2 {
 	private JRadioButton PR; 
 	private JRadioButton D; 
 	private ButtonGroup grupoAlg; 
+	private JLabel txtalg;
+	private JLabel txtcoste; 
 	
 	private boolean esPrecio = false; 
 	private boolean esDistancia = false; 
@@ -22,14 +25,18 @@ public abstract class VistaAlgoritmo extends Vista2 {
 		super(); 
 		
 		this.cpalg = cpa;
-		super.label1.setText("Funcion de Coste: ");
+		//super.label1.setText("Funcion de Coste: ");
 		
+		panelLista.removeAll();
 		GrupoCoste = new ButtonGroup(); 
 		precio = new JRadioButton("precio");
 		distancia = new JRadioButton("distancia"); 
 		precio.setSelected(true); 
 		GrupoCoste.add(precio);
 		GrupoCoste.add(distancia);
+		txtcoste = new JLabel("Funcion de coste");
+		txtcoste.setFont(new Font("Verdana",1,20));
+		panelLista.add(txtcoste);
 		super.panelLista.add(precio);
 		super.panelLista.add(distancia); 
 		
@@ -38,6 +45,10 @@ public abstract class VistaAlgoritmo extends Vista2 {
 		PR = new JRadioButton("Push Relabel"); 
 		D = new JRadioButton("Dinic"); 
 		FF.setSelected(true); 
+		
+		txtalg = new JLabel("Algoritmos");
+		txtalg.setFont(new Font("Verdana",1,20));
+		panelLista.add(txtalg);
 		grupoAlg.add(FF);
 		grupoAlg.add(PR);
 		super.panelLista.add(FF);

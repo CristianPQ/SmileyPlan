@@ -6,13 +6,9 @@ public class ControladorPresentacionAlgoritmo {
 		
 		public ControladorPresentacionAlgoritmo() {
 			ca = new ControladorAlgoritmo(); 
+			va = new VistaAlgoritmo(this);
 		}
 		
-	//constructora
-		
-	//introducir ciudad inicial
-		
-	//introducir ciudad objetivo
 		
 		public VistaAlgoritmo getVista(){
 			return va; 

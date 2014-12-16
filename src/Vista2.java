@@ -56,7 +56,7 @@ public abstract class Vista2 extends Vista1 {
 		panelLista.add(text1);
 		panelLista.add(label2);
 		panelLista.add(text2);
-		panelLista.add(labelError); 
+		panelLista.add(labelError);
 
 		
 		//panel botones 

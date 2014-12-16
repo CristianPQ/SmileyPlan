@@ -11,10 +11,6 @@ public class VistaBuscador extends JPanel{
     private JPanel vistaBuscar;
     private JTextField textoBusqueda;
     private JButton botonBuscar;
-    //protected JButton botoncaC; 
-	//protected JButton botonciC; 
-	//protected JButton botoncaG; 
-	//protected JButton botonciG;
     
     
     private DefaultListModel model;
@@ -119,8 +115,6 @@ public class VistaBuscador extends JPanel{
     public void eliminarSeleccionado() {
         model.remove(l.getSelectedIndex());
     }
-    
-
     
     public void agregarSelecListener(ListSelectionListener lista) {
         l.addListSelectionListener(lista);
