@@ -85,6 +85,7 @@ public class ControladorAlgoritmo {
 			cit = null;
 			agentes = null;
 		}
+		else asignarItinerarioAAgente();
 	}
 	
 	public void ejecutarAlgoritmoDinic() throws Exception{

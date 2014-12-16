@@ -120,8 +120,8 @@ public class VistaAlgoritmo extends Vista2 {
       	CiuD.setEditable(true);
       	
       	
-      	panelEjec.add(CiuD);
       	panelEjec.add(CiuO);
+      	panelEjec.add(CiuD);
       	
         botonEjecutar = new JButton();
         botonEjecutar.setText("Ejecutar");
