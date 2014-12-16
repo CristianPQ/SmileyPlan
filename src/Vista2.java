@@ -80,11 +80,9 @@ public abstract class Vista2 extends Vista1 {
 		panelBotones.add(botonGuardar);
 		panelBotones.add(botonCargar);
 		
-		
-		
+				
 		panelv2.add(panelLista);
 		panelv2.add(panelBotones);
-		
 		
 		super.panelPrincipal.add(panelv2); 
 		super.panelPrincipal.add(vb); 
