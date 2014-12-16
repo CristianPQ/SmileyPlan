@@ -70,9 +70,7 @@ public class ControladorMapa {
 		 } 
 		return continente;
 	}
-	
-	
-	
+
 	//#########################################
 	//##########SOBRE CIUDADES
 	//#########################################
@@ -412,6 +410,7 @@ public class ControladorMapa {
 		 
 		 gd.abrirArchivo("write"); 
 		 
+		 
 		 //altura y anchura
 		 int x = m.consultarAnchura();
 		 int y = m.consultarAltura(); 
@@ -747,19 +746,12 @@ public class ControladorMapa {
 		return mapping.length;
 	}
 	
-<<<<<<< Updated upstream
 	public Entrada /*GrafoAntiguo*/ crearGrafo(boolean calcCoste, ControladorMedioTransporte mt) 
 			throws Exception{
 		
 		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(mapping.length); //init grafo	
 		Entrada e = new Entrada (g1, mapping.length);
 
-=======
-	private GrafoAntiguo crearGrafo(/*ControladorControladorMedioTransporte mt*/) throws Exception{
-		Entrada e = 
-		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(mapping.length); //init grafo
-		
->>>>>>> Stashed changes
 		ArrayList<Camino> aristando;
 		for (int i = 0; i < m.listarCiudades().size(); ++i){//cada ciudad del mapa
 			aristando = new ArrayList<Camino>();
@@ -786,12 +778,6 @@ public class ControladorMapa {
 					else f = new FuncionPorDistancia();
 					precio = f.getCoste(precio, distanciaCiudades);			
 
-					int precioTransporte = mt.getPrecioTransporte(aristando.get(j).consultarTransporte());
-					int distanciaCiudades = m.distanciaCiudades(m.listarCiudades().get(i), 
-												aristando.get(j).consultarDestino());
-					int cost = precioTransporte*distanciaCiudades; //REVISAR ESTO!!!!!!!!!!
-
-
 					////////////////////////////////////////////////
 					//////MECANISMO PARA SALTAR DE VERTICE DENTRO DE LA MISMA CIUDAD
 
@@ -800,17 +786,15 @@ public class ControladorMapa {
 					
 					while (!insertado){
 						++insert_here;
-						if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
+						if (!e.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex)){
 							insertado = true;
 							e.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, targetVertex, 0, capacity, precio);
-							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here,targetVertex, 0, capacity, cost);
-
 							}
 						
 						//Aqui abajo: para tener en cuenta y poder anadir los vertices auxiliares
-						else if (!g.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
+						else if (!e.existeAdyacente(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
 								returnCityIndex(ciudadEncontrandoAristas) + insert_here + 1)){
-							g.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
+							e.anadirArista(returnCityIndex(ciudadEncontrandoAristas) + insert_here, 
 									returnCityIndex(ciudadEncontrandoAristas) +insert_here +1, 0, 2147483647, 0);
 							}
 						}
@@ -821,11 +805,7 @@ public class ControladorMapa {
 				
 			}
 			
-<<<<<<< Updated upstream
 		return e;
-=======
-		return g;
->>>>>>> Stashed changes
 	}
 	
 }
