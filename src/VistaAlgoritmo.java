@@ -38,10 +38,11 @@ public class VistaAlgoritmo extends Vista2 {
     private boolean ff;
     private boolean dinic;
     private boolean pr;
-    protected JTextField text1;
-    protected JTextField text2;
+    protected JTextField CiuO;
+    protected JTextField CiuD;
     //private JTextField texto; 
    // protected VistaBuscador vb; 
+    protected JPanel panelEjec; 
 	
 	private boolean esPrecio = false; 
 	private boolean esDistancia = false; 
@@ -105,26 +106,27 @@ public class VistaAlgoritmo extends Vista2 {
         
         super.panelv2.add(vb);
         
-        panelLista = new JPanel(); 
-		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
-		panelLista.setMinimumSize(new Dimension(600,100));
-		panelLista.setMaximumSize(new Dimension(600,100));
+        panelEjec = new JPanel(); 
+		panelEjec.setBorder(BorderFactory.createLoweredBevelBorder());
+		panelEjec.setMinimumSize(new Dimension(600,100));
+		panelEjec.setMaximumSize(new Dimension(600,100));
 		
-        text2 = new JTextField();
-      	text2.setPreferredSize(new Dimension(100,30));
-      	text2.setEditable(true);
-      	text1 = new JTextField();
-      	text1.setPreferredSize(new Dimension(100,30));
-      	text1.setEditable(true);
+        CiuO = new JTextField();
+      	CiuO.setPreferredSize(new Dimension(100,30));
+      	CiuO.setEditable(true);
+      	CiuD = new JTextField();
+      	CiuD.setPreferredSize(new Dimension(100,30));
+      	CiuD.setEditable(true);
       	
       	
-      	super.panelLista.add(text1);
-      	super.panelLista.add(text2);
+      	panelEjec.add(CiuD);
+      	panelEjec.add(CiuO);
       	
-        botonEjecutar = new  JButton("Ejecutar");
-        super.panelLista.add(botonEjecutar);
+        botonEjecutar = new JButton();
+        botonEjecutar.setText("Ejecutar");
+        panelEjec.add(botonEjecutar);
         
-        super.panelv2.add(panelLista);
+        super.panelv2.add(panelEjec);
       
 		//actualizarInformacion();
 	}
