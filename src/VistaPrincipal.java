@@ -43,7 +43,7 @@ public class VistaPrincipal {
         
         JMenu menu1 = new JMenu("Guardar");  
         JMenu menu2 = new JMenu("Cargar");
-		JMenu menu3 = new JMenu("Deshacer");
+		//JMenu menu3 = new JMenu("Deshacer");
 		//JMenu menu4 = new JMenu("Salir"); 
 		menuBar.add(menu1); 
 		menuBar.add(menu2); 

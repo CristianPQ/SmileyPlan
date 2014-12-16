@@ -98,7 +98,7 @@ public class VistaAlgoritmo extends Vista2 {
 		FF.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cpalg.ejecutar(1); 
+				//cpalg.ejecutar(1); 
 				actualizarInformacion(); 
 			}
 		});
@@ -115,7 +115,7 @@ public class VistaAlgoritmo extends Vista2 {
 		D.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cpalg.ejecutar(3); 
+				//cpalg.ejecutar(3); 
 				actualizarInformacion(); 
 			}
 		});
