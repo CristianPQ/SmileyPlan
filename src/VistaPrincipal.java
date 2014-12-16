@@ -38,8 +38,8 @@ public class VistaPrincipal {
         
         JMenuBar menuBar = new JMenuBar(); 
         
-        JMenu menu1 = new JMenu("Guardar");  
-        JMenu menu2 = new JMenu("Cargar");
+        JButton menu1 = new JButton("Guardar");  
+        JButton menu2 = new JButton("Cargar");
 		//JMenu menu3 = new JMenu("Deshacer");
 		//JMenu menu4 = new JMenu("Salir"); 
 		menuBar.add(menu1); 
@@ -62,6 +62,7 @@ public class VistaPrincipal {
 		frame.setVisible(true); 
 		
 		menu1.addActionListener(new ActionListener() {
+			@Override
 			 public void actionPerformed(ActionEvent event) {
 					cpm.guardarBrowser();
 					cpmapa.guardarBrowser();
@@ -71,6 +72,7 @@ public class VistaPrincipal {
 		}); 
 		
 		menu2.addActionListener(new ActionListener() {
+			@Override
 			 public void actionPerformed(ActionEvent event) {
 					cpm.cargarBrowser();
 					cpmapa.cargarBrowser();
