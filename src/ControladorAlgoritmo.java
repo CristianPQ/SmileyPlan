@@ -5,7 +5,7 @@ public class ControladorAlgoritmo {
 	private Entrada ent;
 	private Solucion sol;
 	private ControladorItinerarios cit;
-	private boolean CosteDistancia; //si 0, coste*distancia; si 1, distancia
+
 	private ArrayList<String > agentes;
 	private String[] mapping;
 	
@@ -16,18 +16,17 @@ public class ControladorAlgoritmo {
 		return sol.consultarTiempo();
 	}
 
-
-
 	
 	public ControladorAlgoritmo() {}
 	
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
-			ControladorMedioTransporte mt, String cOrig, String cDest) throws Exception{
+			ControladorMedioTransporte mt, String cOrig, String cDest, boolean CosteDistancia) throws Exception{
 		
 		mapping = cm.consultarMapping();
 		if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;
 		int nAgent = ca.numeroAgentesOrigenObjetivo(cOrig, cDest);
-		ent  = cm.crearGrafo(CosteDistancia, mt);
+
+		ent  = cm.crearGrafo(CosteDistancia, mt); //CosteDistancia: si 0, coste*distancia; si 1, distancia
 		ent.modificarNumeroAgentes(nAgent);
 		int s = cm.returnCityIndex(cOrig);
 		int t = cm.returnCityIndex(cDest);
@@ -38,19 +37,17 @@ public class ControladorAlgoritmo {
 		sol = new Solucion(nAgent);
 	}
 	
-	/////////FIN CONSTRUCTORA////////////////////////////
+
 	
 	public ControladorItinerarios consultarItinerarios() {
 		return cit;
 	}
 	
-	public void EjecutarGrafo(int i) {
-		
+/*	public void EjecutarGrafo(int i) {
+	
 	}
-
+*/
 	
-	
-	///////DUDA: TAMBIEN HAY QUE CREARL DENTRO DE LA CONSTRUCTORA NO?
 	public void ejecutar(int i) throws Exception {
 		switch(i) {
 			case 1: {
