@@ -345,7 +345,7 @@ public class VistaMapa extends Vista3{
 		        //super.filechooser.addChoosableFileFilter(filtermapa);
 		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
-		 			//file = file.concat(".mapa");
+		 			file = file.concat(".smiley");
 		 			cpmapa.guardarMapa(file);
 		 		}
 		}
@@ -384,7 +384,7 @@ public class VistaMapa extends Vista3{
 		        //super.filechooser.addChoosableFileFilter(filtermapa);
 		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
-		 			//file = file.concat(".ciudad");
+		 			file = file.concat(".smiley");
 		 			cpmapa.guardarCiudades(file);
 		 		}
 		}
@@ -410,7 +410,7 @@ public class VistaMapa extends Vista3{
 		        //super.filechooser.addChoosableFileFilter(filtermapa);
 		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
-		 			//file = file.concat(".");
+		 			file = file.concat(".smiley");
 		 			cpmapa.guardarCaminos(file);
 		 		}
 		}

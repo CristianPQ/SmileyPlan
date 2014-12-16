@@ -594,9 +594,8 @@ public class ControladorMapa {
 			int y = Integer.parseInt(cortarstring[2]); 
 			agregarCiudad(nombre,x,y); 
 			/////////////per comprovar ////////////////
-			System.out.print(nombre + " "+ x + " " + y +"\n"); 
+			//System.out.print(nombre + " "+ x + " " + y +"\n"); 
 			/////////////////////////////////////////////
-			i++; 
 		}
 	}
 	
@@ -615,7 +614,7 @@ public class ControladorMapa {
 		
 		if (num <= CARGA_MAX) {
 			carga = gd.obtenerTodoElString(); 
-			System.out.println("tinc string:" + carga); 
+			//System.out.println("tinc string:" + carga); 
 			String[] l = carga.split("\n"); 
 			convertirCiudades(l); 
 		}
@@ -624,7 +623,7 @@ public class ControladorMapa {
 				num = num - CARGA_MAX; 
 				carga = gd.obtenerStrings(CARGA_MAX);
 				String[] l = carga.split("\n"); 
-				convertirCaminos(l);  
+				convertirCiudades(l);  
 			}
 			if(num != 0) { //si queden restes
 				//System.out.println("restes");
@@ -633,7 +632,6 @@ public class ControladorMapa {
 				convertirCiudades(l); 
 			}
 		}
-		System.out.println("he carrega be");
 		gd.cerrarArchivo(); 
 		return true; 
 	}
@@ -656,7 +654,6 @@ public class ControladorMapa {
 			/////////////per comprovar ////////////////
 			//System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
 			/////////////////////////////////////////////
-			i++; 
 		}
 	}
 	
