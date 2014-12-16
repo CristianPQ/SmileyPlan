@@ -10,7 +10,7 @@ public class ControladorAlgoritmo {
 	private String[] mapping;
 	
 	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
-	
+	private static Exception NoHayAgentes = new Exception ("No existe ningún agente");
 	public float consultarTiempo() throws Exception {
 		if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
 		return sol.consultarTiempo();
@@ -23,10 +23,16 @@ public class ControladorAlgoritmo {
 	
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
 			ControladorMedioTransporte mt, String cOrig, String cDest) throws Exception{
-
-		ent  = cm.crearGrafo(CosteDistancia, mt);
+		
+		mapping = cm.consultarMapping();
+		if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;
 		int nAgent = ca.numeroAgentesOrigenObjetivo(cOrig, cDest);
-		//ent = new Entrada(g, orig, dest, nAgent);
+		ent  = cm.crearGrafo(CosteDistancia, mt);
+		ent.modificarNumeroAgentes(nAgent);
+		int s = cm.returnCityIndex(cOrig);
+		int t = cm.returnCityIndex(cDest);
+		ent.modificarSource(s);
+		ent.modificarSink(t);
 		cit = new ControladorItinerarios();
 		agentes = ca.consultarAgentesOrigenObjetivo(cOrig, cDest);
 		sol = new Solucion(nAgent);
