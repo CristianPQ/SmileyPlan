@@ -139,4 +139,7 @@ public class ControladorPresentacionAgentes{
 			//System.out.println("despues de actualizarLista");
 		return vistaAg;
 	}
+	public ControladorAgentes devolverControlador(){
+		return ca;
+	}
 }

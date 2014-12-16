@@ -36,6 +36,8 @@ public class VistaAlgoritmo extends Vista2 {
     private boolean ff;
     private boolean dinic;
     private boolean pr;
+    protected JTextField text1;
+    protected JTextField text2;
     //private JTextField texto; 
 	
 	private boolean esPrecio = false; 
@@ -96,14 +98,40 @@ public class VistaAlgoritmo extends Vista2 {
         //texto.setPreferredSize(new Dimension(120,30));
         
         super.panelv2.add(scroller);
+        panelLista = new JPanel(); 
+		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
+		panelLista.setMinimumSize(new Dimension(600,100));
+		panelLista.setMaximumSize(new Dimension(600,100));
+		
+        text2 = new JTextField();
+      	text2.setPreferredSize(new Dimension(100,30));
+      	text2.setEditable(true);
+      	text1 = new JTextField();
+      	text1.setPreferredSize(new Dimension(100,30));
+      	text1.setEditable(true);
+      	
+      	
+      	super.panelLista.add(text1);
+      	super.panelLista.add(text2);
+      	
         botonEjecutar = new  JButton("Ejecutar");
-        super.panelv2.add(botonEjecutar);
+        super.panelLista.add(botonEjecutar);
+        
+        super.panelv2.add(panelLista);
+      
 		
 	}
 	
 	void crearListeners() {
 		botonEjecutar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (text1.equals("") || text2.equals(""))
+					try {
+						throw new Exception("Falta rellenar alguno de los espacios");
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					
+				
 				if (ff) cpalg.ejecutar(1);
 				else if (pr)  cpalg.ejecutar(2);
 				else if (dinic) cpalg.ejecutar(3);

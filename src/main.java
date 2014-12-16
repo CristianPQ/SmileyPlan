@@ -16,7 +16,7 @@ public class main {
 				ControladorPresentacionMedios cpm = new ControladorPresentacionMedios(); 
 				ControladorPresentacionAgentes cpa = new ControladorPresentacionAgentes(); 
 				ControladorPresentacionMapa cpmapa = new ControladorPresentacionMapa(cpm, cpa); 				
-				ControladorPresentacionAlgoritmo cpalg = new ControladorPresentacionAlgoritmo();
+				ControladorPresentacionAlgoritmo cpalg = new ControladorPresentacionAlgoritmo(cpa,cpmapa,cpm);
 				
 				VistaPrincipal vp = new VistaPrincipal(cpm,cpa,cpmapa,cpalg);
 			}
