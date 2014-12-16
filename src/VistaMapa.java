@@ -73,15 +73,12 @@ public class VistaMapa extends Vista3{
 				else if (txtCO.getText().equals("")){ //si el de cami esta buit
 					//System.out.println("crear ciudades"); 
 					String nom = txtIdCiutat.getText();
-					if (txtX.equals("") || txtY.equals("")) 
-						try{ 
-							throw new Exception ("Una o ambas de las coordenadas estan vacias");
-						} catch (Exception e1){
-							setError(e1.getMessage());
-						}
-						
-					int X = Integer.parseInt(txtX.getText());
-					int Y = Integer.parseInt(txtY.getText());	
+					String SX = txtX.getText();
+					String SY = txtY.getText();
+					int X = Integer.parseInt(SX);
+					int Y = Integer.parseInt(SY);	
+					if (SX.equals("") || SY.equals("") ) setError("Una o ambas de las coordenadas estan vacias");
+					else{
 					cpmapa.agregarCiudad(nom, X, Y);
 					//vg.agregarCiudad(X, Y, nom);
 					try {
@@ -93,6 +90,7 @@ public class VistaMapa extends Vista3{
 						
 					} catch (Exception e1) {
 						setError(e1.getMessage());
+					}
 					}
 				}
 				//crear camino
