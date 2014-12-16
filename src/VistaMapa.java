@@ -240,8 +240,10 @@ public class VistaMapa extends Vista3{
 					cpmapa.eliminarCiudad(c);
 					vg.borarCiudad(c);
 					vb.clear(); 
+					vciut.clear();
 					try {
 						actualizarListaCiudades();
+						actualizarListaCaminos();
 					} catch (Exception e1) {
 						setError(e1.getMessage());
 					}
