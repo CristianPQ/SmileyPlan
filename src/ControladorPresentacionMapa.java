@@ -183,6 +183,11 @@ public class ControladorPresentacionMapa {
 			vm.setError(e.getMessage());
 		}
 	}
+
+	public void eliminarCaminosConMedio(String nombre) throws Exception {
+		cm.eliminarCaminosConMedio(nombre);
+		vm.actualizarListaCaminos();
+	}
 	
 }
 

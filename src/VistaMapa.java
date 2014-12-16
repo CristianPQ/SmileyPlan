@@ -239,8 +239,8 @@ public class VistaMapa extends Vista3{
 					String c = txtIdCiutat.getText(); 
 					cpmapa.eliminarCiudad(c);
 					//vg.borarCiudad(c);
-					vb.clear(); 
-					vciut.clear();
+					//vb.clear(); 
+					//vciut.clear();
 					try {
 						actualizarListaCiudades();
 						actualizarListaCaminos();
@@ -257,7 +257,7 @@ public class VistaMapa extends Vista3{
 					String ciudadD = txtCD.getText();
 					String md = txtMedio.getText();
 					cpmapa.eliminarCamino(ciudadO, ciudadD, md);
-					vciut.clear(); 
+					//vciut.clear(); 
 					//vg.borrarCamino(ciudadO, ciudadD);
 					try {
 						actualizarListaCaminos();
@@ -435,6 +435,7 @@ public class VistaMapa extends Vista3{
 		//// ACTUALIZAR LISTAS ////
 		public void actualizarListaCiudades() throws Exception{
 			String[] ciudades = cpmapa.listarCiudades();
+			vb.clear();
 			if(ciudades.length != 0) {
 				for(int i = 0; i < ciudades.length; ++i){
 					String ciu = ciudades[i]; 
@@ -449,6 +450,7 @@ public class VistaMapa extends Vista3{
 		
 		public void actualizarListaCaminos() throws Exception{
 			String[] caminos = cpmapa.listarCaminos();
+			vciut.clear();
 			if(caminos.length != 0) {
 				for(int i = 0; i < caminos.length; ++i) vciut.agregar(caminos[i]);
 			}

@@ -538,4 +538,20 @@ public class Mapa {
 		}
 		return map;
 	}
+
+	public void eliminarCaminosConMedio(String nombre) {
+		ArrayList<Ciudad> ciudades = g.consultarVertices();
+		for(int i = 0; i < ciudades.size(); ++i) {
+			int id = ciudades.get(i).consultarEquivalente();
+			ArrayList<Camino> caminos = g.consultarAristasSalida(id);
+			for(int j = 0; j < caminos.size(); ++j) {
+				Camino c = caminos.get(j);
+				if(c.consultarTransporte().equals(nombre)) {
+					int in = g.consultarVertice(c.consultarDestino()).consultarEquivalente();
+					int out = id;
+					g.eliminarArista(c, in, out);
+				}
+			}
+		}
+	}
 }

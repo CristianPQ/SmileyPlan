@@ -808,4 +808,9 @@ public class ControladorMapa {
 		return e;
 	}
 	
+	
+	public void eliminarCaminosConMedio(String nombre) {
+		m.eliminarCaminosConMedio(nombre);
+	}
+	
 }

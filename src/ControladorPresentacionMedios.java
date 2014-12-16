@@ -52,6 +52,7 @@ public class ControladorPresentacionMedios {
 	public void borrarMedio(String nombre) {
 		try {
 			cm.borrarMedioTransporte(nombre);
+			mapa.eliminarCaminosConMedio(nombre);
 		} catch (Exception e) {
 			vistaMedio.setError(e.getMessage());
 		}
