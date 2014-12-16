@@ -19,7 +19,10 @@ public class ControladorPresentacionAlgoritmo {
 		}
 		
 		public String escribirItinearios(){
-			return citi.escribirItinerarios(); 
+			if (citi.consultarSize()>0)
+					return citi.escribirItinerarios(); 
+			else return "No hay solucion";
+			
 		
 		}
 		
