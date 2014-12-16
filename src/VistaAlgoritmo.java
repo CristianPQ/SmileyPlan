@@ -49,7 +49,7 @@ public class VistaAlgoritmo extends Vista2 {
 	
 	VistaAlgoritmo(ControladorPresentacionAlgoritmo cpa){
 		super(); 
-		ff=false;
+		ff=true;
 		dinic = false;
 		pr = false;
 		this.cpalg = cpa;
@@ -129,6 +129,7 @@ public class VistaAlgoritmo extends Vista2 {
         super.panelv2.add(panelEjec);
       
 		//actualizarInformacion();
+        crearListeners();
 	}
 	
 	void crearListeners() {
@@ -137,11 +138,12 @@ public class VistaAlgoritmo extends Vista2 {
 		botonEjecutar.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("hola");
+				//System.out.println("hola");
 				//actualizarInformacion();
-				vb.agregar("hola");
-				String source = text1.getText();
-				String sink = text2.getText();
+				//vb.agregar("hola");
+				vb.clear();
+				String source = CiuO.getText();
+				String sink = CiuD.getText();
 				if (source.equals("") || sink.equals(""))
 					try {
 						throw new Exception("Falta rellenar alguno de los espacios");
@@ -152,12 +154,13 @@ public class VistaAlgoritmo extends Vista2 {
 					boolean funcionCoste;
 					if (precio.isSelected()) funcionCoste = false;
 					else funcionCoste = true;
-					/*
+
 					if (ff) cpalg.ejecutar(1,source,sink,funcionCoste);
 					else if (pr)  cpalg.ejecutar(2,source,sink,funcionCoste);
 					else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
-					*/
-					actualizarInformacion();
+					vb.agregar(cpalg.escribirItinearios());
+					
+				
 					
 				}
 			}

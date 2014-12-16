@@ -21,12 +21,14 @@ public class ControladorAlgoritmo {
 	
 	public ControladorAlgoritmo(ControladorAgentes ca, ControladorMapa cm, 
 			ControladorMedioTransporte mt, String cOrig, String cDest, boolean CosteDistancia, ControladorItinerarios cI) throws Exception{
-		
+		System.out.println("entro a domini");
 		mapping = cm.consultarMapping();
+		System.out.println("sorto del mapping");
 		if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;
 		int nAgent = ca.numeroAgentesOrigenObjetivo(cOrig, cDest);
-
+		System.out.println("entro a crearGrafo");
 		ent  = cm.crearGrafo(CosteDistancia, mt); //CosteDistancia: si 0, coste*distancia; si 1, distancia
+		System.out.println("acabo CrearGrafo");
 		ent.modificarNumeroAgentes(nAgent);
 		int s = cm.returnCityIndex(cOrig);
 		int t = cm.returnCityIndex(cDest);
@@ -35,6 +37,7 @@ public class ControladorAlgoritmo {
 		cit = cI;
 		agentes = ca.consultarAgentesOrigenObjetivo(cOrig, cDest);
 		sol = new Solucion(nAgent);
+		System.out.println("acabo de crear el controlador");
 	}
 	
 
@@ -51,7 +54,10 @@ public class ControladorAlgoritmo {
 	public void ejecutar(int i) throws Exception {
 		switch(i) {
 			case 1: {
+				System.out.println("entro FF");
 				ejecutarAlgoritmoFordFulkerson();
+				System.out.println("acabo FF");
+				System.out.println("el numero de soluciones es" + sol.consultarNumItinerarios());
 				break;
 			}
 			case 2: {
@@ -163,6 +169,7 @@ public class ControladorAlgoritmo {
 			int v = sol.obtenVertice(i, j); 
 			String c = mapping[v]; 
 			listaciudades.add(c);
+			System.out.println(c);
 		}
 		cit.agregarItinerario(nombreAg,listaciudades); 
 	}
