@@ -32,6 +32,10 @@ public class VistaAlgoritmo extends Vista2 {
     private JScrollPane scroller;
     private VistaBuscador vis; 
     private JTextArea textarea; 
+    private JButton botonEjecutar; 
+    private boolean ff;
+    private boolean dinic;
+    private boolean pr;
     //private JTextField texto; 
 	
 	private boolean esPrecio = false; 
@@ -39,7 +43,9 @@ public class VistaAlgoritmo extends Vista2 {
 	
 	VistaAlgoritmo(ControladorPresentacionAlgoritmo cpa){
 		super(); 
-		
+		ff=false;
+		dinic = false;
+		pr = false;
 		this.cpalg = cpa;
 		//super.label1.setText("Funcion de Coste: ");
 		vis = new VistaBuscador(this); 
@@ -90,25 +96,41 @@ public class VistaAlgoritmo extends Vista2 {
         //texto.setPreferredSize(new Dimension(120,30));
         
         super.panelv2.add(scroller);
+        botonEjecutar = new  JButton("Ejecutar");
+        super.panelv2.add(botonEjecutar);
 		
 	}
 	
 	void crearListeners() {
+		botonEjecutar.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (ff) cpalg.ejecutar(1);
+				else if (pr)  cpalg.ejecutar(2);
+				else if (dinic) cpalg.ejecutar(3);
+			}
+		});
 		
 		FF.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//cpalg.ejecutar(1); 
-				actualizarInformacion(); 
+				//actualizarInformacion(); 
+				ff= true;
+				dinic=false;
+				pr = false;	
+				
 			}
 		});
 		
 		PR.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				actualizarInformacion(); 
-				cpalg.ejecutar(2); 
-				actualizarInformacion(); 
+				//actualizarInformacion(); 
+				//cpalg.ejecutar(2); 
+				//actualizarInformacion();
+				ff= false;
+				dinic=false;
+				pr = true;
 			}
 		});
 		
@@ -116,7 +138,10 @@ public class VistaAlgoritmo extends Vista2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//cpalg.ejecutar(3); 
-				actualizarInformacion(); 
+				//actualizarInformacion();
+				ff= false;
+				dinic=true;
+				pr = false;
 			}
 		});
 		
