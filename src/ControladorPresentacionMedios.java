@@ -125,6 +125,19 @@ public class ControladorPresentacionMedios {
 	public VistaMedioTransporte getVista(){
 		return vistaMedio; 
 	}
+	
+	public void cargarBrowser() {
+		try {
+			vistaMedio.abrirBrowserCargar();
+		} catch (Exception e) {
+			vistaMedio.setError(e.getMessage()); 
+		} 
+	}
+	
+	public void guardarBrowser() {
+		vistaMedio.abrirBrowserGuardar(); 
+	}
+	
 	public ControladorMedioTransporte devolverControlador(){
 		return cm;	
 	}

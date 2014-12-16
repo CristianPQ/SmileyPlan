@@ -189,5 +189,17 @@ public class ControladorPresentacionMapa {
 		vm.actualizarListaCaminos();
 	}
 	
+	public void guardarBrowser() {
+		vm.abrirBrowserGuardar();
+	}
+	
+	public void cargarBrowser(){
+		try {
+			vm.abrirBrowserCargar();
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
+	
 }
 

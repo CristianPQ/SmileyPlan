@@ -139,6 +139,15 @@ public class ControladorPresentacionAgentes{
 			//System.out.println("despues de actualizarLista");
 		return vistaAg;
 	}
+	
+	public void guardarBrowser(){
+		vistaAg.abrirBrowserGuardar();
+	}
+	
+	public void cargarBrowser() {
+		vistaAg.abrirBrowserCargar();
+	}
+	
 	public ControladorAgentes devolverControlador(){
 		return ca;
 	}

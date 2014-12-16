@@ -31,10 +31,7 @@ public class VistaPrincipal {
 		JFrame frame = new JFrame("Main");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-        //JLabel Imatge = new JLabel(new ImageIcon("/Users/olgacarbo/Desktop/SmileyPlan/mapa.jpg")); 
-        //Imatge.setLayout(new FlowLayout());
-        //frame.add(Imatge); 
-        //frame.setContentPane(Imatge);
+ 
    
         frame.setPreferredSize(new Dimension(1900, 1080));
         frame.setResizable(true);
@@ -66,49 +63,21 @@ public class VistaPrincipal {
 		
 		menu1.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent event) {
-	            //cridar les funcions de guardar :
-				 //1) guardar mapa
-				 //2) guardar medios
-				 //3) guardar agentes
-				 //
+					cpm.guardarBrowser();
+					cpmapa.guardarBrowser();
+					cpa.guardarBrowser(); 
 	                
 	            }
 		}); 
 		
 		menu2.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent event) {
-	                //cridar les funcions de cargar: 
-				 	//1) cargar mapa
-				 	//2) cargar medios
-				 	//3) guardar agentes
-	                
-				 	/*
-				 	 *   ctrlprods.obrirSaveChooserProds();
-	                ctrlprods.obrirSaveChooserLlistes();
-	                ctrlrel.obrirSaveChooser();
-	                ctrlsol.obrirSaveChooser();
-				 	 */
+					cpm.cargarBrowser();
+					cpmapa.cargarBrowser();
+					cpa.cargarBrowser(); 
+				
 	            }
 		}); 
-		/*
-		menu3.addActionListener(new ActionListener() {
-			 public void actionPerformed(ActionEvent event) {
-            
-				 //accions de deshacer
-            }
-			
-		}); 
-		*/
-		//menu4.addActionListener(new ActionListener() {
-			// public void actionPerformed(ActionEvent event) {
-				// System.exit(0); 
-				
-          // }
-			
-		//}); 
-		
-		
-
 		
 	}
 	
