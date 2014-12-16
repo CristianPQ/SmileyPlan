@@ -11,6 +11,25 @@ public class ControladorPresentacionAlgoritmo {
 			va = new VistaAlgoritmo(this);
 		}
 		
+		public String escribirItinearios(){
+			return citi.escribirItinerarios(); 
+		}
+		
+		public void guardarSeq(String file){
+			try {
+				ca.guardarSeq(file);
+			} catch (Exception e) {
+				va.setError(e.getMessage()); 
+			}
+		}
+		
+		public void ejecutar(int i) {
+			try {
+				ca.ejecutar(i);
+			} catch (Exception e) {
+				va.setError(e.getMessage()); 
+			}
+		}
 		
 		public VistaAlgoritmo getVista(){
 			return va; 

@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -9,6 +11,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class VistaAlgoritmo extends Vista2 {
@@ -28,7 +31,8 @@ public class VistaAlgoritmo extends Vista2 {
 	private JList l;
     private JScrollPane scroller;
     private VistaBuscador vis; 
-    private JTextField texto; 
+    private JTextArea textarea; 
+    //private JTextField texto; 
 	
 	private boolean esPrecio = false; 
 	private boolean esDistancia = false; 
@@ -75,9 +79,11 @@ public class VistaAlgoritmo extends Vista2 {
 		super.panelLista.add(precio);
 		super.panelLista.add(distancia); 
 		
-		model = new DefaultListModel();
-	    l = new JList(model);
-	    scroller = new JScrollPane(l);
+		//model = new DefaultListModel();
+	    //l = new JList(model);
+		JTextArea textArea = new JTextArea();
+		
+	    scroller = new JScrollPane(textArea);
 	    scroller.setMinimumSize(new Dimension(500,250));
 	    scroller.setMaximumSize(new Dimension(500,250));
 	    //texto = new JTextField();
@@ -85,6 +91,55 @@ public class VistaAlgoritmo extends Vista2 {
         
         super.panelv2.add(scroller);
 		
+	}
+	
+	void crearListeners() {
+		
+		FF.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cpalg.ejecutar(1); 
+				actualizarInformacion(); 
+			}
+		});
+		
+		PR.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actualizarInformacion(); 
+				cpalg.ejecutar(2); 
+				actualizarInformacion(); 
+			}
+		});
+		
+		D.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cpalg.ejecutar(3); 
+				actualizarInformacion(); 
+			}
+		});
+		
+		precio.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		
+		distancia.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+	}
+	
+	public void actualizarInformacion(){
+		textarea.setText(null);
+		//String respuesta = cpalg.escribirItinearios(); 
+		String respuesta = "hola"; 
+		textarea.setText(respuesta); 
 	}
 	
 }
