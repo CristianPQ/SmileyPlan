@@ -71,6 +71,7 @@ public class VistaAlgoritmo extends Vista2 {
 		panelAlg.add(txtalg);
 		grupoAlg.add(FF);
 		grupoAlg.add(PR);
+		grupoAlg.add(D);
 		panelAlg.add(FF);
 		panelAlg.add(PR); 
 		panelAlg.add(D);
