@@ -412,20 +412,22 @@ public class ControladorMapa {
 		 
 		 gd.abrirArchivo("write"); 
 		 
-		 
 		 //altura y anchura
 		 int x = m.consultarAnchura();
 		 int y = m.consultarAltura(); 
 		 String linea = x + " " + y + "\n"; 
 		 buffer = linea; 
+		 System.out.println(linea);
 		 
 		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
+		 System.out.println(c);
 		 //guardar coordenadas
 		 for(int i = 0; i < c.size(); ++i) {
 			 Coordenadas aux = c.get(i); 
 			 int c1 = aux.consultarX(); 
 			 int c2 = aux.consultarY();
 			 linea = c1 + " " + c2; 
+			 System.out.println(linea);
 			 buffer = buffer + linea + "\n"; 
 			 
 			 if(buffer.length() > BUFFER_SIZE) {
@@ -542,14 +544,14 @@ public class ControladorMapa {
 		int i = 0; 
 		String[] cortarstring = l[i].split(" ");
 		
-		int x = Integer.parseInt(cortarstring[i]);
-		int y = Integer.parseInt(cortarstring[i+1]);
+		int x = Integer.parseInt(cortarstring[0]);
+		int y = Integer.parseInt(cortarstring[1]);
 		System.out.println(x + " " + y);
-		++i; 
+		//++i; 
 		
 		ArrayList<Coordenadas> cont = new ArrayList<Coordenadas>(); 
 		
-		for (int j = i; j < total; ++j) {
+		for (int j = 1; j < total; ++j) {
 			cortarstring = l[j].split(" ");
 			int pos1 = Integer.parseInt(cortarstring[0]);
 			int pos2 = Integer.parseInt(cortarstring[1]);
