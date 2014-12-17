@@ -106,9 +106,6 @@ public class Solucion {
 	 * Modificadora del grafo
 	 * @param g2 grafo nuevo 
 	 */
-	public void modificarGrafo(GrafoAntiguo g2){
-	//	g = g2;
-	}
 	
 	/**
 	 * Obtener el vertice de un cierto itinerario
