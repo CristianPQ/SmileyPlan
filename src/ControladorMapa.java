@@ -647,11 +647,11 @@ public class ControladorMapa {
 		int total = l.length; 
 		for(int i = 0; i < total; ++i) {
 			String[] cortarstring = l[i].split(" "); 
-			String co = cortarstring[0];
-			int capac = Integer.parseInt(cortarstring[1]); 
-			String trans = cortarstring[2]; 
-			String cd = cortarstring[3]; 
-			Camino c = new Camino(co,cd,capac,trans);
+			String co = cortarstring[0]; 
+			String cd = cortarstring[1];
+			String trans = cortarstring[2];
+			int capac = Integer.parseInt(cortarstring[3]);  
+			Camino c = new Camino(co,cd,capac, trans);
 			m.agregarCamino(c); 
 			/////////////per comprovar ////////////////
 			System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 

@@ -14,7 +14,7 @@ public class Mapa {
 			+ "coordenadas no son validas para este mapa");
 	private static Exception Existe = new Exception ("Este elemento ya existe");
 	private static Exception NoExiste = new Exception ("Este elemento no existe");
-	private static Exception NoExistenCiudades = new Exception ("No existe alguna"
+	private static Exception NoExistenCiudades = new Exception ("No existe alguna "
 			+ "de las ciudades o ambas");
 	private static Exception Vacio = new Exception ("Esta vacio");
 	//private static Exception HayCaminos = new Exception ("Hay caminos que usan esta ciudad");
@@ -417,6 +417,9 @@ public class Mapa {
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
 		String medio = c.consultarTransporte();
+		System.out.println("agregar camino MAPA "+ cOrig + " " +cDest); 
+		System.out.println("existe origen? "+ existeCiudad(cOrig)); 
+		System.out.println("existe destino? "+ existeCiudad(cDest)); 
 		if(!existeCiudad(cOrig) || !existeCiudad(cDest)) throw NoExistenCiudades;
 		if(cOrig.equals(cDest)) throw NoValido;
 		if(existeCamino(cOrig, cDest, medio)) throw Existe;

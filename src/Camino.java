@@ -40,10 +40,6 @@ public class Camino {
 	}
 	
 	
-		
-	
-	
-	
 	/**
 	 * Creadora 
 	 * @param string ciudadOrigen2
