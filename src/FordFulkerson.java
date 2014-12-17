@@ -54,9 +54,9 @@ public class FordFulkerson extends Algoritmo{
 		for (int i = 0; i < g.consultarNumeroVertices(); ++i){
 			adyacencias = g.consultarAdyacentes(i);
 			for (int j = 0; j < adyacencias.size(); ++j){
-				
-				v = adyacencias.get(j).consultarVerticeDestino();
-				if (adyacencias.get(j).consultarFlujo() == 0 )g.anadirArista(v,i,adyacencias.get(j).consultarCapacidad(),adyacencias.get(j).consultarCapacidad(),-1);
+				Arista a = adyacencias.get(j);
+				v = a.consultarVerticeDestino();
+				if(a.consultarFlujo() == 0) g.anadirArista(v, i, a.consultarCapacidad(), a.consultarCapacidad(), -1);
 			}
 		}
 		
