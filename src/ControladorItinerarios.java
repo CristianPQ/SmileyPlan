@@ -1,11 +1,5 @@
 import java.util.*;
 
-/**
- * 
- * @author olgacarbo
- *
- */
-
 public class ControladorItinerarios {
 	
 	private ArrayList<Itinerario> cjtoit; 

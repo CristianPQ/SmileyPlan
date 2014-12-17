@@ -1,8 +1,8 @@
 
 public class Ciudad {
 	
-	private String nombre; 		//Identificador
-	private Coordenadas coord;	//Senala la ubicacion
+	private String nombre; 		
+	private Coordenadas coord;	
 	private int equivalente;
 	
 	/**

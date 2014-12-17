@@ -1,13 +1,11 @@
 import java.util.*;
 
 public class Solucion {
-	private GrafoAntiguo g;
+	//private GrafoAntiguo g;
 	private float tiempo;
-	private int espacio; //???
 	private boolean tieneSolucion = false; //falso si no la tiene true en caso contrario
 	
 	private ArrayList<Integer>[] itinerarios; 
-	//private ArrayList<Integer> capacidadIt; 
 	private int[] costeIt; 
 	
 	public ArrayList< String > seqsol = new ArrayList<String>(); 
@@ -109,7 +107,7 @@ public class Solucion {
 	 * @param g2 grafo nuevo 
 	 */
 	public void modificarGrafo(GrafoAntiguo g2){
-		g = g2;
+	//	g = g2;
 	}
 	
 	/**

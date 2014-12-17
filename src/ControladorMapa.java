@@ -9,7 +9,7 @@ public class ControladorMapa {
 	private String[] mapping;
 	
 	private String buffer; 
-	private static int BUFFER_SIZE = 3250; //aprox 250 elem
+	private static int BUFFER_SIZE = 3250; 
 	private static int CARGA_MAX = 250; 
 	
 	private static Exception NoExiste = new Exception ("Este elemento no existe");
