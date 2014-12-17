@@ -173,7 +173,7 @@ public class DriverControladorMapa {
 		            }
 		            case 20:{
 		            	String file = lsplited[1];
-		            	m.cargarCaminos(file);
+		            	m.cargarCaminos(file, medioT);
 		            	break;
 		            }
 		            case 0: {
