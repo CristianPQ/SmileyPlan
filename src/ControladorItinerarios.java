@@ -21,12 +21,11 @@ public class ControladorItinerarios {
 	 * del agente al que esta relacionado
 	 * @throws Exception si el itinerario ya existe
 	 */
-	public void agregarItinerario(String nombreAg, ArrayList<String> ciudades) throws Exception {
-		Itinerario aux = new Itinerario(nombreAg, ciudades); 
+	public void agregarItinerario(String nombreAg, ArrayList<String> ciudades, int nuevoCoste) throws Exception {
+		Itinerario aux = new Itinerario(nombreAg, ciudades, nuevoCoste); 
 		cjtoit.add(aux);  
 	}
 	
-
 	/**
 	 * consultora tamano conjunto 
 	 * @return
@@ -56,6 +55,7 @@ public class ControladorItinerarios {
 			for(int j = 0; j < iti.getNumeroCiudades(); ++j) {
 				its = its + "    " + iti.consultarCiudad(j) + " ";
 			}
+			its = its + " Coste: " + iti.consultarCoste();
 			its = its + "\n";
 		}
 		return its;

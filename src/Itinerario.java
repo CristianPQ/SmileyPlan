@@ -5,6 +5,7 @@ public class Itinerario {
 	//Datos
 	private String nombre; 
 	private ArrayList<String> caminos; 
+	private int coste;
 
 	private static Exception CiudadYaExiste = new Exception("la ciudad ya esta en el itinerario");
 		
@@ -29,9 +30,10 @@ public class Itinerario {
 	 * @param Agente ag, para asociar el nombre del agente al nombre 
 	 * del itinerario (un itinerario por agente)
 	 */
-	public Itinerario(String nombreAg, ArrayList<String> ciudades) throws Exception{ 
+	public Itinerario(String nombreAg, ArrayList<String> ciudades, int nuevoCoste) throws Exception{ 
 			caminos = ciudades;
 			nombre = nombreAg; 
+			coste = nuevoCoste;
 	}	
 	
 	/**
@@ -40,6 +42,12 @@ public class Itinerario {
 	 */
 	public void agregarCiudades(ArrayList<String> c) {
 		caminos = c; 
+	}
+	public void setCoste(int costeNuevo){
+		coste = costeNuevo;
+	}
+	public int consultarCoste(){
+		return coste;
 	}
 	
 	/**

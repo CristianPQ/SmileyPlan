@@ -156,7 +156,7 @@ public class ControladorAlgoritmo {
 				}
 				
 				String s = agentes.get(i); 
-				convertirItinerario(pos,s);
+				convertirItinerario(pos,s,min);
 				sol.agregarCosteAItinerario(pos, 2147483647);//posem marca 
 			}
 		//}
@@ -170,7 +170,7 @@ public class ControladorAlgoritmo {
 	 * @param nombreAg, nombre identificador que tendra el itinerario
 	 * @throws Exception si ya existe el nombre del itinerario
 	 */
-	public void convertirItinerario(int i, String nombreAg) throws Exception{
+	public void convertirItinerario(int i, String nombreAg, int coste) throws Exception{
 		int num = sol.obtenNumCiudades(i); 
 		ArrayList<String> listaciudades = new ArrayList<String>();	
 		for(int j = 0; j < num; ++j) {
@@ -179,7 +179,8 @@ public class ControladorAlgoritmo {
 			listaciudades.add(c);
 			//System.out.println(c);
 		}
-		cit.agregarItinerario(nombreAg,listaciudades); 
+		
+		cit.agregarItinerario(nombreAg,listaciudades,coste); 
 	}
 	
 	
