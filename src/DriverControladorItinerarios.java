@@ -38,13 +38,10 @@ public class DriverControladorItinerarios {
 	        	  String n4 = lsplited[5]; ciudades.add(n4); 
 	        	  String n5 = lsplited[6]; ciudades.add(n5); 
 	        	  String n6 = lsplited[7]; ciudades.add(n6); 
-<<<<<<< HEAD
-	        	  int coste = Integer.parseInt(lsplited[8]);
-	        	  aux.agregarItinerario(nombre, ciudades, coste);
-=======
+
 	        	  int nuevoCoste = Integer.parseInt(lsplited[8]);
 	        	  aux.agregarItinerario(nombre, ciudades, nuevoCoste);
->>>>>>> FETCH_HEAD
+
 	        	  int n = aux.consultarSize(); 
 	        	  int m = aux.consultarCiudadesIt(it); 
 	        	  System.out.println( n + " " + m + "\n");
