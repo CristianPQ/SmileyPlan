@@ -497,20 +497,21 @@ public class ControladorMapa {
 		
 		ArrayList<Camino> lista = new ArrayList<Camino>(); 
 		lista = m.consultarTodosCaminos(); 
+		//System.out.println(lista);
 		
 		String co = lista.get(0).consultarOrigen(); 
 		String cap = Integer.toString(lista.get(0).consultarCapacidad()); 
 		String transporte = lista.get(0).consultarTransporte(); 
 		String cd = lista.get(0).consultarDestino();  
-		String linea = co + " " + cap + " " + transporte + " " + cd; 
+		String linea = co + " " + cd + " " + transporte + " " + cap; 
 		buffer = linea + "\n"; 
 		
 		for(int i = 1; i < lista.size(); ++i) {
-			co = lista.get(0).consultarOrigen(); 
-			cap = Integer.toString(lista.get(0).consultarCapacidad()); 
-			transporte = lista.get(0).consultarTransporte(); 
-			cd = lista.get(0).consultarDestino();  
-			linea = co + " " + cap + " " + transporte + " " + cd; 
+			co = lista.get(i).consultarOrigen(); 
+			cap = Integer.toString(lista.get(i).consultarCapacidad()); 
+			transporte = lista.get(i).consultarTransporte(); 
+			cd = lista.get(i).consultarDestino();  
+			linea = co + " " + cd + " " + transporte + " " + cap; 
 			buffer = buffer + linea + "\n";
 			
 			if(buffer.length() > BUFFER_SIZE) {
@@ -653,7 +654,7 @@ public class ControladorMapa {
 			Camino c = new Camino(co,cd,capac,trans);
 			m.agregarCamino(c); 
 			/////////////per comprovar ////////////////
-			//System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
+			System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
 			/////////////////////////////////////////////
 		}
 	}
