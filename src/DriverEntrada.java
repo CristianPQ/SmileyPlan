@@ -1,108 +1,190 @@
 
 import java.util.*;
 
+import javax.lang.model.type.NullType;
+/*
+ * @author Daniel Villanueva 
+ */
+
 public class DriverEntrada {
 
 private static void menu() {
-	        System.out.println("Driver clase Entrada"
+	        System.out.println("Driver clase GrafoAntiguoAntiguo"
 	                + "\n 0.Salir"
-	                + "\n 1.[Constructora] Entrada(GrafoAntiguo G, int s, int t, int numAgentes)"
-	                + "\n 2.GrafoAntiguo consultarGrafo()"
-	                + "\n 3.consultarSource()"	                
-	                + "\n 4.consultarSink()"
-	                + "\n 5.consultarNumeroAgentes()"
-	                + "\n 6.modificarGrafo(GrafoAntiguo G)"
-	                + "\n 7.modificarSource(int source)"
-	                + "\n 8.modificarSink(int sink)"
-	                + "\n 9.modificarNumeroAgentes(int numAg)"
+	                + "\n 1.[Constructora] GrafoAntiguoAntiguo()"
+	                + "\n 2.anadirNumeroAdyacencias(int numvertex, int numAd)"
+	                + "\n 3.anadirArista(int vertex, int targetVertex, int flow, int capacity, int cost)"
+	                + "\n 4.consultarFlujoArista(int vertex, int targetVertex)"
+	                + "\n 5.modificarFlujoArista(int vertex,int targetVertex, int nuevoFlujo)"
+	                + "\n 6.modificarFlujoArista(int vertex, int targetVertex, int nuevoFlujo)"
+	                + "\n 7.consultarCapacidadArista(int vertex,int targetVertex)"
+	                + "\n 8.modificarCapacidadArista(int vertex, int targetVertex, int nuevaCapacidad)"
+	                + "\n 9.consultarCosteArista(int vertex,int targetVertex)"
+	                + "\n 10.modificarCosteArista(int vertex, int targetVertex, int nuevoCoste)"
+	                + "\n 11.consultarNumVertices()"
+	                + "\n 12.consultarNumAristasVertice(int vertex)"
+	                + "\n 13.CONSULTARADYACENTES(int vertex)"
+	                + "\n 14.modificarSink(int t)"
+	                + "\n 15.modificarSource(int s)"
+	                + "\n 16.modificarNumAg(int numAg)"
+	                + "\n 17.consultarSource()"
+	                + "\n 18.consultarSink()"
+	                + "\n 19.consultarNumAg()"
 	                +"\n");
 }
 
 public static void main(String [] args) throws Exception {
-			Entrada e = null;
-			////////////CREO UN GRAFO DE EJEMPLO/////////////////
-			GrafoAntiguo g = new GrafoAntiguo(6);
-			g.anadirArista(0, 1, 0, 10, 0);
-			g.anadirArista(1, 2, 0, 10, 0);
-			g.anadirArista(2, 3, 0, 10, 0);
-			g.anadirArista(3, 4, 0, 10, 0);
-			g.anadirArista(4, 5, 0, 10, 0);
-			g.anadirArista(5, 3, 0, 10, 0);
-			//////////////////////////////////////
+			//GrafoAntiguo g = null;
 	    	menu();
 	    	Scanner sc = new Scanner(System.in);
 	    	String[] lsplited;
+			Entrada e = null;
+
+
 	    	
 	    	while(sc.hasNextLine()){ 
 	    		try{
 	    			lsplited = sc.nextLine().split(" ");
 	    			switch(Integer.parseInt(lsplited[0])){
 	    				case 1: {
-	  
-	    					int s = Integer.parseInt(lsplited[1]);
-	    					int t = Integer.parseInt(lsplited[2]);
-	    					int numAg = Integer.parseInt(lsplited[3]);
-	    					e = new Entrada(g, s, t, numAg);
-	    					break;
-	    				}
-	    				case 2:{//ConsultarGrafo
-	    					GrafoAntiguo G = e.consultarGrafo();
-	    					ArrayList<Arista> r = new ArrayList<Arista>();
-	    					for (int i = 0; i < G.consultarNumVertices();++i){
-	    						System.out.println("Adyacencias vertice "+ i +":");
-	    						r = G.consultarAdyacentes(i);
-	    							for (int j = 0; j < r.size(); ++j){
-	    								System.out.println(r.get(j).consultarVerticeDestino() + "\n");
-	    							}
-	    						}
+	    					int numVertex = Integer.parseInt(lsplited[1]);
+	    					Grafo<NullType,Arista> g2 = new Grafo<NullType, Arista> (numVertex);
+	    					e = new Entrada(g2, numVertex);
 
 	    					break;
 	    				}
+	    				case 2:{//existe la arista?    				
+	    					int numVertex = Integer.parseInt(lsplited[1]);
+	    					int numAd = Integer.parseInt(lsplited[2]);
+	    					if(e.existeAdyacente(numVertex, numAd))
+	    					System.out.println("Si existe arista desde " + numVertex + " hacia "+ numAd);
+	    					else System.out.println("Esa arista no existe");
+	    					break;
+	    				}
 
-	    				case 4: {//ConsultarSink
-	    					System.out.println(e.consultarSink()+"\n");
+	    				case 3: {//AnadirArista
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int targetVertex = Integer.parseInt(lsplited[2]);
+	    					int flow = Integer.parseInt(lsplited[3]);
+	    					int capacity = Integer.parseInt(lsplited[4]);
+	    					int cost = Integer.parseInt(lsplited[5]);
+	    					e.anadirArista(vertex, targetVertex, flow, capacity, cost);
+	    					break;
+	    				}
+	    				case 4:{ //eliminarArista
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int targetVertex = Integer.parseInt(lsplited[2]);
+	    					e.eliminarArista(vertex, targetVertex);
 	    					break;
 	    				}
 	    				
-	    				case 3:{ //ConsultarSource
-	    					System.out.println(e.consultarSource()+"\n");
-
-	    					break;
-	    				}
-	    				
-	    				case 5: {//consultarNumAg
-	    					System.out.println(e.consultarNumeroAgentes()+"\n");
-
+	    				case 5: {//consultarFlujoArista
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int targetVertex = Integer.parseInt(lsplited[2]);
+	    					int flujoArista = e.consultarFlujoArista(vertex, targetVertex);
+	    					System.out.println("Flujo Arista ("+ vertex + "," +  targetVertex +"): "+ flujoArista +"\n");
 	    					break;
 	    				}
 	    				  				
-	    				case 6: {//modificarGrafo
-	    					GrafoAntiguo g1 = g;
-	    					g1.anadirArista(1, 4, 0, 9, 0);
-	    					e.modificarGrafo(g1);
+	    				case 6: {//modificarFlujoArista
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int targetVertex = Integer.parseInt(lsplited[2]);
+	    					int nuevoFlujo = Integer.parseInt(lsplited[3]);
+	    					e.modificarFlujoArista(vertex, targetVertex, nuevoFlujo);
 	    					break;
 	    				}
 	    				
-	    				case 8: {//modificarSink
+	    				case 7: {//consultarCapacidadArista
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int targetVertex = Integer.parseInt(lsplited[2]);
+	    					int capacidadArista = e.consultarCapacidadArista(vertex, targetVertex);
+	    					System.out.println("Capacidad Arista ("+ vertex + "," +  targetVertex +"): "+ capacidadArista +"\n");
+	    					break;
+	    				}
+	    				
+	    				case 8: {//modificarCapacidadArista
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int targetVertex = Integer.parseInt(lsplited[2]);
+	    					int nuevaCapacidad = Integer.parseInt(lsplited[3]);
+	    					e.modificarCapacidadArista(vertex, targetVertex, nuevaCapacidad);
+	    					break;
+	    				}
+	    				
+	    				case 9: {//ConsultarCosteArista
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int targetVertex = Integer.parseInt(lsplited[2]);
+	    					int costeArista = e.consultarCosteArista(vertex, targetVertex);
+	    					System.out.println("Coste Arista ("+ vertex + "," +  targetVertex +"): "+ costeArista +"\n");
+	    					break;
+	    				}
+	    				
+	    				case 10: {//modificarCosteArista
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int targetVertex = Integer.parseInt(lsplited[2]);
+	    					int nuevoCoste = Integer.parseInt(lsplited[3]);
+	    					e.modificarCosteArista(vertex, targetVertex, nuevoCoste);
+	    					break;
+	    				}
+	    				
+	    				case 11: {
+	    					int num = e.consultarNumeroVertices();
+	    					System.out.println("Numero de vertices:" + num + "\n");
+	    					break;
+	    					
+	    				}
+	    				
+	    				
+	    				case 12: {
+	    					int vertex = Integer.parseInt(lsplited[1]);
+	    					int num = e.consultarNumAristasVertice(vertex);
+	    					System.out.println("Aristas desde vertice "+ vertex+ ": " + num + "\n");
+	    				
+	    					break;
+	    				}	
+	    				
+	    				case 13: {
+	    					int numVertex = Integer.parseInt(lsplited[1]);
+	    					ArrayList <Arista> l =e.consultarAdyacentes(numVertex);
+	    					for (int i = 0; i < l.size(); ++i){
+	    						System.out.println(l.get(i).consultarVerticeDestino()  + " ");
+	    					}
+	    					System.out.println("\n");
+	    					break;
+	    					
+	    				}	
+	 					case 14: {//modificarSink
 	    					int sink = Integer.parseInt(lsplited[1]);
 	    					e.modificarSink(sink);
 	    					break;
 	    				}
 	    				
-	    				case 7: {//modificarSource
+	    				case 15: {//modificarSource
 	    					int source = Integer.parseInt(lsplited[1]);
 	    					e.modificarSource(source);
 	    					break;
 	    				}
-	    				
-	    				case 9: {//modificarNumAg
+	    				case 16: {//modificarNumAg
 	    					int numAg = Integer.parseInt(lsplited[1]);
 	    					e.modificarNumeroAgentes(numAg);
 	    					break;
 	    				}
-
+	    				case 17: {//ConsultarSink
+	    					System.out.println(e.consultarSink()+"\n");
+	    					break;
+	    				}
 	    				
-	   		
+	    				case 18:{ //ConsultarSource
+	    					System.out.println(e.consultarSource()+"\n");
+
+	    					break;
+	    				}
+	    				
+	    				case 19: {//consultarNumAg
+	    					System.out.println(e.consultarNumeroAgentes()+"\n");
+
+	    					break;
+	    				}
+
 	    				case 0: {
 	    	                System.exit(0);
 	    	            }
@@ -111,8 +193,8 @@ public static void main(String [] args) throws Exception {
 	    	                break;
 	    	            } 
 	    			}
-	    		} catch(Exception ef) {
-	    	        System.out.println("Error: " + ef.getMessage() + "\n");
+	    		} catch(Exception o) {
+	    	        System.out.println("Error: " + o.getMessage() + "\n");
 	    	}
     	}
 
