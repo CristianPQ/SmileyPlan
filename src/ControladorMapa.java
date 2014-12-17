@@ -544,6 +544,7 @@ public class ControladorMapa {
 		
 		int x = Integer.parseInt(cortarstring[i]);
 		int y = Integer.parseInt(cortarstring[i+1]);
+		System.out.println(x + " " + y);
 		++i; 
 		
 		ArrayList<Coordenadas> cont = new ArrayList<Coordenadas>(); 
@@ -552,9 +553,11 @@ public class ControladorMapa {
 			cortarstring = l[j].split(" ");
 			int pos1 = Integer.parseInt(cortarstring[0]);
 			int pos2 = Integer.parseInt(cortarstring[1]);
+			System.out.println(pos1+ " " + pos2);
 			cont.add(new Coordenadas(pos1, pos2));
 		}
 		m = new Mapa(x, y, cont);
+		System.out.println("he creat mapa");
 	}
 	
 	
@@ -573,6 +576,7 @@ public class ControladorMapa {
 		
 		int num = gd.bufferToStrings(); 
 		String carga = gd.obtenerTodoElString(); 
+		System.out.println("dins cargarMapa");
 		
 		String[] lineas = carga.split("\n");
 		convertirMapa(lineas);

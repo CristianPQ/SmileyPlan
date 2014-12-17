@@ -346,9 +346,6 @@ public class VistaMapa extends Vista3{
 		public void abrirBrowserGuardar()  {
 			   JFrame parentFrame = new JFrame();
 		 		int userSelection = filechooser.showSaveDialog(parentFrame);
-		 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".mapa", "mapa");
-		 		//super.filechooser.setFileFilter(filtermapa);
-		        //super.filechooser.addChoosableFileFilter(filtermapa);
 		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 		 			file = file.concat(".smiley");

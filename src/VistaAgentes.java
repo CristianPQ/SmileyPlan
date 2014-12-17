@@ -168,6 +168,7 @@ public class VistaAgentes extends Vista2 {
 	 		int userSelection = filechooser.showSaveDialog(parentFrame);
 	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+	 			file = file.concat(".smiley");
 	 			ctrlPAg.guardarAgente(file);
 	 		}
 	}
@@ -177,7 +178,6 @@ public class VistaAgentes extends Vista2 {
 		int userSelection = filechooser.showOpenDialog(parentFrame);
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 			String file = filechooser.getSelectedFile().getAbsolutePath();
-			file = file.concat(".smiley");
 			ctrlPAg.cargarAgente(file);
 			actualizarLista();
 		}
