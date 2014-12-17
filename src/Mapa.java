@@ -414,11 +414,11 @@ public class Mapa {
 	 * @throws Exception
 	 */
 	public void agregarCamino(Camino c) throws Exception {
+		System.out.println("vaig a crear camino"); 
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
 		String medio = c.consultarTransporte();
 		if(!existeCiudad(cOrig) || !existeCiudad(cDest)) throw NoExistenCiudades;
-		//if(!existe(medio)) throw MedioNoExiste; 
 		if(cOrig.equals(cDest)) throw NoValido;
 		if(existeCamino(cOrig, cDest, medio)) throw Existe;
 		int out = g.consultarVertice(cOrig).consultarEquivalente();

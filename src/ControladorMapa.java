@@ -12,7 +12,7 @@ public class ControladorMapa {
 	private static int BUFFER_SIZE = 3250; 
 	private static int CARGA_MAX = 250; 
 	
-	private static Exception NoExiste = new Exception ("Este elemento no existe");
+	private static Exception NoExiste = new Exception ("El medio de transporte no existe");
 	
 	public ControladorMapa(){
 		
@@ -228,6 +228,7 @@ public class ControladorMapa {
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap, ControladorMedioTransporte contMT) throws Exception {
 		
 		//Comprobar que el medioTransporte ya existe
+		System.out.println("dins agregar camino" + contMT.existe(medio));
 		if(!contMT.existe(medio)) throw NoExiste;
 		Camino c = new Camino(cOrig, cDest, cap, medio);
 		m.agregarCamino(c);
@@ -645,6 +646,7 @@ public class ControladorMapa {
 	 */
 	private void convertirCaminos(String[] l, ControladorMedioTransporte contMT) throws Exception {
 		int total = l.length; 
+		//System.out.println("soc dins convertir "); 
 		for(int i = 0; i < total; ++i) {
 			String[] cortarstring = l[i].split(" "); 
 			String co = cortarstring[0]; 
