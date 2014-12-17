@@ -41,7 +41,7 @@ public class ControladorMapa {
 	private ArrayList<Coordenadas> continente(String cont) {
 		ArrayList<Coordenadas> borde = new ArrayList<Coordenadas>();
 		String[] cArray = cont.split(" ");
-			if(borde.size() < 4) return null;
+			if(cArray.length < 8) return null;
 		for(int i = 0; i < cArray.length; i += 2) {
 			int x = Integer.parseInt(cArray[i]);
 			int y = Integer.parseInt(cArray[i+1]);
