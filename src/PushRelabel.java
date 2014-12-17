@@ -9,6 +9,7 @@ public class PushRelabel extends Algoritmo {
 	private int[] active;
 	private LinkedList<Integer> q;
 	private int flow;
+	private Date da;
 	
 	public ArrayList<String> seq = new ArrayList <String>(); 
 	
@@ -111,6 +112,7 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	private void push(Entrada g, int u, int v, int t) throws Exception{
+		
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v); //la capacidad redidual sera la capacidad de la arista menos el flujo que passa por esta
 		int temp = Math.min(capacidadResidual,exceso[u]); // temporal para saber cuanto podemos pushear
 		int nuevoFlujo = g.consultarFlujoArista(u, v) + temp; //el nuevo flujo de la arista sera el antiguo mas el que ahora pasa
@@ -133,6 +135,7 @@ public class PushRelabel extends Algoritmo {
 		String o = "el exceso de " + u + " despues del push es " + exceso[u] + "\n";
 		seq.add(o);
 		/////////////////////////////////
+		
 
 		//System.out.println( u + " pushea a " + v + " con " + temp + " el exceso de 1 es " + exceso[1] );
 		//System.out.println( "el vertice 1 esta en estado " + active[1] + " la altura es " + alturas[1] );
@@ -150,7 +153,8 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	public Solucion ejecutar (Entrada g) throws Exception{
-		
+		da = new Date();
+		long diff = da.getTime();
 		float t1 = System.currentTimeMillis();
 		//GrafoAntiguo g = e.consultarGrafo();
 		
@@ -208,7 +212,7 @@ public class PushRelabel extends Algoritmo {
 		}
 
 		float t2 = System.currentTimeMillis();
-		sol.modificarTiempo(t2-t1);
+		sol.modificarTiempo(diff-da.getTime());
 		sol.seqsol = seq; 
 		return sol;
 		

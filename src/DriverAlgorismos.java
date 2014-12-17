@@ -170,6 +170,7 @@ public static void main(String [] args) throws Exception {
 	    							for ( int j = 0; j < sol.obtenNumCiudades(i);++j){
 	    								System.out.print(sol.obtenVertice(i, j) + " ");
 	    							}
+	    							System.out.println("el tiempo: " + sol.consultarTiempo());
 	    							System.out.println();
 	    						}
 	    					}
