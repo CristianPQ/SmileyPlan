@@ -161,7 +161,7 @@ public class VistaAlgoritmo extends Vista2 {
 					else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
-					
+					vb.clear();
 					for (int i = 0; i < l.length; ++i )
 						vb.agregar(l[i]);
 					
