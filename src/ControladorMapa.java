@@ -643,7 +643,7 @@ public class ControladorMapa {
 	 * @param l
 	 * @throws Exception
 	 */
-	private void convertirCaminos(String[] l) throws Exception {
+	private void convertirCaminos(String[] l, ControladorMedioTransporte contMT) throws Exception {
 		int total = l.length; 
 		for(int i = 0; i < total; ++i) {
 			String[] cortarstring = l[i].split(" "); 
@@ -651,8 +651,9 @@ public class ControladorMapa {
 			String cd = cortarstring[1];
 			String trans = cortarstring[2];
 			int capac = Integer.parseInt(cortarstring[3]);  
-			Camino c = new Camino(co,cd,capac, trans);
-			m.agregarCamino(c); 
+			agregarCamino(co, cd, trans, capac, contMT); 
+			//Camino c = new Camino(co,cd,capac, trans);
+			//m.agregarCamino(c); 
 			/////////////per comprovar ////////////////
 			System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
 			/////////////////////////////////////////////
@@ -665,7 +666,7 @@ public class ControladorMapa {
 	 * @param file
 	 * @throws Exception
 	 */
-	public boolean cargarCaminos(String file) throws Exception {
+	public boolean cargarCaminos(String file, ControladorMedioTransporte contMT) throws Exception {
 		
 		GestorDatos gd = new GestorDatos(file); 
 		gd.abrirArchivo("read"); 
@@ -675,20 +676,20 @@ public class ControladorMapa {
 		if (num <= CARGA_MAX) {
 			carga = gd.obtenerTodoElString(); 
 			String[] l = carga.split("\n"); 
-			convertirCaminos(l); 
+			convertirCaminos(l,contMT); 
 		}
 		else {
 			while(num >= CARGA_MAX){
 				num = num - CARGA_MAX; 
 				carga = gd.obtenerStrings(CARGA_MAX);
 				String[] l = carga.split("\n"); 
-				convertirCaminos(l);  
+				convertirCaminos(l,contMT);  
 			}
 			if(num != 0) { //si queden restes
 				//System.out.println("restes");
 				carga = gd.obtenerStrings(num); 
 				String[] l = carga.split("\n"); 
-				convertirCaminos(l); 
+				convertirCaminos(l,contMT); 
 			}
 		}
 		gd.cerrarArchivo(); 

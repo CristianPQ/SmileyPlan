@@ -417,10 +417,8 @@ public class Mapa {
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
 		String medio = c.consultarTransporte();
-		System.out.println("agregar camino MAPA "+ cOrig + " " +cDest); 
-		System.out.println("existe origen? "+ existeCiudad(cOrig)); 
-		System.out.println("existe destino? "+ existeCiudad(cDest)); 
 		if(!existeCiudad(cOrig) || !existeCiudad(cDest)) throw NoExistenCiudades;
+		//if(!existe(medio)) throw MedioNoExiste; 
 		if(cOrig.equals(cDest)) throw NoValido;
 		if(existeCamino(cOrig, cDest, medio)) throw Existe;
 		int out = g.consultarVertice(cOrig).consultarEquivalente();

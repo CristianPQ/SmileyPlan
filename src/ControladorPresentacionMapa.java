@@ -170,7 +170,7 @@ public class ControladorPresentacionMapa {
 	}
 	
 	public boolean cargarCaminos(String file) throws Exception {
-		return cm.cargarCaminos(file); 
+		return cm.cargarCaminos(file, cmed.devolverControlador()); 
 	}
 	
 	public void guardarCaminos(String file) {
