@@ -32,7 +32,9 @@ public class VistaAlgoritmo extends Vista2 {
 	private DefaultListModel model;
 	private JList l;
     private JScrollPane scroller;
-    private VistaBuscador vis; 
+
+    private VistaBuscador vis2;
+    private VistaBuscador vis3;
     private JTextArea textarea; 
     private JButton botonEjecutar; 
     private boolean ff;
@@ -53,8 +55,9 @@ public class VistaAlgoritmo extends Vista2 {
 		dinic = false;
 		pr = false;
 		this.cpalg = cpa;
-		//super.label1.setText("Funcion de Coste: ");
-		vis = new VistaBuscador(this); 
+
+		vis2 = new VistaBuscador(this);
+		vis3 = new VistaBuscador(this);
 		panelLista.removeAll();
 		
 		JPanel panelAlg = new JPanel(); 
@@ -89,12 +92,13 @@ public class VistaAlgoritmo extends Vista2 {
 		txtcoste = new JLabel("Funcion de coste");
 		txtcoste.setFont(new Font("Verdana",1,20));
 		panelLista.add(txtcoste);
+
 		super.panelLista.add(precio);
 		super.panelLista.add(distancia); 
 		
 		//model = new DefaultListModel();
 	    //l = new JList(model);
-		JTextArea textArea = new JTextArea();
+	//	JTextArea textArea = new JTextArea();
 		/*
 	    scroller = new JScrollPane(textArea);
 	    scroller.setMinimumSize(new Dimension(500,250));
@@ -104,8 +108,11 @@ public class VistaAlgoritmo extends Vista2 {
         //texto.setPreferredSize(new Dimension(120,30));
 		
 		//vb = new VistaBuscador(this);
-        
+		        
         super.panelv2.add(vb);
+        
+		super.panelv2.add(vis2);
+		super.panelv2.add(vis3);
         
         panelEjec = new JPanel(); 
 		panelEjec.setBorder(BorderFactory.createLoweredBevelBorder());
@@ -141,7 +148,9 @@ public class VistaAlgoritmo extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 
 				cpalg.initItinerarios();
-				vb.clear();
+				if(ff)vb.clear();
+				else if(pr)vis2.clear();
+				else if(dinic) vis3.clear();
 				String source = CiuO.getText();
 				String sink = CiuD.getText();
 				if (source.equals("") || sink.equals(""))
@@ -161,13 +170,14 @@ public class VistaAlgoritmo extends Vista2 {
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
 
-					for (int i = 0; i < l.length; ++i )
-						vb.agregar(l[i]);
-					
-				
-					
+					 for (int i = 0; i < l.length; ++i ){
+						if(ff)vb.agregar(l[i]);
+						else if(pr) vis2.agregar(l[i]);
+						else if(dinic)  vis3.agregar(l[i]);		
+					 	}
+
+					}
 				}
-			}
 		});
 		
 		FF.addActionListener(new ActionListener() {			
