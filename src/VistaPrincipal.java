@@ -67,7 +67,8 @@ public class VistaPrincipal {
 					cpm.guardarBrowser();
 					cpmapa.guardarBrowser();
 					cpa.guardarBrowser(); 
-	                
+					cpmapa.guardarBrowserCaminos();
+					cpmapa.guardarBrowserCiudades();  
 	            }
 		}); 
 		
@@ -76,8 +77,10 @@ public class VistaPrincipal {
 			 public void actionPerformed(ActionEvent event) {
 					cpm.cargarBrowser();
 					cpmapa.cargarBrowser();
+					cpmapa.cargarBrowserCiudades();
+					cpmapa.cargarBrowserCaminos();
 					cpa.cargarBrowser(); 
-				
+					
 	            }
 		}); 
 		

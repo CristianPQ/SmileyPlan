@@ -37,6 +37,7 @@ public class VistaMapa extends Vista3{
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
+		super.filechooser.setDialogTitle("Elige archivo para el Mapa");  
 		//vg = new VistaGrafo();
 		//super.panelPrincipal.add(vg); 
 	}

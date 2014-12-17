@@ -174,7 +174,7 @@ public class VistaAgentes extends Vista2 {
 	
 	public void abrirBrowserCargar() {
 		JFrame parentFrame = new JFrame();
-		int userSelection = filechooser.showSaveDialog(parentFrame);
+		int userSelection = filechooser.showOpenDialog(parentFrame);
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 			String file = filechooser.getSelectedFile().getAbsolutePath();
 			file = file.concat(".smiley");

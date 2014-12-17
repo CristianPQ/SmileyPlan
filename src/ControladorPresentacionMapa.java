@@ -190,6 +190,34 @@ public class ControladorPresentacionMapa {
 		vm.abrirBrowserGuardar();
 	}
 	
+	public void guardarBrowserCaminos(){
+		vm.abrirBrowserGuardarCaminos();
+	}
+	
+	public void guardarBrowserCiudades(){
+		try {
+			vm.abrirBrowserGuardarCiudades();
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
+	
+	public void cargarBrowserCiudades(){
+		try {
+			vm.abrirBrowserCargarCiudades();
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
+	
+	public void cargarBrowserCaminos(){
+		try {
+			vm.abrirBrowserCargarCaminos();
+		} catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
+	
 	public void cargarBrowser(){
 		try {
 			vm.abrirBrowserCargar();
