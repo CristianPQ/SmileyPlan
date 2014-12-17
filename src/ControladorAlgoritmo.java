@@ -140,8 +140,13 @@ public class ControladorAlgoritmo {
 		//cas que sobren camins, mirem els de menys cost
 		//else if (numIt > numAg){ 
 				//System.out.println("numIt mayor que numAg \n"); 
+		for(int j = 0; j < numIt; ++j){
+				System.out.println("coste del itinerario " + j +   " es = " + sol.obtenCoste(j));
+			}
+		
 			for(int i = 0; i < numAg; ++i){
-				int min = 1000;
+				
+				int min = 2147483647; //max int
 				int pos = 1000;
 				for(int j = 0; j < numIt; ++j){
 					if(sol.obtenCoste(j) < min) {
@@ -149,9 +154,10 @@ public class ControladorAlgoritmo {
 						pos = j; 
 					}
 				}
+				
 				String s = agentes.get(i); 
 				convertirItinerario(pos,s);
-				sol.agregarCosteAItinerario(pos, 1000);//posem marca 
+				sol.agregarCosteAItinerario(pos, 2147483647);//posem marca 
 			}
 		//}
 	}
@@ -171,7 +177,7 @@ public class ControladorAlgoritmo {
 			int v = sol.obtenVertice(i, j); 
 			String c = mapping[v]; 
 			listaciudades.add(c);
-			System.out.println(c);
+			//System.out.println(c);
 		}
 		cit.agregarItinerario(nombreAg,listaciudades); 
 	}
