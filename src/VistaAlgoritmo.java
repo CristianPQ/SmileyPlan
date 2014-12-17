@@ -142,7 +142,7 @@ public class VistaAlgoritmo extends Vista2 {
 				//System.out.println("hola");
 				//actualizarInformacion();
 				//vb.agregar("hola");
-				vb.clear();
+			
 				String source = CiuO.getText();
 				String sink = CiuD.getText();
 				if (source.equals("") || sink.equals(""))
@@ -161,6 +161,7 @@ public class VistaAlgoritmo extends Vista2 {
 					else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
+					
 					for (int i = 0; i < l.length; ++i )
 						vb.agregar(l[i]);
 					
