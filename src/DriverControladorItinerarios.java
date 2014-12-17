@@ -9,7 +9,7 @@ public class DriverControladorItinerarios {
         System.out.println("Driver clase Controlador Itinerarios"
                 + "\n 0.Salir"
                 + "\n 1.crear ControladorItinerario()"
-                + "\n 2.agregarItinerario(String nombre)" 
+                + "\n 2.agregarItinerario(String nombre, ciudades, integer)" 
                 + "\n 3.escribirItinerario()"
                 +"\n");
     }
@@ -38,7 +38,8 @@ public class DriverControladorItinerarios {
 	        	  String n4 = lsplited[5]; ciudades.add(n4); 
 	        	  String n5 = lsplited[6]; ciudades.add(n5); 
 	        	  String n6 = lsplited[7]; ciudades.add(n6); 
-	        	  aux.agregarItinerario(nombre, ciudades);
+	        	  int nuevoCoste = Integer.parseInt(lsplited[8]);
+	        	  aux.agregarItinerario(nombre, ciudades, nuevoCoste);
 	        	  int n = aux.consultarSize(); 
 	        	  int m = aux.consultarCiudadesIt(it); 
 	        	  System.out.println( n + " " + m + "\n");
