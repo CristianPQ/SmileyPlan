@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class Algoritmo {
+public abstract class Algoritmo {
 	/**
 	 * 
 	 * @param g
@@ -10,9 +10,6 @@ public class Algoritmo {
 	 * @throws Exception 
 	 */
 	
-	public Solucion ejecutar ( Entrada e) throws Exception{
-		return null;}
-		
-		
-		
+	public abstract Solucion ejecutar ( Entrada e) throws Exception;
+	
 }
