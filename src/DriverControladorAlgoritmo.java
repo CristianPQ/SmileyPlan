@@ -123,7 +123,12 @@ public class DriverControladorAlgoritmo {
                         lsplited = linea.split(" ");
     	        		String s = lsplited[0];
     	        		String t = lsplited[1];
-    	        		cAlg = new ControladorAlgoritmo(cAge, m, cMed, s,t);
+    	        		int bo = Integer.parseInt(lsplited[2]);
+    	        		boolean calculo;
+    	        		if (bo == 1) calculo = true;
+    	        		else calculo = false;
+    	        		cIt = new ControladorItinerarios();
+    	        		cAlg = new ControladorAlgoritmo(cAge, m, cMed, s,t,calculo,cIt);
     	        		break;
     	        	}
     	        	case 5: {
