@@ -531,6 +531,7 @@ public class Mapa {
 					int in = g.consultarVertice(c.consultarDestino()).consultarEquivalente();
 					int out = id;
 					g.eliminarArista(c, in, out);
+					--j;
 				}
 			}
 		}
