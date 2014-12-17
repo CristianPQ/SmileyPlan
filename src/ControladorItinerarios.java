@@ -26,7 +26,7 @@ public class ControladorItinerarios {
 		cjtoit.add(aux);  
 	}
 	
-	
+
 	/**
 	 * consultora tamano conjunto 
 	 * @return

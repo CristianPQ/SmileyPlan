@@ -26,6 +26,10 @@ public class ControladorPresentacionAlgoritmo {
 		
 		}
 		
+		public void initItinerarios(){
+			citi = new ControladorItinerarios();
+		}
+		
 		public void guardarSeq(String file){
 			try {
 				ca.guardarSeq(file);

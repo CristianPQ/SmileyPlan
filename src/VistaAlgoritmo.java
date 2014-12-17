@@ -139,10 +139,9 @@ public class VistaAlgoritmo extends Vista2 {
 		botonEjecutar.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println("hola");
-				//actualizarInformacion();
-				//vb.agregar("hola");
-			
+
+				cpalg.initItinerarios();
+				vb.clear();
 				String source = CiuO.getText();
 				String sink = CiuD.getText();
 				if (source.equals("") || sink.equals(""))
@@ -161,7 +160,7 @@ public class VistaAlgoritmo extends Vista2 {
 					else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
-					vb.clear();
+
 					for (int i = 0; i < l.length; ++i )
 						vb.agregar(l[i]);
 					
