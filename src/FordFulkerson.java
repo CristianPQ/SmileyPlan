@@ -92,7 +92,7 @@ public class FordFulkerson extends Algoritmo{
 		        }
 		      }
 		    }
-		    return 0;
+		    return -1;
 		  }
 	 
 	/**
