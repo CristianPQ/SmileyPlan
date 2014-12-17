@@ -5,20 +5,20 @@ public class DriverGrafo {
 	private static Scanner sc;
 
 	private static void menu() {
-        System.out.println("Driver clase Ciudad"
+        System.out.println("Driver clase Grafo"
                 + "\n 0.Salir"
                 + "\n 1.Grafo()"
-                + "\n 2.consultarAdyacentesSalida(int indice):ArrayList<E>"
-                + "\n 3.consultarAdyacentesEntrada(int indice):ArrayList<E>"
-                + "\n 4.existeAdyacente(int indice, E e):boolean"
-                + "\n 5.agregarElemento(int in, int out, E e)"
-                + "\n 6.eliminarElemento(int in, int out, E e)"
+                + "\n 2.consultarAdyacenciasSalida(int indice):ArrayList<E>"
+                + "\n 3.consultarAdyacenciasEntrada(int indice):ArrayList<E>"
+                + "\n 4.existeAristaCon(indice)"
+                + "\n 5.agregarArista(E e, int in, int out)"
+                + "\n 6. eliminarArista(E e, int in, int out)"
                 + "\n 7.Grafo(int n)"
         		+"\n");
     }
 	
 	public static void main(String [] args) throws Exception {
-		Grafo<String> g = null;
+		Grafo<Integer, String> g = null;
 		menu();
 		sc = new Scanner(System.in);
         String[] lsplited;
@@ -27,12 +27,12 @@ public class DriverGrafo {
         		lsplited = sc.nextLine().split(" ");
     	        switch(Integer.parseInt(lsplited[0])) {
     	        	case 1: {
-    	        		g = new Grafo<String>();
+    	        		g = new Grafo<Integer,String>();
     	        		break;
     	        	}
     	        	case 2: {
     	        		int indice = Integer.parseInt(lsplited[1]);
-    	        		ArrayList<String> li = g.consultarAdyacentesSalida(indice);
+    	        		ArrayList<String> li = g.consultarAristasSalida(indice);
     	        		String s = new String();
     	        		for(int i = 0; i < li.size(); ++i) {
     	        			s = s + li.get(i) + "\n";
@@ -42,7 +42,7 @@ public class DriverGrafo {
     	        	}
     	        	case 3: {
     	        		int indice = Integer.parseInt(lsplited[1]);
-    	        		ArrayList<String> li = g.consultarAdyacentesEntrada(indice);
+    	        		ArrayList<String> li = g.consultarAristasEntrada(indice);
     	        		String s = new String();
     	        		for(int i = 0; i < li.size(); ++i) {
     	        			s = s + li.get(i) + "\n";
@@ -52,8 +52,7 @@ public class DriverGrafo {
     	        	}
     	        	case 4: {
     	        		int indice = Integer.parseInt(lsplited[1]);
-    	            	String st = lsplited[2];
-    	                boolean b = g.existeAdyacente(indice, st);
+    	                boolean b = g.existeAristaCon(indice);
     	                System.out.println(b + "\n");
     	        		break;
     	        	}
@@ -64,19 +63,19 @@ public class DriverGrafo {
     	        			g.agrandar();
     	        		}
     	            	String st = lsplited[3];
-    	                g.agregarElemento(in, out, st);
+    	                g.agregarArista(st, in, out);
     	        		break;
     	        	}
     	        	case 6: {
     	        		int in = Integer.parseInt(lsplited[1]);
     	        		int out = Integer.parseInt(lsplited[2]);
     	            	String st = lsplited[3];
-    	                g.eliminarElemento(in, out, st);
+    	                g.eliminarArista(st, in, out);
     	        		break;
     	        	}
     	        	case 7: {
     	        		int n = Integer.parseInt(lsplited[1]);
-    	        		g = new Grafo<String>(n);
+    	        		g = new Grafo<Integer, String>(n);
     	        		break;
     	        	}
     	        	case 0: {
