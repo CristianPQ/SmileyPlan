@@ -228,7 +228,7 @@ public class ControladorMapa {
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap, ControladorMedioTransporte contMT) throws Exception {
 		
 		//Comprobar que el medioTransporte ya existe
-		System.out.println("dins agregar camino" + contMT.existe(medio));
+		//System.out.println("dins agregar camino" + contMT.existe(medio));
 		if(!contMT.existe(medio)) throw NoExiste;
 		Camino c = new Camino(cOrig, cDest, cap, medio);
 		m.agregarCamino(c);
@@ -417,17 +417,17 @@ public class ControladorMapa {
 		 int y = m.consultarAltura(); 
 		 String linea = x + " " + y + "\n"; 
 		 buffer = linea; 
-		 System.out.println(linea);
+		 //System.out.println(linea);
 		 
 		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
-		 System.out.println(c);
+		 //System.out.println(c);
 		 //guardar coordenadas
 		 for(int i = 0; i < c.size(); ++i) {
 			 Coordenadas aux = c.get(i); 
 			 int c1 = aux.consultarX(); 
 			 int c2 = aux.consultarY();
 			 linea = c1 + " " + c2; 
-			 System.out.println(linea);
+			 //System.out.println(linea);
 			 buffer = buffer + linea + "\n"; 
 			 
 			 if(buffer.length() > BUFFER_SIZE) {
@@ -546,7 +546,7 @@ public class ControladorMapa {
 		
 		int x = Integer.parseInt(cortarstring[0]);
 		int y = Integer.parseInt(cortarstring[1]);
-		System.out.println(x + " " + y);
+		//System.out.println(x + " " + y);
 		//++i; 
 		
 		ArrayList<Coordenadas> cont = new ArrayList<Coordenadas>(); 
@@ -555,11 +555,11 @@ public class ControladorMapa {
 			cortarstring = l[j].split(" ");
 			int pos1 = Integer.parseInt(cortarstring[0]);
 			int pos2 = Integer.parseInt(cortarstring[1]);
-			System.out.println(pos1+ " " + pos2);
+			//System.out.println(pos1+ " " + pos2);
 			cont.add(new Coordenadas(pos1, pos2));
 		}
 		m = new Mapa(x, y, cont);
-		System.out.println("he creat mapa");
+		//System.out.println("he creat mapa");
 	}
 	
 	
@@ -578,13 +578,13 @@ public class ControladorMapa {
 		
 		int num = gd.bufferToStrings(); 
 		String carga = gd.obtenerTodoElString(); 
-		System.out.println("dins cargarMapa");
+		//System.out.println("dins cargarMapa");
 		
 		String[] lineas = carga.split("\n");
 		convertirMapa(lineas);
 		
 		gd.cerrarArchivo();
-		System.out.println("fi"); 
+		//System.out.println("fi"); 
 		return true; 
 	}
 	
@@ -663,7 +663,7 @@ public class ControladorMapa {
 			//Camino c = new Camino(co,cd,capac, trans);
 			//m.agregarCamino(c); 
 			/////////////per comprovar ////////////////
-			System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
+			//System.out.print(co + " "+ capac + " " + cd + " " + trans + "\n"); 
 			/////////////////////////////////////////////
 		}
 	}
@@ -761,7 +761,7 @@ public class ControladorMapa {
 	public Entrada /*GrafoAntiguo*/ crearGrafo(boolean calcCoste, ControladorMedioTransporte mt) 
 			throws Exception{
 
-		for (int i = 0; i < consultarNumVertices();++i)	System.out.println(mapping[i]);
+		//for (int i = 0; i < consultarNumVertices();++i)	System.out.println(mapping[i]);
 
 		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(consultarNumVertices()); //init grafo	
 		

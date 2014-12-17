@@ -55,16 +55,16 @@ public class GestorDatos {
 	     */
 	    public void abrirArchivo(String modo) throws Exception {
 	    	File f = new File(Archivo);
-	    	System.out.println("he creat arxiu"); 
+	    	//System.out.println("he creat arxiu"); 
 	    	f.createNewFile(); 
 	        if (modo == "read") { 
-	        	System.out.print("dins opcio read \n");
+	        	//System.out.print("dins opcio read \n");
 	            fr = new FileReader(f);
 	            br = new BufferedReader(fr); 
 	            lectura = true;
 	        }
 	        if (modo == "write") { 
-	        	System.out.print("dins opcio write \n");
+	        	//System.out.print("dins opcio write \n");
 	            fw = new FileWriter(f);
 	            bw = new BufferedWriter(fw);
 	            escritura = true;
@@ -114,7 +114,7 @@ public class GestorDatos {
 	    public String obtenerStrings(int n) {
 	    	String line = sol.get(pos) + "\n";
 	    	++pos; 
-	    	System.out.println("posicio on segueixo" + pos); 
+	    	//System.out.println("posicio on segueixo" + pos); 
 	    	int j; 
 	    	--n; 
 	    	for(j= 0; j < n; ++j){    		

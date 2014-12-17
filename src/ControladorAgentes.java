@@ -283,7 +283,7 @@ public class ControladorAgentes {
     			String ci = cortarstring[1];
 				String co = cortarstring[2]; 
     			/////////////per comprovar ////////////////
-				System.out.print(nombre + " "+ ci + " "+ co + "\n");
+				//System.out.print(nombre + " "+ ci + " "+ co + "\n");
     			/////////////////////////////////////////////
 				anadirAgenteInterna(nombre,ci,co); 
 				//System.out.println("agente agregat");

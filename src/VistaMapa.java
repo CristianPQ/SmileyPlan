@@ -428,7 +428,7 @@ public class VistaMapa extends Vista3{
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 	 			boolean success = cpmapa.cargarCaminos(file);
 				if (success) {
-					System.out.println("success"); 
+					//System.out.println("success"); 
 					actualizarListaCaminos();
 				}
 	 		}

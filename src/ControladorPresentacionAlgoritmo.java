@@ -40,7 +40,7 @@ public class ControladorPresentacionAlgoritmo {
 		
 		public void ejecutar(int i, String s, String t, boolean funcionCoste) {
 			try {
-				System.out.println("entro en ejecutar controlador presentacio");
+				//System.out.println("entro en ejecutar controlador presentacio");
 				ControladorAgentes cagentes = cpa.devolverControlador();
 				ControladorMedioTransporte cmt = cpm.devolverControlador();
 				ControladorMapa cmapa = cpmapa.devolverControlador();

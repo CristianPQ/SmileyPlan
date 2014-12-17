@@ -240,8 +240,8 @@ public class ControladorMedioTransporte {
 			int Precio = Integer.parseInt(cortarstring[1]);
 			boolean t = Boolean.valueOf(cortarstring[2]); 
 			/////////////per comprovar ////////////////
-			System.out.println("he carregat medio " + i); 
-			System.out.println(nombre + " " + Precio + " " + t); 
+			//System.out.println("he carregat medio " + i); 
+			//System.out.println(nombre + " " + Precio + " " + t); 
 			/////////////////////////////////////////////
 			if(t) agregarTren(nombre,Precio); 
 			else agregarCoche(nombre,Precio); 
