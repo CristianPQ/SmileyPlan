@@ -422,20 +422,23 @@ public class ControladorMapa {
 		 buffer = linea; 
 		 //System.out.println(linea);
 		 
+		 
 		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
 		 //System.out.println(c);
 		 //guardar coordenadas
-		 for(int i = 0; i < c.size(); ++i) {
-			 Coordenadas aux = c.get(i); 
-			 int c1 = aux.consultarX(); 
-			 int c2 = aux.consultarY();
-			 linea = c1 + " " + c2; 
-			 //System.out.println(linea);
-			 buffer = buffer + linea + "\n"; 
-			 
-			 if(buffer.length() > BUFFER_SIZE) {
-					gd.writeBuffer(buffer); 
-					buffer = null; 
+		 if( c != null) {
+			 for(int i = 0; i < c.size(); ++i) {
+				 Coordenadas aux = c.get(i); 
+				 int c1 = aux.consultarX(); 
+				 int c2 = aux.consultarY();
+				 linea = c1 + " " + c2; 
+				 //System.out.println(linea);
+				 buffer = buffer + linea + "\n"; 
+				 
+				 if(buffer.length() > BUFFER_SIZE) {
+						gd.writeBuffer(buffer); 
+						buffer = null; 
+				 }
 			 }
 		 }
 		 
