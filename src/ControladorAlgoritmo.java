@@ -26,7 +26,7 @@ public class ControladorAlgoritmo {
 		cm.initMapeo();
 		mapping = cm.consultarMapping();
 		//System.out.println("sorto del mapping");
-		if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;
+		//if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;
 		int nAgent = ca.numeroAgentesOrigenObjetivo(cOrig, cDest);
 		//System.out.println("entro a crearGrafo");
 		ent  = cm.crearGrafo(CosteDistancia, mt); //CosteDistancia: si 0, coste*distancia; si 1, distancia
