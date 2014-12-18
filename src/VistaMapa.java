@@ -21,6 +21,9 @@ public class VistaMapa extends Vista3{
 	private String identificador; 
 	private String id2;
 	private String id3; 
+	
+	private JLabel cami; 
+	private JLabel ciutat; 
 	//private VistaGrafo vg;
 	
 	boolean mapaCreado = false;
@@ -37,7 +40,18 @@ public class VistaMapa extends Vista3{
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
-		//super.filechooser.setDialogTitle("Elige archivo para el Mapa");  
+		
+		JLabel cami  = new JLabel(); 
+		JLabel ciutat = new JLabel(); 
+		
+		cami.setText("Caminos");
+		//ciutat.setBackground(Color.DARK_GRAY);
+		//ciutat.setHorizontalAlignment(JLabel.RIGHT);
+		vciut.add(cami, BorderLayout.NORTH);
+		
+		ciutat.setText("Ciudades");
+		vb.add(ciutat);  
+
 		//vg = new VistaGrafo();
 		//super.panelPrincipal.add(vg); 
 	}
