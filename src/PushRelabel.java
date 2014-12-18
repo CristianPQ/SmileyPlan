@@ -81,10 +81,10 @@ public class PushRelabel extends Algoritmo {
 			if ( i == s) {
 				alturas[i] = g.consultarNumeroVertices();
 				adyacencias = g.consultarAdyacentes(i);
-				System.out.println("los vertices adyacentes a 0 son ");
+				//System.out.println("los vertices adyacentes a 0 son ");
 				for (int j = 0; j < adyacencias.size(); ++j){
 					v = adyacencias.get(j).consultarVerticeDestino();
-					System.out.print(v + " ");
+					//System.out.print(v + " ");
 					if (v != t && adyacencias.get(j).consultarCoste()!=-1){ 
 						active[v] = 1;
 						q.addLast(v);
