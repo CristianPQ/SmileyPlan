@@ -141,7 +141,7 @@ public static void main(String [] args) throws Exception {
 	    	            }
 	    	            case 14:{ //Cargar
 	    	            	String file = lsplited[1];
-	    	            	conjAgentes.Cargar(file);
+	    	            	conjAgentes.Cargar(file, cm);
 	    	            	break;
 	    	            }
 	    	            
