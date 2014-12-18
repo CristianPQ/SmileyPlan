@@ -87,8 +87,19 @@ public class VistaAgentes extends Vista2 {
 				//text2.setText(identificador);
 	//			if (!text1.getText().equals("") && !text2.getText().equals("")){
 					if (identificador.equals(id)) {
-						ctrlPAg.modificarCiudadInicial(id, ciuIni);
-						if(!ciuIni.equals(tempIni)) ctrlPAg.modificarCiudadInicial(id,ciuObj);
+				//		ctrlPAg.modificarCiudadInicial(id, ciuIni);
+					if(ciuIni.equals(tempFi) && ciuObj.equals(tempIni)){
+						try{
+							throw new Exception("Para intercambiar, inténtelo por pasos");
+							} catch (Exception e1){
+								setError(e1.getMessage());
+								
+							}
+						
+					}
+						if(!ciuIni.equals(tempIni)) {
+							ctrlPAg.modificarCiudadInicial(id,ciuIni);
+						}
 						if(!ciuObj.equals(tempFi)) ctrlPAg.modificarCiudadObjetivo(id,ciuObj);
 						vb.clear();
 						actualizarLista();                

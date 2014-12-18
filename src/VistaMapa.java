@@ -70,6 +70,7 @@ public class VistaMapa extends Vista3{
 					txtY.setEditable(true);
 					//vg.setLimites(Integer.parseInt(X),  Integer.parseInt(Y));
 				}
+				
 				//crear ciudad
 				else if (txtCO.getText().equals("")){ //si el de cami esta buit
 					//System.out.println("crear ciudades"); 
