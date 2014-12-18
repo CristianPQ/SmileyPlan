@@ -181,10 +181,12 @@ public class ControladorAlgoritmo {
 			int v = sol.obtenVertice(i, j); 
 			String c = mapping[v]; 
 			boolean trobat = false;
-			for (int z = 0; i < listaciudades.size() & !trobat;++z)
-				if(listaciudades.get(i) == c) trobat = true;
+			for (int z = 0; z < listaciudades.size() & !trobat;++z)
+				if(listaciudades.get(z).equals(c)) trobat = true;
 			if(!trobat) listaciudades.add(c);
 		}
+		
+		for (int x = 0; x < listaciudades.size(); ++x) System.out.println(listaciudades.get(x));
 		
 		cit.agregarItinerario(nombreAg,listaciudades,coste); 
 	}
