@@ -132,7 +132,8 @@ public class Dinic extends Algoritmo {
 			//sol.modificarTiempo(t2-t1);
 			sol.seqsol = seq; 
 			float t2 = System.nanoTime();
-			sol.modificarTiempo((t2-t1));
+			System.out.println("Estoy en el algorismo " + (t2-t1)/1000000);
+			sol.modificarTiempo((t2-t1)/1000000);
 			return sol;
 		  }
 		  
