@@ -185,9 +185,7 @@ public class ControladorAlgoritmo {
 				if(listaciudades.get(z).equals(c)) trobat = true;
 			if(!trobat) listaciudades.add(c);
 		}
-		
-		for (int x = 0; x < listaciudades.size(); ++x) System.out.println(listaciudades.get(x));
-		
+
 		cit.agregarItinerario(nombreAg,listaciudades,coste); 
 	}
 	
