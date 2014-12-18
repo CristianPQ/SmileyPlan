@@ -155,7 +155,7 @@ public class PushRelabel extends Algoritmo {
 	public Solucion ejecutar (Entrada g) throws Exception{
 		da = new Date();
 		long diff = da.getTime();
-		float t1 = System.currentTimeMillis();
+		float t1 = System.nanoTime();
 		//GrafoAntiguo g = e.consultarGrafo();
 		
 		int s = g.consultarSource();
@@ -212,7 +212,12 @@ public class PushRelabel extends Algoritmo {
 		}
 
 		float t2 = System.currentTimeMillis();
-		sol.modificarTiempo(diff-da.getTime());
+		//System.out.println(System.nanoTime());
+		//Thread.sleep (10000);
+		//System.curre
+		//System.out.println(System.nanoTime());
+		//System.out.println(da.getTime());
+		sol.modificarTiempo((System.nanoTime()-t1)/1000000);
 		sol.seqsol = seq; 
 		return sol;
 		
