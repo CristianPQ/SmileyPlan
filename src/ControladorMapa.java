@@ -840,8 +840,19 @@ public class ControladorMapa {
 				}
 				
 			}
-			
-		return e;
+	/*	for(int i = 0; i < mapping.length; ++i){
+			ArrayList <Arista> a = e.consultarAdyacentes(i);
+			System.out.println("Aristas vertice " + i);
+			if (!a.equals(null))
+			for(int j = 0; j< a.size(); ++j){
+				if(!a.get(j).equals(null))
+				System.out.println(a.get(j).consultarVerticeDestino() + a.get(j).consultarCapacidad() + ' ');
+				System.out.println(" ");			
+		}
+		}
+		*/
+		
+	return e;
 	}
 	
 	
