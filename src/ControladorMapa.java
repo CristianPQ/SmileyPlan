@@ -15,7 +15,7 @@ public class ControladorMapa {
 	private static Exception NoExiste = new Exception ("El medio de transporte no existe");
 	
 	public ControladorMapa(){
-		
+	
 	}
 	/**
 	 * Constructora de ControladorMapa
@@ -25,7 +25,6 @@ public class ControladorMapa {
 	 * @throws Exception
 	 */
 	public ControladorMapa(int anchuraX, int alturaY, String continente) throws Exception {
-		
 		//Para delimitar el continente son necesarios por lo menos 4 coordenadas
 		ArrayList<Coordenadas> cont = continente(continente);
 		m = new Mapa(anchuraX, alturaY, cont);
@@ -70,7 +69,11 @@ public class ControladorMapa {
 		 } 
 		return continente;
 	}
-
+	
+	public boolean existeContinente() {
+		return m.existeContinente(); 
+	}
+	
 	//#########################################
 	//##########SOBRE CIUDADES
 	//#########################################
@@ -550,18 +553,21 @@ public class ControladorMapa {
 		//++i; 
 		
 		ArrayList<Coordenadas> cont = new ArrayList<Coordenadas>(); 
-		
-		for (int j = 1; j < total; ++j) {
-			cortarstring = l[j].split(" ");
-			int pos1 = Integer.parseInt(cortarstring[0]);
-			int pos2 = Integer.parseInt(cortarstring[1]);
-			//System.out.println(pos1+ " " + pos2);
-			cont.add(new Coordenadas(pos1, pos2));
+		if(total <= 1) {
+			System.out.println("no continent"); 
+			m = new Mapa(x,y," ");  
 		}
-		m = new Mapa(x, y, cont);
-		//System.out.println("he creat mapa");
+		else {
+			for (int j = 1; j < total; ++j) {
+				cortarstring = l[j].split(" ");
+				int pos1 = Integer.parseInt(cortarstring[0]);
+				int pos2 = Integer.parseInt(cortarstring[1]);
+				//System.out.println(pos1+ " " + pos2);
+				cont.add(new Coordenadas(pos1, pos2));
+			}
+			m = new Mapa(x, y, cont);
+		}
 	}
-	
 	
 	
 	/**

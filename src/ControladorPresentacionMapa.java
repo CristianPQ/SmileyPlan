@@ -7,8 +7,8 @@ public class ControladorPresentacionMapa {
 	private static VistaMapa vm;
 	private static ControladorPresentacionMedios cmed;
 	private static ControladorPresentacionAgentes cag;
-	
-	public ControladorPresentacionMapa(ControladorPresentacionMedios cmd, ControladorPresentacionAgentes cagen){
+
+	public ControladorPresentacionMapa( ControladorPresentacionMedios cmd, ControladorPresentacionAgentes cagen){
 		cmd.setContPresMapa(this);
 		cmed = cmd;
 		vm = new VistaMapa(this);
@@ -188,6 +188,10 @@ public class ControladorPresentacionMapa {
 	public void eliminarCaminosConMedio(String nombre) throws Exception {
 		cm.eliminarCaminosConMedio(nombre);
 		vm.actualizarListaCaminos();
+	}
+	
+	public boolean existeContinente(){
+		return cm.existeContinente(); 
 	}
 	
 	public void guardarBrowser() {

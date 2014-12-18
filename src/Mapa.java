@@ -38,6 +38,11 @@ public class Mapa {
 		agregarContinente(continente);
 	}
 	
+	public Mapa(int anchuraX, int alturaY, String cont) {
+		g = new Grafo<Ciudad, Camino>(); 
+		mapa = new String[alturaY][anchuraX]; 
+	}
+	
 	//#########################################
 	//##########SOBRE MAPA
 	//#########################################
@@ -160,6 +165,11 @@ public class Mapa {
 		return coord; 
 	}
 	
+	public boolean existeContinente(){
+		System.out.println("dentro de mapa " + coord.size()); 
+		if(coord.size() == 0) return false; 
+		else return true; 
+	}
 	//#########################################
 	//##########SOBRE CIUDADES
 	//#########################################
