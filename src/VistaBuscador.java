@@ -28,21 +28,20 @@ public class VistaBuscador extends JPanel{
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createEmptyBorder(10,5,10,5));
         
-        label = new JLabel();
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        
-        model = new DefaultListModel();
-        l = new JList(model);
-        scroller = new JScrollPane(l);
-        scroller.setMinimumSize(new Dimension(250,500));
-        scroller.setMaximumSize(new Dimension(250,500));
- 
         vistaBuscar = new JPanel();
         vistaBuscar.setMinimumSize(new Dimension(250,50));
         vistaBuscar.setMaximumSize(new Dimension(250,50));
-    
+        
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        
+        
+        // Texto a buscar
         textoBusqueda = new JTextField();
         textoBusqueda.setPreferredSize(new Dimension(120,30));
+        
+        vistaBuscar.add(textoBusqueda);
+        
         botonBuscar = new JButton("Buscar");
         
         botonBuscar.addActionListener(new ActionListener() {
@@ -66,8 +65,17 @@ public class VistaBuscador extends JPanel{
             }
         });
         
-        vistaBuscar.add(textoBusqueda);
         vistaBuscar.add(botonBuscar);
+        
+        label = new JLabel();
+        label.setAlignmentX(CENTER_ALIGNMENT);
+        
+        model = new DefaultListModel();
+        l = new JList(model);
+        
+        scroller = new JScrollPane(l);
+        scroller.setMinimumSize(new Dimension(250,500));
+        scroller.setMaximumSize(new Dimension(250,500));
         
         
         this.add(label);
