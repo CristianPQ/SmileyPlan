@@ -219,6 +219,9 @@ public abstract class Vista3 extends Vista1 {
 		panelv3.add(panelCiudad);
 		panelv3.add(panelCaminos);
 		panelv3.add(panelBotones);
+		//GridBagConstraints c = new GridBagConstraints();
+        //c.fill = GridBagConstraints.HORIZONTAL;
+		//panelv3.add(super.panelErrores,c);
 		
 	
 		super.panelPrincipal.add(vciut);

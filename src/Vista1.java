@@ -30,7 +30,7 @@ public abstract class Vista1 extends JPanel {
         filter = new FileNameExtensionFilter(".smiley", "smiley");
         filechooser.setFileFilter(filter);
         filechooser.addChoosableFileFilter(filter);
-		
+        
 		this.add(panelPrincipal);
 		this.add(panelErrores);
 		
