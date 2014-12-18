@@ -362,10 +362,5 @@ public class ControladorAgentes {
     		gd.cerrarArchivo(); 
 
     	}
-    	
-    	
-      
-		
-
 
 }

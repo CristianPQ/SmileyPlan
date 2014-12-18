@@ -8,7 +8,7 @@ public class ControladorPresentacionMapa {
 	private static ControladorPresentacionMedios cmed;
 	private static ControladorPresentacionAgentes cag;
 	
-	public ControladorPresentacionMapa( ControladorPresentacionMedios cmd, ControladorPresentacionAgentes cagen){
+	public ControladorPresentacionMapa(ControladorPresentacionMedios cmd, ControladorPresentacionAgentes cagen){
 		cmd.setContPresMapa(this);
 		cmed = cmd;
 		vm = new VistaMapa(this);

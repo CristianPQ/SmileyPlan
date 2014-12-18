@@ -76,7 +76,7 @@ public class VistaPrincipal {
 			@Override
 			 public void actionPerformed(ActionEvent event) {
 					cpm.cargarBrowser();
-					cpmapa.cargarBrowser();
+					cpmapa.cargarBrowser(); 
 					cpmapa.cargarBrowserCiudades();
 					cpmapa.cargarBrowserCaminos();
 					cpa.cargarBrowser(); 

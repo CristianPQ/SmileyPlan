@@ -37,7 +37,7 @@ public class VistaMapa extends Vista3{
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
-		super.filechooser.setDialogTitle("Elige archivo para el Mapa");  
+		//super.filechooser.setDialogTitle("Elige archivo para el Mapa");  
 		//vg = new VistaGrafo();
 		//super.panelPrincipal.add(vg); 
 	}
@@ -346,6 +346,7 @@ public class VistaMapa extends Vista3{
 		///FUNCIONES DE CARGAR/GUARDAR///////
 		public void abrirBrowserGuardar()  {
 			   JFrame parentFrame = new JFrame();
+		 		super.filechooser.setDialogTitle("Elige archivo para el Mapa"); 
 		 		int userSelection = filechooser.showSaveDialog(parentFrame);
 		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
@@ -356,10 +357,8 @@ public class VistaMapa extends Vista3{
 		
 		public void abrirBrowserCargar() throws Exception {
 			JFrame parentFrame = new JFrame();
+			super.filechooser.setDialogTitle("Elige archivo para el Mapa"); 
 	 		int userSelection = filechooser.showOpenDialog(parentFrame);
-	 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".mapa", "mapa");
-	 		//super.filechooser.setFileFilter(filtermapa);
-	        //super.filechooser.addChoosableFileFilter(filtermapa);
 	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 	 			boolean success = cpmapa.cargarMapa(file);
@@ -382,7 +381,8 @@ public class VistaMapa extends Vista3{
 	
 		public void abrirBrowserGuardarCiudades()  {
 			   JFrame parentFrame = new JFrame();
-		 		int userSelection = filechooser.showSaveDialog(parentFrame);
+			   super.filechooser.setDialogTitle("Elige archivo para la Ciudad"); 
+			   int userSelection = filechooser.showSaveDialog(parentFrame);
 		 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
 		 		//super.filechooser.setFileFilter(filtermapa);
 		        //super.filechooser.addChoosableFileFilter(filtermapa);
@@ -395,7 +395,8 @@ public class VistaMapa extends Vista3{
 		
 		public void abrirBrowserCargarCiudades() throws Exception {
 			JFrame parentFrame = new JFrame();
-	 		int userSelection = filechooser.showOpenDialog(parentFrame);
+	 		super.filechooser.setDialogTitle("Elige archivo para la Ciudad");
+	 		int userSelection = filechooser.showOpenDialog(parentFrame);  
 	 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
 	 		//super.filechooser.setFileFilter(filtermapa);
 	        //super.filechooser.addChoosableFileFilter(filtermapa);
@@ -408,7 +409,8 @@ public class VistaMapa extends Vista3{
 		
 		public void abrirBrowserGuardarCaminos()  {
 			   JFrame parentFrame = new JFrame();
-		 		int userSelection = filechooser.showSaveDialog(parentFrame);
+		 		super.filechooser.setDialogTitle("Elige archivo para el Camino");
+		 		int userSelection = filechooser.showSaveDialog(parentFrame);  
 		 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
 		 		//super.filechooser.setFileFilter(filtermapa);
 		        //super.filechooser.addChoosableFileFilter(filtermapa);
@@ -421,6 +423,7 @@ public class VistaMapa extends Vista3{
 		
 		public void abrirBrowserCargarCaminos() throws Exception {
 			JFrame parentFrame = new JFrame();
+	 		super.filechooser.setDialogTitle("Elige archivo para el Camino");  
 	 		int userSelection = filechooser.showOpenDialog(parentFrame);
 	 		//FileNameExtensionFilter filtermapa = new FileNameExtensionFilter(".smiley", "smiley");
 	 		//super.filechooser.setFileFilter(filtermapa);
