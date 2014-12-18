@@ -46,6 +46,9 @@ public class VistaAlgoritmo extends Vista2 {
     //private JTextField texto; 
    // protected VistaBuscador vb; 
     protected JPanel panelEjec; 
+    private JButton but;
+    private JLabel labelco;
+    private JLabel labelcd; 
 	
 	private boolean esPrecio = false; 
 	private boolean esDistancia = false; 
@@ -140,7 +143,7 @@ public class VistaAlgoritmo extends Vista2 {
 	    //texto = new JTextField();
         //texto.setPreferredSize(new Dimension(120,30));
 		
-		vb = new VistaBuscador(this);
+		//vb = new VistaBuscador(this);
 		        
         /*
 		super.panelv2.add(vb, c);
@@ -155,14 +158,24 @@ public class VistaAlgoritmo extends Vista2 {
 		
         CiuO = new JTextField();
       	CiuO.setPreferredSize(new Dimension(100,30));
+      	labelco = new JLabel(); 
+      	labelcd = new JLabel(); 
+      	labelco.setText("Ciudad Origen :");
+      	labelcd.setText("Ciudad Destino: ");
+      	but = new JButton("Ejecutar Todos"); 
+      	
+      	
       	CiuO.setEditable(true);
       	CiuD = new JTextField();
       	CiuD.setPreferredSize(new Dimension(100,30));
       	CiuD.setEditable(true);
       	
-      	
-      	panelEjec.add(CiuO);
+      	panelEjec.add(labelco); 
+    	panelEjec.add(CiuO);
+      	panelEjec.add(labelcd);
       	panelEjec.add(CiuD);
+      	panelEjec.add(but);
+      	
       	
         botonEjecutar = new JButton();
         botonEjecutar.setText("Ejecutar");
