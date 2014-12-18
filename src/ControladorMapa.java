@@ -426,7 +426,7 @@ public class ControladorMapa {
 		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
 		 //System.out.println(c);
 		 //guardar coordenadas
-		 if( c != null) {
+		 if(c != null) {
 			 for(int i = 0; i < c.size(); ++i) {
 				 Coordenadas aux = c.get(i); 
 				 int c1 = aux.consultarX(); 
@@ -556,9 +556,9 @@ public class ControladorMapa {
 		//++i; 
 		
 		ArrayList<Coordenadas> cont = new ArrayList<Coordenadas>(); 
-		if(total <= 1) {
+		if(total == 1) {
 			System.out.println("no continent"); 
-			m = new Mapa(x,y," ");  
+			m = new Mapa(x,y,"");  
 		}
 		else {
 			for (int j = 1; j < total; ++j) {
