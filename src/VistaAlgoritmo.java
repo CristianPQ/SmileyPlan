@@ -256,7 +256,9 @@ public class VistaAlgoritmo extends Vista2 {
 					 	}
 
 					}
+				comprovar("");
 				}
+		
 		});
 		
 		but.addActionListener( new ActionListener() {
@@ -341,6 +343,7 @@ public class VistaAlgoritmo extends Vista2 {
 					 	}
 
 					}
+				comprovar("");
 				}
 		});
 		
