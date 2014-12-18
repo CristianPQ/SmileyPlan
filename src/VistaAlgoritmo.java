@@ -270,7 +270,7 @@ public class VistaAlgoritmo extends Vista2 {
 					String[] l = carga.split("\n");
 
 					 for (int i = 0; i < l.length; ++i ){
-						if(ff)vb.agregar(l[i]);
+						vb.agregar(l[i]);
 					 	}
 
 					}
