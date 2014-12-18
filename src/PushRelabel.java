@@ -161,7 +161,7 @@ public class PushRelabel extends Algoritmo {
 	public Solucion ejecutar (Entrada g) throws Exception{
 		da = new Date();
 		long diff = da.getTime();
-		float t1 = System.nanoTime();
+		double t1 = System.nanoTime();
 		//GrafoAntiguo g = e.consultarGrafo();
 		
 		int s = g.consultarSource();
@@ -216,10 +216,10 @@ public class PushRelabel extends Algoritmo {
 			sol.modificartieneSolucion(true);
 			//sol.modificarGrafo(g);
 			System.out.println("el max flow es " + flow);
-			crearItinerarios(sol,g,0,flow-1,flow,s,t,0); //crea los itinerarios a partir del grafo
+		//	crearItinerarios(sol,g,0,flow-1,flow,s,t,0); //crea los itinerarios a partir del grafo
 		}
 
-		float t2 = System.currentTimeMillis();
+		double t2 = System.currentTimeMillis();
 		//System.out.println(System.nanoTime());
 		//Thread.sleep (10000);
 		//System.curre

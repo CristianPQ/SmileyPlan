@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Solucion {
 	//private GrafoAntiguo g;
-	private float tiempo;
+	private double tiempo;
 	private boolean tieneSolucion = false; //falso si no la tiene true en caso contrario
 	
 	private ArrayList<Integer>[] itinerarios; 
@@ -64,7 +64,7 @@ public class Solucion {
 	 * @param i identificador itinerario
 	 * @return coste
 	 */
-	public float consultarTiempo(){
+	public double consultarTiempo(){
 		return tiempo;
 	}
 	
@@ -72,7 +72,7 @@ public class Solucion {
 	 * Modificadora del tiempo
 	 * @param t
 	 */
-	public void modificarTiempo(float t){
+	public void modificarTiempo(double t){
 		tiempo = t;
 	}
 	

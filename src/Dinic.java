@@ -103,7 +103,7 @@ public class Dinic extends Algoritmo {
 		  }
 
 		  public Solucion ejecutar(Entrada g) {
-			float t1 = System.nanoTime();
+			double t1 = System.nanoTime();
 		    int flow = 0;
 			//GrafoAntiguo g = e.consultarGrafo();
 			int src = g.consultarSource();
@@ -131,8 +131,9 @@ public class Dinic extends Algoritmo {
 			//float t2 = System.currentTimeMillis();
 			//sol.modificarTiempo(t2-t1);
 			sol.seqsol = seq; 
-			float t2 = System.nanoTime();
-			System.out.println("Estoy en el algorismo " + (t2-t1)/1000000);
+			double t2 = System.nanoTime();
+			double div = 1000000;
+			System.out.println("Estoy en el algorismo " + (t2-t1)/div);
 			sol.modificarTiempo((t2-t1)/1000000);
 			return sol;
 		  }
