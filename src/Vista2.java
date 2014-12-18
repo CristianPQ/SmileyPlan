@@ -39,7 +39,7 @@ public abstract class Vista2 extends Vista1 {
 		//panel de introduccion datos 
 		panelLista = new JPanel(); 
 		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
-		panelLista.setMinimumSize(new Dimension(600,100));
+		//panelLista.setMinimumSize(new Dimension(600,100));
 		panelLista.setMaximumSize(new Dimension(600,100));
 	
 		text1 = new JTextField(); 

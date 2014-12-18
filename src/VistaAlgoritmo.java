@@ -80,6 +80,7 @@ public class VistaAlgoritmo extends Vista2 {
 		mainCons.gridy = 1;
 		mainCons.gridx = 0; 
 		mainCons.weightx = 1;
+		mainCons.gridheight = 4;
 		//mainCons.gridwidth = 2;
 		mainCons.fill = GridBagConstraints.BOTH; 
 		// fill, como se rellena el cuadrado donde esta contenido el boton
@@ -89,6 +90,7 @@ public class VistaAlgoritmo extends Vista2 {
 		mainCons2.gridy = 1;
 		mainCons2.gridx = /*(int)1.3*/ GridBagConstraints.RELATIVE;
 		mainCons2.weightx = 1; 
+		mainCons2.gridheight = 4;
 		//mainCons2.gridwidth = 2;
 		mainCons2.fill = GridBagConstraints.BOTH; 
 		mainCons2.anchor = GridBagConstraints.NORTH; 
@@ -98,6 +100,7 @@ public class VistaAlgoritmo extends Vista2 {
 		mainCons3.gridy = 1;
 		mainCons3.gridx = /*(int)1.5*/ GridBagConstraints.RELATIVE; 
 		mainCons3.weightx = 1;
+		mainCons3.gridheight = 4;
 		//mainCons3.gridwidth = 2;
 		mainCons3.fill = GridBagConstraints.BOTH;
 		mainCons3.anchor = GridBagConstraints.EAST; 
@@ -106,8 +109,8 @@ public class VistaAlgoritmo extends Vista2 {
 		
 		JPanel panelAlg = new JPanel(); 
 		panelAlg.setBorder(BorderFactory.createLoweredBevelBorder());
-		panelAlg.setMinimumSize(new Dimension(600,100));
-		panelAlg.setMaximumSize(new Dimension(600,100));
+		//panelAlg.setMinimumSize(new Dimension(600,100));
+		//panelAlg.setMaximumSize(new Dimension(600,100));
 		grupoAlg = new ButtonGroup(); 
 		FF = new JRadioButton("Ford Fulkerson");
 		PR = new JRadioButton("Push Relabel"); 
@@ -187,13 +190,30 @@ public class VistaAlgoritmo extends Vista2 {
         botonEjecutar.setText("Ejecutar");
         panelEjec.add(botonEjecutar);
         
-		
-	
-	    super.panelv2.add(panelAlg);
-	    super.panelv2.add(panelEjec);
-		super.panelv2.add(vb, mainCons); 
-		super.panelv2.add(vis2, mainCons2); 
-		super.panelv2.add(vis3, mainCons3); 
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        
+        JPanel superior = new JPanel();
+        c.gridy = 0;
+        superior.add(panelAlg,c);
+        c.gridy = 1;
+        superior.add(panelEjec,c);
+        
+        //c.gridheight = 1;
+        super.panelv2.add(superior,c);
+        
+        JPanel inferior = new JPanel();
+        c.gridy = 3;
+        c.gridheight = 5;
+        inferior.add(vb);
+        inferior.add(vis2);
+        inferior.add(vis3);
+        
+	    
+	    super.panelv2.add(inferior,c);
+		//super.panelv2.add(vb, mainCons); 
+		//super.panelv2.add(vis2, mainCons2); 
+		//super.panelv2.add(vis3, mainCons3); 
       
 		//actualizarInformacion();
         crearListeners();
