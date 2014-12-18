@@ -557,7 +557,7 @@ public class ControladorMapa {
 		
 		ArrayList<Coordenadas> cont = new ArrayList<Coordenadas>(); 
 		if(total == 1) {
-			System.out.println("no continent"); 
+			//System.out.println("no continent"); 
 			m = new Mapa(x,y,"");  
 		}
 		else {
@@ -737,7 +737,7 @@ public class ControladorMapa {
 						
 						if (!Caminos.equals(null) && Caminos.size() > necesito ){
 							necesito = Caminos.size();
-							System.out.println("EOEO");
+
 
 						}	
 							/*if((i > j) && existeCaminoDesdeA(listarCiudades().get(j),listarCiudades().get(i))){
@@ -766,7 +766,7 @@ public class ControladorMapa {
 
 		for (int z = 0; z < mapeo.size(); ++z) {
 			mapping[z] = mapeo.get(z);
-			System.out.println(mapping[z]);
+		//	System.out.println(mapping[z]);
 		}
 		
 	}
@@ -787,7 +787,7 @@ public class ControladorMapa {
 		return mapping.length;
 	}
 	
-	public Entrada /*GrafoAntiguo*/ crearGrafo(boolean calcCoste, ControladorMedioTransporte mt) 
+	public Entrada crearGrafo(boolean calcCoste, ControladorMedioTransporte mt) 
 			throws Exception{
 
 		//for (int i = 0; i < consultarNumVertices();++i)	System.out.println(mapping[i]);

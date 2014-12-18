@@ -239,6 +239,92 @@ public class VistaAlgoritmo extends Vista2 {
 				}
 		});
 		
+		but.addActionListener( new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				String source = CiuO.getText();
+				String sink = CiuD.getText();
+				
+				vb.clear();
+				vis2.clear();
+				vis3.clear();
+				
+				/////FFFFF///////////
+				
+				cpalg.initItinerarios();
+
+				if (source.equals("") || sink.equals(""))
+					try {
+						throw new Exception("Falta rellenar alguno de los espacios");
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
+				else {
+					boolean funcionCoste;
+					if (precio.isSelected()) funcionCoste = false;
+					else funcionCoste = true;
+
+					cpalg.ejecutar(1,source,sink,funcionCoste);
+					String carga = cpalg.escribirItinearios();
+					String[] l = carga.split("\n");
+
+					 for (int i = 0; i < l.length; ++i ){
+						if(ff)vb.agregar(l[i]);
+					 	}
+
+					}
+				/////////PR/////////////////////////
+				cpalg.initItinerarios();
+
+				if (source.equals("") || sink.equals(""))
+					try {
+						throw new Exception("Falta rellenar alguno de los espacios");
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
+				else {
+					boolean funcionCoste;
+					if (precio.isSelected()) funcionCoste = false;
+					else funcionCoste = true;
+
+					cpalg.ejecutar(2,source,sink,funcionCoste);
+					String carga = cpalg.escribirItinearios();
+					String[] l = carga.split("\n");
+
+					 for (int i = 0; i < l.length; ++i ){
+						vis2.agregar(l[i]);
+					 	}
+
+					}
+				
+				/////////PR/////////////////////////
+				cpalg.initItinerarios();
+
+				if (source.equals("") || sink.equals(""))
+					try {
+						throw new Exception("Falta rellenar alguno de los espacios");
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
+				else {
+					boolean funcionCoste;
+					if (precio.isSelected()) funcionCoste = false;
+					else funcionCoste = true;
+
+					cpalg.ejecutar(3,source,sink,funcionCoste);
+					String carga = cpalg.escribirItinearios();
+					String[] l = carga.split("\n");
+
+					 for (int i = 0; i < l.length; ++i ){
+						vis3.agregar(l[i]);
+					 	}
+
+					}
+				}
+		});
+		
+		
 		FF.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {

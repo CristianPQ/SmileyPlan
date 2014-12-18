@@ -57,18 +57,19 @@ public class VistaMapa extends Vista3{
 					String Continente = txtConti.getText();
 					if(Continente.equals(" ")) setError("falta delimitar el continente");
 					
-					cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);
+					if (!Y.equals("") && !X.equals("")){						
+						cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);					
+						mapaCreado = true;
 					
-					mapaCreado = true;
-					
-					txtCO.setEditable(true);
-					txtCD.setEditable(true);
-					txtMedio.setEditable(true);
-					txtIdCiutat.setEditable(true);
-					txtCap.setEditable(true);
-					txtX.setEditable(true);
-					txtY.setEditable(true);
-					//vg.setLimites(Integer.parseInt(X),  Integer.parseInt(Y));
+						txtCO.setEditable(true);
+						txtCD.setEditable(true);
+						txtMedio.setEditable(true);
+						txtIdCiutat.setEditable(true);
+						txtCap.setEditable(true);
+						txtX.setEditable(true);
+						txtY.setEditable(true);
+						//vg.setLimites(Integer.parseInt(X),  Integer.parseInt(Y));
+					}
 				}
 				
 				//crear ciudad
@@ -363,7 +364,7 @@ public class VistaMapa extends Vista3{
 	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 	 			boolean success = cpmapa.cargarMapa(file);
 				if (success) {
-					System.out.println(success);
+					//System.out.println(success);
 					mapaCreado = true;	
 					txtCO.setEditable(true);
 					txtCD.setEditable(true);
