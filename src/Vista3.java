@@ -48,6 +48,8 @@ public abstract class Vista3 extends Vista1 {
 	protected JButton botoncaG; 
 	protected JButton botonciG;
 	
+	protected JLabel cami; 
+	protected JLabel ciutat; 
 	
 	
 	public Vista3() {
@@ -92,6 +94,10 @@ public abstract class Vista3 extends Vista1 {
 		panelLista.add(txtYMapa);
 		panelLista.add(label3);
 		panelLista.add(txtConti);
+		
+		
+		JLabel cami  = new JLabel(); 
+		JLabel ciutat = new JLabel(); 
 		
 		//panell Ciutat
 		TitledBorder Ciudad;
@@ -186,10 +192,28 @@ public abstract class Vista3 extends Vista1 {
 		botonciC = new JButton("Cargar"); 
 		botoncaG = new JButton("Guardar"); 
 		botonciG = new JButton("Guardar"); 
-		vciut.add(botoncaC);
-		vciut.add(botoncaG); 
-		vb.add(botonciC);
-		vb.add(botonciG); 
+		
+		JPanel aux1 = new JPanel(); 
+		aux1.add(botoncaC);
+		aux1.add(botoncaG); 
+		
+		JPanel aux2 = new JPanel(); 
+		aux2.add(botonciC);
+		aux2.add(botonciG); 
+		
+		cami.setText("Caminos");
+		cami.setFont(new Font("Verdana",1,15));
+		cami.setForeground(Color.darkGray);
+		vciut.add(cami); 
+		vciut.add(aux1); 
+	
+		ciutat.setText("Ciudades");
+		ciutat.setFont(new Font("Verdana",1,15));
+		ciutat.setForeground(Color.darkGray);
+		vb.add(ciutat);
+		vb.add(aux2); 
+				
+		
 		
 		panelv3.add(panelLista);
 		panelv3.add(panelCiudad);

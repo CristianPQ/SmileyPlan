@@ -41,16 +41,10 @@ public class VistaMapa extends Vista3{
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
 		
-		JLabel cami  = new JLabel(); 
-		JLabel ciutat = new JLabel(); 
 		
-		cami.setText("Caminos");
-		//ciutat.setBackground(Color.DARK_GRAY);
-		//ciutat.setHorizontalAlignment(JLabel.RIGHT);
-		vciut.add(cami, BorderLayout.NORTH);
+	
+		//vciut.add(cami, BorderLayout.NORTH);
 		
-		ciutat.setText("Ciudades");
-		vb.add(ciutat);  
 
 		//vg = new VistaGrafo();
 		//super.panelPrincipal.add(vg); 
