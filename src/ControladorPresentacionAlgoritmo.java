@@ -17,10 +17,19 @@ public class ControladorPresentacionAlgoritmo {
 			cpm = cpm2;
 			
 		}
+
 		
 		public String escribirItinearios(){
-			if (citi.consultarSize()>0)
-					return citi.escribirItinerarios(); 
+			String s = new String();
+			if (ca.haySoucion()){
+				try {
+					s = "el tiempo: " + ca.consultarTiempo() + "ms\n";
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					va.setError(e.getMessage());
+				}
+				return s + citi.escribirItinerarios(); 
+			}
 			else return "No hay solucion";
 			
 		
@@ -46,6 +55,7 @@ public class ControladorPresentacionAlgoritmo {
 				ControladorMapa cmapa = cpmapa.devolverControlador();
 				ca = new ControladorAlgoritmo(cagentes,cmapa,cmt,s,t,funcionCoste,citi); 
 				ca.ejecutar(i);
+				System.out.println("El timepo en presentacion es " + ca.consultarTiempo());
 			} catch (Exception e) {
 				va.setError(e.getMessage()); 
 			}

@@ -12,7 +12,7 @@ public class ControladorAlgoritmo {
 	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
 	private static Exception NoHayAgentes = new Exception ("No existe ningún agente");
 	public float consultarTiempo() throws Exception {
-		if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
+		//if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
 		return sol.consultarTiempo();
 	}
 
@@ -81,16 +81,20 @@ public class ControladorAlgoritmo {
 				+ "\n #######################"
 				+ "\n Carque nuevamente el ControladorAlgoritmo");
 			ent = null;
-			sol = null;
+			//sol = null;
 			cit = null;
 			agentes = null;
 		}
 		else asignarItinerarioAAgente();
 	}
+	public boolean haySoucion(){
+		return sol.consultarTieneSolucion();
+	}
 	
 	public void ejecutarAlgoritmoDinic() throws Exception{
 		Dinic d = new Dinic(); 
 		sol = d.ejecutar(ent);
+		System.out.println(" DOMINIO: EL TIEMPO DE DINIC ES " + sol.consultarTiempo());
 	}
 	
 
@@ -103,7 +107,7 @@ public class ControladorAlgoritmo {
 		PushRelabel p = new PushRelabel(); 
 		sol = p.ejecutar(ent);
 	}
-	
+
 	
 	//#########################################
 	//########## SALIDA ##################
