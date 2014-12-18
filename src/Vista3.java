@@ -193,27 +193,59 @@ public abstract class Vista3 extends Vista1 {
 		botoncaG = new JButton("Guardar"); 
 		botonciG = new JButton("Guardar"); 
 		
-		JPanel aux1 = new JPanel(); 
-		aux1.add(botoncaC);
-		aux1.add(botoncaG); 
+		
 		
 		JPanel aux2 = new JPanel(); 
 		aux2.add(botonciC);
 		aux2.add(botonciG); 
 		
+		
+		
+		
+		GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+		
+		GridBagConstraints d = new GridBagConstraints();
+        d.fill = GridBagConstraints.BOTH;
+        d.gridy = 0;
+		JPanel cams = new JPanel();
+		cams.add(vciut,d);
+		
 		cami.setText("Caminos");
 		cami.setFont(new Font("Verdana",1,15));
 		cami.setForeground(Color.darkGray);
-		vciut.add(cami); 
-		vciut.add(aux1); 
+		d.gridy = 1;
+		cams.add(cami,d);
+		
+		JPanel aux1 = new JPanel(); 
+		aux1.add(botoncaC);
+		aux1.add(botoncaG); 
+		d.gridy = 2;
+		cams.add(aux1);
+		//Primera columna del frame
+        c.gridx = 0;
+        
+		//super.panelPrincipal.add(vciut,c);
+        super.panelPrincipal.add(cams, c);
 	
 		ciutat.setText("Ciudades");
 		ciutat.setFont(new Font("Verdana",1,15));
 		ciutat.setForeground(Color.darkGray);
 		vb.add(ciutat);
 		vb.add(aux2); 
-				
+        
 		
+		JPanel ciuts = new JPanel();
+		d.gridy = 0;
+		ciuts.add(vb, d);
+		d.gridy = 1;
+		ciuts.add(ciutat,d);
+		d.gridy = 2;
+		ciuts.add(aux2,d);
+		
+				
+		c.gridx = 2;
+		super.panelPrincipal.add(vb,c);
 		
 		panelv3.add(panelLista);
 		panelv3.add(panelCiudad);
@@ -223,11 +255,9 @@ public abstract class Vista3 extends Vista1 {
         //c.fill = GridBagConstraints.HORIZONTAL;
 		//panelv3.add(super.panelErrores,c);
 		
-	
-		super.panelPrincipal.add(vciut);
+		c.gridx = 1;
+		super.panelPrincipal.add(panelv3,c);
 		
-		super.panelPrincipal.add(panelv3);
-		super.panelPrincipal.add(vb);
 		
 	}
 

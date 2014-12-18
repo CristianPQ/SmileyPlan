@@ -17,7 +17,7 @@ public class VistaBuscador extends JPanel{
     private JList l;
     private JScrollPane scroller;
     
-	protected JLabel ciutat; 
+	
     private Vista1 padre;
     
     
@@ -28,19 +28,33 @@ public class VistaBuscador extends JPanel{
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createEmptyBorder(10,5,10,5));
         
-        vistaBuscar = new JPanel();
-        vistaBuscar.setMinimumSize(new Dimension(250,50));
-        vistaBuscar.setMaximumSize(new Dimension(250,50));
+        //Falta crear titulos, mirar Vista mapa
         
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
+        
+        //#########################################
+    	//##########VISTABUSCADOR
+        //#########################################
+        
+        vistaBuscar = new JPanel();
+        vistaBuscar.setMinimumSize(new Dimension(250,50));
+        vistaBuscar.setMaximumSize(new Dimension(250,50));
         
         
         // Texto a buscar
         textoBusqueda = new JTextField();
         textoBusqueda.setPreferredSize(new Dimension(120,30));
         
-        vistaBuscar.add(textoBusqueda);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 2;
+        
+        vistaBuscar.add(textoBusqueda, c);
+        
+        //Fin texto a buscar
+        
+        //Boton Buscar
         
         botonBuscar = new JButton("Buscar");
         
@@ -65,26 +79,54 @@ public class VistaBuscador extends JPanel{
             }
         });
         
-        vistaBuscar.add(botonBuscar);
+        c.gridx = 2;
+        c.gridwidth = 1;
         
-        label = new JLabel();
-        label.setAlignmentX(CENTER_ALIGNMENT);
+        vistaBuscar.add(botonBuscar, c);
+        
+        //Fin Boton Buscar
+        
+        c.gridwidth = 3;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridheight = 6;
+        
+        this.add(vistaBuscar,c);
+        //this.add(Box.createRigidArea(new Dimension(0, 5)));
+        
+        //#########################################
+    	//##########LABEL
+        //#########################################
+        
+        
+        //label = new JLabel();
+        //label.setAlignmentX(CENTER_ALIGNMENT);
+        
+        //this.add(label);
+        //this.add(Box.createRigidArea(new Dimension(0, 5)));
+        
+        //#########################################
+    	//##########SCROLLER
+        //#########################################
         
         model = new DefaultListModel();
         l = new JList(model);
         
         scroller = new JScrollPane(l);
-        scroller.setMinimumSize(new Dimension(250,500));
-        scroller.setMaximumSize(new Dimension(250,500));
-		JLabel ciutat = new JLabel(); 
+
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridheight = 5;
+        c.gridwidth = 3;
+        //scroller.setMinimumSize(new Dimension(250,500));
+        //scroller.setMaximumSize(new Dimension(250,500));
         
-        this.add(label);
-        this.add(Box.createRigidArea(new Dimension(0, 5)));
-        this.add(ciutat); 
-        this.add(vistaBuscar);
-        this.add(Box.createRigidArea(new Dimension(0, 5)));
-        this.add(scroller);
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        
+        //#########################################
+        
+        this.add(scroller,c);
+        //this.add(Box.createRigidArea(new Dimension(0, 10)));
+        
     }
  
     
