@@ -725,15 +725,27 @@ public class ControladorMapa {
 					if(existeCaminoDesdeA(listarCiudades().get(i), listarCiudades().get(j))){
 						
 						ArrayList<Camino> Caminos = consultarCaminosEntre(listarCiudades().get(i), listarCiudades().get(j));
-						if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();
-						if(existeCaminoDesdeA(listarCiudades().get(j),listarCiudades().get(i))){
-							
+						
+						if (!Caminos.equals(null) && Caminos.size() > necesito ){
+							necesito = Caminos.size();
+							System.out.println("EOEO");
+
+						}	
+							/*if((i > j) && existeCaminoDesdeA(listarCiudades().get(j),listarCiudades().get(i))){
+								ArrayList<Camino> Caminosj = consultarCaminosEntre(listarCiudades().get(j),listarCiudades().get(i));
+								if(Caminosj.size() > Caminos.size()) necesito+=Caminos.size();
+								else necesito += Caminosj.size();
+								}
+							if (necesito != 1) --necesito;*/
+							//}
 						}
-						}
-					
-					
 					}
+				/*if((i>j) && existeCaminoDesdeA(listarCiudades().get(i), listarCiudades().get(j)) &&
+						existeCaminoDesdeA(listarCiudades().get(j), listarCiudades().get(i))){
+					++necesito;
+				}*/
 				}
+			++necesito;
 			int w = 0;
 			while (w < necesito) { //porque a lo mejor necesito + vertices!
 				mapeo.add(listarCiudades().get(i));
@@ -743,7 +755,10 @@ public class ControladorMapa {
 		
 		mapping = new String[mapeo.size()];
 
-		for (int z = 0; z < mapeo.size(); ++z) mapping[z] = mapeo.get(z);
+		for (int z = 0; z < mapeo.size(); ++z) {
+			mapping[z] = mapeo.get(z);
+			System.out.println(mapping[z]);
+		}
 		
 	}
 	
@@ -800,8 +815,9 @@ public class ControladorMapa {
 
 					////////////////////////////////////////////////
 					//////MECANISMO PARA SALTAR DE VERTICE DENTRO DE LA MISMA CIUDAD
-
-					int insert_here = -1;
+					e.anadirArista(returnCityIndex(ciudadEncontrandoAristas), 
+							returnCityIndex(ciudadEncontrandoAristas) + 1, 0,2147483647,0);
+					int insert_here = 0;
 					boolean insertado = false;
 					
 					while (!insertado){
