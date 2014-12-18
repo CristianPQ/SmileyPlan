@@ -26,10 +26,12 @@ public class ControladorAlgoritmo {
 		cm.initMapeo();
 		mapping = cm.consultarMapping();
 		//System.out.println("sorto del mapping");
-		//if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;
+		if (ca.getNumeroDeAgentes() == 0) throw NoHayAgentes;
 		int nAgent = ca.numeroAgentesOrigenObjetivo(cOrig, cDest);
+		if (nAgent < 1) throw NoAgentesOD;
 		//System.out.println("entro a crearGrafo");
 		ent  = cm.crearGrafo(CosteDistancia, mt); //CosteDistancia: si 0, coste*distancia; si 1, distancia
+
 		//System.out.println("acabo CrearGrafo");
 		ent.modificarNumeroAgentes(nAgent);
 		int s = cm.returnCityIndex(cOrig);
@@ -54,7 +56,7 @@ public class ControladorAlgoritmo {
 */
 	
 	public void ejecutar(int i) throws Exception {
-		if (ent.consultarNumeroAgentes() < 1) throw NoAgentesOD;
+		//if (ent.consultarNumeroAgentes() < 1) throw NoAgentesOD;
 		switch(i) {
 			case 1: {
 				//System.out.println("entro FF");
