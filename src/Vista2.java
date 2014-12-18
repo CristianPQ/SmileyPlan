@@ -30,6 +30,7 @@ public abstract class Vista2 extends Vista1 {
 		super(); 
 		
 		vb = new VistaBuscador(this); 
+		vb.scroller.setMaximumSize(new Dimension(250,500));
 		
 		//panel que engloba a todos
 		panelv2 = new JPanel(); 

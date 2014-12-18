@@ -15,7 +15,7 @@ public class VistaBuscador extends JPanel{
     
     private DefaultListModel model;
     private JList l;
-    private JScrollPane scroller;
+    protected JScrollPane scroller;
     
 	
     private Vista1 padre;
