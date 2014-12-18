@@ -10,6 +10,7 @@ public class ControladorAlgoritmo {
 	private String[] mapping;
 	
 	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
+	private static Exception NoAgentesOD = new Exception("No hay agentes que quieran hacer este viaje");
 	private static Exception NoHayAgentes = new Exception ("No existe ningún agente");
 	public double consultarTiempo() throws Exception {
 		//if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
@@ -53,6 +54,7 @@ public class ControladorAlgoritmo {
 */
 	
 	public void ejecutar(int i) throws Exception {
+		if (ent.consultarNumeroAgentes() < 1) throw NoAgentesOD;
 		switch(i) {
 			case 1: {
 				//System.out.println("entro FF");
