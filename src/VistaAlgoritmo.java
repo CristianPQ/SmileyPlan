@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -49,6 +50,12 @@ public class VistaAlgoritmo extends Vista2 {
 	private boolean esPrecio = false; 
 	private boolean esDistancia = false; 
 	
+	private GridBagConstraints mainCons = new GridBagConstraints();
+	private GridBagConstraints mainCons2 = new GridBagConstraints();
+	private GridBagConstraints mainCons3 = new GridBagConstraints();
+	private GridBagLayout mainLayout = new GridBagLayout();
+	
+	
 	VistaAlgoritmo(ControladorPresentacionAlgoritmo cpa){
 		super(); 
 		ff=true;
@@ -56,8 +63,36 @@ public class VistaAlgoritmo extends Vista2 {
 		pr = false;
 		this.cpalg = cpa;
 
+		//c = new GridBagConstraints(); 
+		//c.fill = GridBagConstraints.HORIZONTAL; 
 		vis2 = new VistaBuscador(this);
 		vis3 = new VistaBuscador(this);
+		//vis3.setLayout(null);
+		//vis2.setLayout(null);
+		//vb.setLayout(null); 
+		
+		super.panelv2.setLayout(mainLayout);
+		//vis3.setLayout(new BoxLayout(vis3, BoxLayout.Y_AXIS));
+		//vis3.setLayout(mainLayout);
+		mainCons.gridy = 1;
+		mainCons.gridx = 1; 
+		mainCons.weightx = 1; 
+		mainCons.anchor = GridBagConstraints.EAST; 
+	
+		//vis2.setLayout(mainLayout);
+		mainCons2.gridy = 1;
+		mainCons2.gridx = (int)1.3;
+		mainCons2.weightx = 1; 
+		//mainCons2.fill = GridBagConstraints.BOTH; 
+		mainCons2.anchor = GridBagConstraints.NORTH; 
+	
+		
+		//vb.setLayout(mainLayout);
+		mainCons3.gridy = 1;
+		mainCons3.gridx = (int)1.5; 
+		mainCons3.weightx = 1; 
+		mainCons3.anchor = GridBagConstraints.WEST; 
+
 		panelLista.removeAll();
 		
 		JPanel panelAlg = new JPanel(); 
@@ -78,11 +113,9 @@ public class VistaAlgoritmo extends Vista2 {
 		panelAlg.add(FF);
 		panelAlg.add(PR); 
 		panelAlg.add(D);
-		super.panelv2.add(panelAlg);
-		super.panelv2.remove(panelBotones);
-		//super.panelPrincipal.remove(vb); 
-		//super.vb.remove(botonBuscar);
 		
+		super.panelv2.remove(panelBotones);
+
 		GrupoCoste = new ButtonGroup(); 
 		precio = new JRadioButton("precio");
 		distancia = new JRadioButton("distancia"); 
@@ -107,13 +140,14 @@ public class VistaAlgoritmo extends Vista2 {
 	    //texto = new JTextField();
         //texto.setPreferredSize(new Dimension(120,30));
 		
-		//vb = new VistaBuscador(this);
+		vb = new VistaBuscador(this);
 		        
-        super.panelv2.add(vb);
-        
-		super.panelv2.add(vis2);
-		super.panelv2.add(vis3);
-        
+        /*
+		super.panelv2.add(vb, c);
+		super.panelv2.add(vis2, c);
+		super.panelv2.add(vis3, c);
+		*/ 
+		
         panelEjec = new JPanel(); 
 		panelEjec.setBorder(BorderFactory.createLoweredBevelBorder());
 		panelEjec.setMinimumSize(new Dimension(600,100));
@@ -134,7 +168,13 @@ public class VistaAlgoritmo extends Vista2 {
         botonEjecutar.setText("Ejecutar");
         panelEjec.add(botonEjecutar);
         
-        super.panelv2.add(panelEjec);
+		
+	
+	    super.panelv2.add(panelAlg);
+	    super.panelv2.add(panelEjec);
+		super.panelv2.add(vb, mainCons); 
+		super.panelv2.add(vis2, mainCons2); 
+		super.panelv2.add(vis3, mainCons3); 
       
 		//actualizarInformacion();
         crearListeners();
