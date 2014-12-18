@@ -275,7 +275,7 @@ public class ControladorAgentes {
     	 * @param carga
     	 * @throws Exception si el agente ya existe
     	 */
-    	public void ConvertirGuardados(String[] l) throws Exception {
+    	public void ConvertirGuardados(String[] l, ControladorMapa cm) throws Exception {
     		int total = l.length; 
     		for(int i = 0; i < total; ++i) {
     			String[] cortarstring = l[i].split(" "); 
@@ -285,7 +285,7 @@ public class ControladorAgentes {
     			/////////////per comprovar ////////////////
 				//System.out.print(nombre + " "+ ci + " "+ co + "\n");
     			/////////////////////////////////////////////
-				anadirAgenteInterna(nombre,ci,co); 
+				anadirAgente(nombre,ci,co,cm); 
 				//System.out.println("agente agregat");
     		}
     	}
@@ -294,9 +294,10 @@ public class ControladorAgentes {
     	 * Cargar agentes
     	 * @param path donde esta el archivo
     	 * @param file donde esta la informacion que queremos cargar
+    	 * @param cm 
     	 * @throws Exception si el fichero esta vacio 
     	 */
-    	public void Cargar(String file) throws Exception{
+    	public void Cargar(String file, ControladorMapa cm) throws Exception{
     		String carga; 
     		GestorDatos gd = new GestorDatos(file); 
     		
@@ -306,19 +307,19 @@ public class ControladorAgentes {
     		if (num <= CARGA_MAX) {
     			carga = gd.obtenerTodoElString(); 
     			String[] l = carga.split("\n"); 
-    			ConvertirGuardados(l); 
+    			ConvertirGuardados(l,cm); 
     		}
     		else {
     			while(num > CARGA_MAX){
     				num = num - CARGA_MAX; 
     				carga = gd.obtenerStrings(CARGA_MAX);
     				String[] l = carga.split("\n"); 
-    				ConvertirGuardados(l); 
+    				ConvertirGuardados(l, cm); 
     			}
     			if(num != 0) { //si queden restes
     				carga = gd.obtenerStrings(num); 
     				String[] l = carga.split("\n"); 
-    				ConvertirGuardados(l);
+    				ConvertirGuardados(l, cm);
     			}
     		}
     		gd.cerrarArchivo(); 

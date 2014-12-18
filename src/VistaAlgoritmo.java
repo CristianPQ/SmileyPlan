@@ -180,15 +180,12 @@ public class VistaAlgoritmo extends Vista2 {
         botonEjecutar = new JButton();
         botonEjecutar.setText("Ejecutar");
         panelEjec.add(botonEjecutar);
-        
-		
-	
+
 	    super.panelv2.add(panelAlg);
-	    super.panelv2.add(panelEjec);
 		super.panelv2.add(vb, mainCons); 
 		super.panelv2.add(vis2, mainCons2); 
 		super.panelv2.add(vis3, mainCons3); 
-      
+		super.panelv2.add(panelEjec);
 		//actualizarInformacion();
         crearListeners();
 	}

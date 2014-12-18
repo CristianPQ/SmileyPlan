@@ -121,7 +121,7 @@ public class ControladorPresentacionAgentes{
 	
 	public void cargarAgente(String file) {
 		try {
-			ca.Cargar(file);
+			ca.Cargar(file, mapa.devolverControladorMapa());
 		} catch (Exception e) {
 			vistaAg.setError(e.getMessage());
 		}

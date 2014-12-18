@@ -173,6 +173,10 @@ public class ControladorPresentacionMapa {
 		return cm.cargarCaminos(file, cmed.devolverControlador()); 
 	}
 	
+	public ControladorMapa devolverControladorMapa() {
+		return cm; 
+	}
+	
 	public void guardarCaminos(String file) {
 		try {
 			cm.guardarCaminos(file);
