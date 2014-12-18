@@ -16,7 +16,7 @@ public class FordFulkerson extends Algoritmo{
 	 * @param t
 	 * @param coste
 	 */
-	void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int flow, int u, int t, int coste){
+	void crearItinerarios ( Solucion sol, GrafoAntiguo g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
 		//System.out.println();
 		for (int i = indiceI; i <= indiceF; ++i){
@@ -47,11 +47,11 @@ public class FordFulkerson extends Algoritmo{
 	 * @param s
 	 * @param t
 	 */
-	private void inicializacion(Entrada g,int s, int t){
+	private void inicializacion(GrafoAntiguo g,int s, int t){
 		int v;
 		ArrayList <Arista> adyacencias;
 		/** creo todos las aristas inversas **/
-		for (int i = 0; i < g.consultarNumeroVertices(); ++i){
+		for (int i = 0; i < g.consultarNumVertices(); ++i){
 			adyacencias = g.consultarAdyacentes(i);
 			for (int j = 0; j < adyacencias.size(); ++j){
 				Arista a = adyacencias.get(j);
@@ -71,7 +71,7 @@ public class FordFulkerson extends Algoritmo{
 	 * @param f
 	 * @return
 	 */
-	 static int findPath(Entrada g, boolean[] vis, int u, int t, int f) {
+	 static int findPath(GrafoAntiguo g, boolean[] vis, int u, int t, int f) {
 		    if (u == t)
 		      return f;
 		    vis[u] = true;
@@ -98,16 +98,16 @@ public class FordFulkerson extends Algoritmo{
 	/**
 	 * Ejecuta el algoritmo 
 	 */
-	public Solucion ejecutar ( Entrada g) throws Exception{
+	public Solucion ejecutar ( Entrada e) throws Exception{
 		float t1 = System.currentTimeMillis();
-		//GrafoAntiguo g = e.consultarGrafo();
-		int s = g.consultarSource();
-		int t = g.consultarSink();
-		int numA = g.consultarNumeroAgentes();
+		GrafoAntiguo g = e.consultarGrafo();
+		int s = e.consultarSource();
+		int t = e.consultarSink();
+		int numA = e.consultarNumeroAgentes();
 		inicializacion(g,s,t);
 		int flow = 0;
 	    for (flow = 0;;) {
-	        int df = findPath(g, new boolean[g.consultarNumeroVertices()], s, t, Integer.MAX_VALUE);
+	        int df = findPath(g, new boolean[g.consultarNumVertices()], s, t, Integer.MAX_VALUE);
 	        if (df == 0)
 	          break;
 	        flow += df;
@@ -116,7 +116,7 @@ public class FordFulkerson extends Algoritmo{
 		//System.out.println("el flow es" + flow);
 		if (flow >= numA){
 			sol.modificartieneSolucion(true);
-			//sol.modificarGrafo(g);
+			sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
 		float t2 = System.currentTimeMillis();
@@ -128,7 +128,4 @@ public class FordFulkerson extends Algoritmo{
 	}
 	
 }
-	
-	
-	
 	

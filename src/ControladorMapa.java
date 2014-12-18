@@ -726,7 +726,12 @@ public class ControladorMapa {
 						
 						ArrayList<Camino> Caminos = consultarCaminosEntre(listarCiudades().get(i), listarCiudades().get(j));
 						if (!Caminos.equals(null) && Caminos.size() > necesito ) necesito = Caminos.size();
+						if(existeCaminoDesdeA(listarCiudades().get(j),listarCiudades().get(i))){
+							
 						}
+						}
+					
+					
 					}
 				}
 			int w = 0;
