@@ -33,7 +33,7 @@ public class VistaPrincipal {
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
  
    
-        frame.setPreferredSize(new Dimension(1900, 1080));
+        //frame.setPreferredSize(new Dimension(1900, 1080));
         frame.setResizable(true);
         
         JMenuBar menuBar = new JMenuBar(); 
