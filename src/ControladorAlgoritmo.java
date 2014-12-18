@@ -107,6 +107,9 @@ public class ControladorAlgoritmo {
 		PushRelabel p = new PushRelabel(); 
 		sol = p.ejecutar(ent);
 	}
+	public int consultarMaxFlow(){
+		return sol.consultarNumItinerarios();
+	}
 
 	
 	//#########################################

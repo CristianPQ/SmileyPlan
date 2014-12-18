@@ -23,7 +23,8 @@ public class ControladorPresentacionAlgoritmo {
 			String s = new String();
 			if (ca.haySoucion()){
 				try {
-					s = "el tiempo: " + ca.consultarTiempo() + "ms\n";
+					s = "Tiempo: " + ca.consultarTiempo() + "ms\n";
+					s += "El max flow es: " + ca.consultarMaxFlow() + "\n";
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					va.setError(e.getMessage());
