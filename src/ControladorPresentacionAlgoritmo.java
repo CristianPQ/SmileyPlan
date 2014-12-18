@@ -31,7 +31,7 @@ public class ControladorPresentacionAlgoritmo {
 				}
 				return s + citi.escribirItinerarios(); 
 			}
-			else return "No hay solucion para tantos agentes, el numero maximo de agentes que "
+			else return "No hay solucion para tantos agentes,/n el numero maximo de agentes que "
 					+ "pueden hacer este viaje es " + citi.consultarSize();
 			
 		
