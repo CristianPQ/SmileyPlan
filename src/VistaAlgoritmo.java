@@ -78,23 +78,29 @@ public class VistaAlgoritmo extends Vista2 {
 		//vis3.setLayout(new BoxLayout(vis3, BoxLayout.Y_AXIS));
 		//vis3.setLayout(mainLayout);
 		mainCons.gridy = 1;
-		mainCons.gridx = 1; 
-		mainCons.weightx = 1; 
-		mainCons.anchor = GridBagConstraints.EAST; 
+		mainCons.gridx = 0; 
+		mainCons.weightx = 1;
+		//mainCons.gridwidth = 2;
+		mainCons.fill = GridBagConstraints.BOTH; 
+		// fill, como se rellena el cuadrado donde esta contenido el boton
+		mainCons.anchor = GridBagConstraints.WEST; 
 	
 		//vis2.setLayout(mainLayout);
 		mainCons2.gridy = 1;
-		mainCons2.gridx = (int)1.3;
+		mainCons2.gridx = /*(int)1.3*/ GridBagConstraints.RELATIVE;
 		mainCons2.weightx = 1; 
-		//mainCons2.fill = GridBagConstraints.BOTH; 
+		//mainCons2.gridwidth = 2;
+		mainCons2.fill = GridBagConstraints.BOTH; 
 		mainCons2.anchor = GridBagConstraints.NORTH; 
 	
 		
 		//vb.setLayout(mainLayout);
 		mainCons3.gridy = 1;
-		mainCons3.gridx = (int)1.5; 
-		mainCons3.weightx = 1; 
-		mainCons3.anchor = GridBagConstraints.WEST; 
+		mainCons3.gridx = /*(int)1.5*/ GridBagConstraints.RELATIVE; 
+		mainCons3.weightx = 1;
+		//mainCons3.gridwidth = 2;
+		mainCons3.fill = GridBagConstraints.BOTH;
+		mainCons3.anchor = GridBagConstraints.EAST; 
 
 		panelLista.removeAll();
 		
@@ -180,12 +186,15 @@ public class VistaAlgoritmo extends Vista2 {
         botonEjecutar = new JButton();
         botonEjecutar.setText("Ejecutar");
         panelEjec.add(botonEjecutar);
-
+        
+		
+	
 	    super.panelv2.add(panelAlg);
+	    super.panelv2.add(panelEjec);
 		super.panelv2.add(vb, mainCons); 
 		super.panelv2.add(vis2, mainCons2); 
 		super.panelv2.add(vis3, mainCons3); 
-		super.panelv2.add(panelEjec);
+      
 		//actualizarInformacion();
         crearListeners();
 	}
