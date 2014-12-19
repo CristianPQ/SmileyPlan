@@ -310,12 +310,12 @@ public class VistaAlgoritmo extends Vista2 {
 					if (precio.isSelected()) funcionCoste = false;
 					else funcionCoste = true;
 
-					cpalg.ejecutar(2,source,sink,funcionCoste);
+					cpalg.ejecutar(3,source,sink,funcionCoste);
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
 
 					 for (int i = 0; i < l.length; ++i ){
-						vis2.agregar(l[i]);
+						vis3.agregar(l[i]);
 					 	}
 
 					}
@@ -334,12 +334,12 @@ public class VistaAlgoritmo extends Vista2 {
 					if (precio.isSelected()) funcionCoste = false;
 					else funcionCoste = true;
 
-					cpalg.ejecutar(3,source,sink,funcionCoste);
+					cpalg.ejecutar(2,source,sink,funcionCoste);
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
 
 					 for (int i = 0; i < l.length; ++i ){
-						vis3.agregar(l[i]);
+						vis2.agregar(l[i]);
 					 	}
 
 					}

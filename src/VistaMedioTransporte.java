@@ -74,6 +74,7 @@ public class VistaMedioTransporte extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 				esTren = false;
 				esCoche = true; 
+				comprovar("");
 			}
 			
 		});
@@ -83,6 +84,7 @@ public class VistaMedioTransporte extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 				esCoche = false; 
 				esTren = true;
+				comprovar("");
 			}			
 		});
 		
@@ -127,6 +129,7 @@ public class VistaMedioTransporte extends Vista2 {
 			            text2.setText("");
 					}
 				}
+				comprovar("");
 			}
 		});
 		
@@ -155,6 +158,7 @@ public class VistaMedioTransporte extends Vista2 {
                     text1.setText("");
                     text2.setText("");
 				}
+				comprovar("");
 			}
 		});
 		
@@ -167,6 +171,7 @@ public class VistaMedioTransporte extends Vista2 {
 				actualizarLista();
                 text1.setText("");
                 text2.setText("");	
+    			comprovar("");
 			}});
 		
 		
@@ -178,6 +183,7 @@ public class VistaMedioTransporte extends Vista2 {
 				} catch (Exception e1) {
 					setError(e1.getMessage());
 				} 	
+				comprovar("");
 			}
 			
 		});
@@ -187,6 +193,7 @@ public class VistaMedioTransporte extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 				if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
 				else abrirBrowserGuardar();
+				comprovar("");
 			}
 			
 		});
@@ -211,6 +218,7 @@ public class VistaMedioTransporte extends Vista2 {
 	                    text1.setText("");
 	                    text2.setText("");
 	                }
+					comprovar("");
 			}       
         });
 	}
