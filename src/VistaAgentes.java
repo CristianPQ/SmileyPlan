@@ -67,7 +67,6 @@ public class VistaAgentes extends Vista2 {
 						ctrlPAg.agregarAgente(nombre, ciuIni, ciuObj);
 						actualizarLista();
 					}
-				comprovar("");
 				}	
 		});
 		
@@ -114,8 +113,7 @@ public class VistaAgentes extends Vista2 {
 					
                     text1.setText("");
                     text2.setText("");
-			
-        			comprovar("");
+				
 			}
 		});
 	
@@ -155,7 +153,6 @@ public class VistaAgentes extends Vista2 {
 	                    text2.setText("");
 	                    text3.setText(" ");
 	                }
-					comprovar("");
 			}       
         });
 		
@@ -163,9 +160,7 @@ public class VistaAgentes extends Vista2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				abrirBrowserCargar(); 	
-				comprovar("");	
 			}
-			
 			
 		});
 		
@@ -174,7 +169,6 @@ public class VistaAgentes extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 				if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
 				else abrirBrowserGuardar(); 
-				comprovar("");
 			}
 			
 		});

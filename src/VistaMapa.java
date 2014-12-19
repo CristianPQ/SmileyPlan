@@ -128,8 +128,7 @@ public class VistaMapa extends Vista3{
 						setError(e1.getMessage());
 					} 
 					}
-				}
-				comprovar("");
+				}	
 			}
 		});
 		
@@ -189,7 +188,6 @@ public class VistaMapa extends Vista3{
 				txtMedio.setText("");
 				txtCap.setText("");
 			}
-			comprovar("");
 		}
 
 	});
@@ -216,7 +214,6 @@ public class VistaMapa extends Vista3{
 	                    txtX.setText(" ");
 	                    txtY.setText(" ");
 	                }
-					comprovar("");
 			}       
         });
 		
@@ -246,7 +243,6 @@ public class VistaMapa extends Vista3{
 						txtMedio.setText("");
 						txtCap.setText("");
 	                }
-					comprovar("");
 			}       
         });
 		
@@ -289,7 +285,7 @@ public class VistaMapa extends Vista3{
 					txtMedio.setText("");
 					txtCap.setText("");
 				}
-				comprovar("");
+				
 			}
 		});
 		
@@ -302,8 +298,7 @@ public class VistaMapa extends Vista3{
 					abrirBrowserCargar();
 				} catch (Exception e1) {
 					setError(e1.getMessage());
-				} 
-				comprovar("");
+				} 	
 			}
 		});
 		
@@ -311,9 +306,7 @@ public class VistaMapa extends Vista3{
 			@Override
 			public void actionPerformed(ActionEvent e) { 
 				abrirBrowserGuardar();
-				comprovar("");
 			}
-			
 		});
 		
 		
@@ -322,7 +315,6 @@ public class VistaMapa extends Vista3{
 			public void actionPerformed(ActionEvent e) {
 				if (vciut.listaEsVacia()) setError("No hay nada para guardar"); 
 				abrirBrowserGuardarCaminos();
-				comprovar("");
 			}
 		});
 		
@@ -334,7 +326,6 @@ public class VistaMapa extends Vista3{
 				} catch (Exception e1) {
 					setError(e1.getMessage());
 				} 	
-				comprovar("");
 			}
 			
 		});
@@ -344,7 +335,6 @@ public class VistaMapa extends Vista3{
 			public void actionPerformed(ActionEvent e) {
 				if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
 				abrirBrowserGuardarCiudades();
-				comprovar("");
 			}
 		});
 		
@@ -355,8 +345,7 @@ public class VistaMapa extends Vista3{
 					abrirBrowserCargarCiudades();
 				} catch (Exception e1) {
 					setError(e1.getMessage());
-				} 
-				comprovar("");
+				} 	
 			}
 			
 		});
