@@ -9,6 +9,7 @@ public class Mapa {
 	private TST <Ciudad> ciudades;*/
 	private String[][] mapa;
 	private ArrayList<Coordenadas> coord; 
+	private boolean tieneContinente = true; 
 	
 	private static Exception CoordInvalidas = new Exception ("Estas "
 			+ "coordenadas no son validas para este mapa");
@@ -34,13 +35,15 @@ public class Mapa {
 		g = new Grafo<Ciudad, Camino>();
 		mapa = new String[alturaY][anchuraX];
 		coord = continente; 
+		tieneContinente = true; 
 		
 		agregarContinente(continente);
 	}
 	
-	public Mapa(int anchuraX, int alturaY, String cont) {
+	public Mapa(int anchuraX, int alturaY, String continente) {
 		g = new Grafo<Ciudad, Camino>(); 
 		mapa = new String[alturaY][anchuraX]; 
+		tieneContinente = false; 
 	}
 	
 	//#########################################
@@ -165,10 +168,9 @@ public class Mapa {
 		return coord; 
 	}
 	
-	public boolean existeContinente(){
-		System.out.println("dentro de mapa " + coord.size()); 
-		if(coord.size() == 0) return false; 
-		else return true; 
+	public boolean existeContinenteEnMapa(){
+		if(tieneContinente) return true; 
+		else return false; 
 	}
 	//#########################################
 	//##########SOBRE CIUDADES

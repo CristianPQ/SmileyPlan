@@ -65,8 +65,8 @@ public class VistaMapa extends Vista3{
 					String Continente = txtConti.getText();
 					if(Continente.equals(" ")) setError("falta delimitar el continente");
 					
-					if (!Y.equals("") && !X.equals("")){						
-						cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);					
+					if (!Y.equals("") && !X.equals("")){
+						cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);
 						mapaCreado = true;
 					
 						txtCO.setEditable(true);

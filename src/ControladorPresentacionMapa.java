@@ -27,6 +27,7 @@ public class ControladorPresentacionMapa {
 	}
 	
 	public boolean cargarMapa(String file) throws Exception{
+		//System.out.println("controlador presentacion mapa"); 
 		return cm.cargarMapa(file);
 	}
 	

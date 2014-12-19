@@ -71,7 +71,7 @@ public class ControladorMapa {
 	}
 	
 	public boolean existeContinente() {
-		return m.existeContinente(); 
+		return m.existeContinenteEnMapa(); 
 	}
 	
 	//#########################################
