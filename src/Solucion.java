@@ -3,7 +3,7 @@ import java.util.*;
 public class Solucion {
 	//private GrafoAntiguo g;
 	private double tiempo;
-	private boolean tieneSolucion = false; //falso si no la tiene true en caso contrario
+	private boolean tieneSolucion; //falso si no la tiene true en caso contrario
 	
 	private ArrayList<Integer>[] itinerarios; 
 	private int[] costeIt; 
@@ -31,6 +31,7 @@ public class Solucion {
 		itinerarios = new ArrayList[numItinerarios];
 		for(int i = 0; i < numItinerarios; ++i) itinerarios[i] = new ArrayList<Integer>();
 		costeIt = new int[numItinerarios];	
+		tieneSolucion = false;
 	}
 	
 	/**

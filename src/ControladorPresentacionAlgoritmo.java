@@ -57,7 +57,7 @@ public class ControladorPresentacionAlgoritmo {
 				ControladorMapa cmapa = cpmapa.devolverControlador();
 				ca = new ControladorAlgoritmo(cagentes,cmapa,cmt,s,t,funcionCoste,citi); 
 				ca.ejecutar(i);
-				System.out.println("El timepo en presentacion es " + ca.consultarTiempo());
+				//System.out.println("El timepo en presentacion es " + ca.consultarTiempo());
 			} catch (Exception e) {
 				va.setError(e.getMessage()); 
 			}
