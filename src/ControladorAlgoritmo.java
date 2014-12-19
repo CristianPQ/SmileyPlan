@@ -80,10 +80,6 @@ public class ControladorAlgoritmo {
 			}
 		}
 		if(!sol.consultarTieneSolucion()) {
-			System.out.println(" #######################"
-				+ "\n NO HAY SOLUCION POSIBLE"
-				+ "\n #######################"
-				+ "\n Carque nuevamente el ControladorAlgoritmo");
 			ent = null;
 			//sol = null;
 			cit = null;
@@ -98,7 +94,7 @@ public class ControladorAlgoritmo {
 	public void ejecutarAlgoritmoDinic() throws Exception{
 		Dinic d = new Dinic(); 
 		sol = d.ejecutar(ent);
-		System.out.println(" DOMINIO: EL TIEMPO DE DINIC ES " + sol.consultarTiempo());
+		//System.out.println(" DOMINIO: EL TIEMPO DE DINIC ES " + sol.consultarTiempo());
 	}
 	
 
@@ -150,11 +146,14 @@ public class ControladorAlgoritmo {
 		}*/
 		//cas que sobren camins, mirem els de menys cost
 		//else if (numIt > numAg){ 
-				//System.out.println("numIt mayor que numAg \n"); 
+			
+		
+		/*
+		//System.out.println("numIt mayor que numAg \n"); 
 		for(int j = 0; j < numIt; ++j){
 				System.out.println("coste del itinerario " + j +   " es = " + sol.obtenCoste(j));
 			}
-		
+		*/
 			for(int i = 0; i < numAg; ++i){
 				
 				int min = 2147483647; //max int
@@ -216,7 +215,7 @@ public class ControladorAlgoritmo {
 		for(int i = 0; i < n; ++i) {
 			buffer = guardaseq.get(i); 
 			String prova = guardaseq.get(i); 
-			System.out.println(prova+ "\n");
+			//System.out.println(prova+ "\n");
 			gd.writeBuffer(buffer); 
 		}
 		gd.cerrarArchivo(); 
