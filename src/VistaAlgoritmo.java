@@ -341,9 +341,7 @@ public class VistaAlgoritmo extends Vista2 {
 					 for (int i = 0; i < l.length; ++i ){
 						vis2.agregar(l[i]);
 					 	}
-
 					}
-				comprovar("");
 				}
 		});
 		

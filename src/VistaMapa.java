@@ -76,6 +76,7 @@ public class VistaMapa extends Vista3{
 						txtCap.setEditable(true);
 						txtX.setEditable(true);
 						txtY.setEditable(true);
+						comprovar("");
 						//vg.setLimites(Integer.parseInt(X),  Integer.parseInt(Y));
 					}
 				}
