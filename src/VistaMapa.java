@@ -57,6 +57,7 @@ public class VistaMapa extends Vista3{
 		botonCrear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				//crear mapa
 				if (!mapaCreado){ 
 					//System.out.println("crear mapa"); 
@@ -139,6 +140,7 @@ public class VistaMapa extends Vista3{
 		botonModificar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				//cas ciudades
 			if (txtCO.getText().equals(""))	 {
 				String nom = txtIdCiutat.getText();
@@ -250,6 +252,7 @@ public class VistaMapa extends Vista3{
 		botonEliminar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				if (txtCO.getText().equals(""))	 {
 					//cas ciutat
 					//MIRAR QUE QUAN ESBORRI CIUTAT ESBORRI TAMBE AGENTES I CAMINOS
@@ -295,6 +298,7 @@ public class VistaMapa extends Vista3{
 		botonCargar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				try {
 					abrirBrowserCargar();
 				} catch (Exception e1) {
@@ -306,6 +310,7 @@ public class VistaMapa extends Vista3{
 		botonGuardar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) { 
+				comprovar("");
 				abrirBrowserGuardar();
 			}
 		});
@@ -314,6 +319,7 @@ public class VistaMapa extends Vista3{
 		botoncaG.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				if (vciut.listaEsVacia()) setError("No hay nada para guardar"); 
 				abrirBrowserGuardarCaminos();
 			}
@@ -322,6 +328,7 @@ public class VistaMapa extends Vista3{
 		botoncaC.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				try {
 					abrirBrowserCargarCaminos();
 				} catch (Exception e1) {
@@ -334,6 +341,7 @@ public class VistaMapa extends Vista3{
 		botonciG.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
 				abrirBrowserGuardarCiudades();
 			}
@@ -342,6 +350,7 @@ public class VistaMapa extends Vista3{
 		botonciC.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				try {
 					abrirBrowserCargarCiudades();
 				} catch (Exception e1) {

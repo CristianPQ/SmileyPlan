@@ -53,6 +53,7 @@ public class VistaAgentes extends Vista2 {
 		botonCrear.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				comprovar("");
 				String nombre = text1.getText();
 				String ciuIni = text2.getText();
 				String ciuObj = text3.getText();
@@ -73,6 +74,7 @@ public class VistaAgentes extends Vista2 {
 		botonModificar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				String id = text1.getText(); 
 				String ciuIni = text2.getText();
 				String ciuObj = text3.getText();
@@ -121,6 +123,7 @@ public class VistaAgentes extends Vista2 {
 		botonEliminar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				String id = text1.getText(); 
 				ctrlPAg.eliminarAgente(id);
 				vb.clear();
@@ -159,6 +162,7 @@ public class VistaAgentes extends Vista2 {
 		botonCargar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				abrirBrowserCargar(); 	
 			}
 			
@@ -167,6 +171,7 @@ public class VistaAgentes extends Vista2 {
 		botonGuardar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
 				else abrirBrowserGuardar(); 
 			}

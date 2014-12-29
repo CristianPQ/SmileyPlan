@@ -93,6 +93,7 @@ public class VistaMedioTransporte extends Vista2 {
 		botonCrear.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				String nombre = text1.getText(); 
 				String c = text2.getText(); 
 				if (nombre.equals("") || c.equals(""))
@@ -137,6 +138,7 @@ public class VistaMedioTransporte extends Vista2 {
 		botonModificar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				String id = text1.getText(); 
 				String coste = text2.getText();
 				if (!text1.getText().equals(" ") && !text2.getText().equals(" ")){
@@ -161,6 +163,7 @@ public class VistaMedioTransporte extends Vista2 {
 		botonEliminar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				String id = text1.getText(); 
 				cpm.borrarMedio(id);
 				vb.clear();
@@ -173,6 +176,7 @@ public class VistaMedioTransporte extends Vista2 {
 		botonCargar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				try {
 					abrirBrowserCargar();
 				} catch (Exception e1) {
@@ -185,6 +189,7 @@ public class VistaMedioTransporte extends Vista2 {
 		botonGuardar.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				comprovar("");
 				if (vb.listaEsVacia()) setError("No hay nada para guardar"); 
 				else abrirBrowserGuardar();
 			}

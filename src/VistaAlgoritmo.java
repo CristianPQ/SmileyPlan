@@ -225,6 +225,8 @@ public class VistaAlgoritmo extends Vista2 {
 		botonEjecutar.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				comprovar("");
 
 				cpalg.initItinerarios();
 				if(ff)vb.clear();
@@ -256,7 +258,7 @@ public class VistaAlgoritmo extends Vista2 {
 					 	}
 
 					}
-				comprovar("");
+				//comprovar("");
 				}
 		
 		});
@@ -264,7 +266,7 @@ public class VistaAlgoritmo extends Vista2 {
 		but.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				comprovar("");
 				String source = CiuO.getText();
 				String sink = CiuD.getText();
 				
