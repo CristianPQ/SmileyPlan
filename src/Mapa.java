@@ -20,6 +20,7 @@ public class Mapa {
 	private static Exception Vacio = new Exception ("Esta vacio");
 	//private static Exception HayCaminos = new Exception ("Hay caminos que usan esta ciudad");
 	private static Exception NoValido = new Exception ("No valido");
+	private static Exception CoordNegativas = new Exception ("Las coordenadas deben ser valores positivos"); 
 	
 	
 	
@@ -31,16 +32,21 @@ public class Mapa {
 	 * @throws Exception
 	 */
 	public Mapa(int anchuraX, int alturaY, ArrayList<Coordenadas> continente) throws Exception {
+		//System.out.println("anchura" + anchuraX + "altura" + alturaY);
 		//continente es cerrado siempre
+		if(anchuraX < 0 || alturaY < 0) {
+			//System.out.println("negativo"); 
+			throw CoordNegativas; 
+		}
 		g = new Grafo<Ciudad, Camino>();
 		mapa = new String[alturaY][anchuraX];
 		coord = continente; 
 		tieneContinente = true; 
-		
 		agregarContinente(continente);
 	}
 	
-	public Mapa(int anchuraX, int alturaY, String continente) {
+	public Mapa(int anchuraX, int alturaY, String continente) throws Exception {
+		if(anchuraX < 0 || alturaY < 0) throw CoordNegativas; 
 		g = new Grafo<Ciudad, Camino>(); 
 		mapa = new String[alturaY][anchuraX]; 
 		tieneContinente = false; 
@@ -142,6 +148,7 @@ public class Mapa {
 	private void posicionValida(Coordenadas coord) throws Exception {
 		int x = coord.consultarX();
 		int y = coord.consultarY();
+		if(x < 0 || y < 0) throw CoordNegativas; 
 		if(y >= mapa.length || x >= mapa[0].length ||
 				mapa[y][x] != null) {
 			throw CoordInvalidas;
@@ -283,8 +290,10 @@ public class Mapa {
 	 * @throws Exception
 	 */
 	public ArrayList<String> listarCiudades() throws Exception{
-		if(g.isEmpty()) throw Vacio;
-		return g.consultarVerticesID();
+		//if(g.isEmpty()) throw Vacio;
+		ArrayList<String> l = new ArrayList<String>(); 
+		if(!g.isEmpty()) l = g.consultarVerticesID(); 
+		return l; 	
 	}
 	
 	//#########################################

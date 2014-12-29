@@ -22,6 +22,7 @@ public class ControladorPresentacionMapa {
 			cm = new ControladorMapa(x,y,cont);
 		}
 		catch (Exception e) {
+			//System.out.println(e.getMessage()); 
 			vm.setError(e.getMessage());
 		}
 	}

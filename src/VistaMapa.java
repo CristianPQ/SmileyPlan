@@ -40,11 +40,8 @@ public class VistaMapa extends Vista3{
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
 		super.txtY.setEditable(false);
-		
-		
-	
-		//vciut.add(cami, BorderLayout.NORTH);
-		
+
+		//vciut.add(cami, BorderLayout.NORTH);	
 
 		//vg = new VistaGrafo();
 		//super.panelPrincipal.add(vg); 
@@ -69,7 +66,15 @@ public class VistaMapa extends Vista3{
 					if (!Y.equals("") && !X.equals("")){
 						cpmapa.crearMapa(Integer.parseInt(X), Integer.parseInt(Y), Continente);
 						mapaCreado = true;
-					
+						try {
+							String[] s = cpmapa.listarCiudades();
+							System.out.println(s[0]); 
+							
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						//System.out.print(mapaCreado);
 						txtCO.setEditable(true);
 						txtCD.setEditable(true);
 						txtMedio.setEditable(true);
@@ -249,13 +254,16 @@ public class VistaMapa extends Vista3{
 			}       
         });
 		
+		/**
+		 * Boton Eliminar
+		 */
+		
 		botonEliminar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
 				if (txtCO.getText().equals(""))	 {
 					//cas ciutat
-					//MIRAR QUE QUAN ESBORRI CIUTAT ESBORRI TAMBE AGENTES I CAMINOS
 					String c = txtIdCiutat.getText(); 
 					cpmapa.eliminarCiudad(c);
 					//vg.borarCiudad(c);
@@ -289,7 +297,6 @@ public class VistaMapa extends Vista3{
 					txtMedio.setText("");
 					txtCap.setText("");
 				}
-				
 			}
 		});
 		
@@ -453,8 +460,8 @@ public class VistaMapa extends Vista3{
 		
 		//// ACTUALIZAR LISTAS ////
 		public void actualizarListaCiudades() throws Exception{
-			String[] ciudades = cpmapa.listarCiudades();
 			vb.clear();
+			String[] ciudades = cpmapa.listarCiudades();
 			if(ciudades.length != 0) {
 				for(int i = 0; i < ciudades.length; ++i){
 					String ciu = ciudades[i]; 
@@ -474,7 +481,6 @@ public class VistaMapa extends Vista3{
 				for(int i = 0; i < caminos.length; ++i) vciut.agregar(caminos[i]);
 			}
 		}
-
 		
 }
 		  

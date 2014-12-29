@@ -8,18 +8,13 @@ public class Tren extends MedioTransporte {
 		super(); 
 	}
 	
-	static private Exception ErrorPrecio = new Exception("Para un tren: precio inferior a 40");
-	
-	static private int limitePrecio = 40; 
-	
 	/**
 	 * Constructora de Tren
 	 * @param String nombreTransporte
 	 * @param int precio 
 	 */
-	public Tren(String nombreTransporte, int precio) throws Exception {
+	public Tren(String nombreTransporte, int precio) {
 		super(nombreTransporte, precio);
-		if(precio > limitePrecio) throw ErrorPrecio;	
 		super.via = true; 
 		super.carretera = false; 
 	}
