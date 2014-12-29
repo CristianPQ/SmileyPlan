@@ -191,14 +191,9 @@ public class ControladorMapa {
 			//System.out.println("Entra en listar");
 		ArrayList<String> list = m.listarCiudades();
 		String nombreC = new String();
-		if(list != null) {
-			for(int i = 0; i < list.size(); ++i) {
-				nombreC = nombreC + list.get(i) + "\n";
-			}
-		}
-		Iterator<String> it = list.iterator();
-		while(it.hasNext()) {
-			String n = it.next();
+		
+		for(int i = 0; i<list.size();++i){
+			String n = list.get(i);
 			nombreC = nombreC + n + " " + Integer.toString(coordXCiudad(n)) +" " + 
 					Integer.toString(coordYCiudad(n)) + "\n";
 		}
