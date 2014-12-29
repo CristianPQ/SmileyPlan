@@ -275,9 +275,9 @@ public class VistaMapa extends Vista3{
 					} catch (Exception e1) {
 						setError(e1.getMessage());
 					}
-					txtIdCiutat.setText(" ");
-                    txtX.setText(" ");
-                    txtY.setText(" ");
+					txtIdCiutat.setText("");
+                    txtX.setText("");
+                    txtY.setText("");
 				}
 				else {
 					//cas caminos
