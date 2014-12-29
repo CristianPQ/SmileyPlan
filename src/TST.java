@@ -136,7 +136,8 @@ class TST<E>  //no estava la <E>
     //ELIMINAR ELEMENTO
     public void delete(String word)
     {
-        root = (TSTNodeChar) delete(null, root, word.toCharArray(), 0);
+    	if(numero() == 1) makeEmpty();
+    	else root = (TSTNodeChar) delete(null, root, word.toCharArray(), 0);
     }
     
     

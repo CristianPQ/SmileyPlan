@@ -108,9 +108,13 @@ public class Grafo<E1, E2> {
     }
     
     public void eliminarVertice(String id, int index) {
+    		//System.out.println("Antes de delete");
     	vertices.delete(id);
+    		//System.out.println("Despues de delete");
     	aristas.set(index, new Sentidos());
+    		//System.out.println("Despues de set");
     	vacios.add(index);
+    		//System.out.println("Despues de add");
     }
     
     public ArrayList<E1> consultarVertices() {

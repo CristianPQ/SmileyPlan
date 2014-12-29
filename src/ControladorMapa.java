@@ -188,8 +188,14 @@ public class ControladorMapa {
 	 * @throws Exception Si no hay ninguna ciudad
 	 */
 	public String listarCiudadesToString() throws Exception {
+			//System.out.println("Entra en listar");
 		ArrayList<String> list = m.listarCiudades();
 		String nombreC = new String();
+		if(list != null) {
+			for(int i = 0; i < list.size(); ++i) {
+				nombreC = nombreC + list.get(i) + "\n";
+			}
+		}
 		Iterator<String> it = list.iterator();
 		while(it.hasNext()) {
 			String n = it.next();

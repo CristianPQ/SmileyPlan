@@ -234,9 +234,10 @@ public class Mapa {
 	 * @throws Exception
 	 */
 	public void eliminarCiudad(String c) throws Exception {
+			System.out.println("Antes de lanzar excepcion mapa" + "\n");
 		if(!existeCiudad(c)) throw NoExiste;
 		//if(existenCaminosCon(c)) throw HayCaminos;
-			//System.out.println("Antes de eliminar caminos con destino" + "\n");
+			System.out.println("Antes de eliminar caminos con destino" + "\n");
 			//System.out.println("Antes de consultarVerticesd" + "\n");
 		Ciudad ciu = g.consultarVertice(c);
 			//System.out.println("Despues de consultarVerticesd" + "\n");
@@ -291,8 +292,8 @@ public class Mapa {
 	 */
 	public ArrayList<String> listarCiudades() throws Exception{
 		//if(g.isEmpty()) throw Vacio;
-		ArrayList<String> l = new ArrayList<String>(); 
-		if(!g.isEmpty()) l = g.consultarVerticesID(); 
+		ArrayList<String> l = null; 
+		if(g.consultarNumVertices() > 0) l = g.consultarVerticesID(); 
 		return l; 	
 	}
 	

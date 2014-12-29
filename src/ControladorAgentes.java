@@ -97,6 +97,7 @@ public class ControladorAgentes {
 		}
 		
 		public void eliminarAgentesConCiudad(String c) {
+				System.out.println("Entra en eliminarAgentesConCiudad");
 			ArrayList<String> ags = Agentes.consultar();
 			for(int i = 0; i < ags.size(); ++i) {
 				Agente a = Agentes.consultar(ags.get(i));
@@ -105,6 +106,7 @@ public class ControladorAgentes {
 					--numAgentes;
 				}
 			}
+				System.out.println("Salir en eliminarAgentesConCiudad");
 		}
 
 		/**
