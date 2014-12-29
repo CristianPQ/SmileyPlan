@@ -97,6 +97,7 @@ public abstract class Vista3 extends Vista1 {
         
         GridBagConstraints c1 = new GridBagConstraints();
         c1.gridy = 1;
+        c1.fill = GridBagConstraints.BOTH;
         
         cams.add(vciut,c1);
         

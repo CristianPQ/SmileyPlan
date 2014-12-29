@@ -125,8 +125,8 @@ public class VistaBuscador extends JPanel{
         c3.gridwidth = 1;
         //c3.gridheight = 5;
         
-        //scroller.setMinimumSize(new Dimension(250,500));
-        //scroller.setMaximumSize(new Dimension(250,500));
+        scroller.setMinimumSize(new Dimension(250,500));
+        scroller.setMaximumSize(new Dimension(250,500));
         
         
         //#########################################

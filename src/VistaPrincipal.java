@@ -48,10 +48,10 @@ public class VistaPrincipal {
 	private static void fullVPrincipal(JFrame frame) {
 		
 		
-		GridBagConstraints mBar = new GridBagConstraints();
+		//GridBagConstraints mBar = new GridBagConstraints();
 		//mBar.gridheight = 5;
-        mBar.gridx = 0;
-        mBar.gridy = 0;
+        //mBar.gridx = 0;
+        //mBar.gridy = 0;
         
 		JMenuBar menuBar = new JMenuBar(); 
         
@@ -85,8 +85,8 @@ public class VistaPrincipal {
 		
 		GridBagConstraints gbcTabs = new GridBagConstraints();
 		//mBar.gridheight = 5;
-        gbcTabs.gridx = 0;
-        gbcTabs.gridy = 1;
+        //gbcTabs.gridx = 0;
+        //gbcTabs.gridy = 1;
         //gbcTabs.gridheight = 2;
         gbcTabs.fill = GridBagConstraints.BOTH;
 		
