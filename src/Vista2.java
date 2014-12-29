@@ -34,7 +34,7 @@ public abstract class Vista2 extends Vista1 {
 		
 		//panel que engloba a todos
 		panelv2 = new JPanel(); 
-		panelv2.setLayout(new BoxLayout(panelv2, BoxLayout.Y_AXIS));
+		panelv2.setLayout(new GridBagLayout());
 		panelv2.setBorder(BorderFactory.createEmptyBorder(10,20,15,20));
 		
 		//panel de introduccion datos 
@@ -81,12 +81,25 @@ public abstract class Vista2 extends Vista1 {
 		panelBotones.add(botonGuardar);
 		panelBotones.add(botonCargar);
 		
+		GridBagConstraints gbcPL = new GridBagConstraints();
+		gbcPL.gridy = 0;
 				
-		panelv2.add(panelLista);
-		panelv2.add(panelBotones);
+		panelv2.add(panelLista, gbcPL);
 		
-		super.panelPrincipal.add(panelv2); 
-		super.panelPrincipal.add(vb); 
+		GridBagConstraints gbcPB = new GridBagConstraints();
+		gbcPB.gridy = 1;
+		
+		panelv2.add(panelBotones, gbcPB);
+		
+		GridBagConstraints gbcPv2 = new GridBagConstraints();
+		gbcPv2.gridx = 0;
+		
+		super.panelPrincipal.add(panelv2,gbcPv2);
+		
+		GridBagConstraints gbcVB = new GridBagConstraints();
+		gbcVB.gridx = 1;
+		
+		super.panelPrincipal.add(vb, gbcVB); 
 		
 	    
 	}

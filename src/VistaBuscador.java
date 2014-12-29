@@ -22,16 +22,13 @@ public class VistaBuscador extends JPanel{
     
     
     VistaBuscador(Vista1 v1) {        
-        
+        this.setLayout(new GridBagLayout());
         padre = v1;
         
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createEmptyBorder(10,5,10,5));
         
         //Falta crear titulos, mirar Vista mapa
-        
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
         
         //#########################################
     	//##########VISTABUSCADOR
@@ -46,6 +43,8 @@ public class VistaBuscador extends JPanel{
         textoBusqueda = new JTextField();
         textoBusqueda.setPreferredSize(new Dimension(120,30));
         
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 2;
@@ -79,19 +78,24 @@ public class VistaBuscador extends JPanel{
             }
         });
         
-        c.gridx = 2;
-        c.gridwidth = 1;
+        GridBagConstraints c1 = new GridBagConstraints();
+        c1.fill = GridBagConstraints.BOTH;
+        c1.gridx = 2;
+        c1.gridy = 0;
+        c1.gridwidth = 1;
         
-        vistaBuscar.add(botonBuscar, c);
+        vistaBuscar.add(botonBuscar, c1);
         
         //Fin Boton Buscar
         
-        c.gridwidth = 3;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridheight = 6;
+        GridBagConstraints c2 = new GridBagConstraints();
+        c2.fill = GridBagConstraints.BOTH;
+        c2.gridx = 0;
+        c2.gridy = 0;
+        c2.gridwidth = 1;
+        //c2.gridheight = 6;
         
-        this.add(vistaBuscar,c);
+        this.add(vistaBuscar,c2);
         //this.add(Box.createRigidArea(new Dimension(0, 5)));
         
         //#########################################
@@ -113,18 +117,21 @@ public class VistaBuscador extends JPanel{
         l = new JList(model);
         
         scroller = new JScrollPane(l);
-
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridheight = 5;
-        c.gridwidth = 3;
+        
+        GridBagConstraints c3 = new GridBagConstraints();
+        c3.fill = GridBagConstraints.BOTH;
+        c3.gridx = 0;
+        c3.gridy = 1;
+        c3.gridwidth = 1;
+        //c3.gridheight = 5;
+        
         //scroller.setMinimumSize(new Dimension(250,500));
         //scroller.setMaximumSize(new Dimension(250,500));
         
         
         //#########################################
         
-        this.add(scroller,c);
+        this.add(scroller,c3);
         //this.add(Box.createRigidArea(new Dimension(0, 10)));
         
     }
@@ -184,11 +191,11 @@ public class VistaBuscador extends JPanel{
         textoBusqueda.setEnabled(true);
         botonBuscar.setEnabled(true);
     }
-    
+    /*
     public void desactivar() {
         scroller.setEnabled(false);
         textoBusqueda.setEnabled(false);
         botonBuscar.setEnabled(false);
-    }
+    }*/
 
 }

@@ -10,10 +10,10 @@ import javax.swing.*;
 public class VistaPrincipal {
 
 	private JTabbedPane tabs; 
-	private ControladorPresentacionMedios cpm; 
-	private ControladorPresentacionAgentes cpa; 
-	private ControladorPresentacionMapa cpmapa; 
-	private ControladorPresentacionAlgoritmo cpalg; 
+	private static ControladorPresentacionMedios cpm; 
+	private static ControladorPresentacionAgentes cpa; 
+	private static ControladorPresentacionMapa cpmapa; 
+	private static ControladorPresentacionAlgoritmo cpalg; 
 
 	private JMenu menu1; 
 	private JMenu menu2; 
@@ -30,34 +30,67 @@ public class VistaPrincipal {
 		
 		JFrame frame = new JFrame("Main");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
- 
+        //frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        frame.setLayout(new GridBagLayout());
    
         //frame.setPreferredSize(new Dimension(1900, 1080));
+        
+        	
+        
         frame.setResizable(true);
         
-        JMenuBar menuBar = new JMenuBar(); 
+        fullVPrincipal(frame);
         
-        JButton menu1 = new JButton("Guardar");  
+        
+		
+	}
+	
+	private static void fullVPrincipal(JFrame frame) {
+		
+		
+		GridBagConstraints mBar = new GridBagConstraints();
+		//mBar.gridheight = 5;
+        mBar.gridx = 0;
+        mBar.gridy = 0;
+        
+		JMenuBar menuBar = new JMenuBar(); 
+        
+        JButton menu1 = new JButton("Guardar");
+        menuBar.add(menu1); 
+        
         JButton menu2 = new JButton("Cargar");
+        menuBar.add(menu2);
+        
 		//JMenu menu3 = new JMenu("Deshacer");
 		//JMenu menu4 = new JMenu("Salir"); 
-		menuBar.add(menu1); 
-		menuBar.add(menu2); 
 		//menuBar.add(menu3);
 		//menuBar.add(menu4); 
 		frame.setJMenuBar(menuBar);
 
 		//Ayuda ayuda = new Ayuda(); 
-
-		tabs = new JTabbedPane(); 
-		tabs.add("Mapa", cpmapa.getVista());
-		tabs.add("Agente", cpa.getVista());
-		tabs.add("MedioTransporte", cpm.getVista());
-		tabs.add("Algoritmo", cpalg.getVista());
+		JTabbedPane tabs = new JTabbedPane();
+		
+		
+		
+		//tabs.setPreferredSize(new Dimension(1500, 700));
+		//Provisional
+		
+		
+		
+		tabs.addTab("Mapa", null, cpmapa.getVista(), "Edita el mapa");
+		tabs.addTab("Agente", null, cpa.getVista(), "Edita los agentes");
+		tabs.addTab("MedioTransporte", null, cpm.getVista(), "Edita los medios de transporte");
+		tabs.addTab("Algoritmo", null, cpalg.getVista(), "Ejecuta el programa");
 		//tabs.add("Ayuda", ayuda); 
 		
-		frame.add(tabs);
+		GridBagConstraints gbcTabs = new GridBagConstraints();
+		//mBar.gridheight = 5;
+        gbcTabs.gridx = 0;
+        gbcTabs.gridy = 1;
+        //gbcTabs.gridheight = 2;
+        gbcTabs.fill = GridBagConstraints.BOTH;
+		
+		frame.add(tabs, gbcTabs);
 		frame.pack(); 
 		frame.setVisible(true); 
 		
@@ -83,7 +116,6 @@ public class VistaPrincipal {
 					
 	            }
 		}); 
-		
 	}
 	
 	

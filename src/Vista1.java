@@ -8,19 +8,26 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public abstract class Vista1 extends JPanel {
 	
 	protected JPanel panelPrincipal;
-	protected JPanel panelErrores;
+	//protected JPanel panelErrores;
 	protected JLabel labelError;
 	protected JFileChooser filechooser; 
 	protected FileNameExtensionFilter filter; 
 	
 	Vista1(){
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new GridBagLayout());
         
         panelPrincipal = new JPanel();
-        panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.X_AXIS));
+        panelPrincipal.setLayout(new GridBagLayout());
+        GridBagConstraints pP = new GridBagConstraints();
+        pP.gridy = 0;
+        pP.gridx = 0;
+        pP.fill = GridBagConstraints.BOTH;
+        
+		this.add(panelPrincipal,pP);
+        //panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.X_AXIS));
 		
         labelError = new JLabel("Visor de errores");
-        panelErrores = new JPanel();
+        JPanel panelErrores = new JPanel();
         panelErrores.setMinimumSize(new Dimension(1000,40));
         panelErrores.setMaximumSize(new Dimension(1000,40));
         panelErrores.setBorder(BorderFactory.createEtchedBorder());
@@ -30,9 +37,13 @@ public abstract class Vista1 extends JPanel {
         filter = new FileNameExtensionFilter(".smiley", "smiley");
         filechooser.setFileFilter(filter);
         filechooser.addChoosableFileFilter(filter);
-        
-		this.add(panelPrincipal);
-		this.add(panelErrores);
+		
+		GridBagConstraints pE = new GridBagConstraints();
+        pE.gridy = 1;
+        pE.gridx = 0;
+        pE.fill = GridBagConstraints.HORIZONTAL;
+		
+		this.add(panelErrores,pE);
 		
 	}
 	
