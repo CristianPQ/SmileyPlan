@@ -462,11 +462,11 @@ public class VistaMapa extends Vista3{
 		public void actualizarListaCiudades() throws Exception{
 			vb.clear();
 			String[] ciudades = cpmapa.listarCiudades();
-			if(ciudades.length != 0) {
+			if(!ciudades.equals(null) && ciudades.length > 0) {
 				for(int i = 0; i < ciudades.length; ++i){
 					String ciu = ciudades[i]; 
 					try{
-						vb.agregar(ciu + " "+ cpmapa.coordX(ciu)+ " " + cpmapa.coordY(ciu));
+						vb.agregar(ciu);
 					} catch (Exception e) {
 						setError(e.getMessage());
 					}

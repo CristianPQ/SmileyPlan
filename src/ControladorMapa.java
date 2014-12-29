@@ -130,6 +130,7 @@ public class ControladorMapa {
 	 */
 	public void eliminarCiudad(String c/*, ControladorAgentes ca*/) throws Exception {
 		m.eliminarCiudad(c);
+	//	System.out.println(listarCiudades().size()+" cMap");
 		//ca.eliminarAgentesConCiudad(c);
 	}
 	
@@ -192,7 +193,8 @@ public class ControladorMapa {
 		Iterator<String> it = list.iterator();
 		while(it.hasNext()) {
 			String n = it.next();
-			nombreC = nombreC + n + "\n";
+			nombreC = nombreC + n + " " + Integer.toString(coordXCiudad(n)) +" " + 
+					Integer.toString(coordYCiudad(n)) + "\n";
 		}
 		return nombreC;
 	}

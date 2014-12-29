@@ -84,7 +84,7 @@ public class ControladorPresentacionMapa {
 		}
 	}
 	
-	public int coordX(String ciudad) {
+/*	public int coordX(String ciudad) {
 			try {
 				return cm.coordXCiudad(ciudad);
 			} catch (Exception e) {
@@ -102,7 +102,8 @@ public class ControladorPresentacionMapa {
 		return -1;
 	}
 	
-	
+
+*/	
 	public void modificarCoordenadas(String n, int x, int y){
 		try {
 			cm.modificarAtributosCiudad(n, x, y);
