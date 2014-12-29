@@ -71,6 +71,7 @@ public class FordFulkerson extends Algoritmo{
 	 * @param f
 	 * @return
 	 */
+	/*
 	 static int findPath(Entrada g, boolean[] vis, int u, int t, int f) {
 		    if (u == t)
 		      return f;
@@ -94,6 +95,29 @@ public class FordFulkerson extends Algoritmo{
 		    }
 		    return 0;
 		  }
+	 */
+	/*
+	 static int findPath(Entrada g, boolean[] vis, int[] dist, int u, int t, int f) {
+		    if (u == t)
+		      return f;
+		    vis[u] = true;
+		    for (int v = 0; v < vis.length; v++){
+		    	int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
+		      if ( (!vis[v] || dist[v] == dist[u] + 1)   && capacidadResidual > 0) {
+		        int df = findPath(g, vis, dist, v, t, Math.min(f, capacidadResidual));
+		        if (df > 0) {
+		          int nuevoFlujo = g.consultarFlujoArista(u, v) + df;
+		          g.modificarFlujoArista(u,v,nuevoFlujo);
+		          nuevoFlujo = g.consultarFlujoArista(v, u) - df;
+		          g.modificarFlujoArista(v,u,nuevoFlujo);
+		          return df;
+		        }
+		      }
+		    }
+		    return 0;
+		  }
+	*/ 
+	 
 	 
 	/**
 	 * Ejecuta el algoritmo 
@@ -101,13 +125,14 @@ public class FordFulkerson extends Algoritmo{
 	public Solucion ejecutar ( Entrada g) throws Exception{
 		double t1 = System.nanoTime();
 		//GrafoAntiguo g = e.consultarGrafo();
+		DFS dfs = new DFS();
 		int s = g.consultarSource();
 		int t = g.consultarSink();
 		int numA = g.consultarNumeroAgentes();
 		inicializacion(g,s,t);
 		int flow = 0;
 	    for (flow = 0;;) {
-	        int df = findPath(g, new boolean[g.consultarNumeroVertices()], s, t, Integer.MAX_VALUE);
+	        int df = dfs.findPath(g, new boolean[g.consultarNumeroVertices()], new int[g.consultarNumeroVertices()], s, t, Integer.MAX_VALUE);
 	        if (df == 0)
 	          break;
 	        flow += df;

@@ -75,12 +75,14 @@ public class Dinic extends Algoritmo {
 		    }
 		    return dist[dest] >= 0;
 		  }
-
+/*
 		  static int dinicDfs(Entrada g, int[] ptr, int[] dist, int dest, int u, int f) {
 		    if (u == dest)
 		      return f;
 		    ArrayList <Arista> adyacencias =  g.consultarAdyacentes(u);
+		    System.out.println("Estoy en el vertice " + u);
 		    for (; ptr[u] < adyacencias.size(); ++ptr[u]) {
+		      System.out.println("ptr[] es " + ptr[u]);
 		      Arista e = adyacencias.get(ptr[u]);
 		      int v = e.consultarVerticeDestino();
 		      if (dist[v] == dist[u] + 1 && e.consultarFlujo() < e.consultarCapacidad()) {
@@ -101,9 +103,36 @@ public class Dinic extends Algoritmo {
 		    }
 		    return 0;
 		  }
+		  */
+	/*	  
+			 static int findPath(Entrada g, boolean[] vis, int[] dist, int u, int t, int f) {
+				    if (u == t)
+				      return f;
+				    vis[u] = true;
+				    for (int v = 0; v < vis.length; v++){
+				    	int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v);
+				      if ( (!vis[v] || dist[v] == dist[u] + 1)   && capacidadResidual > 0) {
+				        int df = findPath(g, vis, dist, v, t, Math.min(f, capacidadResidual));
+				        if (df > 0) {
+				          int nuevoFlujo = g.consultarFlujoArista(u, v) + df;
+				          g.modificarFlujoArista(u,v,nuevoFlujo);
+				          nuevoFlujo = g.consultarFlujoArista(v, u) - df;
+				          g.modificarFlujoArista(v,u,nuevoFlujo);
+				          return df;
+				        }
+				      }
+				    }
+				    return 0;
+				  }
+*/
+		  
+		  
+		  
 
 		  public Solucion ejecutar(Entrada g) {
 			double t1 = System.nanoTime();
+			BFS bfs = new BFS();
+			DFS dfs = new DFS();
 		    int flow = 0;
 			//GrafoAntiguo g = e.consultarGrafo();
 			int src = g.consultarSource();
@@ -111,10 +140,12 @@ public class Dinic extends Algoritmo {
 			int numA = g.consultarNumeroAgentes();
 			inicializacion(g,src,dest);
 		    int[] dist = new int[g.consultarNumeroVertices()];
-		    while (dinicBfs(g, src, dest, dist)) {
-		      int[] ptr = new int[g.consultarNumeroVertices()];
+		    while (bfs.dinicBfs(g, src, dest, dist)) {
+		      //int[] ptr = new int[g.consultarNumeroVertices()];
 		      while (true) {
-		        int df = dinicDfs(g, ptr, dist, dest, src, Integer.MAX_VALUE);
+		    	  boolean[] vis = new boolean[g.consultarNumeroVertices()];
+		       // int df = findPath(g, vis, dist, src, dest, Integer.MAX_VALUE);
+		    	  int df = dfs.findPath(g, vis, dist, src, dest, Integer.MAX_VALUE);
 		        if (df == 0)
 		          break;
 		        flow += df;
