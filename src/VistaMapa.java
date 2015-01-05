@@ -31,6 +31,7 @@ public class VistaMapa extends Vista3{
 		super();
 		
 		cpmapa = controladorPMapa;
+		super.vMatriz.controlador(controladorPMapa);
 		
 		crearListeners();
 		super.txtCO.setEditable(false);

@@ -1,6 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
- 
+
 import java.awt.*;
  
 public abstract class Vista3 extends Vista1 {
@@ -47,6 +47,8 @@ public abstract class Vista3 extends Vista1 {
     protected JButton botonciC;
     protected JButton botoncaG;
     protected JButton botonciG;
+    
+    protected VistaMatriz vMatriz;
    
   
    
@@ -111,6 +113,7 @@ public abstract class Vista3 extends Vista1 {
         
         super.panelPrincipal.add(cams,pVCiut);
         
+        
         //#########################################
     	//##########panelv3
         //#########################################
@@ -120,7 +123,7 @@ public abstract class Vista3 extends Vista1 {
         GridBagConstraints PV3 = new GridBagConstraints();
         
         PV3.gridx = 1;
-        //PV3.gridy = 1;
+        //PV3.gridy = 0;
         
         panelv3 = new JPanel();
         panelv3.setLayout(new GridBagLayout());
@@ -246,23 +249,40 @@ public abstract class Vista3 extends Vista1 {
         panelBotones.add(botonGuardar);
         panelBotones.add(botonCargar);
         
+    	//##########VistaMatriz
+        vMatriz = new VistaMatriz();
+        //vMatriz.main(null);
+        vMatriz.setMinimumSize(new Dimension(350,350));
+        
+        vMatriz.setMaximumSize(new Dimension(350,350));
+        
+        
+        GridBagConstraints vM = new GridBagConstraints();
+        vM.gridy = 0;
+        panelv3.add(vMatriz,vM);
+        //JFrame vMat = new JFrame();
+        //vMat.add(vMatriz);
+        
+        //vMat.setSize(510, 530);
+        
+        
         GridBagConstraints pL = new GridBagConstraints();
-        pL.gridy = 0;
+        pL.gridy = 1;
                        
         panelv3.add(panelLista, pL);
         
         GridBagConstraints pC = new GridBagConstraints();
-        pC.gridy = 1;
+        pC.gridy = 2;
         
         panelv3.add(panelCiudad, pC);
         
         GridBagConstraints pCams = new GridBagConstraints();
-        pCams.gridy = 2;
+        pCams.gridy = 3;
         
         panelv3.add(panelCaminos, pCams);
         
         GridBagConstraints pB = new GridBagConstraints();
-        pB.gridy = 3;
+        pB.gridy = 4;
         
         panelv3.add(panelBotones, pB);
         
