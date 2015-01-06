@@ -121,7 +121,6 @@ public class VistaMatriz extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		System.out.println("Entrar en mouseClicked"
 				+ "\n button: " + e.getButton() + "\n X: " + e.getX() + "\n Y: " + e.getY() + "\n");
 		if ((e.getButton() == 1) && (e.getX() >= 25) && (e.getX() <= 325) && (e.getY() >= 25) && (e.getY() <= 325)) {

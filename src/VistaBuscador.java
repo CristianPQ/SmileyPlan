@@ -24,6 +24,8 @@ public class VistaBuscador extends JPanel{
     VistaBuscador(Vista1 v1) {        
         this.setLayout(new GridBagLayout());
         padre = v1;
+        //this.setMaximumSize(new Dimension(100, 250));
+        //this.setMinimumSize(new Dimension(100, 250));
         
         //this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createEmptyBorder(10,5,10,5));
@@ -35,8 +37,8 @@ public class VistaBuscador extends JPanel{
         //#########################################
         
         vistaBuscar = new JPanel();
-        vistaBuscar.setMinimumSize(new Dimension(250,50));
-        vistaBuscar.setMaximumSize(new Dimension(250,50));
+        //vistaBuscar.setMinimumSize(new Dimension(50,50));
+        //vistaBuscar.setMaximumSize(new Dimension(50,50));
         
         
         // Texto a buscar

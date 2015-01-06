@@ -72,7 +72,7 @@ public class VistaPrincipal {
 		
 		
 		
-		//tabs.setPreferredSize(new Dimension(1500, 700));
+		//tabs.setPreferredSize(new Dimension(1500, 500));
 		//Provisional
 		
 		
@@ -93,6 +93,7 @@ public class VistaPrincipal {
 		frame.add(tabs, gbcTabs);
 		frame.pack(); 
 		frame.setVisible(true); 
+		frame.setSize(1275, 775);
 		
 		menu1.addActionListener(new ActionListener() {
 			@Override
