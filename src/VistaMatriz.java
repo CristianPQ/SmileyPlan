@@ -94,18 +94,18 @@ public class VistaMatriz extends JPanel implements MouseListener{
     }
     
     
-    public void initUI(JFrame lines) {
+    public static void initUI(JFrame lines) {
         
         //lines.setTitle("Lines");
         //lines.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        lines.add(this);
+        lines.add(new VistaMatriz());
         
         lines.setSize(510, 530);
         //lines.setLocationRelativeTo(null);        
     }
     
-    public void main(String[] args) {
+    public static void main(String[] args) {
 
         SwingUtilities.invokeLater(new Runnable() {
 
