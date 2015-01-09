@@ -38,6 +38,24 @@ public class VistaMatriz extends JPanel implements MouseListener{
 	protected void controlador(ControladorPresentacionMapa cpm) {
 		contpm = cpm;
 	}
+	
+	public String consultarContinente() {
+		String cont = new String();
+		
+		int hpre = horizontal.get(0);
+		int vpre = vertical.get(0);
+		cont = cont + hpre + vpre;
+		horizontal.remove(0);
+		vertical.remove(0);
+		for(int i = 0; i < horizontal.size() && i < vertical.size() ; ++i) {
+			int h = horizontal.get(i);
+			int v = vertical.get(i);
+			if((hpre == h && vpre-1 == v) ||
+					hpre-1 == h && vpre-1 == v)
+		}
+		
+		return cont;
+	}
 	    
     /*private void doDrawing(Graphics g) {
 

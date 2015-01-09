@@ -5,6 +5,7 @@ public class ControladorPresentacionMapa {
 	
 	private static ControladorMapa cm;
 	private static VistaMapa vm;
+	private static VistaCrearMapa vCrearMapa;
 	private static ControladorPresentacionMedios cmed;
 	private static ControladorPresentacionAgentes cag;
 
@@ -12,6 +13,7 @@ public class ControladorPresentacionMapa {
 		cmd.setContPresMapa(this);
 		cmed = cmd;
 		vm = new VistaMapa(this);
+		vCrearMapa = new VistaCrearMapa(this);
 		cm = new ControladorMapa();
 		cagen.setContPresMapa(this);
 		cag = cagen;
@@ -20,6 +22,8 @@ public class ControladorPresentacionMapa {
 	public void crearMapa(int x, int y, String cont){
 		try{
 			cm = new ControladorMapa(x,y,cont);
+			String map = cm.consultarMapaToString();
+			vCrearMapa.actualizarMapa();
 		}
 		catch (Exception e) {
 			//System.out.println(e.getMessage()); 
@@ -112,8 +116,12 @@ public class ControladorPresentacionMapa {
 		}
 	}
 	
-	public VistaMapa getVista() {
+	public VistaMapa getVistaMapa() {
 		return vm;
+	}
+	
+	public VistaCrearMapa getVistaCrearMapa() {
+		return vCrearMapa;
 	}
 	
 	public ControladorMapa devolverControlador(){

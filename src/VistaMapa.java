@@ -27,6 +27,7 @@ public class VistaMapa extends Vista3{
 	//private VistaGrafo vg;
 	
 	boolean mapaCreado = false;
+	
 	VistaMapa (ControladorPresentacionMapa controladorPMapa){
 		super();
 		

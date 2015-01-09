@@ -76,8 +76,8 @@ public class VistaPrincipal {
 		//Provisional
 		
 		
-		
-		tabs.addTab("Mapa", null, cpmapa.getVista(), "Edita el mapa");
+		tabs.addTab("Mapa", null, cpmapa.getVistaCrearMapa(), "Crea un mapa");
+		tabs.addTab("Ciudades y caminos", null, cpmapa.getVistaMapa(), "Edita las ciudades y los caminos");
 		tabs.addTab("Agente", null, cpa.getVista(), "Edita los agentes");
 		tabs.addTab("MedioTransporte", null, cpm.getVista(), "Edita los medios de transporte");
 		tabs.addTab("Algoritmo", null, cpalg.getVista(), "Ejecuta el programa");
