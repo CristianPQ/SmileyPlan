@@ -4,6 +4,7 @@ import java.util.*;
 public class FordFulkerson extends Algoritmo{
 	
 	static ArrayList<String> list = new ArrayList <String>(); 
+	private ArrayList<Integer> seguimiento;
 	
 	/**
 	 * Crea los itinerarios que forman parte de la solucion de esta ejecucion
@@ -54,7 +55,6 @@ public class FordFulkerson extends Algoritmo{
 		for (int i = 0; i < g.consultarNumeroVertices(); ++i){
 			adyacencias = g.consultarAdyacentes(i);
 			for (int j = 0; j < adyacencias.size(); ++j){
-				
 				v = adyacencias.get(j).consultarVerticeDestino();
 				if (adyacencias.get(j).consultarFlujo() == 0 )g.anadirArista(v,i,adyacencias.get(j).consultarCapacidad(),adyacencias.get(j).consultarCapacidad(),-1);
 			}
@@ -123,6 +123,7 @@ public class FordFulkerson extends Algoritmo{
 	 * Ejecuta el algoritmo 
 	 */
 	public Solucion ejecutar ( Entrada g) throws Exception{
+		seguimiento = new ArrayList<Integer>();
 		double t1 = System.nanoTime();
 		//GrafoAntiguo g = e.consultarGrafo();
 		DFS dfs = new DFS();
@@ -132,13 +133,15 @@ public class FordFulkerson extends Algoritmo{
 		inicializacion(g,s,t);
 		int flow = 0;
 	    for (flow = 0;;) {
-	        int df = dfs.findPath(g, new boolean[g.consultarNumeroVertices()], new int[g.consultarNumeroVertices()], s, t, Integer.MAX_VALUE);
+	        int df = dfs.findPath(g, new boolean[g.consultarNumeroVertices()], new int[g.consultarNumeroVertices()], s, t, Integer.MAX_VALUE,seguimiento);
 	        if (df == 0)
 	          break;
 	        flow += df;
 	      }
 		Solucion sol = new Solucion(flow);
 		//System.out.println("el flow es" + flow);
+		for (int k = 0; k < seguimiento.size(); ++k)
+			sol.agregarVerticeSeguimiento(seguimiento.get(k));
 		if (flow >= numA){
 			sol.modificartieneSolucion(true);
 			//sol.modificarGrafo(g);

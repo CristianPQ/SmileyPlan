@@ -6,7 +6,7 @@ public class BFS extends Recorrido {
 	
 	public BFS(){};
 	
-	   boolean dinicBfs(Entrada g, int src, int dest, int[] dist) {
+	   boolean dinicBfs(Entrada g, int src, int dest, int[] dist, ArrayList<Integer> seguimiento) {
 		    Arrays.fill(dist, -1);
 		    dist[src] = 0;
 		    int[] Q = new int[g.consultarNumeroVertices()];
@@ -19,6 +19,8 @@ public class BFS extends Recorrido {
 		    	Arista e = adyacencias.get(j);
 		    	int capacidadResidual = e.consultarCapacidad() - e.consultarFlujo();
 		        if (dist[e.consultarVerticeDestino()] < 0 && capacidadResidual > 0) {
+		        	//seguimiento.add(u);
+					//seguimiento.add(e.consultarVerticeDestino());
 		          dist[e.consultarVerticeDestino()] = dist[u] + 1;
 		          Q[sizeQ++] = e.consultarVerticeDestino();
 		        }

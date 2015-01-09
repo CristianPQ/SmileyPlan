@@ -11,6 +11,7 @@ public class PushRelabel extends Algoritmo {
 	private int flow;
 	private Date da;
 	private int inicio;
+	private ArrayList<Integer> seguimiento;
 	
 	public ArrayList<String> seq = new ArrayList <String>(); 
 	
@@ -90,12 +91,16 @@ public class PushRelabel extends Algoritmo {
 					if (v != t && adyacencias.get(j).consultarCoste()!=-1){ 
 						active[v] = 1;
 						q.addLast(v);
+						seguimiento.add(s);
+						seguimiento.add(v);
 						exceso[v]= adyacencias.get(j).consultarCapacidad();
 					//	System.out.println("El exceso de " + v + " es " + exceso[v]);
 						g.modificarFlujoArista(s,v,adyacencias.get(j).consultarCapacidad()); //envio todo el flow posible desde el origen
 						g.modificarFlujoArista(v,s,0);	// actualizo la inversa
 					}
 					else if (adyacencias.get(j).consultarCoste()!=-1) {
+						seguimiento.add(s);
+						seguimiento.add(v);
 						g.modificarFlujoArista(s,v,adyacencias.get(j).consultarCapacidad()); //envio todo el flow posible desde el origen
 						g.modificarFlujoArista(v,s,0); //actualizo la inversa
 						flow += adyacencias.get(j).consultarCapacidad();
@@ -117,6 +122,9 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	private void push(Entrada g, int u, int v, int t) throws Exception{
+		
+		seguimiento.add(u);
+		seguimiento.add(v);
 		//System.out.println( u + "  va pushear a " + v + " con " + " el exceso de " + u + " es " + exceso[u] );
 		int capacidadResidual = g.consultarCapacidadArista(u, v) - g.consultarFlujoArista(u, v); //la capacidad redidual sera la capacidad de la arista menos el flujo que passa por esta
 		int temp = Math.min(capacidadResidual,exceso[u]); // temporal para saber cuanto podemos pushear
@@ -160,6 +168,7 @@ public class PushRelabel extends Algoritmo {
 	 * @throws Exception 
 	 */
 	public Solucion ejecutar (Entrada g) throws Exception{
+		seguimiento = new ArrayList<Integer>();
 		da = new Date();
 		long diff = da.getTime();
 		double t1 = System.nanoTime();
@@ -213,6 +222,8 @@ public class PushRelabel extends Algoritmo {
 
 		} 
 		Solucion sol = new Solucion(flow);
+		for (int k = 0; k < seguimiento.size(); ++k)
+			sol.agregarVerticeSeguimiento(seguimiento.get(k));
 		if (flow >= numA){ //si el flow es mas grande que numero de agentes hay solucion
 			sol.modificartieneSolucion(true);
 			//sol.modificarGrafo(g);

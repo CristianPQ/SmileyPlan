@@ -172,6 +172,10 @@ public static void main(String [] args) throws Exception {
 	    							}
 	    							System.out.println();
 	    						}
+	    						for ( int i = 0; i < sol.consultarNumSeguimiento(); ++i){
+	    								System.out.print(sol.obtenVerticeSeguimiento(i) + " ");
+	    						}
+	    						System.out.println();
 	    						System.out.println("el tiempo: "+ sol.consultarTiempo() + "ms");
 	    					}
 	    				
@@ -197,6 +201,9 @@ public static void main(String [] args) throws Exception {
 	    							}
 	    							System.out.println();
 	    						}
+	    						for ( int i = 0; i < sol.consultarNumSeguimiento(); ++i){
+    								System.out.print(sol.obtenVerticeSeguimiento(i) + " ");
+	    						}
 	    						System.out.println("el tiempo: " + sol.consultarTiempo() + "ms");
 	    					}
 	    				
@@ -221,6 +228,9 @@ public static void main(String [] args) throws Exception {
 	    								System.out.print(sol.obtenVertice(i, j) + " ");
 	    							}
 	    							System.out.println();
+	    						}
+	    						for ( int i = 0; i < sol.consultarNumSeguimiento(); ++i){
+    								System.out.print(sol.obtenVerticeSeguimiento(i) + " ");
 	    						}
 	    						System.out.println("el tiempo: " + sol.consultarTiempo() + "ms");
 	    					}

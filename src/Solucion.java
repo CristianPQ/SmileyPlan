@@ -6,6 +6,7 @@ public class Solucion {
 	private boolean tieneSolucion; //falso si no la tiene true en caso contrario
 	
 	private ArrayList<Integer>[] itinerarios; 
+	private ArrayList<Integer> seguimiento;
 	private int[] costeIt; 
 	
 	public ArrayList< String > seqsol = new ArrayList<String>(); 
@@ -29,6 +30,7 @@ public class Solucion {
 	 */
 	public Solucion(int numItinerarios){
 		itinerarios = new ArrayList[numItinerarios];
+		seguimiento = new ArrayList<Integer>();
 		for(int i = 0; i < numItinerarios; ++i) itinerarios[i] = new ArrayList<Integer>();
 		costeIt = new int[numItinerarios];	
 		tieneSolucion = false;
@@ -42,8 +44,13 @@ public class Solucion {
 	public void agregarVertice(int i, int vertex){
 		itinerarios[i].add(vertex); 
 	}
+	public void agregarVerticeSeguimiento(int vertex){
+		seguimiento.add(vertex); 
+	}
 	//la de Relabel s'haura de llegir al reves 
-	
+	public int consultarNumSeguimiento(){
+		return seguimiento.size();
+	}
 	/**
 	 * Consultador del numero de Itinerarios
 	 * @return numero de itinerarios
@@ -116,6 +123,10 @@ public class Solucion {
 	 */
 	public int obtenVertice(int i, int posv) {
 		return itinerarios[i].get(posv); 
+	}
+	
+	public int obtenVerticeSeguimiento(int posv) {
+		return seguimiento.get(posv); 
 	}
 	
 	/**

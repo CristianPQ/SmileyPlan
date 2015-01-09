@@ -4,7 +4,7 @@ import java.util.*;
 public class Dinic extends Algoritmo {
 
 	static ArrayList<String> seq = new ArrayList<String>(); 
-	
+	private ArrayList<Integer> seguimiento;
 	/**
 	 * Crea los itinerarios de la solucion 
 	 * @param sol
@@ -130,6 +130,7 @@ public class Dinic extends Algoritmo {
 		  
 
 		  public Solucion ejecutar(Entrada g) {
+			 seguimiento = new ArrayList<Integer>();
 			double t1 = System.nanoTime();
 			BFS bfs = new BFS();
 			DFS dfs = new DFS();
@@ -140,18 +141,20 @@ public class Dinic extends Algoritmo {
 			int numA = g.consultarNumeroAgentes();
 			inicializacion(g,src,dest);
 		    int[] dist = new int[g.consultarNumeroVertices()];
-		    while (bfs.dinicBfs(g, src, dest, dist)) {
+		    while (bfs.dinicBfs(g, src, dest, dist, seguimiento)) {
 		      //int[] ptr = new int[g.consultarNumeroVertices()];
 		      while (true) {
 		    	  boolean[] vis = new boolean[g.consultarNumeroVertices()];
 		       // int df = findPath(g, vis, dist, src, dest, Integer.MAX_VALUE);
-		    	  int df = dfs.findPath(g, vis, dist, src, dest, Integer.MAX_VALUE);
+		    	  int df = dfs.findPath(g, vis, dist, src, dest, Integer.MAX_VALUE,seguimiento);
 		        if (df == 0)
 		          break;
 		        flow += df;
 		      }
 		    }
 			Solucion sol = new Solucion(flow);
+			for (int k = 0; k < seguimiento.size(); ++k)
+				sol.agregarVerticeSeguimiento(seguimiento.get(k));
 			if (flow >= numA){
 				sol.modificartieneSolucion(true);
 				///sol.modificarGrafo(g);
