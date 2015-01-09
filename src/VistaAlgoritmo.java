@@ -58,6 +58,8 @@ public class VistaAlgoritmo extends Vista2 {
 	private GridBagConstraints mainCons3 = new GridBagConstraints();
 	private GridBagLayout mainLayout = new GridBagLayout();
 	
+	private JButton solbut; 
+	private JPanel panelsol; 
 	
 	VistaAlgoritmo(ControladorPresentacionAlgoritmo cpa){
 		super(); 
@@ -73,6 +75,7 @@ public class VistaAlgoritmo extends Vista2 {
 		//vis3.setLayout(null);
 		//vis2.setLayout(null);
 		//vb.setLayout(null); 
+		
 		
 		super.panelv2.setLayout(mainLayout);
 		//vis3.setLayout(new BoxLayout(vis3, BoxLayout.Y_AXIS));
@@ -107,6 +110,20 @@ public class VistaAlgoritmo extends Vista2 {
 
 		panelLista.removeAll();
 		
+		//*********************PANEL SOLUCION PARCIAL *************
+		JPanel panelsol = new JPanel(); 
+		panelsol.setBorder(BorderFactory.createLoweredBevelBorder());
+		JButton solbut = new JButton(); 
+		solbut.setText("Ver Solución parcial"); 
+		JButton adel = new JButton(); 
+		adel.setText("adelante");
+		JButton atras = new JButton(); 
+		atras.setText("atrás");
+		panelsol.add(solbut);
+		panelsol.add(adel); 
+		panelsol.add(atras);
+		super.add(panelsol); 
+		
 		JPanel panelAlg = new JPanel(); 
 		panelAlg.setBorder(BorderFactory.createLoweredBevelBorder());
 		//panelAlg.setMinimumSize(new Dimension(600,100));
@@ -140,6 +157,9 @@ public class VistaAlgoritmo extends Vista2 {
 
 		super.panelLista.add(precio);
 		super.panelLista.add(distancia); 
+		
+		
+	
 		
 		//model = new DefaultListModel();
 	    //l = new JList(model);
