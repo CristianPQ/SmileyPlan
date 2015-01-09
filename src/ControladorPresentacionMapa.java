@@ -23,7 +23,7 @@ public class ControladorPresentacionMapa {
 		try{
 			cm = new ControladorMapa(x,y,cont);
 			String map = cm.consultarMapaToString();
-			vCrearMapa.actualizarMapa();
+			//vCrearMapa.actualizarMapa();
 		}
 		catch (Exception e) {
 			//System.out.println(e.getMessage()); 
