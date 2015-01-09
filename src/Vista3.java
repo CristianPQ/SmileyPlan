@@ -254,7 +254,7 @@ public abstract class Vista3 extends Vista1 {
         //vMatriz.main(null);
         //vMatriz.setPreferredSize(new Dimension(350,350));
         
-        vMatriz.setMinimumSize(new Dimension(200,50));
+        vMatriz.setMinimumSize(new Dimension(350,350));
         
         //vMatriz.setMaximumSize(new Dimension(350,350));
         
