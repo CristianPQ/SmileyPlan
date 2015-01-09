@@ -162,14 +162,14 @@ public class VistaMapa extends Vista3{
 						try {
 							actualizarListaCiudades();
 						} catch (Exception e1) {
-							setError(e1.getMessage());
-						}                
+							setError(e1.getMessage());             
 					}		
 					 txtIdCiutat.setText("");
 			         txtY.setText("");
 			         txtX.setText("");
 					}
 				}
+			}
 			else {
 				//cas caminos
 				String ciudadO = txtCO.getText();
