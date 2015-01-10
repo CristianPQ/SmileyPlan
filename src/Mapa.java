@@ -56,6 +56,17 @@ public class Mapa {
 	//##########SOBRE MAPA
 	//#########################################
 	
+	public Mapa(int anchuraX, int alturaY) throws Exception {
+		if(anchuraX < 0 || alturaY < 0) throw CoordNegativas; 
+		g = new Grafo<Ciudad, Camino>(); 
+		mapa = new String[alturaY][anchuraX];
+	}
+	
+	public void definirContinente(ArrayList<Coordenadas> continente) throws Exception {
+		agregarContinente(continente);
+		tieneContinente = false;
+	}
+
 	/**
 	 * Delimita el mapa 
 	 * @param noValido posiciones que delimitan el mapa

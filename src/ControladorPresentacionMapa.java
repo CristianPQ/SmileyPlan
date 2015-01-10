@@ -22,11 +22,32 @@ public class ControladorPresentacionMapa {
 	public void crearMapa(int x, int y, String cont){
 		try{
 			cm = new ControladorMapa(x,y,cont);
-			String map = cm.consultarMapaToString();
+			//String map = cm.consultarMapaToString();
 			//vCrearMapa.actualizarMapa();
 		}
 		catch (Exception e) {
 			//System.out.println(e.getMessage()); 
+			vm.setError(e.getMessage());
+		}
+	}
+	
+
+	public void crearMapa(int x, int y) {
+		try{
+			cm = new ControladorMapa(x,y);
+			//String map = cm.consultarMapaToString();
+			//vCrearMapa.actualizarMapa();
+		}
+		catch (Exception e) {
+			vm.setError(e.getMessage());
+		}
+	}
+	
+	public void definirContinente(String cont) {
+		try {
+			cm.definirContinente(cont);
+		}
+		catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
 	}

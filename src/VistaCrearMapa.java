@@ -11,6 +11,8 @@ public class VistaCrearMapa extends Vista1{
 	protected VistaMatriz vMatriz;
 	protected VistaGrafo vGrafo;
 	protected JButton crear;
+	protected JButton crearVacio;
+	protected JButton continente;
 	private JTextField horizontal;
 	private JTextField vertical;
 	
@@ -28,13 +30,54 @@ public class VistaCrearMapa extends Vista1{
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
 				if(!horizontal.getText().equals("") && !vertical.getText().equals("")) {
-					
+					try {
+						int x = Integer.parseInt(horizontal.getText());
+						int y = Integer.parseInt(vertical.getText());
+						cMapa.crearMapa(x, y);
+						continente.enable();
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
 				}
 				else {
-					
+					setError("Falta rellenar una casilla");
 				}
 			}
 		});
+		
+		crearVacio.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comprovar("");
+				if(!horizontal.getText().equals("") && !vertical.getText().equals("")) {
+					try {
+						int x = Integer.parseInt(horizontal.getText());
+						int y = Integer.parseInt(vertical.getText());
+						cMapa.crearMapa(x, y, "");
+					} catch (Exception e1) {
+						setError(e1.getMessage());
+					}
+				}
+				else {
+					setError("Falta rellenar una casilla");
+				}
+			}
+		});
+		
+		continente.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comprovar("");
+				try {
+					String s = vMatriz.consultarContinente();
+					cMapa.definirContinente(s);
+					continente.disable();
+				} catch (Exception e1) {
+					setError(e1.getMessage());
+				}
+			}
+		});
+		
 		
 	}
 
@@ -48,7 +91,8 @@ public class VistaCrearMapa extends Vista1{
 		vertical.setEditable(true);
 		JLabel xLabel = new JLabel("X: ");
 		JLabel yLabel = new JLabel("Y: ");
-		crear = new JButton("Crear");
+		crear = new JButton("Crear con continente");
+		crearVacio = new JButton("Crear sin continente");
 		
 		JPanel medidas = new JPanel();
 		medidas.add(xLabel);
@@ -56,6 +100,7 @@ public class VistaCrearMapa extends Vista1{
 		medidas.add(yLabel);
 		medidas.add(vertical);
 		medidas.add(crear);
+		medidas.add(crearVacio);
 		
 		GridBagConstraints vMedidas = new GridBagConstraints();
 		vMedidas.gridwidth = 2;
@@ -99,7 +144,13 @@ public class VistaCrearMapa extends Vista1{
 		//Tendria que ser vGrafo en vez de vMatriz
 		super.panelPrincipal.add(vGrafo, vG);
 		
+		continente = new JButton("Definir continente");
+		continente.disable();
 		
+		GridBagConstraints cont = new GridBagConstraints();
+		cont.gridy = 2;
+		
+		super.panelPrincipal.add(continente, cont);
 	}
 	
 }

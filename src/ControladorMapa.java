@@ -34,6 +34,15 @@ public class ControladorMapa {
 	}
 	
 	
+	public ControladorMapa(int x, int y) throws Exception {
+		m = new Mapa(x, y);
+	}
+	
+	public void definirContinente(String continente) throws Exception {
+		ArrayList<Coordenadas> cont = continente(continente);
+		m.definirContinente(cont);
+	}
+	
 	//Transforma el String en un tipo valido para mapa
 	/**
 	 * Transforma un string en un ArrayList para la constructora de Mapa
