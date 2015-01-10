@@ -14,6 +14,7 @@ public abstract class Vista1 extends JPanel {
 	protected FileNameExtensionFilter filter; 
 	
 	Vista1(){
+		//this.setSize(1500, 500);
         this.setLayout(new GridBagLayout());
         
         panelPrincipal = new JPanel();

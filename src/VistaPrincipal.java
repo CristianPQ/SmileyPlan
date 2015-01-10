@@ -81,12 +81,12 @@ public class VistaPrincipal {
         //gbcTabs.gridx = 0;
         //gbcTabs.gridy = 1;
         //gbcTabs.gridheight = 2;
-        gbcTabs.fill = GridBagConstraints.BOTH;
+        //gbcTabs.fill = GridBagConstraints.BOTH;
 		
 		frame.add(tabs, gbcTabs);
 		frame.pack(); 
 		frame.setVisible(true); 
-		frame.setSize(1275, 775);
+		//frame.setSize(1920, 1080);
 		
 		menu1.addActionListener(new ActionListener() {
 			@Override

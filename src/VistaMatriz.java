@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -25,6 +26,7 @@ public class VistaMatriz extends JPanel implements MouseListener{
 		y = Y;
 		horizontal = new ArrayList<Integer>();
 		vertical = new ArrayList<Integer>();
+		this.setSize(350, 350);
 	}
 	
 	public VistaMatriz() {
@@ -47,19 +49,29 @@ public class VistaMatriz extends JPanel implements MouseListener{
 		cont = cont + Integer.toString(hpre) + Integer.toString(vpre);
 		horizontal.remove(0);
 		vertical.remove(0);
-		for(int i = 0; i < horizontal.size() && i < vertical.size() ; ++i) {
-			int h = horizontal.get(i);
-			int v = vertical.get(i);
-			if((hpre == h && vpre-1 == v) ||
-					(hpre+1 == h && vpre-1 == v) ||
-					(hpre+1 == h && vpre == v) ||
-					(hpre+1 == h && vpre+1 == v) ||
-					(hpre == h && vpre+1 == v) ||
-					(hpre-1 == h && vpre+1 == v) ||
-					(hpre-1 == h && vpre == v) ||
-					(hpre-1 == h && vpre-1 == v)) {
-				cont = cont + Integer.toString(h) + Integer.toString(v);
+		boolean validez = true;
+		while((!horizontal.isEmpty() && !vertical.isEmpty()) || !validez) {
+			int i;
+			boolean encontrado = false;
+			for(i = 0; i < horizontal.size() && i < vertical.size() && !encontrado; ++i) {
+				int h = horizontal.get(i);
+				int v = vertical.get(i);
+				if((hpre == h && vpre-1 == v) ||
+						(hpre+1 == h && vpre-1 == v) ||
+						(hpre+1 == h && vpre == v) ||
+						(hpre+1 == h && vpre+1 == v) ||
+						(hpre == h && vpre+1 == v) ||
+						(hpre-1 == h && vpre+1 == v) ||
+						(hpre-1 == h && vpre == v) ||
+						(hpre-1 == h && vpre-1 == v)) {
+					cont = cont + Integer.toString(h) + Integer.toString(v);
+					hpre = h;
+					vpre = v;
+					encontrado = true;
+				}
 			}
+			
+			if(!encontrado) validez = false;
 		}
 		
 		return cont;
@@ -82,6 +94,12 @@ public class VistaMatriz extends JPanel implements MouseListener{
         
 
    } */
+	
+	
+	@Override
+    public Dimension getPreferredSize() {
+        return new Dimension(350, 350);
+    }
 
     @Override
     public void paintComponent(Graphics g) {
