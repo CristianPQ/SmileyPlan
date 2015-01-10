@@ -202,6 +202,7 @@ public class VistaAlgoritmo extends Vista2 {
         c.fill = GridBagConstraints.BOTH;
         
         JPanel superior = new JPanel();
+        superior.setLayout(new GridBagLayout());
         c.gridy = 0;
         superior.add(panelAlg,c);
         c.gridy = 1;
@@ -223,7 +224,10 @@ public class VistaAlgoritmo extends Vista2 {
   		panelsol.add(adel); 
   		panelsol.add(atras);
   		
-  		//GridBagConstraints pSol = new GridBagConstraints();
+  		GridBagConstraints pSol = new GridBagConstraints();
+  		pSol.gridy = 2;
+  		
+  		superior.add(panelsol,pSol); 
   		
         
         JPanel inferior = new JPanel();
@@ -232,7 +236,7 @@ public class VistaAlgoritmo extends Vista2 {
         inferior.add(vb);
         inferior.add(vis2);
         inferior.add(vis3);
-        inferior.add(panelsol); 
+        
         
 	    
 	    super.panelv2.add(inferior,c);
