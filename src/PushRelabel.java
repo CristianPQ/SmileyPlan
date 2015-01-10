@@ -44,7 +44,7 @@ public class PushRelabel extends Algoritmo {
 					coste +=  adyacencias.get(j).consultarCoste(); //actualizamos el coste
 					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; //indiceFinal es indiceInicial mas el minimo del flow con el que ha sido llamada la funcion y el flujo que tiene la arista
 					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo()); // el flujo que quedara en esa arista
-					//System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + Math.min(flow,adyacencias.get(j).consultarFlujo()) + " indicesI es " + indiceI + " incideF es" + indiceF);
+					System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + Math.min(flow,adyacencias.get(j).consultarFlujo()) + " indicesI es " + indiceI + " incideF es" + indiceF);
 					if (Math.min(flow,adyacencias.get(j).consultarFlujo()) > 0 && v != inicio  )//segunda condicion evitar bucles //si queda flow del que nos han llamado y queda flow pen la arista, llamamos al vertice adyacente
 						crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste); 
 					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo()); //actualiza el flow con el q le han llamado
@@ -227,7 +227,7 @@ public class PushRelabel extends Algoritmo {
 		if (flow >= numA){ //si el flow es mas grande que numero de agentes hay solucion
 			sol.modificartieneSolucion(true);
 			//sol.modificarGrafo(g);
-			//System.out.println("el max flow es " + flow);
+			System.out.println("el max flow es " + flow);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0); //crea los itinerarios a partir del grafo
 		}
 
