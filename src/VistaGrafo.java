@@ -17,6 +17,7 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.samples.SimpleGraphDraw;
 import edu.uci.ics.jung.visualization.BasicVisualizationServer;
+import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
@@ -38,44 +39,15 @@ public class VistaGrafo extends JPanel {
 		g = new DirectedSparseMultigraph<Integer, String>();
 		mapeo = new ArrayList<String>();
 		this.setBackground(Color.CYAN);
-		
-		
-		 g.addVertex((Integer)1);
-		 g.addVertex((Integer)2);
-		 g.addVertex((Integer)3);
-		 
-	     g.addEdge("Edge-A", 2, 3, EdgeType.DIRECTED); // Note that Java 1.5 auto-boxes primitives
-	     g.addEdge("Edge-B", 1, 3,  EdgeType.DIRECTED);
 
-		 
-		 Layout<Integer, String> layout = new CircleLayout(g);
-		 
-		 BasicVisualizationServer<Integer,String> vv =
-	              new BasicVisualizationServer<Integer,String>(layout);
-	     vv.setPreferredSize(new Dimension(350,350));
-
-	        Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
-	            public Paint transform(Integer i) {
-	                return Color.RED;
-	} };
-	
- 
-
-	        vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
-	        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-	        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
-	       vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
-	       
-	       add(vv);
-	        
 	}
 	
 	
-	@Override
+	/*@Override
     public Dimension getPreferredSize() {
-        return new Dimension(350, 350);
-    }
-	
+        return new Dimension(600,600);
+    }*/
+
 	public void crearVertex(Integer i){
 		g.addVertex((Integer)i);
 	}
@@ -101,6 +73,33 @@ public class VistaGrafo extends JPanel {
 	public BasicVisualizationServer<Integer,String> getVisual(){
 		return vv;
 	}
+	
+	public void dibujar(){
+
+	 Layout<Integer, String> layout = new CircleLayout(g);
+		 
+	
+		 
+		 BasicVisualizationServer<Integer,String> vv =
+	              new BasicVisualizationServer<Integer,String>(layout);
+	   // vv.setPreferredSize(new Dimension(600,600));
+		 
+        Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
+            public Paint transform(Integer i) {
+                return Color.RED;
+} };
+
+
+
+        vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
+        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+       vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
+
+       add(vv);
+        
+	}
+	
 	
    /* public static void main(String[] args)
     {
