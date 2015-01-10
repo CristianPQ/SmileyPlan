@@ -261,8 +261,8 @@ public class VistaAlgoritmo extends Vista2 {
 				if(ff)vb.clear();
 				else if(pr)vis2.clear();
 				else if(dinic) vis3.clear();
-				String source = CiuO.getText();
-				String sink = CiuD.getText();
+				final String source = CiuO.getText();
+				final String sink = CiuD.getText();
 				if (source.equals("") || sink.equals(""))
 					try {
 						throw new Exception("Falta rellenar alguno de los espacios");
@@ -270,13 +270,22 @@ public class VistaAlgoritmo extends Vista2 {
 						setError(e1.getMessage());
 					}
 				else {
-					boolean funcionCoste;
+					System.out.println("thread: " + Thread.currentThread()); 
+					final boolean funcionCoste;
 					if (precio.isSelected()) funcionCoste = false;
 					else funcionCoste = true;
-
-					if (ff) cpalg.ejecutar(1,source,sink,funcionCoste);
-					else if (pr)  cpalg.ejecutar(2,source,sink,funcionCoste);
-					else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
+					
+					Thread appThread = new Thread(){
+						public void run(){
+							if (ff) cpalg.ejecutar(1,source,sink,funcionCoste);
+							else if (pr)  cpalg.ejecutar(2,source,sink,funcionCoste);
+							else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
+							System.out.println("thread: " + Thread.currentThread()); 
+						}
+					};
+					
+					appThread.start(); 
+					
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
 
@@ -317,7 +326,7 @@ public class VistaAlgoritmo extends Vista2 {
 					boolean funcionCoste;
 					if (precio.isSelected()) funcionCoste = false;
 					else funcionCoste = true;
-
+					
 					cpalg.ejecutar(1,source,sink,funcionCoste);
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");

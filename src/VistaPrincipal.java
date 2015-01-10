@@ -35,8 +35,6 @@ public class VistaPrincipal {
    
         //frame.setPreferredSize(new Dimension(1900, 1080));
         
-        	
-        
         frame.setResizable(true);
         
         fullVPrincipal(frame);
@@ -61,16 +59,11 @@ public class VistaPrincipal {
         JButton menu2 = new JButton("Cargar");
         menuBar.add(menu2);
         
-		//JMenu menu3 = new JMenu("Deshacer");
-		//JMenu menu4 = new JMenu("Salir"); 
-		//menuBar.add(menu3);
-		//menuBar.add(menu4); 
 		frame.setJMenuBar(menuBar);
 
 		//Ayuda ayuda = new Ayuda(); 
 		JTabbedPane tabs = new JTabbedPane();
-		
-		
+
 		
 		//tabs.setPreferredSize(new Dimension(1500, 500));
 		//Provisional

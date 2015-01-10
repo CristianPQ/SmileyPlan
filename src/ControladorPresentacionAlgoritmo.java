@@ -1,3 +1,5 @@
+import javax.swing.SwingWorker;
+
 
 public class ControladorPresentacionAlgoritmo {
 	
@@ -7,6 +9,7 @@ public class ControladorPresentacionAlgoritmo {
 		private static ControladorPresentacionAgentes cpa;
 		private static ControladorPresentacionMedios cpm;
 		private static ControladorPresentacionMapa cpmapa;
+
 		
 		public ControladorPresentacionAlgoritmo(ControladorPresentacionAgentes cpa2, ControladorPresentacionMapa cpmapa2,
 				ControladorPresentacionMedios cpm2) {
