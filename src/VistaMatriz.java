@@ -44,14 +44,22 @@ public class VistaMatriz extends JPanel implements MouseListener{
 		
 		int hpre = horizontal.get(0);
 		int vpre = vertical.get(0);
-		cont = cont + hpre + vpre;
+		cont = cont + Integer.toString(hpre) + Integer.toString(vpre);
 		horizontal.remove(0);
 		vertical.remove(0);
 		for(int i = 0; i < horizontal.size() && i < vertical.size() ; ++i) {
 			int h = horizontal.get(i);
 			int v = vertical.get(i);
 			if((hpre == h && vpre-1 == v) ||
-					hpre-1 == h && vpre-1 == v)
+					(hpre+1 == h && vpre-1 == v) ||
+					(hpre+1 == h && vpre == v) ||
+					(hpre+1 == h && vpre+1 == v) ||
+					(hpre == h && vpre+1 == v) ||
+					(hpre-1 == h && vpre+1 == v) ||
+					(hpre-1 == h && vpre == v) ||
+					(hpre-1 == h && vpre-1 == v)) {
+				cont = cont + Integer.toString(h) + Integer.toString(v);
+			}
 		}
 		
 		return cont;

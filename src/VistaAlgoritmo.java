@@ -110,19 +110,7 @@ public class VistaAlgoritmo extends Vista2 {
 
 		panelLista.removeAll();
 		
-		//*********************PANEL SOLUCION PARCIAL *************
-		JPanel panelsol = new JPanel(); 
-		panelsol.setBorder(BorderFactory.createLoweredBevelBorder());
-		JButton solbut = new JButton(); 
-		solbut.setText("Ver Solución parcial"); 
-		JButton adel = new JButton(); 
-		adel.setText("adelante");
-		JButton atras = new JButton(); 
-		atras.setText("atrás");
-		panelsol.add(solbut);
-		panelsol.add(adel); 
-		panelsol.add(atras);
-		super.add(panelsol); 
+		
 		
 		JPanel panelAlg = new JPanel(); 
 		panelAlg.setBorder(BorderFactory.createLoweredBevelBorder());
@@ -222,12 +210,29 @@ public class VistaAlgoritmo extends Vista2 {
         //c.gridheight = 1;
         super.panelv2.add(superior,c);
         
+        //*********************PANEL SOLUCION PARCIAL *************
+  		JPanel panelsol = new JPanel(); 
+  		panelsol.setBorder(BorderFactory.createLoweredBevelBorder());
+  		JButton solbut = new JButton(); 
+  		solbut.setText("Ver Solucion parcial"); 
+  		JButton adel = new JButton(); 
+  		adel.setText("adelante");
+  		JButton atras = new JButton(); 
+  		atras.setText("atras");
+  		panelsol.add(solbut);
+  		panelsol.add(adel); 
+  		panelsol.add(atras);
+  		
+  		//GridBagConstraints pSol = new GridBagConstraints();
+  		
+        
         JPanel inferior = new JPanel();
         c.gridy = 3;
         c.gridheight = 5;
         inferior.add(vb);
         inferior.add(vis2);
         inferior.add(vis3);
+        inferior.add(panelsol); 
         
 	    
 	    super.panelv2.add(inferior,c);
