@@ -30,8 +30,37 @@ import java.util.*;
 
 public class VistaGrafo extends JPanel {
 	
+	private Graph <Integer, String> g;
+	private ArrayList<String> mapeo;
 	
+	public  VistaGrafo(){
+		g = new DirectedSparseMultigraph<Integer, String>();
+		mapeo = new ArrayList<String>();
+		
+	}
+	
+	public void crearVertex(Integer i){
+		g.addVertex((Integer)i);
+	}
+	
+	public void eliminarVertex(Integer i){
+		g.removeVertex(i);
+	}
+	
+	public void crearAresta(String n1, String n2){
 
+		g.addEdge(n1 + " - " + n2, 2, 3, EdgeType.DIRECTED);
+		
+	}
+	
+	public void eliminarAresta(String n1, String n2){
+		g.removeEdge(n1 + " - " + n2);
+	}
+
+	public ArrayList<String> consultarMapeo(){
+		return mapeo;
+	}
+	
     public static void main(String[] args)
     {
     	
