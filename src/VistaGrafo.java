@@ -32,11 +32,42 @@ public class VistaGrafo extends JPanel {
 	
 	private Graph <Integer, String> g;
 	private ArrayList<String> mapeo;
+	private BasicVisualizationServer<Integer,String> vv;
 	
 	public  VistaGrafo(){
 		g = new DirectedSparseMultigraph<Integer, String>();
 		mapeo = new ArrayList<String>();
 		this.setBackground(Color.CYAN);
+		
+		
+		 g.addVertex((Integer)1);
+		 g.addVertex((Integer)2);
+		 g.addVertex((Integer)3);
+		 
+	     g.addEdge("Edge-A", 2, 3, EdgeType.DIRECTED); // Note that Java 1.5 auto-boxes primitives
+	     g.addEdge("Edge-B", 1, 3,  EdgeType.DIRECTED);
+
+		 
+		 Layout<Integer, String> layout = new CircleLayout(g);
+		 
+		 BasicVisualizationServer<Integer,String> vv =
+	              new BasicVisualizationServer<Integer,String>(layout);
+	     vv.setPreferredSize(new Dimension(350,350));
+
+	        Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
+	            public Paint transform(Integer i) {
+	                return Color.RED;
+	} };
+	
+ 
+
+	        vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
+	        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+	        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+	       vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
+	       
+	       add(vv);
+	        
 	}
 	
 	
@@ -67,7 +98,11 @@ public class VistaGrafo extends JPanel {
 		return mapeo;
 	}
 	
-    public static void main(String[] args)
+	public BasicVisualizationServer<Integer,String> getVisual(){
+		return vv;
+	}
+	
+   /* public static void main(String[] args)
     {
     	
 		 Graph <Integer, String> g = new DirectedSparseMultigraph<Integer,String>();
@@ -82,13 +117,13 @@ public class VistaGrafo extends JPanel {
 		 
 		 Layout<Integer, String> layout = new CircleLayout(g);
 		 
-		 BasicVisualizationServer<Integer,String> vv =
+		  vv =
 	              new BasicVisualizationServer<Integer,String>(layout);
 	     vv.setPreferredSize(new Dimension(350,350));
 
 	        Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
 	            public Paint transform(Integer i) {
-	                return Color.CYAN;
+	                return Color.RED;
 	} };
 	
   
@@ -104,5 +139,5 @@ public class VistaGrafo extends JPanel {
 	     frame.pack();
 	     frame.setVisible(true);
 
-	 }
+	 }*/
 }

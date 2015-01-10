@@ -51,6 +51,8 @@ public class VistaCrearMapa extends Vista1{
 		
 		vGrafo = new VistaGrafo();
 		
+		
+		
 		GridBagConstraints vG = new GridBagConstraints();
 		//vG.fill = GridBagConstraints.BOTH;
 		vG.gridx = 1;
