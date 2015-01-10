@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -8,30 +10,52 @@ public class VistaCrearMapa extends Vista1{
 	private ControladorPresentacionMapa cMapa;
 	protected VistaMatriz vMatriz;
 	protected VistaGrafo vGrafo;
+	protected JButton crear;
+	private JTextField horizontal;
+	private JTextField vertical;
 	
 	public VistaCrearMapa(ControladorPresentacionMapa contMapa) {
 		super();
 		cMapa = contMapa;
 		vMatriz = new VistaMatriz();
 		crearInterficie();
+		definirButton();
 	}
 	
+	void definirButton() {
+		crear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comprovar("");
+				if(!horizontal.getText().equals("") && !vertical.getText().equals("")) {
+					
+				}
+				else {
+					
+				}
+			}
+		});
+		
+	}
+
 	private void crearInterficie() {
 		
-		JTextField horizontal = new JTextField();
+		horizontal = new JTextField();
 		horizontal.setPreferredSize(new Dimension(70,30));
 		horizontal.setEditable(true);
-		JTextField vertical = new JTextField();
+		vertical = new JTextField();
 		vertical.setPreferredSize(new Dimension(70,30));
 		vertical.setEditable(true);
 		JLabel xLabel = new JLabel("X: ");
 		JLabel yLabel = new JLabel("Y: ");
+		crear = new JButton("Crear");
 		
 		JPanel medidas = new JPanel();
 		medidas.add(xLabel);
 		medidas.add(horizontal);
-		medidas.add(xLabel);
+		medidas.add(yLabel);
 		medidas.add(vertical);
+		medidas.add(crear);
 		
 		GridBagConstraints vMedidas = new GridBagConstraints();
 		vMedidas.gridwidth = 2;
@@ -44,6 +68,7 @@ public class VistaCrearMapa extends Vista1{
 		
 		GridBagConstraints vM = new GridBagConstraints();
 		//vM.fill = GridBagConstraints.BOTH;
+		//vM.weightx = 1;
 		vM.gridx = 0;
 		vM.gridy = 1;
 		
@@ -55,6 +80,7 @@ public class VistaCrearMapa extends Vista1{
 		
 		GridBagConstraints vG = new GridBagConstraints();
 		//vG.fill = GridBagConstraints.BOTH;
+		//vG.weightx = 0.5;
 		vG.gridx = 1;
 		vG.gridy = 1;
 		
