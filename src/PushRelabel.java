@@ -12,6 +12,7 @@ public class PushRelabel extends Algoritmo {
 	private Date da;
 	private int inicio;
 	private ArrayList<Integer> seguimiento;
+	int control;
 	
 	public ArrayList<String> seq = new ArrayList <String>(); 
 	
@@ -228,6 +229,7 @@ public class PushRelabel extends Algoritmo {
 			sol.modificartieneSolucion(true);
 			//sol.modificarGrafo(g);
 			System.out.println("el max flow es " + flow);
+			control = flow;
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0); //crea los itinerarios a partir del grafo
 		}
 
