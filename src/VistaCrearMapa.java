@@ -34,7 +34,7 @@ public class VistaCrearMapa extends Vista1{
 						int x = Integer.parseInt(horizontal.getText());
 						int y = Integer.parseInt(vertical.getText());
 						cMapa.crearMapa(x, y);
-						continente.enable();
+						continente.setVisible(true);
 					} catch (Exception e1) {
 						setError(e1.getMessage());
 					}
@@ -71,7 +71,7 @@ public class VistaCrearMapa extends Vista1{
 				try {
 					String s = vMatriz.consultarContinente();
 					cMapa.definirContinente(s);
-					continente.disable();
+					continente.setVisible(false);
 				} catch (Exception e1) {
 					setError(e1.getMessage());
 				}
@@ -145,7 +145,7 @@ public class VistaCrearMapa extends Vista1{
 		super.panelPrincipal.add(vGrafo, vG);
 		
 		continente = new JButton("Definir continente");
-		continente.disable();
+		continente.setVisible(false);
 		
 		GridBagConstraints cont = new GridBagConstraints();
 		cont.gridy = 2;
