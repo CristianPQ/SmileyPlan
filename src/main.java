@@ -9,6 +9,12 @@ public class main {
 		javax.swing.SwingUtilities.invokeLater(
 				new Runnable(){
 					public void run() {
+						try{
+							UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName());
+						}
+						catch (Exception e){
+							e.getMessage(); 
+						}   
 						ControladorPresentacionMedios cpm = new ControladorPresentacionMedios(); 
 						ControladorPresentacionAgentes cpa = new ControladorPresentacionAgentes(); 
 						ControladorPresentacionMapa cpmapa = new ControladorPresentacionMapa(cpm, cpa); 				
