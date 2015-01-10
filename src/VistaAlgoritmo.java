@@ -261,8 +261,8 @@ public class VistaAlgoritmo extends Vista2 {
 				if(ff)vb.clear();
 				else if(pr)vis2.clear();
 				else if(dinic) vis3.clear();
-				final String source = CiuO.getText();
-				final String sink = CiuD.getText();
+				String source = CiuO.getText();
+				String sink = CiuD.getText();
 				if (source.equals("") || sink.equals(""))
 					try {
 						throw new Exception("Falta rellenar alguno de los espacios");
@@ -271,21 +271,21 @@ public class VistaAlgoritmo extends Vista2 {
 					}
 				else {
 					System.out.println("thread: " + Thread.currentThread()); 
-					final boolean funcionCoste;
+					boolean funcionCoste;
 					if (precio.isSelected()) funcionCoste = false;
 					else funcionCoste = true;
 					
 					//-----------------------------CREA NUEVO THREAD -------------------------
-					Thread appThread = new Thread(){
-						public void run(){
+					//Thread appThread = new Thread(){
+						//public void run(){
 							if (ff) cpalg.ejecutar(1,source,sink,funcionCoste);
 							else if (pr)  cpalg.ejecutar(2,source,sink,funcionCoste);
 							else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
 							System.out.println("thread: " + Thread.currentThread()); 
-						}
-					};
+						//}
+					//};
 					
-					appThread.start(); 
+					//appThread.start(); 
 					
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
@@ -306,8 +306,8 @@ public class VistaAlgoritmo extends Vista2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
-				final String source = CiuO.getText();
-				final String sink = CiuD.getText();
+				String source = CiuO.getText();
+				String sink = CiuD.getText();
 				
 				vb.clear();
 				vis2.clear();
@@ -324,17 +324,17 @@ public class VistaAlgoritmo extends Vista2 {
 						setError(e1.getMessage());
 					}
 				else {
-					final boolean funcionCoste;
+					boolean funcionCoste;
 					if (precio.isSelected()) funcionCoste = false;
 					else funcionCoste = true;
 					
 					//-----------------------------CREA NUEVO THREAD -------------------------
-					Thread appThread = new Thread(){
-						public void run(){
+					//Thread appThread = new Thread(){
+						//public void run(){
 							cpalg.ejecutar(1,source,sink,funcionCoste);
-						}
-					};
-					appThread.start();
+						//}
+					//};
+					//appThread.start();
 					
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
