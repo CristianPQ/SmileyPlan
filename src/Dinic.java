@@ -18,7 +18,6 @@ public class Dinic extends Algoritmo {
 	 */
 	void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
-		//System.out.println();
 		for (int i = indiceI; i <= indiceF; ++i){
 				sol.agregarVertice(i, u);
 				if (u == t) sol.agregarCosteAItinerario(i, coste );
@@ -28,10 +27,9 @@ public class Dinic extends Algoritmo {
 			for (int j = 0; j < adyacencias.size(); ++j){		
 				int v = adyacencias.get(j).consultarVerticeDestino();
 				if (adyacencias.get(j).consultarCoste() != -1 && adyacencias.get(j).consultarFlujo() > 0 ){
-					coste +=  adyacencias.get(j).consultarCoste();
 					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; 
 					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo());
-					crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste);
+					crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste + adyacencias.get(j).consultarCoste());
 					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo());
 					g.modificarFlujoArista(u, v, nuevoFlujo);
 					indiceI = nuevoIndiceF+1;
