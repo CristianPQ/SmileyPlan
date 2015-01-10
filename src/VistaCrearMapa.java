@@ -34,7 +34,7 @@ public class VistaCrearMapa extends Vista1{
 		medidas.add(vertical);
 		
 		GridBagConstraints vMedidas = new GridBagConstraints();
-		//vMedidas.gridwidth = 2;
+		vMedidas.gridwidth = 2;
 		vMedidas.gridy = 0;
 		
 		super.panelPrincipal.add(medidas, vMedidas);
@@ -51,10 +51,10 @@ public class VistaCrearMapa extends Vista1{
 		
 		vGrafo = new VistaGrafo();
 		
-		//GridBagConstraints vG = new GridBagConstraints();
-		//vM.fill = GridBagConstraints.BOTH;
-		//vG.gridx = 1;
-		//vG.gridy = 1;
+		GridBagConstraints vG = new GridBagConstraints();
+		//vG.fill = GridBagConstraints.BOTH;
+		vG.gridx = 1;
+		vG.gridy = 1;
 		
 		
 		//JPanel vDibujos = new JPanel();
@@ -67,10 +67,9 @@ public class VistaCrearMapa extends Vista1{
 		//vD.gridx = 1;
 		//vD.gridy = 1;
 		
-		//super.panelPrincipal.add(vMatriz, vM);
 		
 		//Tendria que ser vGrafo en vez de vMatriz
-		//super.panelPrincipal.add(vMatriz, vG);
+		super.panelPrincipal.add(vGrafo, vG);
 		
 		
 	}

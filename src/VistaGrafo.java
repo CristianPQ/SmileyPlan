@@ -36,8 +36,14 @@ public class VistaGrafo extends JPanel {
 	public  VistaGrafo(){
 		g = new DirectedSparseMultigraph<Integer, String>();
 		mapeo = new ArrayList<String>();
-		
+		this.setBackground(Color.CYAN);
 	}
+	
+	
+	@Override
+    public Dimension getPreferredSize() {
+        return new Dimension(350, 350);
+    }
 	
 	public void crearVertex(Integer i){
 		g.addVertex((Integer)i);
