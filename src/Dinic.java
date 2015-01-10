@@ -154,7 +154,12 @@ void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int f
 		        flow += df;
 		      }
 		    }
+		    
 			Solucion sol = new Solucion(flow);
+			double t2 = System.nanoTime();
+			double div = 1000000;
+			//System.out.println("Estoy en el algorismo " + (t2-t1)/div);
+			sol.modificarTiempo((t2-t1)/1000000);
 			for (int k = 0; k < seguimiento.size(); ++k)
 				sol.agregarVerticeSeguimiento(seguimiento.get(k));
 			if (flow >= numA){
@@ -167,10 +172,6 @@ void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int f
 			//float t2 = System.currentTimeMillis();
 			//sol.modificarTiempo(t2-t1);
 			sol.seqsol = seq; 
-			double t2 = System.nanoTime();
-			double div = 1000000;
-			System.out.println("Estoy en el algorismo " + (t2-t1)/div);
-			sol.modificarTiempo((t2-t1)/1000000);
 			return sol;
 		  }
 		  

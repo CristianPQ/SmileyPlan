@@ -140,6 +140,9 @@ public class FordFulkerson extends Algoritmo{
 	      }
 		Solucion sol = new Solucion(flow);
 		//System.out.println("el flow es" + flow);
+		double t2 = System.currentTimeMillis();
+		sol.modificarTiempo(t2-t1);
+		sol.modificarTiempo((System.nanoTime()-t1)/1000000);
 		for (int k = 0; k < seguimiento.size(); ++k)
 			sol.agregarVerticeSeguimiento(seguimiento.get(k));
 		if (flow >= numA){
@@ -147,10 +150,7 @@ public class FordFulkerson extends Algoritmo{
 			//sol.modificarGrafo(g);
 			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		}
-		double t2 = System.currentTimeMillis();
-		sol.modificarTiempo(t2-t1);
 		sol.seqsol = list; 
-		sol.modificarTiempo((System.nanoTime()-t1)/1000000);
 		return sol;
 		
 		

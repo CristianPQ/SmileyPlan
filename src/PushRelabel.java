@@ -12,7 +12,7 @@ public class PushRelabel extends Algoritmo {
 	private Date da;
 	private int inicio;
 	private ArrayList<Integer> seguimiento;
-	int control;
+	//int control;
 	
 	public ArrayList<String> seq = new ArrayList <String>(); 
 	
@@ -30,7 +30,7 @@ public class PushRelabel extends Algoritmo {
 	
 	/** funcion recursiva para crear los itinerarios a partir del grafo, cada llamada agrega su vertice al itinerario tantas veces como la diferencia entre indiceF y indiceI
 	 * estos son el numero de flow por el que ha sido llamado**/
-	void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int flow, int u, int t, int coste){
+	void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int flow, int u, int t, int coste, int control){
 		
 		for (int i = indiceI; i <= indiceF; ++i){
 				sol.agregarVertice(i, u);
@@ -41,13 +41,13 @@ public class PushRelabel extends Algoritmo {
 			for (int j = 0; j < adyacencias.size(); ++j){	//todad las adyacencias de u	
 				int v = adyacencias.get(j).consultarVerticeDestino(); //elige un vertice
 					
-				if (adyacencias.get(j).consultarFlujo() > 0 ){ //si no es una arista inversa y tiene flujo
+				if (adyacencias.get(j).consultarFlujo() > 0  && control < 20){ //si no es una arista inversa y tiene flujo
 					coste +=  adyacencias.get(j).consultarCoste(); //actualizamos el coste
 					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; //indiceFinal es indiceInicial mas el minimo del flow con el que ha sido llamada la funcion y el flujo que tiene la arista
 					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo()); // el flujo que quedara en esa arista
 					System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + Math.min(flow,adyacencias.get(j).consultarFlujo()) + " indicesI es " + indiceI + " incideF es" + indiceF);
 					if (Math.min(flow,adyacencias.get(j).consultarFlujo()) > 0 && v != inicio  )//segunda condicion evitar bucles //si queda flow del que nos han llamado y queda flow pen la arista, llamamos al vertice adyacente
-						crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste); 
+						crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste, control+1); 
 					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo()); //actualiza el flow con el q le han llamado
 					g.modificarFlujoArista(u, v, nuevoFlujo); //actualiza el flow de la arista 
 					indiceI = nuevoIndiceF+1; //nuevo indice inicial es el final + 1
@@ -222,25 +222,27 @@ public class PushRelabel extends Algoritmo {
 			}
 
 		} 
+		
 		Solucion sol = new Solucion(flow);
+		double t2 = System.currentTimeMillis();
+		sol.modificarTiempo((System.nanoTime()-t1)/1000000);
+		sol.seqsol = seq; 
 		for (int k = 0; k < seguimiento.size(); ++k)
 			sol.agregarVerticeSeguimiento(seguimiento.get(k));
 		if (flow >= numA){ //si el flow es mas grande que numero de agentes hay solucion
 			sol.modificartieneSolucion(true);
 			//sol.modificarGrafo(g);
 			System.out.println("el max flow es " + flow);
-			control = flow;
-			crearItinerarios(sol,g,0,flow-1,flow,s,t,0); //crea los itinerarios a partir del grafo
+			crearItinerarios(sol,g,0,flow-1,flow,s,t,0,0); //crea los itinerarios a partir del grafo
 		}
 
-		double t2 = System.currentTimeMillis();
+		
 		//System.out.println(System.nanoTime());
 		//Thread.sleep (10000);
 		//System.curre
 		//System.out.println(System.nanoTime());
 		//System.out.println(da.getTime());
-		sol.modificarTiempo((System.nanoTime()-t1)/1000000);
-		sol.seqsol = seq; 
+
 		return sol;
 		
 	}
