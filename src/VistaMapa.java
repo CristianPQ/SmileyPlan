@@ -102,43 +102,44 @@ public class VistaMapa extends Vista3{
 					int Y = Integer.parseInt(SY);	
 					if (SX.equals("") || SY.equals("") ) setError("Una o ambas de las coordenadas estan vacias");
 					else{
-					cpmapa.agregarCiudad(nom, X, Y);
 					//vg.agregarCiudad(X, Y, nom);
-					try {
-						vb.clear(); 
-						actualizarListaCiudades();
-						 txtIdCiutat.setText("");
-				         txtY.setText("");
-				         txtX.setText("");
-						
-					} catch (Exception e1) {
-						setError(e1.getMessage());
-					}
+						try {
+							cpmapa.agregarCiudad(nom, X, Y);
+							vb.clear(); 
+							actualizarListaCiudades();
+							 txtIdCiutat.setText("");
+					         txtY.setText("");
+					         txtX.setText("");
+							
+						} catch (Exception e1) {
+							setError(e1.getMessage());
+						}
 					}
 				}
 				//crear camino
 				//else if(txtIdCiutat.getText().equals("")){
 				else{
 					//System.out.println("crear caminos"); 
-					if (!txtCO.getText().equals("") && !txtCD.getText().equals("")
-							&& !txtCap.getText().equals("")){
-					String ciudadO = txtCO.getText();
-					String ciudadD = txtCD.getText();
-					String md = txtMedio.getText();
-					int cap = Integer.parseInt(txtCap.getText());
-					cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
-					//vg.agregarCamino(ciudadO, ciudadD, txtCap.getText());
-					try {
-						vciut.clear(); 
-						actualizarListaCaminos();
-						txtCO.setText("");
-						txtCD.setText("");
-						txtMedio.setText("");
-						txtCap.setText("");
-						
-					} catch (Exception e1) {
-						setError(e1.getMessage());
-					} 
+					if (txtCO.getText().equals("") || txtCD.getText().equals("")
+							|| txtCap.getText().equals("")) setError("Una o ambas de las coordenadas estan vacias");
+					else {
+						String ciudadO = txtCO.getText();
+						String ciudadD = txtCD.getText();
+						String md = txtMedio.getText();
+						int cap = Integer.parseInt(txtCap.getText());
+						//vg.agregarCamino(ciudadO, ciudadD, txtCap.getText());
+						try {
+							cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
+							vciut.clear(); 
+							actualizarListaCaminos();
+							txtCO.setText("");
+							txtCD.setText("");
+							txtMedio.setText("");
+							txtCap.setText("");
+							
+						} catch (Exception e1) {
+							setError(e1.getMessage());
+						} 
 					}
 				}	
 			}
@@ -156,13 +157,13 @@ public class VistaMapa extends Vista3{
 				String nom = txtIdCiutat.getText();
 				String X = txtX.getText();
 				String Y = txtY.getText();	 
-				if (!nom.equals(" ") && !X.equals(" ") && !Y.equals(" ")){
+				if (!nom.equals("") && !X.equals("") && !Y.equals("")){
 					if (identificador.equals(nom)) {
 						int x = Integer.parseInt(txtX.getText());
 						int y = Integer.parseInt(txtY.getText());
-						cpmapa.modificarCoordenadas(nom,x,y);
-						vb.clear();
 						try {
+							cpmapa.modificarCoordenadas(nom,x,y);
+							vb.clear();
 							actualizarListaCiudades();
 						} catch (Exception e1) {
 							setError(e1.getMessage());             
@@ -179,12 +180,12 @@ public class VistaMapa extends Vista3{
 				String ciudadD = txtCD.getText();
 				String md = txtMedio.getText();
 				String cap = txtCap.getText();
-				if (!ciudadO.equals(" ") && !ciudadD.equals(" ") && !md.equals(" ") && !cap.equals(" ")){
+				if (!ciudadO.equals("") && !ciudadD.equals("") && !md.equals("") && !cap.equals("")){
 					if(identificador.equals(ciudadO) && id2.equals(ciudadD) && id3.equals(md)){
 						int capac = Integer.parseInt(cap);
-						cpmapa.modificarCamino(ciudadO, ciudadD, md, capac);
-						vciut.clear(); 
 						try {
+							cpmapa.modificarCamino(ciudadO, ciudadD, md, capac);
+							vciut.clear(); 
 							actualizarListaCaminos();
 						} catch (Exception e1) {
 							setError(e1.getMessage());
@@ -270,11 +271,11 @@ public class VistaMapa extends Vista3{
 				if (txtCO.getText().equals(""))	 {
 					//cas ciutat
 					String c = txtIdCiutat.getText(); 
-					cpmapa.eliminarCiudad(c);
 					//vg.borarCiudad(c);
 					//vb.clear(); 
 					//vciut.clear();
 					try {
+						cpmapa.eliminarCiudad(c);
 						actualizarListaCiudades();
 						actualizarListaCaminos();
 					} catch (Exception e1) {
@@ -289,10 +290,10 @@ public class VistaMapa extends Vista3{
 					String ciudadO = txtCO.getText();
 					String ciudadD = txtCD.getText();
 					String md = txtMedio.getText();
-					cpmapa.eliminarCamino(ciudadO, ciudadD, md);
 					//vciut.clear(); 
 					//vg.borrarCamino(ciudadO, ciudadD);
 					try {
+						cpmapa.eliminarCamino(ciudadO, ciudadD, md);
 						actualizarListaCaminos();
 					} catch (Exception e1) {
 						setError(e1.getMessage()); 
