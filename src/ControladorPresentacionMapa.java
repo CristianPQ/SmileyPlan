@@ -84,7 +84,7 @@ public class ControladorPresentacionMapa {
 		try {
 			cm.agregarCiudad(n,x,y);
 			ArrayList<String> m = vg.consultarMapeo();
-			boolean insertat = false;
+		
 			m.add(n);
 			
 			int i = m.indexOf(n);			
@@ -114,12 +114,11 @@ public class ControladorPresentacionMapa {
 			cag.actualizarLista();
 		
 			ArrayList<String> m = vg.consultarMapeo();
-			boolean trobat = false;
-			int i;
-			for (i = 0; i < m.size() && !trobat; ++i){
-				if (!m.isEmpty() && m.get(i).equals(c)) m.remove(i);
-				trobat = true;
-			}
+			
+			int i = m.indexOf(c);	
+			
+			m.remove(i);
+			
 			vg.modificarMapeo(m);
 			vg.eliminarVertex(i);
 			

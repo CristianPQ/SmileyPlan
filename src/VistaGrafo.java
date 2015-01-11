@@ -90,7 +90,7 @@ public class VistaGrafo extends JPanel {
 		 
 		 BasicVisualizationServer<Integer,String> vv =
 	              new BasicVisualizationServer<Integer,String>(layout);
-	    vv.setPreferredSize(new Dimension(300,300));
+	    vv.setPreferredSize(new Dimension(600,600));
 		 
         Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
             public Paint transform(Integer i) {
