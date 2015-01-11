@@ -9,6 +9,7 @@ public class ControladorPresentacionAlgoritmo {
 		private static ControladorPresentacionAgentes cpa;
 		private static ControladorPresentacionMedios cpm;
 		private static ControladorPresentacionMapa cpmapa;
+		 
 
 		
 		public ControladorPresentacionAlgoritmo(ControladorPresentacionAgentes cpa2, ControladorPresentacionMapa cpmapa2,
@@ -50,6 +51,10 @@ public class ControladorPresentacionAlgoritmo {
 				va.setError(e.getMessage()); 
 			}
 		}
+		
+		public String subirSeg(){
+			return ca.consSeg(cpmapa.devolverControladorMapa());
+			}
 		
 		public void ejecutar(int i, String s, String t, boolean funcionCoste) {
 			try {

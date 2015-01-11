@@ -58,6 +58,8 @@ public class VistaAlgoritmo extends Vista2 {
 	private GridBagConstraints mainCons3 = new GridBagConstraints();
 	private GridBagLayout mainLayout = new GridBagLayout();
 	
+	private String Segui;
+	
 	private JButton solbut; 
 	private JPanel panelsol; 
 	
@@ -215,7 +217,7 @@ public class VistaAlgoritmo extends Vista2 {
   		JPanel panelsol = new JPanel(); 
   		panelsol.setBorder(BorderFactory.createLoweredBevelBorder());
   		JButton solbut = new JButton(); 
-  		solbut.setText("Ver Solucion parcial"); 
+  		solbut.setText("Ver Seguimientto"); 
   		JButton adel = new JButton(); 
   		adel.setText("adelante");
   		JButton atras = new JButton(); 
@@ -223,6 +225,7 @@ public class VistaAlgoritmo extends Vista2 {
   		panelsol.add(solbut);
   		panelsol.add(adel); 
   		panelsol.add(atras);
+  		
   		
   		GridBagConstraints pSol = new GridBagConstraints();
   		pSol.gridy = 2;
@@ -249,8 +252,34 @@ public class VistaAlgoritmo extends Vista2 {
 	}
 	
 	void crearListeners() {
+		solbut.addActionListener( new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(ff){
+					vb.clear();
+					vb.agregar("Recorrido FordFulkerson");
+				}
+				else if(pr){
+					vis2.clear();
+					vb.agregar("Recorrido Push Relabel");
+				}
+				
+				else if(dinic) {
+					vis3.clear();
+					vb.agregar("Recorrido Dinic");
+				}
+				Segui = cpalg.subirSeg();
+				vb.agregar("Pulsa adelante para continuar");
+			}
+			});
 		
+		adel.addActionListener( new ActionListener() {
+			@Override
+
+			});
 		
+
+	
 		botonEjecutar.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

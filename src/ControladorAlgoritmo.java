@@ -55,6 +55,10 @@ public class ControladorAlgoritmo {
 	}
 */
 	
+	public String consSeg (ControladorMapa cm){
+		return sol.subirSeg(cm);
+	}
+	
 	public void ejecutar(int i) throws Exception {
 		//if (ent.consultarNumeroAgentes() < 1) throw NoAgentesOD;
 		switch(i) {

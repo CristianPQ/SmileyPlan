@@ -129,6 +129,47 @@ public class Solucion {
 		return seguimiento.get(posv); 
 	}
 	
+	
+	
+	public String subirSeg(ControladorMapa cm){
+		ArrayList<String> seg = simplificaSeg(cm);
+		String buff = null; 
+		if(seg.isEmpty()) return buff;
+		String linea = seg.get(0) + ' ';
+		buff = linea;
+		for (int i = 1; i < seg.size(); ++i){
+			linea = seg.get(i) + ' ';
+			buff = buff + linea;
+		}
+		
+		return buff;
+		
+	}
+	
+	
+	
+	private ArrayList<String> simplificaSeg(ControladorMapa cm){
+		ArrayList<String> simple = new ArrayList<String>();
+		ArrayList<String> rem = reMap(cm);
+		
+	
+		for(int i = 0; i < rem.size(); i = i + 2){
+			if(rem.get(i) != rem.get(i+1)) simple.add(rem.get(i));
+		}
+		return simple;
+	}
+	
+
+	private ArrayList<String> reMap(ControladorMapa cm){
+		ArrayList<String> res = new ArrayList<String>();
+		String[] map = cm.consultarMapping();
+		for(int i = 0; i < seguimiento.size(); ++i ){
+			res.add(map[seguimiento.get(i)]);
+		}
+		
+		return res;
+	}
+	
 	/**
 	 * Obtener el numero de ciudades del itinerario
 	 * @param i identificador del itinerario
