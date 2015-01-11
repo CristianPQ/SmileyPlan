@@ -6,6 +6,7 @@ public class ControladorPresentacionMapa {
 	private static ControladorMapa cm;
 	private static VistaMapa vm;
 	private static VistaCrearMapa vCrearMapa;
+	private VistaGrafo vg;
 	private static ControladorPresentacionMedios cmed;
 	private static ControladorPresentacionAgentes cag;
 
@@ -80,6 +81,16 @@ public class ControladorPresentacionMapa {
 	public void agregarCiudad(String n, int x, int y){
 		try {
 			cm.agregarCiudad(n,x,y);
+			ArrayList<String> m = vg.consultarMapeo();
+			boolean insertat = false;
+			int i;
+			for (i = 0; i < m.size() && !insertat; ++i){
+				if (m.isEmpty()) m.add(i, n);
+				insertat = true;
+			}
+			if (!insertat) vg.modificarMapeo(m);
+			vg.crearVertex(i);
+
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
@@ -92,17 +103,17 @@ public class ControladorPresentacionMapa {
 			cm.eliminarCiudad(c);
 			cag.eliminarAgentesConCiudad(c);
 			cag.actualizarLista();
-			/*String cam1 = cm.consultarCaminosDestinoToString(c);
-			String cam2 = cm.consultarCaminosDestinoToString(c);
+		
+			ArrayList<String> m = vg.consultarMapeo();
+			boolean trobat = false;
+			int i;
+			for (i = 0; i < m.size() && !trobat; ++i){
+				if (!m.isEmpty() && m.get(i).equals(c)) m.remove(i);
+				trobat = true;
+			}
+			vg.modificarMapeo(m);
+			vg.eliminarVertex(i);
 			
-			for(int i = 0; i < cam1.length(); i+=3){
-				String co = cam1.split(" ")[i]; 
-				String cd = cam1.split(" ")[i+1]; 
-				String medio = cam1.split(" ")[i+2]; 
-				cm.eliminarCamino(co, cd, medio);
-			}*/
-			
-			//TAMBE AMB AGENTES
 			
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
@@ -179,7 +190,9 @@ public class ControladorPresentacionMapa {
 	public void agregarCamino(String cOrig, String cDest, String medio, int cap){
 		try{
 			//System.out.println("estic a controlador presnt per crear");
-			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());}
+			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());
+			vg.crearAresta(cOrig, cDest, medio);
+			}
 		catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
@@ -188,6 +201,7 @@ public class ControladorPresentacionMapa {
 	public void modificarCamino(String COrig, String cDest, String medio, int cap){
 		try {
 			cm.modificarAtributosCamino(COrig, cDest, medio, cap);
+			
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
@@ -196,6 +210,7 @@ public class ControladorPresentacionMapa {
 	public void eliminarCamino(String COrig, String cDest, String medio){
 		try {
 			cm.eliminarCamino(COrig, cDest, medio);
+			vg.eliminarAresta(COrig, cDest, medio);
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}

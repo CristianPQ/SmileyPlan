@@ -56,18 +56,22 @@ public class VistaGrafo extends JPanel {
 		g.removeVertex(i);
 	}
 	
-	public void crearAresta(String n1, String n2){
+	public void crearAresta(String n1, String n2, String mt){
 
-		g.addEdge(n1 + " - " + n2, 2, 3, EdgeType.DIRECTED);
+		g.addEdge(n1 + " - " + n2 + " / " + mt, 2, 3, EdgeType.DIRECTED);
 		
 	}
 	
-	public void eliminarAresta(String n1, String n2){
-		g.removeEdge(n1 + " - " + n2);
+	public void eliminarAresta(String n1, String n2, String mt){
+		g.removeEdge(n1 + " - " + n2 + " / " + mt);
 	}
 
 	public ArrayList<String> consultarMapeo(){
 		return mapeo;
+	}
+	
+	public void modificarMapeo(ArrayList<String> ma){
+		mapeo = ma;
 	}
 	
 	public BasicVisualizationServer<Integer,String> getVisual(){
