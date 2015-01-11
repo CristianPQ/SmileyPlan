@@ -307,26 +307,6 @@ public class VistaMapa extends Vista3{
 		
 		//***************GESTION DATOS ***********//
 		
-		botonCargar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				comprovar("");
-				try {
-					abrirBrowserCargar();
-				} catch (Exception e1) {
-					setError(e1.getMessage());
-				} 	
-			}
-		});
-		
-		botonGuardar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) { 
-				comprovar("");
-				abrirBrowserGuardar();
-			}
-		});
-		
 		
 		botoncaG.addActionListener(new ActionListener(){
 			@Override
@@ -375,42 +355,7 @@ public class VistaMapa extends Vista3{
 	}
 		
 		///FUNCIONES DE CARGAR/GUARDAR///////
-		public void abrirBrowserGuardar()  {
-			   JFrame parentFrame = new JFrame();
-		 		super.filechooser.setDialogTitle("Elige archivo para el Mapa"); 
-		 		int userSelection = filechooser.showSaveDialog(parentFrame);
-		 		if (userSelection == JFileChooser.APPROVE_OPTION) {
-		 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
-		 			file = file.concat(".smiley");
-		 			cpmapa.guardarMapa(file);
-		 		}
-		}
 		
-		public void abrirBrowserCargar() throws Exception {
-			JFrame parentFrame = new JFrame();
-			super.filechooser.setDialogTitle("Elige archivo para el Mapa"); 
-	 		int userSelection = filechooser.showOpenDialog(parentFrame);
-	 		if (userSelection == JFileChooser.APPROVE_OPTION) {
-	 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
-	 			boolean success = cpmapa.cargarMapa(file);
-				if (success) {
-					//System.out.println(success);
-					//mapaCreado = true;	
-					/*txtCO.setEditable(true);
-					txtCD.setEditable(true);
-					txtMedio.setEditable(true);
-					txtIdCiutat.setEditable(true);
-					txtCap.setEditable(true);
-					txtX.setEditable(true);
-					txtY.setEditable(true);*/
-					//txtXMapa.setText(Integer.toString(cpmapa.consultarAnchura()));
-					//txtYMapa.setText(Integer.toString(cpmapa.consultarAltura()));
-					if(cpmapa.existeContinente()){
-						txtConti.setText(cpmapa.consultarContinente()); 
-					}
-				}
-	 		}
-		}
 	
 		public void abrirBrowserGuardarCiudades()  {
 			   JFrame parentFrame = new JFrame();

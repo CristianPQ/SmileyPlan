@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
+
 import java.awt.*; 
 import java.lang.*;
 
@@ -10,7 +12,7 @@ public class main {
 				new Runnable(){
 					public void run() {
 						try{
-							UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName());
+							UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 						}
 						catch (Exception e){
 							e.getMessage(); 
