@@ -14,6 +14,8 @@ public class VistaCrearMapa extends Vista1{
 	protected JButton crear;
 	protected JButton crearVacio;
 	protected JButton continente;
+	protected JButton cargar;
+	protected JButton guardar;
 	private JTextField horizontal;
 	private JTextField vertical;
 	
@@ -26,6 +28,8 @@ public class VistaCrearMapa extends Vista1{
 	}
 	
 	void definirButton() {
+		
+		//crear Mapa para luego crear continente
 		crear.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -50,6 +54,7 @@ public class VistaCrearMapa extends Vista1{
 			}
 		});
 		
+		//crear Mapa sin continente
 		crearVacio.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -60,6 +65,7 @@ public class VistaCrearMapa extends Vista1{
 						int y = Integer.parseInt(vertical.getText());
 						cMapa.crearMapa(x, y, "");
 						vMatriz.definirMedidas(x, y);
+						vMatriz.repaint();
 					} catch (Exception e1) {
 						setError(e1.getMessage());
 					}
@@ -70,6 +76,7 @@ public class VistaCrearMapa extends Vista1{
 			}
 		});
 		
+		//Definir continente para mapa con continente
 		continente.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,7 +98,31 @@ public class VistaCrearMapa extends Vista1{
 			}
 		});
 		
+		//Cargar Mapa
+		cargar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comprovar("");
+				try{
+					
+				} catch(Exception e1) {
+					
+				}
+			}
+		});
 		
+		//Guardar Mapa
+		guardar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comprovar("");
+				try{
+					
+				} catch(Exception e1) {
+					
+				}
+			}
+		});
 	}
 
 	private void crearInterficie() {
@@ -164,6 +195,18 @@ public class VistaCrearMapa extends Vista1{
 		cont.gridy = 2;
 		
 		super.panelPrincipal.add(continente, cont);
+		
+		JPanel botones = new JPanel();
+		guardar = new JButton("Guardar");
+		cargar = new JButton("Cargar");
+		botones.add(guardar);
+		botones.add(cargar);
+		
+		GridBagConstraints panelBotones = new GridBagConstraints();
+		panelBotones.gridwidth = 2;
+		panelBotones.gridy = 3;
+		
+		super.panelPrincipal.add(botones, panelBotones);
 	}
 	
 }
