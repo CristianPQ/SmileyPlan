@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -19,7 +20,7 @@ public class VistaCrearMapa extends Vista1{
 	public VistaCrearMapa(ControladorPresentacionMapa contMapa) {
 		super();
 		cMapa = contMapa;
-		vMatriz = new VistaMatriz();
+		//vMatriz = new VistaMatriz();
 		crearInterficie();
 		definirButton();
 	}
@@ -34,6 +35,10 @@ public class VistaCrearMapa extends Vista1{
 						int x = Integer.parseInt(horizontal.getText());
 						int y = Integer.parseInt(vertical.getText());
 						cMapa.crearMapa(x, y);
+							//System.out.println("Antes de redeclarar vMatriz");
+						vMatriz.definirMedidas(x, y);
+							//System.out.println("Despues de redeclarar vMatriz");
+						//vMatriz.repaint();
 						continente.setVisible(true);
 					} catch (Exception e1) {
 						setError(e1.getMessage());
@@ -54,6 +59,7 @@ public class VistaCrearMapa extends Vista1{
 						int x = Integer.parseInt(horizontal.getText());
 						int y = Integer.parseInt(vertical.getText());
 						cMapa.crearMapa(x, y, "");
+						vMatriz.definirMedidas(x, y);
 					} catch (Exception e1) {
 						setError(e1.getMessage());
 					}
@@ -70,7 +76,14 @@ public class VistaCrearMapa extends Vista1{
 				comprovar("");
 				try {
 					String s = vMatriz.consultarContinente();
+						//System.out.println("continente:  " + s);
 					cMapa.definirContinente(s);
+					ArrayList<Integer> horiz = new ArrayList<Integer>();
+					ArrayList<Integer> vert = new ArrayList<Integer>();
+					cMapa.extraerOcupados(horiz, vert);
+						//System.out.println(horiz.toString());
+						//System.out.println(vert.toString());
+					vMatriz.definirOcupadas(horiz, vert);
 					continente.setVisible(false);
 				} catch (Exception e1) {
 					setError(e1.getMessage());

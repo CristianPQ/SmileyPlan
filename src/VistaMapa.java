@@ -26,22 +26,25 @@ public class VistaMapa extends Vista3{
 	private JLabel ciutat; 
 	//private VistaGrafo vg;
 	
-	boolean mapaCreado = false;
+	//boolean mapaCreado = false;
 	
 	VistaMapa (ControladorPresentacionMapa controladorPMapa){
 		super();
 		
 		cpmapa = controladorPMapa;
-		super.vMatriz.controlador(controladorPMapa);
+		//super.vMatriz.controlador(controladorPMapa);
 		
 		crearListeners();
-		super.txtCO.setEditable(false);
+		super.botonGuardar.setVisible(false);
+		super.botonCargar.setVisible(false);
+		super.panelLista.setVisible(false);
+		/*super.txtCO.setEditable(false);
 		super.txtCD.setEditable(false);
 		super.txtMedio.setEditable(false);
 		super.txtIdCiutat.setEditable(false);
 		super.txtCap.setEditable(false);
 		super.txtX.setEditable(false);
-		super.txtY.setEditable(false);
+		super.txtY.setEditable(false);*/
 
 		//vciut.add(cami, BorderLayout.NORTH);	
 
@@ -58,7 +61,7 @@ public class VistaMapa extends Vista3{
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
 				//crear mapa
-				if (!mapaCreado){ 
+				/*if (!mapaCreado){ 
 					//System.out.println("crear mapa"); 
 					String X = txtXMapa.getText();
 					String Y = txtYMapa.getText();
@@ -90,7 +93,7 @@ public class VistaMapa extends Vista3{
 				}
 				
 				//crear ciudad
-				else if (txtCO.getText().equals("")){ //si el de cami esta buit
+				else */if (txtCO.getText().equals("")){ //si el de cami esta buit
 					//System.out.println("crear ciudades"); 
 					String nom = txtIdCiutat.getText();
 					String SX = txtX.getText();
@@ -392,16 +395,16 @@ public class VistaMapa extends Vista3{
 	 			boolean success = cpmapa.cargarMapa(file);
 				if (success) {
 					//System.out.println(success);
-					mapaCreado = true;	
-					txtCO.setEditable(true);
+					//mapaCreado = true;	
+					/*txtCO.setEditable(true);
 					txtCD.setEditable(true);
 					txtMedio.setEditable(true);
 					txtIdCiutat.setEditable(true);
 					txtCap.setEditable(true);
 					txtX.setEditable(true);
-					txtY.setEditable(true);
-					txtXMapa.setText(Integer.toString(cpmapa.consultarAnchura()));
-					txtYMapa.setText(Integer.toString(cpmapa.consultarAltura()));
+					txtY.setEditable(true);*/
+					//txtXMapa.setText(Integer.toString(cpmapa.consultarAnchura()));
+					//txtYMapa.setText(Integer.toString(cpmapa.consultarAltura()));
 					if(cpmapa.existeContinente()){
 						txtConti.setText(cpmapa.consultarContinente()); 
 					}

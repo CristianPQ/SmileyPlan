@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
 public class VistaMatriz extends JPanel implements MouseListener{
 	int x;
 	int y;
-	ControladorPresentacionMapa contpm;
+	//ControladorPresentacionMapa contpm;
 	ArrayList<Integer> horizontal;
 	ArrayList<Integer> vertical;
 	
@@ -26,33 +26,44 @@ public class VistaMatriz extends JPanel implements MouseListener{
 		y = Y;
 		horizontal = new ArrayList<Integer>();
 		vertical = new ArrayList<Integer>();
-		this.setSize(350, 350);
+		//this.setSize(350, 350);
 	}
 	
 	public VistaMatriz() {
 		super();
-		x = 2;
-		y = 2;
+		x = 1;
+		y = 1;
 		horizontal = new ArrayList<Integer>();
 		vertical = new ArrayList<Integer>();
 	}
 	
-	protected void controlador(ControladorPresentacionMapa cpm) {
-		contpm = cpm;
+	void definirOcupadas(ArrayList<Integer> horiz, ArrayList<Integer> vert) {
+		horizontal = horiz;
+		vertical = vert;
 	}
+	
+	public void definirMedidas(int X, int Y) {
+		x = X;
+		y = Y;
+	}
+	
+	/*protected void controlador(ControladorPresentacionMapa cpm) {
+		contpm = cpm;
+	}*/
 	
 	public String consultarContinente() {
 		String cont = new String();
 		
 		int hpre = horizontal.get(0);
 		int vpre = vertical.get(0);
-		cont = cont + Integer.toString(hpre) + Integer.toString(vpre);
+		cont = cont + Integer.toString(hpre) + " " + Integer.toString(vpre) + " ";
 		horizontal.remove(0);
 		vertical.remove(0);
 		boolean validez = true;
-		while((!horizontal.isEmpty() && !vertical.isEmpty()) || !validez) {
+		while(!horizontal.isEmpty() && !vertical.isEmpty() && validez) {
 			int i;
 			boolean encontrado = false;
+				//System.out.println("antes del for de consultarContinente");
 			for(i = 0; i < horizontal.size() && i < vertical.size() && !encontrado; ++i) {
 				int h = horizontal.get(i);
 				int v = vertical.get(i);
@@ -64,15 +75,18 @@ public class VistaMatriz extends JPanel implements MouseListener{
 						(hpre-1 == h && vpre+1 == v) ||
 						(hpre-1 == h && vpre == v) ||
 						(hpre-1 == h && vpre-1 == v)) {
-					cont = cont + Integer.toString(h) + Integer.toString(v);
+					cont = cont + Integer.toString(h) + " " + Integer.toString(v) + " ";
 					hpre = h;
 					vpre = v;
 					encontrado = true;
+					horizontal.remove(i);
+					vertical.remove(i);
 				}
 			}
-			
+				//System.out.println("despues del for de consultarContinente");
 			if(!encontrado) validez = false;
 		}
+			//System.out.println("despues del while");
 		
 		return cont;
 	}
@@ -99,12 +113,13 @@ public class VistaMatriz extends JPanel implements MouseListener{
 	@Override
     public Dimension getPreferredSize() {
         return new Dimension(350, 350);
+		//return new Dimension(600, 600);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         
-        //super.paintComponent(g);
+        super.paintComponent(g);
     	this.addMouseListener(this);
     	Graphics2D g2 = (Graphics2D) g;
     	g2.setColor(Color.white);
@@ -123,13 +138,13 @@ public class VistaMatriz extends JPanel implements MouseListener{
     	
     	//HORIZONTALES
         for(int i = 25; i <= 325; i += 300/x) {
-        	
+        		//System.out.println("Linea horizontal");
         	g2.drawLine(25, i, 325, i);
         }
         
         //VERTICALES
         for(int j = 25; j <= 325; j += 300/y) {
-        	
+        		//System.out.println("Linea vertical");
         	g2.drawLine(j, 25, j, 325);
         }
         

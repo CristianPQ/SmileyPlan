@@ -83,21 +83,25 @@ public abstract class Vista2 extends Vista1 {
 		
 		GridBagConstraints gbcPL = new GridBagConstraints();
 		gbcPL.gridy = 0;
+		gbcPL.fill = GridBagConstraints.BOTH;
 				
 		panelv2.add(panelLista, gbcPL);
 		
 		GridBagConstraints gbcPB = new GridBagConstraints();
 		gbcPB.gridy = 1;
+		gbcPB.fill = GridBagConstraints.BOTH;
 		
 		panelv2.add(panelBotones, gbcPB);
 		
 		GridBagConstraints gbcPv2 = new GridBagConstraints();
 		gbcPv2.gridx = 0;
+		gbcPv2.fill = GridBagConstraints.BOTH;
 		
 		super.panelPrincipal.add(panelv2,gbcPv2);
 		
 		GridBagConstraints gbcVB = new GridBagConstraints();
 		gbcVB.gridx = 1;
+		gbcVB.fill = GridBagConstraints.BOTH;
 		
 		super.panelPrincipal.add(vb, gbcVB); 
 		

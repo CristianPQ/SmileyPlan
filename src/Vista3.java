@@ -48,7 +48,7 @@ public abstract class Vista3 extends Vista1 {
     protected JButton botoncaG;
     protected JButton botonciG;
     
-    protected VistaMatriz vMatriz;
+    //protected VistaMatriz vMatriz;
    
   
    
@@ -123,6 +123,8 @@ public abstract class Vista3 extends Vista1 {
         GridBagConstraints PV3 = new GridBagConstraints();
         
         PV3.gridx = 1;
+        //PV3.weightx = 1;
+        //PV3.weighty = 1;
         //PV3.gridy = 0;
         
         panelv3 = new JPanel();
@@ -166,7 +168,7 @@ public abstract class Vista3 extends Vista1 {
         panelCiudad = new JPanel();
         panelCiudad.setBorder(BorderFactory.createTitledBorder(Ciudad));
         panelCiudad.setMinimumSize(new Dimension(700,100));
-        panelCiudad.setMaximumSize(new Dimension(700,100));
+        //panelCiudad.setMaximumSize(new Dimension(700,100));
         //panelLista.setBorder(Ciudad);
         txtIdCiutat = new JTextField();
         txtIdCiutat.setPreferredSize(new Dimension(100,30));
@@ -197,7 +199,7 @@ public abstract class Vista3 extends Vista1 {
         panelCaminos = new JPanel();
         panelCaminos.setBorder(BorderFactory.createTitledBorder(Camino));
         panelCaminos.setMinimumSize(new Dimension(700,100));
-        panelCaminos.setMaximumSize(new Dimension(700,100));
+        //panelCaminos.setMaximumSize(new Dimension(700,100));
         txtCO = new JTextField();
         txtCO.setPreferredSize(new Dimension(80,30));
         txtCO.setEditable(true);
@@ -232,7 +234,7 @@ public abstract class Vista3 extends Vista1 {
         panelBotones = new JPanel();
         panelBotones.setBorder(BorderFactory.createLoweredBevelBorder());
         panelBotones.setMinimumSize(new Dimension(700,50));
-        panelBotones.setMaximumSize(new Dimension(700,50));
+        //panelBotones.setMaximumSize(new Dimension(700,50));
         botonCargar = new JButton();
         botonGuardar = new JButton();
         botonModificar = new JButton();
@@ -250,7 +252,7 @@ public abstract class Vista3 extends Vista1 {
         panelBotones.add(botonCargar);
         
     	//##########VistaMatriz
-        vMatriz = new VistaMatriz();
+        //vMatriz = new VistaMatriz();
         //vMatriz.main(null);
         //vMatriz.setPreferredSize(new Dimension(350,350));
         
@@ -261,32 +263,35 @@ public abstract class Vista3 extends Vista1 {
         //vMatriz.setSize(350, 350);
         
         
-        GridBagConstraints vM = new GridBagConstraints();
-        vM.gridy = 0;
-        panelv3.add(vMatriz,vM);
+        //GridBagConstraints vM = new GridBagConstraints();
+        //vM.gridy = 0;
+        //panelv3.add(vMatriz,vM);
         //JFrame vMat = new JFrame();
         //vMat.add(vMatriz);
         
         //vMat.setSize(510, 530);
         
         
-        GridBagConstraints pL = new GridBagConstraints();
-        pL.gridy = 1;
+        /*GridBagConstraints pL = new GridBagConstraints();
+        pL.gridy = 0;
                        
-        panelv3.add(panelLista, pL);
+        panelv3.add(panelLista, pL);*/
         
         GridBagConstraints pC = new GridBagConstraints();
-        pC.gridy = 2;
+        pC.gridy = 0;
+        pC.fill = GridBagConstraints.BOTH;
         
         panelv3.add(panelCiudad, pC);
         
         GridBagConstraints pCams = new GridBagConstraints();
-        pCams.gridy = 3;
+        pCams.gridy = 1;
+        pCams.fill = GridBagConstraints.BOTH;
         
         panelv3.add(panelCaminos, pCams);
         
         GridBagConstraints pB = new GridBagConstraints();
-        pB.gridy = 4;
+        pB.gridy = 2;
+        pB.fill = GridBagConstraints.BOTH;
         
         panelv3.add(panelBotones, pB);
         

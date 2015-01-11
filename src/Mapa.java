@@ -590,15 +590,15 @@ public class Mapa {
 	}
 	
 	public String consultarMapa() {
-		// null: puede haber una ciudad
+		// null: puede haber una ciudad, pero aun no la hay
 		// $: no puede haber nada, esta ocupado
 		// != null && != $: hay una ciudad con ese nombre
 		String map = new String();
 		for(int i = 0; i < mapa.length; ++i) {
 			for(int j = 0; j < mapa[0].length; ++j) {
-				map = map + "[" + mapa[i][j] + "]" + " ";
+				map = map + mapa[i][j] + " ";
 			}
-			//map = map + "\n";
+			map = map + "\n";
 		}
 		return map;
 	}

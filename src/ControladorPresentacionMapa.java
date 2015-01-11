@@ -265,6 +265,28 @@ public class ControladorPresentacionMapa {
 			vm.setError(e.getMessage());
 		}
 	}
+
+	public void extraerOcupados(ArrayList<Integer> horiz,
+			ArrayList<Integer> vert) {
+		//horiz = new ArrayList<Integer>();
+		//vert = new ArrayList<Integer>();
+		String s = cm.consultarMapaToString();
+		String[] sMapa = s.split("\n");
+		for(int i = 0; i < sMapa.length ; ++i) {
+			String[] sFila = sMapa[i].split(" ");
+			for(int j = 0; j < sFila.length ; ++j) {
+				if(sFila[j].equals("$")) {
+					System.out.println("Un vertice a–adido");
+					vert.add(i);
+					horiz.add(j);
+					
+				}
+			}
+		}
+		System.out.println("En ControlPresentacionMapa " + horiz.toString());
+		System.out.println("En ControlPresentacionMapa " + vert.toString());
+		System.out.println("MapaToString" + s);
+	}
 	
 }
 
