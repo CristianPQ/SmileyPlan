@@ -36,18 +36,21 @@ public class VistaCrearMapa extends Vista1{
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
 				if(!horizontal.getText().equals("") && !vertical.getText().equals("")) {
-					try {
-						int x = Integer.parseInt(horizontal.getText());
-						int y = Integer.parseInt(vertical.getText());
-						cMapa.crearMapa(x, y);
-							//System.out.println("Antes de redeclarar vMatriz");
-						vMatriz.definirMedidas(x, y);
-							//System.out.println("Despues de redeclarar vMatriz");
-						//vMatriz.repaint();
-						continente.setVisible(true);
-					} catch (Exception e1) {
-						setError(e1.getMessage());
+					if(Integer.parseInt(horizontal.getText()) > 0 && Integer.parseInt(vertical.getText()) > 0){
+						try {
+							int x = Integer.parseInt(horizontal.getText());
+							int y = Integer.parseInt(vertical.getText());
+							cMapa.crearMapa(x, y);
+								//System.out.println("Antes de redeclarar vMatriz");
+							vMatriz.definirMedidas(x, y);
+								//System.out.println("Despues de redeclarar vMatriz");
+							//vMatriz.repaint();
+							continente.setVisible(true);
+						} catch (Exception e1) {
+							setError(e1.getMessage());
+						}
 					}
+					else setError("No puede ser un número negativo"); 
 				}
 				else {
 					setError("Falta rellenar una casilla");
@@ -61,15 +64,18 @@ public class VistaCrearMapa extends Vista1{
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
 				if(!horizontal.getText().equals("") && !vertical.getText().equals("")) {
-					try {
-						int x = Integer.parseInt(horizontal.getText());
-						int y = Integer.parseInt(vertical.getText());
-						cMapa.crearMapa(x, y, "");
-						vMatriz.definirMedidas(x, y);
-						vMatriz.repaint();
-					} catch (Exception e1) {
-						setError(e1.getMessage());
+					if(Integer.parseInt(horizontal.getText()) > 0 && Integer.parseInt(vertical.getText()) > 0){
+						try {
+							int x = Integer.parseInt(horizontal.getText());
+							int y = Integer.parseInt(vertical.getText());
+							cMapa.crearMapa(x, y, "");
+							vMatriz.definirMedidas(x, y);
+							vMatriz.repaint();
+						} catch (Exception e1) {
+							setError(e1.getMessage());
+						}
 					}
+					else setError("No puede ser un número negativo"); 
 				}
 				else {
 					setError("Falta rellenar una casilla");
