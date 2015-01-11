@@ -154,7 +154,7 @@ public class Solucion {
 		
 	
 		for(int i = 0; i < rem.size(); i = i + 2){
-			if(rem.get(i) != rem.get(i+1)) {		
+			if(rem.get(i).equals(rem.get(i+1))) {		
 				simple.add(rem.get(i));
 				simple.add(rem.get(i+1));
 			}
