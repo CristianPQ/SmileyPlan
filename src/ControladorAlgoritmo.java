@@ -80,10 +80,7 @@ public class ControladorAlgoritmo {
 			}
 		}
 		if(!sol.consultarTieneSolucion()) {
-			ent = null;
-			//sol = null;
-			cit = null;
-			agentes = null;
+			 asignarItinerarioAAgente();
 		}
 		else asignarItinerarioAAgente();
 	}
@@ -154,7 +151,7 @@ public class ControladorAlgoritmo {
 				System.out.println("coste del itinerario " + j +   " es = " + sol.obtenCoste(j));
 			}
 		*/
-			for(int i = 0; i < numAg; ++i){
+			for(int i = 0; i < numIt; ++i){
 				
 				int min = 2147483647; //max int
 				int pos = 1000;
@@ -164,10 +161,15 @@ public class ControladorAlgoritmo {
 						pos = j; 
 					}
 				}
-				
-				String s = agentes.get(i); 
-				convertirItinerario(pos,s,min);
-				sol.agregarCosteAItinerario(pos, 2147483647);//posem marca 
+				if (i<numAg){
+					String s = agentes.get(i); 
+					convertirItinerario(pos,s,min);
+					sol.agregarCosteAItinerario(pos, 2147483647);//posem marca
+				}
+				else{
+					convertirItinerario(pos,"Alternativo",min);
+					sol.agregarCosteAItinerario(pos, 2147483647);//posem marca
+				}
 			}
 		//}
 	}

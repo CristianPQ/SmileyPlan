@@ -34,8 +34,7 @@ public class ControladorPresentacionAlgoritmo {
 				}
 				return s + citi.escribirItinerarios(); 
 			}
-			else return "No hay solucion para tantos agentes,\n el numero maximo de agentes que \n"
-					+ "pueden hacer este viaje es " + citi.consultarSize();
+			else return "No hay solucion \n" + "El max flow es: " + ca.consultarMaxFlow() + "\n" +  citi.escribirItinerarios();
 			
 		
 		}
