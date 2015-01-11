@@ -235,13 +235,57 @@ public class VistaCrearMapa extends Vista1{
 	
 
 	void actualizarGrafo(){
+	
+	GridBagConstraints vG = new GridBagConstraints();
 	vGrafo = cMapa.getVGrafo();
+	
+
 	
 	vGrafo.dibujar();
 	//GridBagConstraints vG = new GridBagConstraints();
 	
 	}
 	
+	public void pintarCiudad(String n){
+		ArrayList<String> m = vGrafo.consultarMapeo();
+		
+		m.add(n);
+		
+		int i = m.indexOf(n);			
+		/*for (i = 0; i < m.size() && !insertat; ++i){
+			if (m.get(i).equals(null)) m.add(i, n);
+			insertat = true;
+		}
+		*/
+		System.out.println(i);
+
+		vGrafo.modificarMapeo(m);
+		vGrafo.crearVertex(i);
+
+		//vCrearMapa.actualizarGrafo();
+	}
+	
+	public void borrarCiudad(String n){
+		ArrayList<String> m = vGrafo.consultarMapeo();
+		
+		int i = m.indexOf(n);	
+		
+		m.remove(i);
+		
+		vGrafo.modificarMapeo(m);
+		vGrafo.eliminarVertex(i);
+		
+		//vGrafo.actualizarGrafo();
+		
+	}
+	
+	public void pintarCamino(String cOrig, String cDest, String medio){
+		vGrafo.crearAresta(cOrig, cDest, medio);
+	}
+	
+	public void borrarCamino(String cOrig, String cDest, String medio){
+		vGrafo.eliminarAresta(cOrig, cDest,  medio);
+	}
 	
 	public void abrirBrowserGuardar()  {
 	   JFrame parentFrame = new JFrame();

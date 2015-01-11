@@ -83,22 +83,7 @@ public class ControladorPresentacionMapa {
 	public void agregarCiudad(String n, int x, int y){
 		try {
 			cm.agregarCiudad(n,x,y);
-			ArrayList<String> m = vg.consultarMapeo();
-		
-			m.add(n);
-			
-			int i = m.indexOf(n);			
-			/*for (i = 0; i < m.size() && !insertat; ++i){
-				if (m.get(i).equals(null)) m.add(i, n);
-				insertat = true;
-			}
-			*/
-			System.out.println(i);
-
-			vg.modificarMapeo(m);
-			vg.crearVertex(i);
-
-			vCrearMapa.actualizarGrafo();
+			vCrearMapa.pintarCiudad(n);
 			
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
@@ -112,18 +97,9 @@ public class ControladorPresentacionMapa {
 			cm.eliminarCiudad(c);
 			cag.eliminarAgentesConCiudad(c);
 			cag.actualizarLista();
+			
+			vCrearMapa.borrarCiudad(c);
 		
-			ArrayList<String> m = vg.consultarMapeo();
-			
-			int i = m.indexOf(c);	
-			
-			m.remove(i);
-			
-			vg.modificarMapeo(m);
-			vg.eliminarVertex(i);
-			
-			vCrearMapa.actualizarGrafo();
-
 			
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
@@ -201,10 +177,8 @@ public class ControladorPresentacionMapa {
 		try{
 			//System.out.println("estic a controlador presnt per crear");
 			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());
-			vg.crearAresta(cOrig, cDest, medio);
+			vCrearMapa.pintarCamino(cOrig, cDest, medio);
 			
-			vCrearMapa.actualizarGrafo();
-
 			}
 		catch (Exception e) {
 			vm.setError(e.getMessage());
@@ -223,10 +197,8 @@ public class ControladorPresentacionMapa {
 	public void eliminarCamino(String COrig, String cDest, String medio){
 		try {
 			cm.eliminarCamino(COrig, cDest, medio);
-			vg.eliminarAresta(COrig, cDest, medio);
+			vCrearMapa.borrarCamino(COrig, cDest, medio);
 			
-			vCrearMapa.actualizarGrafo();
-
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}

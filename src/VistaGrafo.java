@@ -39,7 +39,28 @@ public class VistaGrafo extends JPanel {
 		g = new DirectedSparseMultigraph<Integer, String>();
 		mapeo = new ArrayList<String>();
 		this.setBackground(Color.CYAN);
+		Layout<Integer, String> layout = new CircleLayout<Integer, String>(g);
+		//layout.setLocation(, arg1);
+		layout.setSize(new Dimension(400,400));
+		layout.initialize();
+		
+		 
+		 BasicVisualizationServer<Integer,String> vv =
+	              new BasicVisualizationServer<Integer,String>(layout);
+	    vv.setPreferredSize(new Dimension(500,500));
+		 vv.setBackground(Color.green);
+        /*Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
+            public Paint transform(Integer i) {
+                return Color.RED;
+} };*/
 
+        /*vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
+        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
+        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+       vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);*/
+
+       add(vv);
+        
 	}
 	
 	
@@ -57,8 +78,9 @@ public class VistaGrafo extends JPanel {
 	}
 	
 	public void crearAresta(String n1, String n2, String mt){
-
-		g.addEdge(n1 + " - " + n2 + " / " + mt, 2, 3, EdgeType.DIRECTED);
+		int o = mapeo.indexOf(n1);
+		int d = mapeo.indexOf(n2);
+		g.addEdge(n1 + " - " + n2 + " / " + mt, o,d, EdgeType.DIRECTED);
 		
 	}
 	
@@ -78,12 +100,14 @@ public class VistaGrafo extends JPanel {
 		return vv;
 	}
 	
+
 	public void dibujar(){
-		
+		System.out.println("Entra en dibujar");
+		//vv.repaint();
 		/* g.addVertex((Integer)1);
 		 g.addVertex((Integer)2);
 		 g.addVertex((Integer)3);
-*/
+
 	 Layout<Integer, String> layout = new CircleLayout(g);
 		 
 	
@@ -97,15 +121,13 @@ public class VistaGrafo extends JPanel {
                 return Color.RED;
 } };
 
-
-
         vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
         vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
         vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
        vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
 
        add(vv);
-        
+  */      
 	}
 	
 	
