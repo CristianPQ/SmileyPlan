@@ -85,26 +85,33 @@ public class AntiHillLayout<V, E> extends AbstractLayout<V,E> {
  
         public void initialize()
         {
+        			System.out.println("Entrando en initialize");
+        			
                
                 Dimension d = getSize();
                
                
                 if (d != null)
                 {
+                		System.out.println("en if de  antihill");
                     if (vertex_ordered_list == null)
                         setVertexOrder(new ArrayList<V>(getGraph().getVertices()));
  
                    
                         double height = d.getHeight();
                         double width = d.getWidth();
+                        System.out.println("width: " + width);
+                        System.out.println("height: " + height);
  
                         if (radius <= 0) {
                                 radius = 0.45 * (height < width ? height : width);
                         }
  
                         int i = 0;
+                        System.out.println("vertOrderedList" + vertex_ordered_list.toString());
                         for (V v : vertex_ordered_list)
                         {
+                        	System.out.println("en for de  antihill");
                                
                                 Point2D coord = transform(v);
                                
@@ -121,6 +128,7 @@ public class AntiHillLayout<V, E> extends AbstractLayout<V,E> {
                                 CircleVertexData data = getCircleData(v);
                                 data.setAngle(angle);
                                 i++;
+                                System.out.println("coord: " + coord.toString());
                         }
                 }
         }

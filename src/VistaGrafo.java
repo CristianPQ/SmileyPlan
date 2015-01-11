@@ -40,10 +40,10 @@ public class VistaGrafo extends JPanel {
 		g = new DirectedSparseMultigraph<Integer, String>();
 		mapeo = new ArrayList<String>();
 		this.setBackground(Color.CYAN);
-		Layout<Integer, String> layout = new AntiHillLayout<Integer, String>(g);
+		Layout<Integer, String> layout = new AntiHillLayout<Integer, String>(g, 0);
 		//layout.setLocation(, arg1);
 		layout.setSize(new Dimension(400,400));
-		layout.initialize();
+		//layout.initialize();
 		//layout.
 		
 		 
@@ -74,6 +74,7 @@ public class VistaGrafo extends JPanel {
 
 	public void crearVertex(Integer i){
 		g.addVertex((Integer)i);
+		
 	}
 	
 	public void eliminarVertex(Integer i){
