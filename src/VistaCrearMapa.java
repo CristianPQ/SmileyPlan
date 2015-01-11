@@ -262,10 +262,20 @@ public class VistaCrearMapa extends Vista1{
  			String file = filechooser.getSelectedFile().getAbsolutePath(); 
  			boolean success = cMapa.cargarMapa(file);
 			if (success) {
-				//System.out.println(success);
-				//mapaCreado = true;	
+				horizontal.setText(Integer.toString(cMapa.consultarAnchura()));
+				vertical.setText(Integer.toString(cMapa.consultarAltura()));
+				vMatriz.definirMedidas(cMapa.consultarAltura(), cMapa.consultarAnchura());
+				vMatriz.repaint(); 
 				if(cMapa.existeContinente()){
-					//txtConti.setText(cpmapa.consultarContinente()); 
+					System.out.println("existeContinente"); 
+					ArrayList<Integer> horiz = new ArrayList<Integer>(); 
+					ArrayList<Integer> vert = new ArrayList<Integer>(); 
+					cMapa.extraerOcupados(horiz, vert); 
+					System.out.println("extrets"); 
+					vMatriz.definirOcupadas(horiz, vert);
+					System.out.println("definits"); 
+					continente.setVisible(false);
+					System.out.println("fi"); 
 				}
 			}
  		}
