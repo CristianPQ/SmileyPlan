@@ -250,6 +250,7 @@ public class VistaCrearMapa extends Vista1{
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 			file = file.concat(".smiley");
+			System.out.println("CONTINENTE: " + cMapa.consultarContinente()); 
 			cMapa.guardarMapa(file);
 		}
 	}
