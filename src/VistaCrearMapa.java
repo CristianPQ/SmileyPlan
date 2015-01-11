@@ -275,7 +275,7 @@ public class VistaCrearMapa extends Vista1{
 		ArrayList<String> m = vGrafo.consultarMapeo();
 		
 		int i = m.indexOf(n);	
-		
+		System.out.println("la i es :" + i);
 		m.remove(i);
 		
 		vGrafo.modificarMapeo(m);

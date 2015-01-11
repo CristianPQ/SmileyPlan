@@ -32,7 +32,7 @@ public class Dinic extends Algoritmo {
 					coste +=  adyacencias.get(j).consultarCoste(); //actualizamos el coste
 					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; //indiceFinal es indiceInicial mas el minimo del flow con el que ha sido llamada la funcion y el flujo que tiene la arista
 					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo()); // el flujo que quedara en esa arista
-					System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + adyacencias.get(j).consultarFlujo() + " indicesI es " + indiceI + " incideF es " + indiceF);
+					//System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + adyacencias.get(j).consultarFlujo() + " indicesI es " + indiceI + " incideF es " + indiceF);
 					
 					int viejoFlujo = adyacencias.get(j).consultarFlujo();
 					int viejoFlow = flow;
@@ -177,7 +177,7 @@ public class Dinic extends Algoritmo {
 			}
 			crearItinerarios(sol,g,0,flow-1,flow,src,dest,0);
 		//	Guardar(path,file); 
-			System.out.println("el flow es" + flow);
+			//System.out.println("el flow es" + flow);
 			//float t2 = System.currentTimeMillis();
 			//sol.modificarTiempo(t2-t1);
 			sol.seqsol = seq; 
