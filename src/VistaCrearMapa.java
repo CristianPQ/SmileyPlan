@@ -105,10 +105,10 @@ public class VistaCrearMapa extends Vista1{
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
 				try{
-					
-				} catch(Exception e1) {
-					
-				}
+					abrirBrowserCargar();
+				} catch (Exception e1) {
+					setError(e1.getMessage());
+				} 
 			}
 		});
 		
@@ -117,11 +117,7 @@ public class VistaCrearMapa extends Vista1{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
-				try{
-					
-				} catch(Exception e1) {
-					
-				}
+				abrirBrowserGuardar();
 			}
 		});
 	}
@@ -235,6 +231,34 @@ public class VistaCrearMapa extends Vista1{
 		panelBotones.insets = new Insets(10,0,10,0);
 		
 		super.panelPrincipal.add(botones, panelBotones);
+	}
+	
+	public void abrirBrowserGuardar()  {
+	   JFrame parentFrame = new JFrame();
+		super.filechooser.setDialogTitle("Elige archivo para el Mapa"); 
+		int userSelection = filechooser.showSaveDialog(parentFrame);
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+			file = file.concat(".smiley");
+			cMapa.guardarMapa(file);
+		}
+	}
+	
+	public void abrirBrowserCargar() throws Exception {
+		JFrame parentFrame = new JFrame();
+		super.filechooser.setDialogTitle("Elige archivo para el Mapa"); 
+ 		int userSelection = filechooser.showOpenDialog(parentFrame);
+ 		if (userSelection == JFileChooser.APPROVE_OPTION) {
+ 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
+ 			boolean success = cMapa.cargarMapa(file);
+			if (success) {
+				//System.out.println(success);
+				//mapaCreado = true;	
+				if(cMapa.existeContinente()){
+					//txtConti.setText(cpmapa.consultarContinente()); 
+				}
+			}
+ 		}
 	}
 	
 }
