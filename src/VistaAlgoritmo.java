@@ -62,6 +62,8 @@ public class VistaAlgoritmo extends Vista2 {
 	
 	private JButton solbut; 
 	private JPanel panelsol; 
+	private JButton adel; 
+	private JButton atras; 
 	
 	VistaAlgoritmo(ControladorPresentacionAlgoritmo cpa){
 		super(); 
@@ -274,9 +276,14 @@ public class VistaAlgoritmo extends Vista2 {
 			});
 		
 		adel.addActionListener( new ActionListener() {
-			@Override
 
-			});
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		
+		});
 		
 
 	
@@ -310,7 +317,7 @@ public class VistaAlgoritmo extends Vista2 {
 							if (ff) cpalg.ejecutar(1,source,sink,funcionCoste);
 							else if (pr)  cpalg.ejecutar(2,source,sink,funcionCoste);
 							else if (dinic) cpalg.ejecutar(3,source,sink,funcionCoste);
-							System.out.println("thread: " + Thread.currentThread()); 
+							//System.out.println("thread: " + Thread.currentThread()); 
 						//}
 					//};
 					
