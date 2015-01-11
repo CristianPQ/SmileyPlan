@@ -259,7 +259,7 @@ public class ControladorPresentacionMapa {
 	}
 	
 	public void guardarBrowser() {
-		vm.abrirBrowserGuardar();
+		vCrearMapa.abrirBrowserGuardar();
 	}
 	
 	public void guardarBrowserCaminos(){
@@ -292,7 +292,7 @@ public class ControladorPresentacionMapa {
 	
 	public void cargarBrowser(){
 		try {
-			vm.abrirBrowserCargar();
+			vCrearMapa.abrirBrowserCargar();
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
