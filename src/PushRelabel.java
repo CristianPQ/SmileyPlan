@@ -41,15 +41,19 @@ public class PushRelabel extends Algoritmo {
 			for (int j = 0; j < adyacencias.size(); ++j){	//todad las adyacencias de u	
 				int v = adyacencias.get(j).consultarVerticeDestino(); //elige un vertice
 					
-				if (adyacencias.get(j).consultarFlujo() > 0  && control < 20){ //si no es una arista inversa y tiene flujo
+				if (adyacencias.get(j).consultarFlujo() > 0 /* && control < 20 */){ //si no es una arista inversa y tiene flujo
 					coste +=  adyacencias.get(j).consultarCoste(); //actualizamos el coste
 					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; //indiceFinal es indiceInicial mas el minimo del flow con el que ha sido llamada la funcion y el flujo que tiene la arista
 					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo()); // el flujo que quedara en esa arista
-					System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + Math.min(flow,adyacencias.get(j).consultarFlujo()) + " indicesI es " + indiceI + " incideF es" + indiceF);
-					if (Math.min(flow,adyacencias.get(j).consultarFlujo()) > 0 && v != inicio  )//segunda condicion evitar bucles //si queda flow del que nos han llamado y queda flow pen la arista, llamamos al vertice adyacente
-						crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste, control+1); 
-					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo()); //actualiza el flow con el q le han llamado
+					System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + adyacencias.get(j).consultarFlujo() + " indicesI es " + indiceI + " incideF es " + indiceF);
+					
+					int viejoFlujo = adyacencias.get(j).consultarFlujo();
+					int viejoFlow = flow;
 					g.modificarFlujoArista(u, v, nuevoFlujo); //actualiza el flow de la arista 
+					if (Math.min(flow,viejoFlujo) > 0 /*&& v != inicio*/  )//segunda condicion evitar bucles //si queda flow del que nos han llamado y queda flow pen la arista, llamamos al vertice adyacente
+						crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,viejoFlujo),v,t,coste, control+1); 
+					flow -= Math.min(flow,viejoFlujo); //actualiza el flow con el q le han llamado
+					
 					indiceI = nuevoIndiceF+1; //nuevo indice inicial es el final + 1
 				}
 			}

@@ -5,6 +5,7 @@ public class Dinic extends Algoritmo {
 
 	static ArrayList<String> seq = new ArrayList<String>(); 
 	private ArrayList<Integer> seguimiento;
+	private int inicio;
 	/**
 	 * Crea los itinerarios de la solucion 
 	 * @param sol
@@ -16,25 +17,31 @@ public class Dinic extends Algoritmo {
 	 * @param t
 	 * @param coste
 	 */
-void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int flow, int u, int t, int coste){
+	void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int flow, int u, int t, int coste){
 		
-		//System.out.println();
 		for (int i = indiceI; i <= indiceF; ++i){
 				sol.agregarVertice(i, u);
 				if (u == t) sol.agregarCosteAItinerario(i, coste );
 		}
 		if (u != t){
-			ArrayList <Arista> adyacencias = g.consultarAdyacentes(u);
-			for (int j = 0; j < adyacencias.size(); ++j){		
-				int v = adyacencias.get(j).consultarVerticeDestino();
-				if (adyacencias.get(j).consultarCoste() != -1 && adyacencias.get(j).consultarFlujo() > 0 ){
-					coste +=  adyacencias.get(j).consultarCoste();
-					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; 
-					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo());
-					crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,adyacencias.get(j).consultarFlujo()),v,t,coste);
-					flow -= Math.min(flow,adyacencias.get(j).consultarFlujo());
-					g.modificarFlujoArista(u, v, nuevoFlujo);
-					indiceI = nuevoIndiceF+1;
+			ArrayList <Arista> adyacencias = g.consultarAdyacentes(u);			
+			for (int j = 0; j < adyacencias.size(); ++j){	//todad las adyacencias de u	
+				int v = adyacencias.get(j).consultarVerticeDestino(); //elige un vertice
+					
+				if (adyacencias.get(j).consultarFlujo() > 0 /* && control < 20 */){ //si no es una arista inversa y tiene flujo
+					coste +=  adyacencias.get(j).consultarCoste(); //actualizamos el coste
+					int nuevoIndiceF = indiceI + Math.min(flow,adyacencias.get(j).consultarFlujo()) - 1; //indiceFinal es indiceInicial mas el minimo del flow con el que ha sido llamada la funcion y el flujo que tiene la arista
+					int nuevoFlujo = g.consultarFlujoArista(u, v) - Math.min(flow,adyacencias.get(j).consultarFlujo()); // el flujo que quedara en esa arista
+					System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + adyacencias.get(j).consultarFlujo() + " indicesI es " + indiceI + " incideF es " + indiceF);
+					
+					int viejoFlujo = adyacencias.get(j).consultarFlujo();
+					int viejoFlow = flow;
+					g.modificarFlujoArista(u, v, nuevoFlujo); //actualiza el flow de la arista 
+					if (Math.min(flow,viejoFlujo) > 0  )//segunda condicion evitar bucles //si queda flow del que nos han llamado y queda flow pen la arista, llamamos al vertice adyacente
+						crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,viejoFlujo),v,t,coste); 
+					flow -= Math.min(flow,viejoFlujo); //actualiza el flow con el q le han llamado
+					
+					indiceI = nuevoIndiceF+1; //nuevo indice inicial es el final + 1
 				}
 			}
 			
@@ -139,6 +146,7 @@ void crearItinerarios ( Solucion sol, Entrada g, int indiceI, int indiceF, int f
 		    int flow = 0;
 			//GrafoAntiguo g = e.consultarGrafo();
 			int src = g.consultarSource();
+			int inicio = src;
 			int dest = g.consultarSink();
 			int numA = g.consultarNumeroAgentes();
 			inicializacion(g,src,dest);
