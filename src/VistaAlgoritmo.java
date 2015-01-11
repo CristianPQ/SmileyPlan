@@ -34,6 +34,8 @@ public class VistaAlgoritmo extends Vista2 {
 	private JList l;
     private JScrollPane scroller;
 
+    private String ultimo_ej; 
+    
     private VistaBuscador vis2;
     private VistaBuscador vis3;
     private JTextArea textarea; 
@@ -258,32 +260,47 @@ public class VistaAlgoritmo extends Vista2 {
 		solbut.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(ff){
+				comprovar("");
+				if(!ultimo_ej.equals(null)){
+				if(ultimo_ej.equals("ff")){
 					vb.clear();
 					vb.agregar("Recorrido FordFulkerson");
+					vb.agregar("Pulsa adelante para continuar");
 				}
-				else if(pr){
+				else if(ultimo_ej.equals("pr")){
 					vis2.clear();
-					vb.agregar("Recorrido Push Relabel");
+					vis2.agregar("Recorrido Push Relabel");
+					vis2.agregar("Pulsa adelante para continuar");
 				}
 				
-				else if(dinic) {
+				else if(ultimo_ej.equals("dinic")) {
 					vis3.clear();
-					vb.agregar("Recorrido Dinic");
+					vis3.agregar("Recorrido Dinic");
+					vis3.agregar("Pulsa adelante para continuar");
 				}
-			//	Segui = cpalg.subirSeg();
-				vb.agregar("Pulsa adelante para continuar");
+				}//	Segui = cpalg.subirSeg();
 			}
+				
 			});
 		
 		adel.addActionListener( new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (Segui.isEmpty()) Segui = listarSegui();
+				comprovar("");
+				if (!ultimo_ej.equals(null)){
+					Segui = listarSegui(); 
 					if (nivel < Segui.size()){
-					vb.agregar(Segui.get(nivel) + " " + Segui.get(nivel+1));
-					nivel = nivel + 2;
+						if(ultimo_ej.equals("ff"))
+							vb.agregar(Segui.get(nivel) + " " + Segui.get(nivel+1));
+						else if(ultimo_ej.equals("pr"))
+							vis2.agregar(Segui.get(nivel) + " " + Segui.get(nivel+1));
+						else if(ultimo_ej.equals("dinic"))
+							vis2.agregar(Segui.get(nivel) + " " + Segui.get(nivel+1));
+						nivel = nivel + 2;
+						
+				}
+
 				}
 				
 			}
@@ -296,13 +313,23 @@ public class VistaAlgoritmo extends Vista2 {
 		botonEjecutar.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				nivel = 0;
 				comprovar("");
 
 				cpalg.initItinerarios();
-				if(ff)vb.clear();
-				else if(pr)vis2.clear();
-				else if(dinic) vis3.clear();
+				if(ff){
+					vb.clear();
+					ultimo_ej = "ff";
+				}
+				
+				else if(pr){
+					vis2.clear();
+					ultimo_ej = "pr";
+				}
+				else if(dinic) {
+					vis3.clear();
+					ultimo_ej = "dinic";
+				}
 				String source = CiuO.getText();
 				String sink = CiuD.getText();
 				if (source.equals("") || sink.equals(""))
