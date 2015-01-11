@@ -64,7 +64,8 @@ public class Mapa {
 	
 	public void definirContinente(ArrayList<Coordenadas> continente) throws Exception {
 		agregarContinente(continente);
-		tieneContinente = false;
+		coord = continente; 
+		tieneContinente = true;
 	}
 
 	/**
