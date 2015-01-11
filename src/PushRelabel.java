@@ -237,10 +237,10 @@ public class PushRelabel extends Algoritmo {
 			sol.modificartieneSolucion(true);
 			//sol.modificarGrafo(g);
 			System.out.println("el max flow es " + flow);
-			crearItinerarios(sol,g,0,flow-1,flow,s,t,0,0); //crea los itinerarios a partir del grafo
+			
 		}
 
-		
+		crearItinerarios(sol,g,0,flow-1,flow,s,t,0,0); //crea los itinerarios a partir del grafo
 		//System.out.println(System.nanoTime());
 		//Thread.sleep (10000);
 		//System.curre

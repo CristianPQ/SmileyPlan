@@ -173,8 +173,9 @@ public class Dinic extends Algoritmo {
 			if (flow >= numA){
 				sol.modificartieneSolucion(true);
 				///sol.modificarGrafo(g);
-				crearItinerarios(sol,g,0,flow-1,flow,src,dest,0);
+				
 			}
+			crearItinerarios(sol,g,0,flow-1,flow,src,dest,0);
 		//	Guardar(path,file); 
 			System.out.println("el flow es" + flow);
 			//float t2 = System.currentTimeMillis();

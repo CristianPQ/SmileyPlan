@@ -156,8 +156,9 @@ public class FordFulkerson extends Algoritmo{
 		if (flow >= numA){
 			sol.modificartieneSolucion(true);
 			//sol.modificarGrafo(g);
-			crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
+			
 		}
+		crearItinerarios(sol,g,0,flow-1,flow,s,t,0);
 		sol.seqsol = list; 
 		return sol;
 		
