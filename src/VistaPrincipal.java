@@ -54,9 +54,13 @@ public class VistaPrincipal {
 		JMenuBar menuBar = new JMenuBar(); 
         
         JButton menu1 = new JButton("Guardar");
+        menu1.setBackground(Color.lightGray);
+		menu1.setFont(new Font("Verdana",4,10));;
         menuBar.add(menu1); 
         
         JButton menu2 = new JButton("Cargar");
+        menu2.setBackground(Color.lightGray);
+		menu2.setFont(new Font("Verdana",4,10));;
         menuBar.add(menu2);
         
 		frame.setJMenuBar(menuBar);
@@ -66,8 +70,7 @@ public class VistaPrincipal {
 
 		
 		//tabs.setPreferredSize(new Dimension(1500, 500));
-		//Provisional
-		
+		//Provisional 
 		
 		tabs.addTab("Mapa", null, cpmapa.getVistaCrearMapa(), "Crea un mapa");
 		tabs.addTab("Ciudades y caminos", null, cpmapa.getVistaMapa(), "Edita las ciudades y los caminos");

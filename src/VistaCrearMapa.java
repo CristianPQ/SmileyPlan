@@ -143,7 +143,11 @@ public class VistaCrearMapa extends Vista1{
 		JLabel xLabel = new JLabel("X: ");
 		JLabel yLabel = new JLabel("Y: ");
 		crear = new JButton("Crear con continente");
+		crear.setBackground(Color.lightGray);
+		crear.setFont(new Font("Verdana",4,10));;
 		crearVacio = new JButton("Crear sin continente");
+		crearVacio.setBackground(Color.lightGray);
+		crearVacio.setFont(new Font("Verdana",4,10));;
 		
 		JPanel medidas = new JPanel();
 		medidas.setLayout(new GridBagLayout());
@@ -213,6 +217,8 @@ public class VistaCrearMapa extends Vista1{
 		super.panelPrincipal.add(vGrafo, vG);
 		
 		continente = new JButton("Definir continente");
+		continente.setBackground(Color.lightGray);
+		continente.setFont(new Font("Verdana",4,10));;
 		//continente.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		continente.setVisible(false);
 		
@@ -225,8 +231,12 @@ public class VistaCrearMapa extends Vista1{
 		JPanel botones = new JPanel();
 		botones.setLayout(new GridBagLayout());
 		guardar = new JButton("Guardar");
+		guardar.setBackground(Color.lightGray);
+		guardar.setFont(new Font("Verdana",4,10));;
 		//guardar.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
 		cargar = new JButton("Cargar");
+		cargar.setBackground(Color.lightGray);
+		cargar.setFont(new Font("Verdana",4,10));;
 		GridBagConstraints gGuardar = new GridBagConstraints();
 		gGuardar.insets = new Insets(0,0,0,25);
 		botones.add(guardar, gGuardar);

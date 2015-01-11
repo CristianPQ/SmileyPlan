@@ -81,7 +81,11 @@ public abstract class Vista3 extends Vista1 {
         JPanel aux1 = new JPanel();
         
         botoncaC = new JButton("Cargar");
+        botoncaC.setBackground(Color.lightGray);
+		botoncaC.setFont(new Font("Verdana",4,10));
         botoncaG = new JButton("Guardar");
+        botoncaG.setBackground(Color.lightGray);
+		botoncaG.setFont(new Font("Verdana",4,10));
         
         aux1.add(botoncaC);
         aux1.add(botoncaG);
@@ -241,10 +245,20 @@ public abstract class Vista3 extends Vista1 {
         botonEliminar = new JButton();
         botonCrear = new JButton();
         botonGuardar.setText("Guardar");
+        botonGuardar.setBackground(Color.lightGray);
+		botonGuardar.setFont(new Font("Verdana",4,10));
         botonCargar.setText("Cargar");
+        botonCargar.setBackground(Color.lightGray);
+		botonCargar.setFont(new Font("Verdana",4,10));
         botonModificar.setText("Modificar");
+        botonModificar.setBackground(Color.lightGray);
+		botonModificar.setFont(new Font("Verdana",4,10));
         botonEliminar.setText("Eliminar");
+        botonEliminar.setBackground(Color.lightGray);
+		botonEliminar.setFont(new Font("Verdana",4,10));
         botonCrear.setText("Crear");
+        botonCrear.setBackground(Color.lightGray);
+		botonCrear.setFont(new Font("Verdana",4,10));
         panelBotones.add(botonCrear);
         panelBotones.add(botonModificar);
         panelBotones.add(botonEliminar);
@@ -314,7 +328,11 @@ public abstract class Vista3 extends Vista1 {
         JPanel aux2 = new JPanel();
         
         botonciC = new JButton("Cargar");
+        botonciC.setBackground(Color.lightGray);
+		botonciC.setFont(new Font("Verdana",4,10));
         botonciG = new JButton("Guardar");
+        botonciG.setBackground(Color.lightGray);
+		botonciG.setFont(new Font("Verdana",4,10));
         
         aux2.add(botonciC);
         aux2.add(botonciG);

@@ -187,6 +187,8 @@ public class VistaAlgoritmo extends Vista2 {
       	labelco.setText("Ciudad Origen :");
       	labelcd.setText("Ciudad Destino: ");
       	but = new JButton("Ejecutar Todos"); 
+      	but.setBackground(Color.lightGray);
+		but.setFont(new Font("Verdana",4,10));;
       	
       	
       	CiuO.setEditable(true);
@@ -203,6 +205,8 @@ public class VistaAlgoritmo extends Vista2 {
       	
         botonEjecutar = new JButton();
         botonEjecutar.setText("Ejecutar");
+        botonEjecutar.setBackground(Color.lightGray);
+		botonEjecutar.setFont(new Font("Verdana",4,10));;
         panelEjec.add(botonEjecutar);
         
         GridBagConstraints c = new GridBagConstraints();
@@ -222,8 +226,12 @@ public class VistaAlgoritmo extends Vista2 {
   		JPanel panelsol = new JPanel(); 
   		panelsol.setBorder(BorderFactory.createLoweredBevelBorder());
   		solbut = new JButton("Ver seguimiento"); 
+  		solbut.setBackground(Color.lightGray);
+		solbut.setFont(new Font("Verdana",4,10));;
   		//solbut.setText("Ver Seguimientto"); 
   		adel = new JButton("Adelante"); 
+  		adel.setBackground(Color.lightGray);
+		adel.setFont(new Font("Verdana",4,10));;
   		//adel.setText("adelante");
   		//atras = new JButton("Atras"); 
   		//atras.setText("atras");
@@ -304,8 +312,8 @@ public class VistaAlgoritmo extends Vista2 {
 				}
 				
 			}
-		
-		});
+
+			});
 		
 		
 
@@ -339,7 +347,7 @@ public class VistaAlgoritmo extends Vista2 {
 						setError(e1.getMessage());
 					}
 				else {
-					System.out.println("thread: " + Thread.currentThread()); 
+					//System.out.println("thread: " + Thread.currentThread()); 
 					boolean funcionCoste;
 					if (precio.isSelected()) funcionCoste = false;
 					else funcionCoste = true;

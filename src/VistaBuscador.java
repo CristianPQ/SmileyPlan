@@ -58,6 +58,8 @@ public class VistaBuscador extends JPanel{
         //Boton Buscar
         
         botonBuscar = new JButton("Buscar");
+        botonBuscar.setBackground(Color.lightGray);
+		botonBuscar.setFont(new Font("Verdana",4,10));
         
         botonBuscar.addActionListener(new ActionListener() {
             @Override
