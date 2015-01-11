@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 
 public class VistaCrearMapa extends Vista1{
@@ -139,16 +140,33 @@ public class VistaCrearMapa extends Vista1{
 		crearVacio = new JButton("Crear sin continente");
 		
 		JPanel medidas = new JPanel();
+		medidas.setLayout(new GridBagLayout());
+		
 		medidas.add(xLabel);
 		medidas.add(horizontal);
 		medidas.add(yLabel);
 		medidas.add(vertical);
-		medidas.add(crear);
-		medidas.add(crearVacio);
+		
+		GridBagConstraints bCrear = new GridBagConstraints();
+		bCrear.gridy = 1;
+		bCrear.gridwidth = 2;
+		bCrear.insets = new Insets(10,0,0,20);
+		
+		medidas.add(crear,bCrear);
+		
+		GridBagConstraints bCrearVacio = new GridBagConstraints();
+		bCrearVacio.gridy = 1;
+		bCrearVacio.gridwidth = 2;
+		bCrearVacio.insets = new Insets(10,0,0,0);
+		
+		medidas.add(crearVacio,bCrearVacio);
+		//medidas.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 		
 		GridBagConstraints vMedidas = new GridBagConstraints();
 		vMedidas.gridwidth = 2;
 		vMedidas.gridy = 0;
+		vMedidas.insets = new Insets(10,0,10,0);
+		//vMedidas.weighty = 0.2;
 		
 		super.panelPrincipal.add(medidas, vMedidas);
 		
@@ -189,22 +207,32 @@ public class VistaCrearMapa extends Vista1{
 		super.panelPrincipal.add(vGrafo, vG);
 		
 		continente = new JButton("Definir continente");
+		//continente.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		continente.setVisible(false);
 		
 		GridBagConstraints cont = new GridBagConstraints();
 		cont.gridy = 2;
+		cont.insets = new Insets(10,0,0,0);
 		
 		super.panelPrincipal.add(continente, cont);
 		
 		JPanel botones = new JPanel();
+		botones.setLayout(new GridBagLayout());
 		guardar = new JButton("Guardar");
+		//guardar.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
 		cargar = new JButton("Cargar");
-		botones.add(guardar);
-		botones.add(cargar);
+		GridBagConstraints gGuardar = new GridBagConstraints();
+		gGuardar.insets = new Insets(0,0,0,25);
+		botones.add(guardar, gGuardar);
+		GridBagConstraints gCargar = new GridBagConstraints();
+		gCargar.weightx = 0.5;
+		botones.add(cargar, gCargar);
+		//botones.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 		
 		GridBagConstraints panelBotones = new GridBagConstraints();
 		panelBotones.gridwidth = 2;
 		panelBotones.gridy = 3;
+		panelBotones.insets = new Insets(10,0,10,0);
 		
 		super.panelPrincipal.add(botones, panelBotones);
 	}
