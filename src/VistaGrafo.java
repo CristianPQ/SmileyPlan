@@ -35,7 +35,7 @@ public class VistaGrafo extends JPanel {
 	private ArrayList<String> mapeo;
 	private BasicVisualizationServer<Integer,String> vv;
 	
-	public  VistaGrafo(){
+	public  VistaGrafo(ControladorPresentacionMapa cm){
 		g = new DirectedSparseMultigraph<Integer, String>();
 		mapeo = new ArrayList<String>();
 		this.setBackground(Color.CYAN);
@@ -43,10 +43,10 @@ public class VistaGrafo extends JPanel {
 	}
 	
 	
-	/*@Override
+	@Override
     public Dimension getPreferredSize() {
         return new Dimension(600,600);
-    }*/
+    }
 
 	public void crearVertex(Integer i){
 		g.addVertex((Integer)i);
@@ -79,14 +79,18 @@ public class VistaGrafo extends JPanel {
 	}
 	
 	public void dibujar(){
-
+		
+		/* g.addVertex((Integer)1);
+		 g.addVertex((Integer)2);
+		 g.addVertex((Integer)3);
+*/
 	 Layout<Integer, String> layout = new CircleLayout(g);
 		 
 	
 		 
 		 BasicVisualizationServer<Integer,String> vv =
 	              new BasicVisualizationServer<Integer,String>(layout);
-	   // vv.setPreferredSize(new Dimension(600,600));
+	    vv.setPreferredSize(new Dimension(300,300));
 		 
         Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
             public Paint transform(Integer i) {

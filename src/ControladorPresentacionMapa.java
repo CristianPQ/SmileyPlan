@@ -14,6 +14,8 @@ public class ControladorPresentacionMapa {
 		cmd.setContPresMapa(this);
 		cmed = cmd;
 		vm = new VistaMapa(this);
+		vg = new VistaGrafo(this);
+		//vg.dibujar();
 		vCrearMapa = new VistaCrearMapa(this);
 		cm = new ControladorMapa();
 		cagen.setContPresMapa(this);
@@ -83,14 +85,21 @@ public class ControladorPresentacionMapa {
 			cm.agregarCiudad(n,x,y);
 			ArrayList<String> m = vg.consultarMapeo();
 			boolean insertat = false;
-			int i;
-			for (i = 0; i < m.size() && !insertat; ++i){
-				if (m.isEmpty()) m.add(i, n);
+			m.add(n);
+			
+			int i = m.indexOf(n);			
+			/*for (i = 0; i < m.size() && !insertat; ++i){
+				if (m.get(i).equals(null)) m.add(i, n);
 				insertat = true;
 			}
-			if (!insertat) vg.modificarMapeo(m);
+			*/
+			System.out.println(i);
+
+			vg.modificarMapeo(m);
 			vg.crearVertex(i);
 
+			vCrearMapa.actualizarGrafo();
+			
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
@@ -114,6 +123,8 @@ public class ControladorPresentacionMapa {
 			vg.modificarMapeo(m);
 			vg.eliminarVertex(i);
 			
+			vCrearMapa.actualizarGrafo();
+
 			
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
@@ -192,6 +203,9 @@ public class ControladorPresentacionMapa {
 			//System.out.println("estic a controlador presnt per crear");
 			cm.agregarCamino(cOrig, cDest, medio, cap, cmed.devolverControlador());
 			vg.crearAresta(cOrig, cDest, medio);
+			
+			vCrearMapa.actualizarGrafo();
+
 			}
 		catch (Exception e) {
 			vm.setError(e.getMessage());
@@ -211,6 +225,9 @@ public class ControladorPresentacionMapa {
 		try {
 			cm.eliminarCamino(COrig, cDest, medio);
 			vg.eliminarAresta(COrig, cDest, medio);
+			
+			vCrearMapa.actualizarGrafo();
+
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
@@ -291,7 +308,7 @@ public class ControladorPresentacionMapa {
 			String[] sFila = sMapa[i].split(" ");
 			for(int j = 0; j < sFila.length ; ++j) {
 				if(sFila[j].equals("$")) {
-					System.out.println("Un vertice a–adido");
+					System.out.println("Un vertice aï¿½adido");
 					vert.add(i);
 					horiz.add(j);
 					
@@ -301,6 +318,10 @@ public class ControladorPresentacionMapa {
 		System.out.println("En ControlPresentacionMapa " + horiz.toString());
 		System.out.println("En ControlPresentacionMapa " + vert.toString());
 		System.out.println("MapaToString" + s);
+	}
+	
+	public VistaGrafo getVGrafo(){
+		return vg;
 	}
 	
 }
