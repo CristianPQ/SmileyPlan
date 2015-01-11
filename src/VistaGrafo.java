@@ -75,14 +75,18 @@ public class VistaGrafo extends JPanel {
     }
 
 	public void crearVertex(Integer i){
-		g.addVertex((Integer)i);
-		System.out.println("vertices de grafo: " + g.getVertices().toString());
+		System.out.println("vertices de grafo antes de agregar: " + g.getVertices().toString());
+		System.out.println("vertice a agregar: " + i);
+		g.addVertex(i);
+		System.out.println("vertices de grafo despues de agregar: " + g.getVertices().toString());
 		System.out.println("numero vertices: " + g.getVertexCount());
 		layout.initialize();
 	}
 	
 	public void eliminarVertex(Integer i){
+		System.out.println("Antes de removeVertex: " + g.getVertices().toString());
 		g.removeVertex(i);
+		System.out.println("Despues de removeVertex: " + g.getVertices().toString());
 		//layout.
 		layout.initialize();
 	}

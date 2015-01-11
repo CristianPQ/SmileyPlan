@@ -259,9 +259,25 @@ public class VistaCrearMapa extends Vista1{
 	public void pintarCiudad(String n){
 		ArrayList<String> m = vGrafo.consultarMapeo();
 		
-		m.add(n);
+		int i = 0;
+		boolean agregado = false;
+		System.out.println("mapa tiene un size de: " + m.size());
+		System.out.println("mapa contiene: " + m.toString());
+		for(int j = 0; j < m.size(); ++j) {
+			System.out.println("en el for");
+			if(m.get(j).equals("null")){
+				System.out.println("en el for en el if");
+				m.set(j, n);
+				i = j;
+				agregado = true;
+			}
+		}
 		
-		int i = m.indexOf(n);			
+		if(!agregado) {
+			System.out.println("en el no agregado");
+			m.add(n);
+			i = m.indexOf(n);
+		}			
 		/*for (i = 0; i < m.size() && !insertat; ++i){
 			if (m.get(i).equals(null)) m.add(i, n);
 			insertat = true;
@@ -280,7 +296,7 @@ public class VistaCrearMapa extends Vista1{
 		
 		int i = m.indexOf(n);	
 		System.out.println("la i es :" + i);
-		m.remove(i);
+		m.set(i, "null");
 		
 		vGrafo.modificarMapeo(m);
 		vGrafo.eliminarVertex(i);
