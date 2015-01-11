@@ -154,8 +154,15 @@ public class Solucion {
 		
 	
 		for(int i = 0; i < rem.size(); i = i + 2){
-			if(rem.get(i) != rem.get(i+1)) simple.add(rem.get(i));
+			if(rem.get(i) != rem.get(i+1)) {		
+				simple.add(rem.get(i));
+				simple.add(rem.get(i+1));
+			}
 		}
+		System.out.println(" ");
+		for (int w = 0; w < simple.size(); ++w) System.out.println(simple.get(w) + " ");
+		
+		
 		return simple;
 	}
 	
@@ -166,7 +173,9 @@ public class Solucion {
 		for(int i = 0; i < seguimiento.size(); ++i ){
 			res.add(map[seguimiento.get(i)]);
 		}
-		
+		for (int j = 0; j < map.length; ++j) System.out.println(map[j] + " ");
+		System.out.println(" ");
+		for (int w = 0; w < res.size(); ++w) System.out.println(res.get(w) + " ");
 		return res;
 	}
 	

@@ -53,6 +53,7 @@ public class ControladorPresentacionAlgoritmo {
 		}
 		
 		public String subirSeg(){
+
 			return ca.consSeg(cpmapa.devolverControladorMapa());
 			}
 		

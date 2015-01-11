@@ -280,8 +280,10 @@ public class VistaAlgoritmo extends Vista2 {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (Segui.isEmpty()){
-					
+				if (Segui.isEmpty()) Segui = listarSegui();
+					if (nivel < Segui.size()){
+					vb.agregar(Segui.get(nivel) + " " + Segui.get(nivel+1));
+					nivel = nivel + 2;
 				}
 				
 			}
