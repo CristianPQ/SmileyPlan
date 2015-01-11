@@ -127,8 +127,8 @@ public class AntiHillLayout<V, E> extends AbstractLayout<V,E> {
                                
                                 double angle = (2 * Math.PI * i) / (vertex_ordered_list.size()/* - 1*/);
  
-                                coord.setLocation((Math.cos(angle) * radius + width / 2) + 45,
-                                                (Math.sin(angle) * radius + height / 2) + 45);
+                                coord.setLocation((Math.cos(angle) * radius + width / 2)/* + 45*/,
+                                                (Math.sin(angle) * radius + height / 2)/* + 45*/);
  
                                 CircleVertexData data = getCircleData(v);
                                 data.setAngle(angle);
