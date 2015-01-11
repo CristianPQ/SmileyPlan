@@ -248,6 +248,11 @@ public class ControladorPresentacionMapa {
 	public void cargarBrowserCiudades(){
 		try {
 			vm.abrirBrowserCargarCiudades();
+			String[] cius = listarCiudades();
+			for(String s: cius) {
+				String[] n = s.split(" ");
+				vCrearMapa.pintarCiudad(n[0]);
+			}
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
@@ -256,6 +261,11 @@ public class ControladorPresentacionMapa {
 	public void cargarBrowserCaminos(){
 		try {
 			vm.abrirBrowserCargarCaminos();
+			String[] cams = listarCaminos();
+			for(String s: cams) {
+				String[] n = s.split(" ");
+				vCrearMapa.pintarCamino(n[0], n[1], n[2]);
+			}
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}
@@ -279,7 +289,7 @@ public class ControladorPresentacionMapa {
 			String[] sFila = sMapa[i].split(" ");
 			for(int j = 0; j < sFila.length ; ++j) {
 				if(sFila[j].equals("$")) {
-					System.out.println("Un vertice a�adido");
+					System.out.println("Un vertice anadido");
 					vert.add(i);
 					horiz.add(j);
 					

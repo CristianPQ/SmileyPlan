@@ -50,7 +50,7 @@ public class VistaCrearMapa extends Vista1{
 							setError(e1.getMessage());
 						}
 					}
-					else setError("No puede ser un número negativo"); 
+					else setError("No puede ser un numero negativo"); 
 				}
 				else {
 					setError("Falta rellenar una casilla");
@@ -123,7 +123,11 @@ public class VistaCrearMapa extends Vista1{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
-				abrirBrowserGuardar();
+				try{
+					abrirBrowserGuardar();
+				} catch (Exception e1) {
+					setError(e1.getMessage());
+				}
 			}
 		});
 	}
