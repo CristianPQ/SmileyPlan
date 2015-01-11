@@ -218,12 +218,12 @@ public class VistaAlgoritmo extends Vista2 {
         //*********************PANEL SOLUCION PARCIAL *************
   		JPanel panelsol = new JPanel(); 
   		panelsol.setBorder(BorderFactory.createLoweredBevelBorder());
-  		JButton solbut = new JButton(); 
-  		solbut.setText("Ver Seguimientto"); 
-  		JButton adel = new JButton(); 
-  		adel.setText("adelante");
-  		JButton atras = new JButton(); 
-  		atras.setText("atras");
+  		solbut = new JButton("Ver seguimiento"); 
+  		//solbut.setText("Ver Seguimientto"); 
+  		adel = new JButton("Adelante"); 
+  		//adel.setText("adelante");
+  		atras = new JButton("Atras"); 
+  		//atras.setText("atras");
   		panelsol.add(solbut);
   		panelsol.add(adel); 
   		panelsol.add(atras);
