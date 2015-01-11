@@ -54,15 +54,15 @@ public class VistaGrafo extends JPanel {
 	    vv.setPreferredSize(new Dimension(500,500));
 		 vv.setBackground(Color.green);
 
-        /*Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
+        Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
             public Paint transform(Integer i) {
                 return Color.RED;
-} };*/
+} };
 
-        /*vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
+        vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
         vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
         vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
-       vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);*/
+       vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
 
        add(vv);
         
