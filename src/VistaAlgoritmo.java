@@ -296,7 +296,7 @@ public class VistaAlgoritmo extends Vista2 {
 						else if(ultimo_ej.equals("pr"))
 							vis2.agregar(Segui.get(nivel) + " " + Segui.get(nivel+1));
 						else if(ultimo_ej.equals("dinic"))
-							vis2.agregar(Segui.get(nivel) + " " + Segui.get(nivel+1));
+							vis3.agregar(Segui.get(nivel) + " " + Segui.get(nivel+1));
 						nivel = nivel + 2;
 						
 				}
