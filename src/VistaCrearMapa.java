@@ -233,14 +233,16 @@ public class VistaCrearMapa extends Vista1{
 		super.panelPrincipal.add(botones, panelBotones);
 	}
 	
-<<<<<<< HEAD
+
 	void actualizarGrafo(){
 	vGrafo = cMapa.getVGrafo();
 	
 	vGrafo.dibujar();
 	//GridBagConstraints vG = new GridBagConstraints();
 	
-=======
+	}
+	
+	
 	public void abrirBrowserGuardar()  {
 	   JFrame parentFrame = new JFrame();
 		super.filechooser.setDialogTitle("Elige archivo para el Mapa"); 
@@ -267,7 +269,6 @@ public class VistaCrearMapa extends Vista1{
 				}
 			}
  		}
->>>>>>> FETCH_HEAD
 	}
 	
 }
