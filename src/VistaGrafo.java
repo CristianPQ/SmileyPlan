@@ -10,6 +10,7 @@ import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
+import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
@@ -39,16 +40,18 @@ public class VistaGrafo extends JPanel {
 		g = new DirectedSparseMultigraph<Integer, String>();
 		mapeo = new ArrayList<String>();
 		this.setBackground(Color.CYAN);
-		Layout<Integer, String> layout = new CircleLayout<Integer, String>(g);
+		Layout<Integer, String> layout = new FRLayout<Integer, String>(g);
 		//layout.setLocation(, arg1);
 		layout.setSize(new Dimension(400,400));
 		layout.initialize();
+		//layout.
 		
 		 
 		 BasicVisualizationServer<Integer,String> vv =
 	              new BasicVisualizationServer<Integer,String>(layout);
 	    vv.setPreferredSize(new Dimension(500,500));
 		 vv.setBackground(Color.green);
+
         /*Transformer<Integer,Paint> vertexPaint = new Transformer<Integer,Paint>() {
             public Paint transform(Integer i) {
                 return Color.RED;
