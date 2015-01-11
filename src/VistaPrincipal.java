@@ -73,11 +73,16 @@ public class VistaPrincipal {
 		//Provisional 
 		
 		tabs.addTab("Mapa", null, cpmapa.getVistaCrearMapa(), "Crea un mapa");
+		tabs.setBackgroundAt(0,Color.lightGray);
 		tabs.addTab("Ciudades y caminos", null, cpmapa.getVistaMapa(), "Edita las ciudades y los caminos");
+		tabs.setBackgroundAt(1,Color.lightGray);
 		tabs.addTab("Agente", null, cpa.getVista(), "Edita los agentes");
+		tabs.setBackgroundAt(2,Color.lightGray);
 		tabs.addTab("MedioTransporte", null, cpm.getVista(), "Edita los medios de transporte");
+		tabs.setBackgroundAt(3,Color.lightGray);
 		tabs.addTab("Algoritmo", null, cpalg.getVista(), "Ejecuta el programa");
-		//tabs.add("Ayuda", ayuda); 
+		tabs.setBackgroundAt(4,Color.lightGray);
+		
 		
 		GridBagConstraints gbcTabs = new GridBagConstraints();
 		//mBar.gridheight = 5;
