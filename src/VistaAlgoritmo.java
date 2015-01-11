@@ -64,7 +64,7 @@ public class VistaAlgoritmo extends Vista2 {
 	private JButton solbut; 
 	private JPanel panelsol; 
 	private JButton adel; 
-	private JButton atras; 
+	//private JButton atras; 
 	
 	VistaAlgoritmo(ControladorPresentacionAlgoritmo cpa){
 		super(); 
@@ -223,11 +223,11 @@ public class VistaAlgoritmo extends Vista2 {
   		//solbut.setText("Ver Seguimientto"); 
   		adel = new JButton("Adelante"); 
   		//adel.setText("adelante");
-  		atras = new JButton("Atras"); 
+  		//atras = new JButton("Atras"); 
   		//atras.setText("atras");
   		panelsol.add(solbut);
   		panelsol.add(adel); 
-  		panelsol.add(atras);
+  		//panelsol.add(atras);
   		
   		
   		GridBagConstraints pSol = new GridBagConstraints();
@@ -289,6 +289,7 @@ public class VistaAlgoritmo extends Vista2 {
 			}
 		
 		});
+		
 		
 
 	
