@@ -58,7 +58,8 @@ public class VistaAlgoritmo extends Vista2 {
 	private GridBagConstraints mainCons3 = new GridBagConstraints();
 	private GridBagLayout mainLayout = new GridBagLayout();
 	
-	private String Segui;
+	private ArrayList<String> Segui = new ArrayList<String>();
+	private int nivel = 0;
 	
 	private JButton solbut; 
 	private JPanel panelsol; 
@@ -270,7 +271,7 @@ public class VistaAlgoritmo extends Vista2 {
 					vis3.clear();
 					vb.agregar("Recorrido Dinic");
 				}
-				Segui = cpalg.subirSeg();
+			//	Segui = cpalg.subirSeg();
 				vb.agregar("Pulsa adelante para continuar");
 			}
 			});
@@ -279,7 +280,9 @@ public class VistaAlgoritmo extends Vista2 {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				if (Segui.isEmpty()){
+					
+				}
 				
 			}
 		
@@ -485,6 +488,26 @@ public class VistaAlgoritmo extends Vista2 {
 		//String respuesta = cpalg.escribirItinearios(); 
 		String respuesta = "hola"; 
 		textarea.setText(respuesta); 
+	}
+	
+	public ArrayList<String> listarSegui(){
+		String nombre = cpalg.subirSeg();
+		ArrayList<String> ret = new ArrayList<String> ();
+		if (nombre == null) return ret;
+		int i = 0;
+		String nom;
+		while(i < nombre.length()){
+			nom = "";
+			nom += nombre.charAt(i);
+			++i;
+			while (nombre.charAt(i) != ' '){
+				nom += nombre.charAt(i);
+				++i;
+			}
+			++i;
+			if (nom.charAt(0) != ' ') ret.add(nom);
+		}
+		return ret;
 	}
 	
 }
