@@ -35,12 +35,14 @@ public class VistaGrafo extends JPanel {
 	private Graph <Integer, String> g;
 	private ArrayList<String> mapeo;
 	private BasicVisualizationServer<Integer,String> vv;
+	private Layout<Integer, String> layout;
 	
 	public  VistaGrafo(ControladorPresentacionMapa cm){
 		g = new DirectedSparseMultigraph<Integer, String>();
 		mapeo = new ArrayList<String>();
 		this.setBackground(Color.CYAN);
-		Layout<Integer, String> layout = new AntiHillLayout<Integer, String>(g, 0);
+		layout = new AntiHillLayout<Integer, String>(g, 0);
+		//layout = new CircleLayout<Integer,String>(g);
 		//layout.setLocation(, arg1);
 		layout.setSize(new Dimension(400,400));
 		//layout.initialize();
@@ -74,22 +76,27 @@ public class VistaGrafo extends JPanel {
 
 	public void crearVertex(Integer i){
 		g.addVertex((Integer)i);
-		
+		System.out.println("vertices de grafo: " + g.getVertices().toString());
+		System.out.println("numero vertices: " + g.getVertexCount());
+		layout.initialize();
 	}
 	
 	public void eliminarVertex(Integer i){
 		g.removeVertex(i);
+		//layout.
+		layout.initialize();
 	}
 	
 	public void crearAresta(String n1, String n2, String mt){
 		int o = mapeo.indexOf(n1);
 		int d = mapeo.indexOf(n2);
 		g.addEdge(n1 + " - " + n2 + " / " + mt, o,d, EdgeType.DIRECTED);
-		
+		layout.initialize();
 	}
 	
 	public void eliminarAresta(String n1, String n2, String mt){
 		g.removeEdge(n1 + " - " + n2 + " / " + mt);
+		layout.initialize();
 	}
 
 	public ArrayList<String> consultarMapeo(){

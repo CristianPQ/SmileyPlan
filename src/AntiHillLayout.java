@@ -64,6 +64,7 @@ public class AntiHillLayout<V, E> extends AbstractLayout<V,E> {
         {
             if (vertex_ordered_list == null)
                 vertex_ordered_list = new ArrayList<V>(getGraph().getVertices());
+            	System.out.println("Vertex ordered list defined");
             Collections.sort(vertex_ordered_list, comparator);
         }
  
@@ -94,9 +95,13 @@ public class AntiHillLayout<V, E> extends AbstractLayout<V,E> {
                 if (d != null)
                 {
                 		System.out.println("en if de  antihill");
-                    if (vertex_ordered_list == null)
+                		System.out.println("getGraph().getVertices(): " + getGraph().getVertices().toString());
+                    //if (vertex_ordered_list == null) {
+                    	
+                    	System.out.println("en if de vertex_ordered_list");
+                    	
                         setVertexOrder(new ArrayList<V>(getGraph().getVertices()));
- 
+                    //}
                    
                         double height = d.getHeight();
                         double width = d.getWidth();
@@ -108,7 +113,7 @@ public class AntiHillLayout<V, E> extends AbstractLayout<V,E> {
                         }
  
                         int i = 0;
-                        System.out.println("vertOrderedList" + vertex_ordered_list.toString());
+                        	System.out.println("vertOrderedList" + vertex_ordered_list.toString());
                         for (V v : vertex_ordered_list)
                         {
                         	System.out.println("en for de  antihill");
