@@ -222,6 +222,11 @@ public class VistaAlgoritmo extends Vista2 {
         JPanel superior = new JPanel();
         superior.setLayout(new GridBagLayout());
         
+        coste.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("")));
+        panelAlg.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("")));
+        panelEjec.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("")));
+        
+        
         GridBagConstraints gCoste = new GridBagConstraints();
 		gCoste.fill = GridBagConstraints.BOTH;
 		gCoste.gridy = 0;
@@ -264,6 +269,8 @@ public class VistaAlgoritmo extends Vista2 {
   		GridBagConstraints pSol = new GridBagConstraints();
   		pSol.fill = GridBagConstraints.BOTH;
   		pSol.gridy = 3;
+  		
+  		panelsol.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("")));
   		
   		superior.add(panelsol,pSol); 
   		

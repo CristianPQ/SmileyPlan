@@ -58,11 +58,14 @@ public abstract class Vista2 extends Vista1 {
 		panelLista.add(label2);
 		panelLista.add(text2);
 		panelLista.add(labelError);
+		panelLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("")));
 
 		
 		//panel botones 
 		panelBotones = new JPanel(); 
-		panelBotones.setBorder(BorderFactory.createLoweredBevelBorder());
+		//panelBotones.setBorder(BorderFactory.createLoweredBevelBorder());
+		//Camino = BorderFactory.createTitledBorder("Camino: ");
+		panelBotones.setBorder(BorderFactory.createTitledBorder(BorderFactory.createTitledBorder("")));
 		panelBotones.setMinimumSize(new Dimension(600,100));
 		//panelBotones.setMaximumSize(new Dimension(600,100));
 		botonCargar = new JButton(); 
