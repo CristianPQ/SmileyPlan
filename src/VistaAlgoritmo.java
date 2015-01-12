@@ -280,9 +280,31 @@ public class VistaAlgoritmo extends Vista2 {
         inf.fill = GridBagConstraints.BOTH;
         inf.gridy = 1;
         inf.gridheight = 5;
-        inferior.add(vb);
-        inferior.add(vis2);
-        inferior.add(vis3);
+        
+        GridBagConstraints down = new GridBagConstraints();
+        down.gridy = 1;
+        
+        JPanel vbBig = new JPanel(new GridBagLayout());
+        JLabel FFLabel = new JLabel("Ford Fulkerson");
+        FFLabel.setFont(new Font("Verdana",1,20));
+        vbBig.add(FFLabel);
+        vbBig.add(vb, down);
+        
+        JPanel vis2Big = new JPanel(new GridBagLayout());
+        JLabel PRLabel = new JLabel("PushRelabel");
+        PRLabel.setFont(new Font("Verdana",1,20));
+        vis2Big.add(PRLabel);
+        vis2Big.add(vis2, down);
+        
+        JPanel vis3Big = new JPanel(new GridBagLayout());
+        JLabel DLabel = new JLabel("Dinic");
+        DLabel.setFont(new Font("Verdana",1,20));
+        vis3Big.add(DLabel);
+        vis3Big.add(vis3, down);
+        
+        inferior.add(vbBig);
+        inferior.add(vis2Big);
+        inferior.add(vis3Big);
         
         
 	    
