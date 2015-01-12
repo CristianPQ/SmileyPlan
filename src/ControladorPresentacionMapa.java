@@ -14,7 +14,9 @@ public class ControladorPresentacionMapa {
 		cmd.setContPresMapa(this);
 		cmed = cmd;
 		vm = new VistaMapa(this);
-		vg = new VistaGrafo(this);
+		System.out.println("Antes de crear VistaGrafo");
+		vg = new VistaGrafo(/*this*/);
+		System.out.println("Despues de crear VistaGrafo");
 		//vg.dibujar();
 		vCrearMapa = new VistaCrearMapa(this);
 		cm = new ControladorMapa();

@@ -7,11 +7,11 @@ import javax.swing.UIManager.LookAndFeelInfo;
 //import java.awt.*; 
 //import java.lang.*;
 
-public class main {
+public class Main {
 	
-	public main(String[] args) {
+	/*public main(String[] args) {
 		main(args);
-	}
+	}*/
 
 	public static void main(String[] args) {
 		

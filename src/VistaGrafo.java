@@ -1,6 +1,6 @@
 
 
-import javax.swing.BorderFactory;
+/*import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
@@ -10,15 +10,15 @@ import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
-import edu.uci.ics.jung.algorithms.layout.FRLayout;
+import edu.uci.ics.jung.algorithms.layout.FRLayout;*/
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseMultigraph;
+//import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
-import edu.uci.ics.jung.samples.SimpleGraphDraw;
+//import edu.uci.ics.jung.samples.SimpleGraphDraw;
 import edu.uci.ics.jung.visualization.BasicVisualizationServer;
-import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
+//import edu.uci.ics.jung.visualization.control.DefaultModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
@@ -37,8 +37,10 @@ public class VistaGrafo extends JPanel {
 	private BasicVisualizationServer<Integer,String> vv;
 	private Layout<Integer, String> layout;
 	
-	public  VistaGrafo(ControladorPresentacionMapa cm){
+	public  VistaGrafo(/*ControladorPresentacionMapa cm*/){
+			System.out.println("Antes de crear Grafo g");
 		g = new DirectedSparseMultigraph<Integer, String>();
+			System.out.println("Despues de crear Grafo g");
 		mapeo = new ArrayList<String>();
 		this.setBackground(Color.LIGHT_GRAY);
 		layout = new AntiHillLayout<Integer, String>(g, 0);
