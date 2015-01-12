@@ -30,7 +30,7 @@ public abstract class Vista2 extends Vista1 {
 		super(); 
 		
 		vb = new VistaBuscador(this); 
-		vb.scroller.setMaximumSize(new Dimension(250,500));
+		//vb.scroller.setMaximumSize(new Dimension(250,500));
 		
 		//panel que engloba a todos
 		panelv2 = new JPanel(); 
@@ -41,7 +41,7 @@ public abstract class Vista2 extends Vista1 {
 		panelLista = new JPanel(); 
 		panelLista.setBorder(BorderFactory.createLoweredBevelBorder());
 		//panelLista.setMinimumSize(new Dimension(600,100));
-		panelLista.setMaximumSize(new Dimension(600,100));
+		//panelLista.setMaximumSize(new Dimension(600,100));
 	
 		text1 = new JTextField(); 
 		text1.setPreferredSize(new Dimension(100,30));
@@ -64,7 +64,7 @@ public abstract class Vista2 extends Vista1 {
 		panelBotones = new JPanel(); 
 		panelBotones.setBorder(BorderFactory.createLoweredBevelBorder());
 		panelBotones.setMinimumSize(new Dimension(600,100));
-		panelBotones.setMaximumSize(new Dimension(600,100));
+		//panelBotones.setMaximumSize(new Dimension(600,100));
 		botonCargar = new JButton(); 
 		botonGuardar = new JButton();
 		botonModificar = new JButton();

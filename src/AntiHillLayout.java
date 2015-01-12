@@ -24,8 +24,7 @@ public class AntiHillLayout<V, E> extends AbstractLayout<V,E> {
  
         private double radius;
         private List<V> vertex_ordered_list;
-        private V antHill;
-       
+        
         Map<V, CircleVertexData> circleVertexDataMap =
                         LazyMap.decorate(new HashMap<V,CircleVertexData>(),
                         new Factory<CircleVertexData>() {
@@ -38,7 +37,6 @@ public class AntiHillLayout<V, E> extends AbstractLayout<V,E> {
          */
         public AntiHillLayout(Graph<V,E> g, V antHill) {
                 super(g);
-                this.antHill = antHill;
         }
  
         /**

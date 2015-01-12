@@ -30,7 +30,7 @@ public abstract class Vista1 extends JPanel {
         labelError = new JLabel("Visor de errores");
         JPanel panelErrores = new JPanel();
         panelErrores.setMinimumSize(new Dimension(1000,40));
-        panelErrores.setMaximumSize(new Dimension(1000,40));
+        //panelErrores.setMaximumSize(new Dimension(1000,40));
         panelErrores.setBorder(BorderFactory.createEtchedBorder());
         panelErrores.add(labelError);
         

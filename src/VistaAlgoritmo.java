@@ -117,7 +117,28 @@ public class VistaAlgoritmo extends Vista2 {
 
 		panelLista.removeAll();
 		
+		super.remove(panelLista);
+		super.panelv2.remove(panelLista);
 		
+		precio = new JRadioButton("precio");
+		distancia = new JRadioButton("distancia"); 
+		precio.setSelected(true); 
+		
+		txtcoste = new JLabel("Funcion de coste");
+		txtcoste.setFont(new Font("Verdana",1,20));
+		//panelLista.add(txtcoste);
+		
+		JPanel coste = new JPanel();
+		coste.setBorder(BorderFactory.createLoweredBevelBorder());
+		coste.add(txtcoste);
+		coste.add(precio);
+		coste.add(distancia);
+		
+		
+		//super.panelv2.add(coste, gCoste);
+		
+		//super.panelLista.add(precio);
+		//super.panelLista.add(distancia);
 		
 		JPanel panelAlg = new JPanel(); 
 		panelAlg.setBorder(BorderFactory.createLoweredBevelBorder());
@@ -139,19 +160,7 @@ public class VistaAlgoritmo extends Vista2 {
 		panelAlg.add(D);
 		
 		super.panelv2.remove(panelBotones);
-
-		GrupoCoste = new ButtonGroup(); 
-		precio = new JRadioButton("precio");
-		distancia = new JRadioButton("distancia"); 
-		precio.setSelected(true); 
-		GrupoCoste.add(precio);
-		GrupoCoste.add(distancia);
-		txtcoste = new JLabel("Funcion de coste");
-		txtcoste.setFont(new Font("Verdana",1,20));
-		panelLista.add(txtcoste);
-
-		super.panelLista.add(precio);
-		super.panelLista.add(distancia); 
+ 
 		
 		
 	
@@ -178,7 +187,7 @@ public class VistaAlgoritmo extends Vista2 {
         panelEjec = new JPanel(); 
 		panelEjec.setBorder(BorderFactory.createLoweredBevelBorder());
 		panelEjec.setMinimumSize(new Dimension(600,100));
-		panelEjec.setMaximumSize(new Dimension(600,100));
+		//panelEjec.setMaximumSize(new Dimension(600,100));
 		
         CiuO = new JTextField();
       	CiuO.setPreferredSize(new Dimension(100,30));
@@ -209,18 +218,30 @@ public class VistaAlgoritmo extends Vista2 {
 		botonEjecutar.setFont(new Font("Verdana",4,10));;
         panelEjec.add(botonEjecutar);
         
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
         
         JPanel superior = new JPanel();
         superior.setLayout(new GridBagLayout());
-        c.gridy = 0;
-        superior.add(panelAlg,c);
-        c.gridy = 1;
-        superior.add(panelEjec,c);
         
+        GridBagConstraints gCoste = new GridBagConstraints();
+		gCoste.fill = GridBagConstraints.BOTH;
+		gCoste.gridy = 0;
+		superior.add(coste, gCoste);
+		
+		GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridy = 1;
+        superior.add(panelAlg,c);
+        
+        GridBagConstraints c1 = new GridBagConstraints();
+        c1.fill = GridBagConstraints.BOTH;
+        c1.gridy = 2;
+        superior.add(panelEjec,c1);
+        
+        GridBagConstraints c2 = new GridBagConstraints();
+        c2.fill = GridBagConstraints.BOTH;
+        c2.gridy = 0;
         //c.gridheight = 1;
-        super.panelv2.add(superior,c);
+        super.panelv2.add(superior,c2);
         
         //*********************PANEL SOLUCION PARCIAL *************
   		JPanel panelsol = new JPanel(); 
@@ -241,21 +262,24 @@ public class VistaAlgoritmo extends Vista2 {
   		
   		
   		GridBagConstraints pSol = new GridBagConstraints();
-  		pSol.gridy = 2;
+  		pSol.fill = GridBagConstraints.BOTH;
+  		pSol.gridy = 3;
   		
   		superior.add(panelsol,pSol); 
   		
         
         JPanel inferior = new JPanel();
-        c.gridy = 3;
-        c.gridheight = 5;
+        GridBagConstraints inf = new GridBagConstraints();
+        inf.fill = GridBagConstraints.BOTH;
+        inf.gridy = 1;
+        inf.gridheight = 5;
         inferior.add(vb);
         inferior.add(vis2);
         inferior.add(vis3);
         
         
 	    
-	    super.panelv2.add(inferior,c);
+	    super.panelv2.add(inferior,inf);
 		//super.panelv2.add(vb, mainCons); 
 		//super.panelv2.add(vis2, mainCons2); 
 		//super.panelv2.add(vis3, mainCons3); 

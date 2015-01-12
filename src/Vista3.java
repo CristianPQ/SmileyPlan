@@ -200,7 +200,7 @@ public abstract class Vista3 extends Vista1 {
         //panel Camino
         TitledBorder Camino;
         Camino = BorderFactory.createTitledBorder("Camino: ");
-        panelCaminos = new JPanel();
+        panelCaminos = new JPanel(new GridBagLayout());
         panelCaminos.setBorder(BorderFactory.createTitledBorder(Camino));
         panelCaminos.setMinimumSize(new Dimension(700,100));
         //panelCaminos.setMaximumSize(new Dimension(700,100));
@@ -229,10 +229,12 @@ public abstract class Vista3 extends Vista1 {
         panelCaminos.add(txtCO);
         panelCaminos.add(label5);
         panelCaminos.add(txtCD);
-        panelCaminos.add(label6);
-        panelCaminos.add(txtMedio);
-        panelCaminos.add(label7);
-        panelCaminos.add(txtCap);
+        GridBagConstraints gCams = new GridBagConstraints();
+        gCams.gridy = 1;
+        panelCaminos.add(label6,gCams);
+        panelCaminos.add(txtMedio,gCams);
+        panelCaminos.add(label7,gCams);
+        panelCaminos.add(txtCap,gCams);
         
         //panel Botones
         panelBotones = new JPanel();
@@ -350,6 +352,7 @@ public abstract class Vista3 extends Vista1 {
         
         GridBagConstraints v2 = new GridBagConstraints();
         v2.gridy = 1;
+        v2.fill = GridBagConstraints.BOTH;
         //vb.setMinimumSize(new Dimension(50, 200));
         
         ciuts.add(vb,v2);

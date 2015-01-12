@@ -36,22 +36,22 @@ public class VistaBuscador extends JPanel{
     	//##########VISTABUSCADOR
         //#########################################
         
-        vistaBuscar = new JPanel();
+        vistaBuscar = new JPanel(new GridBagLayout());
         //vistaBuscar.setMinimumSize(new Dimension(50,50));
         //vistaBuscar.setMaximumSize(new Dimension(50,50));
         
         
         // Texto a buscar
         textoBusqueda = new JTextField();
-        textoBusqueda.setPreferredSize(new Dimension(120,30));
+        textoBusqueda.setPreferredSize(new Dimension(150,30));
         
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
-        c.gridwidth = 2;
+        //c.gridwidth = 2;
         
-        vistaBuscar.add(textoBusqueda, c);
+        this.add(textoBusqueda, c);
         
         //Fin texto a buscar
         
@@ -84,11 +84,11 @@ public class VistaBuscador extends JPanel{
         
         GridBagConstraints c1 = new GridBagConstraints();
         c1.fill = GridBagConstraints.BOTH;
-        c1.gridx = 2;
+        c1.gridx = 1;
         c1.gridy = 0;
-        c1.gridwidth = 1;
+        //c1.gridwidth = 1;
         
-        vistaBuscar.add(botonBuscar, c1);
+        this.add(botonBuscar, c1);
         
         //Fin Boton Buscar
         
@@ -96,10 +96,10 @@ public class VistaBuscador extends JPanel{
         c2.fill = GridBagConstraints.BOTH;
         c2.gridx = 0;
         c2.gridy = 0;
-        c2.gridwidth = 1;
+        //c2.gridwidth = 1;
         //c2.gridheight = 6;
         
-        this.add(vistaBuscar,c2);
+        //this.add(vistaBuscar,c2);
         //this.add(Box.createRigidArea(new Dimension(0, 5)));
         
         //#########################################
@@ -126,11 +126,11 @@ public class VistaBuscador extends JPanel{
         c3.fill = GridBagConstraints.BOTH;
         c3.gridx = 0;
         c3.gridy = 1;
-        c3.gridwidth = 1;
+        c3.gridwidth = 2;
         //c3.gridheight = 5;
         
-        scroller.setMinimumSize(new Dimension(250,500));
-        scroller.setMaximumSize(new Dimension(250,500));
+        //scroller.setMinimumSize(new Dimension(500,500));
+        //scroller.setMaximumSize(new Dimension(250,500));
         
         
         //#########################################

@@ -413,14 +413,14 @@ public class VistaMapa extends Vista3{
 		public void actualizarListaCiudades() throws Exception{
 			vb.clear();
 			String[] ciudades = cpmapa.listarCiudades();
-			if(!ciudades.equals(null) && ciudades.length > 0) {
+			if(/*ciudades != null &&*/ ciudades.length > 0) {
 				for(int i = 0; i < ciudades.length; ++i){
 					String ciu = ciudades[i]; 
-					try{
+					//try{
 						vb.agregar(ciu);
-					} catch (Exception e) {
-						setError(e.getMessage());
-					}
+					//} catch (Exception e) {
+						//setError(e.getMessage());
+					//}
 				}
 			}
 		}
@@ -428,7 +428,7 @@ public class VistaMapa extends Vista3{
 		public void actualizarListaCaminos() throws Exception{
 			String[] caminos = cpmapa.listarCaminos();
 			vciut.clear();
-			if(caminos.length != 0) {
+			if(caminos.length > 0) {
 				for(int i = 0; i < caminos.length; ++i) vciut.agregar(caminos[i]);
 			}
 		}

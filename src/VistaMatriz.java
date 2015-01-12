@@ -122,7 +122,8 @@ public class VistaMatriz extends JPanel implements MouseListener{
         super.paintComponent(g);
     	this.addMouseListener(this);
     	Graphics2D g2 = (Graphics2D) g;
-    	g2.setColor(Color.white);
+    	//g2.setColor(Color.white);
+    	g2.setColor(Color.GRAY);
         g2.fillRect(0, 0, 350, 350);
         
         if(!vertical.isEmpty() && !horizontal.isEmpty()) {

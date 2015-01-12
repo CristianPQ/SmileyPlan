@@ -57,17 +57,27 @@ public class VistaPrincipal {
         //mBar.gridx = 0;
         //mBar.gridy = 0;
         
-		JMenuBar menuBar = new JMenuBar(); 
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setLayout(new GridBagLayout());
         
+		GridBagConstraints gGuardar = new GridBagConstraints();
+		gGuardar.insets = new Insets(10, 0, 10, 10);
+		gGuardar.gridx = 0;
+		
+		
         JButton menu1 = new JButton("Guardar");
         menu1.setBackground(Color.lightGray);
-		menu1.setFont(new Font("Verdana",4,10));;
-        menuBar.add(menu1); 
+		menu1.setFont(new Font("Verdana",4,10));
+        menuBar.add(menu1, gGuardar); 
         
+        GridBagConstraints gCargar = new GridBagConstraints();
+		gCargar.insets = new Insets(10, 10, 10, 0);
+		gCargar.gridx = 1;
+		
         JButton menu2 = new JButton("Cargar");
         menu2.setBackground(Color.lightGray);
 		menu2.setFont(new Font("Verdana",4,10));;
-        menuBar.add(menu2);
+        menuBar.add(menu2, gCargar);
         
 		frame.setJMenuBar(menuBar);
 
@@ -98,7 +108,7 @@ public class VistaPrincipal {
         //gbcTabs.gridx = 0;
         //gbcTabs.gridy = 1;
         //gbcTabs.gridheight = 2;
-        //gbcTabs.fill = GridBagConstraints.BOTH
+        gbcTabs.fill = GridBagConstraints.BOTH;
 		
 		
 		
