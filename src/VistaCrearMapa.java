@@ -1,16 +1,16 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
+//import java.awt.image.BufferedImage;
+//import java.io.IOException;
+//import java.net.URL;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
+//import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
+//import javax.swing.border.Border;
 
 
 public class VistaCrearMapa extends Vista1{

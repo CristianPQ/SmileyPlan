@@ -1,13 +1,17 @@
 import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.plaf.ColorUIResource;
+//import javax.swing.plaf.ColorUIResource;
 
 //import com.alee.laf.WebLookAndFeel;
 
-import java.awt.*; 
-import java.lang.*;
+//import java.awt.*; 
+//import java.lang.*;
 
 public class main {
+	
+	public main(String[] args) {
+		main(args);
+	}
 
 	public static void main(String[] args) {
 		

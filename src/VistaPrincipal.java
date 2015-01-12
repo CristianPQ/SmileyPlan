@@ -1,14 +1,14 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.awt.image.BufferedImage;
+//import java.io.File;
+//import java.io.IOException;
+//import java.net.URL;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
+//import javax.imageio.ImageIO;
 import javax.swing.*; 
 
 
@@ -24,7 +24,7 @@ public class VistaPrincipal {
 	private JMenu menu2; 
 	private JMenu menu3; 
 	//private JMenu menu4; 
-	private static BufferedImage bg;
+	//private static BufferedImage bg;
 	
 	
 	VistaPrincipal(ControladorPresentacionMedios cpmed,ControladorPresentacionAgentes cpag, ControladorPresentacionMapa cpmap, ControladorPresentacionAlgoritmo cpal){
