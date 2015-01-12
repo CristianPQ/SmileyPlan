@@ -27,6 +27,5 @@
 	<classpathentry kind="lib" path="src/JUNG/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="src/JUNG/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="src/JUNG/wstx-asl-3.2.6.jar"/>
-	<classpathentry kind="lib" path="lib/weblaf-complete-1.28.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
