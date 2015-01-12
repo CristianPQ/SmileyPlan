@@ -834,7 +834,7 @@ public class ControladorMapa {
 					int distanciaCiudades = m.distanciaCiudades(m.listarCiudades().get(i), 
 												aristando.get(j).consultarDestino());
 					
-					if (calcCoste)	f = new FuncionCostePorDistancia();
+					if (!calcCoste)	f = new FuncionCostePorDistancia();
 					
 					else f = new FuncionPorDistancia();
 		
