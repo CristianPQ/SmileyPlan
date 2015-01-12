@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.ColorUIResource;
 
-//import com.alee.laf.WebLookAndFeel;
+import com.alee.laf.WebLookAndFeel;
 
 import java.awt.*; 
 import java.lang.*;
@@ -15,14 +15,14 @@ public class main {
 				new Runnable(){
 					public void run() {
 						try {
-						    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+						    /*for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 						        if ("Nimbus".equals(info.getName())) {
 						            UIManager.setLookAndFeel(info.getClassName());
 						            break;
 						        }
-						    }
+						    }*/
 							
-							//WebLookAndFeel.install();
+							WebLookAndFeel.install();
 						} catch (Exception e) {
 							try{
 								UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
