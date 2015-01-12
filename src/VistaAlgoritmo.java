@@ -354,19 +354,22 @@ public class VistaAlgoritmo extends Vista2 {
 			public void actionPerformed(ActionEvent e) {
 				nivel = 0;
 				comprovar("");
-
+				vb.clear();
+				vis2.clear();
+				vis3.clear();
+				
 				cpalg.initItinerarios();
 				if(ff){
-					vb.clear();
+				//	vb.clear();
 					ultimo_ej = "ff";
 				}
 				
 				else if(pr){
-					vis2.clear();
+					//vis2.clear();
 					ultimo_ej = "pr";
 				}
 				else if(dinic) {
-					vis3.clear();
+					//vis3.clear();
 					ultimo_ej = "dinic";
 				}
 				String source = CiuO.getText();
@@ -397,7 +400,12 @@ public class VistaAlgoritmo extends Vista2 {
 					
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
-
+					
+					if(ff) vb.agregar("Algoritmo de Ford Fulkerson");
+					if(pr) vis2.agregar("Algoritmo Push Relabel");
+					if(dinic) vis3.agregar("Algoritmo de Dinic");
+					
+					
 					 for (int i = 0; i < l.length; ++i ){
 						if(ff)vb.agregar(l[i]);
 						else if(pr) vis2.agregar(l[i]);
@@ -420,6 +428,10 @@ public class VistaAlgoritmo extends Vista2 {
 				vb.clear();
 				vis2.clear();
 				vis3.clear();
+				
+				vb.agregar("Algoritmo de Ford Fulkerson");
+				vis2.agregar("Algoritmo Push Relabel");
+				vis3.agregar("Algoritmo de Dinic");
 				
 				/////FFFFF///////////
 				
@@ -493,7 +505,7 @@ public class VistaAlgoritmo extends Vista2 {
 					cpalg.ejecutar(2,source,sink,funcionCoste);
 					String carga = cpalg.escribirItinearios();
 					String[] l = carga.split("\n");
-
+					
 					 for (int i = 0; i < l.length; ++i ){
 						vis2.agregar(l[i]);
 					 	}
@@ -540,14 +552,14 @@ public class VistaAlgoritmo extends Vista2 {
 		precio.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				distancia.setSelected(false);
 			}
 		});
 		
 		distancia.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				precio.setSelected(false);
 			}
 		});
 	}
