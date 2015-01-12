@@ -11,7 +11,7 @@ public class ControladorAlgoritmo {
 	
 	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
 	private static Exception NoAgentesOD = new Exception("No hay agentes que quieran hacer este viaje");
-	private static Exception NoHayAgentes = new Exception ("No existe ningún agente");
+	private static Exception NoHayAgentes = new Exception ("No existe ningun agente");
 	public double consultarTiempo() throws Exception {
 		//if(!sol.consultarTieneSolucion()) throw AlgoritmoNoEjecutado;
 		return sol.consultarTiempo();

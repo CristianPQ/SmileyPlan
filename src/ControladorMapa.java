@@ -83,6 +83,7 @@ public class ControladorMapa {
 	}
 	
 	public boolean existeContinente() {
+		System.out.println("existe?"); 
 		return m.existeContinenteEnMapa(); 
 	}
 	
@@ -427,8 +428,9 @@ public class ControladorMapa {
 	 * @param file
 	 * @throws Exception
 	 */
-	public void guardarMapa(String file) throws Exception {
-		 GestorDatos gd = new GestorDatos(file); 
+	public void guardarMapaCont(String file) throws Exception {
+		 System.out.println("te continent");  
+		GestorDatos gd = new GestorDatos(file); 
 		 
 		 gd.abrirArchivo("write"); 
 		 
@@ -439,26 +441,23 @@ public class ControladorMapa {
 		 buffer = linea; 
 		 //System.out.println(linea);
 		 
-		 
-		 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
-		 //System.out.println(c);
-		 //guardar coordenadas
-		 if(c != null) {
-			 for(int i = 0; i < c.size(); ++i) {
-				 Coordenadas aux = c.get(i); 
-				 int c1 = aux.consultarX(); 
-				 int c2 = aux.consultarY();
-				 linea = c1 + " " + c2; 
-				 //System.out.println(linea);
-				 buffer = buffer + linea + "\n"; 
-				 
-				 if(buffer.length() > BUFFER_SIZE) {
-						gd.writeBuffer(buffer); 
-						buffer = null; 
-				 }
+			 ArrayList<Coordenadas> c = m.consultarArrayCoord(); 
+			 //System.out.println(c);
+			 //guardar coordenadas
+			 if(c != null) {
+				 for(int i = 0; i < c.size(); ++i) {
+					 Coordenadas aux = c.get(i); 
+					 int c1 = aux.consultarX(); 
+					 int c2 = aux.consultarY();
+					 linea = c1 + " " + c2; 
+					 //System.out.println(linea);
+					 buffer = buffer + linea + "\n"; 	 
+					 if(buffer.length() > BUFFER_SIZE) {
+							gd.writeBuffer(buffer); 
+							buffer = null;
+					 }
 			 }
-		 }
-		 
+		}
 		if(buffer != null) {
 			gd.writeBuffer(buffer);
 		}
@@ -467,6 +466,19 @@ public class ControladorMapa {
 	}
 	
 	
+	public void guardarMapa(String file) throws Exception {
+		System.out.println("no te continent");  
+		GestorDatos gd = new GestorDatos(file); 
+		 
+		 gd.abrirArchivo("write"); 
+		 
+		 //altura y anchura
+		 int x = m.consultarAnchura();
+		 int y = m.consultarAltura(); 
+		 String linea = x + " " + y + "\n"; 
+		 gd.writeBuffer(linea); 
+		 gd.cerrarArchivo(); 
+	}
 	
 	/**
 	 * Guardar ciudades

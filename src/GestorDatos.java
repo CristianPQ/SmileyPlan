@@ -133,7 +133,7 @@ public class GestorDatos {
 	    public int bufferToStrings() throws Exception{
 	    	String s; 
 	    	int cont = 0; 
-	    	if ((s = br.readLine()) == null) throw new Exception ("fichero vacío"); 
+	    	if ((s = br.readLine()) == null) throw new Exception ("fichero vacio"); 
 	    	sol.add(s);
 	    	++cont; 
 	    	while( (s = br.readLine()) != null) {

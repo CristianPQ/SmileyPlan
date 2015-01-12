@@ -60,9 +60,10 @@ public class ControladorPresentacionMapa {
 		return cm.cargarMapa(file);
 	}
 	
-	public void guardarMapa(String file) {
+	public void guardarMapa(String file, boolean tieneCont) {
 		try {
-			cm.guardarMapa(file);
+			if(tieneCont) cm.guardarMapaCont(file);
+			else cm.guardarMapa(file);
 		} catch (Exception e) {
 			vm.setError(e.getMessage());
 		}

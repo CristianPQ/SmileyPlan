@@ -25,6 +25,7 @@ public class VistaCrearMapa extends Vista1{
 	protected JButton guardar;
 	private JTextField horizontal;
 	private JTextField vertical;
+	private boolean tieneContinente = false; 
 	
 	public VistaCrearMapa(ControladorPresentacionMapa contMapa) {
 		super();
@@ -65,6 +66,7 @@ public class VistaCrearMapa extends Vista1{
 						try {
 							int x = Integer.parseInt(horizontal.getText());
 							int y = Integer.parseInt(vertical.getText());
+							tieneContinente = true; 
 							cMapa.crearMapa(x, y);
 								//System.out.println("Antes de redeclarar vMatriz");
 							vMatriz.definirMedidas(x, y);
@@ -96,11 +98,12 @@ public class VistaCrearMapa extends Vista1{
 							cMapa.crearMapa(x, y, "");
 							vMatriz.definirMedidas(x, y);
 							vMatriz.repaint();
+							tieneContinente = false; 
 						} catch (Exception e1) {
 							setError(e1.getMessage());
 						}
 					}
-					else setError("No puede ser un número negativo"); 
+					else setError("No puede ser un numero negativo"); 
 				}
 				else {
 					setError("Falta rellenar una casilla");
@@ -355,8 +358,8 @@ public class VistaCrearMapa extends Vista1{
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 			String file = filechooser.getSelectedFile().getAbsolutePath(); 
 			file = file.concat(".smiley");
-			System.out.println("CONTINENTE: " + cMapa.consultarContinente()); 
-			cMapa.guardarMapa(file);
+			//System.out.println("CONTINENTE: " + cMapa.consultarContinente()); 
+			cMapa.guardarMapa(file, tieneContinente);
 		}
 	}
 	
@@ -374,6 +377,7 @@ public class VistaCrearMapa extends Vista1{
 				vMatriz.repaint(); 
 				if(cMapa.existeContinente()){
 					System.out.println("existeContinente"); 
+					tieneContinente = true; 
 					ArrayList<Integer> horiz = new ArrayList<Integer>(); 
 					ArrayList<Integer> vert = new ArrayList<Integer>(); 
 					cMapa.extraerOcupados(horiz, vert); 
