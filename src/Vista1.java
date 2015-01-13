@@ -1,6 +1,6 @@
 
 import java.awt.*;
-import java.io.FileFilter;
+//import java.io.FileFilter;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

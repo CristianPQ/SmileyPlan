@@ -1,7 +1,7 @@
 import java.util.*;
-import java.awt.Component;
+//import java.awt.Component;
 
-import javax.swing.*;
+//import javax.swing.*;
 
 public class ControladorPresentacionMedios {
 	

@@ -2,8 +2,8 @@ import java.util.*;
 
 import javax.lang.model.type.NullType;
 
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.SparseMultigraph;
+//import edu.uci.ics.jung.graph.Graph;
+//import edu.uci.ics.jung.graph.SparseMultigraph;
 
 
 public class ControladorMapa {
@@ -614,7 +614,7 @@ public class ControladorMapa {
 		gd.abrirArchivo("read"); 
 		
 		
-		int num = gd.bufferToStrings(); 
+		//int num = gd.bufferToStrings(); 
 		String carga = gd.obtenerTodoElString(); 
 		//System.out.println("dins cargarMapa");
 		
@@ -819,7 +819,7 @@ public class ControladorMapa {
 	public Entrada crearGrafo(boolean calcCoste, ControladorMedioTransporte mt) 
 			throws Exception{
 
-		Graph <Integer, String> g = new SparseMultigraph<Integer, String>();
+		//Graph <Integer, String> g = new SparseMultigraph<Integer, String>();
 		//for (int i = 0; i < consultarNumVertices();++i)	System.out.println(mapping[i]);
 
 		Grafo<NullType,Arista> g1 = new Grafo<NullType, Arista>(consultarNumVertices()); //init grafo	

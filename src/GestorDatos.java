@@ -3,7 +3,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.LineNumberReader;
+//import java.io.LineNumberReader;
 import java.util.*;
 
 
@@ -21,7 +21,7 @@ public class GestorDatos {
 	 protected String buffer; 
 	 //private int cont; 
  	private ArrayList<String> sol = new ArrayList<String>();
- 	private Iterator<String> it = sol.iterator();
+ 	//private Iterator<String> it = sol.iterator();
  	private int pos = 0; 
 	 
 	 /**

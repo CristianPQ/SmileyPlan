@@ -8,21 +8,22 @@ import java.awt.event.ActionListener;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
 
+
 //import javax.imageio.ImageIO;
 import javax.swing.*; 
 
 
 public class VistaPrincipal {
 
-	private JTabbedPane tabs; 
+	//private JTabbedPane tabs; 
 	private static ControladorPresentacionMedios cpm; 
 	private static ControladorPresentacionAgentes cpa; 
 	private static ControladorPresentacionMapa cpmapa; 
 	private static ControladorPresentacionAlgoritmo cpalg; 
 
-	private JMenu menu1; 
-	private JMenu menu2; 
-	private JMenu menu3; 
+	//private JMenu menu1; 
+	//private JMenu menu2; 
+	//private JMenu menu3; 
 	//private JMenu menu4; 
 	//private static BufferedImage bg;
 	
@@ -64,20 +65,28 @@ public class VistaPrincipal {
 		gGuardar.insets = new Insets(10, 0, 10, 10);
 		gGuardar.gridx = 0;
 		
-		
         JButton menu1 = new JButton("Guardar");
         menu1.setBackground(Color.lightGray);
 		menu1.setFont(new Font("Verdana",4,10));
         menuBar.add(menu1, gGuardar); 
         
         GridBagConstraints gCargar = new GridBagConstraints();
-		gCargar.insets = new Insets(10, 10, 10, 0);
+		gCargar.insets = new Insets(10, 10, 10, 10);
 		gCargar.gridx = 1;
 		
         JButton menu2 = new JButton("Cargar");
         menu2.setBackground(Color.lightGray);
 		menu2.setFont(new Font("Verdana",4,10));;
         menuBar.add(menu2, gCargar);
+        
+        GridBagConstraints gReset = new GridBagConstraints();
+		gReset.insets = new Insets(10, 10, 10, 0);
+		gReset.gridx = 2;
+		
+        JButton menu3 = new JButton("Reset");
+        menu3.setBackground(Color.lightGray);
+		menu3.setFont(new Font("Verdana",4,10));;
+        menuBar.add(menu3, gReset);
         
 		frame.setJMenuBar(menuBar);
 
@@ -138,7 +147,17 @@ public class VistaPrincipal {
 					cpa.cargarBrowser(); 
 					
 	            }
-		}); 
+		});
+		
+		menu3.addActionListener(new ActionListener() {
+			@Override
+			 public void actionPerformed(ActionEvent event) { 
+					cpm = new ControladorPresentacionMedios(); 
+					cpa = new ControladorPresentacionAgentes(); 
+					cpmapa = new ControladorPresentacionMapa(cpm, cpa); 				
+					cpalg = new ControladorPresentacionAlgoritmo(cpa,cpmapa,cpm);
+	            }
+		});
 	}
 	
 	

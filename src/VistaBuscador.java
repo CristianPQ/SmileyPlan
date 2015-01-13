@@ -8,7 +8,7 @@ import javax.swing.event.ListSelectionListener;
 public class VistaBuscador extends JPanel{
     
     private JLabel label;
-    private JPanel vistaBuscar;
+    //private JPanel vistaBuscar;
     private JTextField textoBusqueda;
     private JButton botonBuscar;
     
@@ -36,7 +36,7 @@ public class VistaBuscador extends JPanel{
     	//##########VISTABUSCADOR
         //#########################################
         
-        vistaBuscar = new JPanel(new GridBagLayout());
+        //vistaBuscar = new JPanel(new GridBagLayout());
         //vistaBuscar.setMinimumSize(new Dimension(50,50));
         //vistaBuscar.setMaximumSize(new Dimension(50,50));
         

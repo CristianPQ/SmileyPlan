@@ -36,7 +36,7 @@ public class FordFulkerson extends Algoritmo{
 					//System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + adyacencias.get(j).consultarFlujo() + " indicesI es " + indiceI + " incideF es " + indiceF);
 					
 					int viejoFlujo = adyacencias.get(j).consultarFlujo();
-					int viejoFlow = flow;
+					//int viejoFlow = flow;
 					g.modificarFlujoArista(u, v, nuevoFlujo); //actualiza el flow de la arista 
 					if (Math.min(flow,viejoFlujo) > 0 && v != inicio  )//segunda condicion evitar bucles //si queda flow del que nos han llamado y queda flow pen la arista, llamamos al vertice adyacente
 						crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,viejoFlujo),v,t,coste); 

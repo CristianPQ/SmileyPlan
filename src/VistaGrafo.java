@@ -62,8 +62,8 @@ public class VistaGrafo extends JPanel {
 } };
 
         vv.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
-        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
+        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<Integer>());
+        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller<String>());
        vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
 
        add(vv);

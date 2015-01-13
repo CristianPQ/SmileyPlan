@@ -17,7 +17,7 @@ public class Mapa {
 	private static Exception NoExiste = new Exception ("Este elemento no existe");
 	private static Exception NoExistenCiudades = new Exception ("No existe alguna "
 			+ "de las ciudades o ambas");
-	private static Exception Vacio = new Exception ("Esta vacio");
+	//private static Exception Vacio = new Exception ("Esta vacio");
 	//private static Exception HayCaminos = new Exception ("Hay caminos que usan esta ciudad");
 	private static Exception NoValido = new Exception ("No valido");
 	private static Exception CoordNegativas = new Exception ("Las coordenadas deben ser valores positivos"); 
@@ -329,11 +329,11 @@ public class Mapa {
 	 * @param cDest
 	 * @return booleano
 	 */
-	private boolean existenCaminosCon(String nC) {
+	/*private boolean existenCaminosCon(String nC) {
 		Ciudad c = g.consultarVertice(nC);
 		int index = c.consultarEquivalente();
 		return g.existeAristaCon(index);
-	}
+	}*/
 	
 	private void eliminarCaminosCon(String c) {
 		Ciudad ciu = g.consultarVertice(c);
@@ -435,12 +435,12 @@ public class Mapa {
 	 * @param c
 	 * @return booleano
 	 */
-	private boolean existeCamino(Camino c) {
+	/*private boolean existeCamino(Camino c) {
 		String cOrig = c.consultarOrigen();
 		String cDest = c.consultarDestino();
 		String medio = c.consultarTransporte();
 		return existeCamino(cOrig, cDest, medio);
-	}
+	}*/
 	
 	/**
 	 * Agrega un camino c en el mapa 

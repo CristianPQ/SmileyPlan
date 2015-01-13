@@ -3,15 +3,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
+//import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
+//import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
+//import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
+//import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -22,17 +22,17 @@ public class VistaAlgoritmo extends Vista2 {
 	private ControladorPresentacionAlgoritmo cpalg; 
 	private JRadioButton distancia; 
 	private JRadioButton precio; 
-	private ButtonGroup GrupoCoste; 
+	//private ButtonGroup GrupoCoste; 
 	private JRadioButton FF; 
 	private JRadioButton PR; 
 	private JRadioButton D; 
 	private ButtonGroup grupoAlg; 
 	private JLabel txtalg;
 	private JLabel txtcoste; 
-	private JPanel PanelAlg; 
-	private DefaultListModel model;
-	private JList l;
-    private JScrollPane scroller;
+	//private JPanel PanelAlg; 
+	//private DefaultListModel model;
+	//private JList l;
+    //private JScrollPane scroller;
 
     private String ultimo_ej; 
     
@@ -52,8 +52,8 @@ public class VistaAlgoritmo extends Vista2 {
     private JLabel labelco;
     private JLabel labelcd; 
 	
-	private boolean esPrecio = false; 
-	private boolean esDistancia = false; 
+	//private boolean esPrecio = false; 
+	//private boolean esDistancia = false; 
 	
 	private GridBagConstraints mainCons = new GridBagConstraints();
 	private GridBagConstraints mainCons2 = new GridBagConstraints();
@@ -64,7 +64,7 @@ public class VistaAlgoritmo extends Vista2 {
 	private int nivel = 0;
 	
 	private JButton solbut; 
-	private JPanel panelsol; 
+	//private JPanel panelsol; 
 	private JButton adel; 
 	//private JButton atras; 
 	
@@ -322,7 +322,7 @@ public class VistaAlgoritmo extends Vista2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comprovar("");
-				if(!ultimo_ej.equals(null)){
+				if(ultimo_ej != null){
 				if(ultimo_ej.equals("ff")){
 					vb.clear();
 					vb.agregar("Recorrido FordFulkerson");

@@ -1,5 +1,5 @@
 import java.util.*;
-import javax.swing.*;
+//import javax.swing.*;
 
 public class ControladorPresentacionAgentes{
 	private static ControladorAgentes ca;
@@ -133,7 +133,7 @@ public class ControladorPresentacionAgentes{
 
 	//*****************PANEL*****************************
 	
-	public static VistaAgentes getVista(){
+	public VistaAgentes getVista(){
 			//System.out.println("antes de actualizarLista");
 		vistaAg.actualizarLista();
 			//System.out.println("despues de actualizarLista");

@@ -4,7 +4,7 @@ public class ControladorItinerarios {
 	
 	private ArrayList<Itinerario> cjtoit; 
 	
-	private static Exception ItinerarioYaExiste = new Exception("el itinerario ya existe");
+	//private static Exception ItinerarioYaExiste = new Exception("el itinerario ya existe");
 	
 	/**
 	 * Constructora Controlador Itinerarios

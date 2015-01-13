@@ -9,7 +9,7 @@ public class ControladorAlgoritmo {
 	private ArrayList<String > agentes;
 	private String[] mapping;
 	
-	private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
+	//private static Exception AlgoritmoNoEjecutado = new Exception("No se ha ejecutado ningun algoritmo");
 	private static Exception NoAgentesOD = new Exception("No hay agentes que quieran hacer este viaje");
 	private static Exception NoHayAgentes = new Exception ("No existe ningun agente");
 	public double consultarTiempo() throws Exception {
@@ -220,7 +220,7 @@ public class ControladorAlgoritmo {
 		
 		for(int i = 0; i < n; ++i) {
 			buffer = guardaseq.get(i); 
-			String prova = guardaseq.get(i); 
+			//String prova = guardaseq.get(i); 
 			//System.out.println(prova+ "\n");
 			gd.writeBuffer(buffer); 
 		}

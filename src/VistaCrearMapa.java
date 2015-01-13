@@ -240,7 +240,7 @@ public class VistaCrearMapa extends Vista1{
 		//vD.gridx = 1;
 		//vD.gridy = 1;
 		
-		vGrafo = cMapa.getVGrafo();
+		vGrafo = /*cMapa.getVGrafo()*/new VistaGrafo();
 		//Tendria que ser vGrafo en vez de vMatriz
 		super.panelPrincipal.add(vGrafo, vG);
 		
@@ -284,8 +284,8 @@ public class VistaCrearMapa extends Vista1{
 
 	void actualizarGrafo(){
 	
-	GridBagConstraints vG = new GridBagConstraints();
-	vGrafo = cMapa.getVGrafo();
+	//GridBagConstraints vG = new GridBagConstraints();
+	//vGrafo = cMapa.getVGrafo();
 	
 
 	

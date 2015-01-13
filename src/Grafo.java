@@ -75,7 +75,7 @@ public class Grafo<E1, E2> {
     private ArrayList<Sentidos> aristas;
     private ArrayList<Integer> vacios;
     
-    private static Exception NoExiste = new Exception ("Este elemento no existe");
+    //private static Exception NoExiste = new Exception ("Este elemento no existe");
     
     
     /**

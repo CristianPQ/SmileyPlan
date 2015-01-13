@@ -9,8 +9,8 @@ public class PushRelabel extends Algoritmo {
 	private int[] active;
 	private LinkedList<Integer> q;
 	private int flow;
-	private Date da;
-	private int inicio;
+	//private Date da;
+	//private int inicio;
 	private ArrayList<Integer> seguimiento;
 	//int control;
 	
@@ -48,7 +48,7 @@ public class PushRelabel extends Algoritmo {
 					//System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + adyacencias.get(j).consultarFlujo() + " indicesI es " + indiceI + " incideF es " + indiceF);
 					
 					int viejoFlujo = adyacencias.get(j).consultarFlujo();
-					int viejoFlow = flow;
+					//int viejoFlow = flow;
 					g.modificarFlujoArista(u, v, nuevoFlujo); //actualiza el flow de la arista 
 					if (Math.min(flow,viejoFlujo) > 0 /*&& v != inicio*/  )//segunda condicion evitar bucles //si queda flow del que nos han llamado y queda flow pen la arista, llamamos al vertice adyacente
 						crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,viejoFlujo),v,t,coste, control+1); 
@@ -174,15 +174,15 @@ public class PushRelabel extends Algoritmo {
 	 */
 	public Solucion ejecutar (Entrada g) throws Exception{
 		seguimiento = new ArrayList<Integer>();
-		da = new Date();
-		long diff = da.getTime();
+		//da = new Date();
+		//long diff = da.getTime();
 		double t1 = System.nanoTime();
 		//GrafoAntiguo g = e.consultarGrafo();
 		
 		int s = g.consultarSource();
 		int t = g.consultarSink();
 		int numA = g.consultarNumeroAgentes();
-		inicio = s;
+		//inicio = s;
 		alturas = new int[g.consultarNumeroVertices()];
 		exceso = new int[g.consultarNumeroVertices()];
 		active = new int[g.consultarNumeroVertices()];
@@ -228,7 +228,7 @@ public class PushRelabel extends Algoritmo {
 		} 
 		
 		Solucion sol = new Solucion(flow);
-		double t2 = System.currentTimeMillis();
+		//double t2 = System.currentTimeMillis();
 		sol.modificarTiempo((System.nanoTime()-t1)/1000000);
 		sol.seqsol = seq; 
 		for (int k = 0; k < seguimiento.size(); ++k)

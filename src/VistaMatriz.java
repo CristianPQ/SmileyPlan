@@ -15,8 +15,8 @@ public class VistaMatriz extends JPanel implements MouseListener{
 	int x;
 	int y;
 	//ControladorPresentacionMapa contpm;
-	ArrayList<Integer> horizontal;
-	ArrayList<Integer> vertical;
+	private ArrayList<Integer> horizontal;
+	private ArrayList<Integer> vertical;
 	
 	
 	
@@ -27,6 +27,7 @@ public class VistaMatriz extends JPanel implements MouseListener{
 		horizontal = new ArrayList<Integer>();
 		vertical = new ArrayList<Integer>();
 		//this.setSize(350, 350);
+		this.addMouseListener(this);
 	}
 	
 	public VistaMatriz() {
@@ -35,6 +36,7 @@ public class VistaMatriz extends JPanel implements MouseListener{
 		y = 1;
 		horizontal = new ArrayList<Integer>();
 		vertical = new ArrayList<Integer>();
+		this.addMouseListener(this);
 	}
 	
 	void definirOcupadas(ArrayList<Integer> horiz, ArrayList<Integer> vert) {
@@ -120,7 +122,7 @@ public class VistaMatriz extends JPanel implements MouseListener{
     public void paintComponent(Graphics g) {
         
         super.paintComponent(g);
-    	this.addMouseListener(this);
+    	//this.addMouseListener(this);
     	Graphics2D g2 = (Graphics2D) g;
     	//g2.setColor(Color.white);
     	g2.setColor(Color.GRAY);
@@ -182,7 +184,7 @@ public class VistaMatriz extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println("Entrar en mouseClicked"
-				+ "\n button: " + e.getButton() + "\n X: " + e.getX() + "\n Y: " + e.getY() + "\n");
+				+ /*"\n button: " + e.getButton() +*/ "\n X: " + e.getX() + "\n Y: " + e.getY() + "\n");
 		if ((e.getButton() == 1) && (e.getX() >= 25) && (e.getX() <= 325) && (e.getY() >= 25) && (e.getY() <= 325)) {
 			int xPos = (e.getX() - 25)/(300/x);
 			int yPos = (e.getY() - 25)/(300/y);
@@ -193,7 +195,7 @@ public class VistaMatriz extends JPanel implements MouseListener{
 					exist = true;
 					horizontal.remove(i);
 					vertical.remove(i);
-					break;
+					//break;
 				}
 			}
 			if(!exist) {
@@ -208,6 +210,7 @@ public class VistaMatriz extends JPanel implements MouseListener{
 					System.out.println("x: " + horizontal.get(i) + "     y: " + vertical.get(i));
 				}
 			repaint();
+			//this.paintComponent(this.getGraphics());
 		}
 		
 	}

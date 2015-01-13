@@ -1,19 +1,19 @@
-import java.awt.*;
+//import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
+//import javax.swing.BorderFactory;
+//import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
+//import javax.swing.JLabel;
+//import javax.swing.JPanel;
+//import javax.swing.JTextField;
+//import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
+//import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class VistaMapa extends Vista3{
 	
@@ -22,8 +22,8 @@ public class VistaMapa extends Vista3{
 	private String id2;
 	private String id3; 
 	
-	private JLabel cami; 
-	private JLabel ciutat; 
+	//private JLabel cami; 
+	//private JLabel ciutat; 
 	//private VistaGrafo vg;
 	
 	//boolean mapaCreado = false;
@@ -76,7 +76,6 @@ public class VistaMapa extends Vista3{
 							System.out.println(s[0]); 
 							
 						} catch (Exception e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						//System.out.print(mapaCreado);
@@ -212,7 +211,6 @@ public class VistaMapa extends Vista3{
 		super.vb.agregarSelecListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
 				   if (vb.haySeleccionado()) {
 	                   String linea = vb.devolverSeleccionado();
 	                    String nom = linea.split(" ")[0];

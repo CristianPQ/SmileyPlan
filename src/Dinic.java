@@ -5,7 +5,7 @@ public class Dinic extends Algoritmo {
 
 	static ArrayList<String> seq = new ArrayList<String>(); 
 	private ArrayList<Integer> seguimiento;
-	private int inicio;
+	//private int inicio;
 	/**
 	 * Crea los itinerarios de la solucion 
 	 * @param sol
@@ -35,7 +35,7 @@ public class Dinic extends Algoritmo {
 					//System.out.println(" u es "+ u + " y v es " + v + " i li envia un flow de " + adyacencias.get(j).consultarFlujo() + " indicesI es " + indiceI + " incideF es " + indiceF);
 					
 					int viejoFlujo = adyacencias.get(j).consultarFlujo();
-					int viejoFlow = flow;
+					//int viejoFlow = flow;
 					g.modificarFlujoArista(u, v, nuevoFlujo); //actualiza el flow de la arista 
 					if (Math.min(flow,viejoFlujo) > 0  )//segunda condicion evitar bucles //si queda flow del que nos han llamado y queda flow pen la arista, llamamos al vertice adyacente
 						crearItinerarios (sol,g,indiceI,nuevoIndiceF,Math.min(flow,viejoFlujo),v,t,coste); 
@@ -146,7 +146,7 @@ public class Dinic extends Algoritmo {
 		    int flow = 0;
 			//GrafoAntiguo g = e.consultarGrafo();
 			int src = g.consultarSource();
-			int inicio = src;
+			//int inicio = src;
 			int dest = g.consultarSink();
 			int numA = g.consultarNumeroAgentes();
 			inicializacion(g,src,dest);
@@ -165,7 +165,7 @@ public class Dinic extends Algoritmo {
 		    
 			Solucion sol = new Solucion(flow);
 			double t2 = System.nanoTime();
-			double div = 1000000;
+			//double div = 1000000;
 			//System.out.println("Estoy en el algorismo " + (t2-t1)/div);
 			sol.modificarTiempo((t2-t1)/1000000);
 			for (int k = 0; k < seguimiento.size(); ++k)

@@ -6,7 +6,7 @@ public class ControladorPresentacionMapa {
 	private static ControladorMapa cm;
 	private static VistaMapa vm;
 	private static VistaCrearMapa vCrearMapa;
-	private VistaGrafo vg;
+	//private VistaGrafo vg;
 	private static ControladorPresentacionMedios cmed;
 	private static ControladorPresentacionAgentes cag;
 
@@ -15,7 +15,7 @@ public class ControladorPresentacionMapa {
 		cmed = cmd;
 		vm = new VistaMapa(this);
 		System.out.println("Antes de crear VistaGrafo");
-		vg = new VistaGrafo(/*this*/);
+		//vg = new VistaGrafo(/*this*/);
 		System.out.println("Despues de crear VistaGrafo");
 		//vg.dibujar();
 		vCrearMapa = new VistaCrearMapa(this);
@@ -304,9 +304,9 @@ public class ControladorPresentacionMapa {
 		System.out.println("MapaToString" + s);
 	}
 	
-	public VistaGrafo getVGrafo(){
+	/*public VistaGrafo getVGrafo(){
 		return vg;
-	}
+	}*/
 	
 }
 

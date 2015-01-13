@@ -137,7 +137,6 @@ public class VistaAgentes extends Vista2 {
 		super.vb.agregarSelecListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
 				   if (vb.haySeleccionado()) {
 	                   String linea = vb.devolverSeleccionado();
 	                    String nombre = linea.split(" ")[0];

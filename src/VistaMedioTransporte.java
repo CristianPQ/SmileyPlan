@@ -1,13 +1,13 @@
-import java.awt.*;
+//import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+//import java.io.File;
 import java.util.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
+//import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class VistaMedioTransporte extends Vista2 {
 	
@@ -203,7 +203,6 @@ public class VistaMedioTransporte extends Vista2 {
 		super.vb.agregarSelecListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
 				   if (vb.haySeleccionado()) {
 	                   String linea = vb.devolverSeleccionado();
 	                    String nombre = linea.split(" ")[0];
