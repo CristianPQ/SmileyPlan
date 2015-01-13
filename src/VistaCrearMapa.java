@@ -34,6 +34,9 @@ public class VistaCrearMapa extends Vista1{
 		horizontal.setText("");
 		vertical.setText("");
 		tieneContinente = false;
+		continente.setEnabled(false);
+		crear.setEnabled(true);
+		crearVacio.setEnabled(true);
 	}
 	
 	public VistaCrearMapa(ControladorPresentacionMapa contMapa) {
@@ -80,8 +83,11 @@ public class VistaCrearMapa extends Vista1{
 								//System.out.println("Antes de redeclarar vMatriz");
 							vMatriz.definirMedidas(x, y);
 								//System.out.println("Despues de redeclarar vMatriz");
-							//vMatriz.repaint();
-							continente.setVisible(true);
+							vMatriz.repaint();
+							//continente.setVisible(true);
+							continente.setEnabled(true);
+							crearVacio.setEnabled(false);
+							crear.setEnabled(false);
 						} catch (Exception e1) {
 							setError(e1.getMessage());
 						}
@@ -108,6 +114,8 @@ public class VistaCrearMapa extends Vista1{
 							vMatriz.definirMedidas(x, y);
 							vMatriz.repaint();
 							tieneContinente = false; 
+							crearVacio.setEnabled(false);
+							crear.setEnabled(false);
 						} catch (Exception e1) {
 							setError(e1.getMessage());
 						}
@@ -135,7 +143,8 @@ public class VistaCrearMapa extends Vista1{
 						//System.out.println(horiz.toString());
 						//System.out.println(vert.toString());
 					vMatriz.definirOcupadas(horiz, vert);
-					continente.setVisible(false);
+					vMatriz.repaint();
+					continente.setEnabled(false);
 				} catch (Exception e1) {
 					setError(e1.getMessage());
 				}
@@ -257,7 +266,8 @@ public class VistaCrearMapa extends Vista1{
 		continente.setBackground(Color.lightGray);
 		continente.setFont(new Font("Verdana",4,10));;
 		//continente.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-		continente.setVisible(false);
+		//continente.setVisible(false);
+		continente.setEnabled(false);
 		
 		GridBagConstraints cont = new GridBagConstraints();
 		cont.gridy = 2;

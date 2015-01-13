@@ -146,13 +146,13 @@ public class VistaMatriz extends JPanel implements MouseListener{
     	g2.setColor(Color.black);
     	
     	//HORIZONTALES
-        for(int i = 25; i <= 325; i += 300/x) {
+        for(int i = 25; i <= 325; i += 300/y) {
         		//System.out.println("Linea horizontal");
         	g2.drawLine(25, i, 325, i);
         }
         
         //VERTICALES
-        for(int j = 25; j <= 325; j += 300/y) {
+        for(int j = 25; j <= 325; j += 300/x) {
         		//System.out.println("Linea vertical");
         	g2.drawLine(j, 25, j, 325);
         }
