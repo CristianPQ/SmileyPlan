@@ -9,6 +9,12 @@ public class ControladorPresentacionMapa {
 	//private VistaGrafo vg;
 	private static ControladorPresentacionMedios cmed;
 	private static ControladorPresentacionAgentes cag;
+	
+	public void reset() {
+		vCrearMapa.reset();
+		vm.reset();
+		cm = new ControladorMapa();
+	}
 
 	public ControladorPresentacionMapa( ControladorPresentacionMedios cmd, ControladorPresentacionAgentes cagen){
 		cmd.setContPresMapa(this);

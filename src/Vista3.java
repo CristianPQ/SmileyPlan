@@ -50,7 +50,17 @@ public abstract class Vista3 extends Vista1 {
     
     //protected VistaMatriz vMatriz;
    
-  
+    public void reset() {
+		vb.clear();
+		vciut.clear();
+		txtCO.setText("");
+		txtCD.setText("");
+		txtMedio.setText("");
+		txtIdCiutat.setText("");
+		txtCap.setText("");
+		txtX.setText("");
+		txtY.setText("");
+	}
    
    
     public Vista3() {
@@ -136,7 +146,7 @@ public abstract class Vista3 extends Vista1 {
         //panelv3.setBorder(BorderFactory.createEmptyBorder(10,20,15,20));
         
         //panellmapa
-        TitledBorder Mapa;
+        /*TitledBorder Mapa;
         Mapa = BorderFactory.createTitledBorder("Mapa: ");
         panelLista = new JPanel();
         panelLista.setBorder(BorderFactory.createTitledBorder(Mapa));
@@ -164,7 +174,7 @@ public abstract class Vista3 extends Vista1 {
         panelLista.add(label2);
         panelLista.add(txtYMapa);
         panelLista.add(label3);
-        panelLista.add(txtConti);
+        panelLista.add(txtConti);*/
        
         //panell Ciutat
         TitledBorder Ciudad;

@@ -28,7 +28,7 @@ public class VistaPrincipal {
 	//private static BufferedImage bg;
 	
 	
-	VistaPrincipal(ControladorPresentacionMedios cpmed,ControladorPresentacionAgentes cpag, ControladorPresentacionMapa cpmap, ControladorPresentacionAlgoritmo cpal){
+	public VistaPrincipal(ControladorPresentacionMedios cpmed,ControladorPresentacionAgentes cpag, ControladorPresentacionMapa cpmap, ControladorPresentacionAlgoritmo cpal){
 		
 		cpm = cpmed; 
 		cpa = cpag; 
@@ -152,10 +152,10 @@ public class VistaPrincipal {
 		menu3.addActionListener(new ActionListener() {
 			@Override
 			 public void actionPerformed(ActionEvent event) { 
-					cpm = new ControladorPresentacionMedios(); 
-					cpa = new ControladorPresentacionAgentes(); 
-					cpmapa = new ControladorPresentacionMapa(cpm, cpa); 				
-					cpalg = new ControladorPresentacionAlgoritmo(cpa,cpmapa,cpm);
+					cpm.reset(); 
+					cpa.reset(); 
+					cpmapa.reset(); 				
+					cpalg.reset();
 	            }
 		});
 	}

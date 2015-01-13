@@ -66,9 +66,20 @@ public class VistaAlgoritmo extends Vista2 {
 	private JButton solbut; 
 	//private JPanel panelsol; 
 	private JButton adel; 
-	//private JButton atras; 
+	//private JButton atras;
 	
-	VistaAlgoritmo(ControladorPresentacionAlgoritmo cpa){
+	public void reset() {
+		CiuO.setText("");
+		CiuD.setText("");
+		ff=true;
+		dinic = false;
+		pr = false;
+		vb.clear();
+		vis2.clear();
+		vis3.clear();
+	}
+	
+	public VistaAlgoritmo(ControladorPresentacionAlgoritmo cpa){
 		super(); 
 		ff=true;
 		dinic = false;

@@ -20,6 +20,11 @@ public class ControladorMapa {
 	public ControladorMapa(){
 	
 	}
+	
+	/*public void reset() {
+		m.reset();
+		
+	}*/
 	/**
 	 * Constructora de ControladorMapa
 	 * @param anchuraX

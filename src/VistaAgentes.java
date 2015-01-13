@@ -14,7 +14,11 @@ public class VistaAgentes extends Vista2 {
 	private String tempIni;
 	private String tempFi;
 	
-	VistaAgentes(ControladorPresentacionAgentes cpag){
+	/*public void reset() {
+		super.reset();
+	}*/
+	
+	public VistaAgentes(ControladorPresentacionAgentes cpag){
 		super();
 		ctrlPAg = cpag;
 		
@@ -197,7 +201,8 @@ public class VistaAgentes extends Vista2 {
 			actualizarLista();
 		}
 		
-	}		
+	}
+		
 }
 
 	

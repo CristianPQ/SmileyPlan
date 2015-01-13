@@ -26,6 +26,13 @@ public abstract class Vista2 extends Vista1 {
 	protected JLabel label3; 
 	protected JLabel labelError; 
 	
+	public void reset() {
+		text1.setText("");
+		text2.setText("");
+		//text3.setText("");
+		vb.clear();
+	}
+	
 	public Vista2() {
 		super(); 
 		

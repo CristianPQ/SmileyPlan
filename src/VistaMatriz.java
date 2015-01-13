@@ -18,7 +18,13 @@ public class VistaMatriz extends JPanel implements MouseListener{
 	private ArrayList<Integer> horizontal;
 	private ArrayList<Integer> vertical;
 	
-	
+	public void reset() {
+		horizontal.clear();
+		horizontal.clear();
+		x = 1;
+		y = 1;
+		repaint();
+	}
 	
 	public VistaMatriz(int X, int Y) {
 		super();

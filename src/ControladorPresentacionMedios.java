@@ -9,6 +9,11 @@ public class ControladorPresentacionMedios {
 	private static VistaMedioTransporte vistaMedio; 
 	private ControladorPresentacionMapa mapa;
 	
+	public void reset() {
+		cm = new ControladorMedioTransporte();
+		vistaMedio.reset();
+	}
+	
 	public ControladorPresentacionMedios() {
 		//crea el controlador de datos de medio de transporte
 		cm = new ControladorMedioTransporte(); 

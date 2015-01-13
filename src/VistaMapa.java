@@ -28,7 +28,9 @@ public class VistaMapa extends Vista3{
 	
 	//boolean mapaCreado = false;
 	
-	VistaMapa (ControladorPresentacionMapa controladorPMapa){
+	
+	
+	public VistaMapa (ControladorPresentacionMapa controladorPMapa){
 		super();
 		
 		cpmapa = controladorPMapa;
@@ -37,7 +39,7 @@ public class VistaMapa extends Vista3{
 		crearListeners();
 		super.botonGuardar.setVisible(false);
 		super.botonCargar.setVisible(false);
-		super.panelLista.setVisible(false);
+		//super.panelLista.setVisible(false);
 		/*super.txtCO.setEditable(false);
 		super.txtCD.setEditable(false);
 		super.txtMedio.setEditable(false);

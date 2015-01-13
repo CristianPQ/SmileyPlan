@@ -11,6 +11,10 @@ public class ControladorPresentacionAlgoritmo {
 		private static ControladorPresentacionMapa cpmapa;
 		 
 
+		public void reset() {
+			va.reset();
+			citi = new ControladorItinerarios();
+		}
 		
 		public ControladorPresentacionAlgoritmo(ControladorPresentacionAgentes cpa2, ControladorPresentacionMapa cpmapa2,
 				ControladorPresentacionMedios cpm2) {
@@ -74,4 +78,5 @@ public class ControladorPresentacionAlgoritmo {
 		public VistaAlgoritmo getVista(){
 			return va; 
 		}
+
 }

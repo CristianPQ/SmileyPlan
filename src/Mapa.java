@@ -23,6 +23,11 @@ public class Mapa {
 	private static Exception CoordNegativas = new Exception ("Las coordenadas deben ser valores positivos"); 
 	
 	
+	/*public void reset() {
+		
+		
+	}*/
+	
 	
 	/**
 	 * Constructora de Mapa
@@ -603,6 +608,5 @@ public class Mapa {
 		}
 		return map;
 	}
-
 	
 }

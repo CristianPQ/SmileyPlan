@@ -6,6 +6,10 @@ public class ControladorPresentacionAgentes{
 	private static VistaAgentes vistaAg;
 	private ControladorPresentacionMapa mapa;
 
+	public void reset() {
+		ca = new ControladorAgentes();
+		vistaAg.reset();
+	}
 	
 	public ControladorPresentacionAgentes(){
 		ca = new ControladorAgentes();
@@ -151,4 +155,5 @@ public class ControladorPresentacionAgentes{
 	public ControladorAgentes devolverControlador(){
 		return ca;
 	}
+
 }

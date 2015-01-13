@@ -37,6 +37,23 @@ public class VistaGrafo extends JPanel {
 	private BasicVisualizationServer<Integer,String> vv;
 	private Layout<Integer, String> layout;
 	
+	public void reset() {
+		Collection<Integer> a = g.getVertices();
+		ArrayList<Integer> as = new ArrayList<Integer>(a);
+		for(int i = 0; i < as.size(); ++i) {
+			g.removeVertex(as.get(i));
+		}
+		
+		Collection<String> ar = g.getEdges();
+		ArrayList<String> ars = new ArrayList<String>(ar);
+		for(int i = 0; i < ars.size(); ++i) {
+			g.removeEdge(ars.get(i));
+		}
+		
+		mapeo.clear();
+		
+	}
+	
 	public  VistaGrafo(/*ControladorPresentacionMapa cm*/){
 			System.out.println("Antes de crear Grafo g");
 		g = new DirectedSparseMultigraph<Integer, String>();

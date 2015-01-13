@@ -27,6 +27,15 @@ public class VistaCrearMapa extends Vista1{
 	private JTextField vertical;
 	private boolean tieneContinente = false; 
 	
+	
+	public void reset() {
+		vMatriz.reset();
+		vGrafo.reset();
+		horizontal.setText("");
+		vertical.setText("");
+		tieneContinente = false;
+	}
+	
 	public VistaCrearMapa(ControladorPresentacionMapa contMapa) {
 		super();
 		
