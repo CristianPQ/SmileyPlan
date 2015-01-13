@@ -37,6 +37,7 @@ public class VistaCrearMapa extends Vista1{
 		continente.setEnabled(false);
 		crear.setEnabled(true);
 		crearVacio.setEnabled(true);
+		comprovar("");
 	}
 	
 	public VistaCrearMapa(ControladorPresentacionMapa contMapa) {

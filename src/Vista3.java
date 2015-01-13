@@ -60,6 +60,7 @@ public abstract class Vista3 extends Vista1 {
 		txtCap.setText("");
 		txtX.setText("");
 		txtY.setText("");
+		comprovar("");
 	}
    
    

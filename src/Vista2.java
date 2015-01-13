@@ -31,6 +31,7 @@ public abstract class Vista2 extends Vista1 {
 		text2.setText("");
 		//text3.setText("");
 		vb.clear();
+		comprovar("");
 	}
 	
 	public Vista2() {

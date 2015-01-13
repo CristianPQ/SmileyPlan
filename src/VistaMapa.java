@@ -99,12 +99,12 @@ public class VistaMapa extends Vista3{
 					String nom = txtIdCiutat.getText();
 					String SX = txtX.getText();
 					String SY = txtY.getText();
-					int X = Integer.parseInt(SX);
-					int Y = Integer.parseInt(SY);	
-					if (SX.equals("") || SY.equals("") ) setError("Una o ambas de las coordenadas estan vacias");
+					if (SX.equals("") || SY.equals("") || nom.equals("")) setError("Hay alguna casilla de Ciudad vacia");
 					else{
 					//vg.agregarCiudad(X, Y, nom);
 						try {
+							int X = Integer.parseInt(SX);
+							int Y = Integer.parseInt(SY);
 							cpmapa.agregarCiudad(nom, X, Y);
 							vb.clear(); 
 							actualizarListaCiudades();
@@ -122,14 +122,14 @@ public class VistaMapa extends Vista3{
 				else{
 					//System.out.println("crear caminos"); 
 					if (txtCO.getText().equals("") || txtCD.getText().equals("")
-							|| txtCap.getText().equals("")) setError("Una o ambas de las coordenadas estan vacias");
+							|| txtCap.getText().equals("") || txtMedio.getText().equals("")) setError("Hay alguna casilla de Camino vacia");
 					else {
 						String ciudadO = txtCO.getText();
 						String ciudadD = txtCD.getText();
 						String md = txtMedio.getText();
-						int cap = Integer.parseInt(txtCap.getText());
 						//vg.agregarCamino(ciudadO, ciudadD, txtCap.getText());
 						try {
+							int cap = Integer.parseInt(txtCap.getText());
 							cpmapa.agregarCamino(ciudadO,ciudadD,md,cap);
 							vciut.clear(); 
 							actualizarListaCaminos();
