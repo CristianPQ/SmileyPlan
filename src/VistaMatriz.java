@@ -20,7 +20,7 @@ public class VistaMatriz extends JPanel implements MouseListener{
 	
 	public void reset() {
 		horizontal.clear();
-		horizontal.clear();
+		vertical.clear();
 		x = 1;
 		y = 1;
 		repaint();
